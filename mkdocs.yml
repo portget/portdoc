@@ -1,0 +1,12 @@
+site_name: Port
+site_url: https://example.com/
+nav:
+  - Started: started.md
+  - Commands: command.md
+  - About: about.md
+markdown_extensions:
+  - admonition
+  - footnotes
+  - meta
+  - toc:
+      permalink: true
