@@ -32,8 +32,8 @@ port new [repository-name]
 ```
 
 !!! danger
-    did not write 레파지토리 이름은 특수문자를 작성 할 수 없습니다. 이름 작성 규칙은 OS에서 제공되는 디렉토리 명명 규칙을 
-    따릅니다.
+    The repository name cannot contain special characters. 
+    It follows the directory naming rules provided by the operating system.
 
 
 ## Repository layout
