@@ -108,44 +108,13 @@ port set samplegroup1 sayHelloMessage1 Hello?
 port get samplegroup1 sayHelloMessage1
 [Hello?]
 ```
+ 
 
-____
-title: Mydocuments
-summary: A brief descritpiton of mydocuments
-____
+### API Refrence
 
-```
-this is code blocks
-```
-
-
-
-First | Second | Third 
+OS | Second | Third 
 ------|--------|--------
-1 | 2 | 3 
+Windows x64 | 2 | 3 
 
 
-* [Python]
-```python
-def fn():
-    pass
-```
-
-* [C#]
-```C#
-private void Sample(){
-
-}
-```
-
-* [C++]
-```c++
-int Sum(){
-
-}
-```
-
-!!! tip
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et euismod
-    nulla. Curabitur feugiat, tortor non consequat finibus, justo purus auctor
-    massa, nec semper lorem quam in massa.
+ 
