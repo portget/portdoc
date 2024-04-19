@@ -88,8 +88,8 @@ ___
 * `port pull` - pull project from repository
 
 !!!tip
-    포트는 레파지토리에 저장된 값을 기준으로 어필리케이션이 가동 됩니다. 어플리케이션 구동전 push 동작은 필수 적이며
-    사용자는 원하는 시점으로 pull 동작을 하여 해당 레파지토리를 복구 할 수 있습니다.
+    The application runs based on the values stored in the repository. The push action must precede the application startup. 
+    Subsequently, users can perform a pull action at any desired moment to restore the repository.
 
 
 
