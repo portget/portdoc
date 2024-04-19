@@ -6,9 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="https://example.com/command/">
+        <link rel="canonical" href="https://example.com/relation/">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Commands - Port</title>
+        <title>Relation - Port</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet">
         <link href="../css/base.css" rel="stylesheet">
@@ -34,7 +34,7 @@
                                 <a href="../started/" class="nav-link">Started</a>
                             </li>
                             <li class="navitem active">
-                                <a href="./" class="nav-link">Commands</a>
+                                <a href="./" class="nav-link">Relation</a>
                             </li>
                             <li class="navitem">
                                 <a href="../about/" class="nav-link">About</a>
@@ -75,12 +75,22 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="2"><a href="#commands" class="nav-link">Commands</a>
+            <li class="nav-item" data-level="1"><a href="#whats-relation" class="nav-link">What's RELATION?</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="2"><a href="#project-layout" class="nav-link">Project layout</a>
+            <li class="nav-item" data-level="1"><a href="#api-refrence" class="nav-link">API Refrence</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#how-can-make-realtion-library" class="nav-link">How can make realtion library</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#net-80" class="nav-link">.Net (&gt;= 8.0)</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -89,24 +99,126 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h2 id="commands">Commands<a class="headerlink" href="#commands" title="Permanent link">&para;</a></h2>
-<ul>
-<li><code>mkdocs new [dir-name]</code> - Create a new project.</li>
-<li><code>mkdocs serve</code> - Start the live-reloading docs server.</li>
-<li><code>mkdocs build</code> - Build the documentation site.</li>
-<li><code>mkdocs -h</code> - Print help message and exit.</li>
-</ul>
+<h1 id="whats-relation">What's RELATION?<a class="headerlink" href="#whats-relation" title="Permanent link">&para;</a></h1>
 <hr />
-<p>title: Mydocuments
-summary: A brief descritpiton of mydocuments</p>
+<h1 id="api-refrence">API Refrence<a class="headerlink" href="#api-refrence" title="Permanent link">&para;</a></h1>
 <hr />
-<pre><code>this is code blocks
+<h1 id="how-can-make-realtion-library">How can make realtion library<a class="headerlink" href="#how-can-make-realtion-library" title="Permanent link">&para;</a></h1>
+<hr />
+<h1 id="net-80">.Net (&gt;= 8.0)<a class="headerlink" href="#net-80" title="Permanent link">&para;</a></h1>
+<hr />
+<pre><code>dotnet add package PortLib
 </code></pre>
-<h2 id="project-layout">Project layout<a class="headerlink" href="#project-layout" title="Permanent link">&para;</a></h2>
-<pre><code>mkdocs.yml    # The configuration file.
-docs/
-    index.md  # The documentation homepage.
-    ...       # Other markdown pages, images and other files.
+<table>
+<thead>
+<tr>
+<th>MODEL NAME</th>
+<th>TODO</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CommRelationModel</td>
+<td>a</td>
+<td>b</td>
+</tr>
+<tr>
+<td>CommRelationModel</td>
+<td>a</td>
+<td>b</td>
+</tr>
+<tr>
+<td>CommRelationModel</td>
+<td>a</td>
+<td>b</td>
+</tr>
+<tr>
+<td>CommRelationModel</td>
+<td>a</td>
+<td>b</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>[C#]</li>
+</ul>
+<pre><code class="language-C#"> /// &lt;summary&gt;
+ /// Communication Relation Object 
+ /// you must be implement IsConnected, Endpoint
+ /// &lt;/summary&gt;
+
+
+ public class Relation : CommRelationModel
+ {
+     private SerialPort serialPort = new SerialPort();
+
+     public Relation()
+     {
+
+     }
+
+     // Just use here
+     public string Name;
+
+     // Check for connected
+     protected override bool IsConnected()
+     {
+         return ((this.serialPort != null) &amp;&amp; (this.serialPort.IsOpen));
+     }
+
+     // port relation set Endpoint like COM13,9600,8,1,0,0 / TCP 
+     [Message]
+     public override IEndpoint Endpoint
+     {
+         set
+         {
+             if (value.Binding(this.serialPort))
+             {
+                 this.serialPort.Open();
+             }
+         }
+         get
+         {
+             return this.address;
+         }
+     }
+
+     [Message]
+     public string GetPower
+     {
+         get
+         {
+             var message = Encoding.ASCII.GetBytes(&quot;power?\r\n&quot;);
+
+             this.serialPort.Write(message, 0, message.Length);
+
+             Thread.Sleep(300);
+
+             var recv = new byte[0xff];
+
+             var n = this.serialPort.Read(recv, 0, recv.Length);
+
+             if (n != 0)
+             { 
+                 return Encoding.ASCII.GetString(recv);
+             } 
+
+             return &quot;Unknown&quot;;
+         }
+     }
+
+
+     [Message]
+     public string PowerOn
+     {
+         set
+         {
+            var message = Encoding.ASCII.GetBytes(&quot;powerOn\r\n&quot;);
+            this.serialPort.Write(message, 0, message.Length);
+         }
+     }
+ }
 </code></pre></div>
             </div>
         </div>

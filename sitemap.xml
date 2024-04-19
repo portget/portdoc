@@ -11,12 +11,12 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://example.com/command/</loc>
+         <loc>https://example.com/license/</loc>
          <lastmod>2024-04-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://example.com/license/</loc>
+         <loc>https://example.com/relation/</loc>
          <lastmod>2024-04-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
