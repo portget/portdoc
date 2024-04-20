@@ -81,7 +81,7 @@ TFalse      True:0      False:1
 
 ## Commands
 ___
-### Repository
+## Repository
 * `port push` - push project to repository
 * `port pull` - pull project from repository
 
@@ -91,11 +91,11 @@ ___
 
 
 
-### Application 
+## Application 
 * `port run [repository-name]` - run application from repository
 * `port kill` - terminated current application
 
-### Message
+## Message
 * `port set [group-key] [message-key] [set-value]` - set the message value to current repository
 ```
 port set samplegroup1 sayHelloMessage1 Hello?
@@ -107,12 +107,4 @@ port get samplegroup1 sayHelloMessage1
 [Hello?]
 ```
  
-
-### API Refrence
-
-OS | Second | Third 
-------|--------|--------
-Windows x64 | 2 | 3 
-
-
  
