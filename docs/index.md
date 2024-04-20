@@ -88,8 +88,8 @@ ___
 * `port pull` - pull project from repository
 
 !!!tip
-    포트는 레파지토리에 저장된 값을 기준으로 어필리케이션이 가동 됩니다. 어플리케이션 구동전 push 동작은 필수 적이며
-    사용자는 원하는 시점으로 pull 동작을 하여 해당 레파지토리를 복구 할 수 있습니다.
+    The application runs based on the values stored in the repository. The push action must precede the application startup. 
+    Subsequently, users can perform a pull action at any desired moment to restore the repository.
 
 
 
@@ -108,44 +108,13 @@ port set samplegroup1 sayHelloMessage1 Hello?
 port get samplegroup1 sayHelloMessage1
 [Hello?]
 ```
+ 
 
-____
-title: Mydocuments
-summary: A brief descritpiton of mydocuments
-____
+### API Refrence
 
-```
-this is code blocks
-```
-
-
-
-First | Second | Third 
+OS | Second | Third 
 ------|--------|--------
-1 | 2 | 3 
+Windows x64 | 2 | 3 
 
 
-* [Python]
-```python
-def fn():
-    pass
-```
-
-* [C#]
-```C#
-private void Sample(){
-
-}
-```
-
-* [C++]
-```c++
-int Sum(){
-
-}
-```
-
-!!! tip
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et euismod
-    nulla. Curabitur feugiat, tortor non consequat finibus, justo purus auctor
-    massa, nec semper lorem quam in massa.
+ 
