@@ -11,15 +11,10 @@ Please see the documentation [lincense](license.md)
 * frameworks : .Net Framework 4.5+  
 
 
-## Getting Started
-
+## download rul
 ---
-Installation
-To install port, run the folliwing command from the commnad line
-
-
 ```
-choco install port
+https://github.com/portget/port/
 ```
 
 
