@@ -1,7 +1,7 @@
 site_name: Port
 site_url: https://example.com/
 nav:
-  - Refrence: refrence.md
+  - API Reference: reference.md
   - Relation: relation.md
   - About: about.md
 markdown_extensions:

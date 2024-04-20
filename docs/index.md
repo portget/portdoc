@@ -36,7 +36,7 @@ port new [repository-name]
     The repository name cannot contain special characters. 
     It follows the directory naming rules provided by the operating system.
 
-### repository layout
+### Repository layout
 ___
     port.toml         # The configuration file.
     groupA/     # The group directory. 
@@ -54,14 +54,23 @@ ___
 * `[key]`      - unique key in the message group
 * `[datatype]` - text | num 
 * `[property]` - relation,backup,rule,frame
-         
-```
-[../sample1.msg]
 
-sayHelloMessage1 text           relation:relation1.GetArgs1 backup:true 
-sayHelloMessage2 text           relation:relation1.GetArgs2 frame:1
-sayTFalse        enum.TFalse 
-...
+#### message property list 
+ 
+ name|description
+ ------|--------
+ relation| Real-time synchronization and messaging are handled within the corresponding external library. For more details, please refer to the Relation documentation.
+ backup  | Changes are saved to the backup database as they occur, ensuring that values are restored upon application restart. and values are not propagated relation messages during program execution.
+ frame   | Can specify a frame key value to manage subsequent frames by their numerical key values.
+ rule    | Can specify rules to manage the values of corresponding messages. 
+
+
+#### sample1.msg
+``` 
+ sayHelloMessage1 text           relation:relation1.GetArgs1 backup:true 
+ sayHelloMessage2 text           relation:relation1.GetArgs2 frame:1
+ sayTFalse        enum.TFalse 
+ ...
 ```
 
 !!! tip
@@ -69,12 +78,20 @@ sayTFalse        enum.TFalse
 
 
 ### Enum File
+___
 
-* enum item format like this `[key] [item:number_key] [item:number_key]`
+Enums are particularly useful when you have a fixed set of values that a variable can take, such as days of the week, months of the year, or status codes. They help make your code more expressive, self-documenting, and less error-prone because you're working with named constants instead of raw integer values. 
+
+* enum item format like this`[key] [item-name:number_key] [item-name:number_key]` 
+* `[key]`      - unique key in the enum message
+* `[item-name]`- name by enum-item
+* `[property]` - unique key in enum value
 
 
+
+
+#### custom.enum
 ```
-[../custom.enum]
 TFalse      True:0      False:1
 FTrue       False:0     True:1
 OnOff       On:0        Off:1
@@ -98,6 +115,11 @@ ___
 ### Application 
 * `port run [repository-name]` - run application from repository
 * `port kill` - terminated current application
+
+
+!!! tip
+    port application must be start portlib services application
+
 
 ### Message
 * `port set [group-key] [message-key] [set-value]` - set the message value to current repository
