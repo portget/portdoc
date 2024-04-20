@@ -21,23 +21,25 @@ v0.0.1 -BETA | No | [Port.7z  v0.0.1 - BETA](https://github.com/portget/port/arc
 
 
 
-## Create new repository
+
+
+
+## Repository
 ___
 
-
+### Create new repository 
 ```
 port new [repository-name]
 ```
 
-!!! danger
+!!! tip
     The repository name cannot contain special characters. 
     It follows the directory naming rules provided by the operating system.
 
-
-## Repository layout
+### repository layout
 ___
     port.toml         # The configuration file.
-    samplegroup1/     # The group directory. 
+    groupA/     # The group directory. 
         sample1.msg   # The message file
         sample2.msg   # The message file
         sample3.msg   # The message file
@@ -46,10 +48,10 @@ ___
 
 
 
-## Message File Format
+### Message File
 ___
 * message item format like this `[key] [datatype] [property...]`
-* `[key]`      - escape special characters. recommnad ascii value.
+* `[key]`      - unique key in the message group
 * `[datatype]` - text | num 
 * `[property]` - relation,backup,rule,frame
          
@@ -62,26 +64,28 @@ sayTFalse        enum.TFalse
 ...
 ```
 
-!!! danger
+!!! tip
     message document do not using special characters. 
 
 
-## Enum File Format
+### Enum File
 
 * enum item format like this `[key] [item:number_key] [item:number_key]`
 
 
 ```
 [../custom.enum]
-
 TFalse      True:0      False:1
+FTrue       False:0     True:1
+OnOff       On:0        Off:1
+OffOn       Off:1       On:1
 ```
 
 
 
 ## Commands
 ___
-## Repository
+### Repository
 * `port push` - push project to repository
 * `port pull` - pull project from repository
 
@@ -91,19 +95,19 @@ ___
 
 
 
-## Application 
+### Application 
 * `port run [repository-name]` - run application from repository
 * `port kill` - terminated current application
 
-## Message
+### Message
 * `port set [group-key] [message-key] [set-value]` - set the message value to current repository
 ```
-port set samplegroup1 sayHelloMessage1 Hello?
+port set groupA sayHelloMessage1 Hello?
 [set-ok]
 ```
 * `port get [group-key] [message-key]` - get the message value to current repository
 ```
-port get samplegroup1 sayHelloMessage1
+port get groupA sayHelloMessage1
 [Hello?]
 ```
  
