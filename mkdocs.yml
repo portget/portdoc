@@ -10,7 +10,8 @@ markdown_extensions:
   - meta
   - toc:
       permalink: true
-
+  - attr_list
+  
 theme:
   name: null
   custom_dir: 'cinder'
