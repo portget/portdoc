@@ -70,7 +70,7 @@
                 
                 
                     <li >
-                        <a href="refrence/">Refrence</a>
+                        <a href="reference/">API Reference</a>
                     </li>
                 
                 
@@ -109,22 +109,17 @@
                 
             <li class="second-level"><a href="#download-url">Download URL</a></li>
                 
-            <li class="second-level"><a href="#create-new-repository">Create new repository</a></li>
-                
-            <li class="second-level"><a href="#repository-layout">Repository layout</a></li>
-                
-            <li class="second-level"><a href="#message-file-format">Message File Format</a></li>
-                
-            <li class="second-level"><a href="#enum-file-format">Enum File Format</a></li>
-                
-            <li class="second-level"><a href="#commands">Commands</a></li>
-                
             <li class="second-level"><a href="#repository">Repository</a></li>
                 
-            <li class="second-level"><a href="#application">Application</a></li>
+                <li class="third-level"><a href="#create-new-repository">Create new repository</a></li>
+                <li class="third-level"><a href="#repository-layout">Repository layout</a></li>
+                <li class="third-level"><a href="#message-file">Message File</a></li>
+                <li class="third-level"><a href="#enum-file">Enum File</a></li>
+            <li class="second-level"><a href="#commands">Commands</a></li>
                 
-            <li class="second-level"><a href="#message">Message</a></li>
-                
+                <li class="third-level"><a href="#repository_1">Repository</a></li>
+                <li class="third-level"><a href="#application">Application</a></li>
+                <li class="third-level"><a href="#message">Message</a></li>
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
@@ -157,55 +152,89 @@
 </tr>
 </tbody>
 </table>
-<h2 id="create-new-repository">Create new repository<a class="headerlink" href="#create-new-repository" title="Permanent link">&para;</a></h2>
+<h2 id="repository">Repository<a class="headerlink" href="#repository" title="Permanent link">&para;</a></h2>
 <hr />
+<h3 id="create-new-repository">Create new repository<a class="headerlink" href="#create-new-repository" title="Permanent link">&para;</a></h3>
 <pre><code>port new [repository-name]
 </code></pre>
-<div class="admonition danger">
-<p class="admonition-title">Danger</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
 <p>The repository name cannot contain special characters. 
 It follows the directory naming rules provided by the operating system.</p>
 </div>
-<h2 id="repository-layout">Repository layout<a class="headerlink" href="#repository-layout" title="Permanent link">&para;</a></h2>
+<h3 id="repository-layout">Repository layout<a class="headerlink" href="#repository-layout" title="Permanent link">&para;</a></h3>
 <hr />
 <pre><code>port.toml         # The configuration file.
-samplegroup1/     # The group directory. 
+groupA/     # The group directory. 
     sample1.msg   # The message file
     sample2.msg   # The message file
     sample3.msg   # The message file
     custom.enum   # The custom enum file 
 ...               # Other files.
 </code></pre>
-<h2 id="message-file-format">Message File Format<a class="headerlink" href="#message-file-format" title="Permanent link">&para;</a></h2>
+<h3 id="message-file">Message File<a class="headerlink" href="#message-file" title="Permanent link">&para;</a></h3>
 <hr />
 <ul>
 <li>message item format like this <code>[key] [datatype] [property...]</code></li>
-<li><code>[key]</code>      - escape special characters. recommnad ascii value.</li>
+<li><code>[key]</code>      - unique key in the message group</li>
 <li><code>[datatype]</code> - text | num </li>
 <li><code>[property]</code> - relation,backup,rule,frame</li>
 </ul>
-<pre><code>[../sample1.msg]
-
-sayHelloMessage1 text           relation:relation1.GetArgs1 backup:true 
-sayHelloMessage2 text           relation:relation1.GetArgs2 frame:1
-sayTFalse        enum.TFalse 
-...
+<h4 id="message-property-list">message property list<a class="headerlink" href="#message-property-list" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>relation</td>
+<td>Real-time synchronization and messaging are handled within the corresponding external library. For more details, please refer to the Relation documentation.</td>
+</tr>
+<tr>
+<td>backup</td>
+<td>Changes are saved to the backup database as they occur, ensuring that values are restored upon application restart. and values are not propagated relation messages during program execution.</td>
+</tr>
+<tr>
+<td>frame</td>
+<td>Can specify a frame key value to manage subsequent frames by their numerical key values.</td>
+</tr>
+<tr>
+<td>rule</td>
+<td>Can specify rules to manage the values of corresponding messages.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="sample1msg">sample1.msg<a class="headerlink" href="#sample1msg" title="Permanent link">&para;</a></h4>
+<pre><code> sayHelloMessage1 text           relation:relation1.GetArgs1 backup:true 
+ sayHelloMessage2 text           relation:relation1.GetArgs2 frame:1
+ sayTFalse        enum.TFalse 
+ ...
 </code></pre>
-<div class="admonition danger">
-<p class="admonition-title">Danger</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
 <p>message document do not using special characters. </p>
 </div>
-<h2 id="enum-file-format">Enum File Format<a class="headerlink" href="#enum-file-format" title="Permanent link">&para;</a></h2>
+<h3 id="enum-file">Enum File<a class="headerlink" href="#enum-file" title="Permanent link">&para;</a></h3>
+<hr />
+<p>Enums are particularly useful when you have a fixed set of values that a variable can take, such as days of the week, months of the year, or status codes. They help make your code more expressive, self-documenting, and less error-prone because you're working with named constants instead of raw integer values. </p>
 <ul>
-<li>enum item format like this <code>[key] [item:number_key] [item:number_key]</code></li>
+<li>enum item format like this<code>[key] [item-name:number_key] [item-name:number_key]</code> </li>
+<li><code>[key]</code>      - unique key in the enum message</li>
+<li><code>[item-name]</code>- name by enum-item</li>
+<li><code>[property]</code> - unique key in enum value</li>
 </ul>
-<pre><code>[../custom.enum]
-
-TFalse      True:0      False:1
+<h4 id="customenum">custom.enum<a class="headerlink" href="#customenum" title="Permanent link">&para;</a></h4>
+<pre><code>TFalse      True:0      False:1
+FTrue       False:0     True:1
+OnOff       On:0        Off:1
+OffOn       Off:1       On:1
 </code></pre>
 <h2 id="commands">Commands<a class="headerlink" href="#commands" title="Permanent link">&para;</a></h2>
 <hr />
-<h2 id="repository">Repository<a class="headerlink" href="#repository" title="Permanent link">&para;</a></h2>
+<h3 id="repository_1">Repository<a class="headerlink" href="#repository_1" title="Permanent link">&para;</a></h3>
 <ul>
 <li><code>port push</code> - push project to repository</li>
 <li><code>port pull</code> - pull project from repository</li>
@@ -215,22 +244,26 @@ TFalse      True:0      False:1
 <p>The application runs based on the values stored in the repository. The push action must precede the application startup. 
 Subsequently, users can perform a pull action at any desired moment to restore the repository.</p>
 </div>
-<h2 id="application">Application<a class="headerlink" href="#application" title="Permanent link">&para;</a></h2>
+<h3 id="application">Application<a class="headerlink" href="#application" title="Permanent link">&para;</a></h3>
 <ul>
 <li><code>port run [repository-name]</code> - run application from repository</li>
 <li><code>port kill</code> - terminated current application</li>
 </ul>
-<h2 id="message">Message<a class="headerlink" href="#message" title="Permanent link">&para;</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>port application must be start portlib services application</p>
+</div>
+<h3 id="message">Message<a class="headerlink" href="#message" title="Permanent link">&para;</a></h3>
 <ul>
 <li><code>port set [group-key] [message-key] [set-value]</code> - set the message value to current repository</li>
 </ul>
-<pre><code>port set samplegroup1 sayHelloMessage1 Hello?
+<pre><code>port set groupA sayHelloMessage1 Hello?
 [set-ok]
 </code></pre>
 <ul>
 <li><code>port get [group-key] [message-key]</code> - get the message value to current repository</li>
 </ul>
-<pre><code>port get samplegroup1 sayHelloMessage1
+<pre><code>port get groupA sayHelloMessage1
 [Hello?]
 </code></pre></div>
         
@@ -337,5 +370,5 @@ Subsequently, users can perform a pull action at any desired moment to restore t
 
 <!--
 MkDocs version : 1.5.3
-Build Date UTC : 2024-04-20 09:54:07.799470+00:00
+Build Date UTC : 2024-04-20 13:48:13.966968+00:00
 -->
