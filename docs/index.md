@@ -11,7 +11,7 @@ Please see the documentation [lincense](license.md)
 * frameworks : .Net Framework 4.5+  
 
 
-## download rul
+## Download rul
 ---
 ```
 https://github.com/portget/port/
