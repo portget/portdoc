@@ -115,66 +115,84 @@
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
         <li class="first-level active"><a href="#whats-relation">What's RELATION?</a></li>
-        <li class="first-level "><a href="#api-refrence">API Refrence</a></li>
-        <li class="first-level "><a href="#how-can-make-realtion-library">How can make realtion library</a></li>
-        <li class="first-level "><a href="#net-80">.Net (&gt;= 8.0)</a></li>
+        <li class="first-level "><a href="#get-started">Get Started</a></li>
+            <li class="second-level"><a href="#add-reference">Add reference</a></li>
+                
+            <li class="second-level"><a href="#support-objects">Support objects</a></li>
+                
+            <li class="second-level"><a href="#net-80">.Net (&gt;= 8.0)</a></li>
+                
+                <li class="third-level"><a href="#scenariorelationservice">ScenarioRelationService</a></li>
+                <li class="third-level"><a href="#intervalrelationservice">IntervalRelationService</a></li>
+                <li class="third-level"><a href="#commrelationservice">CommRelationService</a></li>
+                <li class="third-level"><a href="#debugging">Debugging</a></li>
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
 
 <h1 id="whats-relation">What's RELATION?<a class="headerlink" href="#whats-relation" title="Permanent link">&para;</a></h1>
 <hr />
-<h1 id="api-refrence">API Refrence<a class="headerlink" href="#api-refrence" title="Permanent link">&para;</a></h1>
+<p>This object is designed to efficiently manage libraries that serve as common denominators across multiple projects. Tailored for each language, these libraries facilitate seamless integration with the object and handle memory synchronization with ports. Users can conveniently utilize these libraries by inheriting or implementing the respective classes, ensuring ease of use.</p>
+<h1 id="get-started">Get Started<a class="headerlink" href="#get-started" title="Permanent link">&para;</a></h1>
 <hr />
-<h1 id="how-can-make-realtion-library">How can make realtion library<a class="headerlink" href="#how-can-make-realtion-library" title="Permanent link">&para;</a></h1>
-<hr />
-<p>this is li
-test</p>
-<h1 id="net-80">.Net (&gt;= 8.0)<a class="headerlink" href="#net-80" title="Permanent link">&para;</a></h1>
-<hr />
-<pre><code>dotnet add package PortLib
-</code></pre>
+<h3 id="add-reference">Add reference<a class="headerlink" href="#add-reference" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
-<th>MODEL NAME</th>
-<th>TODO</th>
+<th>NAME</th>
+<th>Version</th>
+<th>Path</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.net</td>
+<td>&gt;8.0</td>
+<td>../port/lib/net/portlib.dll</td>
+</tr>
+</tbody>
+</table>
+<h3 id="support-objects">Support objects<a class="headerlink" href="#support-objects" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>NAME</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>CommRelationModel</td>
-<td>a</td>
-<td>b</td>
+<td>ScenarioRelationService</td>
+<td>write a scenario where you inherit the object to control all message values and share messages across the system.</td>
 </tr>
 <tr>
-<td>CommRelationModel</td>
-<td>a</td>
-<td>b</td>
+<td>IntervalRelationService</td>
+<td>this is an object designed for managing a set of periodically called messages, allowing control over the values by periodically invoking messages to the system.</td>
 </tr>
 <tr>
-<td>CommRelationModel</td>
-<td>a</td>
-<td>b</td>
-</tr>
-<tr>
-<td>CommRelationModel</td>
-<td>a</td>
-<td>b</td>
+<td>CommRelationService</td>
+<td>this object is designed for a set of messages requiring network endpoints. When inheriting this object, implementation of endpoint and connection status check functions is necessary. Through implementation of the required messages upon connection, it can be provided to the port application.</td>
 </tr>
 </tbody>
 </table>
-<ul>
-<li>[C#]</li>
-</ul>
+<h3 id="net-80">.Net (&gt;= 8.0)<a class="headerlink" href="#net-80" title="Permanent link">&para;</a></h3>
+<hr />
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>[Properties] -&gt;  [Application] -&gt; [General] -&gt; [Traget OS] -&gt; check for windows</p>
+</div>
+<h4 id="scenariorelationservice">ScenarioRelationService<a class="headerlink" href="#scenariorelationservice" title="Permanent link">&para;</a></h4>
+<pre><code class="language-C#">
+</code></pre>
+<h4 id="intervalrelationservice">IntervalRelationService<a class="headerlink" href="#intervalrelationservice" title="Permanent link">&para;</a></h4>
+<pre><code class="language-C#">
+</code></pre>
+<h4 id="commrelationservice">CommRelationService<a class="headerlink" href="#commrelationservice" title="Permanent link">&para;</a></h4>
 <pre><code class="language-C#"> /// &lt;summary&gt;
  /// Communication Relation Object 
  /// you must be implement IsConnected, Endpoint
  /// &lt;/summary&gt;
-
-
- public class Relation : CommRelationModel
+ public class Relation : CommRelationService
  {
      private SerialPort serialPort = new SerialPort();
 
@@ -210,7 +228,7 @@ test</p>
      }
 
      [Message]
-     public string GetPower
+     public string GetPowerStatus
      {
          get
          {
@@ -233,7 +251,6 @@ test</p>
          }
      }
 
-
      [Message]
      public string PowerOn
      {
@@ -244,6 +261,9 @@ test</p>
          }
      }
  }
+</code></pre>
+<h4 id="debugging">Debugging<a class="headerlink" href="#debugging" title="Permanent link">&para;</a></h4>
+<pre><code>
 </code></pre></div>
         
         
