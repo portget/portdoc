@@ -15,29 +15,39 @@ NAME | Version | Path
 
 
 
-
 ### Support objects
 NAME | Description 
 ------|--------
-ScenarioRelationController| write a scenario where you inherit the object to control all message values and share messages across the system.   
-IntervalRelationModel | this is an object designed for managing a set of periodically called messages, allowing control over the values by periodically invoking messages to the system.
-CommRelationModel | this object is designed for a set of messages requiring network endpoints. When inheriting this object, implementation of endpoint and connection status check functions is necessary. Through implementation of the required messages upon connection, it can be provided to the port application.
+ScenarioRelationService| write a scenario where you inherit the object to control all message values and share messages across the system.   
+IntervalRelationService | this is an object designed for managing a set of periodically called messages, allowing control over the values by periodically invoking messages to the system.
+CommRelationService | this object is designed for a set of messages requiring network endpoints. When inheriting this object, implementation of endpoint and connection status check functions is necessary. Through implementation of the required messages upon connection, it can be provided to the port application.
 
 ### .Net (>= 8.0)
 __________________
 
 
+!!! tip
+    [Properties] ->  [Application] -> [General] -> [Traget OS] -> check for windows
 
-#### CommRelationModel
+
+#### ScenarioRelationService
+```C#
+
+```
+
+#### IntervalRelationService
+```C#
+
+```
+
+#### CommRelationService
 
 ```C#
  /// <summary>
  /// Communication Relation Object 
  /// you must be implement IsConnected, Endpoint
  /// </summary>
-    
-
- public class Relation : CommRelationModel
+ public class Relation : CommRelationService
  {
      private SerialPort serialPort = new SerialPort();
      
@@ -73,7 +83,7 @@ __________________
      }
 
      [Message]
-     public string GetPower
+     public string GetPowerStatus
      {
          get
          {
@@ -95,8 +105,7 @@ __________________
              return "Unknown";
          }
      }
- 
-
+  
      [Message]
      public string PowerOn
      {
@@ -111,3 +120,7 @@ __________________
 
 
 
+#### Debugging 
+```
+
+```
