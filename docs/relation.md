@@ -4,35 +4,32 @@ __________________
 
 This object is designed to efficiently manage libraries that serve as common denominators across multiple projects. Tailored for each language, these libraries facilitate seamless integration with the object and handle memory synchronization with ports. Users can conveniently utilize these libraries by inheriting or implementing the respective classes, ensuring ease of use.
 
+# Get Started
+__________________
+
+### Add reference
+
+NAME | Version | Path 
+------|--------|-------
+.net  | >8.0   |../port/lib/net/portlib.dll
 
 
 
-# API Refrence
+
+### Support objects
+NAME | Description 
+------|--------
+ScenarioRelationController| write a scenario where you inherit the object to control all message values and share messages across the system.   
+IntervalRelationModel | this is an object designed for managing a set of periodically called messages, allowing control over the values by periodically invoking messages to the system.
+CommRelationModel | this object is designed for a set of messages requiring network endpoints. When inheriting this object, implementation of endpoint and connection status check functions is necessary. Through implementation of the required messages upon connection, it can be provided to the port application.
+
+### .Net (>= 8.0)
 __________________
 
 
-# How can make realtion library
-__________________
 
+#### CommRelationModel
 
-
-# .Net (>= 8.0)
-__________________
-
-```
-dotnet add package PortLib
-```
-
-
-MODEL NAME | TODO | Description 
-------|--------|--------
-CommRelationModel | a | b  
-CommRelationModel | a | b
-CommRelationModel | a | b
-CommRelationModel | a | b
-
-
-* [C#]
 ```C#
  /// <summary>
  /// Communication Relation Object 
