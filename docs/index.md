@@ -1,6 +1,6 @@
 # Welcome to Port
 
-The Port program operates on a real-time database approach. By using this program, users can effortlessly share messages across multiple applications, facilitating simpler and more scalable development.
+The port application, being a time-series database, offers a flexible design ideal for industrial data collection and processing. With its capabilities, it enables efficient storage and retrieval of timestamped data, facilitating streamlined operations across various industrial sectors. 
 
 Please see the documentation [lincense](license.md)
 
