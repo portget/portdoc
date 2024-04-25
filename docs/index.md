@@ -39,11 +39,16 @@ port new [repository-name]
 ### Repository layout
 ___
     port.toml         # The configuration file.
-    groupA/     # The group directory. 
+    custom.enum       # The custom enum file 
+    groupA/           # The group directory. 
         sample1.msg   # The message file
         sample2.msg   # The message file
         sample3.msg   # The message file
-        custom.enum   # The custom enum file 
+        
+    groupB/           # The group directory. 
+        sample1.msg   # The message file
+        sample2.msg   # The message file
+        sample3.msg   # The message file
     ...               # Other files.
 
 
