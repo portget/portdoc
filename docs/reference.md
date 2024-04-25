@@ -3,19 +3,8 @@
 
 ## Introduction
 ____
-In addition to the in-memory invocation method, the Port application inherently provides a REST API.
 
-It offers the following advantages:
-
-1.Resource-centric: Every resource has a unique identifier (URI), and each resource is accessed through its unique URI.
-
-2.Utilization of HTTP Methods: Manipulation of resources is done using HTTP methods (GET, POST, PUT, DELETE). For example, GET is used for retrieving resources, and POST is used for creating new resources.
-
-3.State Transfer of Representations: Clients send representations of the resources they request to the server, which processes them and responds with appropriate status codes.
-
-4.Statelessness: Servers handle each request independently, without storing any client state. This enhances scalability and performance.
-
-5.Caching: Servers can cache responses to improve client performance.
+Start building your port application with API.  
 
 
 ## Authentication
@@ -25,16 +14,24 @@ API calls to ensure proper authentication and access to services. This security 
 
 ## GET
 ____
-
-## POST
-____
-
-## PUT
-___
-
-## DELETE
-
-OS | Second | Third 
+URL | Type | Value 
 ------|--------|--------
 Windows x64 | 2 | 3 
 
+## POST
+____
+URL | Type | Value 
+------|--------|--------
+Windows x64 | 2 | 3 
+
+## PUT
+___
+URL | Type | Value 
+------|--------|--------
+Windows x64 | 2 | 3 
+
+## DELETE
+___
+URL | Type | Value 
+------|--------|--------
+Windows x64 | 2 | 3 
