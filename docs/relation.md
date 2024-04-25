@@ -89,7 +89,34 @@ __________________
 
 #### IntervalRelationService
 ```C#
+/// <summary>
+/// 10ms interval serivce 
+/// </summary>
+public class HeatingCheck : IntervalRelationService
+{
+    /// <summary>
+    /// Using HTS Frame.
+    /// </summary>
 
+    [Frame("HTS")]
+    public HeatingCheck()
+    {
+
+    }
+
+    /// <summary>
+    /// Min-limit = 10ms 
+    /// </summary>
+    public override int Interval { set; get; } = 10;
+
+    public override void Tick()
+    {
+        if (frame.GetValue("Temperature") >= 30)
+        {
+            Occure("WARNING", "Too Hot");
+        }
+    }
+}
 ```
 
 #### EventRelationService
