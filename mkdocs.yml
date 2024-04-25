@@ -1,5 +1,5 @@
 site_name: Port
-site_url: https://example.com/
+site_url: https://portget.com
 nav:
   - Home: index.md
   - Relation: relation.md

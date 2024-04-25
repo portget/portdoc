@@ -20,6 +20,7 @@ NAME | Description
 ------|--------
 ScenarioRelationService| write a scenario where you inherit the object to control all message values and share messages across the system.   
 IntervalRelationService | this is an object designed for managing a set of periodically called messages, allowing control over the values by periodically invoking messages to the system.
+EventRelationService | this is an object designed for managing a set of periodically called messages, allowing control over the values by periodically invoking messages to the system.
 CommRelationService | this object is designed for a set of messages requiring network endpoints. When inheriting this object, implementation of endpoint and connection status check functions is necessary. Through implementation of the required messages upon connection, it can be provided to the port application.
 
 ### .Net (>= 8.0)
