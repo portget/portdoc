@@ -4,8 +4,12 @@
 ## Introduction
 ____
 
-Start building your port application with API.  
+This page explains how the Port client calls the Port backend API.
 
+!!!tip
+    Before making any API calls, please ensure that the server is running properly. 
+    If the server is not functioning correctly, API calls may fail. 
+    Therefore, verify the server's operational status before initiating any API calls.
 
 ## Authentication
 ____
@@ -13,25 +17,74 @@ When authentication functionality is activated within the HOST application, serv
 API calls to ensure proper authentication and access to services. This security feature remains disabled by default.
 
 ## GET
+
+### Application
+URL | Description 
+------|--------
+/api/app/ |  show up application information 
+/api/ng/ | show up ng-list  
+/api/download/ | download somthing...  
+/api/enum | enum list   
+
+
+### Group
 ____
-URL | Type | Value 
-------|--------|--------
-Windows x64 | 2 | 3 
+URL | Description 
+------|--------
+/api/{group-name}/ | accessor data  
+/api/{group-name}/keys | key list  
+/api/{group-name}/kv | key-value list  
+/api/{group-name}/datatype | key-datatype list  
+/api/{group-name}/enumid | enumid list  
+/api/{group-name}/memory | memory list 
+/api/{group-name}/address | address list 
+
+
+### Relation
+____
+URL | Description 
+------|--------
+/api/{relation-name}/ | relation information 
+/api/{relation-name}/keys | key list  
+/api/{relation-name}/kv | key-value list  
+/api/{relation-name}/set | set-message list  
+/api/{relation-name}/get | get-message list   
+
+
 
 ## POST
 ____
-URL | Type | Value 
-------|--------|--------
-Windows x64 | 2 | 3 
+### Application
+URL | Description 
+------|--------
+/api/enum/{enum} | key list  
+
+### Group
+URL | Description 
+------|--------
+/api/{group-name}/ | relation information 
+/api/{group-name}/message/{[key]}?{[datatype] [property...]} | add message  
+
+ 
 
 ## PUT
 ___
-URL | Type | Value 
-------|--------|--------
-Windows x64 | 2 | 3 
+
+### Group 
+URL | Description 
+------|--------
+/api/{group-name}/{[key]}?{[set-value]} | set value to group-message 
+
+### Relation
+URL | Description 
+------|--------
+/api/{relation-name}/{[key]}?{[set-value]}  | set value to relation-message
+
 
 ## DELETE
 ___
-URL | Type | Value 
-------|--------|--------
-Windows x64 | 2 | 3 
+
+### Group 
+URL | Description 
+------|--------
+/api/{group-name}/message/{[key]}
