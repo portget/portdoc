@@ -1,32 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://example.com/</loc>
+         <loc>https://portget.com/</loc>
          <lastmod>2024-04-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://example.com/about/</loc>
+         <loc>https://portget.com/frame/</loc>
          <lastmod>2024-04-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://example.com/frame/</loc>
+         <loc>https://portget.com/license/</loc>
          <lastmod>2024-04-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://example.com/license/</loc>
+         <loc>https://portget.com/reference/</loc>
          <lastmod>2024-04-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://example.com/reference/</loc>
-         <lastmod>2024-04-25</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://example.com/relation/</loc>
+         <loc>https://portget.com/relation/</loc>
          <lastmod>2024-04-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
