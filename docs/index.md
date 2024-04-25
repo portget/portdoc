@@ -14,9 +14,9 @@ Please see the documentation [lincense](license.md)
 ## Download URL
 ---
 
-VERSION | STABLE | URL 
-------|--------|--------
-v0.0.1 -BETA | No | [Port.7z  v0.0.1 - BETA](https://github.com/portget/port/archive/refs/tags/v0.0.1-beta.zip){:download}
+VERSION | OS |STABLE | URL 
+------|--------|--------|--------
+v0.0.1 -BETA | Windows x64 | No | [Port.7z  v0.0.1 - BETA](https://github.com/portget/port/archive/refs/tags/v0.0.1-beta.zip){:download}
 
 
 
@@ -61,14 +61,14 @@ ___
  ------|--------
  relation| Real-time synchronization and messaging are handled within the corresponding external library. For more details, please refer to the Relation documentation.
  backup  | Changes are saved to the backup database as they occur, ensuring that values are restored upon application restart. and values are not propagated relation messages during program execution.
- frame   | Can specify a frame key value to manage subsequent frames by their numerical key values.
+ frame   | Can specify a frame key value to manage subsequent frames by their key values.
  rule    | Can specify rules to manage the values of corresponding messages. 
 
 
 #### sample1.msg
 ``` 
  sayHelloMessage1 text           relation:relation1.GetArgs1 backup:true 
- sayHelloMessage2 text           relation:relation1.GetArgs2 frame:1
+ sayHelloMessage2 text           relation:relation1.GetArgs2 frame:Frame1,Frame2
  sayTFalse        enum.TFalse 
  ...
 ```

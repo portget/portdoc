@@ -11,7 +11,7 @@
     <link rel="shortcut icon" href="img/favicon.ico">
 
     
-    <title>Welcome to Port - Port</title>
+    <title>Home - Port</title>
     
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
@@ -69,14 +69,26 @@
                 <ul class="nav navbar-nav">
                 
                 
-                    <li >
-                        <a href="reference/">API Reference</a>
+                    <li class="active">
+                        <a href=".">Home</a>
                     </li>
                 
                 
                 
                     <li >
                         <a href="relation/">Relation</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="frame/">Frame</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="reference/">API Reference</a>
                     </li>
                 
                 
@@ -92,6 +104,16 @@
                     <li>
                         <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
                             <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li class="disabled">
+                        <a rel="prev" >
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="relation/">
+                            Next <i class="fas fa-arrow-right"></i>
                         </a>
                     </li>
             </ul>
@@ -140,6 +162,7 @@
 <thead>
 <tr>
 <th>VERSION</th>
+<th>OS</th>
 <th>STABLE</th>
 <th>URL</th>
 </tr>
@@ -147,6 +170,7 @@
 <tbody>
 <tr>
 <td>v0.0.1 -BETA</td>
+<td>Windows x64</td>
 <td>No</td>
 <td><a download="download" href="https://github.com/portget/port/archive/refs/tags/v0.0.1-beta.zip">Port.7z  v0.0.1 - BETA</a></td>
 </tr>
@@ -199,7 +223,7 @@ groupA/     # The group directory.
 </tr>
 <tr>
 <td>frame</td>
-<td>Can specify a frame key value to manage subsequent frames by their numerical key values.</td>
+<td>Can specify a frame key value to manage subsequent frames by their key values.</td>
 </tr>
 <tr>
 <td>rule</td>
@@ -209,7 +233,7 @@ groupA/     # The group directory.
 </table>
 <h4 id="sample1msg">sample1.msg<a class="headerlink" href="#sample1msg" title="Permanent link">&para;</a></h4>
 <pre><code> sayHelloMessage1 text           relation:relation1.GetArgs1 backup:true 
- sayHelloMessage2 text           relation:relation1.GetArgs2 frame:1
+ sayHelloMessage2 text           relation:relation1.GetArgs2 frame:Frame1,Frame2
  sayTFalse        enum.TFalse 
  ...
 </code></pre>
@@ -370,5 +394,5 @@ Subsequently, users can perform a pull action at any desired moment to restore t
 
 <!--
 MkDocs version : 1.5.3
-Build Date UTC : 2024-04-25 02:59:37.909521+00:00
+Build Date UTC : 2024-04-25 03:10:20.637549+00:00
 -->

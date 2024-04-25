@@ -1,8 +1,10 @@
 site_name: Port
 site_url: https://example.com/
 nav:
-  - API Reference: reference.md
+  - Home: index.md
   - Relation: relation.md
+  - Frame : frame.md
+  - API Reference: reference.md
   - About: about.md
 markdown_extensions:
   - admonition
