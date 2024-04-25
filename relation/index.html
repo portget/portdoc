@@ -246,7 +246,34 @@
  }
 </code></pre>
 <h4 id="intervalrelationservice">IntervalRelationService<a class="headerlink" href="#intervalrelationservice" title="Permanent link">&para;</a></h4>
-<pre><code class="language-C#">
+<pre><code class="language-C#">/// &lt;summary&gt;
+/// 10ms interval serivce 
+/// &lt;/summary&gt;
+public class HeatingCheck : IntervalRelationService
+{
+    /// &lt;summary&gt;
+    /// Using HTS Frame.
+    /// &lt;/summary&gt;
+
+    [Frame(&quot;HTS&quot;)]
+    public HeatingCheck()
+    {
+
+    }
+
+    /// &lt;summary&gt;
+    /// Min-limit = 10ms 
+    /// &lt;/summary&gt;
+    public override int Interval { set; get; } = 10;
+
+    public override void Tick()
+    {
+        if (frame.GetValue(&quot;Temperature&quot;) &gt;= 30)
+        {
+            Occure(&quot;WARNING&quot;, &quot;Too Hot&quot;);
+        }
+    }
+}
 </code></pre>
 <h4 id="eventrelationservice">EventRelationService<a class="headerlink" href="#eventrelationservice" title="Permanent link">&para;</a></h4>
 <pre><code class="language-C#">
