@@ -183,11 +183,16 @@ It follows the directory naming rules provided by the operating system.</p>
 <h3 id="repository-layout">Repository layout<a class="headerlink" href="#repository-layout" title="Permanent link">&para;</a></h3>
 <hr />
 <pre><code>port.toml         # The configuration file.
-groupA/     # The group directory. 
+custom.enum       # The custom enum file 
+AZone/            # The group directory. 
     sample1.msg   # The message file
     sample2.msg   # The message file
     sample3.msg   # The message file
-    custom.enum   # The custom enum file 
+
+BZone/            # The group directory. 
+    sample1.msg   # The message file
+    sample2.msg   # The message file
+    sample3.msg   # The message file
 ...               # Other files.
 </code></pre>
 <h3 id="message-file">Message File<a class="headerlink" href="#message-file" title="Permanent link">&para;</a></h3>
@@ -226,9 +231,10 @@ groupA/     # The group directory.
 </tbody>
 </table>
 <h4 id="sample1msg">sample1.msg<a class="headerlink" href="#sample1msg" title="Permanent link">&para;</a></h4>
-<pre><code> sayHelloMessage1 text           relation:relation1.GetArgs1 backup:true 
- sayHelloMessage2 text           relation:relation1.GetArgs2 frame:Frame1,Frame2
- sayTFalse        enum.TFalse 
+<pre><code> DeviceA_PowerStatus    enum.DeviceAStatus   relation:DeviceA.GetStatus       frame:HeatingScenario.PowerStatus backup:true 
+ DeviceA_ErrorMessage   text                 relation:DeviceA.GetErrorMessage frame:HeatingScenario.ErrorMessage
+ DeviceC_Temperature    num                  relation:DeviceC.GetTemperature  frame:HeatingScenario.Temperature
+ DeviceC_OnOff          enum.OnOff           relation:DeviceC.OnOff           frame:HeatingScenario.HeaterOnOff
  ...
 </code></pre>
 <div class="admonition tip">
@@ -388,5 +394,5 @@ Subsequently, users can perform a pull action at any desired moment to restore t
 
 <!--
 MkDocs version : 1.5.3
-Build Date UTC : 2024-04-25 11:35:26.891894+00:00
+Build Date UTC : 2024-04-25 11:58:15.622424+00:00
 -->
