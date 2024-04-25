@@ -40,12 +40,12 @@ port new [repository-name]
 ___
     port.toml         # The configuration file.
     custom.enum       # The custom enum file 
-    groupA/           # The group directory. 
+    AZone/            # The group directory. 
         sample1.msg   # The message file
         sample2.msg   # The message file
         sample3.msg   # The message file
-        
-    groupB/           # The group directory. 
+
+    BZone/            # The group directory. 
         sample1.msg   # The message file
         sample2.msg   # The message file
         sample3.msg   # The message file
@@ -72,9 +72,10 @@ ___
 
 #### sample1.msg
 ``` 
- sayHelloMessage1 text           relation:relation1.GetArgs1 backup:true 
- sayHelloMessage2 text           relation:relation1.GetArgs2 frame:Frame1,Frame2
- sayTFalse        enum.TFalse 
+ DeviceA_PowerStatus    enum.DeviceAStatus   relation:DeviceA.GetStatus       frame:HeatingScenario.PowerStatus backup:true 
+ DeviceA_ErrorMessage   text                 relation:DeviceA.GetErrorMessage frame:HeatingScenario.ErrorMessage
+ DeviceC_Temperature    num                  relation:DeviceC.GetTemperature  frame:HeatingScenario.Temperature
+ DeviceC_OnOff          enum.OnOff           relation:DeviceC.OnOff           frame:HeatingScenario.HeaterOnOff
  ...
 ```
 
