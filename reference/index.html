@@ -121,12 +121,20 @@
                 
             <li class="second-level"><a href="#get">GET</a></li>
                 
+                <li class="third-level"><a href="#application">Application</a></li>
+                <li class="third-level"><a href="#group">Group</a></li>
+                <li class="third-level"><a href="#relation">Relation</a></li>
             <li class="second-level"><a href="#post">POST</a></li>
                 
+                <li class="third-level"><a href="#application_1">Application</a></li>
+                <li class="third-level"><a href="#group_1">Group</a></li>
             <li class="second-level"><a href="#put">PUT</a></li>
                 
+                <li class="third-level"><a href="#group_2">Group</a></li>
+                <li class="third-level"><a href="#relation_1">Relation</a></li>
             <li class="second-level"><a href="#delete">DELETE</a></li>
                 
+                <li class="third-level"><a href="#group_3">Group</a></li>
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
@@ -134,80 +142,199 @@
 <h1 id="api-reference">API reference<a class="headerlink" href="#api-reference" title="Permanent link">&para;</a></h1>
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
 <hr />
-<p>Start building your port application with API.  </p>
+<p>This page explains how the Port client calls the Port backend API.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Before making any API calls, please ensure that the server is running properly. 
+If the server is not functioning correctly, API calls may fail. 
+Therefore, verify the server's operational status before initiating any API calls.</p>
+</div>
 <h2 id="authentication">Authentication<a class="headerlink" href="#authentication" title="Permanent link">&para;</a></h2>
 <hr />
 <p>When authentication functionality is activated within the HOST application, service-calling applications are required to request a key from the HOST before making 
 API calls to ensure proper authentication and access to services. This security feature remains disabled by default.</p>
 <h2 id="get">GET<a class="headerlink" href="#get" title="Permanent link">&para;</a></h2>
+<h3 id="application">Application<a class="headerlink" href="#application" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>URL</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/api/app/</td>
+<td>show up application information</td>
+</tr>
+<tr>
+<td>/api/ng/</td>
+<td>show up ng-list</td>
+</tr>
+<tr>
+<td>/api/download/</td>
+<td>download somthing...</td>
+</tr>
+<tr>
+<td>/api/enum</td>
+<td>enum list</td>
+</tr>
+</tbody>
+</table>
+<h3 id="group">Group<a class="headerlink" href="#group" title="Permanent link">&para;</a></h3>
 <hr />
 <table>
 <thead>
 <tr>
 <th>URL</th>
-<th>Type</th>
-<th>Value</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Windows x64</td>
-<td>2</td>
-<td>3</td>
+<td>/api/{group-name}/</td>
+<td>accessor data</td>
+</tr>
+<tr>
+<td>/api/{group-name}/keys</td>
+<td>key list</td>
+</tr>
+<tr>
+<td>/api/{group-name}/kv</td>
+<td>key-value list</td>
+</tr>
+<tr>
+<td>/api/{group-name}/datatype</td>
+<td>key-datatype list</td>
+</tr>
+<tr>
+<td>/api/{group-name}/enumid</td>
+<td>enumid list</td>
+</tr>
+<tr>
+<td>/api/{group-name}/memory</td>
+<td>memory list</td>
+</tr>
+<tr>
+<td>/api/{group-name}/address</td>
+<td>address list</td>
+</tr>
+</tbody>
+</table>
+<h3 id="relation">Relation<a class="headerlink" href="#relation" title="Permanent link">&para;</a></h3>
+<hr />
+<table>
+<thead>
+<tr>
+<th>URL</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/api/{relation-name}/</td>
+<td>relation information</td>
+</tr>
+<tr>
+<td>/api/{relation-name}/keys</td>
+<td>key list</td>
+</tr>
+<tr>
+<td>/api/{relation-name}/kv</td>
+<td>key-value list</td>
+</tr>
+<tr>
+<td>/api/{relation-name}/set</td>
+<td>set-message list</td>
+</tr>
+<tr>
+<td>/api/{relation-name}/get</td>
+<td>get-message list</td>
 </tr>
 </tbody>
 </table>
 <h2 id="post">POST<a class="headerlink" href="#post" title="Permanent link">&para;</a></h2>
 <hr />
+<h3 id="application_1">Application<a class="headerlink" href="#application_1" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
 <th>URL</th>
-<th>Type</th>
-<th>Value</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Windows x64</td>
-<td>2</td>
-<td>3</td>
+<td>/api/enum/{enum}</td>
+<td>key list</td>
+</tr>
+</tbody>
+</table>
+<h3 id="group_1">Group<a class="headerlink" href="#group_1" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>URL</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/api/{group-name}/</td>
+<td>relation information</td>
+</tr>
+<tr>
+<td>/api/{group-name}/message/{[key]}?{[datatype] [property...]}</td>
+<td>add message</td>
 </tr>
 </tbody>
 </table>
 <h2 id="put">PUT<a class="headerlink" href="#put" title="Permanent link">&para;</a></h2>
 <hr />
+<h3 id="group_2">Group<a class="headerlink" href="#group_2" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
 <th>URL</th>
-<th>Type</th>
-<th>Value</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Windows x64</td>
-<td>2</td>
-<td>3</td>
+<td>/api/{group-name}/{[key]}?{[set-value]}</td>
+<td>set value to group-message</td>
+</tr>
+</tbody>
+</table>
+<h3 id="relation_1">Relation<a class="headerlink" href="#relation_1" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>URL</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/api/{relation-name}/{[key]}?{[set-value]}</td>
+<td>set value to relation-message</td>
 </tr>
 </tbody>
 </table>
 <h2 id="delete">DELETE<a class="headerlink" href="#delete" title="Permanent link">&para;</a></h2>
 <hr />
+<h3 id="group_3">Group<a class="headerlink" href="#group_3" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
 <th>URL</th>
-<th>Type</th>
-<th>Value</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Windows x64</td>
-<td>2</td>
-<td>3</td>
+<td>/api/{group-name}/message/{[key]}</td>
+<td></td>
 </tr>
 </tbody>
 </table></div>
