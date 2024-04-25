@@ -33,10 +33,66 @@ __________________
 
 #### ScenarioRelationService
 ```C#
+ public class HeatingScenario : ScenarioRelationService
+ {
+     [Frame("HTS")]
+     public HeatingScenario()
+     {
 
+     }
+
+     [Message, Shot(1)]
+     public ShotResult EVENT_1
+     {
+         set
+         {
+             var strValue = frame.GetValue("DevAPowerStatus");
+
+             if (strValue == "OK")
+             {
+                 value.NextShot();
+             }
+         }
+     }
+
+     [Message, Shot(2)]
+     public ShotResult EVENT_2
+     {
+         set
+         {
+             if (frame.GetValue("DevCOnOff") != "On")
+             {
+                 value.Occure("ERROR", "Did not turn on.");
+             }
+             else
+             {
+                 value.NextShot();
+             }
+         }
+     }
+
+     [Message, Shot(3)]
+     public ShotResult EVENT_3
+     {
+         set
+         {
+             var strValue = frame.GetValue("Temperature");
+
+             if (strValue <= 30)
+             {
+                 value.Done();
+             }
+         }
+     } 
+ }
 ```
 
 #### IntervalRelationService
+```C#
+
+```
+
+#### EventRelationService
 ```C#
 
 ```
@@ -120,8 +176,4 @@ __________________
 ```
 
 
-
-#### Debugging 
-```
-
-```
+ 

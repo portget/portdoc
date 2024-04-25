@@ -72,10 +72,10 @@ ___
 
 #### sample1.msg
 ``` 
- DeviceA_PowerStatus    enum.DeviceAStatus   relation:DeviceA.GetStatus       frame:HeatingScenario.PowerStatus backup:true 
- DeviceA_ErrorMessage   text                 relation:DeviceA.GetErrorMessage frame:HeatingScenario.ErrorMessage
- DeviceC_Temperature    num                  relation:DeviceC.GetTemperature  frame:HeatingScenario.Temperature
- DeviceC_OnOff          enum.OnOff           relation:DeviceC.OnOff           frame:HeatingScenario.HeaterOnOff
+ DevAPowerStatus    enum.DeviceAStatus   relation:DeviceA.GetStatus       frame:HTS.PowerStatus 
+ DevAErrorMessage   text                 relation:DeviceA.GetErrorMessage frame:HTS.ErrorMessage
+ DevCTemperature    num                  relation:DeviceC.GetTemperature  frame:HTS.Temperature
+ DevCOnOff          enum.OnOff           relation:DeviceC.OnOff           frame:HTS.HeaterOnOff
  ...
 ```
 

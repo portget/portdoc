@@ -130,8 +130,8 @@
                 
                 <li class="third-level"><a href="#scenariorelationservice">ScenarioRelationService</a></li>
                 <li class="third-level"><a href="#intervalrelationservice">IntervalRelationService</a></li>
+                <li class="third-level"><a href="#eventrelationservice">EventRelationService</a></li>
                 <li class="third-level"><a href="#commrelationservice">CommRelationService</a></li>
-                <li class="third-level"><a href="#debugging">Debugging</a></li>
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
@@ -192,9 +192,63 @@
 <p>[Properties] -&gt;  [Application] -&gt; [General] -&gt; [Traget OS] -&gt; check for windows</p>
 </div>
 <h4 id="scenariorelationservice">ScenarioRelationService<a class="headerlink" href="#scenariorelationservice" title="Permanent link">&para;</a></h4>
-<pre><code class="language-C#">
+<pre><code class="language-C#"> public class HeatingScenario : ScenarioRelationService
+ {
+     [Frame(&quot;HTS&quot;)]
+     public HeatingScenario()
+     {
+
+     }
+
+     [Message, Shot(1)]
+     public ShotResult EVENT_1
+     {
+         set
+         {
+             var strValue = frame.GetValue(&quot;DevAPowerStatus&quot;);
+
+             if (strValue == &quot;OK&quot;)
+             {
+                 value.NextShot();
+             }
+         }
+     }
+
+     [Message, Shot(2)]
+     public ShotResult EVENT_2
+     {
+         set
+         {
+             if (frame.GetValue(&quot;DevCOnOff&quot;) != &quot;On&quot;)
+             {
+                 value.Occure(&quot;ERROR&quot;, &quot;Did not turn on.&quot;);
+             }
+             else
+             {
+                 value.NextShot();
+             }
+         }
+     }
+
+     [Message, Shot(3)]
+     public ShotResult EVENT_3
+     {
+         set
+         {
+             var strValue = frame.GetValue(&quot;Temperature&quot;);
+
+             if (strValue &lt;= 30)
+             {
+                 value.Done();
+             }
+         }
+     } 
+ }
 </code></pre>
 <h4 id="intervalrelationservice">IntervalRelationService<a class="headerlink" href="#intervalrelationservice" title="Permanent link">&para;</a></h4>
+<pre><code class="language-C#">
+</code></pre>
+<h4 id="eventrelationservice">EventRelationService<a class="headerlink" href="#eventrelationservice" title="Permanent link">&para;</a></h4>
 <pre><code class="language-C#">
 </code></pre>
 <h4 id="commrelationservice">CommRelationService<a class="headerlink" href="#commrelationservice" title="Permanent link">&para;</a></h4>
@@ -271,9 +325,6 @@
          }
      }
  }
-</code></pre>
-<h4 id="debugging">Debugging<a class="headerlink" href="#debugging" title="Permanent link">&para;</a></h4>
-<pre><code>
 </code></pre></div>
         
         
