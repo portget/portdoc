@@ -231,10 +231,10 @@ BZone/            # The group directory.
 </tbody>
 </table>
 <h4 id="sample1msg">sample1.msg<a class="headerlink" href="#sample1msg" title="Permanent link">&para;</a></h4>
-<pre><code> DeviceA_PowerStatus    enum.DeviceAStatus   relation:DeviceA.GetStatus       frame:HeatingScenario.PowerStatus backup:true 
- DeviceA_ErrorMessage   text                 relation:DeviceA.GetErrorMessage frame:HeatingScenario.ErrorMessage
- DeviceC_Temperature    num                  relation:DeviceC.GetTemperature  frame:HeatingScenario.Temperature
- DeviceC_OnOff          enum.OnOff           relation:DeviceC.OnOff           frame:HeatingScenario.HeaterOnOff
+<pre><code> DevAPowerStatus    enum.DeviceAStatus   relation:DeviceA.GetStatus       frame:HTS.PowerStatus 
+ DevAErrorMessage   text                 relation:DeviceA.GetErrorMessage frame:HTS.ErrorMessage
+ DevCTemperature    num                  relation:DeviceC.GetTemperature  frame:HTS.Temperature
+ DevCOnOff          enum.OnOff           relation:DeviceC.OnOff           frame:HTS.HeaterOnOff
  ...
 </code></pre>
 <div class="admonition tip">
@@ -394,5 +394,5 @@ Subsequently, users can perform a pull action at any desired moment to restore t
 
 <!--
 MkDocs version : 1.5.3
-Build Date UTC : 2024-04-25 12:10:22.932128+00:00
+Build Date UTC : 2024-04-25 12:52:08.317868+00:00
 -->
