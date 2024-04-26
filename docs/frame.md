@@ -52,6 +52,6 @@ _________________
 
 #### Command 
 ```
-port add --scenario heating1 /HeatingLib/HeatingLib.dll HTS1.PowerStatus
-port add --scenario heating2 /HeatingLib/HeatingLib.dll HTS2.PowerStatus
+port add --scenario heating1 /HeatingLib/HeatingLib.dll
+port add --scenario heating2 /HeatingLib/HeatingLib.dll
 ```
