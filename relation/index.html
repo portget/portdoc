@@ -130,7 +130,6 @@
                 
                 <li class="third-level"><a href="#scenariorelationservice">ScenarioRelationService</a></li>
                 <li class="third-level"><a href="#intervalrelationservice">IntervalRelationService</a></li>
-                <li class="third-level"><a href="#eventrelationservice">EventRelationService</a></li>
                 <li class="third-level"><a href="#commrelationservice">CommRelationService</a></li>
     </ul>
 </div></div>
@@ -176,10 +175,6 @@
 <td>this is an object designed for managing a set of periodically called messages, allowing control over the values by periodically invoking messages to the system.</td>
 </tr>
 <tr>
-<td>EventRelationService</td>
-<td>this is an object designed for managing a set of periodically called messages, allowing control over the values by periodically invoking messages to the system.</td>
-</tr>
-<tr>
 <td>CommRelationService</td>
 <td>this object is designed for a set of messages requiring network endpoints. When inheriting this object, implementation of endpoint and connection status check functions is necessary. Through implementation of the required messages upon connection, it can be provided to the port application.</td>
 </tr>
@@ -198,6 +193,36 @@
      public HeatingScenario()
      {
 
+     }
+
+     /// &lt;summary&gt;
+     /// start condition
+     /// &lt;/summary&gt;
+     /// &lt;returns&gt;start : true / skip : false&lt;/returns&gt;
+     public override bool OpeningCredits()
+     {
+
+         var strValue = frame.GetValue(&quot;TemptureCheck&quot;);
+
+         if (strValue == &quot;Starting&quot;)
+         {
+             return true;
+         }
+
+         return false;
+     }
+     /// &lt;summary&gt;
+     /// end condition
+     /// &lt;/summary&gt;
+     /// &lt;returns&gt;start : true / skip : false&lt;/returns&gt;
+     public override bool EndingCredits()
+     {
+         if (this.ShotNumber &gt; 3)
+         { 
+             return true;
+         }
+
+         return false;
      }
 
      [Message, Shot(1)]
@@ -239,7 +264,7 @@
 
              if (strValue &lt;= 30)
              {
-                 value.Done();
+                 value.EndingCredits();
              }
          }
      } 
@@ -274,9 +299,6 @@ public class HeatingCheck : IntervalRelationService
         }
     }
 }
-</code></pre>
-<h4 id="eventrelationservice">EventRelationService<a class="headerlink" href="#eventrelationservice" title="Permanent link">&para;</a></h4>
-<pre><code class="language-C#">
 </code></pre>
 <h4 id="commrelationservice">CommRelationService<a class="headerlink" href="#commrelationservice" title="Permanent link">&para;</a></h4>
 <pre><code class="language-C#"> /// &lt;summary&gt;
