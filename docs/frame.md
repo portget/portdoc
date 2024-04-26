@@ -52,9 +52,6 @@ _________________
 
 #### Command 
 ```
-port add scenario heating1
-port add scenario heating2
-
-port set frame HTS2.PowerStatus to heating1
-port set frame HTS2.PowerStatus to heating2
+port add --scenario heating1 /HeatingLib/HeatingLib.dll HTS1.PowerStatus
+port add --scenario heating2 /HeatingLib/HeatingLib.dll HTS2.PowerStatus
 ```

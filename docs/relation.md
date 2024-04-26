@@ -220,7 +220,7 @@ public class HeatingCheck : IntervalRelationService
 ```
 
 ```
-port add comm heating1 /TempLib/TempLib.dll COM8,115200,8,0,1
-port add comm heating2 /TempLib/TempLib.dll COM9,115200,8,0,1 
+port add --comm heating1 /TempLib/TempLib.dll COM8,115200,8,0,1
+port add --comm heating2 /TempLib/TempLib.dll COM9,115200,8,0,1 
 ```
  
