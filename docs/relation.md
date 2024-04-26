@@ -16,12 +16,11 @@ NAME | Version | Path
 
 
 ### Support objects
-NAME | Description 
-------|--------
-ScenarioRelationService| write a scenario where you inherit the object to control all message values and share messages across the system.   
-IntervalRelationService | this is an object designed for managing a set of periodically called messages, allowing control over the values by periodically invoking messages to the system.
-EventRelationService | this is an object designed for managing a set of periodically called messages, allowing control over the values by periodically invoking messages to the system.
-CommRelationService | this object is designed for a set of messages requiring network endpoints. When inheriting this object, implementation of endpoint and connection status check functions is necessary. Through implementation of the required messages upon connection, it can be provided to the port application.
+NAME | SETPOINT |DESCRIPTION  
+------|----------|--------
+ScenarioRelationService| frame | write a scenario where you inherit the object to control all message values and share messages across the system.   
+IntervalRelationService | frame | this is an object designed for managing a set of periodically called messages, allowing control over the values by periodically invoking messages to the system.
+CommRelationService | endpoint | this object is designed for a set of messages requiring network endpoints. When inheriting this object, implementation of endpoint and connection status check functions is necessary. Through implementation of the required messages upon connection, it can be provided to the port application.
 
 ### .Net (>= 8.0)
 __________________
@@ -34,11 +33,40 @@ __________________
 #### ScenarioRelationService
 ```C#
  public class HeatingScenario : ScenarioRelationService
- {
-     [Frame("HTS")]
+ { 
      public HeatingScenario()
      {
 
+     }
+
+     /// <summary>
+     /// start condition
+     /// </summary>
+     /// <returns>start : true / skip : false</returns>
+     public override bool OpeningCredits()
+     {
+ 
+         var strValue = frame.GetValue("TemptureCheck");
+ 
+         if (strValue == "Starting")
+         {
+             return true;
+         }
+ 
+         return false;
+     }
+     /// <summary>
+     /// end condition
+     /// </summary>
+     /// <returns>start : true / skip : false</returns>
+     public override bool EndingCredits()
+     {
+         if (this.ShotNumber > 3)
+         { 
+             return true;
+         }
+ 
+         return false;
      }
 
      [Message, Shot(1)]
@@ -80,7 +108,7 @@ __________________
 
              if (strValue <= 30)
              {
-                 value.Done();
+                 value.EndingCredits();
              }
          }
      } 
@@ -93,12 +121,7 @@ __________________
 /// 10ms interval serivce 
 /// </summary>
 public class HeatingCheck : IntervalRelationService
-{
-    /// <summary>
-    /// Using HTS Frame.
-    /// </summary>
-
-    [Frame("HTS")]
+{ 
     public HeatingCheck()
     {
 
@@ -117,15 +140,9 @@ public class HeatingCheck : IntervalRelationService
         }
     }
 }
-```
-
-#### EventRelationService
-```C#
-
-```
+``` 
 
 #### CommRelationService
-
 ```C#
  /// <summary>
  /// Communication Relation Object 
@@ -202,5 +219,8 @@ public class HeatingCheck : IntervalRelationService
  }
 ```
 
-
+```
+port add comm heating1 /TempLib/TempLib.dll COM8,115200,8,0,1
+port add comm heating2 /TempLib/TempLib.dll COM9,115200,8,0,1 
+```
  

@@ -121,13 +121,58 @@
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
         <li class="first-level active"><a href="#whats-frame">What's FRAME?</a></li>
+            <li class="second-level"><a href="#make-frame">Make frame</a></li>
+                
+                <li class="third-level"><a href="#create-a-message-document">Create a Message Document</a></li>
+                <li class="third-level"><a href="#create-a-relationobject">Create a RelationObject</a></li>
+                <li class="third-level"><a href="#command">Command</a></li>
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
 
 <h1 id="whats-frame">What's FRAME?<a class="headerlink" href="#whats-frame" title="Permanent link">&para;</a></h1>
 <hr />
-<p>This object is designed to efficiently manage libraries that serve as common denominators across multiple projects. Tailored for each language, these libraries facilitate seamless integration with the object and handle memory synchronization with ports. Users can conveniently utilize these libraries by inheriting or implementing the respective classes, ensuring ease of use.</p></div>
+<p>Frame refers to a set of messages designated within different groups and called from various relation objects. While the specification of frames in messages may vary from one project to another, maintaining consistent names in relation objects allows users to easily manage relation objects.</p>
+<h3 id="make-frame">Make frame<a class="headerlink" href="#make-frame" title="Permanent link">&para;</a></h3>
+<hr />
+<h4 id="create-a-message-document">Create a Message Document<a class="headerlink" href="#create-a-message-document" title="Permanent link">&para;</a></h4>
+<h5 id="azonesample1msg">[../AZone/sample1.msg]<a class="headerlink" href="#azonesample1msg" title="Permanent link">&para;</a></h5>
+<pre><code class="language-TEXT">    DevAPowerStatus    enum.DeviceAStatus   relation:DeviceA.GetStatus       frame:HTS1.PowerStatus 
+...
+</code></pre>
+<h5 id="bzonesample1msg">[../BZone/sample1.msg]<a class="headerlink" href="#bzonesample1msg" title="Permanent link">&para;</a></h5>
+<pre><code class="language-TEXT">    DevAPowerStatus    enum.DeviceAStatus   relation:DeviceA.GetStatus       frame:HTS2.PowerStatus
+...
+</code></pre>
+<h4 id="create-a-relationobject">Create a RelationObject<a class="headerlink" href="#create-a-relationobject" title="Permanent link">&para;</a></h4>
+<pre><code class="language-C#"> public class HeatingScenario : ScenarioRelationService
+ {   
+    ...
+
+     [Message, Shot(1)]
+     public ShotResult EVENT_1
+     {
+         set
+         {
+             var strValue = frame.GetValue(&quot;PowerStatus&quot;);
+
+             if (strValue == &quot;OK&quot;)
+             {
+                 value.NextShot();
+             }
+         }
+     }
+
+    ...
+ }
+</code></pre>
+<h4 id="command">Command<a class="headerlink" href="#command" title="Permanent link">&para;</a></h4>
+<pre><code>port add scenario heating1
+port add scenario heating2
+
+port set frame HTS2.PowerStatus to heating1
+port set frame HTS2.PowerStatus to heating2
+</code></pre></div>
         
         
     </div>

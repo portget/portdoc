@@ -130,7 +130,6 @@
                 
                 <li class="third-level"><a href="#scenariorelationservice">ScenarioRelationService</a></li>
                 <li class="third-level"><a href="#intervalrelationservice">IntervalRelationService</a></li>
-                <li class="third-level"><a href="#eventrelationservice">EventRelationService</a></li>
                 <li class="third-level"><a href="#commrelationservice">CommRelationService</a></li>
     </ul>
 </div></div>
@@ -163,24 +162,24 @@
 <thead>
 <tr>
 <th>NAME</th>
-<th>Description</th>
+<th>SETPOINT</th>
+<th>DESCRIPTION</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>ScenarioRelationService</td>
+<td>frame</td>
 <td>write a scenario where you inherit the object to control all message values and share messages across the system.</td>
 </tr>
 <tr>
 <td>IntervalRelationService</td>
-<td>this is an object designed for managing a set of periodically called messages, allowing control over the values by periodically invoking messages to the system.</td>
-</tr>
-<tr>
-<td>EventRelationService</td>
+<td>frame</td>
 <td>this is an object designed for managing a set of periodically called messages, allowing control over the values by periodically invoking messages to the system.</td>
 </tr>
 <tr>
 <td>CommRelationService</td>
+<td>endpoint</td>
 <td>this object is designed for a set of messages requiring network endpoints. When inheriting this object, implementation of endpoint and connection status check functions is necessary. Through implementation of the required messages upon connection, it can be provided to the port application.</td>
 </tr>
 </tbody>
@@ -193,11 +192,40 @@
 </div>
 <h4 id="scenariorelationservice">ScenarioRelationService<a class="headerlink" href="#scenariorelationservice" title="Permanent link">&para;</a></h4>
 <pre><code class="language-C#"> public class HeatingScenario : ScenarioRelationService
- {
-     [Frame(&quot;HTS&quot;)]
+ { 
      public HeatingScenario()
      {
 
+     }
+
+     /// &lt;summary&gt;
+     /// start condition
+     /// &lt;/summary&gt;
+     /// &lt;returns&gt;start : true / skip : false&lt;/returns&gt;
+     public override bool OpeningCredits()
+     {
+
+         var strValue = frame.GetValue(&quot;TemptureCheck&quot;);
+
+         if (strValue == &quot;Starting&quot;)
+         {
+             return true;
+         }
+
+         return false;
+     }
+     /// &lt;summary&gt;
+     /// end condition
+     /// &lt;/summary&gt;
+     /// &lt;returns&gt;start : true / skip : false&lt;/returns&gt;
+     public override bool EndingCredits()
+     {
+         if (this.ShotNumber &gt; 3)
+         { 
+             return true;
+         }
+
+         return false;
      }
 
      [Message, Shot(1)]
@@ -239,7 +267,7 @@
 
              if (strValue &lt;= 30)
              {
-                 value.Done();
+                 value.EndingCredits();
              }
          }
      } 
@@ -250,12 +278,7 @@
 /// 10ms interval serivce 
 /// &lt;/summary&gt;
 public class HeatingCheck : IntervalRelationService
-{
-    /// &lt;summary&gt;
-    /// Using HTS Frame.
-    /// &lt;/summary&gt;
-
-    [Frame(&quot;HTS&quot;)]
+{ 
     public HeatingCheck()
     {
 
@@ -274,9 +297,6 @@ public class HeatingCheck : IntervalRelationService
         }
     }
 }
-</code></pre>
-<h4 id="eventrelationservice">EventRelationService<a class="headerlink" href="#eventrelationservice" title="Permanent link">&para;</a></h4>
-<pre><code class="language-C#">
 </code></pre>
 <h4 id="commrelationservice">CommRelationService<a class="headerlink" href="#commrelationservice" title="Permanent link">&para;</a></h4>
 <pre><code class="language-C#"> /// &lt;summary&gt;
@@ -352,6 +372,9 @@ public class HeatingCheck : IntervalRelationService
          }
      }
  }
+</code></pre>
+<pre><code>port add comm heating1 /TempLib/TempLib.dll COM8,115200,8,0,1
+port add comm heating2 /TempLib/TempLib.dll COM9,115200,8,0,1 
 </code></pre></div>
         
         

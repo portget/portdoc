@@ -2,4 +2,59 @@
 # What's FRAME?
 __________________
 
-This object is designed to efficiently manage libraries that serve as common denominators across multiple projects. Tailored for each language, these libraries facilitate seamless integration with the object and handle memory synchronization with ports. Users can conveniently utilize these libraries by inheriting or implementing the respective classes, ensuring ease of use.
+Frame refers to a set of messages designated within different groups and called from various relation objects. While the specification of frames in messages may vary from one project to another, maintaining consistent names in relation objects allows users to easily manage relation objects.
+
+
+
+
+### Make frame 
+_________________
+
+
+#### Create a Message Document  
+ 
+##### [../AZone/sample1.msg]
+```TEXT 
+    DevAPowerStatus    enum.DeviceAStatus   relation:DeviceA.GetStatus       frame:HTS1.PowerStatus 
+...
+``` 
+
+
+#####[../BZone/sample1.msg]
+```TEXT
+    DevAPowerStatus    enum.DeviceAStatus   relation:DeviceA.GetStatus       frame:HTS2.PowerStatus
+...
+``` 
+
+#### Create a RelationObject   
+```C#
+ public class HeatingScenario : ScenarioRelationService
+ {   
+    ...
+
+     [Message, Shot(1)]
+     public ShotResult EVENT_1
+     {
+         set
+         {
+             var strValue = frame.GetValue("PowerStatus");
+
+             if (strValue == "OK")
+             {
+                 value.NextShot();
+             }
+         }
+     }
+
+    ...
+ }
+```
+
+#### Command 
+```
+port add scenario heating1
+port add scenario heating2
+
+port set frame HTS2.PowerStatus to heating1
+port set frame HTS2.PowerStatus to heating2
+```
