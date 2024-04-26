@@ -13,14 +13,14 @@ _________________
 
 #### Create a Message Document  
  
-##### [../AZone/sample1.msg]
+[../AZone/sample1.msg]
 ```TEXT 
     DevAPowerStatus    enum.DeviceAStatus   relation:DeviceA.GetStatus       frame:HTS1.PowerStatus 
 ...
 ``` 
 
 
-#####[../BZone/sample1.msg]
+[../BZone/sample1.msg]
 ```TEXT
     DevAPowerStatus    enum.DeviceAStatus   relation:DeviceA.GetStatus       frame:HTS2.PowerStatus
 ...
