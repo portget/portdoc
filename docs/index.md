@@ -36,6 +36,12 @@ port new [repository-name]
     The repository name cannot contain special characters. 
     It follows the directory naming rules provided by the operating system.
 
+### Create add gruop 
+```
+port add [group-name]
+```
+
+
 ### Repository layout
 ___
     port.toml         # The configuration file.
