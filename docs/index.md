@@ -45,7 +45,7 @@ port add [group-name]
 ### Repository layout
 ___
     port.toml         # The configuration file.
-    custom.enum       # The custom enum file 
+    .enum             # The custom enum file 
     AZone/            # The group directory. 
         sample1.msg   # The message file
         sample2.msg   # The message file
