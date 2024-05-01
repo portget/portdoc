@@ -145,4 +145,13 @@ port get groupA sayHelloMessage1
 [Hello?]
 ```
  
- 
+ ### View 
+* `port view [frame name] [-time|time~time]`
+```
+port view HTS.PowerStatus -1days 
+[time:now -1days:1sec] DevAPowerStatus, Normal , Normal ...
+DevAErrorMessage, Normal, Normal ...
+DevCTemperature, 30,32 ...
+DevCOnOff, Off,On ...
+```
+        
