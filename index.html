@@ -137,6 +137,7 @@
                 <li class="third-level"><a href="#repository_1">Repository</a></li>
                 <li class="third-level"><a href="#application">Application</a></li>
                 <li class="third-level"><a href="#message">Message</a></li>
+                <li class="third-level"><a href="#view">View</a></li>
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
@@ -294,13 +295,30 @@ Subsequently, users can perform a pull action at any desired moment to restore t
 <pre><code>port get groupA sayHelloMessage1
 [Hello?]
 </code></pre>
-<p>### View 
-* <code>port view [frame name] [-time|time~time]</code></p>
+<h3 id="view">View<a class="headerlink" href="#view" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><code>port view --new [view-name]</code></p>
+</li>
+<li>
+<p><code>port view --remove [view-name]</code></p>
+</li>
+<li>
+<p><code>port view --info [view-name]</code></p>
+</li>
+<li>
+<p><code>port view --download [file-name].[csv|json|xml] [-time|time~time]</code> </p>
+</li>
+<li>
+<p><code>port view [frame name] [-time|time~time]</code></p>
+</li>
+</ul>
 <pre><code>port view HTS.PowerStatus -1days 
-[time:now -1days:1sec] DevAPowerStatus, Normal , Normal ...
-DevAErrorMessage, Normal, Normal ...
-DevCTemperature, 30,32 ...
-DevCOnOff, Off,On ...
+
+[2024-01-01 11:55:32:3902 -1days:1sec] HTS.PowerStatus&gt;DevAPowerStatus: [Normal , Normal] ...
+HTS.ErrorMessage&gt;DevAErrorMessage:[Normal, Normal] ...
+HTS.Temperature&gt;DevCTemperature: [30,32 ...]
+HTS.HeaterOnOff&gt;DevCOnOff:[Off,On ...]
 </code></pre></div>
         
         
@@ -406,5 +424,5 @@ DevCOnOff, Off,On ...
 
 <!--
 MkDocs version : 1.5.3
-Build Date UTC : 2024-05-01 23:58:42.216681+00:00
+Build Date UTC : 2024-05-02 06:08:14.973874+00:00
 -->
