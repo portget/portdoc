@@ -146,14 +146,20 @@ port get groupA sayHelloMessage1
 ```
  
 ### View 
+* `port view --new [view-name]`
+
+* `port view --remove [view-name]`
+
+* `port view --info [view-name]`
+
+* `port view --download [file-name].[csv|json|xml] [-time|time~time]` 
 
 * `port view [frame name] [-time|time~time]`
-
 ```
 port view HTS.PowerStatus -1days 
+
 [2024-01-01 11:55:32:3902 -1days:1sec] HTS.PowerStatus>DevAPowerStatus: [Normal , Normal] ...
 HTS.ErrorMessage>DevAErrorMessage:[Normal, Normal] ...
 HTS.Temperature>DevCTemperature: [30,32 ...]
 HTS.HeaterOnOff>DevCOnOff:[Off,On ...]
 ```
-        
