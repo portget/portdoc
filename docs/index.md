@@ -146,15 +146,23 @@ port get groupA sayHelloMessage1
 ```
  
 ### View 
-* `port view --new [view-name]`
-
-* `port view --remove [view-name]`
-
-* `port view --info [view-name]`
-
-* `port view --download [file-name].[csv|json|xml] [-time|time~time]` 
-
-* `port view [frame name] [-time|time~time]`
+* `port view --new [view-name] --group [group-name]`
+```
+port view --new groupA --group groupA
+[CREATED][VIEW] ...
+```
+* `port view [view-name] --download [file-name].[csv|json|xml] [-time|time~time]` 
+```
+port view groupA --download C:/Downloads/gruopA.csv
+[DOWNLOAD][VIEW] ...
+```
+* `port view [view-name] [time|time~time]`
+```
+port view groupA 1hour
+[2024-05-05 12:00:00 DevCTemperature 50]
+[2024-05-05 12:00:01 DevCTemperature 51]
+[2024-05-05 12:00:02 DevCTemperature 50]
+```
 ```
 port view HTS.PowerStatus -1days 
 
