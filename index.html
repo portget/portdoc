@@ -297,22 +297,25 @@ Subsequently, users can perform a pull action at any desired moment to restore t
 </code></pre>
 <h3 id="view">View<a class="headerlink" href="#view" title="Permanent link">&para;</a></h3>
 <ul>
-<li>
-<p><code>port view --new [view-name]</code></p>
-</li>
-<li>
-<p><code>port view --remove [view-name]</code></p>
-</li>
-<li>
-<p><code>port view --info [view-name]</code></p>
-</li>
-<li>
-<p><code>port view --download [file-name].[csv|json|xml] [-time|time~time]</code> </p>
-</li>
-<li>
-<p><code>port view [frame name] [-time|time~time]</code></p>
-</li>
+<li><code>port view --new [view-name] --group [group-name]</code></li>
 </ul>
+<pre><code>port view --new groupA --group groupA
+[CREATED][VIEW] ...
+</code></pre>
+<ul>
+<li><code>port view [view-name] --download [file-name].[csv|json|xml] [-time|time~time]</code> </li>
+</ul>
+<pre><code>port view groupA --download C:/Downloads/gruopA.csv
+[DOWNLOAD][VIEW] ...
+</code></pre>
+<ul>
+<li><code>port view [view-name] [time|time~time]</code></li>
+</ul>
+<pre><code>port view groupA 1hour
+[2024-05-05 12:00:00 DevCTemperature 50]
+[2024-05-05 12:00:01 DevCTemperature 51]
+[2024-05-05 12:00:02 DevCTemperature 50]
+</code></pre>
 <pre><code>port view HTS.PowerStatus -1days 
 
 [2024-01-01 11:55:32:3902 -1days:1sec] HTS.PowerStatus&gt;DevAPowerStatus: [Normal , Normal] ...
@@ -424,5 +427,5 @@ HTS.HeaterOnOff&gt;DevCOnOff:[Off,On ...]
 
 <!--
 MkDocs version : 1.5.3
-Build Date UTC : 2024-05-02 06:08:14.973874+00:00
+Build Date UTC : 2024-05-06 12:37:17.051705+00:00
 -->
