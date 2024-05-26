@@ -172,3 +172,20 @@ HTS.ErrorMessage>DevAErrorMessage:[Normal, Normal] ...
 HTS.Temperature>DevCTemperature: [30,32 ...]
 HTS.HeaterOnOff>DevCOnOff:[Off,On ...]
 ```
+
+
+## Library
+
+### Nuget Package
+NAME | Target |OS |STABLE | 
+------|--------|--------|--------
+Port.Lib.Dotnet.x64 | >=Dotnet 4.8 | Windows x64 | Yes | 
+Port.Lib.NetCore.x64 | >=NetCore 8.0 | Windows x64 | Yes | 
+
+
+### Functions 
+
+```C#
+port view groupA --download C:/Downloads/gruopA.csv
+[DOWNLOAD][VIEW] ...
+```
