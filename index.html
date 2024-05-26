@@ -203,10 +203,10 @@ BZone/            # The group directory.
 <h3 id="message-file">Message File<a class="headerlink" href="#message-file" title="Permanent link">&para;</a></h3>
 <hr />
 <ul>
-<li>message item format like this <code>[key] [datatype] [property...]</code></li>
+<li>message item format like this <code>[key] [datatype] [option...]</code></li>
 <li><code>[key]</code>      - unique key in the message group</li>
 <li><code>[datatype]</code> - text | num </li>
-<li><code>[property]</code> - relation,backup,rule,frame</li>
+<li><code>[option]</code> - relation,backup,rule,frame</li>
 </ul>
 <h4 id="message-property-list">message property list<a class="headerlink" href="#message-property-list" title="Permanent link">&para;</a></h4>
 <table>
@@ -226,6 +226,10 @@ BZone/            # The group directory.
 <td>Changes are saved to the backup database as they occur, ensuring that values are restored upon application restart. and values are not propagated relation messages during program execution.</td>
 </tr>
 <tr>
+<td>property</td>
+<td>Can specify a custom property</td>
+</tr>
+<tr>
 <td>frame</td>
 <td>Can specify a frame key value to manage subsequent frames by their key values.</td>
 </tr>
@@ -236,9 +240,9 @@ BZone/            # The group directory.
 </tbody>
 </table>
 <h4 id="sample1msg">sample1.msg<a class="headerlink" href="#sample1msg" title="Permanent link">&para;</a></h4>
-<pre><code> DevAPowerStatus    enum.DeviceAStatus   relation:DeviceA.GetStatus       frame:HTS.PowerStatus 
+<pre><code> DevAPowerStatus    enum.DeviceAStatus   relation:DeviceA.GetStatus       frame:HTS.PowerStatus  
  DevAErrorMessage   text                 relation:DeviceA.GetErrorMessage frame:HTS.ErrorMessage
- DevCTemperature    num                  relation:DeviceC.GetTemperature  frame:HTS.Temperature
+ DevCTemperature    num                  relation:DeviceC.GetTemperature  frame:HTS.Temperature   property:{&quot;MIN&quot;:0,&quot;MAX&quot;:300}
  DevCOnOff          enum.OnOff           relation:DeviceC.OnOff           frame:HTS.HeaterOnOff
  ...
 </code></pre>
@@ -427,5 +431,5 @@ HTS.HeaterOnOff&gt;DevCOnOff:[Off,On ...]
 
 <!--
 MkDocs version : 1.5.3
-Build Date UTC : 2024-05-06 12:37:17.051705+00:00
+Build Date UTC : 2024-05-26 05:48:38.444104+00:00
 -->
