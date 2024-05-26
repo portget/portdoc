@@ -61,10 +61,10 @@ ___
 
 ### Message File
 ___
-* message item format like this `[key] [datatype] [property...]`
+* message item format like this `[key] [datatype] [option...]`
 * `[key]`      - unique key in the message group
 * `[datatype]` - text | num 
-* `[property]` - relation,backup,rule,frame
+* `[option]` - relation,backup,rule,frame
 
 #### message property list 
  
@@ -72,15 +72,16 @@ ___
  ------|--------
  relation| Real-time synchronization and messaging are handled within the corresponding external library. For more details, please refer to the Relation documentation.
  backup  | Changes are saved to the backup database as they occur, ensuring that values are restored upon application restart. and values are not propagated relation messages during program execution.
+ property| Can specify a custom property
  frame   | Can specify a frame key value to manage subsequent frames by their key values.
  rule    | Can specify rules to manage the values of corresponding messages. 
 
 
 #### sample1.msg
 ``` 
- DevAPowerStatus    enum.DeviceAStatus   relation:DeviceA.GetStatus       frame:HTS.PowerStatus 
+ DevAPowerStatus    enum.DeviceAStatus   relation:DeviceA.GetStatus       frame:HTS.PowerStatus  
  DevAErrorMessage   text                 relation:DeviceA.GetErrorMessage frame:HTS.ErrorMessage
- DevCTemperature    num                  relation:DeviceC.GetTemperature  frame:HTS.Temperature
+ DevCTemperature    num                  relation:DeviceC.GetTemperature  frame:HTS.Temperature   property:{"MIN":0,"MAX":300}
  DevCOnOff          enum.OnOff           relation:DeviceC.OnOff           frame:HTS.HeaterOnOff
  ...
 ```
