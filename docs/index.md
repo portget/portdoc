@@ -179,9 +179,7 @@ HTS.HeaterOnOff>DevCOnOff:[Off,On ...]
 ### Nuget Package
 NAME | Target |OS |STABLE | 
 ------|--------|--------|--------
-Port.Lib.Dotnet.x64 | >=Dotnet 4.8 | Windows x64 | Yes | 
-Port.Lib.NetCore.x64 | >=NetCore 8.0 | Windows x64 | Yes | 
-
+Port.IO.Lib.x64 | >= NetFramework 4.8 , >= NetCore 8.0 | Windows x64 | Yes | 
 
 ### Functions 
 

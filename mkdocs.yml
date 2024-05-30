@@ -2,6 +2,7 @@ site_name: Port
 site_url: https://portget.com
 nav:
   - Home: index.md
+  - PortDic : portdic.md
   - Relation: relation.md
   - Frame : frame.md
   - API Reference: reference.md
