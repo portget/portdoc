@@ -126,8 +126,8 @@
         
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
-        <li class="first-level active"><a href="#portdic-guide">PortDic Guide</a></li>
-            <li class="second-level"><a href="#library">Library</a></li>
+        <li class="first-level active"><a href="#whats-portdic">What's PortDic</a></li>
+            <li class="second-level"><a href="#download">Download</a></li>
                 
                 <li class="third-level"><a href="#nuget-package">Nuget Package</a></li>
                 <li class="third-level"><a href="#functions">Functions</a></li>
@@ -135,8 +135,8 @@
 </div></div>
         <div class="col-md-9" role="main">
 
-<h1 id="portdic-guide">PortDic Guide<a class="headerlink" href="#portdic-guide" title="Permanent link">&para;</a></h1>
-<h2 id="library">Library<a class="headerlink" href="#library" title="Permanent link">&para;</a></h2>
+<h1 id="whats-portdic">What's PortDic<a class="headerlink" href="#whats-portdic" title="Permanent link">&para;</a></h1>
+<h2 id="download">Download<a class="headerlink" href="#download" title="Permanent link">&para;</a></h2>
 <h3 id="nuget-package">Nuget Package<a class="headerlink" href="#nuget-package" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -157,7 +157,39 @@
 </tbody>
 </table>
 <h3 id="functions">Functions<a class="headerlink" href="#functions" title="Permanent link">&para;</a></h3>
-<pre><code class="language-C#">portdic 
+<pre><code class="language-C#">namespace HelloWorld {
+
+    public class HelloWorld{
+        private PortDic dic = portdic.Connect(&quot;localhost&quot;,9000); 
+
+        public HelloWorld(){
+
+            var ok = dic.Set('AZone','SamplePower','On');
+            if(ok){
+                Console.WriteLine(&quot;ok&quot;);
+            }
+
+            var v = dic.Get('AZone','SamplePower')
+            // 'On'
+            Console.WriteLine(v.Text());
+
+            var ok2 = dic.Set('AZone','SampleTemp',90);
+            if(ok2){
+                Console.WriteLine(&quot;ok&quot;);
+            }
+
+            var t = dic.Get('AZone','SampleTemp')
+            // '90'
+            Console.WriteLine(t.Text());
+
+
+            if (t &gt;= 90){
+                Console.WriteLine('[Warning]Over Tempature');
+            }
+
+        }
+    }
+}
 </code></pre></div>
         
         
