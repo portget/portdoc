@@ -130,7 +130,13 @@
             <li class="second-level"><a href="#download">Download</a></li>
                 
                 <li class="third-level"><a href="#nuget-package">Nuget Package</a></li>
-                <li class="third-level"><a href="#functions">Functions</a></li>
+                <li class="third-level"><a href="#set">SET</a></li>
+                <li class="third-level"><a href="#get">GET</a></li>
+                <li class="third-level"><a href="#queue">QUEUE</a></li>
+                <li class="third-level"><a href="#stack">STACK</a></li>
+                <li class="third-level"><a href="#list">LIST</a></li>
+                <li class="third-level"><a href="#storage">STORAGE</a></li>
+                <li class="third-level"><a href="#code">Code</a></li>
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
@@ -149,48 +155,78 @@
 </thead>
 <tbody>
 <tr>
-<td>Port.IO.Lib.x64</td>
+<td>PortDic.Lib.x64</td>
 <td>&gt;= NetFramework 4.8 , &gt;= NetCore 8.0</td>
 <td>Windows x64</td>
 <td>Yes</td>
 </tr>
 </tbody>
 </table>
-<h3 id="functions">Functions<a class="headerlink" href="#functions" title="Permanent link">&para;</a></h3>
-<pre><code class="language-C#">namespace HelloWorld {
+<h3 id="set">SET<a class="headerlink" href="#set" title="Permanent link">&para;</a></h3>
+<pre><code class="language-C#">    ...
+    PortDic dic = portdic.Connect(&quot;localhost&quot;,9000); 
 
-    public class HelloWorld{
-        private PortDic dic = portdic.Connect(&quot;localhost&quot;,9000); 
-
-        public HelloWorld(){
-
-            var ok = dic.Set('AZone','SamplePower','On');
-            if(ok){
-                Console.WriteLine(&quot;ok&quot;);
-            }
-
-            var v = dic.Get('AZone','SamplePower')
-            // 'On'
-            Console.WriteLine(v.Text());
-
-            var ok2 = dic.Set('AZone','SampleTemp',90);
-            if(ok2){
-                Console.WriteLine(&quot;ok&quot;);
-            }
-
-            var t = dic.Get('AZone','SampleTemp')
-            // '90'
-            Console.WriteLine(t.Text());
-
-
-            if (t &gt;= 90){
-                Console.WriteLine('[Warning]Over Tempature');
-            }
-
-        }
+    var ok = dic.Set('AZone','SamplePower','On');
+    if(ok){
+        Console.WriteLine(&quot;ok&quot;);
     }
-}
-</code></pre></div>
+    ...
+</code></pre>
+<h3 id="get">GET<a class="headerlink" href="#get" title="Permanent link">&para;</a></h3>
+<pre><code class="language-C#">    ...
+    PortDic dic = portdic.Connect(&quot;localhost&quot;,9000); 
+
+    var v = dic.Get('AZone','SamplePower')
+    // 'On'
+    Console.WriteLine(v.Text());
+
+    var ok2 = dic.Set('AZone','SampleTemp',90);
+    if(ok2){
+        Console.WriteLine(&quot;ok&quot;);
+    }
+
+    var t = dic.Get('AZone','SampleTemp')
+    // '90'
+    Console.WriteLine(t.Text());
+
+    if (t &gt;= 90){
+        Console.WriteLine('[Warning]Over Tempature');
+    }
+    ...
+</code></pre>
+<h3 id="queue">QUEUE<a class="headerlink" href="#queue" title="Permanent link">&para;</a></h3>
+<pre><code class="language-C#">
+    //class1.cs
+    PortDic dic = portdic.Connect(&quot;localhost&quot;,9000); 
+
+    var q1 = Port.NewQueue('TEST')
+
+    q1.Enqueue(Encoding.UTF8.GetBytes('First Value'));
+
+    ...
+
+
+    //class2.cs
+    PortDic dic = portdic.Connect(&quot;localhost&quot;,9000); 
+
+    var q = Port.Queue('TEST')
+
+    var v = q1.Dequeue();
+
+    //Show &quot;First Value&quot; from class1.cs 
+    Console.WriteLine(Encoding.UTF8.GetString(v));
+
+    v = q1.Dequeue();
+    //Show &quot;&quot;
+    Console.WriteLine(Encoding.UTF8.GetString(v));
+
+    ...
+
+</code></pre>
+<h3 id="stack">STACK<a class="headerlink" href="#stack" title="Permanent link">&para;</a></h3>
+<h3 id="list">LIST<a class="headerlink" href="#list" title="Permanent link">&para;</a></h3>
+<h3 id="storage">STORAGE<a class="headerlink" href="#storage" title="Permanent link">&para;</a></h3>
+<h3 id="code">Code<a class="headerlink" href="#code" title="Permanent link">&para;</a></h3></div>
         
         
     </div>
