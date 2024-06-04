@@ -1,6 +1,6 @@
 # Welcome to Port
 
-TPort is a message-based library management database. It allows users to quickly redevelop and reconfigure applications by calling pre-written libraries. This feature simplifies the application development process, enabling users to create applications more easily and efficiently.
+Port is a message-based library management database. It allows users to quickly redevelop and reconfigure applications by calling pre-written libraries. This feature simplifies the application development process, enabling users to create applications more easily and efficiently.
 
 Please see the documentation [lincense](license.md)
 
