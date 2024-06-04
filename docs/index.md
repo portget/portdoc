@@ -1,6 +1,6 @@
 # Welcome to Port
 
-The port application, being a time-series database, offers a flexible design ideal for industrial data collection and processing. With its capabilities, it enables efficient storage and retrieval of timestamped data, facilitating streamlined operations across various industrial sectors. 
+TPort is a message-based library management database. It allows users to quickly redevelop and reconfigure applications by calling pre-written libraries. This feature simplifies the application development process, enabling users to create applications more easily and efficiently.
 
 Please see the documentation [lincense](license.md)
 
