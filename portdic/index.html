@@ -132,7 +132,6 @@
                 <li class="third-level"><a href="#stack">STACK</a></li>
                 <li class="third-level"><a href="#list">LIST</a></li>
                 <li class="third-level"><a href="#storage">STORAGE</a></li>
-                <li class="third-level"><a href="#code">Code</a></li>
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
@@ -196,7 +195,9 @@
     //class1.cs
     PortDic dic = portdic.Connect(&quot;localhost&quot;,9000); 
 
-    var q1 = Port.NewQueue('TEST')
+    dic.Create(PortLibrary.PortDic.Structor.Queue,'TEST')
+
+    var q1 = dic.Queque('TEST') 
 
     q1.Enqueue(Encoding.UTF8.GetBytes('First Value'));
 
@@ -206,7 +207,7 @@
     //class2.cs
     PortDic dic = portdic.Connect(&quot;localhost&quot;,9000); 
 
-    var q = Port.Queue('TEST')
+    var q1 = dic.Queue('TEST')
 
     var v = q1.Dequeue();
 
@@ -221,9 +222,88 @@
 
 </code></pre>
 <h3 id="stack">STACK<a class="headerlink" href="#stack" title="Permanent link">&para;</a></h3>
+<pre><code class="language-C#">
+    //class1.cs
+    PortDic dic = portdic.Connect(&quot;localhost&quot;,9000); 
+
+    dic.Create(PortLibrary.PortDic.Structor.Stack,'TEST')
+
+    q1.Push(Encoding.UTF8.GetBytes('First Value'));
+
+    ...
+
+
+    //class2.cs
+    PortDic dic = portdic.Connect(&quot;localhost&quot;,9000); 
+
+    var stack = Port.Stack('TEST')
+
+    var v = stack.Pop();
+
+    Console.WriteLine(Encoding.UTF8.GetString(v));
+
+    ...
+
+</code></pre>
 <h3 id="list">LIST<a class="headerlink" href="#list" title="Permanent link">&para;</a></h3>
+<pre><code class="language-C#">
+    //class1.cs
+
+    PortDic dic = portdic.Connect(&quot;localhost&quot;,9000); 
+
+    dic.Create(PortLibrary.PortDic.Structor.List,'TEST')
+
+    var list = Port.List('TEST')
+
+    list.Add(Encoding.UTF8.GetBytes('First Value'));
+
+    ...
+
+
+    //class2.cs
+    PortDic dic = portdic.Connect(&quot;localhost&quot;,9000); 
+
+   var list = Port.List('TEST')
+
+    var v = list.Get(0);
+
+    //Show &quot;First Value&quot; from class1.cs 
+    Console.WriteLine(Encoding.UTF8.GetString(v));
+    //Remove index 0
+    q1.Remove(0);
+
+    ...
+
+</code></pre>
 <h3 id="storage">STORAGE<a class="headerlink" href="#storage" title="Permanent link">&para;</a></h3>
-<h3 id="code">Code<a class="headerlink" href="#code" title="Permanent link">&para;</a></h3></div>
+<pre><code class="language-C#">
+    //class1.cs
+    PortDic dic = portdic.Connect(&quot;localhost&quot;,9000); 
+
+    dic.Create(PortLibrary.PortDic.Structor.Storage,'TEST')
+
+    var s = Port.Storage('TEST')
+
+    if (s.Set('A',Encoding.UTF8.GetBytes('First Value'))){
+        Console.WriteLine('Updated value')
+    }
+
+    ...
+
+
+    //class2.cs
+    PortDic dic = portdic.Connect(&quot;localhost&quot;,9000); 
+
+    var s = Port.Storage('TEST')
+
+    var v = s.Get('A');
+
+    //Show &quot;First Value&quot; from class1.cs 
+    Console.WriteLine(Encoding.UTF8.GetString(v));
+
+    ...
+
+</code></pre></div>
         
         
     </div>
