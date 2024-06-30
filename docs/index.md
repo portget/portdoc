@@ -79,10 +79,10 @@ ___
 
 #### sample1.msg
 ``` 
- DevAPowerStatus    enum.DeviceAStatus   relation:DeviceA.GetStatus       frame:HTS.PowerStatus  
- DevAErrorMessage   text                 relation:DeviceA.GetErrorMessage frame:HTS.ErrorMessage
- DevCTemperature    num                  relation:DeviceC.GetTemperature  frame:HTS.Temperature   property:{"MIN":0,"MAX":300}
- DevCOnOff          enum.OnOff           relation:DeviceC.OnOff           frame:HTS.HeaterOnOff
+ DevAPowerStatus    enum.DeviceAStatus  relation:DeviceA.GetStatus         
+ DevAErrorMessage   text                relation:DeviceA.GetErrorMessage property:{"Argument":"1,0"}
+ DevCTemperature    num                 relation:DeviceC.GetTemperature property:{"MIN":0,"MAX":300}
+ DevCOnOff          enum.OnOff          relation:DeviceC.OnOff           
  ...
 ```
 

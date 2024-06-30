@@ -55,8 +55,10 @@ PortDic.Lib.x64 | >= NetFramework 4.8 , >= NetCore 8.0 | Windows x64 | Yes |
     //class1.cs
     PortDic dic = portdic.Connect("localhost",9000); 
 
-    var q1 = Port.NewQueue('TEST')
+    dic.Create(PortLibrary.PortDic.Structor.Queue,'TEST')
 
+    var q1 = dic.Queque('TEST') 
+    
     q1.Enqueue(Encoding.UTF8.GetBytes('First Value'));
 
     ...
@@ -65,7 +67,7 @@ PortDic.Lib.x64 | >= NetFramework 4.8 , >= NetCore 8.0 | Windows x64 | Yes |
     //class2.cs
     PortDic dic = portdic.Connect("localhost",9000); 
 
-    var q = Port.Queue('TEST')
+    var q1 = dic.Queue('TEST')
 
     var v = q1.Dequeue();
 
@@ -81,13 +83,91 @@ PortDic.Lib.x64 | >= NetFramework 4.8 , >= NetCore 8.0 | Windows x64 | Yes |
 ```
 ### STACK
 
+```C#
+
+    //class1.cs
+    PortDic dic = portdic.Connect("localhost",9000); 
+
+    dic.Create(PortLibrary.PortDic.Structor.Stack,'TEST')
+
+    q1.Push(Encoding.UTF8.GetBytes('First Value'));
+
+    ...
+
+
+    //class2.cs
+    PortDic dic = portdic.Connect("localhost",9000); 
+
+    var stack = Port.Stack('TEST')
+
+    var v = stack.Pop();
+
+    Console.WriteLine(Encoding.UTF8.GetString(v));
+    
+    ...
+    
+```
 ### LIST
 
+```C#
+
+    //class1.cs
+    
+    PortDic dic = portdic.Connect("localhost",9000); 
+    
+    dic.Create(PortLibrary.PortDic.Structor.List,'TEST')
+    
+    var list = Port.List('TEST')
+
+    list.Add(Encoding.UTF8.GetBytes('First Value'));
+
+    ...
+
+
+    //class2.cs
+    PortDic dic = portdic.Connect("localhost",9000); 
+
+   var list = Port.List('TEST')
+
+    var v = list.Get(0);
+
+    //Show "First Value" from class1.cs 
+    Console.WriteLine(Encoding.UTF8.GetString(v));
+    //Remove index 0
+    q1.Remove(0);
+    
+    ...
+    
+```
 ### STORAGE
 
+```C#
 
-### Code 
+    //class1.cs
+    PortDic dic = portdic.Connect("localhost",9000); 
 
+    dic.Create(PortLibrary.PortDic.Structor.Storage,'TEST')
+    
+    var s = Port.Storage('TEST')
+
+    if (s.Set('A',Encoding.UTF8.GetBytes('First Value'))){
+        Console.WriteLine('Updated value')
+    }
+
+    ...
+
+
+    //class2.cs
+    PortDic dic = portdic.Connect("localhost",9000); 
+
+    var s = Port.Storage('TEST')
+
+    var v = s.Get('A');
+
+    //Show "First Value" from class1.cs 
+    Console.WriteLine(Encoding.UTF8.GetString(v));
  
+    ...
+    
+```
 
-  
