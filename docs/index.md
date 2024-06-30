@@ -16,6 +16,7 @@ Please see the documentation [lincense](license.md)
 
 VERSION | OS |STABLE | URL 
 ------|--------|--------|--------
+v0.0.1 -win-installer | Windows x64 | No | [Port.7z  v0.0.1 - win](https://github.com/portget/port/archive/refs/tags/v0.0.1-win-installer.zip){:download}
 v0.0.1 -BETA | Windows x64 | No | [Port.7z  v0.0.1 - BETA](https://github.com/portget/port/archive/refs/tags/v0.0.1-beta.zip){:download}
 
 
