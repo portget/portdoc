@@ -240,10 +240,10 @@ BZone/            # The group directory.
 </tbody>
 </table>
 <h4 id="sample1msg">sample1.msg<a class="headerlink" href="#sample1msg" title="Permanent link">&para;</a></h4>
-<pre><code> DevAPowerStatus    enum.DeviceAStatus   relation:DeviceA.GetStatus       frame:HTS.PowerStatus  
- DevAErrorMessage   text                 relation:DeviceA.GetErrorMessage frame:HTS.ErrorMessage
- DevCTemperature    num                  relation:DeviceC.GetTemperature  frame:HTS.Temperature   property:{&quot;MIN&quot;:0,&quot;MAX&quot;:300}
- DevCOnOff          enum.OnOff           relation:DeviceC.OnOff           frame:HTS.HeaterOnOff
+<pre><code> DevAPowerStatus    enum.DeviceAStatus   relation:DeviceA.GetStatus         
+ DevAErrorMessage   text                 relation:DeviceA.GetErrorMessage property:{&quot;Argument&quot;:&quot;1,0&quot;}
+ DevCTemperature    num                  relation:DeviceC.GetTemperature  property:{&quot;MIN&quot;:0,&quot;MAX&quot;:300}
+ DevCOnOff          enum.OnOff           relation:DeviceC.OnOff           
  ...
 </code></pre>
 <div class="admonition tip">
@@ -431,5 +431,5 @@ HTS.HeaterOnOff&gt;DevCOnOff:[Off,On ...]
 
 <!--
 MkDocs version : 1.5.3
-Build Date UTC : 2024-06-30 08:25:21.852099+00:00
+Build Date UTC : 2024-06-30 08:28:56.952673+00:00
 -->
