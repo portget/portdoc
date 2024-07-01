@@ -16,7 +16,7 @@ Please see the documentation [lincense](license.md)
 
 VERSION | OS |STABLE | URL 
 ------|--------|--------|--------
-v0.0.2 -BETA | Windows x64 | No | [Port.7z  v0.0.2 - BETA](https://github.com/portget/port/archive/refs/tags/v0.0.2-beta.zip){:download}
+v0.0.2 -BETA | Windows x64 | No | [Port.7z  v0.0.2 - BETA](https://github.com/portget/port/archive/refs/tags/v0.0.2-win-installer.zip){:download}
 
 
 
