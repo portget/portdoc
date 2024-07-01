@@ -4,10 +4,9 @@
 ## Download
 
 ### Nuget Package
-NAME | Target |OS |STABLE | 
-------|--------|--------|--------
-PortDic.Lib.x64 | >= NetFramework 4.8 , >= NetCore 8.0 | Windows x64 | Yes | 
-
+NAME | OS |STABLE | 
+------|--------|--------
+Port.Library |  Windows x64 | Yes | 
 
 ## Functions 
 

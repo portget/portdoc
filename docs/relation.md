@@ -7,13 +7,10 @@ This object is designed to efficiently manage libraries that serve as common den
 # Get Started
 __________________
 
-### Add reference
-
-NAME | Version | Path 
-------|--------|-------
-.net  | >8.0   |../port/lib/net/portlib.dll
-
-
+### Nuget Package
+NAME | OS |STABLE | 
+------|--------|--------
+Port.Library |  Windows x64 | Yes | 
 
 ### Support objects
 NAME | SETPOINT |DESCRIPTION  
