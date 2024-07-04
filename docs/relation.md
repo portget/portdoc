@@ -140,13 +140,13 @@ public class HeatingCheck : IntervalRelationService
 }
 ``` 
 
-#### CommRelationService
+#### EndpointRelationService
 ```C#
  /// <summary>
  /// Communication Relation Object 
  /// you must be implement IsConnected, Endpoint
  /// </summary>
- public class Relation : CommRelationService
+ public class Relation : EndpointRelationService
  {
      private SerialPort serialPort = new SerialPort();
      
