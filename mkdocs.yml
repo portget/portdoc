@@ -2,7 +2,7 @@ site_name: Port
 site_url: https://portget.com
 nav:
   - Home: index.md
-  - Learn: learm.md
+  - Learn: learn.md
   - Dictionary: portdic.md
   - Relation: relation.md
   - API Reference: reference.md
