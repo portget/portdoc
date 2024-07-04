@@ -1,6 +1,6 @@
 # Quick Start
 
-Welcome to the React documentation! This page will give you an introduction to the 80% of React concepts that you will use on a daily basis.
+Welcome to the Port World!
 
 ----------------------------------------------------------------
 You will learn
@@ -13,11 +13,46 @@ How to share data between components
 ----------------------------------------------------------------
 
 
-# Creating and nesting components 
-React apps are made out of components. A component is a piece of the UI (user interface) that has its own logic and appearance. A component can be as small as a button, or as large as an entire page.
-
-
-
+## How to create a repository
 ```Console
-Desktop-0665> port new WelcomeApp
+C:\Users\...>cd C:\Users\Demo
+
+C:\Users\Demo>port new Demo
+
+C:\Users\Demo>port add --gruop stage,efem
+
+```
+## How to add messages 
+[..\\stage\\.msg]
+```Text
+STAGE_ACCELATOR             num                                                                                                                                                   
+STAGE_DECELATOR             num                                                                                                                                                   
+STAGE_HOME_SENSOR           enum.NonHome    RELATION:IOBoardLib.DigtalInput PROPERTY:{"Argument":"1,0"}                                                                                                                                           
+STAGE_LOAD_MOVE_TIMEOUT     num                                                                                                                                                   
+STAGE_LOAD_POSITION         num                                                                                                                                                   
+STAGE_POSITION              enum.CHUCKPOS                                                                                                                                         
+STAGE_POSITION_RATIO        num                                                                                                                                                   
+STAGE_SPEED                 num                                                                                                                                                   
+```
+
+
+## How to add relation
+```Console
+C:\Users\...>cd C:\Users\Demo
+
+C:\Users\Demo>port add --relation IOBoard1 IOBoardLib
+ 
+```
+
+
+!!!tip
+    If you see a message like `[ERROR][open ..\proj.toml: Access is denied.]`
+    granting administrator privileges to the port.exe program will resolve the issue.
+
+
+[port.toml]
+```Text
+    [[relations]]
+    key = 'IOBoard1'
+    path = 'IOBoardLib\IOBoardLib.dll'
 ```

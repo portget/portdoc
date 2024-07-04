@@ -134,9 +134,9 @@
                 
             <li class="second-level"><a href="#net-80">.Net (&gt;= 8.0)</a></li>
                 
+                <li class="third-level"><a href="#endpointrelationservice">EndpointRelationService</a></li>
                 <li class="third-level"><a href="#scenariorelationservice">ScenarioRelationService</a></li>
                 <li class="third-level"><a href="#intervalrelationservice">IntervalRelationService</a></li>
-                <li class="third-level"><a href="#endpointrelationservice">EndpointRelationService</a></li>
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
@@ -201,6 +201,102 @@
 <p class="admonition-title">Tip</p>
 <p>[Properties] -&gt;  [Application] -&gt; [General] -&gt; [Traget OS] -&gt; check for windows</p>
 </div>
+<h4 id="endpointrelationservice">EndpointRelationService<a class="headerlink" href="#endpointrelationservice" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Sperator</th>
+<th>Format</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TCP</td>
+<td>:</td>
+<td>[IPv4]:[Port]</td>
+</tr>
+<tr>
+<td>RTU</td>
+<td>,</td>
+<td>[PortName],[BaudRate],[DataBits],[StopBits],[Parity]</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-C#"> /// &lt;summary&gt;
+ /// Communication Relation Object 
+ /// you must be implement IsConnected, Endpoint
+ /// &lt;/summary&gt;
+ public class Relation : EndpointRelationService
+ {
+     private SerialPort serialPort = new SerialPort();
+
+     public Relation()
+     {
+
+     }
+
+     // Just use here
+     public string Name;
+
+     // Check for connected
+     protected override bool IsConnected()
+     {
+         return ((this.serialPort != null) &amp;&amp; (this.serialPort.IsOpen));
+     }
+
+     // port relation set Endpoint like COM13,9600,8,1,0,0 / TCP 
+     [Message]
+     public override IEndpoint Endpoint
+     {
+         set
+         {
+             if (value.Binding(this.serialPort))
+             {
+                 this.serialPort.Open();
+             }
+         }
+         get
+         {
+             return this.address;
+         }
+     }
+
+     [Message]
+     public string GetPowerStatus
+     {
+         get
+         {
+             var message = Encoding.ASCII.GetBytes(&quot;power?\r\n&quot;);
+
+             this.serialPort.Write(message, 0, message.Length);
+
+             Thread.Sleep(300);
+
+             var recv = new byte[0xff];
+
+             var n = this.serialPort.Read(recv, 0, recv.Length);
+
+             if (n != 0)
+             { 
+                 return Encoding.ASCII.GetString(recv);
+             } 
+
+             return &quot;Unknown&quot;;
+         }
+     }
+
+     [Message]
+     public string PowerOn
+     {
+         set
+         {
+            var message = Encoding.ASCII.GetBytes(&quot;powerOn\r\n&quot;);
+            this.serialPort.Write(message, 0, message.Length);
+         }
+     }
+ }
+</code></pre>
 <h4 id="scenariorelationservice">ScenarioRelationService<a class="headerlink" href="#scenariorelationservice" title="Permanent link">&para;</a></h4>
 <pre><code class="language-C#"> public class HeatingScenario : ScenarioRelationService
  { 
@@ -308,81 +404,6 @@ public class HeatingCheck : IntervalRelationService
         }
     }
 }
-</code></pre>
-<h4 id="endpointrelationservice">EndpointRelationService<a class="headerlink" href="#endpointrelationservice" title="Permanent link">&para;</a></h4>
-<pre><code class="language-C#"> /// &lt;summary&gt;
- /// Communication Relation Object 
- /// you must be implement IsConnected, Endpoint
- /// &lt;/summary&gt;
- public class Relation : EndpointRelationService
- {
-     private SerialPort serialPort = new SerialPort();
-
-     public Relation()
-     {
-
-     }
-
-     // Just use here
-     public string Name;
-
-     // Check for connected
-     protected override bool IsConnected()
-     {
-         return ((this.serialPort != null) &amp;&amp; (this.serialPort.IsOpen));
-     }
-
-     // port relation set Endpoint like COM13,9600,8,1,0,0 / TCP 
-     [Message]
-     public override IEndpoint Endpoint
-     {
-         set
-         {
-             if (value.Binding(this.serialPort))
-             {
-                 this.serialPort.Open();
-             }
-         }
-         get
-         {
-             return this.address;
-         }
-     }
-
-     [Message]
-     public string GetPowerStatus
-     {
-         get
-         {
-             var message = Encoding.ASCII.GetBytes(&quot;power?\r\n&quot;);
-
-             this.serialPort.Write(message, 0, message.Length);
-
-             Thread.Sleep(300);
-
-             var recv = new byte[0xff];
-
-             var n = this.serialPort.Read(recv, 0, recv.Length);
-
-             if (n != 0)
-             { 
-                 return Encoding.ASCII.GetString(recv);
-             } 
-
-             return &quot;Unknown&quot;;
-         }
-     }
-
-     [Message]
-     public string PowerOn
-     {
-         set
-         {
-            var message = Encoding.ASCII.GetBytes(&quot;powerOn\r\n&quot;);
-            this.serialPort.Write(message, 0, message.Length);
-         }
-     }
- }
 </code></pre>
 <pre><code>port add --comm heating1 /TempLib/TempLib.dll 
 port add --comm heating2 /TempLib/TempLib.dll
