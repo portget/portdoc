@@ -136,7 +136,7 @@
                 
                 <li class="third-level"><a href="#scenariorelationservice">ScenarioRelationService</a></li>
                 <li class="third-level"><a href="#intervalrelationservice">IntervalRelationService</a></li>
-                <li class="third-level"><a href="#commrelationservice">CommRelationService</a></li>
+                <li class="third-level"><a href="#endpointrelationservice">EndpointRelationService</a></li>
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
@@ -309,12 +309,12 @@ public class HeatingCheck : IntervalRelationService
     }
 }
 </code></pre>
-<h4 id="commrelationservice">CommRelationService<a class="headerlink" href="#commrelationservice" title="Permanent link">&para;</a></h4>
+<h4 id="endpointrelationservice">EndpointRelationService<a class="headerlink" href="#endpointrelationservice" title="Permanent link">&para;</a></h4>
 <pre><code class="language-C#"> /// &lt;summary&gt;
  /// Communication Relation Object 
  /// you must be implement IsConnected, Endpoint
  /// &lt;/summary&gt;
- public class Relation : CommRelationService
+ public class Relation : EndpointRelationService
  {
      private SerialPort serialPort = new SerialPort();
 
