@@ -127,13 +127,18 @@
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
         <li class="first-level active"><a href="#quick-start">Quick Start</a></li>
-        <li class="first-level "><a href="#creating-and-nesting-components">Creating and nesting components</a></li>
+            <li class="second-level"><a href="#how-to-create-a-repository">How to create a repository</a></li>
+                
+            <li class="second-level"><a href="#how-to-add-messages">How to add messages</a></li>
+                
+            <li class="second-level"><a href="#how-to-add-relation">How to add relation</a></li>
+                
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
 
 <h1 id="quick-start">Quick Start<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h1>
-<p>Welcome to the React documentation! This page will give you an introduction to the 80% of React concepts that you will use on a daily basis.</p>
+<p>Welcome to the Port World!</p>
 <hr />
 <p>You will learn
 How to create and nest components
@@ -143,9 +148,40 @@ How to render conditions and lists
 How to respond to events and update the screen
 How to share data between components</p>
 <hr />
-<h1 id="creating-and-nesting-components">Creating and nesting components<a class="headerlink" href="#creating-and-nesting-components" title="Permanent link">&para;</a></h1>
-<p>React apps are made out of components. A component is a piece of the UI (user interface) that has its own logic and appearance. A component can be as small as a button, or as large as an entire page.</p>
-<pre><code class="language-Console">Desktop-0665&gt; port new WelcomeApp
+<h2 id="how-to-create-a-repository">How to create a repository<a class="headerlink" href="#how-to-create-a-repository" title="Permanent link">&para;</a></h2>
+<pre><code class="language-Console">C:\Users\...&gt;cd C:\Users\Demo
+
+C:\Users\Demo&gt;port new Demo
+
+C:\Users\Demo&gt;port add --gruop stage,efem
+
+</code></pre>
+<h2 id="how-to-add-messages">How to add messages<a class="headerlink" href="#how-to-add-messages" title="Permanent link">&para;</a></h2>
+<p>[..\stage\.msg]</p>
+<pre><code class="language-Text">STAGE_ACCELATOR             num                                                                                                                                                   
+STAGE_DECELATOR             num                                                                                                                                                   
+STAGE_HOME_SENSOR           enum.NonHome    RELATION:IOBoardLib.DigtalInput PROPERTY:{&quot;Argument&quot;:&quot;1,0&quot;}                                                                                                                                           
+STAGE_LOAD_MOVE_TIMEOUT     num                                                                                                                                                   
+STAGE_LOAD_POSITION         num                                                                                                                                                   
+STAGE_POSITION              enum.CHUCKPOS                                                                                                                                         
+STAGE_POSITION_RATIO        num                                                                                                                                                   
+STAGE_SPEED                 num                                                                                                                                                   
+</code></pre>
+<h2 id="how-to-add-relation">How to add relation<a class="headerlink" href="#how-to-add-relation" title="Permanent link">&para;</a></h2>
+<pre><code class="language-Console">C:\Users\...&gt;cd C:\Users\Demo
+
+C:\Users\Demo&gt;port add --relation IOBoard1 IOBoardLib
+
+</code></pre>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you see a message like <code>[ERROR][open ..\proj.toml: Access is denied.]</code>
+granting administrator privileges to the port.exe program will resolve the issue.</p>
+</div>
+<p>[port.toml]</p>
+<pre><code class="language-Text">    [[relations]]
+    key = 'IOBoard1'
+    path = 'IOBoardLib\IOBoardLib.dll'
 </code></pre></div>
         
         
