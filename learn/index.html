@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     
-    <link rel="canonical" href="https://portget.com/learn/">
+    <link rel="canonical" href="https://portdic.com/learn/">
     <link rel="shortcut icon" href="../img/favicon.ico">
 
     
@@ -129,26 +129,29 @@
         <li class="first-level active"><a href="#quick-start">Quick Start</a></li>
             <li class="second-level"><a href="#how-to-create-a-repository">How to create a repository</a></li>
                 
+                <li class="third-level"><a href="#heres-an-example">Here's an example</a></li>
+                <li class="third-level"><a href="#here-is-an-example-of-the-structure-of-the-generated-repository">Here is an example of the structure of the generated repository</a></li>
             <li class="second-level"><a href="#how-to-add-messages">How to add messages</a></li>
                 
+                <li class="third-level"><a href="#heres-an-example-of-message-file">Here's an example of message file</a></li>
+            <li class="second-level"><a href="#how-to-push-a-repository">How to push a repository</a></li>
+                
             <li class="second-level"><a href="#how-to-add-relation">How to add relation</a></li>
+                
+            <li class="second-level"><a href="#how-to-start-project">How to start project</a></li>
                 
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
 
 <h1 id="quick-start">Quick Start<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h1>
-<p>Welcome to the Port World!</p>
 <hr />
-<p>You will learn
-How to create and nest components
-How to add markup and styles
-How to display data
-How to render conditions and lists
-How to respond to events and update the screen
-How to share data between components</p>
+<p>Port operates by reflecting messages in the most recently updated repository. 
+Try creating and editing a basic project to see how you can modify and configure projects. Follow along to understand the process better.</p>
 <hr />
 <h2 id="how-to-create-a-repository">How to create a repository<a class="headerlink" href="#how-to-create-a-repository" title="Permanent link">&para;</a></h2>
+<p>Before starting a Port project, you need to create a root folder that defines your messages. The subfolders within this root folder are managed as groups by Port, allowing users to organize messages by group. The root folder contains files with the <code>*.enum</code> extension and the structure of sub-group folders. Within the sub-group folders, message definition documents with the <code>*.msg</code> extension are created.</p>
+<h4 id="heres-an-example">Here's an example<a class="headerlink" href="#heres-an-example" title="Permanent link">&para;</a></h4>
 <pre><code class="language-Console">C:\Users\...&gt;cd C:\Users\Demo
 
 C:\Users\Demo&gt;port new Demo
@@ -156,16 +159,29 @@ C:\Users\Demo&gt;port new Demo
 C:\Users\Demo&gt;port add --gruop stage,efem
 
 </code></pre>
+<h4 id="here-is-an-example-of-the-structure-of-the-generated-repository">Here is an example of the structure of the generated repository<a class="headerlink" href="#here-is-an-example-of-the-structure-of-the-generated-repository" title="Permanent link">&para;</a></h4>
+<pre><code>root_folder/
+├── group1/
+│   ├── *.msg
+├── group2/
+│   ├── *.msg 
+└── *.enum
+</code></pre>
 <h2 id="how-to-add-messages">How to add messages<a class="headerlink" href="#how-to-add-messages" title="Permanent link">&para;</a></h2>
-<p>[..\stage\.msg]</p>
+<p>To declare a message, you need to edit the <code>*.msg</code> file in the sub-folder you created. By defining message data types and attributes as shown below, you can later utilize various features such as automatic logging and backup. Additionally, you can define relationships using predefined relations.</p>
+<h4 id="heres-an-example-of-message-file">Here's an example of message file<a class="headerlink" href="#heres-an-example-of-message-file" title="Permanent link">&para;</a></h4>
 <pre><code class="language-Text">STAGE_ACCELATOR             num                                                                                                                                                   
 STAGE_DECELATOR             num                                                                                                                                                   
-STAGE_HOME_SENSOR           enum.NonHome    RELATION:IOBoardLib.DigtalInput PROPERTY:{&quot;Argument&quot;:&quot;1,0&quot;}                                                                                                                                           
+STAGE_HOME_SENSOR           enum.NonHome   RELATION:IOBoardLib.DigtalInput PROPERTY:{&quot;Argument&quot;:&quot;1,0&quot;}                                                                                                                                           
 STAGE_LOAD_MOVE_TIMEOUT     num                                                                                                                                                   
 STAGE_LOAD_POSITION         num                                                                                                                                                   
 STAGE_POSITION              enum.CHUCKPOS                                                                                                                                         
 STAGE_POSITION_RATIO        num                                                                                                                                                   
 STAGE_SPEED                 num                                                                                                                                                   
+</code></pre>
+<h2 id="how-to-push-a-repository">How to push a repository<a class="headerlink" href="#how-to-push-a-repository" title="Permanent link">&para;</a></h2>
+<pre><code class="language-Console">C:\Users\Demo&gt;port push
+
 </code></pre>
 <h2 id="how-to-add-relation">How to add relation<a class="headerlink" href="#how-to-add-relation" title="Permanent link">&para;</a></h2>
 <pre><code class="language-Console">C:\Users\...&gt;cd C:\Users\Demo
@@ -182,7 +198,8 @@ granting administrator privileges to the port.exe program will resolve the issue
 <pre><code class="language-Text">    [[relations]]
     key = 'IOBoard1'
     path = 'IOBoardLib\IOBoardLib.dll'
-</code></pre></div>
+</code></pre>
+<h2 id="how-to-start-project">How to start project<a class="headerlink" href="#how-to-start-project" title="Permanent link">&para;</a></h2></div>
         
         
     </div>

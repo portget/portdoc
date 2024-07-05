@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://portget.com/</loc>
-         <lastmod>2024-07-04</lastmod>
+         <loc>https://portdic.com/</loc>
+         <lastmod>2024-07-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://portget.com/frame/</loc>
-         <lastmod>2024-07-04</lastmod>
+         <loc>https://portdic.com/frame/</loc>
+         <lastmod>2024-07-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://portget.com/learn/</loc>
-         <lastmod>2024-07-04</lastmod>
+         <loc>https://portdic.com/learn/</loc>
+         <lastmod>2024-07-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://portget.com/license/</loc>
-         <lastmod>2024-07-04</lastmod>
+         <loc>https://portdic.com/license/</loc>
+         <lastmod>2024-07-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://portget.com/portdic/</loc>
-         <lastmod>2024-07-04</lastmod>
+         <loc>https://portdic.com/portdic/</loc>
+         <lastmod>2024-07-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://portget.com/reference/</loc>
-         <lastmod>2024-07-04</lastmod>
+         <loc>https://portdic.com/reference/</loc>
+         <lastmod>2024-07-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://portget.com/relation/</loc>
-         <lastmod>2024-07-04</lastmod>
+         <loc>https://portdic.com/relation/</loc>
+         <lastmod>2024-07-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
