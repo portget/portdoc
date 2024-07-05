@@ -134,12 +134,13 @@
             <li class="second-level"><a href="#how-to-add-messages">How to add messages</a></li>
                 
                 <li class="third-level"><a href="#heres-an-example-of-message-file">Here's an example of message file</a></li>
-            <li class="second-level"><a href="#how-to-push-a-repository">How to push a repository</a></li>
+            <li class="second-level"><a href="#how-to-link-relation">How to link relation</a></li>
                 
-            <li class="second-level"><a href="#how-to-add-relation">How to add relation</a></li>
-                
+                <li class="third-level"><a href="#how-to-link-the-library">How to link the library</a></li>
+                <li class="third-level"><a href="#how-to-check-link-library">How to check link library</a></li>
             <li class="second-level"><a href="#how-to-start-project">How to start project</a></li>
                 
+                <li class="third-level"><a href="#good-luck">Good luck!</a></li>
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
@@ -148,17 +149,19 @@
 <hr />
 <p>Port operates by reflecting messages in the most recently updated repository. 
 Try creating and editing a basic project to see how you can modify and configure projects. Follow along to understand the process better.</p>
-<hr />
+<p><br></p>
 <h2 id="how-to-create-a-repository">How to create a repository<a class="headerlink" href="#how-to-create-a-repository" title="Permanent link">&para;</a></h2>
+<hr />
 <p>Before starting a Port project, you need to create a root folder that defines your messages. The subfolders within this root folder are managed as groups by Port, allowing users to organize messages by group. The root folder contains files with the <code>*.enum</code> extension and the structure of sub-group folders. Within the sub-group folders, message definition documents with the <code>*.msg</code> extension are created.</p>
 <h4 id="heres-an-example">Here's an example<a class="headerlink" href="#heres-an-example" title="Permanent link">&para;</a></h4>
-<pre><code class="language-Console">C:\Users\...&gt;cd C:\Users\Demo
+<div class="console">
+    <div class="console-content">
+    C:\Users\...>cd C:\Users\Demo
+    C:\Users\Demo>port new Demo
+    C:\Users\Demo>port add --gruop stage,efem
+  </div>
+</div>
 
-C:\Users\Demo&gt;port new Demo
-
-C:\Users\Demo&gt;port add --gruop stage,efem
-
-</code></pre>
 <h4 id="here-is-an-example-of-the-structure-of-the-generated-repository">Here is an example of the structure of the generated repository<a class="headerlink" href="#here-is-an-example-of-the-structure-of-the-generated-repository" title="Permanent link">&para;</a></h4>
 <pre><code>root_folder/
 ├── group1/
@@ -168,38 +171,136 @@ C:\Users\Demo&gt;port add --gruop stage,efem
 └── *.enum
 </code></pre>
 <h2 id="how-to-add-messages">How to add messages<a class="headerlink" href="#how-to-add-messages" title="Permanent link">&para;</a></h2>
+<hr />
 <p>To declare a message, you need to edit the <code>*.msg</code> file in the sub-folder you created. By defining message data types and attributes as shown below, you can later utilize various features such as automatic logging and backup. Additionally, you can define relationships using predefined relations.</p>
 <h4 id="heres-an-example-of-message-file">Here's an example of message file<a class="headerlink" href="#heres-an-example-of-message-file" title="Permanent link">&para;</a></h4>
-<pre><code class="language-Text">STAGE_ACCELATOR             num                                                                                                                                                   
-STAGE_DECELATOR             num                                                                                                                                                   
-STAGE_HOME_SENSOR           enum.NonHome   RELATION:IOBoardLib.DigtalInput PROPERTY:{&quot;Argument&quot;:&quot;1,0&quot;}                                                                                                                                           
-STAGE_LOAD_MOVE_TIMEOUT     num                                                                                                                                                   
-STAGE_LOAD_POSITION         num                                                                                                                                                   
-STAGE_POSITION              enum.CHUCKPOS                                                                                                                                         
-STAGE_POSITION_RATIO        num                                                                                                                                                   
-STAGE_SPEED                 num                                                                                                                                                   
+<pre><code>STAGE_ACCELATOR          num                                                                                                                                             
+STAGE_DECELATOR          num                                                                                                                                             
+STAGE_HOME_SENSOR        enum.NonHome   RELATION:IOBoardLib.DigtalInput PROPERTY:{&quot;Argument&quot;:&quot;1,0&quot;}                                                                                                                                
+STAGE_LOAD_MOVE_TIMEOUT  num                                                                                                                                            
+STAGE_LOAD_POSITION      num                                                                                                                                            
+STAGE_POSITION           enum.CHUCKPOS                                                                                                                                     
+STAGE_POSITION_RATIO     num                                                                                                                                                 
+STAGE_SPEED              num                                                                                                                                               
 </code></pre>
-<h2 id="how-to-push-a-repository">How to push a repository<a class="headerlink" href="#how-to-push-a-repository" title="Permanent link">&para;</a></h2>
-<pre><code class="language-Console">C:\Users\Demo&gt;port push
+<h2 id="how-to-link-relation">How to link relation<a class="headerlink" href="#how-to-link-relation" title="Permanent link">&para;</a></h2>
+<hr />
+<p>To link the declared relations in your messages, you need to add them to the project. This process involves entering the call key and the library name to complete the addition of the relation.</p>
+<h4 id="how-to-link-the-library">How to link the library<a class="headerlink" href="#how-to-link-the-library" title="Permanent link">&para;</a></h4>
+<div class="console">
+    <div class="console-content">
+    C:\Users\...>cd C:\Users\Demo
+    C:\Users\Demo>port add --relation IOBoard1 IOBoardLib
+   </div>
+</div>
 
-</code></pre>
-<h2 id="how-to-add-relation">How to add relation<a class="headerlink" href="#how-to-add-relation" title="Permanent link">&para;</a></h2>
-<pre><code class="language-Console">C:\Users\...&gt;cd C:\Users\Demo
-
-C:\Users\Demo&gt;port add --relation IOBoard1 IOBoardLib
-
-</code></pre>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>If you see a message like <code>[ERROR][open ..\proj.toml: Access is denied.]</code>
 granting administrator privileges to the port.exe program will resolve the issue.</p>
 </div>
-<p>[port.toml]</p>
-<pre><code class="language-Text">    [[relations]]
-    key = 'IOBoard1'
-    path = 'IOBoardLib\IOBoardLib.dll'
-</code></pre>
-<h2 id="how-to-start-project">How to start project<a class="headerlink" href="#how-to-start-project" title="Permanent link">&para;</a></h2></div>
+<p>After linking the relations to your project, you can verify the integration using the following command</p>
+<h4 id="how-to-check-link-library">How to check link library<a class="headerlink" href="#how-to-check-link-library" title="Permanent link">&para;</a></h4>
+<div class="console">
+    <div class="console-content"> 
+    C:\Users\Demo>port show --relation
+    C:\Users\Demo>[IOBoard1]IOBoardLib\IOBoardLib.dll
+   </div>
+</div>
+
+<h2 id="how-to-start-project">How to start project<a class="headerlink" href="#how-to-start-project" title="Permanent link">&para;</a></h2>
+<p>Once all message definitions are complete, you can start the message server based on these definitions. Before running the server, upload all updated content to the local repository by entering <code>port push</code> in the console. Then, run the server with the command <code>port run [project-name]</code>.</p>
+<div class="console">
+    <div class="console-content">
+       C:\Users\Demo>port push
+
+       C:\Users\Demo>port run Demo --ng ignore 
+
+       [localhost:5001]Port Running ... OK
+       Access point count [4]
+       Relation count [2]
+       NG point [CATEGORY_MSG_POINT_RELATION][4]
+       NG point [CATEGORY_RELATION_MESSAGE][1]
+       NG point [CATEGORY_MEMORY][2]
+       NG point [CATEGORY_LIBRARY][3]
+       NG point [CATEGORY_MSG_POINT_ENUM][136]
+       Pressing 'CTRL + C' will initiate server shutdown.
+       Please wait for all processes to safely terminate before closing the application.
+    </div>
+</div>
+
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>When running the server, if you include <code>--ng ignore</code> in the command, it will summarize only the points where errors (NG) occur. For detailed information on these NG points, you can visit the following URL to view the NG point table: 
+<p><a href="http://localhost:5001/api/app/ng/?view=table">http://localhost:5001/api/app/ng/?view=table</a></p></p>
+</div>
+<h4 id="good-luck">Good luck!<a class="headerlink" href="#good-luck" title="Permanent link">&para;</a></h4>
+<style>
+
+.console {
+    width: 80%;
+    height: 80%;
+    background-color: black;
+    color: #00ff00;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+}
+.yellow{
+    color:yellow;
+}
+.console-content {
+    white-space: pre-wrap;
+}
+
+.console-content p {
+    margin: 0;
+}
+
+
+.notepad {
+    width: 100%;
+    height: 80%;
+    background-color: white;
+    color: black;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+}
+
+.notepad:before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    right: 20px;
+    height: 2px;
+    background-color: #ccc;
+}
+
+.notepad:after {
+    content: '';
+    position: absolute;
+    top: 30px;
+    left: 20px;
+    right: 20px;
+    height: 2px;
+    background-color: #ccc;
+}
+
+.notepad-content {
+    margin-top: 40px;
+}
+
+.notepad-content p {
+    margin: 0 0 10px;
+    line-height: 1.5;
+}
+</style></div>
         
         
     </div>
