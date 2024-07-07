@@ -23,9 +23,9 @@ Before starting a Port project, you need to create a root folder that defines yo
 #### Here is an example of the structure of the generated repository
 ``` 
 root_folder/
-├── group1/
+├── stage/
 │   ├── *.msg
-├── group2/
+├── efem/
 │   ├── *.msg 
 └── *.enum
 ```
