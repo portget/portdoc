@@ -8,7 +8,7 @@ Please see the documentation [lincense](license.md)
 ---
 * os         : windows 7+ / windows server 2003+
 * memory     : minimum 32GB
-* frameworks : .Net Framework 4.5+  
+* frameworks : .Net 8.0+
 
 
 ## Download URL
@@ -16,7 +16,7 @@ Please see the documentation [lincense](license.md)
 
 VERSION | OS |STABLE | URL 
 ------|--------|--------|--------
-v1.0.6 | Windows x64 | No | [v1.0.6-win-installer](https://github.com/portget/port/archive/refs/tags/v1.0.6-win-installer.zip){:download}
+v1.0.7 | Windows x64 | No | [v1.0.7-win-installer](https://github.com/portget/port/archive/refs/tags/v1.0.7-win-installer.zip){:download}
 
 
 
