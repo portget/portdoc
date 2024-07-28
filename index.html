@@ -143,7 +143,7 @@
                 <li class="third-level"><a href="#repository_1">Repository</a></li>
                 <li class="third-level"><a href="#application">Application</a></li>
                 <li class="third-level"><a href="#message">Message</a></li>
-                <li class="third-level"><a href="#view">View</a></li>
+                <li class="third-level"><a href="#view-development">View (Development)</a></li>
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
@@ -171,22 +171,16 @@
 </thead>
 <tbody>
 <tr>
+<td>v1.0.11</td>
+<td>Windows x64</td>
+<td>No</td>
+<td><a download="download" href="https://github.com/portget/port/archive/refs/tags/v1.0.11-win-installer.zip">v1.0.10-win-installer</a></td>
+</tr>
+<tr>
 <td>v1.0.10</td>
 <td>Windows x64</td>
 <td>No</td>
 <td><a download="download" href="https://github.com/portget/port/archive/refs/tags/v1.0.10-win-installer.zip">v1.0.10-win-installer</a></td>
-</tr>
-<tr>
-<td>v1.0.9</td>
-<td>Windows x64</td>
-<td>No</td>
-<td><a download="download" href="https://github.com/portget/port/archive/refs/tags/v1.0.9-win-installer.zip">v1.0.9-win-installer</a></td>
-</tr>
-<tr>
-<td>v1.0.8</td>
-<td>Windows x64</td>
-<td>No</td>
-<td><a download="download" href="https://github.com/portget/port/archive/refs/tags/v1.0.8-win-installer.zip">v1.0.8-win-installer</a></td>
 </tr>
 </tbody>
 </table>
@@ -226,34 +220,40 @@ BZone/            # The group directory.
 <li><code>[datatype]</code> - text | num </li>
 <li><code>[option]</code> - relation,backup,rule,frame</li>
 </ul>
-<h4 id="message-property-list">message property list<a class="headerlink" href="#message-property-list" title="Permanent link">&para;</a></h4>
+<h4 id="message-option">message option<a class="headerlink" href="#message-option" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
 <th>name</th>
+<th>release</th>
 <th>description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>relation</td>
+<td>ok</td>
 <td>Real-time synchronization and messaging are handled within the corresponding external library. For more details, please refer to the Relation documentation.</td>
 </tr>
 <tr>
 <td>backup</td>
+<td>ok</td>
 <td>Changes are saved to the backup database as they occur, ensuring that values are restored upon application restart. and values are not propagated relation messages during program execution.</td>
 </tr>
 <tr>
 <td>property</td>
+<td>ok</td>
 <td>Can specify a custom property</td>
 </tr>
 <tr>
-<td>frame</td>
-<td>Can specify a frame key value to manage subsequent frames by their key values.</td>
+<td>rule</td>
+<td>ok</td>
+<td>Can specify rules to manage the values of corresponding messages.</td>
 </tr>
 <tr>
-<td>rule</td>
-<td>Can specify rules to manage the values of corresponding messages.</td>
+<td>frame</td>
+<td>soon</td>
+<td>Can specify a frame key value to manage subsequent frames by their key values.</td>
 </tr>
 </tbody>
 </table>
@@ -317,7 +317,7 @@ Subsequently, users can perform a pull action at any desired moment to restore t
 <pre><code>port get groupA sayHelloMessage1
 [Hello?]
 </code></pre>
-<h3 id="view">View<a class="headerlink" href="#view" title="Permanent link">&para;</a></h3>
+<h3 id="view-development">View (Development)<a class="headerlink" href="#view-development" title="Permanent link">&para;</a></h3>
 <ul>
 <li><code>port view --new [view-name] --group [group-name]</code></li>
 </ul>
@@ -449,5 +449,5 @@ HTS.HeaterOnOff&gt;DevCOnOff:[Off,On ...]
 
 <!--
 MkDocs version : 1.6.0
-Build Date UTC : 2024-07-14 12:52:29.660657+00:00
+Build Date UTC : 2024-07-28 12:02:35.308613+00:00
 -->
