@@ -16,10 +16,9 @@ Please see the documentation [lincense](license.md)
 
 VERSION | OS |STABLE | URL 
 ------|--------|--------|--------
+v1.0.11 | Windows x64 | No | [v1.0.10-win-installer](https://github.com/portget/port/archive/refs/tags/v1.0.11-win-installer.zip){:download}
 v1.0.10 | Windows x64 | No | [v1.0.10-win-installer](https://github.com/portget/port/archive/refs/tags/v1.0.10-win-installer.zip){:download}
-v1.0.9 | Windows x64 | No | [v1.0.9-win-installer](https://github.com/portget/port/archive/refs/tags/v1.0.9-win-installer.zip){:download}
-v1.0.8 | Windows x64 | No | [v1.0.8-win-installer](https://github.com/portget/port/archive/refs/tags/v1.0.8-win-installer.zip){:download}
-
+ 
 ## Repository
 ___
 
@@ -62,17 +61,16 @@ ___
 * `[datatype]` - text | num 
 * `[option]` - relation,backup,rule,frame
 
-#### message property list 
+#### message option
  
- name|description
- ------|--------
- relation| Real-time synchronization and messaging are handled within the corresponding external library. For more details, please refer to the Relation documentation.
- backup  | Changes are saved to the backup database as they occur, ensuring that values are restored upon application restart. and values are not propagated relation messages during program execution.
- property| Can specify a custom property
- frame   | Can specify a frame key value to manage subsequent frames by their key values.
- rule    | Can specify rules to manage the values of corresponding messages. 
-
-
+ name|release|description
+ ------|------|--------
+ relation| ok   |Real-time synchronization and messaging are handled within the corresponding external library. For more details, please refer to the Relation documentation.
+ backup  | ok   |Changes are saved to the backup database as they occur, ensuring that values are restored upon application restart. and values are not propagated relation messages during program execution.
+ property| ok   |Can specify a custom property
+ rule    | ok   |Can specify rules to manage the values of corresponding messages. 
+ frame   | soon |Can specify a frame key value to manage subsequent frames by their key values.
+ 
 #### sample1.msg
 ``` 
  DevAPowerStatus    enum.DeviceAStatus  relation:DeviceA.GetStatus         
@@ -142,7 +140,7 @@ port get groupA sayHelloMessage1
 [Hello?]
 ```
  
-### View 
+### View (Development)
 * `port view --new [view-name] --group [group-name]`
 ```
 port view --new groupA --group groupA

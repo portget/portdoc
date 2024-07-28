@@ -16,7 +16,7 @@ Before starting a Port project, you need to create a root folder that defines yo
     <div class="console-content">
     C:\Users\...>cd C:\Users\Demo
     C:\Users\Demo>port new Demo
-    C:\Users\Demo>port add --gruop stage,efem
+    C:\Users\Demo>port add --group stage,efem
   </div>
 </div>
 
