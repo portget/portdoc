@@ -12,6 +12,16 @@ NAME | OS |STABLE |
 ------|--------|--------
 Port.Library |  Windows x64 | Yes | 
 
+### Command 
+Command | Args |Description  
+------|--------|--------
+Run  | [Name] | Run relation
+View | [Name] [History] | View the history for this relation
+Get  | [Name] [Message-Name] | Get Message Value 
+Set  | [Name] [Message-Name] | Set Message Value  
+
+
+
 ### Support objects
 NAME | SETPOINT |DESCRIPTION  
 ------|----------|--------
