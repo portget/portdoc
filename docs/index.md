@@ -58,24 +58,24 @@ ___
 * message item format like this `[key] [datatype] [option...]`
 * `[key]`      - unique key in the message group
 * `[datatype]` - text | num 
-* `[option]` - relation,backup,rule,frame
+* `[option]` - api,backup,rule,frame
 
 #### message option
  
  name|release|description
  ------|------|--------
- relation| ok   |Real-time synchronization and messaging are handled within the corresponding external library. For more details, please refer to the Relation documentation.
- backup  | ok   |Changes are saved to the backup database as they occur, ensuring that values are restored upon application restart. and values are not propagated relation messages during program execution.
+ api     | ok   |Real-time synchronization and messaging are handled within the corresponding external library. For more details, please refer to the api documentation.
+ backup  | ok   |Changes are saved to the backup database as they occur, ensuring that values are restored upon application restart. and values are not propagated api messages during program execution.
  property| ok   |Can specify a custom property
  rule    | ok   |Can specify rules to manage the values of corresponding messages. 
  frame   | soon |Can specify a frame key value to manage subsequent frames by their key values.
  
 #### sample1.msg
 ``` 
- DevAPowerStatus    enum.DeviceAStatus  relation:DeviceA.GetStatus         
- DevAErrorMessage   text                relation:DeviceA.GetErrorMessage property:{"Argument":"1,0"}
- DevCTemperature    num                 relation:DeviceC.GetTemperature property:{"MIN":0,"MAX":300}
- DevCOnOff          enum.OnOff          relation:DeviceC.OnOff           
+ DevAPowerStatus    enum.DeviceAStatus  api:DeviceA.GetStatus         
+ DevAErrorMessage   text                api:DeviceA.GetErrorMessage property:{"Argument":"1,0"}
+ DevCTemperature    num                 api:DeviceC.GetTemperature property:{"MIN":0,"MAX":300}
+ DevCOnOff          enum.OnOff          api:DeviceC.OnOff           
  ...
 ```
 

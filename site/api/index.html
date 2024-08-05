@@ -7,11 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     
-    <link rel="canonical" href="https://portdic.com/relation/">
+    <link rel="canonical" href="https://portdic.com/api/">
     <link rel="shortcut icon" href="../img/favicon.ico">
 
     
-    <title>Relation - Port</title>
+    <title>API SDK - Port</title>
     
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
@@ -88,7 +88,7 @@
                 
                 
                     <li class="active">
-                        <a href="./">Relation</a>
+                        <a href="./">API SDK</a>
                     </li>
                 
                 
@@ -126,26 +126,22 @@
         
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
-        <li class="first-level active"><a href="#whats-relation">What's RELATION?</a></li>
+        <li class="first-level active"><a href="#whats-api">What's API?</a></li>
         <li class="first-level "><a href="#get-started">Get Started</a></li>
             <li class="second-level"><a href="#nuget-package">Nuget Package</a></li>
                 
             <li class="second-level"><a href="#command">Command</a></li>
                 
-            <li class="second-level"><a href="#support-objects">Support objects</a></li>
+            <li class="second-level"><a href="#apiservice">APIService</a></li>
                 
-            <li class="second-level"><a href="#net-80">.Net (&gt;= 8.0)</a></li>
-                
-                <li class="third-level"><a href="#endpointrelationservice">EndpointRelationService</a></li>
-                <li class="third-level"><a href="#scenariorelationservice">ScenarioRelationService</a></li>
-                <li class="third-level"><a href="#intervalrelationservice">IntervalRelationService</a></li>
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
 
-<h1 id="whats-relation">What's RELATION?<a class="headerlink" href="#whats-relation" title="Permanent link">&para;</a></h1>
+<h1 id="whats-api">What's API?<a class="headerlink" href="#whats-api" title="Permanent link">&para;</a></h1>
 <hr />
-<p>This object is designed to efficiently manage libraries that serve as common denominators across multiple projects. Tailored for each language, these libraries facilitate seamless integration with the object and handle memory synchronization with ports. Users can conveniently utilize these libraries by inheriting or implementing the respective classes, ensuring ease of use.</p>
+<p>API stands for Application Programming Interface. It is a set of rules and protocols that allows different software applications to communicate with each other. APIs define the methods and data structures that developers can use to interact with an application's software components, like its services, functions, or data.
+Port provides an APIObject within their SDK, making it easier to develop APIs. This allows users to develop applications more easily and flexibly using REST API or GraphQL.</p>
 <h1 id="get-started">Get Started<a class="headerlink" href="#get-started" title="Permanent link">&para;</a></h1>
 <hr />
 <h3 id="nuget-package">Nuget Package<a class="headerlink" href="#nuget-package" title="Permanent link">&para;</a></h3>
@@ -159,7 +155,7 @@
 </thead>
 <tbody>
 <tr>
-<td>Port.Library</td>
+<td>Port.SDK</td>
 <td>Windows x64</td>
 <td>Yes</td>
 </tr>
@@ -178,12 +174,12 @@
 <tr>
 <td>Run</td>
 <td>[Name]</td>
-<td>Run relation</td>
+<td>Run application or api-object</td>
 </tr>
 <tr>
 <td>View</td>
 <td>[Name] [History]</td>
-<td>View the history for this relation</td>
+<td>View the history for this api-object</td>
 </tr>
 <tr>
 <td>Get</td>
@@ -197,251 +193,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="support-objects">Support objects<a class="headerlink" href="#support-objects" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>NAME</th>
-<th>SETPOINT</th>
-<th>DESCRIPTION</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>RelationService</td>
-<td>none</td>
-<td>base relation object.</td>
-</tr>
-<tr>
-<td>ScenarioRelationService</td>
-<td>frame</td>
-<td>write a scenario where you inherit the object to control all message values and share messages across the system.</td>
-</tr>
-<tr>
-<td>IntervalRelationService</td>
-<td>frame</td>
-<td>this is an object designed for managing a set of periodically called messages, allowing control over the values by periodically invoking messages to the system.</td>
-</tr>
-<tr>
-<td>EndpointRelationService</td>
-<td>endpoint</td>
-<td>this object is designed for a set of messages requiring network endpoints. When inheriting this object, implementation of endpoint and connection status check functions is necessary. Through implementation of the required messages upon connection, it can be provided to the port application.</td>
-</tr>
-</tbody>
-</table>
-<h3 id="net-80">.Net (&gt;= 8.0)<a class="headerlink" href="#net-80" title="Permanent link">&para;</a></h3>
-<hr />
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>[Properties] -&gt;  [Application] -&gt; [General] -&gt; [Traget OS] -&gt; check for windows</p>
-</div>
-<h4 id="endpointrelationservice">EndpointRelationService<a class="headerlink" href="#endpointrelationservice" title="Permanent link">&para;</a></h4>
-<table>
-<thead>
-<tr>
-<th>Type</th>
-<th>Sperator</th>
-<th>Format</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>TCP</td>
-<td>:</td>
-<td>[IPv4]:[Port]</td>
-</tr>
-<tr>
-<td>RTU</td>
-<td>,</td>
-<td>[PortName],[BaudRate],[DataBits],[StopBits],[Parity]</td>
-</tr>
-</tbody>
-</table>
-<pre><code class="language-C#"> /// &lt;summary&gt;
- /// Communication Relation Object 
- /// you must be implement IsConnected, Endpoint
- /// &lt;/summary&gt;
- public class Relation : EndpointRelationService
- {
-     private SerialPort serialPort = new SerialPort();
-
-     public Relation()
-     {
-
-     }
-
-     // Just use here
-     public string Name;
-
-     // Check for connected
-     protected override bool IsConnected()
-     {
-         return ((this.serialPort != null) &amp;&amp; (this.serialPort.IsOpen));
-     }
-
-     // port relation set Endpoint like COM13,9600,8,1,0,0 / TCP 
-     [Message]
-     public override IEndpoint Endpoint
-     {
-         set
-         {
-             if (value.Binding(this.serialPort))
-             {
-                 this.serialPort.Open();
-             }
-         }
-         get
-         {
-             return this.address;
-         }
-     }
-
-     [Message]
-     public string GetPowerStatus
-     {
-         get
-         {
-             var message = Encoding.ASCII.GetBytes(&quot;power?\r\n&quot;);
-
-             this.serialPort.Write(message, 0, message.Length);
-
-             Thread.Sleep(300);
-
-             var recv = new byte[0xff];
-
-             var n = this.serialPort.Read(recv, 0, recv.Length);
-
-             if (n != 0)
-             { 
-                 return Encoding.ASCII.GetString(recv);
-             } 
-
-             return &quot;Unknown&quot;;
-         }
-     }
-
-     [Message]
-     public string PowerOn
-     {
-         set
-         {
-            var message = Encoding.ASCII.GetBytes(&quot;powerOn\r\n&quot;);
-            this.serialPort.Write(message, 0, message.Length);
-         }
-     }
- }
-</code></pre>
-<h4 id="scenariorelationservice">ScenarioRelationService<a class="headerlink" href="#scenariorelationservice" title="Permanent link">&para;</a></h4>
-<pre><code class="language-C#"> public class HeatingScenario : ScenarioRelationService
- { 
-     public HeatingScenario()
-     {
-
-     }
-
-     /// &lt;summary&gt;
-     /// start condition
-     /// &lt;/summary&gt;
-     /// &lt;returns&gt;start : true / skip : false&lt;/returns&gt;
-     public override bool OpeningCredits()
-     {
-
-         var strValue = frame.GetValue(&quot;TemptureCheck&quot;);
-
-         if (strValue == &quot;Starting&quot;)
-         {
-             return true;
-         }
-
-         return false;
-     }
-     /// &lt;summary&gt;
-     /// end condition
-     /// &lt;/summary&gt;
-     /// &lt;returns&gt;start : true / skip : false&lt;/returns&gt;
-     public override bool EndingCredits()
-     {
-         if (this.ShotNumber &gt; 3)
-         { 
-             return true;
-         }
-
-         return false;
-     }
-
-     [Message, Shot(1)]
-     public ShotResult EVENT_1
-     {
-         set
-         {
-             var strValue = frame.GetValue(&quot;DevAPowerStatus&quot;);
-
-             if (strValue == &quot;OK&quot;)
-             {
-                 value.NextShot();
-             }
-         }
-     }
-
-     [Message, Shot(2)]
-     public ShotResult EVENT_2
-     {
-         set
-         {
-             if (frame.GetValue(&quot;DevCOnOff&quot;) != &quot;On&quot;)
-             {
-                 value.Occure(&quot;ERROR&quot;, &quot;Did not turn on.&quot;);
-             }
-             else
-             {
-                 value.NextShot();
-             }
-         }
-     }
-
-     [Message, Shot(3)]
-     public ShotResult EVENT_3
-     {
-         set
-         {
-             var strValue = frame.GetValue(&quot;Temperature&quot;);
-
-             if (strValue &lt;= 30)
-             {
-                 value.EndingCredits();
-             }
-         }
-     } 
- }
-</code></pre>
-<h4 id="intervalrelationservice">IntervalRelationService<a class="headerlink" href="#intervalrelationservice" title="Permanent link">&para;</a></h4>
-<pre><code class="language-C#">/// &lt;summary&gt;
-/// 10ms interval serivce 
-/// &lt;/summary&gt;
-public class HeatingCheck : IntervalRelationService
-{ 
-    public HeatingCheck()
-    {
-
-    }
-
-    /// &lt;summary&gt;
-    /// Min-limit = 10ms 
-    /// &lt;/summary&gt;
-    public override int Interval { set; get; } = 10;
-
-    public override void Tick()
-    {
-        if (frame.GetValue(&quot;Temperature&quot;) &gt;= 30)
-        {
-            Occure(&quot;WARNING&quot;, &quot;Too Hot&quot;);
-        }
-    }
-}
-</code></pre>
-<pre><code>port add --comm heating1 /TempLib/TempLib.dll 
-port add --comm heating2 /TempLib/TempLib.dll
-</code></pre></div>
+<h3 id="apiservice">APIService<a class="headerlink" href="#apiservice" title="Permanent link">&para;</a></h3></div>
         
         
     </div>

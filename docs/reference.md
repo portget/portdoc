@@ -42,15 +42,15 @@ URL | Description
 
 ### Frame 
 
-### Relation
+### API
 ____
 URL | Description 
 ------|--------
-/api/{relation-name}/ | relation information 
-/api/{relation-name}/keys | key list  
-/api/{relation-name}/kv | key-value list  
-/api/{relation-name}/set | set-message list  
-/api/{relation-name}/get | get-message list   
+/api/{name}/ | api information 
+/api/{name}/keys | key list  
+/api/{name}/kv | key-value list  
+/api/{name}/set | set-message list  
+/api/{name}/get | get-message list   
 
 
 
