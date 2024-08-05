@@ -25,6 +25,10 @@ Set  | [Name] [Message-Name] | No Need | Set Message Value
 All objects inheriting from the APIObject can invoke messages defined in the API class via the Port Application. These messages are defined through an existing API Document, and additional attributes can be defined to provide messages with extra functionalities.
 
 
+### Class Name
+***
+!!! important  "The class name must be declared as `API`"
+***
 
 ### C# 
 ```C# 
