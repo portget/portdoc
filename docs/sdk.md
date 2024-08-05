@@ -88,7 +88,7 @@ ___
 #### Message Attributes
 Properties declared with Message Attributes are defined as API Messages and made available to the end-user. They apply only to properties with get and set accessors, and these getters and setters can be accessed and modified via a REST API.
 
-```C#
+```
     [Message]
     public int NValue { get => 3; }
 ```
