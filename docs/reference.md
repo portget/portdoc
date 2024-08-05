@@ -39,9 +39,7 @@ URL | Description
 /api/{group-name}/memory | memory list 
 /api/{group-name}/address | address list 
 
-
-### Frame 
-
+ 
 ### API
 ____
 URL | Description 
@@ -67,8 +65,6 @@ URL | Description
 /api/{group-name}/ | relation information 
 /api/{group-name}/message/{[key]}?{[datatype] [property...]} | add message  
 
-
-### Frame 
  
 
 ## PUT
@@ -84,9 +80,7 @@ URL | Description
 ------|--------
 /api/{relation-name}/{[key]}?{[set-value]}  | set value to relation-message
 
-
-### Frame 
-
+ 
 ## DELETE
 ___
 
@@ -95,5 +89,4 @@ URL | Description
 ------|--------
 /api/{group-name}/message/{[key]}
 
-
-### Frame 
+ 

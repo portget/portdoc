@@ -132,8 +132,10 @@
                 
             <li class="second-level"><a href="#command">Command</a></li>
                 
-            <li class="second-level"><a href="#apiservice">APIService</a></li>
+            <li class="second-level"><a href="#apiobject">APIObject</a></li>
                 
+                <li class="third-level"><a href="#c">C#</a></li>
+                <li class="third-level"><a href="#attributes">Attributes</a></li>
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
@@ -169,7 +171,8 @@
 <thead>
 <tr>
 <th>Command</th>
-<th>Args</th>
+<th>Key</th>
+<th>Flags</th>
 <th>Description</th>
 </tr>
 </thead>
@@ -177,26 +180,120 @@
 <tr>
 <td>Run</td>
 <td>[Name]</td>
+<td>No Need</td>
 <td>Run application or api-object</td>
 </tr>
 <tr>
 <td>View</td>
-<td>[Name] [History]</td>
+<td>[Name]</td>
+<td><code>--history</code> <code>event|count</code></td>
 <td>View the history for this api-object</td>
 </tr>
 <tr>
 <td>Get</td>
 <td>[Name] [Message-Name]</td>
+<td>No Need</td>
 <td>Get Message Value</td>
 </tr>
 <tr>
 <td>Set</td>
 <td>[Name] [Message-Name]</td>
+<td>No Need</td>
 <td>Set Message Value</td>
 </tr>
 </tbody>
 </table>
-<h2 id="apiservice">APIService<a class="headerlink" href="#apiservice" title="Permanent link">&para;</a></h2></div>
+<h2 id="apiobject">APIObject<a class="headerlink" href="#apiobject" title="Permanent link">&para;</a></h2>
+<p>All objects inheriting from the APIObject can invoke messages defined in the API class via the Port Application. These messages are defined through an existing API Document, and additional attributes can be defined to provide messages with extra functionalities.</p>
+<h3 id="c">C#<a class="headerlink" href="#c" title="Permanent link">&para;</a></h3>
+<pre><code class="language-C#"> public class API : APIObject
+ {
+     public API()
+     {
+         this.SetLogger(new ExLogger());
+     }
+
+     public override void Dispose()
+     {
+     }
+
+     protected override bool IsSetterReady()
+     {
+         return true;
+     }
+
+
+     private SerialPort serial = new SerialPort();
+
+     [Message, Reserved(ReservedAttribute.Type.Address), Regex(RegexAttribute.ComRegex)]
+     public string Address
+     {
+         get;
+         set;
+     }
+
+     [Message]
+     public int NValue { get =&gt; 3; }
+
+     [Message]
+     public double DValue { get =&gt; 2; }
+
+     [Message]
+     public string UValue { get =&gt; &quot;on&quot;; }
+
+     [Message]
+     public int DI
+     {
+         get
+         {
+             var v = new Random().Next(0, 3);
+
+
+
+             return v;
+         }
+     }
+ }
+</code></pre>
+<h3 id="attributes">Attributes<a class="headerlink" href="#attributes" title="Permanent link">&para;</a></h3>
+<hr />
+<h4 id="message-attributes">Message Attributes<a class="headerlink" href="#message-attributes" title="Permanent link">&para;</a></h4>
+<p>Properties declared with Message Attributes are defined as API Messages and made available to the end-user. They apply only to properties with get and set accessors, and these getters and setters can be accessed and modified via a REST API.</p>
+<pre><code class="language-C#">    [Message]
+    public int NValue { get =&gt; 3; }
+</code></pre>
+<h4 id="reserved-attributes">Reserved Attributes<a class="headerlink" href="#reserved-attributes" title="Permanent link">&para;</a></h4>
+<pre><code>    [Message, Reserved(ReservedAttribute.Type.Address), Regex(RegexAttribute.ComportRegex)]
+    public string Address
+    {
+        get;
+        set;
+    }
+</code></pre>
+<h4 id="regex-attributes">Regex Attributes<a class="headerlink" href="#regex-attributes" title="Permanent link">&para;</a></h4>
+<p>Properties with Regex Attributes are subjected to a regular expression check when their values are changed. If the value does not pass the validation check, it is not updated, ensuring consistency and validity of the property's value.</p>
+<pre><code>    [Message, Regex(RegexAttribute.Ip4vRegex)]
+    public string Address
+    {
+        get;
+        set;
+    }
+</code></pre>
+<h4 id="enumcode-attributes">EnumCode Attributes<a class="headerlink" href="#enumcode-attributes" title="Permanent link">&para;</a></h4>
+<p>EnumCode Attributes are declared, the values of the enum can be accessed via an API. The API allows for the retrieval of information about the enumeration values, enabling external systems or users to interact with and obtain details about the enum through the API interface.</p>
+<pre><code>    [EnumCode]
+    public enum TestEnum : ushort
+    {
+        _ = 0,
+        TestEnumItem1,
+        TestEnumItem2,
+    }
+</code></pre>
+<h4 id="comment-attributes">Comment Attributes<a class="headerlink" href="#comment-attributes" title="Permanent link">&para;</a></h4>
+<p>When Comment Attributes are declared, the comments associated with the property can be exposed through the API. This allows users or external systems to access descriptive information or documentation about the property via the API, providing context and clarity on the property's purpose or usage.</p>
+<pre><code>     [Message,Commnet(&quot;this is a numberic&quot;)]
+     public int NValue { get =&gt; 3; }
+</code></pre></div>
         
         
     </div>
