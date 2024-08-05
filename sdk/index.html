@@ -134,6 +134,7 @@
                 
             <li class="second-level"><a href="#apiobject">APIObject</a></li>
                 
+                <li class="third-level"><a href="#class-name">Class Name</a></li>
                 <li class="third-level"><a href="#c">C#</a></li>
                 <li class="third-level"><a href="#attributes">Attributes</a></li>
     </ul>
@@ -205,6 +206,12 @@
 </table>
 <h2 id="apiobject">APIObject<a class="headerlink" href="#apiobject" title="Permanent link">&para;</a></h2>
 <p>All objects inheriting from the APIObject can invoke messages defined in the API class via the Port Application. These messages are defined through an existing API Document, and additional attributes can be defined to provide messages with extra functionalities.</p>
+<h3 id="class-name">Class Name<a class="headerlink" href="#class-name" title="Permanent link">&para;</a></h3>
+<hr />
+<div class="admonition important">
+<p class="admonition-title">The class name must be declared as <code>API</code></p>
+</div>
+<hr />
 <h3 id="c">C#<a class="headerlink" href="#c" title="Permanent link">&para;</a></h3>
 <pre><code class="language-C#"> public class API : APIObject
  {
