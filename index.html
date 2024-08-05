@@ -88,7 +88,7 @@
                 
                 
                     <li >
-                        <a href="relation/">Relation</a>
+                        <a href="api/">API SDK</a>
                     </li>
                 
                 
@@ -212,7 +212,7 @@ BZone/            # The group directory.
 <li>message item format like this <code>[key] [datatype] [option...]</code></li>
 <li><code>[key]</code>      - unique key in the message group</li>
 <li><code>[datatype]</code> - text | num </li>
-<li><code>[option]</code> - relation,backup,rule,frame</li>
+<li><code>[option]</code> - api,backup,rule,frame</li>
 </ul>
 <h4 id="message-option">message option<a class="headerlink" href="#message-option" title="Permanent link">&para;</a></h4>
 <table>
@@ -225,14 +225,14 @@ BZone/            # The group directory.
 </thead>
 <tbody>
 <tr>
-<td>relation</td>
+<td>api</td>
 <td>ok</td>
-<td>Real-time synchronization and messaging are handled within the corresponding external library. For more details, please refer to the Relation documentation.</td>
+<td>Real-time synchronization and messaging are handled within the corresponding external library. For more details, please refer to the api documentation.</td>
 </tr>
 <tr>
 <td>backup</td>
 <td>ok</td>
-<td>Changes are saved to the backup database as they occur, ensuring that values are restored upon application restart. and values are not propagated relation messages during program execution.</td>
+<td>Changes are saved to the backup database as they occur, ensuring that values are restored upon application restart. and values are not propagated api messages during program execution.</td>
 </tr>
 <tr>
 <td>property</td>
@@ -252,10 +252,10 @@ BZone/            # The group directory.
 </tbody>
 </table>
 <h4 id="sample1msg">sample1.msg<a class="headerlink" href="#sample1msg" title="Permanent link">&para;</a></h4>
-<pre><code> DevAPowerStatus    enum.DeviceAStatus  relation:DeviceA.GetStatus         
- DevAErrorMessage   text                relation:DeviceA.GetErrorMessage property:{&quot;Argument&quot;:&quot;1,0&quot;}
- DevCTemperature    num                 relation:DeviceC.GetTemperature property:{&quot;MIN&quot;:0,&quot;MAX&quot;:300}
- DevCOnOff          enum.OnOff          relation:DeviceC.OnOff           
+<pre><code> DevAPowerStatus    enum.DeviceAStatus  api:DeviceA.GetStatus         
+ DevAErrorMessage   text                api:DeviceA.GetErrorMessage property:{&quot;Argument&quot;:&quot;1,0&quot;}
+ DevCTemperature    num                 api:DeviceC.GetTemperature property:{&quot;MIN&quot;:0,&quot;MAX&quot;:300}
+ DevCOnOff          enum.OnOff          api:DeviceC.OnOff           
  ...
 </code></pre>
 <div class="admonition tip">
@@ -442,6 +442,6 @@ HTS.HeaterOnOff&gt;DevCOnOff:[Off,On ...]
 </html>
 
 <!--
-MkDocs version : 1.6.0
-Build Date UTC : 2024-08-02 09:57:19.958858+00:00
+MkDocs version : 1.5.3
+Build Date UTC : 2024-08-05 04:36:36.091214+00:00
 -->
