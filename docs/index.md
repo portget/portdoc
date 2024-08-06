@@ -16,7 +16,7 @@ Please see the documentation [lincense](license.md)
 
 VERSION | OS |STABLE | URL 
 ------|--------|--------|--------
-v1.0.14 | Windows x64 | No | [v1.0.14-win-installer](https://github.com/portget/port/archive/refs/tags/v1.0.14-win-installer.zip){:download}
+v1.0.15 | Windows x64 | No | [v1.0.15-win-installer](https://github.com/portget/port/archive/refs/tags/v1.0.15-win-installer.zip){:download}
 
 ## Repository
 ___
