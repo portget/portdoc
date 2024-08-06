@@ -133,8 +133,8 @@
                 
             <li class="second-level"><a href="#repository">Repository</a></li>
                 
-                <li class="third-level"><a href="#create-new-repository">Create new repository</a></li>
-                <li class="third-level"><a href="#create-add-gruop">Create add gruop</a></li>
+                <li class="third-level"><a href="#creates-a-repository">Creates a repository</a></li>
+                <li class="third-level"><a href="#creates-a-group">Creates a group</a></li>
                 <li class="third-level"><a href="#repository-layout">Repository layout</a></li>
                 <li class="third-level"><a href="#message-file">Message File</a></li>
                 <li class="third-level"><a href="#enum-file">Enum File</a></li>
@@ -143,7 +143,6 @@
                 <li class="third-level"><a href="#repository_1">Repository</a></li>
                 <li class="third-level"><a href="#application">Application</a></li>
                 <li class="third-level"><a href="#message">Message</a></li>
-                <li class="third-level"><a href="#view-development">View (Development)</a></li>
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
@@ -180,16 +179,16 @@
 </table>
 <h2 id="repository">Repository<a class="headerlink" href="#repository" title="Permanent link">&para;</a></h2>
 <hr />
-<h3 id="create-new-repository">Create new repository<a class="headerlink" href="#create-new-repository" title="Permanent link">&para;</a></h3>
-<pre><code>port new [repository-name]
+<h3 id="creates-a-repository">Creates a repository<a class="headerlink" href="#creates-a-repository" title="Permanent link">&para;</a></h3>
+<pre><code class="language-console">port new [repository-name]
 </code></pre>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>The repository name cannot contain special characters. 
 It follows the directory naming rules provided by the operating system.</p>
 </div>
-<h3 id="create-add-gruop">Create add gruop<a class="headerlink" href="#create-add-gruop" title="Permanent link">&para;</a></h3>
-<pre><code>port add [group-name]
+<h3 id="creates-a-group">Creates a group<a class="headerlink" href="#creates-a-group" title="Permanent link">&para;</a></h3>
+<pre><code class="language-console">port add [group-name]
 </code></pre>
 <h3 id="repository-layout">Repository layout<a class="headerlink" href="#repository-layout" title="Permanent link">&para;</a></h3>
 <hr />
@@ -219,41 +218,31 @@ BZone/            # The group directory.
 <thead>
 <tr>
 <th>name</th>
-<th>release</th>
 <th>description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>api</td>
-<td>ok</td>
 <td>Real-time synchronization and messaging are handled within the corresponding external library. For more details, please refer to the api documentation.</td>
 </tr>
 <tr>
 <td>backup</td>
-<td>ok</td>
 <td>Changes are saved to the backup database as they occur, ensuring that values are restored upon application restart. and values are not propagated api messages during program execution.</td>
 </tr>
 <tr>
 <td>property</td>
-<td>ok</td>
 <td>Can specify a custom property</td>
 </tr>
 <tr>
 <td>rule</td>
-<td>ok</td>
 <td>Can specify rules to manage the values of corresponding messages.</td>
-</tr>
-<tr>
-<td>frame</td>
-<td>soon</td>
-<td>Can specify a frame key value to manage subsequent frames by their key values.</td>
 </tr>
 </tbody>
 </table>
 <h4 id="sample1msg">sample1.msg<a class="headerlink" href="#sample1msg" title="Permanent link">&para;</a></h4>
-<pre><code> DevAPowerStatus    enum.DeviceAStatus  api:DeviceA.GetStatus         
- DevAErrorMessage   text                api:DeviceA.GetErrorMessage property:{&quot;Argument&quot;:&quot;1,0&quot;}
+<pre><code class="language-console"> DevAPowerStatus    enum.DeviceAStatus  api:DeviceA.GetStatus         
+ DevAErrorMessage   text                api:DeviceA.GetErrorMessage property:{&quot;Arguments&quot;:&quot;1,0&quot;}
  DevCTemperature    num                 api:DeviceC.GetTemperature property:{&quot;MIN&quot;:0,&quot;MAX&quot;:300}
  DevCOnOff          enum.OnOff          api:DeviceC.OnOff           
  ...
@@ -272,7 +261,7 @@ BZone/            # The group directory.
 <li><code>[property]</code> - unique key in enum value</li>
 </ul>
 <h4 id="customenum">custom.enum<a class="headerlink" href="#customenum" title="Permanent link">&para;</a></h4>
-<pre><code>TFalse      True:0      False:1
+<pre><code class="language-console">TFalse      True:0      False:1
 FTrue       False:0     True:1
 OnOff       On:0        Off:1
 OffOn       Off:1       On:1
@@ -302,42 +291,14 @@ Subsequently, users can perform a pull action at any desired moment to restore t
 <ul>
 <li><code>port set [group-key] [message-key] [set-value]</code> - set the message value to current repository</li>
 </ul>
-<pre><code>port set groupA sayHelloMessage1 Hello?
+<pre><code class="language-console">port set groupA sayHelloMessage1 Hello?
 [set-ok]
 </code></pre>
 <ul>
 <li><code>port get [group-key] [message-key]</code> - get the message value to current repository</li>
 </ul>
-<pre><code>port get groupA sayHelloMessage1
+<pre><code class="language-console">port get groupA sayHelloMessage1
 [Hello?]
-</code></pre>
-<h3 id="view-development">View (Development)<a class="headerlink" href="#view-development" title="Permanent link">&para;</a></h3>
-<ul>
-<li><code>port view --new [view-name] --group [group-name]</code></li>
-</ul>
-<pre><code>port view --new groupA --group groupA
-[CREATED][VIEW] ...
-</code></pre>
-<ul>
-<li><code>port view [view-name] --download [file-name].[csv|json|xml] [-time|time~time]</code> </li>
-</ul>
-<pre><code>port view groupA --download C:/Downloads/gruopA.csv
-[DOWNLOAD][VIEW] ...
-</code></pre>
-<ul>
-<li><code>port view [view-name] [time|time~time]</code></li>
-</ul>
-<pre><code>port view groupA 1hour
-[2024-05-05 12:00:00 DevCTemperature 50]
-[2024-05-05 12:00:01 DevCTemperature 51]
-[2024-05-05 12:00:02 DevCTemperature 50]
-</code></pre>
-<pre><code>port view HTS.PowerStatus -1days 
-
-[2024-01-01 11:55:32:3902 -1days:1sec] HTS.PowerStatus&gt;DevAPowerStatus: [Normal , Normal] ...
-HTS.ErrorMessage&gt;DevAErrorMessage:[Normal, Normal] ...
-HTS.Temperature&gt;DevCTemperature: [30,32 ...]
-HTS.HeaterOnOff&gt;DevCOnOff:[Off,On ...]
 </code></pre></div>
         
         
@@ -443,5 +404,5 @@ HTS.HeaterOnOff&gt;DevCOnOff:[Off,On ...]
 
 <!--
 MkDocs version : 1.6.0
-Build Date UTC : 2024-08-05 14:14:25.765596+00:00
+Build Date UTC : 2024-08-06 11:35:18.754268+00:00
 -->
