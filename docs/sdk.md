@@ -65,20 +65,7 @@ All objects inheriting from the APIObject can invoke messages defined in the API
      public double DValue { get => 2; }
 
      [Message]
-     public string UValue { get => "on"; }
-
-     [Message]
-     public int DI
-     {
-         get
-         {
-             var v = new Random().Next(0, 3);
-
-
-
-             return v;
-         }
-     }
+     public string StrValue { get => "on"; } 
  }
 ``` 
 

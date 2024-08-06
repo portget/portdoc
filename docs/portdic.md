@@ -52,7 +52,7 @@ Port.Library |  C# | Nuget |Windows x64 | Yes |
     //class1.cs
     PortDic dic = portdic.Connect("localhost",9000); 
 
-    dic.Create(PortLibrary.PortDic.Structor.Queue,'TEST')
+    dic.Create(PortLibrary.QueueStructure,'TEST')
 
     var q1 = dic.Queque('TEST') 
     
@@ -85,7 +85,7 @@ Port.Library |  C# | Nuget |Windows x64 | Yes |
     //class1.cs
     PortDic dic = portdic.Connect("localhost",9000); 
 
-    dic.Create(PortLibrary.PortDic.Structor.Stack,'TEST')
+    dic.Create(PortLibrary.StackStructure,'TEST')
 
     q1.Push(Encoding.UTF8.GetBytes('First Value'));
 
@@ -112,7 +112,7 @@ Port.Library |  C# | Nuget |Windows x64 | Yes |
     
     PortDic dic = portdic.Connect("localhost",9000); 
     
-    dic.Create(PortLibrary.PortDic.Structor.List,'TEST')
+    dic.Create(PortLibrary.ListStructure,'TEST')
     
     var list = Port.List('TEST')
 
@@ -143,7 +143,7 @@ Port.Library |  C# | Nuget |Windows x64 | Yes |
     //class1.cs
     PortDic dic = portdic.Connect("localhost",9000); 
 
-    dic.Create(PortLibrary.PortDic.Structor.Storage,'TEST')
+    dic.Create(PortLibrary.StorageStructure,'TEST')
     
     var s = Port.Storage('TEST')
 

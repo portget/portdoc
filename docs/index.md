@@ -21,8 +21,8 @@ v1.0.14 | Windows x64 | No | [v1.0.14-win-installer](https://github.com/portget/
 ## Repository
 ___
 
-### Create new repository 
-```
+### Creates a repository 
+```console
 port new [repository-name]
 ```
 
@@ -30,13 +30,15 @@ port new [repository-name]
     The repository name cannot contain special characters. 
     It follows the directory naming rules provided by the operating system.
 
-### Create add gruop 
-```
+### Creates a group 
+
+```console
 port add [group-name]
 ```
 
 
 ### Repository layout
+
 ___
     port.toml         # The configuration file.
     .enum             # The custom enum file 
@@ -62,18 +64,17 @@ ___
 
 #### message option
  
- name|release|description
- ------|------|--------
- api     | ok   |Real-time synchronization and messaging are handled within the corresponding external library. For more details, please refer to the api documentation.
- backup  | ok   |Changes are saved to the backup database as they occur, ensuring that values are restored upon application restart. and values are not propagated api messages during program execution.
- property| ok   |Can specify a custom property
- rule    | ok   |Can specify rules to manage the values of corresponding messages. 
- frame   | soon |Can specify a frame key value to manage subsequent frames by their key values.
+ name|description
+ ------|--------
+ api     | Real-time synchronization and messaging are handled within the corresponding external library. For more details, please refer to the api documentation.
+ backup  | Changes are saved to the backup database as they occur, ensuring that values are restored upon application restart. and values are not propagated api messages during program execution.
+ property| Can specify a custom property
+ rule    | Can specify rules to manage the values of corresponding messages.  
  
 #### sample1.msg
-``` 
+```console
  DevAPowerStatus    enum.DeviceAStatus  api:DeviceA.GetStatus         
- DevAErrorMessage   text                api:DeviceA.GetErrorMessage property:{"Argument":"1,0"}
+ DevAErrorMessage   text                api:DeviceA.GetErrorMessage property:{"Arguments":"1,0"}
  DevCTemperature    num                 api:DeviceC.GetTemperature property:{"MIN":0,"MAX":300}
  DevCOnOff          enum.OnOff          api:DeviceC.OnOff           
  ...
@@ -97,7 +98,7 @@ Enums are particularly useful when you have a fixed set of values that a variabl
 
 
 #### custom.enum
-```
+```console
 TFalse      True:0      False:1
 FTrue       False:0     True:1
 OnOff       On:0        Off:1
@@ -129,39 +130,12 @@ ___
 
 ### Message
 * `port set [group-key] [message-key] [set-value]` - set the message value to current repository
-```
+```console
 port set groupA sayHelloMessage1 Hello?
 [set-ok]
 ```
 * `port get [group-key] [message-key]` - get the message value to current repository
-```
+```console
 port get groupA sayHelloMessage1
 [Hello?]
-```
- 
-### View (Development)
-* `port view --new [view-name] --group [group-name]`
-```
-port view --new groupA --group groupA
-[CREATED][VIEW] ...
-```
-* `port view [view-name] --download [file-name].[csv|json|xml] [-time|time~time]` 
-```
-port view groupA --download C:/Downloads/gruopA.csv
-[DOWNLOAD][VIEW] ...
-```
-* `port view [view-name] [time|time~time]`
-```
-port view groupA 1hour
-[2024-05-05 12:00:00 DevCTemperature 50]
-[2024-05-05 12:00:01 DevCTemperature 51]
-[2024-05-05 12:00:02 DevCTemperature 50]
-```
-```
-port view HTS.PowerStatus -1days 
-
-[2024-01-01 11:55:32:3902 -1days:1sec] HTS.PowerStatus>DevAPowerStatus: [Normal , Normal] ...
-HTS.ErrorMessage>DevAErrorMessage:[Normal, Normal] ...
-HTS.Temperature>DevCTemperature: [30,32 ...]
-HTS.HeaterOnOff>DevCOnOff:[Off,On ...]
 ```
