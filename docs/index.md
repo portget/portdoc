@@ -1,6 +1,6 @@
 # Welcome to Port
 
-Port is a message-based library management database. It allows users to quickly redevelop and reconfigure applications by calling pre-written libraries. This feature simplifies the application development process, enabling users to create applications more easily and efficiently.
+More Easily Create an API with Port App, a program designed to streamline the deployment of APIs for developers. With this tool, developers can effortlessly deploy APIs and integrate various applications to build a unified web service. Port Application simplifies the process, enabling developers to focus on creating seamless and efficient solutions with ease.
 
 Please see the documentation [lincense](license.md)
 
