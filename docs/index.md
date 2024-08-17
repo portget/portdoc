@@ -1,6 +1,6 @@
 # Welcome to Port
 
-More Easily Create an API with Port App, a program designed to streamline the deployment of APIs for developers. With this tool, developers can effortlessly deploy APIs and integrate various applications to build a unified web service. Port Application simplifies the process, enabling developers to focus on creating seamless and efficient solutions with ease.
+`More Easily Create an API with Port App`, designed to streamline the deployment of APIs for developers. With this tool, developers can effortlessly deploy APIs and integrate various applications to build a unified web service. Port Application simplifies the process, enabling developers to focus on creating seamless and efficient solutions with ease.
 
 Please see the documentation [lincense](license.md)
 
@@ -20,49 +20,58 @@ v1.0.19 | Windows x64 | No | [v1.0.19-win-installer](https://github.com/portget/
 
 ## Repository
 ___
+To deploy APIs, you must first store the API definitions in the repository before proceeding with the deployment. 
+Please refer to the instructions below for guidance on storing and deploying your APIs after saving them to the repository.
+
+
+
 
 ### Creates a repository 
 ```console
 port new [repository-name]
 ```
+___
+#### Layout
+ 
+    port.toml         # The configuration file.
+    .enum             # The custom enum file 
+    API-A-Group/      # The group directory. 
+        sample1.msg   # The message file
+        sample2.msg   # The message file
+        sample3.msg   # The message file
+
+    API-B-Group/      # The group directory. 
+        sample1.msg   # The message file
+        sample2.msg   # The message file
+        sample3.msg   # The message file
+    ...               # Other files.
+
+___
 
 !!! tip
     The repository name cannot contain special characters. 
     It follows the directory naming rules provided by the operating system.
+___
 
-### Creates a group 
+### Creates a API-Groups 
 
 ```console
 port add [group-name]
 ```
 
 
-### Repository layout
-
 ___
-    port.toml         # The configuration file.
-    .enum             # The custom enum file 
-    AZone/            # The group directory. 
-        sample1.msg   # The message file
-        sample2.msg   # The message file
-        sample3.msg   # The message file
 
-    BZone/            # The group directory. 
-        sample1.msg   # The message file
-        sample2.msg   # The message file
-        sample3.msg   # The message file
-    ...               # Other files.
-
-
-
-### Message File
+### Message (*.msg)
+A message is an object that allows users to specify API properties in a pre-provided Application Service. The message is a kv, and types and properties can be defined in that message. 
+Please attach the materials attached below. 
 ___
 * message item format like this `[key] [datatype] [option...]`
 * `[key]`      - unique key in the message group
 * `[datatype]` - text | num 
 * `[option]` - api,backup,rule,frame
 
-#### message option
+#### message attribute
  
  name|description
  ------|--------
@@ -84,7 +93,7 @@ ___
     message document do not using special characters. 
 
 
-### Enum File
+### Enum (*.enum)
 ___
 
 Enums are particularly useful when you have a fixed set of values that a variable can take, such as days of the week, months of the year, or status codes. They help make your code more expressive, self-documenting, and less error-prone because you're working with named constants instead of raw integer values. 
@@ -101,8 +110,6 @@ Enums are particularly useful when you have a fixed set of values that a variabl
 ```console
 TFalse      True:0      False:1
 FTrue       False:0     True:1
-OnOff       On:0        Off:1
-OffOn       Off:1       On:1
 ```
 
 

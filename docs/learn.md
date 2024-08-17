@@ -38,7 +38,7 @@ To declare a message, you need to edit the `*.msg` file in the sub-folder you cr
 ```
 STAGE_ACCELATOR          num                                                                                                                                             
 STAGE_DECELATOR          num                                                                                                                                             
-STAGE_HOME_SENSOR        enum.NonHome   RELATION:IOBoardLib.DigtalInput PROPERTY:{"Argument":"1,0"}                                                                                                                                
+STAGE_HOME_SENSOR        enum.NonHome   api:IOBoardLib.DigtalInput PROPERTY:{"Argument":"1,0"}                                                                                                                                
 STAGE_LOAD_MOVE_TIMEOUT  num                                                                                                                                            
 STAGE_LOAD_POSITION      num                                                                                                                                            
 STAGE_POSITION           enum.CHUCKPOS                                                                                                                                     

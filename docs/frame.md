@@ -15,14 +15,14 @@ _________________
  
 [../AZone/sample1.msg]
 ```TEXT 
-    DevAPowerStatus    enum.DeviceAStatus   relation:DeviceA.GetStatus       frame:HTS1.PowerStatus 
+    DevAPowerStatus    enum.DeviceAStatus   api:DeviceA.GetStatus       frame:HTS1.PowerStatus 
 ...
 ``` 
 
 
 [../BZone/sample1.msg]
 ```TEXT
-    DevAPowerStatus    enum.DeviceAStatus   relation:DeviceA.GetStatus       frame:HTS2.PowerStatus
+    DevAPowerStatus    enum.DeviceAStatus   api:DeviceA.GetStatus       frame:HTS2.PowerStatus
 ...
 ``` 
 
