@@ -167,7 +167,7 @@
 <h2 id="functions">Functions<a class="headerlink" href="#functions" title="Permanent link">&para;</a></h2>
 <h3 id="set">SET<a class="headerlink" href="#set" title="Permanent link">&para;</a></h3>
 <pre><code class="language-C#">    ...
-    PortDic dic = portdic.GetDictionary(&quot;localhost:9000&quot;);
+    PortDic dic = portdic.Connect(&quot;localhost&quot;,9000); 
 
     var ok = dic.Set('AZone','SamplePower','On');
     if(ok){
@@ -177,7 +177,7 @@
 </code></pre>
 <h3 id="get">GET<a class="headerlink" href="#get" title="Permanent link">&para;</a></h3>
 <pre><code class="language-C#">    ...
-    PortDic dic = portdic.GetDictionary(&quot;localhost:9000&quot;);
+    PortDic dic = portdic.Connect(&quot;localhost&quot;,9000); 
 
     var v = dic.Get('AZone','SamplePower')
     // 'On'
@@ -200,7 +200,7 @@
 <h3 id="queue">QUEUE<a class="headerlink" href="#queue" title="Permanent link">&para;</a></h3>
 <pre><code class="language-C#">
     //class1.cs
-    PortDic dic = portdic.GetDictionary(&quot;localhost:9000&quot;);
+    PortDic dic = portdic.Connect(&quot;localhost&quot;,9000); 
 
     dic.Create(PortDic.Structure.Queue,'TEST')
 
@@ -212,7 +212,7 @@
 
 
     //class2.cs
-    PortDic dic = portdic.GetDictionary(&quot;localhost:9000&quot;);
+    PortDic dic = portdic.Connect(&quot;localhost&quot;,9000); 
 
     var q1 = dic.Queue('TEST')
 
@@ -231,7 +231,7 @@
 <h3 id="stack">STACK<a class="headerlink" href="#stack" title="Permanent link">&para;</a></h3>
 <pre><code class="language-C#">
     //class1.cs
-    PortDic dic = portdic.GetDictionary(&quot;localhost:9000&quot;);
+    PortDic dic = portdic.Connect(&quot;localhost&quot;,9000); 
 
     dic.Create(PortDic.Structure.Stack,'TEST')
 
@@ -241,7 +241,7 @@
 
 
     //class2.cs
-   PortDic dic = portdic.GetDictionary(&quot;localhost:9000&quot;);
+    PortDic dic = portdic.Connect(&quot;localhost&quot;,9000); 
 
     var stack = Port.Stack('TEST')
 
@@ -255,7 +255,8 @@
 <h3 id="list">LIST<a class="headerlink" href="#list" title="Permanent link">&para;</a></h3>
 <pre><code class="language-C#">
     //class1.cs
-    PortDic dic = portdic.GetDictionary(&quot;localhost:9000&quot;);
+
+    PortDic dic = portdic.Connect(&quot;localhost&quot;,9000); 
 
     dic.Create(PortDic.Structure.List,'TEST')
 
@@ -267,7 +268,7 @@
 
 
     //class2.cs
-    PortDic dic = portdic.GetDictionary(&quot;localhost:9000&quot;); 
+    PortDic dic = portdic.Connect(&quot;localhost&quot;,9000); 
 
    var list = Port.List('TEST')
 
@@ -284,7 +285,7 @@
 <h3 id="storage">STORAGE<a class="headerlink" href="#storage" title="Permanent link">&para;</a></h3>
 <pre><code class="language-C#">
     //class1.cs
-    PortDic dic = portdic.GetDictionary(&quot;localhost:9000&quot;);
+    PortDic dic = portdic.Connect(&quot;localhost&quot;,9000); 
 
     dic.Create(PortDic.Structure.Storage,'TEST')
 
@@ -298,7 +299,7 @@
 
 
     //class2.cs
-    PortDic dic = portdic.GetDictionary(&quot;localhost:9000&quot;);
+    PortDic dic = portdic.Connect(&quot;localhost&quot;,9000); 
 
     var s = Port.Storage('TEST')
 
