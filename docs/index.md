@@ -16,10 +16,8 @@ Please see the documentation [lincense](license.md)
 
 VERSION | OS |STABLE | URL 
 ------|--------|--------|--------
+v1.0.23 | Windows x64 | No | [v1.0.23-win-installer](https://github.com/portget/port/archive/refs/tags/v1.0.22-win-installer.zip){:download}
 v1.0.22 | Windows x64 | No | [v1.0.22-win-installer](https://github.com/portget/port/archive/refs/tags/v1.0.22-win-installer.zip){:download}
-v1.0.21 | Windows x64 | No | [v1.0.21-win-installer](https://github.com/portget/port/archive/refs/tags/v1.0.21-win-installer.zip){:download}
-v1.0.20 | Windows x64 | No | [v1.0.20-win-installer](https://github.com/portget/port/archive/refs/tags/v1.0.20-win-installer.zip){:download}
-v1.0.19 | Windows x64 | No | [v1.0.19-win-installer](https://github.com/portget/port/archive/refs/tags/v1.0.19-win-installer.zip){:download}
 
 ## Repository
 ___
