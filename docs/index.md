@@ -16,6 +16,7 @@ Please see the documentation [lincense](license.md)
 
 VERSION | OS |STABLE | URL 
 ------|--------|--------|--------
+v1.0.24 | Windows x64 | No | [v1.0.24-win-installer](https://github.com/portget/port/archive/refs/tags/v1.0.24-win-installer.zip){:download}
 v1.0.23 | Windows x64 | No | [v1.0.23-win-installer](https://github.com/portget/port/archive/refs/tags/v1.0.23-win-installer.zip){:download}
 v1.0.22 | Windows x64 | No | [v1.0.22-win-installer](https://github.com/portget/port/archive/refs/tags/v1.0.22-win-installer.zip){:download}
 
@@ -147,3 +148,29 @@ port set groupA sayHelloMessage1 Hello?
 port get groupA sayHelloMessage1
 [Hello?]
 ```
+
+
+
+
+### Table
+ 
+ command | arguments | description
+ ------|-------- |--------
+ ?     |`[script]` | Runs the specified script. 
+ version |`-` | Displays the version information. 
+ new | `[name]`  | Can specify rules to manage the values of corresponding messages. 
+ push|`-` | Updates the project in the repository.
+ pull|`-` | Loads the specified repository and updates the current project.
+ set |`[gruop-name] [message-name] [value]` | Set values in the API server.
+ get |`[gruop-name] [message-name]`  | Get values from the API server.
+ run| `[name]` |  Runs the API server based on the specified repository. 
+ ls | `[repo]`\|`[api]`\|`[tcp]`\|`[comm]` | Displays the specified items in a list. 
+ queue|<p>`[new] [name]` <p>`[ls]` <p>`[view] [name]` <p>`[push] [name] [value]` <p>`[pop] [name]` | <p>  Create new queue. <p> Displays queue list. <p> Displays queue items. <p> Push a item to queue. </p> <p> Pop a item from queue. </p>
+ stack|<p>`[new] [name]` <p>`[ls]` <p>`[view] [name]` <p>`[push] [name] [value]` <p>`[pop] [name]` | <p>  Create new stack. <p> Displays stack list. <p> Displays stack items. <p> Push a item to stack. </p> <p> Pop a item from stack. </p>
+ storage|<p>`[new] [name]` <p>`[ls]` <p>`[view] [name]` <p>`[set] [name] [key] [value]` <p>`[get] [name] [key]` | <p>  Create new storage. <p> Displays storage list. <p> Displays storage items. <p> Push a item to storage. </p> <p> Pop a item from storage. </p>
+ list|<p>`[new] [name]` <p>`[ls]` <p>`[view] [name]` <p>`[add] [name] [value]` <p>`[insert] [name] [index] [value]`  <p>`[remove] [name] [index] [value]` |<p>  Create new list. <p> Displays a lists. <p> Displays list items. <p> Add a item. </p> <p> Insert a item. </p> <p> Remove a item. </p>
+ kill | `[kill-code]` | Shutdown api-server 
+ api | <p>`[load] [api-key]`  <p>`[init] [api-key]` <p>`[set] [api-key] [message-name] [value]` <p>`[get] [api-key] [message-name]`  <p>`[event] [api-key]` | <p> Loads the API resource into the currently running API server. <p> Initializes the API resource.</p> <p>Set values in the API resource.</p> <p> Get values from the API resource.</p><p> Displays a events from the API resource.</p>
+ flow|  <p>`[load] [flow-key]`  <p>`[init] [flow-key]`   <p>`[remove] [flow-key]` <p>`[event] [flow-key]`| <p> Loads the Flow resource into the currently running API server. <p> Initializes the Flow resource.</p> <p> Remove Flow resource </p><p> Displays a events from the Flow resource.</p>
+ env | `-`|Displays the system environment settings.  
+ help| `-`|.
