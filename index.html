@@ -142,6 +142,7 @@
                 <li class="third-level"><a href="#repository_1">Repository</a></li>
                 <li class="third-level"><a href="#application">Application</a></li>
                 <li class="third-level"><a href="#message">Message</a></li>
+                <li class="third-level"><a href="#table">Table</a></li>
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
@@ -310,140 +311,105 @@ Subsequently, users can perform a pull action at any desired moment to restore t
 <pre><code class="language-console">port get groupA sayHelloMessage1
 [Hello?]
 </code></pre>
-<h4 id="commands_1">commands<a class="headerlink" href="#commands_1" title="Permanent link">&para;</a></h4>
+<h3 id="table">Table<a class="headerlink" href="#table" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
 <th>command</th>
-<th>flags</th>
+<th>arguments</th>
 <th>description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>?</td>
-<td>none</td>
-<td>Real-time synchronization and messaging are handled within the corresponding external library. For more details, please refer to the api documentation.</td>
+<td><code>[script]</code></td>
+<td>Runs the specified script.</td>
 </tr>
 <tr>
 <td>version</td>
-<td>none</td>
-<td>Changes are saved to the backup database as they occur, ensuring that values are restored upon application restart. and values are not propagated api messages during program execution.</td>
-</tr>
-<tr>
-<td>run</td>
-<td><code>[ng --ignore]</code></td>
-<td>Can specify a custom property</td>
+<td><code>-</code></td>
+<td>Displays the version information.</td>
 </tr>
 <tr>
 <td>new</td>
-<td>[repository-name]</td>
+<td><code>[name]</code></td>
 <td>Can specify rules to manage the values of corresponding messages.</td>
-</tr>
-<tr>
-<td>show</td>
-<td></td>
-<td>Can specify rules to manage the values of corresponding messages.</td>
-</tr>
-<tr>
-<td>comm</td>
-<td></td>
-<td>Can specify rules to manage the values of corresponding messages.</td>
-</tr>
-<tr>
-<td>tcp</td>
-<td></td>
-<td>Can specify rules to manage the values of corresponding messages.</td>
-</tr>
-<tr>
-<td>homepath</td>
-<td></td>
-<td>Can specify rules to manage the values of corresponding messages.</td>
-</tr>
-<tr>
-<td>repo</td>
-<td></td>
-<td>Can specify rules to manage the values of corresponding messages.</td>
-</tr>
-<tr>
-<td>lib</td>
-<td></td>
-<td>Can specify rules to manage the values of corresponding messages.</td>
-</tr>
-<tr>
-<td>login</td>
-<td></td>
-<td>Can specify rules to manage the values of corresponding messages.</td>
-</tr>
-<tr>
-<td>kill</td>
-<td></td>
-<td>Can specify rules to manage the values of corresponding messages.</td>
-</tr>
-<tr>
-<td>api</td>
-<td></td>
-<td>Can specify rules to manage the values of corresponding messages.</td>
-</tr>
-<tr>
-<td>flow</td>
-<td></td>
-<td>Can specify rules to manage the values of corresponding messages.</td>
-</tr>
-<tr>
-<td>set</td>
-<td></td>
-<td>Can specify rules to manage the values of corresponding messages.</td>
-</tr>
-<tr>
-<td>get</td>
-<td></td>
-<td>Can specify rules to manage the values of corresponding messages.</td>
-</tr>
-<tr>
-<td>queue</td>
-<td></td>
-<td>Can specify rules to manage the values of corresponding messages.</td>
-</tr>
-<tr>
-<td>stack</td>
-<td></td>
-<td>Can specify rules to manage the values of corresponding messages.</td>
-</tr>
-<tr>
-<td>storage</td>
-<td></td>
-<td>Can specify rules to manage the values of corresponding messages.</td>
-</tr>
-<tr>
-<td>list</td>
-<td></td>
-<td>Can specify rules to manage the values of corresponding messages.</td>
-</tr>
-<tr>
-<td>env</td>
-<td></td>
-<td>Can specify rules to manage the values of corresponding messages.</td>
-</tr>
-<tr>
-<td>view</td>
-<td></td>
-<td>event Can specify rules to manage the values of corresponding messages.</td>
 </tr>
 <tr>
 <td>push</td>
-<td></td>
-<td>Can specify rules to manage the values of corresponding messages.</td>
+<td><code>-</code></td>
+<td>Updates the project in the repository.</td>
 </tr>
 <tr>
 <td>pull</td>
-<td></td>
-<td>Can specify rules to manage the values of corresponding messages.</td>
+<td><code>-</code></td>
+<td>Loads the specified repository and updates the current project.</td>
+</tr>
+<tr>
+<td>set</td>
+<td><code>[gruop-name] [message-name] [value]</code></td>
+<td>Set values in the API server.</td>
+</tr>
+<tr>
+<td>get</td>
+<td><code>[gruop-name] [message-name]</code></td>
+<td>Get values from the API server.</td>
+</tr>
+<tr>
+<td>run</td>
+<td><code>[name]</code></td>
+<td>Runs the API server based on the specified repository.</td>
+</tr>
+<tr>
+<td>ls</td>
+<td><code>[repo]</code>|<code>[api]</code>|<code>[tcp]</code>|<code>[comm]</code></td>
+<td>Displays the specified items in a list.</td>
+</tr>
+<tr>
+<td>queue</td>
+<td><p><code>[new] [name]</code> <p><code>[ls]</code> <p><code>[view] [name]</code> <p><code>[push] [name] [value]</code> <p><code>[pop] [name]</code></td>
+<td><p>  Create new queue. <p> Displays queue list. <p> Displays queue items. <p> Push a item to queue. </p> <p> Pop a item from queue. </p></td>
+</tr>
+<tr>
+<td>stack</td>
+<td><p><code>[new] [name]</code> <p><code>[ls]</code> <p><code>[view] [name]</code> <p><code>[push] [name] [value]</code> <p><code>[pop] [name]</code></td>
+<td><p>  Create new stack. <p> Displays stack list. <p> Displays stack items. <p> Push a item to stack. </p> <p> Pop a item from stack. </p></td>
+</tr>
+<tr>
+<td>storage</td>
+<td><p><code>[new] [name]</code> <p><code>[ls]</code> <p><code>[view] [name]</code> <p><code>[set] [name] [key] [value]</code> <p><code>[get] [name] [key]</code></td>
+<td><p>  Create new storage. <p> Displays storage list. <p> Displays storage items. <p> Push a item to storage. </p> <p> Pop a item from storage. </p></td>
+</tr>
+<tr>
+<td>list</td>
+<td><p><code>[new] [name]</code> <p><code>[ls]</code> <p><code>[view] [name]</code> <p><code>[add] [name] [value]</code> <p><code>[insert] [name] [index] [value]</code>  <p><code>[remove] [name] [index] [value]</code></td>
+<td><p>  Create new list. <p> Displays a lists. <p> Displays list items. <p> Add a item. </p> <p> Insert a item. </p> <p> Remove a item. </p></td>
+</tr>
+<tr>
+<td>kill</td>
+<td><code>[kill-code]</code></td>
+<td>Shutdown api-server</td>
+</tr>
+<tr>
+<td>api</td>
+<td><p><code>[load] [api-key]</code>  <p><code>[init] [api-key]</code> <p><code>[set] [api-key] [message-name] [value]</code> <p><code>[get] [api-key] [message-name]</code>  <p><code>[event] [api-key]</code></td>
+<td><p> Loads the API resource into the currently running API server. <p> Initializes the API resource.</p> <p>Set values in the API resource.</p> <p> Get values from the API resource.</p><p> Displays a events from the API resource.</p></td>
+</tr>
+<tr>
+<td>flow</td>
+<td><p><code>[load] [flow-key]</code>  <p><code>[init] [flow-key]</code>   <p><code>[remove] [flow-key]</code> <p><code>[event] [flow-key]</code></td>
+<td><p> Loads the Flow resource into the currently running API server. <p> Initializes the Flow resource.</p> <p> Remove Flow resource </p><p> Displays a events from the Flow resource.</p></td>
+</tr>
+<tr>
+<td>env</td>
+<td><code>-</code></td>
+<td>Displays the system environment settings.</td>
 </tr>
 <tr>
 <td>help</td>
-<td></td>
-<td>Can specify rules to manage the values of corresponding messages.</td>
+<td><code>-</code></td>
+<td>.</td>
 </tr>
 </tbody>
 </table></div>
@@ -551,5 +517,5 @@ Subsequently, users can perform a pull action at any desired moment to restore t
 
 <!--
 MkDocs version : 1.6.0
-Build Date UTC : 2024-10-05 05:13:29.686291+00:00
+Build Date UTC : 2024-10-05 08:53:18.864964+00:00
 -->
