@@ -55,7 +55,7 @@ ___
     It follows the directory naming rules provided by the operating system.
 ___
 
-### Creates a API-Groups 
+### Creates a group 
 
 ```console
 port add [group-name]

@@ -38,16 +38,16 @@ All objects inheriting from the package can invoke messages defined in the class
      {
          this.SetLogger(new ExLogger());
      }
-
+     
+     public override bool Init()
+     {
+        // initialized method
+     }
+     
      public override void Dispose()
      {
+        
      }
-
-     protected override bool IsSetterReady()
-     {
-         return true;
-     }
-
 
      private SerialPort serial = new SerialPort();
 
