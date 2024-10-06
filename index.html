@@ -345,22 +345,37 @@ Subsequently, users can perform a pull action at any desired moment to restore t
 <tr>
 <td>push</td>
 <td><code>-</code></td>
-<td>Updates the project in the repository.</td>
+<td>Push project to repository.</td>
 </tr>
 <tr>
 <td>pull</td>
 <td><code>-</code></td>
-<td>Loads the specified repository and updates the current project.</td>
+<td>Pull project from repository.</td>
 </tr>
 <tr>
 <td>set</td>
-<td><code>[gruop-name] [message-name] [value]</code></td>
+<td><code>[group-name|pkg-name] [message-name] [value]</code></td>
 <td>Set values in the API server.</td>
 </tr>
 <tr>
 <td>get</td>
-<td><code>[gruop-name] [message-name]</code></td>
+<td><code>[group-name|pkg-name] [message-name]</code></td>
 <td>Get values from the API server.</td>
+</tr>
+<tr>
+<td>load</td>
+<td><code>[pkg-name]</code></td>
+<td>Loads the package into the currently running API server.</td>
+</tr>
+<tr>
+<td>init</td>
+<td><code>[pkg-name]</code></td>
+<td>Initializes the Package.</td>
+</tr>
+<tr>
+<td>event</td>
+<td><code>[pkg-name]</code></td>
+<td>Displays a events.</td>
 </tr>
 <tr>
 <td>run</td>
@@ -369,7 +384,7 @@ Subsequently, users can perform a pull action at any desired moment to restore t
 </tr>
 <tr>
 <td>ls</td>
-<td><code>[repo]</code>|<code>[api]</code>|<code>[tcp]</code>|<code>[comm]</code></td>
+<td><code>[repo]</code>|<code>[pkg]</code>|<code>[tcp]</code>|<code>[comm]</code></td>
 <td>Displays the specified items in a list.</td>
 </tr>
 <tr>
@@ -395,12 +410,7 @@ Subsequently, users can perform a pull action at any desired moment to restore t
 <tr>
 <td>kill</td>
 <td><code>[kill-code]</code></td>
-<td>Shutdown api-server</td>
-</tr>
-<tr>
-<td>api</td>
-<td><p><code>[load] [api-key]</code>  <p><code>[init] [api-key]</code> <p><code>[set] [api-key] [message-name] [value]</code> <p><code>[get] [api-key] [message-name]</code>  <p><code>[event] [api-key]</code></td>
-<td><p> Loads the API resource into the currently running API server. <p> Initializes the API resource.</p> <p>Set values in the API resource.</p> <p> Get values from the API resource.</p><p> Displays a events from the API resource.</p></td>
+<td>Shutdown API server.</td>
 </tr>
 <tr>
 <td>flow</td>
@@ -523,5 +533,5 @@ Subsequently, users can perform a pull action at any desired moment to restore t
 
 <!--
 MkDocs version : 1.6.0
-Build Date UTC : 2024-10-06 05:33:04.078078+00:00
+Build Date UTC : 2024-10-06 09:08:01.695845+00:00
 -->
