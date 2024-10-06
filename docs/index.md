@@ -164,6 +164,7 @@ port get groupA sayHelloMessage1
  set |`[group-name|pkg-name] [message-name] [value]` | Set values in the API server.
  get |`[group-name|pkg-name] [message-name]`  | Get values from the API server.
  load  |`[pkg-name]`  | Loads the package into the currently running API server.
+ save  |`[pkg-name] [filefullname]`  | Save the package.
  init  |`[pkg-name]`  | Initializes the Package.
  event |`[pkg-name]`  | Displays a events.
  run| `[name]` |  Runs the API server based on the specified repository. 
