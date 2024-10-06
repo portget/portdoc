@@ -12,7 +12,7 @@ Port.Library |  C# | Nuget |Windows x64 | Yes |
 
 ```C#
     ...
-    PortDic dic = portdic.Connect("localhost",9000); 
+    PortDic dic = PortDic.GetDictionary("http://localhost:5001");
 
     var ok = dic.Set('AZone','SamplePower','On');
     if(ok){
@@ -24,7 +24,7 @@ Port.Library |  C# | Nuget |Windows x64 | Yes |
 
 ```C#
     ...
-    PortDic dic = portdic.Connect("localhost",9000); 
+    PortDic dic = PortDic.GetDictionary("http://localhost:5001");
 
     var v = dic.Get('AZone','SamplePower')
     // 'On'
@@ -50,7 +50,7 @@ Port.Library |  C# | Nuget |Windows x64 | Yes |
 ```C#
 
     //class1.cs
-    PortDic dic = portdic.Connect("localhost",9000); 
+    PortDic dic = PortDic.GetDictionary("http://localhost:5001");
 
     dic.Create(PortDic.Structure.Queue,'TEST')
 
@@ -62,7 +62,7 @@ Port.Library |  C# | Nuget |Windows x64 | Yes |
 
 
     //class2.cs
-    PortDic dic = portdic.Connect("localhost",9000); 
+    PortDic dic = PortDic.GetDictionary("http://localhost:5001");
 
     var q1 = dic.Queue('TEST')
 
@@ -83,7 +83,7 @@ Port.Library |  C# | Nuget |Windows x64 | Yes |
 ```C#
 
     //class1.cs
-    PortDic dic = portdic.Connect("localhost",9000); 
+    PortDic dic = PortDic.GetDictionary("http://localhost:5001");
 
     dic.Create(PortDic.Structure.Stack,'TEST')
 
@@ -93,7 +93,7 @@ Port.Library |  C# | Nuget |Windows x64 | Yes |
 
 
     //class2.cs
-    PortDic dic = portdic.Connect("localhost",9000); 
+    PortDic dic = PortDic.GetDictionary("http://localhost:5001");
 
     var stack = Port.Stack('TEST')
 
@@ -110,7 +110,7 @@ Port.Library |  C# | Nuget |Windows x64 | Yes |
 
     //class1.cs
     
-    PortDic dic = portdic.Connect("localhost",9000); 
+    PortDic dic = PortDic.GetDictionary("http://localhost:5001");
     
     dic.Create(PortDic.Structure.List,'TEST')
     
@@ -122,7 +122,7 @@ Port.Library |  C# | Nuget |Windows x64 | Yes |
 
 
     //class2.cs
-    PortDic dic = portdic.Connect("localhost",9000); 
+    PortDic dic = PortDic.GetDictionary("http://localhost:5001");
 
    var list = Port.List('TEST')
 
@@ -141,7 +141,7 @@ Port.Library |  C# | Nuget |Windows x64 | Yes |
 ```C#
 
     //class1.cs
-    PortDic dic = portdic.Connect("localhost",9000); 
+    PortDic dic = PortDic.GetDictionary("http://localhost:5001");
 
     dic.Create(PortDic.Structure.Storage,'TEST')
     
@@ -155,7 +155,7 @@ Port.Library |  C# | Nuget |Windows x64 | Yes |
 
 
     //class2.cs
-    PortDic dic = portdic.Connect("localhost",9000); 
+    PortDic dic = PortDic.GetDictionary("http://localhost:5001");
 
     var s = Port.Storage('TEST')
 

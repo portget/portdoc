@@ -55,7 +55,7 @@ To link the declared relations in your messages, you need to add them to the pro
 <div class="console">
     <div class="console-content">
     C:\Users\...>cd C:\Users\Demo
-    C:\Users\Demo>port add --relation IOBoard1 IOBoardLib
+    C:\Users\Demo>port add --api IOBoard1 IOBoardLib
    </div>
 </div>
 
@@ -68,7 +68,7 @@ After linking the relations to your project, you can verify the integration usin
 #### How to check link library
 <div class="console">
     <div class="console-content"> 
-    C:\Users\Demo>port show --relation
+    C:\Users\Demo>port ls api
     C:\Users\Demo>[IOBoard1]IOBoardLib\IOBoardLib.dll
    </div>
 </div>
