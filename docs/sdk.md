@@ -2,7 +2,7 @@
 # What's PortSDK?
 __________________
 
-Port offers a Software Development Kit (SDK) for developing system applications. With this SDK, developers can create consistent software that provides APIs, libraries, and structured documentation to end users, enabling more efficient configuration management.
+Port offers a Software Development Kit (SDK) for developing system applications. With this SDK, developers can create consistent software that provides package, libraries, and structured documentation to end users, enabling more efficient configuration management.
 
 
 # Get Started
@@ -14,27 +14,27 @@ NAME | Language |Package Manager | OS | STABLE |
 Port.SDK |  C# | Nuget |Windows x64 | Yes | 
 
 ## Command 
-Command | Key | Flags |Description  
-------|--------|--------|--------
-Run  | [Name] | No Need |Run application or api-object
-View | [Name] | `--history` `event|count` | View the history for this api-object
-Get  | [Name] [Message-Name] | No Need | Get Message Value 
-Set  | [Name] [Message-Name] | No Need | Set Message Value  
 
-## APIObject
-All objects inheriting from the APIObject can invoke messages defined in the API class via the Port Application. These messages are defined through an existing API Document, and additional attributes can be defined to provide messages with extra functionalities.
+Command | Key |Description  
+------|--------|--------
+pack  | [-]  |-
+add   | [repo-name]  | -
+remove| [repo-name]  | -
+
+## Package
+All objects inheriting from the package can invoke messages defined in the class via the Port Application. These messages are defined through an existing API Document, and additional attributes can be defined to provide messages with extra functionalities.
 
 
 ### Class Name
 ***
-!!! important  "The class name must be declared as `API`"
+!!! important  "The class name must be declared as `Port`"
 ***
 
 ### C# 
 ```C# 
- public class API : APIObject
+ public class Port : PortObject
  {
-     public API()
+     public Port()
      {
          this.SetLogger(new ExLogger());
      }

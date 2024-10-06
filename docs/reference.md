@@ -35,9 +35,7 @@ URL | Description
 /api/{group-name}/keys | key list  
 /api/{group-name}/kv | key-value list  
 /api/{group-name}/datatype | key-datatype list  
-/api/{group-name}/enumid | enumid list  
-/api/{group-name}/memory | memory list 
-/api/{group-name}/address | address list 
+/api/{group-name}/enumid | enumid list   
 
  
 ### API
