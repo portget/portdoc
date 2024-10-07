@@ -164,24 +164,24 @@ Try creating and editing a basic project to see how you can modify and configure
 
 <h4 id="here-is-an-example-of-the-structure-of-the-generated-repository">Here is an example of the structure of the generated repository<a class="headerlink" href="#here-is-an-example-of-the-structure-of-the-generated-repository" title="Permanent link">&para;</a></h4>
 <pre><code>root_folder/
-├── stage/
+├── subgroup1/
 │   ├── *.msg
-├── efem/
+│
+├── subgroup2/
 │   ├── *.msg 
+│
 └── *.enum
 </code></pre>
 <h2 id="how-to-add-messages">How to add messages<a class="headerlink" href="#how-to-add-messages" title="Permanent link">&para;</a></h2>
 <hr />
 <p>To declare a message, you need to edit the <code>*.msg</code> file in the sub-folder you created. By defining message data types and attributes as shown below, you can later utilize various features such as automatic logging and backup. Additionally, you can define relationships using predefined relations.</p>
 <h4 id="heres-an-example-of-message-file">Here's an example of message file<a class="headerlink" href="#heres-an-example-of-message-file" title="Permanent link">&para;</a></h4>
-<pre><code>STAGE_ACCELATOR          num                                                                                                                                             
-STAGE_DECELATOR          num                                                                                                                                             
-STAGE_HOME_SENSOR        enum.NonHome   api:IOBoardLib.DigtalInput PROPERTY:{&quot;Argument&quot;:&quot;1,0&quot;}                                                                                                                                
-STAGE_LOAD_MOVE_TIMEOUT  num                                                                                                                                            
-STAGE_LOAD_POSITION      num                                                                                                                                            
-STAGE_POSITION           enum.CHUCKPOS                                                                                                                                     
-STAGE_POSITION_RATIO     num                                                                                                                                                 
-STAGE_SPEED              num                                                                                                                                               
+<pre><code>ACCELATOR          num                                                                                                                                             
+Volt1              num                                                                                                                                             
+Volt2              num                                                                                                                                             
+Temp1              num                                                                                                                                             
+Temp2              num                                                                                                                                             
+
 </code></pre>
 <h2 id="how-to-link-relation">How to link relation<a class="headerlink" href="#how-to-link-relation" title="Permanent link">&para;</a></h2>
 <hr />
