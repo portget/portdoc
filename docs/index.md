@@ -118,41 +118,9 @@ FTrue       False:0     True:1
 
 ## Commands
 ___
-### Repository
-* `port push` - push project to repository
-* `port pull` - pull project from repository
-
-!!!tip
-    The application runs based on the values stored in the repository. The push action must precede the application startup. 
-    Subsequently, users can perform a pull action at any desired moment to restore the repository.
 
 
-
-### Application 
-* `port run [repository-name]` - run application from repository
-* `port kill` - terminated current application
-
-
-!!! tip
-    port application must be start portlib services application
-
-
-### Message
-* `port set [group-key] [message-key] [set-value]` - set the message value to current repository
-```console
-port set groupA sayHelloMessage1 Hello?
-[set-ok]
-```
-* `port get [group-key] [message-key]` - get the message value to current repository
-```console
-port get groupA sayHelloMessage1
-[Hello?]
-```
-
-
-
-
-### Table
+### Cheat Sheet
  
  command | arguments | description
  ------|-------- |--------
@@ -177,3 +145,31 @@ port get groupA sayHelloMessage1
  flow|  <p>`[load] [flow-key]`  <p>`[init] [flow-key]`   <p>`[remove] [flow-key]` <p>`[event] [flow-key]`| <p> Loads the Flow resource into the currently running API server. <p> Initializes the Flow resource.</p> <p> Remove Flow resource </p><p> Displays a events from the Flow resource.</p>
  env | `-`|Displays the system environment settings.  
  help| `-`|.
+
+
+### Repository
+* `port push` - push project to repository
+* `port pull` - pull project from repository
+
+!!!tip
+    The application runs based on the values stored in the repository. The push action must precede the application startup. 
+    Subsequently, users can perform a pull action at any desired moment to restore the repository.
+
+### Server 
+* `port run [repository-name]` - run server from repository
+* `port kill` - terminated current server
+ 
+### Message
+* `port set [group-key] [message-key] [set-value]` - set the message value to current repository
+```console
+port set groupA sayHelloMessage1 Hello?
+[set-ok]
+```
+* `port get [group-key] [message-key]` - get the message value to current repository
+```console
+port get groupA sayHelloMessage1
+[Hello?]
+```
+
+
+
