@@ -170,22 +170,10 @@
 </thead>
 <tbody>
 <tr>
-<td>v1.0.24</td>
+<td>v1.0.25</td>
 <td>Windows x64</td>
 <td>No</td>
-<td><a download="download" href="https://github.com/portget/port/archive/refs/tags/v1.0.24-win-installer.zip">v1.0.24-win-installer</a></td>
-</tr>
-<tr>
-<td>v1.0.23</td>
-<td>Windows x64</td>
-<td>No</td>
-<td><a download="download" href="https://github.com/portget/port/archive/refs/tags/v1.0.23-win-installer.zip">v1.0.23-win-installer</a></td>
-</tr>
-<tr>
-<td>v1.0.22</td>
-<td>Windows x64</td>
-<td>No</td>
-<td><a download="download" href="https://github.com/portget/port/archive/refs/tags/v1.0.22-win-installer.zip">v1.0.22-win-installer</a></td>
+<td><a download="download" href="https://github.com/portget/port/archive/refs/tags/v1.0.25-win-installer.zip">v1.0.25-win-installer</a></td>
 </tr>
 </tbody>
 </table>
@@ -229,9 +217,36 @@ Please attach the materials attached below. </p>
 <ul>
 <li>message item format like this <code>[key] [datatype] [option...]</code></li>
 <li><code>[key]</code>      - unique key in the message group</li>
-<li><code>[datatype]</code> - text | num </li>
+<li><code>[datatype]</code> - text | num | enum </li>
 <li><code>[option]</code> - api,backup,rule,frame</li>
 </ul>
+<h4 id="message-datatype">message datatype<a class="headerlink" href="#message-datatype" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>range</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>text</td>
+<td><code>0~255 char</code></td>
+<td>The length can be specified as a value from 0 to 255.</td>
+</tr>
+<tr>
+<td>num</td>
+<td><code>-1.7e+308 ~ +1.7e+308</code></td>
+<td>The floating-point type that allows for the representation of decimal numbers and is capable of representing a wide range of values, both very small and very large.</td>
+</tr>
+<tr>
+<td>enum</td>
+<td><code>0 ~ 65535 count custome type</code></td>
+<td>The user can utilize the fixed list values specified in the .enum file, which can be used at a lower cost than text values and with stricter usage.</td>
+</tr>
+</tbody>
+</table>
 <h4 id="message-attribute">message attribute<a class="headerlink" href="#message-attribute" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -337,7 +352,7 @@ FTrue       False:0     True:1
 </tr>
 <tr>
 <td>save</td>
-<td><code>[pkg-name] [filefullname]</code></td>
+<td><code>[pkg-name]</code></td>
 <td>Save the package.</td>
 </tr>
 <tr>
@@ -534,5 +549,5 @@ Subsequently, users can perform a pull action at any desired moment to restore t
 
 <!--
 MkDocs version : 1.6.0
-Build Date UTC : 2024-10-07 07:45:42.826204+00:00
+Build Date UTC : 2024-10-09 11:38:01.312814+00:00
 -->

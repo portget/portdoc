@@ -136,8 +136,8 @@
                 <li class="third-level"><a href="#heres-an-example-of-message-file">Here's an example of message file</a></li>
             <li class="second-level"><a href="#how-to-link-relation">How to link relation</a></li>
                 
-                <li class="third-level"><a href="#how-to-link-the-library">How to link the library</a></li>
-                <li class="third-level"><a href="#how-to-check-link-library">How to check link library</a></li>
+                <li class="third-level"><a href="#how-to-load-the-package">How to load the package</a></li>
+                <li class="third-level"><a href="#how-to-check-package-list">How to check package list</a></li>
             <li class="second-level"><a href="#how-to-start-project">How to start project</a></li>
                 
                 <li class="third-level"><a href="#good-luck">Good luck!</a></li>
@@ -176,21 +176,24 @@ Try creating and editing a basic project to see how you can modify and configure
 <hr />
 <p>To declare a message, you need to edit the <code>*.msg</code> file in the sub-folder you created. By defining message data types and attributes as shown below, you can later utilize various features such as automatic logging and backup. Additionally, you can define relationships using predefined relations.</p>
 <h4 id="heres-an-example-of-message-file">Here's an example of message file<a class="headerlink" href="#heres-an-example-of-message-file" title="Permanent link">&para;</a></h4>
-<pre><code>ACCELATOR          num                                                                                                                                             
+<pre><code>
+ACCELATOR          num                                                                                                                                             
 Volt1              num                                                                                                                                             
 Volt2              num                                                                                                                                             
 Temp1              num                                                                                                                                             
 Temp2              num                                                                                                                                             
+...
 
 </code></pre>
 <h2 id="how-to-link-relation">How to link relation<a class="headerlink" href="#how-to-link-relation" title="Permanent link">&para;</a></h2>
 <hr />
 <p>To link the declared relations in your messages, you need to add them to the project. This process involves entering the call key and the library name to complete the addition of the relation.</p>
-<h4 id="how-to-link-the-library">How to link the library<a class="headerlink" href="#how-to-link-the-library" title="Permanent link">&para;</a></h4>
+<h4 id="how-to-load-the-package">How to load the package<a class="headerlink" href="#how-to-load-the-package" title="Permanent link">&para;</a></h4>
 <div class="console">
     <div class="console-content">
-    C:\Users\...>cd C:\Users\Demo
-    C:\Users\Demo>port add --api IOBoard1 IOBoardLib
+    cd C:\Users\Demo
+
+    port add --pkg IOBoard1 IOBoardLib
    </div>
 </div>
 
@@ -200,11 +203,14 @@ Temp2              num
 granting administrator privileges to the port.exe program will resolve the issue.</p>
 </div>
 <p>After linking the relations to your project, you can verify the integration using the following command</p>
-<h4 id="how-to-check-link-library">How to check link library<a class="headerlink" href="#how-to-check-link-library" title="Permanent link">&para;</a></h4>
+<h4 id="how-to-check-package-list">How to check package list<a class="headerlink" href="#how-to-check-package-list" title="Permanent link">&para;</a></h4>
 <div class="console">
     <div class="console-content"> 
-    C:\Users\Demo>port ls api
-    C:\Users\Demo>[IOBoard1]IOBoardLib\IOBoardLib.dll
+    port ls pkg 
+
+    ...
+
+
    </div>
 </div>
 
@@ -212,10 +218,10 @@ granting administrator privileges to the port.exe program will resolve the issue
 <p>Once all message definitions are complete, you can start the message server based on these definitions. Before running the server, upload all updated content to the local repository by entering <code>port push</code> in the console. Then, run the server with the command <code>port run [project-name]</code>.</p>
 <div class="console">
     <div class="console-content">
-       C:\Users\Demo>port push
-
-       C:\Users\Demo>port run Demo --ng ignore 
-
+       port push
+       ...
+       port run Demo --ng ignore 
+       ...
        [localhost:5001]Port Running ... OK
        Access point count [4]
        Relation count [2]
