@@ -23,10 +23,12 @@ Before starting a Port project, you need to create a root folder that defines yo
 #### Here is an example of the structure of the generated repository
 ``` 
 root_folder/
-├── stage/
+├── subgroup1/
 │   ├── *.msg
-├── efem/
+│
+├── subgroup2/
 │   ├── *.msg 
+│
 └── *.enum
 ```
 
@@ -36,14 +38,14 @@ To declare a message, you need to edit the `*.msg` file in the sub-folder you cr
 
 #### Here's an example of message file
 ```
-STAGE_ACCELATOR          num                                                                                                                                             
-STAGE_DECELATOR          num                                                                                                                                             
-STAGE_HOME_SENSOR        enum.NonHome   api:IOBoardLib.DigtalInput PROPERTY:{"Argument":"1,0"}                                                                                                                                
-STAGE_LOAD_MOVE_TIMEOUT  num                                                                                                                                            
-STAGE_LOAD_POSITION      num                                                                                                                                            
-STAGE_POSITION           enum.CHUCKPOS                                                                                                                                     
-STAGE_POSITION_RATIO     num                                                                                                                                                 
-STAGE_SPEED              num                                                                                                                                               
+
+ACCELATOR          num                                                                                                                                             
+Volt1              num                                                                                                                                             
+Volt2              num                                                                                                                                             
+Temp1              num                                                                                                                                             
+Temp2              num                                                                                                                                             
+...
+
 ```
 
 
@@ -51,11 +53,12 @@ STAGE_SPEED              num
 ___
 To link the declared relations in your messages, you need to add them to the project. This process involves entering the call key and the library name to complete the addition of the relation.
 
-#### How to link the library
+#### How to load the package
 <div class="console">
     <div class="console-content">
-    C:\Users\...>cd C:\Users\Demo
-    C:\Users\Demo>port add --api IOBoard1 IOBoardLib
+    cd C:\Users\Demo
+
+    port add --pkg IOBoard1 IOBoardLib
    </div>
 </div>
 
@@ -65,11 +68,14 @@ To link the declared relations in your messages, you need to add them to the pro
 
 After linking the relations to your project, you can verify the integration using the following command
 
-#### How to check link library
+#### How to check package list
 <div class="console">
     <div class="console-content"> 
-    C:\Users\Demo>port ls api
-    C:\Users\Demo>[IOBoard1]IOBoardLib\IOBoardLib.dll
+    port ls pkg 
+
+    ...
+
+
    </div>
 </div>
 
@@ -78,10 +84,10 @@ Once all message definitions are complete, you can start the message server base
 
 <div class="console">
     <div class="console-content">
-       C:\Users\Demo>port push
-       
-       C:\Users\Demo>port run Demo --ng ignore 
-
+       port push
+       ...
+       port run Demo --ng ignore 
+       ...
        [localhost:5001]Port Running ... OK
        Access point count [4]
        Relation count [2]

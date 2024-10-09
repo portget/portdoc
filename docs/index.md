@@ -16,9 +16,7 @@ Please see the documentation [lincense](license.md)
 
 VERSION | OS |STABLE | URL 
 ------|--------|--------|--------
-v1.0.24 | Windows x64 | No | [v1.0.24-win-installer](https://github.com/portget/port/archive/refs/tags/v1.0.24-win-installer.zip){:download}
-v1.0.23 | Windows x64 | No | [v1.0.23-win-installer](https://github.com/portget/port/archive/refs/tags/v1.0.23-win-installer.zip){:download}
-v1.0.22 | Windows x64 | No | [v1.0.22-win-installer](https://github.com/portget/port/archive/refs/tags/v1.0.22-win-installer.zip){:download}
+v1.0.25 | Windows x64 | No | [v1.0.25-win-installer](https://github.com/portget/port/archive/refs/tags/v1.0.25-win-installer.zip){:download}
 
 ## Repository
 ___
@@ -70,9 +68,17 @@ Please attach the materials attached below.
 ___
 * message item format like this `[key] [datatype] [option...]`
 * `[key]`      - unique key in the message group
-* `[datatype]` - text | num 
+* `[datatype]` - text | num | enum 
 * `[option]` - api,backup,rule,frame
 
+
+#### message datatype
+name | range | description
+ ------|--------|--------
+ text | `0~255` | The length can be specified as a value from 0 to 255.
+ num  | `-1.7e+308 ~` <p>`+1.7e+308`  | The floating-point type that allows for the representation of decimal numbers and is capable of representing a wide range of values, both very small and very large.
+ enum | `0 ~ 65535` | The user can utilize the fixed list values specified in the .enum file, which can be used at a lower cost than text values and with stricter usage.  
+ 
 #### message attribute
  
  name|description
@@ -132,7 +138,7 @@ ___
  set |`[group-name|pkg-name] [message-name] [value]` | Set values in the API server.
  get |`[group-name|pkg-name] [message-name]`  | Get values from the API server.
  load  |`[pkg-name]`  | Loads the package into the currently running API server.
- save  |`[pkg-name] [filefullname]`  | Save the package.
+ save  |`[pkg-name]`  | Save the package.
  init  |`[pkg-name]`  | Initializes the Package.
  event |`[pkg-name]`  | Displays a events.
  run| `[name]` |  Runs the API server based on the specified repository. 
