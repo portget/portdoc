@@ -73,8 +73,11 @@ After linking the relations to your project, you can verify the integration usin
     <div class="console-content"> 
     port ls pkg 
 
+    package1  [DateTime]
+    package2  [DateTime]
+    package3  [DateTime]
+    package4  [DateTime]
     ...
-
 
    </div>
 </div>
@@ -112,8 +115,8 @@ Once all message definitions are complete, you can start the message server base
 .console {
     width: 80%;
     height: 80%;
-    background-color: black;
-    color: #00ff00;
+    background-color: whitesmoke;
+    color: black;
     padding: 20px;
     box-sizing: border-box;
     border-radius: 8px;

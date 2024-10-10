@@ -1,6 +1,6 @@
 # Welcome to Port
 
-`More Easily Create an API with Port App`, designed to streamline the deployment of APIs for developers. With this tool, developers can effortlessly deploy APIs and integrate various applications to build a unified web service. Port Application simplifies the process, enabling developers to focus on creating seamless and efficient solutions with ease.
+`More Easily Create an API-Server with Port App`, designed to streamline the deployment of pkgs for developers. With this tool, developers can effortlessly deploy pkgs and integrate various applications to build a unified web service. Port Application simplifies the process, enabling developers to focus on creating seamless and efficient solutions with ease.
 
 Please see the documentation [lincense](license.md)
 
@@ -8,25 +8,29 @@ Please see the documentation [lincense](license.md)
 ---
 * os         : windows 7+ / windows server 2003+
 * memory     : minimum 32GB
-* frameworks : .Net 8.0+
+* requirements : 
 
+
+!!! tip
+    System Requirements [.sdk-8.0.403-windows-x64-installer](https://dotnet.microsoft.com/ko-kr/download/dotnet/thank-you/sdk-8.0.403-windows-x64-installer){:download}
 
 ## Download URL
 ---
 
 VERSION | OS |STABLE | URL 
 ------|--------|--------|--------
+v1.0.26 | Windows x64 | Yes | [v1.0.26-win-installer](https://github.com/portget/port/archive/refs/tags/v1.0.26-win-installer.zip){:download}
 v1.0.25 | Windows x64 | No | [v1.0.25-win-installer](https://github.com/portget/port/archive/refs/tags/v1.0.25-win-installer.zip){:download}
 
-## Repository
+
+
+## Project Layout
 ___
-To deploy APIs, you must first store the API definitions in the repository before proceeding with the deployment. 
-Please refer to the instructions below for guidance on storing and deploying your APIs after saving them to the repository.
+To deploy project, you must first store the pkg definitions in the repository before proceeding with the deployment. 
+Please refer to the instructions below for guidance on storing and deploying your pkgs after saving them to the repository.
 
 
-
-
-### Creates a repository 
+### Repository 
 ```console
 port new [repository-name]
 ```
@@ -35,12 +39,12 @@ ___
  
     port.toml         # The configuration file.
     .enum             # The custom enum file 
-    API-A-Group/      # The group directory. 
+    pkg-A-Group/      # The group directory. 
         sample1.msg   # The message file
         sample2.msg   # The message file
         sample3.msg   # The message file
 
-    API-B-Group/      # The group directory. 
+    pkg-B-Group/      # The group directory. 
         sample1.msg   # The message file
         sample2.msg   # The message file
         sample3.msg   # The message file
@@ -53,47 +57,46 @@ ___
     It follows the directory naming rules provided by the operating system.
 ___
 
-### Creates a group 
+### Group 
 
 ```console
 port add [group-name]
 ```
-
-
+ 
 ___
 
 ### Message (*.msg)
-A message is an object that allows users to specify API properties in a pre-provided Application Service. The message is a kv, and types and properties can be defined in that message. 
+A message is an object that allows users to specify pkg properties in a pre-provided Application Service. The message is a kv, and types and properties can be defined in that message. 
 Please attach the materials attached below. 
 ___
 * message item format like this `[key] [datatype] [option...]`
 * `[key]`      - unique key in the message group
 * `[datatype]` - text | num | enum 
-* `[option]` - api,backup,rule,frame
+* `[attribute]` - pkg,backup,rule,frame,property
 
 
-#### message datatype
+#### datatype
 name | range | description
  ------|--------|--------
  text | `0~255` | The length can be specified as a value from 0 to 255.
  num  | `-1.7e+308 ~` <p>`+1.7e+308`  | The floating-point type that allows for the representation of decimal numbers and is capable of representing a wide range of values, both very small and very large.
  enum | `0 ~ 65535` | The user can utilize the fixed list values specified in the .enum file, which can be used at a lower cost than text values and with stricter usage.  
  
-#### message attribute
+#### attribute
  
  name|description
  ------|--------
- api     | Real-time synchronization and messaging are handled within the corresponding external library. For more details, please refer to the api documentation.
- backup  | Changes are saved to the backup database as they occur, ensuring that values are restored upon application restart. and values are not propagated api messages during program execution.
+ pkg     | Real-time synchronization and messaging are handled within the corresponding external library. For more details, please refer to the pkg documentation.
+ backup  | Changes are saved to the backup database as they occur, ensuring that values are restored upon application restart. and values are not propagated pkg messages during program execution.
  property| Can specify a custom property
  rule    | Can specify rules to manage the values of corresponding messages.  
  
 #### sample1.msg
 ```console
- DevAPowerStatus    enum.DeviceAStatus  api:DeviceA.GetStatus         
- DevAErrorMessage   text                api:DeviceA.GetErrorMessage property:{"Arguments":"1,0"}
- DevCTemperature    num                 api:DeviceC.GetTemperature property:{"MIN":0,"MAX":300}
- DevCOnOff          enum.OnOff          api:DeviceC.OnOff           
+ DevAPowerStatus    enum.DeviceAStatus  pkg:DeviceA.GetStatus         
+ DevAErrorMessage   text                pkg:DeviceA.GetErrorMessage property:{"Arguments":"1,0"}
+ DevCTemperature    num                 pkg:DeviceC.GetTemperature property:{"MIN":0,"MAX":300}
+ DevCOnOff          enum.OnOff          pkg:DeviceC.OnOff           
  ...
 ```
 
@@ -135,20 +138,20 @@ ___
  new | `[name]`  | Can specify rules to manage the values of corresponding messages. 
  push|`-` | Push project to repository.
  pull|`-` | Pull project from repository.
- set |`[group-name|pkg-name] [message-name] [value]` | Set values in the API server.
- get |`[group-name|pkg-name] [message-name]`  | Get values from the API server.
- load  |`[pkg-name]`  | Loads the package into the currently running API server.
+ set |`[group-name|pkg-name] [message-name] [value]` | Set values in the pkg server.
+ get |`[group-name|pkg-name] [message-name]`  | Get values from the pkg server.
+ load  |`[pkg-name]`  | Loads the package into the currently running pkg server.
  save  |`[pkg-name]`  | Save the package.
  init  |`[pkg-name]`  | Initializes the Package.
  event |`[pkg-name]`  | Displays a events.
- run| `[name]` |  Runs the API server based on the specified repository. 
+ run| `[name]` |  Runs the pkg server based on the specified repository. 
  ls | `[repo]`\|`[pkg]`\|`[tcp]`\|`[comm]` | Displays the specified items in a list. 
  queue|<p>`[new] [name]` <p>`[ls]` <p>`[view] [name]` <p>`[push] [name] [value]` <p>`[pop] [name]` | <p>  Create new queue. <p> Displays queue list. <p> Displays queue items. <p> Push a item to queue. </p> <p> Pop a item from queue. </p>
  stack|<p>`[new] [name]` <p>`[ls]` <p>`[view] [name]` <p>`[push] [name] [value]` <p>`[pop] [name]` | <p>  Create new stack. <p> Displays stack list. <p> Displays stack items. <p> Push a item to stack. </p> <p> Pop a item from stack. </p>
  storage|<p>`[new] [name]` <p>`[ls]` <p>`[view] [name]` <p>`[set] [name] [key] [value]` <p>`[get] [name] [key]` | <p>  Create new storage. <p> Displays storage list. <p> Displays storage items. <p> Push a item to storage. </p> <p> Pop a item from storage. </p>
  list|<p>`[new] [name]` <p>`[ls]` <p>`[view] [name]` <p>`[add] [name] [value]` <p>`[insert] [name] [index] [value]`  <p>`[remove] [name] [index] [value]` |<p>  Create new list. <p> Displays a lists. <p> Displays list items. <p> Add a item. </p> <p> Insert a item. </p> <p> Remove a item. </p>
- kill | `[kill-code]` | Shutdown API server.
- flow|  <p>`[load] [flow-key]`  <p>`[init] [flow-key]`   <p>`[remove] [flow-key]` <p>`[event] [flow-key]`| <p> Loads the Flow resource into the currently running API server. <p> Initializes the Flow resource.</p> <p> Remove Flow resource </p><p> Displays a events from the Flow resource.</p>
+ kill | `[kill-code]` | Shutdown pkg server.
+ flow|  <p>`[load] [flow-key]`  <p>`[init] [flow-key]`   <p>`[remove] [flow-key]` <p>`[event] [flow-key]`| <p> Loads the Flow resource into the currently running pkg server. <p> Initializes the Flow resource.</p> <p> Remove Flow resource </p><p> Displays a events from the Flow resource.</p>
  env | `-`|Displays the system environment settings.  
  help| `-`|.
 
