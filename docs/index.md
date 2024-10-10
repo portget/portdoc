@@ -26,14 +26,18 @@ v1.0.25 | Windows x64 | No | [v1.0.25-win-installer](https://github.com/portget/
 
 ## Project Layout
 ___
-To deploy project, you must first store the pkg definitions in the repository before proceeding with the deployment. 
-Please refer to the instructions below for guidance on storing and deploying your pkgs after saving them to the repository.
-
+The Port project is remarkably simple and straightforward. To get started, first create a project folder in the console, then type port new sample. This will quickly generate the project files. After that, create sub-group folders and add .msg files to each sub-group folder. Feel free to create messages using text, num, and enum types as you like. Once you've specified the attributes, type port push and Port will automatically store everything. Now, just run port run sample, and the server will start, allowing you to safely and easily share messages across multiple applications.
 
 ### Repository 
-```console
-port new [repository-name]
-```
+
+<div class="console">
+  <div class="console-content">
+  port new [name]
+  </div>
+</div>
+
+
+
 ___
 #### Layout
  
@@ -182,3 +186,70 @@ port get groupA sayHelloMessage1
 
 
 
+
+<style>
+
+.console {
+    width: 80%;
+    height: 80%;
+    background-color: whitesmoke;
+    color: black;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+}
+.yellow{
+    color:yellow;
+}
+.console-content {
+    white-space: pre-wrap;
+}
+
+.console-content p {
+    margin: 0;
+}
+
+
+.notepad {
+    width: 100%;
+    height: 80%;
+    background-color: white;
+    color: black;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+}
+
+.notepad:before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    right: 20px;
+    height: 2px;
+    background-color: #ccc;
+}
+
+.notepad:after {
+    content: '';
+    position: absolute;
+    top: 30px;
+    left: 20px;
+    right: 20px;
+    height: 2px;
+    background-color: #ccc;
+}
+
+.notepad-content {
+    margin-top: 40px;
+}
+
+.notepad-content p {
+    margin: 0 0 10px;
+    line-height: 1.5;
+}
+</style>
