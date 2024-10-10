@@ -62,13 +62,18 @@ ___
 ___
 
 ### Group 
+A group serves as the root of messages. Within a single group, multiple message files can be stored, allowing for easy retrieval and editing. By managing several .msg files within the group folder, you can conveniently organize and abstract them for streamlined management.
 
-```console
-port add [group-name]
-```
+<div class="console">
+  <div class="console-content">
+  port add --group [name]
+  </div>
+</div>
+
  
 ___
 
+<br/>
 ### Message (*.msg)
 A message is an object that allows users to specify pkg properties in a pre-provided Application Service. The message is a kv, and types and properties can be defined in that message. 
 Please attach the materials attached below. 
@@ -86,6 +91,7 @@ name | range | description
  num  | `-1.7e+308 ~` <p>`+1.7e+308`  | The floating-point type that allows for the representation of decimal numbers and is capable of representing a wide range of values, both very small and very large.
  enum | `0 ~ 65535` | The user can utilize the fixed list values specified in the .enum file, which can be used at a lower cost than text values and with stricter usage.  
  
+<br/>
 #### attribute
  
  name|description
@@ -94,7 +100,8 @@ name | range | description
  backup  | Changes are saved to the backup database as they occur, ensuring that values are restored upon application restart. and values are not propagated pkg messages during program execution.
  property| Can specify a custom property
  rule    | Can specify rules to manage the values of corresponding messages.  
- 
+
+<br/>
 #### sample1.msg
 ```console
  DevAPowerStatus    enum.DeviceAStatus  pkg:DeviceA.GetStatus         
@@ -108,6 +115,8 @@ name | range | description
     message document do not using special characters. 
 
 
+<br/>
+<br/>
 ### Enum (*.enum)
 ___
 

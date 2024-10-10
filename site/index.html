@@ -220,9 +220,15 @@ It follows the directory naming rules provided by the operating system.</p>
 </div>
 <hr />
 <h3 id="group">Group<a class="headerlink" href="#group" title="Permanent link">&para;</a></h3>
-<pre><code class="language-console">port add [group-name]
-</code></pre>
+<p>A group serves as the root of messages. Within a single group, multiple message files can be stored, allowing for easy retrieval and editing. By managing several .msg files within the group folder, you can conveniently organize and abstract them for streamlined management.</p>
+<div class="console">
+  <div class="console-content">
+  port add --group [name]
+  </div>
+</div>
+
 <hr />
+<p><br/></p>
 <h3 id="message-msg">Message (*.msg)<a class="headerlink" href="#message-msg" title="Permanent link">&para;</a></h3>
 <p>A message is an object that allows users to specify pkg properties in a pre-provided Application Service. The message is a kv, and types and properties can be defined in that message. 
 Please attach the materials attached below. </p>
@@ -260,6 +266,7 @@ Please attach the materials attached below. </p>
 </tr>
 </tbody>
 </table>
+<p><br/></p>
 <h4 id="attribute">attribute<a class="headerlink" href="#attribute" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -287,6 +294,7 @@ Please attach the materials attached below. </p>
 </tr>
 </tbody>
 </table>
+<p><br/></p>
 <h4 id="sample1msg">sample1.msg<a class="headerlink" href="#sample1msg" title="Permanent link">&para;</a></h4>
 <pre><code class="language-console"> DevAPowerStatus    enum.DeviceAStatus  pkg:DeviceA.GetStatus         
  DevAErrorMessage   text                pkg:DeviceA.GetErrorMessage property:{&quot;Arguments&quot;:&quot;1,0&quot;}
@@ -298,6 +306,8 @@ Please attach the materials attached below. </p>
 <p class="admonition-title">Tip</p>
 <p>message document do not using special characters. </p>
 </div>
+<p><br/>
+<br/></p>
 <h3 id="enum-enum">Enum (*.enum)<a class="headerlink" href="#enum-enum" title="Permanent link">&para;</a></h3>
 <hr />
 <p>Enums are particularly useful when you have a fixed set of values that a variable can take, such as days of the week, months of the year, or status codes. They help make your code more expressive, self-documenting, and less error-prone because you're working with named constants instead of raw integer values. </p>
@@ -628,5 +638,5 @@ Subsequently, users can perform a pull action at any desired moment to restore t
 
 <!--
 MkDocs version : 1.6.0
-Build Date UTC : 2024-10-10 12:35:08.895808+00:00
+Build Date UTC : 2024-10-10 12:42:17.019396+00:00
 -->
