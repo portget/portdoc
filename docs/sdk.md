@@ -13,13 +13,6 @@ NAME | Language |Package Manager | OS | STABLE |
 ------|--------|--------|--------|--------
 Port.SDK |  C# | Nuget |Windows x64 | Yes | 
 
-## Command 
-
-Command | Key |Description  
-------|--------|--------
-pack  | [-]  |-
-add   | [repo-name]  | -
-remove| [repo-name]  | -
 
 ## Package
 All objects inheriting from the package can invoke messages defined in the class via the Port Application. These messages are defined through an existing API Document, and additional attributes can be defined to provide messages with extra functionalities.
