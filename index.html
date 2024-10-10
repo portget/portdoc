@@ -148,14 +148,14 @@
         <div class="col-md-9" role="main">
 
 <h1 id="welcome-to-port">Welcome to Port<a class="headerlink" href="#welcome-to-port" title="Permanent link">&para;</a></h1>
-<p><code>More Easily Create an API with Port App</code>, designed to streamline the deployment of APIs for developers. With this tool, developers can effortlessly deploy APIs and integrate various applications to build a unified web service. Port Application simplifies the process, enabling developers to focus on creating seamless and efficient solutions with ease.</p>
+<p><code>More Easily Create an pkg with Port App</code>, designed to streamline the deployment of pkgs for developers. With this tool, developers can effortlessly deploy pkgs and integrate various applications to build a unified web service. Port Application simplifies the process, enabling developers to focus on creating seamless and efficient solutions with ease.</p>
 <p>Please see the documentation <a href="license/">lincense</a></p>
 <h2 id="the-requirements">The Requirements<a class="headerlink" href="#the-requirements" title="Permanent link">&para;</a></h2>
 <hr />
 <ul>
 <li>os         : windows 7+ / windows server 2003+</li>
 <li>memory     : minimum 32GB</li>
-<li>frameworks : .Net 8.0+</li>
+<li>frameworks : .Net 8.0+ [.net_sdk-8.0.403-windows-x64] https://dotnet.microsoft.com/ko-kr/download/dotnet/thank-you/sdk-8.0.403-windows-x64-installer</li>
 </ul>
 <h2 id="download-url">Download URL<a class="headerlink" href="#download-url" title="Permanent link">&para;</a></h2>
 <hr />
@@ -179,8 +179,8 @@
 </table>
 <h2 id="repository">Repository<a class="headerlink" href="#repository" title="Permanent link">&para;</a></h2>
 <hr />
-<p>To deploy APIs, you must first store the API definitions in the repository before proceeding with the deployment. 
-Please refer to the instructions below for guidance on storing and deploying your APIs after saving them to the repository.</p>
+<p>To deploy pkgs, you must first store the pkg definitions in the repository before proceeding with the deployment. 
+Please refer to the instructions below for guidance on storing and deploying your pkgs after saving them to the repository.</p>
 <h3 id="creates-a-repository">Creates a repository<a class="headerlink" href="#creates-a-repository" title="Permanent link">&para;</a></h3>
 <pre><code class="language-console">port new [repository-name]
 </code></pre>
@@ -188,12 +188,12 @@ Please refer to the instructions below for guidance on storing and deploying you
 <h4 id="layout">Layout<a class="headerlink" href="#layout" title="Permanent link">&para;</a></h4>
 <pre><code>port.toml         # The configuration file.
 .enum             # The custom enum file 
-API-A-Group/      # The group directory. 
+pkg-A-Group/      # The group directory. 
     sample1.msg   # The message file
     sample2.msg   # The message file
     sample3.msg   # The message file
 
-API-B-Group/      # The group directory. 
+pkg-B-Group/      # The group directory. 
     sample1.msg   # The message file
     sample2.msg   # The message file
     sample3.msg   # The message file
@@ -211,16 +211,16 @@ It follows the directory naming rules provided by the operating system.</p>
 </code></pre>
 <hr />
 <h3 id="message-msg">Message (*.msg)<a class="headerlink" href="#message-msg" title="Permanent link">&para;</a></h3>
-<p>A message is an object that allows users to specify API properties in a pre-provided Application Service. The message is a kv, and types and properties can be defined in that message. 
+<p>A message is an object that allows users to specify pkg properties in a pre-provided Application Service. The message is a kv, and types and properties can be defined in that message. 
 Please attach the materials attached below. </p>
 <hr />
 <ul>
 <li>message item format like this <code>[key] [datatype] [option...]</code></li>
 <li><code>[key]</code>      - unique key in the message group</li>
 <li><code>[datatype]</code> - text | num | enum </li>
-<li><code>[option]</code> - api,backup,rule,frame</li>
+<li><code>[attribute]</code> - pkg,backup,rule,frame,property</li>
 </ul>
-<h4 id="message-datatype">message datatype<a class="headerlink" href="#message-datatype" title="Permanent link">&para;</a></h4>
+<h4 id="datatype">datatype<a class="headerlink" href="#datatype" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -232,22 +232,22 @@ Please attach the materials attached below. </p>
 <tbody>
 <tr>
 <td>text</td>
-<td><code>0~255 char</code></td>
+<td><code>0~255</code></td>
 <td>The length can be specified as a value from 0 to 255.</td>
 </tr>
 <tr>
 <td>num</td>
-<td><code>-1.7e+308 ~ +1.7e+308</code></td>
+<td><code>-1.7e+308 ~</code> <p><code>+1.7e+308</code></td>
 <td>The floating-point type that allows for the representation of decimal numbers and is capable of representing a wide range of values, both very small and very large.</td>
 </tr>
 <tr>
 <td>enum</td>
-<td><code>0 ~ 65535 count custome type</code></td>
+<td><code>0 ~ 65535</code></td>
 <td>The user can utilize the fixed list values specified in the .enum file, which can be used at a lower cost than text values and with stricter usage.</td>
 </tr>
 </tbody>
 </table>
-<h4 id="message-attribute">message attribute<a class="headerlink" href="#message-attribute" title="Permanent link">&para;</a></h4>
+<h4 id="attribute">attribute<a class="headerlink" href="#attribute" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -257,12 +257,12 @@ Please attach the materials attached below. </p>
 </thead>
 <tbody>
 <tr>
-<td>api</td>
-<td>Real-time synchronization and messaging are handled within the corresponding external library. For more details, please refer to the api documentation.</td>
+<td>pkg</td>
+<td>Real-time synchronization and messaging are handled within the corresponding external library. For more details, please refer to the pkg documentation.</td>
 </tr>
 <tr>
 <td>backup</td>
-<td>Changes are saved to the backup database as they occur, ensuring that values are restored upon application restart. and values are not propagated api messages during program execution.</td>
+<td>Changes are saved to the backup database as they occur, ensuring that values are restored upon application restart. and values are not propagated pkg messages during program execution.</td>
 </tr>
 <tr>
 <td>property</td>
@@ -275,10 +275,10 @@ Please attach the materials attached below. </p>
 </tbody>
 </table>
 <h4 id="sample1msg">sample1.msg<a class="headerlink" href="#sample1msg" title="Permanent link">&para;</a></h4>
-<pre><code class="language-console"> DevAPowerStatus    enum.DeviceAStatus  api:DeviceA.GetStatus         
- DevAErrorMessage   text                api:DeviceA.GetErrorMessage property:{&quot;Arguments&quot;:&quot;1,0&quot;}
- DevCTemperature    num                 api:DeviceC.GetTemperature property:{&quot;MIN&quot;:0,&quot;MAX&quot;:300}
- DevCOnOff          enum.OnOff          api:DeviceC.OnOff           
+<pre><code class="language-console"> DevAPowerStatus    enum.DeviceAStatus  pkg:DeviceA.GetStatus         
+ DevAErrorMessage   text                pkg:DeviceA.GetErrorMessage property:{&quot;Arguments&quot;:&quot;1,0&quot;}
+ DevCTemperature    num                 pkg:DeviceC.GetTemperature property:{&quot;MIN&quot;:0,&quot;MAX&quot;:300}
+ DevCOnOff          enum.OnOff          pkg:DeviceC.OnOff           
  ...
 </code></pre>
 <div class="admonition tip">
@@ -338,17 +338,17 @@ FTrue       False:0     True:1
 <tr>
 <td>set</td>
 <td><code>[group-name|pkg-name] [message-name] [value]</code></td>
-<td>Set values in the API server.</td>
+<td>Set values in the pkg server.</td>
 </tr>
 <tr>
 <td>get</td>
 <td><code>[group-name|pkg-name] [message-name]</code></td>
-<td>Get values from the API server.</td>
+<td>Get values from the pkg server.</td>
 </tr>
 <tr>
 <td>load</td>
 <td><code>[pkg-name]</code></td>
-<td>Loads the package into the currently running API server.</td>
+<td>Loads the package into the currently running pkg server.</td>
 </tr>
 <tr>
 <td>save</td>
@@ -368,7 +368,7 @@ FTrue       False:0     True:1
 <tr>
 <td>run</td>
 <td><code>[name]</code></td>
-<td>Runs the API server based on the specified repository.</td>
+<td>Runs the pkg server based on the specified repository.</td>
 </tr>
 <tr>
 <td>ls</td>
@@ -398,12 +398,12 @@ FTrue       False:0     True:1
 <tr>
 <td>kill</td>
 <td><code>[kill-code]</code></td>
-<td>Shutdown API server.</td>
+<td>Shutdown pkg server.</td>
 </tr>
 <tr>
 <td>flow</td>
 <td><p><code>[load] [flow-key]</code>  <p><code>[init] [flow-key]</code>   <p><code>[remove] [flow-key]</code> <p><code>[event] [flow-key]</code></td>
-<td><p> Loads the Flow resource into the currently running API server. <p> Initializes the Flow resource.</p> <p> Remove Flow resource </p><p> Displays a events from the Flow resource.</p></td>
+<td><p> Loads the Flow resource into the currently running pkg server. <p> Initializes the Flow resource.</p> <p> Remove Flow resource </p><p> Displays a events from the Flow resource.</p></td>
 </tr>
 <tr>
 <td>env</td>
@@ -549,5 +549,5 @@ Subsequently, users can perform a pull action at any desired moment to restore t
 
 <!--
 MkDocs version : 1.6.0
-Build Date UTC : 2024-10-09 11:38:01.312814+00:00
+Build Date UTC : 2024-10-10 11:53:45.820167+00:00
 -->
