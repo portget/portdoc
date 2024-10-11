@@ -7,22 +7,198 @@ Try creating and editing a basic project to see how you can modify and configure
 
 <br>
 
-## How to create a repository
+## How to create a packages 
+
+___
+Let's develop a package. In the Port Application, all operations are grouped at the package level and function at the message level. Every operation is defined within messages, allowing users to increase code reusability through messages.
+
+<br/>
+<br/>
+
+### Attributes
+___
+
+ name | arguments | description
+ ------|-------- |--------
+ Message   |`-` |  Messages are declared, and the values defined as properties can be controlled through package calls.
+ Regex  |`[Pattern|Type]` |  It is validated through a regular expression check. If the value matches the specified regular expression, it is accepted as valid; otherwise, an input exception is triggered.
+ EnumCode   |`-` |  The Enum type is declared, allowing you to retrieve the Enum values through this declaration.
+ Comment  |`-` |  A comment is declared, allowing you to retrieve the comment through this declaration.
+
+#### Message Attributes
+Properties declared with Message Attributes are defined as API Messages and made available to the end-user. They apply only to properties with get and set accessors, and these getters and setters can be accessed and modified via a REST API.
+
+```
+    [Message]
+    public int NValue { get => 3; }
+```
+ 
+#### Regex Attributes
+Properties with Regex Attributes are subjected to a regular expression check when their values are changed. If the value does not pass the validation check, it is not updated, ensuring consistency and validity of the property's value.
+
+```  
+    [Message, Regex(RegexAttribute.Ip4vRegex)]
+    public string Address
+    {
+        get;
+        set;
+    }
+```
+
+#### EnumCode Attributes
+EnumCode Attributes are declared, the values of the enum can be accessed via an API. The API allows for the retrieval of information about the enumeration values, enabling external systems or users to interact with and obtain details about the enum through the API interface.
+```   
+    [EnumCode]
+    public enum TestEnum : ushort
+    {
+        _ = 0,
+        TestEnumItem1,
+        TestEnumItem2,
+    }
+```
+
+#### Comment Attributes
+When Comment Attributes are declared, the comments associated with the property can be exposed through the API. This allows users or external systems to access descriptive information or documentation about the property via the API, providing context and clarity on the property's purpose or usage.
+```  
+     [Message,Commnet("this is a numberic")]
+     public int NValue { get => 3; }
+```
+
+
+
+
+
+### Download
+NAME | Language |Package Manager | OS | STABLE | 
+------|--------|--------|--------|--------
+Port.SDK |  C# | Nuget |Windows x64 | Yes | 
+
+
+
+
+<br>
+
+
+### Sample code (.net)
+
+***
+!!! important  "The class name must be declared as `Port`"
+***
+
+#### bulb package 
+
+```C# 
+ 
+ public class Port : PortObject
+ {
+     public Port()
+     {
+        
+     }
+     
+     public override bool Init()
+     {
+        // initialized method
+     }
+     
+     public override void Dispose()
+     {
+        
+     } 
+     
+     private string status = "On";
+     
+     [Message]
+     public string OnOff { get => { return status == "On" ? "Off" : "On"; }} 
+ 
+ }
+ 
+``` 
+
+#### heater package 
+ 
+```C# 
+ 
+ public class Port : PortObject
+ {
+     public Port()
+     {
+        
+     }
+     
+     public override bool Init()
+     {
+        // initialized method
+     }
+     
+     public override void Dispose()
+     {
+        
+     } 
+
+     [Message]
+     public double GetTemperature { get => { var rand = new Random(); return rand.Next(); }
+ 
+ }
+
+``` 
+
+
+
+<br/>
+<br/>
+
+#### Here's an example 
+
+<br/>
+<div class="console">
+    <div class="console-content">
+        port save bulb [package-release-path]
+    </div>
+</div> 
+
+<br>
+<div class="console">
+    <div class="console-content">
+       port save heater [package-release-path]
+    </div>
+</div>
+
+<br>
+
+## How to create a port-project
 ___
 Before starting a Port project, you need to create a root folder that defines your messages. The subfolders within this root folder are managed as groups by Port, allowing users to organize messages by group. The root folder contains files with the `*.enum` extension and the structure of sub-group folders. Within the sub-group folders, message definition documents with the `*.msg` extension are created.
 
 #### Here's an example 
+
+<br/>
 <div class="console">
     <div class="console-content">
-    C:\Users\...>cd C:\Users\Demo
-    C:\Users\Demo>port new Demo
-    C:\Users\Demo>port add --group stage,efem
+    cd C:\Users\sample
+  </div>
+</div>
+<br/>
+ 
+<div class="console">
+    <div class="console-content">
+    port new sample
+  </div>
+</div>
+<br/>
+
+<div class="console">
+   <div class="console-content">
+    port add --group subgroup1,subgroup2
   </div>
 </div>
 
-#### Here is an example of the structure of the generated repository
+ 
+
+#### Project Layouts
 ``` 
-root_folder/
+sample/
+│
 ├── subgroup1/
 │   ├── *.msg
 │
@@ -36,73 +212,88 @@ root_folder/
 ___
 To declare a message, you need to edit the `*.msg` file in the sub-folder you created. By defining message data types and attributes as shown below, you can later utilize various features such as automatic logging and backup. Additionally, you can define relationships using predefined relations.
 
-#### Here's an example of message file
+#### Sample message files
+```
+ 
+ bulb1          enum.OnOff   pkg:bulb1.PowerOnOff         
+ bulb2          enum.OnOff   pkg:bulb2.PowerOnOff       property:{"Arguments":"1,0"}
+ heater1temp    num          pkg:heater1.GetTemperature property:{"MIN":0,"MAX":300}
+ heater2temp    num          pkg:heater2.GetTemperature property:{"MIN":200,"MAX":500}          
+
 ```
 
-ACCELATOR          num                                                                                                                                             
-Volt1              num                                                                                                                                             
-Volt2              num                                                                                                                                             
-Temp1              num                                                                                                                                             
-Temp2              num                                                                                                                                             
-...
 
-```
-
-
-## How to link relation
+## How to link packages
 ___
-To link the declared relations in your messages, you need to add them to the project. This process involves entering the call key and the library name to complete the addition of the relation.
 
-#### How to load the package
+
+#### Check packages
+
 <div class="console">
-    <div class="console-content">
-    cd C:\Users\Demo
-
-    port add --pkg IOBoard1 IOBoardLib
+    <div class="console-content"> 
+    port ls pkg 
+   </div>
+</div>
+<br>
+<div class="console">
+    <div class="console-content"> 
+    package1  [DateTime]
+    package2  [DateTime]
+    package3  [DateTime]
+    package4  [DateTime] 
    </div>
 </div>
 
+ 
+#### Add packages
+<br>
+<div class="console">
+    <div class="console-content">
+    cd C:\Users\Demo
+   </div>
+</div>
+<br/>
+<div class="console">
+    <div class="console-content">
+    port add --pkg sample SampleLib
+   </div>
+</div>
+
+
+    
 !!!tip
     If you see a message like `[ERROR][open ..\proj.toml: Access is denied.]`
     granting administrator privileges to the port.exe program will resolve the issue.
 
 After linking the relations to your project, you can verify the integration using the following command
 
-#### How to check package list
-<div class="console">
-    <div class="console-content"> 
-    port ls pkg 
-
-    package1  [DateTime]
-    package2  [DateTime]
-    package3  [DateTime]
-    package4  [DateTime]
-    ...
-
-   </div>
-</div>
 
 ## How to start project
 Once all message definitions are complete, you can start the message server based on these definitions. Before running the server, upload all updated content to the local repository by entering `port push` in the console. Then, run the server with the command `port run [project-name]`.
 
 <div class="console">
     <div class="console-content">
-       port push
-       ...
-       port run Demo --ng ignore 
-       ...
-       [localhost:5001]Port Running ... OK
+       port push 
+    </div>
+</div>
+
+<br>
+<div class="console">
+    <div class="console-content">
+       port run sample  
+    </div>
+</div>
+<br>
+<div class="console">
+    <div class="console-content">
+      [localhost:5001]Port Running ... OK
        Access point count [4]
-       Relation count [2]
-       NG point [CATEGORY_MSG_POINT_RELATION][4]
-       NG point [CATEGORY_RELATION_MESSAGE][1]
-       NG point [CATEGORY_MEMORY][2]
-       NG point [CATEGORY_LIBRARY][3]
-       NG point [CATEGORY_MSG_POINT_ENUM][136]
+       Package count [2]
        Pressing 'CTRL + C' will initiate server shutdown.
        Please wait for all processes to safely terminate before closing the application.
     </div>
 </div>
+      
 
 !!!tip
     When running the server, if you include `--ng ignore` in the command, it will summarize only the points where errors (NG) occur. For detailed information on these NG points, you can visit the following URL to view the NG point table: 
