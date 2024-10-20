@@ -244,7 +244,7 @@ ___
    </div>
 </div>
 
- 
+<br>
 #### Add packages
 <br>
 <div class="console">
@@ -255,11 +255,24 @@ ___
 <br/>
 <div class="console">
     <div class="console-content">
-    port add --pkg sample SampleLib
+    port add --pkg bulb1 bulb
    </div>
 </div>
-
-
+<div class="console">
+    <div class="console-content">
+    port add --pkg bulb2 bulb
+   </div>
+</div>
+<div class="console">
+    <div class="console-content">
+    port add --pkg heater1 bulb
+   </div>
+</div>
+<div class="console">
+    <div class="console-content">
+    port add --pkg heater2 bulb
+   </div>
+</div>
     
 !!!tip
     If you see a message like `[ERROR][open ..\proj.toml: Access is denied.]`

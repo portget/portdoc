@@ -3,8 +3,7 @@ site_url: https://portdic.com
 nav:
   - Home: index.md
   - Learn: learn.md
-  - Dictionary: portdic.md 
-  - API Reference: reference.md
+  - Dictionary: portdic.md
 markdown_extensions:
   - admonition
   - footnotes
