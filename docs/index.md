@@ -19,9 +19,7 @@ Please see the documentation [lincense](license.md)
 
 VERSION | OS |STABLE | URL 
 ------|--------|--------|--------
-v1.0.26 | Windows x64 | Yes | [v1.0.26-win-installer](https://github.com/portget/port/archive/refs/tags/v1.0.26-win-installer.zip){:download}
-v1.0.25 | Windows x64 | No | [v1.0.25-win-installer](https://github.com/portget/port/archive/refs/tags/v1.0.25-win-installer.zip){:download}
-
+v1.0.27 | Windows x64 | Yes | [v1.0.27-win-installer](https://github.com/portget/port/archive/refs/tags/v1.0.27-win-installer.zip){:download}  
 
 
 ## Project Layout
@@ -153,8 +151,7 @@ ___
  pull|`-` | Pull project from repository.
  set |`[group-name|pkg-name] [message-name] [value]` | Set values in the pkg server.
  get |`[group-name|pkg-name] [message-name]`  | Get values from the pkg server.
- load  |`[pkg-name]`  | Loads the package into the currently running pkg server.
- save  |`[pkg-name]`  | Save the package.
+ build  |`[pkg-name] [--path <build-path>]|[--o <output package-name>]`  | Build package 
  init  |`[pkg-name]`  | Initializes the Package.
  event |`[pkg-name]`  | Displays a events.
  run| `[name]` |  Runs the pkg server based on the specified repository. 
