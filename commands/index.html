@@ -7,11 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     
-    <link rel="canonical" href="https://portdic.com/sdk/">
+    <link rel="canonical" href="https://portdic.com/commands/">
     <link rel="shortcut icon" href="../img/favicon.ico">
 
     
-    <title>What's PortSDK? - Port</title>
+    <title>Commands - Port</title>
     
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
@@ -93,8 +93,8 @@
                 
                 
                 
-                    <li >
-                        <a href="../commands/">Commands</a>
+                    <li class="active">
+                        <a href="./">Commands</a>
                     </li>
                 
                 
@@ -104,6 +104,16 @@
                     <li>
                         <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
                             <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../portdic/">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li class="disabled">
+                        <a rel="next" >
+                            Next <i class="fas fa-arrow-right"></i>
                         </a>
                     </li>
             </ul>
@@ -116,128 +126,176 @@
         
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
-        <li class="first-level active"><a href="#whats-portsdk">What's PortSDK?</a></li>
-        <li class="first-level "><a href="#get-started">Get Started</a></li>
-            <li class="second-level"><a href="#download">Download</a></li>
+        <li class="first-level active"><a href="#commands">Commands</a></li>
+            <li class="second-level"><a href="#cheat-sheet">Cheat Sheet</a></li>
                 
-            <li class="second-level"><a href="#package">Package</a></li>
+            <li class="second-level"><a href="#repository">Repository</a></li>
                 
-                <li class="third-level"><a href="#class-name">Class Name</a></li>
-                <li class="third-level"><a href="#c">C#</a></li>
-                <li class="third-level"><a href="#attributes">Attributes</a></li>
+                <li class="third-level"><a href="#port-push">port push</a></li>
+                <li class="third-level"><a href="#port-pull">port pull</a></li>
+            <li class="second-level"><a href="#server">Server</a></li>
+                
+                <li class="third-level"><a href="#port-run-repository-name">port run [repository-name]</a></li>
+                <li class="third-level"><a href="#port-shutdown">port shutdown</a></li>
+            <li class="second-level"><a href="#message">Message</a></li>
+                
+                <li class="third-level"><a href="#port-set-group-message-value">port set [group] [message] [value]</a></li>
+                <li class="third-level"><a href="#port-get-group-message">port get [group] [message]</a></li>
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
 
-<h1 id="whats-portsdk">What's PortSDK?<a class="headerlink" href="#whats-portsdk" title="Permanent link">&para;</a></h1>
+<h1 id="commands">Commands<a class="headerlink" href="#commands" title="Permanent link">&para;</a></h1>
 <hr />
-<p>Port offers a Software Development Kit (SDK) for developing system applications. With this SDK, developers can create consistent software that provides package, libraries, and structured documentation to end users, enabling more efficient configuration management.</p>
-<h1 id="get-started">Get Started<a class="headerlink" href="#get-started" title="Permanent link">&para;</a></h1>
-<hr />
-<h2 id="download">Download<a class="headerlink" href="#download" title="Permanent link">&para;</a></h2>
+<h2 id="cheat-sheet">Cheat Sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>NAME</th>
-<th>Language</th>
-<th>Package Manager</th>
-<th>OS</th>
-<th>STABLE</th>
+<th>command</th>
+<th>arguments</th>
+<th>description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Port.SDK</td>
-<td>C#</td>
-<td>Nuget</td>
-<td>Windows x64</td>
-<td>Yes</td>
+<td>?</td>
+<td><code>[script]</code></td>
+<td>Runs the specified script.</td>
+</tr>
+<tr>
+<td>version</td>
+<td><code>-</code></td>
+<td>Displays the version information.</td>
+</tr>
+<tr>
+<td>new</td>
+<td><code>[name]</code></td>
+<td>Can specify rules to manage the values of corresponding messages.</td>
+</tr>
+<tr>
+<td>push</td>
+<td><code>-</code></td>
+<td>Push project to repository.</td>
+</tr>
+<tr>
+<td>pull</td>
+<td><code>-</code></td>
+<td>Pull project from repository.</td>
+</tr>
+<tr>
+<td>set</td>
+<td><code>[group-name|pkg-name] [message-name] [value]</code></td>
+<td>Set values in the pkg server.</td>
+</tr>
+<tr>
+<td>get</td>
+<td><code>[group-name|pkg-name] [message-name]</code></td>
+<td>Get values from the pkg server.</td>
+</tr>
+<tr>
+<td>build</td>
+<td><code>[pkg-name] [--path &lt;build-path&gt;]|[--o &lt;output package-name&gt;]</code></td>
+<td>Build package</td>
+</tr>
+<tr>
+<td>init</td>
+<td><code>[pkg-name]</code></td>
+<td>Initializes the Package.</td>
+</tr>
+<tr>
+<td>event</td>
+<td><code>[pkg-name]</code></td>
+<td>Displays a events.</td>
+</tr>
+<tr>
+<td>run</td>
+<td><code>[name]</code></td>
+<td>Runs the pkg server based on the specified repository.</td>
+</tr>
+<tr>
+<td>ls</td>
+<td><code>[repo]</code>|<code>[pkg]</code>|<code>[tcp]</code>|<code>[comm]</code></td>
+<td>Displays the specified items in a list.</td>
+</tr>
+<tr>
+<td>queue</td>
+<td><p><code>[new] [name]</code> <p><code>[ls]</code> <p><code>[view] [name]</code> <p><code>[push] [name] [value]</code> <p><code>[pop] [name]</code></td>
+<td><p>  Create new queue. <p> Displays queue list. <p> Displays queue items. <p> Push a item to queue. </p> <p> Pop a item from queue. </p></td>
+</tr>
+<tr>
+<td>stack</td>
+<td><p><code>[new] [name]</code> <p><code>[ls]</code> <p><code>[view] [name]</code> <p><code>[push] [name] [value]</code> <p><code>[pop] [name]</code></td>
+<td><p>  Create new stack. <p> Displays stack list. <p> Displays stack items. <p> Push a item to stack. </p> <p> Pop a item from stack. </p></td>
+</tr>
+<tr>
+<td>storage</td>
+<td><p><code>[new] [name]</code> <p><code>[ls]</code> <p><code>[view] [name]</code> <p><code>[set] [name] [key] [value]</code> <p><code>[get] [name] [key]</code></td>
+<td><p>  Create new storage. <p> Displays storage list. <p> Displays storage items. <p> Push a item to storage. </p> <p> Pop a item from storage. </p></td>
+</tr>
+<tr>
+<td>list</td>
+<td><p><code>[new] [name]</code> <p><code>[ls]</code> <p><code>[view] [name]</code> <p><code>[add] [name] [value]</code> <p><code>[insert] [name] [index] [value]</code>  <p><code>[remove] [name] [index] [value]</code></td>
+<td><p>  Create new list. <p> Displays a lists. <p> Displays list items. <p> Add a item. </p> <p> Insert a item. </p> <p> Remove a item. </p></td>
+</tr>
+<tr>
+<td>kill</td>
+<td><code>[kill-code]</code></td>
+<td>Shutdown pkg server.</td>
+</tr>
+<tr>
+<td>flow</td>
+<td><p><code>[load] [flow-key]</code>  <p><code>[init] [flow-key]</code>   <p><code>[remove] [flow-key]</code> <p><code>[event] [flow-key]</code></td>
+<td><p> Loads the Flow resource into the currently running pkg server. <p> Initializes the Flow resource.</p> <p> Remove Flow resource </p><p> Displays a events from the Flow resource.</p></td>
+</tr>
+<tr>
+<td>env</td>
+<td><code>-</code></td>
+<td>Displays the system environment settings.</td>
+</tr>
+<tr>
+<td>help</td>
+<td><code>-</code></td>
+<td>.</td>
 </tr>
 </tbody>
 </table>
-<h2 id="package">Package<a class="headerlink" href="#package" title="Permanent link">&para;</a></h2>
-<p>All objects inheriting from the package can invoke messages defined in the class via the Port Application. These messages are defined through an existing API Document, and additional attributes can be defined to provide messages with extra functionalities.</p>
-<h3 id="class-name">Class Name<a class="headerlink" href="#class-name" title="Permanent link">&para;</a></h3>
-<hr />
-<div class="admonition important">
-<p class="admonition-title">The class name must be declared as <code>Port</code></p>
+<h2 id="repository">Repository<a class="headerlink" href="#repository" title="Permanent link">&para;</a></h2>
+<h3 id="port-push"><code>port push</code><a class="headerlink" href="#port-push" title="Permanent link">&para;</a></h3>
+<ul>
+<li>push project to repository</li>
+</ul>
+<h3 id="port-pull"><code>port pull</code><a class="headerlink" href="#port-pull" title="Permanent link">&para;</a></h3>
+<ul>
+<li>pull project from repository</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The application runs based on the values stored in the repository. The push action must precede the application startup. 
+Subsequently, users can perform a pull action at any desired moment to restore the repository.</p>
 </div>
-<hr />
-<h3 id="c">C#<a class="headerlink" href="#c" title="Permanent link">&para;</a></h3>
-<pre><code class="language-C#"> public class Port : PortObject
- {
-     public Port()
-     {
-         this.SetLogger(new ExLogger());
-     }
-
-     public override bool Init()
-     {
-        // initialized method
-     }
-
-     public override void Dispose()
-     {
-
-     }
-
-     private SerialPort serial = new SerialPort();
-
-     [Message, Reserved(ReservedAttribute.Type.Address), Regex(RegexAttribute.ComRegex)]
-     public string Address
-     {
-         get;
-         set;
-     }
-
-     [Message]
-     public int NValue { get =&gt; 3; }
-
-     [Message]
-     public double DValue { get =&gt; 2; }
-
-     [Message]
-     public string StrValue { get =&gt; &quot;on&quot;; } 
- }
+<h2 id="server">Server<a class="headerlink" href="#server" title="Permanent link">&para;</a></h2>
+<h3 id="port-run-repository-name"><code>port run [repository-name]</code><a class="headerlink" href="#port-run-repository-name" title="Permanent link">&para;</a></h3>
+<ul>
+<li>run server from repository</li>
+</ul>
+<h3 id="port-shutdown"><code>port shutdown</code><a class="headerlink" href="#port-shutdown" title="Permanent link">&para;</a></h3>
+<ul>
+<li>terminated current server</li>
+</ul>
+<h2 id="message">Message<a class="headerlink" href="#message" title="Permanent link">&para;</a></h2>
+<h3 id="port-set-group-message-value"><code>port set [group] [message] [value]</code><a class="headerlink" href="#port-set-group-message-value" title="Permanent link">&para;</a></h3>
+<ul>
+<li>set the message value to current repository</li>
+</ul>
+<pre><code class="language-console">port set groupA sayHelloMessage1 Hello?
+[set-ok]
 </code></pre>
-<h3 id="attributes">Attributes<a class="headerlink" href="#attributes" title="Permanent link">&para;</a></h3>
-<hr />
-<h4 id="message-attributes">Message Attributes<a class="headerlink" href="#message-attributes" title="Permanent link">&para;</a></h4>
-<p>Properties declared with Message Attributes are defined as API Messages and made available to the end-user. They apply only to properties with get and set accessors, and these getters and setters can be accessed and modified via a REST API.</p>
-<pre><code>    [Message]
-    public int NValue { get =&gt; 3; }
-</code></pre>
-<h4 id="reserved-attributes">Reserved Attributes<a class="headerlink" href="#reserved-attributes" title="Permanent link">&para;</a></h4>
-<pre><code>    [Message, Reserved(ReservedAttribute.Type.Address), Regex(RegexAttribute.ComportRegex)]
-    public string Address
-    {
-        get;
-        set;
-    }
-</code></pre>
-<h4 id="regex-attributes">Regex Attributes<a class="headerlink" href="#regex-attributes" title="Permanent link">&para;</a></h4>
-<p>Properties with Regex Attributes are subjected to a regular expression check when their values are changed. If the value does not pass the validation check, it is not updated, ensuring consistency and validity of the property's value.</p>
-<pre><code>    [Message, Regex(RegexAttribute.Ip4vRegex)]
-    public string Address
-    {
-        get;
-        set;
-    }
-</code></pre>
-<h4 id="enumcode-attributes">EnumCode Attributes<a class="headerlink" href="#enumcode-attributes" title="Permanent link">&para;</a></h4>
-<p>EnumCode Attributes are declared, the values of the enum can be accessed via an API. The API allows for the retrieval of information about the enumeration values, enabling external systems or users to interact with and obtain details about the enum through the API interface.</p>
-<pre><code>    [EnumCode]
-    public enum TestEnum : ushort
-    {
-        _ = 0,
-        TestEnumItem1,
-        TestEnumItem2,
-    }
-</code></pre>
-<h4 id="comment-attributes">Comment Attributes<a class="headerlink" href="#comment-attributes" title="Permanent link">&para;</a></h4>
-<p>When Comment Attributes are declared, the comments associated with the property can be exposed through the API. This allows users or external systems to access descriptive information or documentation about the property via the API, providing context and clarity on the property's purpose or usage.</p>
-<pre><code>     [Message,Commnet(&quot;this is a numberic&quot;)]
-     public int NValue { get =&gt; 3; }
+<h3 id="port-get-group-message"><code>port get [group] [message]</code><a class="headerlink" href="#port-get-group-message" title="Permanent link">&para;</a></h3>
+<ul>
+<li>get the message value to current repository</li>
+</ul>
+<pre><code class="language-console">port get groupA sayHelloMessage1
+[Hello?]
 </code></pre></div>
         
         

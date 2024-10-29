@@ -6,6 +6,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://portdic.com/commands/</loc>
+         <lastmod>2024-10-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://portdic.com/frame/</loc>
          <lastmod>2024-10-29</lastmod>
          <changefreq>daily</changefreq>
@@ -17,6 +22,11 @@
     </url>
     <url>
          <loc>https://portdic.com/license/</loc>
+         <lastmod>2024-10-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://portdic.com/package/</loc>
          <lastmod>2024-10-29</lastmod>
          <changefreq>daily</changefreq>
     </url>

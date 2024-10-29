@@ -7,11 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     
-    <link rel="canonical" href="https://portdic.com/learn/">
+    <link rel="canonical" href="https://portdic.com/package/">
     <link rel="shortcut icon" href="../img/favicon.ico">
 
     
-    <title>Learn - Port</title>
+    <title>Packages - Port</title>
     
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
@@ -75,14 +75,14 @@
                 
                 
                 
-                    <li class="active">
-                        <a href="./">Learn</a>
+                    <li >
+                        <a href="../learn/">Learn</a>
                     </li>
                 
                 
                 
-                    <li >
-                        <a href="../package/">Packages</a>
+                    <li class="active">
+                        <a href="./">Packages</a>
                     </li>
                 
                 
@@ -107,12 +107,12 @@
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="..">
+                        <a rel="prev" href="../learn/">
                             <i class="fas fa-arrow-left"></i> Previous
                         </a>
                     </li>
                     <li >
-                        <a rel="next" href="../package/">
+                        <a rel="next" href="../portdic/">
                             Next <i class="fas fa-arrow-right"></i>
                         </a>
                     </li>
@@ -127,9 +127,15 @@
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
         <li class="first-level active"><a href="#quick-start">Quick Start</a></li>
+            <li class="second-level"><a href="#download">Download</a></li>
+                
+            <li class="second-level"><a href="#how-to-create-a-packages">How to create a packages</a></li>
+                
+                <li class="third-level"><a href="#attributes">Attributes</a></li>
+                <li class="third-level"><a href="#sample-code-net">Sample code (.net)</a></li>
             <li class="second-level"><a href="#how-to-create-a-port-project">How to create a port-project</a></li>
                 
-                <li class="third-level"><a href="#heres-an-example">Here's an example</a></li>
+                <li class="third-level"><a href="#heres-an-example_1">Here's an example</a></li>
             <li class="second-level"><a href="#how-to-add-messages">How to add messages</a></li>
                 
                 <li class="third-level"><a href="#sample-message-files">Sample message files</a></li>
@@ -148,10 +154,176 @@
 <hr />
 <p>Port operates by reflecting messages in the most recently updated repository. 
 Try creating and editing a basic project to see how you can modify and configure projects. Follow along to understand the process better.</p>
+<h2 id="download">Download<a class="headerlink" href="#download" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>NAME</th>
+<th>Language</th>
+<th>Package Manager</th>
+<th>OS</th>
+<th>STABLE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Port.SDK</td>
+<td>C#</td>
+<td>Nuget</td>
+<td>Windows x64</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<h2 id="how-to-create-a-packages">How to create a packages<a class="headerlink" href="#how-to-create-a-packages" title="Permanent link">&para;</a></h2>
+<hr />
+<p>Let's develop a package. In the Port Application, all operations are grouped at the package level and function at the message level. Every operation is defined within messages, allowing users to increase code reusability through messages.</p>
+<p><br/>
+<br/></p>
+<h3 id="attributes">Attributes<a class="headerlink" href="#attributes" title="Permanent link">&para;</a></h3>
+<hr />
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>arguments</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Message</td>
+<td><code>-</code></td>
+<td>Messages are declared, and the values defined as properties can be controlled through package calls.</td>
+</tr>
+<tr>
+<td>Regex</td>
+<td><code>[Pattern|Type]</code></td>
+<td>It is validated through a regular expression check. If the value matches the specified regular expression, it is accepted as valid; otherwise, an input exception is triggered.</td>
+</tr>
+<tr>
+<td>EnumCode</td>
+<td><code>-</code></td>
+<td>The Enum type is declared, allowing you to retrieve the Enum values through this declaration.</td>
+</tr>
+<tr>
+<td>Comment</td>
+<td><code>-</code></td>
+<td>A comment is declared, allowing you to retrieve the comment through this declaration.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="message-attributes">Message Attributes<a class="headerlink" href="#message-attributes" title="Permanent link">&para;</a></h4>
+<p>Properties declared with Message Attributes are defined as API Messages and made available to the end-user. They apply only to properties with get and set accessors, and these getters and setters can be accessed and modified via a REST API.</p>
+<pre><code>    [Message]
+    public int NValue { get =&gt; 3; }
+</code></pre>
+<h4 id="regex-attributes">Regex Attributes<a class="headerlink" href="#regex-attributes" title="Permanent link">&para;</a></h4>
+<p>Properties with Regex Attributes are subjected to a regular expression check when their values are changed. If the value does not pass the validation check, it is not updated, ensuring consistency and validity of the property's value.</p>
+<pre><code>    [Message, Regex(RegexAttribute.Ip4vRegex)]
+    public string Address
+    {
+        get;
+        set;
+    }
+</code></pre>
+<h4 id="enumcode-attributes">EnumCode Attributes<a class="headerlink" href="#enumcode-attributes" title="Permanent link">&para;</a></h4>
+<p>EnumCode Attributes are declared, the values of the enum can be accessed via an API. The API allows for the retrieval of information about the enumeration values, enabling external systems or users to interact with and obtain details about the enum through the API interface.</p>
+<pre><code>    [EnumCode]
+    public enum TestEnum : ushort
+    {
+        _ = 0,
+        TestEnumItem1,
+        TestEnumItem2,
+    }
+</code></pre>
+<h4 id="comment-attributes">Comment Attributes<a class="headerlink" href="#comment-attributes" title="Permanent link">&para;</a></h4>
+<p>When Comment Attributes are declared, the comments associated with the property can be exposed through the API. This allows users or external systems to access descriptive information or documentation about the property via the API, providing context and clarity on the property's purpose or usage.</p>
+<pre><code>     [Message,Commnet(&quot;this is a numberic&quot;)]
+     public int NValue { get =&gt; 3; }
+</code></pre>
+<p><br></p>
+<h3 id="sample-code-net">Sample code (.net)<a class="headerlink" href="#sample-code-net" title="Permanent link">&para;</a></h3>
+<hr />
+<div class="admonition important">
+<p class="admonition-title">The class name must be declared as <code>Port</code></p>
+</div>
+<hr />
+<h4 id="bulb-package">bulb package<a class="headerlink" href="#bulb-package" title="Permanent link">&para;</a></h4>
+<pre><code class="language-C#">
+ public class Port : PortObject
+ {
+     public Port()
+     {
+
+     }
+
+     public override bool Init()
+     {
+        // initialized method
+     }
+
+     public override void Dispose()
+     {
+
+     } 
+
+     private string status = &quot;On&quot;;
+
+     [Message]
+     public string OnOff { get =&gt; { return status == &quot;On&quot; ? &quot;Off&quot; : &quot;On&quot;; }} 
+
+ }
+
+</code></pre>
+<h4 id="heater-package">heater package<a class="headerlink" href="#heater-package" title="Permanent link">&para;</a></h4>
+<pre><code class="language-C#">
+ public class Port : PortObject
+ {
+     public Port()
+     {
+
+     }
+
+     public override bool Init()
+     {
+        // initialized method
+     }
+
+     public override void Dispose()
+     {
+
+     } 
+
+     [Message]
+     public double GetTemperature { get =&gt; { var rand = new Random(); return rand.Next(); }
+
+ }
+
+</code></pre>
+<p><br/>
+<br/></p>
+<h4 id="heres-an-example">Here's an example<a class="headerlink" href="#heres-an-example" title="Permanent link">&para;</a></h4>
+<p><br/></p>
+<div class="console">
+    <div class="console-content">
+        port build bulb [--path `build-path`]|[--o `output package-name`]
+    </div>
+</div>
+
+<p><br></p>
+<div class="console">
+    <div class="console-content">
+       port build heater [--path `build-path`]|[--o `output package-name`]
+    </div>
+</div>
+
+<p><br></p>
 <h2 id="how-to-create-a-port-project">How to create a port-project<a class="headerlink" href="#how-to-create-a-port-project" title="Permanent link">&para;</a></h2>
 <hr />
 <p>Before starting a Port project, you need to create a root folder that defines your messages. The subfolders within this root folder are managed as groups by Port, allowing users to organize messages by group. The root folder contains files with the <code>*.enum</code> extension and the structure of sub-group folders. Within the sub-group folders, message definition documents with the <code>*.msg</code> extension are created.</p>
-<h3 id="heres-an-example">Here's an example<a class="headerlink" href="#heres-an-example" title="Permanent link">&para;</a></h3>
+<h3 id="heres-an-example_1">Here's an example<a class="headerlink" href="#heres-an-example_1" title="Permanent link">&para;</a></h3>
 <p><br/></p>
 <div class="console">
     <div class="console-content">
@@ -212,40 +384,32 @@ Try creating and editing a basic project to see how you can modify and configure
 </div>
 
 <p><br></p>
-<h3 id="add-packages">Add packages<a class="headerlink" href="#add-packages" title="Permanent link">&para;</a></h3>
+<h4 id="add-packages">Add packages<a class="headerlink" href="#add-packages" title="Permanent link">&para;</a></h4>
 <p><br></p>
-<h4 id="move-directory">move directory<a class="headerlink" href="#move-directory" title="Permanent link">&para;</a></h4>
 <div class="console">
     <div class="console-content">
     cd C:\Users\Demo
    </div>
 </div>
 <p><br/></p>
-<h4 id="add-the-package-to-the-current-project-under-the-name-bulb1">Add the package to the current project under the name "bulb1"<a class="headerlink" href="#add-the-package-to-the-current-project-under-the-name-bulb1" title="Permanent link">&para;</a></h4>
 <div class="console">
     <div class="console-content">
     port add --pkg bulb1 bulb
    </div>
 </div>
-<p><br/></p>
-<h4 id="add-the-package-to-the-current-project-under-the-name-bulb2">Add the package to the current project under the name "bulb2"<a class="headerlink" href="#add-the-package-to-the-current-project-under-the-name-bulb2" title="Permanent link">&para;</a></h4>
 <div class="console">
     <div class="console-content">
     port add --pkg bulb2 bulb
    </div>
 </div>
-<p><br/></p>
-<h4 id="add-the-package-to-the-current-project-under-the-name-heater1">Add the package to the current project under the name "heater1"<a class="headerlink" href="#add-the-package-to-the-current-project-under-the-name-heater1" title="Permanent link">&para;</a></h4>
 <div class="console">
     <div class="console-content">
-    port add --pkg heater1 heater
+    port add --pkg heater1 bulb
    </div>
 </div>
-<p><br/></p>
-<h4 id="add-the-package-to-the-current-project-under-the-name-heater2">Add the package to the current project under the name "heater2"<a class="headerlink" href="#add-the-package-to-the-current-project-under-the-name-heater2" title="Permanent link">&para;</a></h4>
 <div class="console">
     <div class="console-content">
-    port add --pkg heater2 heater
+    port add --pkg heater2 bulb
    </div>
 </div>
 
