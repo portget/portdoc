@@ -1,10 +1,6 @@
-# Quick Start
+# What's Package
 ___
-Port operates by reflecting messages in the most recently updated repository. 
-Try creating and editing a basic project to see how you can modify and configure projects. Follow along to understand the process better.
-
-
-
+The Port package is a collection of reusable libraries. Users can develop packages by inheriting the `PortObject`, then link it to a Message, allowing for straightforward usage through Message calls.
 
 
 
