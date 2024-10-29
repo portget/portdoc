@@ -37,17 +37,19 @@ The Port project is remarkably simple and straightforward. To get started, first
 
 
 ___
-#### Layout
- APT/
-    port.toml         # The configuration file.
-    *.enum            # The custom enum file 
-    room1/      # The group directory. 
-        *.msg   # The message file 
-
-    room2/      # The group directory. 
-        *.msg   # The message file 
-    ...               # Other files.
-
+#### Layout 
+``` 
+APT/
+│
+├── room1/      # The group directory. 
+│   ├── *.msg   # The message file 
+│
+├── room2/      # The group directory. 
+│   ├── *.msg   # The message file 
+│
+└── *.enum
+└── port.toml   # The configuration file.
+```
 ___
 
 !!! tip

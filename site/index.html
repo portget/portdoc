@@ -187,14 +187,16 @@
 
 <hr />
 <h4 id="layout">Layout<a class="headerlink" href="#layout" title="Permanent link">&para;</a></h4>
-<p>APT/
-    port.toml         # The configuration file.
-    <em>.enum            # The custom enum file 
-    room1/      # The group directory. 
-        </em>.msg   # The message file </p>
-<pre><code>room2/      # The group directory. 
-    *.msg   # The message file 
-...               # Other files.
+<pre><code>APT/
+│
+├── room1/      # The group directory. 
+│   ├── *.msg   # The message file 
+│
+├── room2/      # The group directory. 
+│   ├── *.msg   # The message file 
+│
+└── *.enum
+└── port.toml   # The configuration file.
 </code></pre>
 <hr />
 <div class="admonition tip">
@@ -478,5 +480,5 @@ OnOff       On:0       Off:1
 
 <!--
 MkDocs version : 1.6.0
-Build Date UTC : 2024-10-29 09:33:30.204092+00:00
+Build Date UTC : 2024-10-29 09:38:04.967881+00:00
 -->
