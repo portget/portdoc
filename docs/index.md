@@ -38,18 +38,14 @@ The Port project is remarkably simple and straightforward. To get started, first
 
 ___
 #### Layout
- 
+ APT/
     port.toml         # The configuration file.
-    .enum             # The custom enum file 
-    pkg-A-Group/      # The group directory. 
-        sample1.msg   # The message file
-        sample2.msg   # The message file
-        sample3.msg   # The message file
+    *.enum            # The custom enum file 
+    room1/      # The group directory. 
+        *.msg   # The message file 
 
-    pkg-B-Group/      # The group directory. 
-        sample1.msg   # The message file
-        sample2.msg   # The message file
-        sample3.msg   # The message file
+    room2/      # The group directory. 
+        *.msg   # The message file 
     ...               # Other files.
 
 ___
@@ -100,12 +96,14 @@ name | range | description
  rule    | Can specify rules to manage the values of corresponding messages.  
 
 <br/>
-#### sample1.msg
+
+#### ./room1/*.msg
 ```console
- DevAPowerStatus    enum.DeviceAStatus  pkg:DeviceA.GetStatus         
- DevAErrorMessage   text                pkg:DeviceA.GetErrorMessage property:{"Arguments":"1,0"}
- DevCTemperature    num                 pkg:DeviceC.GetTemperature property:{"MIN":0,"MAX":300}
- DevCOnOff          enum.OnOff          pkg:DeviceC.OnOff           
+ BulbOnOff     enum.OffOn  pkg:Blub1.Power
+ BulbOnOff     enum.OffOn  pkg:Blub1.Power         
+ RoomHeater1   enum.OffOn  pkg:Heater1.Power property:{"Arguments":"1,0"}
+ RoomHeater2   enum.OffOn  pkg:Heater1.Power property:{"Arguments":"2,0"}
+ RoomTemp      num         pkg:Heater1.Temp  property:{"MIN":0,"MAX":300} 
  ...
 ```
 
@@ -128,67 +126,16 @@ Enums are particularly useful when you have a fixed set of values that a variabl
 
 
 
-#### custom.enum
+#### *.enum
 ```console
 TFalse      True:0      False:1
 FTrue       False:0     True:1
+OffOn       Off:0       On:1
+OnOff       On:0       Off:1
 ```
 
 
 
-## Commands
-___
-
-
-### Cheat Sheet
- 
- command | arguments | description
- ------|-------- |--------
- ?     |`[script]` | Runs the specified script. 
- version |`-` | Displays the version information. 
- new | `[name]`  | Can specify rules to manage the values of corresponding messages. 
- push|`-` | Push project to repository.
- pull|`-` | Pull project from repository.
- set |`[group-name|pkg-name] [message-name] [value]` | Set values in the pkg server.
- get |`[group-name|pkg-name] [message-name]`  | Get values from the pkg server.
- build  |`[pkg-name] [--path <build-path>]|[--o <output package-name>]`  | Build package 
- init  |`[pkg-name]`  | Initializes the Package.
- event |`[pkg-name]`  | Displays a events.
- run| `[name]` |  Runs the pkg server based on the specified repository. 
- ls | `[repo]`\|`[pkg]`\|`[tcp]`\|`[comm]` | Displays the specified items in a list. 
- queue|<p>`[new] [name]` <p>`[ls]` <p>`[view] [name]` <p>`[push] [name] [value]` <p>`[pop] [name]` | <p>  Create new queue. <p> Displays queue list. <p> Displays queue items. <p> Push a item to queue. </p> <p> Pop a item from queue. </p>
- stack|<p>`[new] [name]` <p>`[ls]` <p>`[view] [name]` <p>`[push] [name] [value]` <p>`[pop] [name]` | <p>  Create new stack. <p> Displays stack list. <p> Displays stack items. <p> Push a item to stack. </p> <p> Pop a item from stack. </p>
- storage|<p>`[new] [name]` <p>`[ls]` <p>`[view] [name]` <p>`[set] [name] [key] [value]` <p>`[get] [name] [key]` | <p>  Create new storage. <p> Displays storage list. <p> Displays storage items. <p> Push a item to storage. </p> <p> Pop a item from storage. </p>
- list|<p>`[new] [name]` <p>`[ls]` <p>`[view] [name]` <p>`[add] [name] [value]` <p>`[insert] [name] [index] [value]`  <p>`[remove] [name] [index] [value]` |<p>  Create new list. <p> Displays a lists. <p> Displays list items. <p> Add a item. </p> <p> Insert a item. </p> <p> Remove a item. </p>
- kill | `[kill-code]` | Shutdown pkg server.
- flow|  <p>`[load] [flow-key]`  <p>`[init] [flow-key]`   <p>`[remove] [flow-key]` <p>`[event] [flow-key]`| <p> Loads the Flow resource into the currently running pkg server. <p> Initializes the Flow resource.</p> <p> Remove Flow resource </p><p> Displays a events from the Flow resource.</p>
- env | `-`|Displays the system environment settings.  
- help| `-`|.
-
-
-### Repository
-* `port push` - push project to repository
-* `port pull` - pull project from repository
-
-!!!tip
-    The application runs based on the values stored in the repository. The push action must precede the application startup. 
-    Subsequently, users can perform a pull action at any desired moment to restore the repository.
-
-### Server 
-* `port run [repository-name]` - run server from repository
-* `port kill` - terminated current server
- 
-### Message
-* `port set [group-key] [message-key] [set-value]` - set the message value to current repository
-```console
-port set groupA sayHelloMessage1 Hello?
-[set-ok]
-```
-* `port get [group-key] [message-key]` - get the message value to current repository
-```console
-port get groupA sayHelloMessage1
-[Hello?]
-```
 
 
 
