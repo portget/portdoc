@@ -3,7 +3,9 @@ site_url: https://portdic.com
 nav:
   - Home: index.md
   - Learn: learn.md
+  - Packages: package.md
   - Dictionary: portdic.md
+  - Commands: commands.md
 markdown_extensions:
   - admonition
   - footnotes

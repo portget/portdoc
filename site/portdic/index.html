@@ -81,8 +81,20 @@
                 
                 
                 
+                    <li >
+                        <a href="../package/">Packages</a>
+                    </li>
+                
+                
+                
                     <li class="active">
                         <a href="./">Dictionary</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../commands/">Commands</a>
                     </li>
                 
                 
@@ -95,12 +107,12 @@
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../learn/">
+                        <a rel="prev" href="../package/">
                             <i class="fas fa-arrow-left"></i> Previous
                         </a>
                     </li>
-                    <li class="disabled">
-                        <a rel="next" >
+                    <li >
+                        <a rel="next" href="../commands/">
                             Next <i class="fas fa-arrow-right"></i>
                         </a>
                     </li>
@@ -117,7 +129,10 @@
         <li class="first-level active"><a href="#whats-portdic">What's PortDic</a></li>
             <li class="second-level"><a href="#download">Download</a></li>
                 
-            <li class="second-level"><a href="#functions">Functions</a></li>
+            <li class="second-level"><a href="#react">React</a></li>
+                
+                <li class="third-level"><a href="#set-get">SET / GET</a></li>
+            <li class="second-level"><a href="#net">.Net</a></li>
                 
                 <li class="third-level"><a href="#set">SET</a></li>
                 <li class="third-level"><a href="#get">GET</a></li>
@@ -146,13 +161,90 @@
 <tr>
 <td>Port.Library</td>
 <td>C#</td>
-<td>Nuget</td>
-<td>Windows x64</td>
+<td>nuget</td>
+<td>Windows</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>portdic</td>
+<td>Javascript</td>
+<td>npm</td>
+<td>Any</td>
 <td>Yes</td>
 </tr>
 </tbody>
 </table>
-<h2 id="functions">Functions<a class="headerlink" href="#functions" title="Permanent link">&para;</a></h2>
+<h2 id="react">React<a class="headerlink" href="#react" title="Permanent link">&para;</a></h2>
+<h3 id="set-get">SET / GET<a class="headerlink" href="#set-get" title="Permanent link">&para;</a></h3>
+<pre><code class="language-Javascript">    import { useState ,useEffect} from 'react'
+    import reactLogo from './assets/react.svg'
+    import viteLogo from '/vite.svg'
+    import './App.css'
+    import { CallPortdic } from 'portdic';
+
+    function App() {
+    const [count, setCount] = useState(0) 
+    const [portdic, setPortdic] = useState(0);
+
+    useEffect(() =&gt; {
+        CallPortdic(&quot;localhost:5001&quot;).then(setPortdic).catch(console.error); 
+    }, []);
+
+
+    return (
+        &lt;&gt;
+        &lt;div&gt;
+            &lt;a href=&quot;https://vite.dev&quot; target=&quot;_blank&quot;&gt;
+            &lt;img src={viteLogo} className=&quot;logo&quot; alt=&quot;Vite logo&quot; /&gt;
+            &lt;/a&gt;
+            &lt;a href=&quot;https://react.dev&quot; target=&quot;_blank&quot;&gt;
+            &lt;img src={reactLogo} className=&quot;logo react&quot; alt=&quot;React logo&quot; /&gt;
+            &lt;/a&gt;
+        &lt;/div&gt;
+
+        &lt;div&gt; 
+            &lt;button onClick={() =&gt; {
+            var data =  portdic.Execute(&quot;version&quot;);
+
+            data.then(resp =&gt; resp.json())  
+            .then(data =&gt; {  
+                console.log(&quot;success received:&quot;, data);
+            })
+            .catch(error =&gt; { 
+                console.error(&quot;error occurred:&quot;, error);
+            });
+
+            }}&gt;Version&lt;/button&gt;
+        &lt;/div&gt; 
+        &lt;div&gt; 
+           &lt;!-- get value from dictionary port --&gt; 
+            &lt;button onClick={() =&gt; console.log(portdic.Get(&quot;room1&quot;,&quot;Heater1temp&quot;))}&gt;Get&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div&gt; 
+             &lt;!-- set value to dictionary port --&gt; 
+            &lt;button onClick={() =&gt; portdic.Set(&quot;room1&quot;,&quot;Heater1temp&quot;,&quot;34&quot;)}&gt;Set&lt;/button&gt;
+        &lt;/div&gt; 
+        &lt;h1&gt;Vite + React&lt;/h1&gt;
+        &lt;div className=&quot;card&quot;&gt;
+            &lt;button onClick={() =&gt; setCount((count) =&gt; count + 1)}&gt;
+            count is {count}
+            &lt;/button&gt;
+            &lt;p&gt;
+            Edit &lt;code&gt;src/App.jsx&lt;/code&gt; and save to test HMR
+            &lt;/p&gt;
+        &lt;/div&gt;
+        &lt;p className=&quot;read-the-docs&quot;&gt;
+            Click on the Vite and React logos to learn more
+        &lt;/p&gt;
+        &lt;/&gt;
+        )
+    }
+
+
+    export default App
+
+</code></pre>
+<h2 id="net">.Net<a class="headerlink" href="#net" title="Permanent link">&para;</a></h2>
 <h3 id="set">SET<a class="headerlink" href="#set" title="Permanent link">&para;</a></h3>
 <pre><code class="language-C#">    ...
     PortDic dic = PortDic.GetDictionary(&quot;http://localhost:5001&quot;);

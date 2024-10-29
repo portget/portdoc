@@ -4,7 +4,168 @@ Port operates by reflecting messages in the most recently updated repository.
 Try creating and editing a basic project to see how you can modify and configure projects. Follow along to understand the process better.
 
 
+
+
+
+
+## Download
+NAME | Language |Package Manager | OS | STABLE | 
+------|--------|--------|--------|--------
+Port.SDK |  C# | Nuget |Windows x64 | Yes | 
+
+
+
+<br>
+
+## How to create a packages 
+
+___
+Let's develop a package. In the Port Application, all operations are grouped at the package level and function at the message level. Every operation is defined within messages, allowing users to increase code reusability through messages.
+
+<br/>
+<br/>
+
+### Attributes
+___
+
+ name | arguments | description
+ ------|-------- |--------
+ Message   |`-` |  Messages are declared, and the values defined as properties can be controlled through package calls.
+ Regex  |`[Pattern|Type]` |  It is validated through a regular expression check. If the value matches the specified regular expression, it is accepted as valid; otherwise, an input exception is triggered.
+ EnumCode   |`-` |  The Enum type is declared, allowing you to retrieve the Enum values through this declaration.
+ Comment  |`-` |  A comment is declared, allowing you to retrieve the comment through this declaration.
+
+#### Message Attributes
+Properties declared with Message Attributes are defined as API Messages and made available to the end-user. They apply only to properties with get and set accessors, and these getters and setters can be accessed and modified via a REST API.
+
+```
+    [Message]
+    public int NValue { get => 3; }
+```
  
+#### Regex Attributes
+Properties with Regex Attributes are subjected to a regular expression check when their values are changed. If the value does not pass the validation check, it is not updated, ensuring consistency and validity of the property's value.
+
+```  
+    [Message, Regex(RegexAttribute.Ip4vRegex)]
+    public string Address
+    {
+        get;
+        set;
+    }
+```
+
+#### EnumCode Attributes
+EnumCode Attributes are declared, the values of the enum can be accessed via an API. The API allows for the retrieval of information about the enumeration values, enabling external systems or users to interact with and obtain details about the enum through the API interface.
+```   
+    [EnumCode]
+    public enum TestEnum : ushort
+    {
+        _ = 0,
+        TestEnumItem1,
+        TestEnumItem2,
+    }
+```
+
+#### Comment Attributes
+When Comment Attributes are declared, the comments associated with the property can be exposed through the API. This allows users or external systems to access descriptive information or documentation about the property via the API, providing context and clarity on the property's purpose or usage.
+```  
+     [Message,Commnet("this is a numberic")]
+     public int NValue { get => 3; }
+```
+
+
+
+<br>
+
+
+### Sample code (.net)
+
+***
+!!! important  "The class name must be declared as `Port`"
+***
+
+#### bulb package 
+
+```C# 
+ 
+ public class Port : PortObject
+ {
+     public Port()
+     {
+        
+     }
+     
+     public override bool Init()
+     {
+        // initialized method
+     }
+     
+     public override void Dispose()
+     {
+        
+     } 
+     
+     private string status = "On";
+     
+     [Message]
+     public string OnOff { get => { return status == "On" ? "Off" : "On"; }} 
+ 
+ }
+ 
+``` 
+
+#### heater package 
+ 
+```C# 
+ 
+ public class Port : PortObject
+ {
+     public Port()
+     {
+        
+     }
+     
+     public override bool Init()
+     {
+        // initialized method
+     }
+     
+     public override void Dispose()
+     {
+        
+     } 
+
+     [Message]
+     public double GetTemperature { get => { var rand = new Random(); return rand.Next(); }
+ 
+ }
+
+``` 
+
+
+
+<br/>
+<br/>
+
+#### Here's an example 
+
+<br/>
+<div class="console">
+    <div class="console-content">
+        port build bulb [--path `build-path`]|[--o `output package-name`]
+    </div>
+</div> 
+
+<br>
+<div class="console">
+    <div class="console-content">
+       port build heater [--path `build-path`]|[--o `output package-name`]
+    </div>
+</div>
+
+<br>
+
 ## How to create a port-project
 ___
 Before starting a Port project, you need to create a root folder that defines your messages. The subfolders within this root folder are managed as groups by Port, allowing users to organize messages by group. The root folder contains files with the `*.enum` extension and the structure of sub-group folders. Within the sub-group folders, message definition documents with the `*.msg` extension are created.
@@ -84,52 +245,32 @@ ___
 </div>
 
 <br>
-
-### Add packages
-
+#### Add packages
 <br>
-
-#### move directory
-
 <div class="console">
     <div class="console-content">
     cd C:\Users\Demo
    </div>
 </div>
 <br/>
-
-#### Add the package to the current project under the name "bulb1"
-
 <div class="console">
     <div class="console-content">
     port add --pkg bulb1 bulb
    </div>
 </div>
-<br/>
-
-#### Add the package to the current project under the name "bulb2"
-
 <div class="console">
     <div class="console-content">
     port add --pkg bulb2 bulb
    </div>
 </div>
-<br/>
-
-#### Add the package to the current project under the name "heater1"
-
 <div class="console">
     <div class="console-content">
-    port add --pkg heater1 heater
+    port add --pkg heater1 bulb
    </div>
 </div>
-<br/>
-
-#### Add the package to the current project under the name "heater2"
-
 <div class="console">
     <div class="console-content">
-    port add --pkg heater2 heater
+    port add --pkg heater2 bulb
    </div>
 </div>
     

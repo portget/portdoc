@@ -4,9 +4,83 @@ PortDic is a key-value pair data structure storage object provided by Port. User
 ## Download  
 NAME | Language |Package Manager | OS | STABLE | 
 ------|--------|--------|--------|--------
-Port.Library |  C# | Nuget |Windows x64 | Yes | 
+Port.Library |  C# | nuget |Windows| Yes | 
+portdic |  Javascript | npm |Any | Yes | 
 
-## Functions 
+## React 
+
+### SET / GET
+```Javascript
+    import { useState ,useEffect} from 'react'
+    import reactLogo from './assets/react.svg'
+    import viteLogo from '/vite.svg'
+    import './App.css'
+    import { CallPortdic } from 'portdic';
+
+    function App() {
+    const [count, setCount] = useState(0) 
+    const [portdic, setPortdic] = useState(0);
+    
+    useEffect(() => {
+        CallPortdic("localhost:5001").then(setPortdic).catch(console.error); 
+    }, []);
+
+    
+    return (
+        <>
+        <div>
+            <a href="https://vite.dev" target="_blank">
+            <img src={viteLogo} className="logo" alt="Vite logo" />
+            </a>
+            <a href="https://react.dev" target="_blank">
+            <img src={reactLogo} className="logo react" alt="React logo" />
+            </a>
+        </div>
+
+        <div> 
+            <button onClick={() => {
+            var data =  portdic.Execute("version");
+
+            data.then(resp => resp.json())  
+            .then(data => {  
+                console.log("success received:", data);
+            })
+            .catch(error => { 
+                console.error("error occurred:", error);
+            });
+
+            }}>Version</button>
+        </div> 
+        <div> 
+           <!-- get value from dictionary port --> 
+            <button onClick={() => console.log(portdic.Get("room1","Heater1temp"))}>Get</button>
+        </div>
+        <div> 
+             <!-- set value to dictionary port --> 
+            <button onClick={() => portdic.Set("room1","Heater1temp","34")}>Set</button>
+        </div> 
+        <h1>Vite + React</h1>
+        <div className="card">
+            <button onClick={() => setCount((count) => count + 1)}>
+            count is {count}
+            </button>
+            <p>
+            Edit <code>src/App.jsx</code> and save to test HMR
+            </p>
+        </div>
+        <p className="read-the-docs">
+            Click on the Vite and React logos to learn more
+        </p>
+        </>
+        )
+    }
+
+    
+    export default App
+
+```  
+
+## .Net 
 
 ### SET
 
