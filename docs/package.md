@@ -249,27 +249,31 @@ ___
    </div>
 </div>
 <br/>
+<br>
 <div class="console">
     <div class="console-content">
     port add --pkg bulb1 bulb
    </div>
 </div>
+<br>
 <div class="console">
     <div class="console-content">
     port add --pkg bulb2 bulb
    </div>
 </div>
+<br>
 <div class="console">
     <div class="console-content">
     port add --pkg heater1 bulb
    </div>
 </div>
+<br>
 <div class="console">
     <div class="console-content">
     port add --pkg heater2 bulb
    </div>
 </div>
-    
+<br>
 !!!tip
     If you see a message like `[ERROR][open ..\proj.toml: Access is denied.]`
     granting administrator privileges to the port.exe program will resolve the issue.
