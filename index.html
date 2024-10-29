@@ -137,12 +137,6 @@
                 <li class="third-level"><a href="#group">Group</a></li>
                 <li class="third-level"><a href="#message-msg">Message (*.msg)</a></li>
                 <li class="third-level"><a href="#enum-enum">Enum (*.enum)</a></li>
-            <li class="second-level"><a href="#commands">Commands</a></li>
-                
-                <li class="third-level"><a href="#cheat-sheet">Cheat Sheet</a></li>
-                <li class="third-level"><a href="#repository_1">Repository</a></li>
-                <li class="third-level"><a href="#server">Server</a></li>
-                <li class="third-level"><a href="#message">Message</a></li>
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
@@ -193,17 +187,13 @@
 
 <hr />
 <h4 id="layout">Layout<a class="headerlink" href="#layout" title="Permanent link">&para;</a></h4>
-<pre><code>port.toml         # The configuration file.
-.enum             # The custom enum file 
-pkg-A-Group/      # The group directory. 
-    sample1.msg   # The message file
-    sample2.msg   # The message file
-    sample3.msg   # The message file
-
-pkg-B-Group/      # The group directory. 
-    sample1.msg   # The message file
-    sample2.msg   # The message file
-    sample3.msg   # The message file
+<p>APT/
+    port.toml         # The configuration file.
+    <em>.enum            # The custom enum file 
+    room1/      # The group directory. 
+        </em>.msg   # The message file </p>
+<pre><code>room2/      # The group directory. 
+    *.msg   # The message file 
 ...               # Other files.
 </code></pre>
 <hr />
@@ -289,11 +279,12 @@ Please attach the materials attached below. </p>
 </tbody>
 </table>
 <p><br/></p>
-<h4 id="sample1msg">sample1.msg<a class="headerlink" href="#sample1msg" title="Permanent link">&para;</a></h4>
-<pre><code class="language-console"> DevAPowerStatus    enum.DeviceAStatus  pkg:DeviceA.GetStatus         
- DevAErrorMessage   text                pkg:DeviceA.GetErrorMessage property:{&quot;Arguments&quot;:&quot;1,0&quot;}
- DevCTemperature    num                 pkg:DeviceC.GetTemperature property:{&quot;MIN&quot;:0,&quot;MAX&quot;:300}
- DevCOnOff          enum.OnOff          pkg:DeviceC.OnOff           
+<h4 id="room1msg">./room1/*.msg<a class="headerlink" href="#room1msg" title="Permanent link">&para;</a></h4>
+<pre><code class="language-console"> BulbOnOff     enum.OffOn  pkg:Blub1.Power
+ BulbOnOff     enum.OffOn  pkg:Blub1.Power         
+ RoomHeater1   enum.OffOn  pkg:Heater1.Power property:{&quot;Arguments&quot;:&quot;1,0&quot;}
+ RoomHeater2   enum.OffOn  pkg:Heater1.Power property:{&quot;Arguments&quot;:&quot;2,0&quot;}
+ RoomTemp      num         pkg:Heater1.Temp  property:{&quot;MIN&quot;:0,&quot;MAX&quot;:300} 
  ...
 </code></pre>
 <div class="admonition tip">
@@ -311,151 +302,11 @@ Please attach the materials attached below. </p>
 <li><code>[item-name]</code>- name by enum-item</li>
 <li><code>[property]</code> - unique key in enum value</li>
 </ul>
-<h4 id="customenum">custom.enum<a class="headerlink" href="#customenum" title="Permanent link">&para;</a></h4>
+<h4 id="enum">*.enum<a class="headerlink" href="#enum" title="Permanent link">&para;</a></h4>
 <pre><code class="language-console">TFalse      True:0      False:1
 FTrue       False:0     True:1
-</code></pre>
-<h2 id="commands">Commands<a class="headerlink" href="#commands" title="Permanent link">&para;</a></h2>
-<hr />
-<h3 id="cheat-sheet">Cheat Sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>command</th>
-<th>arguments</th>
-<th>description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>?</td>
-<td><code>[script]</code></td>
-<td>Runs the specified script.</td>
-</tr>
-<tr>
-<td>version</td>
-<td><code>-</code></td>
-<td>Displays the version information.</td>
-</tr>
-<tr>
-<td>new</td>
-<td><code>[name]</code></td>
-<td>Can specify rules to manage the values of corresponding messages.</td>
-</tr>
-<tr>
-<td>push</td>
-<td><code>-</code></td>
-<td>Push project to repository.</td>
-</tr>
-<tr>
-<td>pull</td>
-<td><code>-</code></td>
-<td>Pull project from repository.</td>
-</tr>
-<tr>
-<td>set</td>
-<td><code>[group-name|pkg-name] [message-name] [value]</code></td>
-<td>Set values in the pkg server.</td>
-</tr>
-<tr>
-<td>get</td>
-<td><code>[group-name|pkg-name] [message-name]</code></td>
-<td>Get values from the pkg server.</td>
-</tr>
-<tr>
-<td>build</td>
-<td><code>[pkg-name] [--path &lt;build-path&gt;]|[--o &lt;output package-name&gt;]</code></td>
-<td>Build package</td>
-</tr>
-<tr>
-<td>init</td>
-<td><code>[pkg-name]</code></td>
-<td>Initializes the Package.</td>
-</tr>
-<tr>
-<td>event</td>
-<td><code>[pkg-name]</code></td>
-<td>Displays a events.</td>
-</tr>
-<tr>
-<td>run</td>
-<td><code>[name]</code></td>
-<td>Runs the pkg server based on the specified repository.</td>
-</tr>
-<tr>
-<td>ls</td>
-<td><code>[repo]</code>|<code>[pkg]</code>|<code>[tcp]</code>|<code>[comm]</code></td>
-<td>Displays the specified items in a list.</td>
-</tr>
-<tr>
-<td>queue</td>
-<td><p><code>[new] [name]</code> <p><code>[ls]</code> <p><code>[view] [name]</code> <p><code>[push] [name] [value]</code> <p><code>[pop] [name]</code></td>
-<td><p>  Create new queue. <p> Displays queue list. <p> Displays queue items. <p> Push a item to queue. </p> <p> Pop a item from queue. </p></td>
-</tr>
-<tr>
-<td>stack</td>
-<td><p><code>[new] [name]</code> <p><code>[ls]</code> <p><code>[view] [name]</code> <p><code>[push] [name] [value]</code> <p><code>[pop] [name]</code></td>
-<td><p>  Create new stack. <p> Displays stack list. <p> Displays stack items. <p> Push a item to stack. </p> <p> Pop a item from stack. </p></td>
-</tr>
-<tr>
-<td>storage</td>
-<td><p><code>[new] [name]</code> <p><code>[ls]</code> <p><code>[view] [name]</code> <p><code>[set] [name] [key] [value]</code> <p><code>[get] [name] [key]</code></td>
-<td><p>  Create new storage. <p> Displays storage list. <p> Displays storage items. <p> Push a item to storage. </p> <p> Pop a item from storage. </p></td>
-</tr>
-<tr>
-<td>list</td>
-<td><p><code>[new] [name]</code> <p><code>[ls]</code> <p><code>[view] [name]</code> <p><code>[add] [name] [value]</code> <p><code>[insert] [name] [index] [value]</code>  <p><code>[remove] [name] [index] [value]</code></td>
-<td><p>  Create new list. <p> Displays a lists. <p> Displays list items. <p> Add a item. </p> <p> Insert a item. </p> <p> Remove a item. </p></td>
-</tr>
-<tr>
-<td>kill</td>
-<td><code>[kill-code]</code></td>
-<td>Shutdown pkg server.</td>
-</tr>
-<tr>
-<td>flow</td>
-<td><p><code>[load] [flow-key]</code>  <p><code>[init] [flow-key]</code>   <p><code>[remove] [flow-key]</code> <p><code>[event] [flow-key]</code></td>
-<td><p> Loads the Flow resource into the currently running pkg server. <p> Initializes the Flow resource.</p> <p> Remove Flow resource </p><p> Displays a events from the Flow resource.</p></td>
-</tr>
-<tr>
-<td>env</td>
-<td><code>-</code></td>
-<td>Displays the system environment settings.</td>
-</tr>
-<tr>
-<td>help</td>
-<td><code>-</code></td>
-<td>.</td>
-</tr>
-</tbody>
-</table>
-<h3 id="repository_1">Repository<a class="headerlink" href="#repository_1" title="Permanent link">&para;</a></h3>
-<ul>
-<li><code>port push</code> - push project to repository</li>
-<li><code>port pull</code> - pull project from repository</li>
-</ul>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>The application runs based on the values stored in the repository. The push action must precede the application startup. 
-Subsequently, users can perform a pull action at any desired moment to restore the repository.</p>
-</div>
-<h3 id="server">Server<a class="headerlink" href="#server" title="Permanent link">&para;</a></h3>
-<ul>
-<li><code>port run [repository-name]</code> - run server from repository</li>
-<li><code>port kill</code> - terminated current server</li>
-</ul>
-<h3 id="message">Message<a class="headerlink" href="#message" title="Permanent link">&para;</a></h3>
-<ul>
-<li><code>port set [group-key] [message-key] [set-value]</code> - set the message value to current repository</li>
-</ul>
-<pre><code class="language-console">port set groupA sayHelloMessage1 Hello?
-[set-ok]
-</code></pre>
-<ul>
-<li><code>port get [group-key] [message-key]</code> - get the message value to current repository</li>
-</ul>
-<pre><code class="language-console">port get groupA sayHelloMessage1
-[Hello?]
+OffOn       Off:0       On:1
+OnOff       On:0       Off:1
 </code></pre>
 <style>
 
@@ -627,5 +478,5 @@ Subsequently, users can perform a pull action at any desired moment to restore t
 
 <!--
 MkDocs version : 1.6.0
-Build Date UTC : 2024-10-29 09:25:23.426900+00:00
+Build Date UTC : 2024-10-29 09:33:30.204092+00:00
 -->
