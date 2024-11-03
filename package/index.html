@@ -251,53 +251,54 @@
 <hr />
 <h4 id="bulb-package">bulb package<a class="headerlink" href="#bulb-package" title="Permanent link">&para;</a></h4>
 <pre><code class="language-C#">
- public class Port : PortObject
- {
-     public Port()
-     {
+public class Port : PortObject
+{ 
+    public override void Dispose()
+    {
 
-     }
+    }
 
-     public override bool Init()
-     {
-        // initialized method
-     }
+    public string offon = string.Empty;
 
-     public override void Dispose()
-     {
-
-     } 
-
-     private string status = &quot;On&quot;;
-
-     [Message]
-     public string OnOff { get =&gt; { return status == &quot;On&quot; ? &quot;Off&quot; : &quot;On&quot;; }} 
-
- }
+    [Message]
+    public string OffOn
+    {
+        set =&gt; this.offon = value;
+        get =&gt; this.offon;
+    }
+}
 
 </code></pre>
 <h4 id="heater-package">heater package<a class="headerlink" href="#heater-package" title="Permanent link">&para;</a></h4>
 <pre><code class="language-C#">
- public class Port : PortObject
+  public class Port : PortObject
  {
-     public Port()
-     {
-
-     }
-
-     public override bool Init()
-     {
-        // initialized method
-     }
-
      public override void Dispose()
      {
 
-     } 
+     }
 
      [Message]
-     public double GetTemperature { get =&gt; { var rand = new Random(); return rand.Next(); }
+     public string Power
+     {
+         set;
+         get;
+     }
 
+     [Message]
+     public double Temp
+     {
+         get
+         {
+             Random r = new Random(100);
+             //
+             if (this.Property[&quot;Arguments&quot;] == &quot;F&quot;)
+             {
+                 return (r.NextDouble() * 9 / 5) + 32;
+             }
+             return r.NextDouble();
+         }
+     }
  }
 
 </code></pre>
@@ -307,14 +308,14 @@
 <p><br/></p>
 <div class="console">
     <div class="console-content">
-        port build bulb [--path `build-path`]|[--o `output package-name`]
+        port build ..BulbLib\bin\Release\netstandard2.0\publish\BulbLib.dll --o bulblib
     </div>
 </div>
 
 <p><br></p>
 <div class="console">
     <div class="console-content">
-       port build heater [--path `build-path`]|[--o `output package-name`]
+       port build ..HeaterLib\bin\Release\netstandard2.0\publish\HeaterLib.dll --o heaterlib
     </div>
 </div>
 
