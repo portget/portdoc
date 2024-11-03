@@ -85,29 +85,22 @@ When Comment Attributes are declared, the comments associated with the property 
 
 ```C# 
  
- public class Port : PortObject
- {
-     public Port()
-     {
-        
-     }
-     
-     public override bool Init()
-     {
-        // initialized method
-     }
-     
-     public override void Dispose()
-     {
-        
-     } 
-     
-     private string status = "On";
-     
-     [Message]
-     public string OnOff { get => { return status == "On" ? "Off" : "On"; }} 
+public class Port : PortObject
+{ 
+    public override void Dispose()
+    {
+
+    }
  
- }
+    public string offon = string.Empty;
+
+    [Message]
+    public string OffOn
+    {
+        set => this.offon = value;
+        get => this.offon;
+    }
+}
  
 ``` 
 
@@ -115,26 +108,34 @@ When Comment Attributes are declared, the comments associated with the property 
  
 ```C# 
  
- public class Port : PortObject
+  public class Port : PortObject
  {
-     public Port()
-     {
-        
-     }
-     
-     public override bool Init()
-     {
-        // initialized method
-     }
-     
      public override void Dispose()
      {
-        
-     } 
+
+     }
 
      [Message]
-     public double GetTemperature { get => { var rand = new Random(); return rand.Next(); }
- 
+     public string Power
+     {
+         set;
+         get;
+     }
+
+     [Message]
+     public double Temp
+     {
+         get
+         {
+             Random r = new Random(100);
+             //
+             if (this.Property["Arguments"] == "F")
+             {
+                 return (r.NextDouble() * 9 / 5) + 32;
+             }
+             return r.NextDouble();
+         }
+     }
  }
 
 ``` 
@@ -149,14 +150,14 @@ When Comment Attributes are declared, the comments associated with the property 
 <br/>
 <div class="console">
     <div class="console-content">
-        port build bulb [--path `build-path`]|[--o `output package-name`]
+        port build ..BulbLib\bin\Release\netstandard2.0\publish\BulbLib.dll --o bulblib
     </div>
 </div> 
 
 <br>
 <div class="console">
     <div class="console-content">
-       port build heater [--path `build-path`]|[--o `output package-name`]
+       port build ..HeaterLib\bin\Release\netstandard2.0\publish\HeaterLib.dll --o heaterlib
     </div>
 </div>
 
