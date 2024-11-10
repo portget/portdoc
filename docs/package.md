@@ -210,15 +210,11 @@ To declare a message, you need to edit the `*.msg` file in the sub-folder you cr
 
 #### Sample message files
 ```
- 
- bulb1          enum.OnOff   pkg:bulb1.PowerOnOff         
- bulb2          enum.OnOff   pkg:bulb2.PowerOnOff       property:{"Arguments":"1,0"}
- RoomTemp1    num          pkg:heater1.GetTemperature property:{"MIN":0,"MAX":300}
- RoomTemp2    num          pkg:heater2.GetTemperature property:{"MIN":200,"MAX":500}          
-
+    BulbOnOff     enum.OffOn  pkg:Blub1.OffOn     
+    RoomTemp1     num         pkg:Heater1.Temp  property:{"MIN":0,"MAX":300,"Arguments":"C"}
+    RoomTemp2     num         pkg:Heater1.Temp  property:{"MIN":0,"MAX":300,"Arguments":"F"}       
 ```
-
-
+ 
 ## How to link packages
 ___
 

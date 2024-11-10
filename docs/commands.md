@@ -14,7 +14,7 @@ ___
  pull|`-` | Pull project from repository.
  set |`[group-name|pkg-name] [message-name] [value]` | Set values in the pkg server.
  get |`[group-name|pkg-name] [message-name]`  | Get values from the pkg server.
- build  |`[pkg-name] [--path <build-path>]|[--o <output package-name>]`  | Build package 
+ build  |`[--path <project-path>] [--o <output package-name>]`  | Build package 
  init  |`[pkg-name]`  | Initializes the Package.
  event |`[pkg-name]`  | Displays a events.
  run| `[name]` |  Runs the pkg server based on the specified repository. 
