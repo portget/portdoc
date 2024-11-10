@@ -368,12 +368,9 @@ public class Bulb
 <hr />
 <p>To declare a message, you need to edit the <code>*.msg</code> file in the sub-folder you created. By defining message data types and attributes as shown below, you can later utilize various features such as automatic logging and backup. Additionally, you can define relationships using predefined relations.</p>
 <h4 id="sample-message-files">Sample message files<a class="headerlink" href="#sample-message-files" title="Permanent link">&para;</a></h4>
-<pre><code>
- bulb1          enum.OnOff   pkg:bulb1.PowerOnOff         
- bulb2          enum.OnOff   pkg:bulb2.PowerOnOff       property:{&quot;Arguments&quot;:&quot;1,0&quot;}
- RoomTemp1    num          pkg:heater1.GetTemperature property:{&quot;MIN&quot;:0,&quot;MAX&quot;:300}
- RoomTemp2    num          pkg:heater2.GetTemperature property:{&quot;MIN&quot;:200,&quot;MAX&quot;:500}          
-
+<pre><code>    BulbOnOff     enum.OffOn  pkg:Blub1.OffOn     
+    RoomTemp1     num         pkg:Heater1.Temp  property:{&quot;MIN&quot;:0,&quot;MAX&quot;:300,&quot;Arguments&quot;:&quot;C&quot;}
+    RoomTemp2     num         pkg:Heater1.Temp  property:{&quot;MIN&quot;:0,&quot;MAX&quot;:300,&quot;Arguments&quot;:&quot;F&quot;}       
 </code></pre>
 <h2 id="how-to-link-packages">How to link packages<a class="headerlink" href="#how-to-link-packages" title="Permanent link">&para;</a></h2>
 <hr />
