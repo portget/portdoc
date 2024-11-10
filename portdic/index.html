@@ -134,12 +134,7 @@
                 <li class="third-level"><a href="#set-get">SET / GET</a></li>
             <li class="second-level"><a href="#net">.Net</a></li>
                 
-                <li class="third-level"><a href="#set">SET</a></li>
-                <li class="third-level"><a href="#get">GET</a></li>
-                <li class="third-level"><a href="#queue">QUEUE</a></li>
-                <li class="third-level"><a href="#stack">STACK</a></li>
-                <li class="third-level"><a href="#list">LIST</a></li>
-                <li class="third-level"><a href="#storage">STORAGE</a></li>
+                <li class="third-level"><a href="#setget">SET/GET</a></li>
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
@@ -245,39 +240,32 @@
 
 </code></pre>
 <h2 id="net">.Net<a class="headerlink" href="#net" title="Permanent link">&para;</a></h2>
-<h3 id="set">SET<a class="headerlink" href="#set" title="Permanent link">&para;</a></h3>
+<h3 id="setget">SET/GET<a class="headerlink" href="#setget" title="Permanent link">&para;</a></h3>
 <pre><code class="language-C#">    ...
     PortDic dic = PortDic.GetDictionary(&quot;http://localhost:5001&quot;);
 
-    var ok = dic.Set('AZone','SamplePower','On');
+    var ok = dic.Set('room1','BulbOnOff','On');
     if(ok){
         Console.WriteLine(&quot;ok&quot;);
     }
-    ...
-</code></pre>
-<h3 id="get">GET<a class="headerlink" href="#get" title="Permanent link">&para;</a></h3>
-<pre><code class="language-C#">    ...
-    PortDic dic = PortDic.GetDictionary(&quot;http://localhost:5001&quot;);
 
-    var v = dic.Get('AZone','SamplePower')
+    var v = dic.Get('room1','BulbOnOff')
     // 'On'
-    Console.WriteLine(v.Text());
+    Console.WriteLine(v.Text()); 
 
-    var ok2 = dic.Set('AZone','SampleTemp',90);
-    if(ok2){
-        Console.WriteLine(&quot;ok&quot;);
-    }
+    var t1 = dic.Get('room1','RoomTemp1')
+    // random number unit Celsius
+    Console.WriteLine(t1.Text()); 
 
-    var t = dic.Get('AZone','SampleTemp')
-    // '90'
-    Console.WriteLine(t.Text());
-
-    if (t &gt;= 90){
-        Console.WriteLine('[Warning]Over Tempature');
-    }
+     var t2 = dic.Get('room1','RoomTemp2')
+    // random number unit Fahrenheit
+    Console.WriteLine(t2.Text()); 
     ...
 </code></pre>
-<h3 id="queue">QUEUE<a class="headerlink" href="#queue" title="Permanent link">&para;</a></h3>
+<!-- ### QUEUE
+
+
+
 <pre><code class="language-C#">
     //class1.cs
     PortDic dic = PortDic.GetDictionary(&quot;http://localhost:5001&quot;);
@@ -308,7 +296,10 @@
     ...
 
 </code></pre>
-<h3 id="stack">STACK<a class="headerlink" href="#stack" title="Permanent link">&para;</a></h3>
+
+### STACK
+
+
 <pre><code class="language-C#">
     //class1.cs
     PortDic dic = PortDic.GetDictionary(&quot;http://localhost:5001&quot;);
@@ -332,7 +323,10 @@
     ...
 
 </code></pre>
-<h3 id="list">LIST<a class="headerlink" href="#list" title="Permanent link">&para;</a></h3>
+
+### LIST
+
+
 <pre><code class="language-C#">
     //class1.cs
 
@@ -362,7 +356,10 @@
     ...
 
 </code></pre>
-<h3 id="storage">STORAGE<a class="headerlink" href="#storage" title="Permanent link">&para;</a></h3>
+
+### STORAGE
+
+
 <pre><code class="language-C#">
     //class1.cs
     PortDic dic = PortDic.GetDictionary(&quot;http://localhost:5001&quot;);
@@ -390,7 +387,9 @@
 
     ...
 
-</code></pre></div>
+</code></pre>
+
+ --></div>
         
         
     </div>

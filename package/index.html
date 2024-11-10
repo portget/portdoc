@@ -132,7 +132,7 @@
             <li class="second-level"><a href="#how-to-create-a-packages">How to create a packages</a></li>
                 
                 <li class="third-level"><a href="#attributes">Attributes</a></li>
-                <li class="third-level"><a href="#sample-code-net">Sample code (.net)</a></li>
+                <li class="third-level"><a href="#net">.net</a></li>
             <li class="second-level"><a href="#how-to-create-a-port-project">How to create a port-project</a></li>
                 
                 <li class="third-level"><a href="#heres-an-example_1">Here's an example</a></li>
@@ -243,21 +243,12 @@
      public int NValue { get =&gt; 3; }
 </code></pre>
 <p><br></p>
-<h3 id="sample-code-net">Sample code (.net)<a class="headerlink" href="#sample-code-net" title="Permanent link">&para;</a></h3>
-<hr />
-<div class="admonition important">
-<p class="admonition-title">The class name must be declared as <code>Port</code></p>
-</div>
-<hr />
+<h3 id="net">.net<a class="headerlink" href="#net" title="Permanent link">&para;</a></h3>
 <h4 id="bulb-package">bulb package<a class="headerlink" href="#bulb-package" title="Permanent link">&para;</a></h4>
 <pre><code class="language-C#">
-public class Port : PortObject
-{ 
-    public override void Dispose()
-    {
-
-    }
-
+[Port(typeof(Bulb))]
+public class Bulb 
+{   
     public string offon = string.Empty;
 
     [Message]
@@ -271,34 +262,42 @@ public class Port : PortObject
 </code></pre>
 <h4 id="heater-package">heater package<a class="headerlink" href="#heater-package" title="Permanent link">&para;</a></h4>
 <pre><code class="language-C#">
-  public class Port : PortObject
- {
-     public override void Dispose()
-     {
-
-     }
-
-     [Message]
-     public string Power
-     {
+ [Port(typeof(Heater))]
+ public class Heater
+ {  
+    [Message]
+    public string Power
+    {
          set;
          get;
-     }
-
-     [Message]
-     public double Temp
-     {
-         get
-         {
-             Random r = new Random(100);
-             //
-             if (this.Property[&quot;Arguments&quot;] == &quot;F&quot;)
-             {
-                 return (r.NextDouble() * 9 / 5) + 32;
-             }
-             return r.NextDouble();
-         }
-     }
+    }
+    // &quot;Property&quot; applied to the TempProperty property.
+    [Property(&quot;Temp&quot;)]
+    public IProperty TempProperty
+    {
+        set;
+        get;
+    }
+    // &quot;Message&quot; applied to the Temp property.
+    [Message]
+    public double Temp
+    {
+        get
+        {
+            Random r = new Random(100);
+            // Checks if the &quot;Arguments&quot; parameter of TempProperty is set to &quot;F&quot; for Fahrenheit. 
+            if (this.TempProperty[&quot;Arguments&quot;] == &quot;F&quot;)
+            {
+                return (r.NextDouble() * 9 / 5) + 32;
+            }
+            // Checks if the &quot;Arguments&quot; parameter of TempProperty is set to &quot;C&quot; for Celsius.
+            else if (this.TempProperty[&quot;Arguments&quot;] == &quot;C&quot;)
+            {
+                return r.NextDouble();
+            }
+            return 1;
+        }
+    } 
  }
 
 </code></pre>
