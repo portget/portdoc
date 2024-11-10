@@ -56,8 +56,8 @@ To declare a message, you need to edit the `*.msg` file in the sub-folder you cr
  
  bulb1          enum.OnOff   pkg:bulb1.PowerOnOff         
  bulb2          enum.OnOff   pkg:bulb2.PowerOnOff       property:{"Arguments":"1,0"}
- heater1temp    num          pkg:heater1.GetTemperature property:{"MIN":0,"MAX":300}
- heater2temp    num          pkg:heater2.GetTemperature property:{"MIN":200,"MAX":500}          
+ RoomTemp1    num          pkg:heater1.GetTemperature property:{"MIN":0,"MAX":300}
+ RoomTemp2    num          pkg:heater2.GetTemperature property:{"MIN":200,"MAX":500}          
 
 ```
 

@@ -53,11 +53,11 @@ portdic |  Javascript | npm |Any | Yes |
         </div> 
         <div> 
            <!-- get value from dictionary port --> 
-            <button onClick={() => console.log(portdic.Get("room1","Heater1temp"))}>Get</button>
+            <button onClick={() => console.log(portdic.Get("room1","RoomTemp1"))}>Get</button>
         </div>
         <div> 
              <!-- set value to dictionary port --> 
-            <button onClick={() => portdic.Set("room1","Heater1temp","34")}>Set</button>
+            <button onClick={() => portdic.Set("room1","RoomTemp1","34")}>Set</button>
         </div> 
         <h1>Vite + React</h1>
         <div className="card">
@@ -82,43 +82,31 @@ portdic |  Javascript | npm |Any | Yes |
 
 ## .Net 
 
-### SET
+### SET/GET
 
 ```C#
     ...
     PortDic dic = PortDic.GetDictionary("http://localhost:5001");
 
-    var ok = dic.Set('AZone','SamplePower','On');
+    var ok = dic.Set('room1','BulbOnOff','On');
     if(ok){
         Console.WriteLine("ok");
     }
-    ...
-```
-### GET
 
-```C#
-    ...
-    PortDic dic = PortDic.GetDictionary("http://localhost:5001");
-
-    var v = dic.Get('AZone','SamplePower')
+    var v = dic.Get('room1','BulbOnOff')
     // 'On'
-    Console.WriteLine(v.Text());
+    Console.WriteLine(v.Text()); 
 
-    var ok2 = dic.Set('AZone','SampleTemp',90);
-    if(ok2){
-        Console.WriteLine("ok");
-    }
+    var t1 = dic.Get('room1','RoomTemp1')
+    // random number unit Celsius
+    Console.WriteLine(t1.Text()); 
 
-    var t = dic.Get('AZone','SampleTemp')
-    // '90'
-    Console.WriteLine(t.Text());
-
-    if (t >= 90){
-        Console.WriteLine('[Warning]Over Tempature');
-    }
+     var t2 = dic.Get('room1','RoomTemp2')
+    // random number unit Fahrenheit
+    Console.WriteLine(t2.Text()); 
     ...
-```
-### QUEUE
+``` 
+<!-- ### QUEUE
 
 
 ```C#
@@ -241,4 +229,4 @@ portdic |  Javascript | npm |Any | Yes |
     ...
     
 ```
-
+ -->

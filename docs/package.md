@@ -13,19 +13,14 @@ Port.SDK |  C# | Nuget |Windows x64 | Yes |
 
 <br>
 
-## How to create a packages 
 
-___
-Let's develop a package. In the Port Application, all operations are grouped at the package level and function at the message level. Every operation is defined within messages, allowing users to increase code reusability through messages.
 
-<br/>
-<br/>
-
-### Attributes
+## Package Attributes
 ___
 
  name | arguments | description
  ------|-------- |--------
+ Port   |`Class Type` | Declaring a port attribute in a class designates that class as one managed by the port system. Once declared, the class can be registered as part of a package.
  Message   |`-` |  Messages are declared, and the values defined as properties can be controlled through package calls.
  Regex  |`[Pattern|Type]` |  It is validated through a regular expression check. If the value matches the specified regular expression, it is accepted as valid; otherwise, an input exception is triggered.
  EnumCode   |`-` |  The Enum type is declared, allowing you to retrieve the Enum values through this declaration.
@@ -71,27 +66,23 @@ When Comment Attributes are declared, the comments associated with the property 
 ```
 
 
+## How to create a packages 
 
+___
+Let's develop a package. In the Port Application, all operations are grouped at the package level and function at the message level. Every operation is defined within messages, allowing users to increase code reusability through messages.
+ 
 <br>
 
 
-### Sample code (.net)
-
-***
-!!! important  "The class name must be declared as `Port`"
-***
+### .net 
 
 #### bulb package 
 
 ```C# 
  
-public class Port : PortObject
-{ 
-    public override void Dispose()
-    {
-
-    }
- 
+[Port(typeof(Bulb))]
+public class Bulb 
+{   
     public string offon = string.Empty;
 
     [Message]
@@ -108,56 +99,64 @@ public class Port : PortObject
  
 ```C# 
  
-  public class Port : PortObject
- {
-     public override void Dispose()
-     {
-
-     }
-
-     [Message]
-     public string Power
-     {
+ [Port(typeof(Heater))]
+ public class Heater
+ {  
+    [Message]
+    public string Power
+    {
          set;
          get;
-     }
-
-     [Message]
-     public double Temp
-     {
-         get
-         {
-             Random r = new Random(100);
-             //
-             if (this.Property["Arguments"] == "F")
-             {
-                 return (r.NextDouble() * 9 / 5) + 32;
-             }
-             return r.NextDouble();
-         }
-     }
+    }
+    // "Property" applied to the TempProperty property.
+    [Property("Temp")]
+    public IProperty TempProperty
+    {
+        set;
+        get;
+    }
+    // "Message" applied to the Temp property.
+    [Message]
+    public double Temp
+    {
+        get
+        {
+            Random r = new Random(100);
+            // Checks if the "Arguments" parameter of TempProperty is set to "F" for Fahrenheit. 
+            if (this.TempProperty["Arguments"] == "F")
+            {
+                return (r.NextDouble() * 9 / 5) + 32;
+            }
+            // Checks if the "Arguments" parameter of TempProperty is set to "C" for Celsius.
+            else if (this.TempProperty["Arguments"] == "C")
+            {
+                return r.NextDouble();
+            }
+            return 1;
+        }
+    } 
  }
 
 ``` 
 
-
-
 <br/>
 <br/>
 
-#### Here's an example 
+#### build packages
 
 <br/>
 <div class="console">
     <div class="console-content">
-        port build ..BulbLib\bin\Release\netstandard2.0\publish\BulbLib.dll --o bulblib
+        port build 'path' --o BulbLib1
+        port build 'path' --o BulbLib2
     </div>
 </div> 
 
 <br>
 <div class="console">
     <div class="console-content">
-       port build ..HeaterLib\bin\Release\netstandard2.0\publish\HeaterLib.dll --o heaterlib
+        port build 'path' --o HeaterLib1
+        port build 'path' --o HeaterLib2
     </div>
 </div>
 
@@ -214,8 +213,8 @@ To declare a message, you need to edit the `*.msg` file in the sub-folder you cr
  
  bulb1          enum.OnOff   pkg:bulb1.PowerOnOff         
  bulb2          enum.OnOff   pkg:bulb2.PowerOnOff       property:{"Arguments":"1,0"}
- heater1temp    num          pkg:heater1.GetTemperature property:{"MIN":0,"MAX":300}
- heater2temp    num          pkg:heater2.GetTemperature property:{"MIN":200,"MAX":500}          
+ RoomTemp1    num          pkg:heater1.GetTemperature property:{"MIN":0,"MAX":300}
+ RoomTemp2    num          pkg:heater2.GetTemperature property:{"MIN":200,"MAX":500}          
 
 ```
 
@@ -224,7 +223,8 @@ To declare a message, you need to edit the `*.msg` file in the sub-folder you cr
 ___
 
 
-#### Check packages
+
+#### checking for package
 
 <div class="console">
     <div class="console-content"> 
@@ -232,6 +232,9 @@ ___
    </div>
 </div>
 <br>
+
+#### packages list
+
 <div class="console">
     <div class="console-content"> 
     package1  [DateTime]
@@ -242,39 +245,37 @@ ___
 </div>
 
 <br>
-#### Add packages
-<br>
+
+#### Set a packages 
+
+`[proj.toml]`
 <div class="console">
     <div class="console-content">
-    cd C:\Users\Demo
-   </div>
+        ...
+
+        # packages 
+        [[packages]]
+        key = 'Blub1'
+        load = 'BulbLib.dll'
+        path = 'pkg:BulbLib1.pkg'
+
+        [[packages]]
+        key = 'Blub2'
+        load = 'BulbLib.dll'
+        path = 'pkg:BulbLib2.pkg'
+
+        [[packages]]
+        key = 'Heater1'
+        load = 'HeaterLib.dll'
+        path = 'pkg:HeaterLib1.pkg'
+
+        [[packages]]
+        key = 'Heater2'
+        load = 'HeaterLib.dll'
+        path = 'pkg:HeaterLib2.pkg'
+    </div>
 </div>
-<br/>
-<br>
-<div class="console">
-    <div class="console-content">
-    port add --pkg bulb1 bulb
-   </div>
-</div>
-<br>
-<div class="console">
-    <div class="console-content">
-    port add --pkg bulb2 bulb
-   </div>
-</div>
-<br>
-<div class="console">
-    <div class="console-content">
-    port add --pkg heater1 bulb
-   </div>
-</div>
-<br>
-<div class="console">
-    <div class="console-content">
-    port add --pkg heater2 bulb
-   </div>
-</div>
-<br>
+<br/> 
 !!!tip
     If you see a message like `[ERROR][open ..\proj.toml: Access is denied.]`
     granting administrator privileges to the port.exe program will resolve the issue.
