@@ -17,6 +17,7 @@ ___
  build  |`[--path <project-path>] [--o <output package-name>]`  | Build package 
  init  |`[pkg-name]`  | Initializes the Package.
  event |`[pkg-name]`  | Displays a events.
+ view |`[group-name|pkg-name] [--message|--history] [name|args|arguments]`  | detail view.
  run| `[name]` |  Runs the pkg server based on the specified repository. 
  ls | `[repo]`\|`[pkg]`\|`[tcp]`\|`[comm]` | Displays the specified items in a list. 
  queue|<p>`[new] [name]` <p>`[ls]` <p>`[view] [name]` <p>`[push] [name] [value]` <p>`[pop] [name]` | <p>  Create new queue. <p> Displays queue list. <p> Displays queue items. <p> Push a item to queue. </p> <p> Pop a item from queue. </p>
