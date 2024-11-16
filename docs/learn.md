@@ -9,7 +9,7 @@ Try creating and editing a basic project to see how you can modify and configure
 ___
 Before starting a Port project, you need to create a root folder that defines your messages. The subfolders within this root folder are managed as groups by Port, allowing users to organize messages by group. The root folder contains files with the `*.enum` extension and the structure of sub-group folders. Within the sub-group folders, message definition documents with the `*.msg` extension are created.
 
-### Here's an example 
+### `Here's an example`
 
 <br/>
 <div class="console">

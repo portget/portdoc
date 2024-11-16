@@ -23,7 +23,7 @@ ___
  Port   |`Class Type` | Declaring a port attribute in a class designates that class as one managed by the port system. Once declared, the class can be registered as part of a package.
  Message   |`-` |  Messages are declared, and the values defined as properties can be controlled through package calls.
  Logger   |`-` |  Specifies that the Logger field is to be injected with a logging system or service.
- Property |`-` | Maps the property to a pre-declared Message Property.
+ Property |`Message` | Maps the property to a pre-declared Message Property.
  Regex  |`[Pattern|Type]` |  It is validated through a regular expression check. If the value matches the specified regular expression, it is accepted as valid; otherwise, an input exception is triggered.
  EnumCode   |`-` |  The Enum type is declared, allowing you to retrieve the Enum values through this declaration.
  Comment  |`-` |  A comment is declared, allowing you to retrieve the comment through this declaration.
@@ -277,7 +277,7 @@ Let's develop a package. In the Port Application, all operations are grouped at 
 ___
 Before starting a Port project, you need to create a root folder that defines your messages. The subfolders within this root folder are managed as groups by Port, allowing users to organize messages by group. The root folder contains files with the `*.enum` extension and the structure of sub-group folders. Within the sub-group folders, message definition documents with the `*.msg` extension are created.
 
-### Here's an example 
+### `Here's an example` 
 
 <br/>
 <div class="console">
