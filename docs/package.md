@@ -15,27 +15,82 @@ Port.SDK |  C# | Nuget |Windows x64 | Yes |
 
 
 
-## Package Attributes
+## Package Annotation
 ___
 
  name | arguments | description
  ------|-------- |--------
  Port   |`Class Type` | Declaring a port attribute in a class designates that class as one managed by the port system. Once declared, the class can be registered as part of a package.
  Message   |`-` |  Messages are declared, and the values defined as properties can be controlled through package calls.
+ Logger   |`-` |  Specifies that the Logger field is to be injected with a logging system or service.
+ Property |`-` | Maps the property to a pre-declared Message Property.
  Regex  |`[Pattern|Type]` |  It is validated through a regular expression check. If the value matches the specified regular expression, it is accepted as valid; otherwise, an input exception is triggered.
  EnumCode   |`-` |  The Enum type is declared, allowing you to retrieve the Enum values through this declaration.
  Comment  |`-` |  A comment is declared, allowing you to retrieve the comment through this declaration.
 
-#### Message Attributes
-Properties declared with Message Attributes are defined as API Messages and made available to the end-user. They apply only to properties with get and set accessors, and these getters and setters can be accessed and modified via a REST API.
+#### Port
+
+This annotation indicates that the Bulb class is managed within the Port Package.
+
+```
+    [Port(typeof(Bulb))]
+    public class Bulb
+    ...
+```
+
+#### Property
+This annotation maps the property to a pre-declared Message Property named "OffOn".
+```
+    //Load from .msg files. yellow and red
+    [Property("OffOn")]
+    public IProperty OffOnArgument { set; get; } 
+    
+```
+
+#### Message
+Properties declared with Message Annotation are defined as API Messages and made available to the end-user. They apply only to properties with get and set accessors, and these getters and setters can be accessed and modified via a REST API.
 
 ```
     [Message]
-    public int NValue { get => 3; }
+    public string OffOn
+    {
+        set
+        {
+            if (OffOnArgument != null)
+            {
+                OffOnArgument.TryToGetValue("Argument", out Value v);
+                if (v.String() == "yellow")
+                {
+                    this.SetColor(v.String());
+                }
+                else if (v.String() == "red")
+                {
+                    this.SetColor(v.String());
+                }
+                Logger.Write("[SET]" + v.String());
+            }
+
+            this.offon = value;
+        }
+        get => this.offon;
+    }
 ```
  
-#### Regex Attributes
-Properties with Regex Attributes are subjected to a regular expression check when their values are changed. If the value does not pass the validation check, it is not updated, ensuring consistency and validity of the property's value.
+#### Logger
+This annotation specifies that the Logger field is to be injected with a logging system or service.
+```
+    [Logger]
+    public ILogger Logger { get; set; }
+
+    ...
+    Logger.Write(string.Join(",", v));
+    ...        
+    
+```
+
+
+#### Regex
+Properties with Regex Annotation are subjected to a regular expression check when their values are changed. If the value does not pass the validation check, it is not updated, ensuring consistency and validity of the property's value.
 
 ```  
     [Message, Regex(RegexAttribute.Ip4vRegex)]
@@ -46,8 +101,8 @@ Properties with Regex Attributes are subjected to a regular expression check whe
     }
 ```
 
-#### EnumCode Attributes
-EnumCode Attributes are declared, the values of the enum can be accessed via an API. The API allows for the retrieval of information about the enumeration values, enabling external systems or users to interact with and obtain details about the enum through the API interface.
+#### EnumCode
+EnumCode Annotation are declared, the values of the enum can be accessed via an API. The API allows for the retrieval of information about the enumeration values, enabling external systems or users to interact with and obtain details about the enum through the API interface.
 ```   
     [EnumCode]
     public enum TestEnum : ushort
@@ -58,8 +113,8 @@ EnumCode Attributes are declared, the values of the enum can be accessed via an 
     }
 ```
 
-#### Comment Attributes
-When Comment Attributes are declared, the comments associated with the property can be exposed through the API. This allows users or external systems to access descriptive information or documentation about the property via the API, providing context and clarity on the property's purpose or usage.
+#### Comment
+When Comment Annotation are declared, the comments associated with the property can be exposed through the API. This allows users or external systems to access descriptive information or documentation about the property via the API, providing context and clarity on the property's purpose or usage.
 ```  
      [Message,Commnet("this is a numberic")]
      public int NValue { get => 3; }
@@ -80,19 +135,75 @@ Let's develop a package. In the Port Application, all operations are grouped at 
 
 ```C# 
  
-[Port(typeof(Bulb))]
-public class Bulb 
-{   
-    public string offon = string.Empty;
+ [Port(typeof(Bulb))]
+ public class Bulb
+ {
+     public string offon = "Off";
 
-    [Message]
-    public string OffOn
-    {
-        set => this.offon = value;
-        get => this.offon;
-    }
-}
- 
+     [Property("OffOn")]
+     public IProperty OffOnArgument { set; get; }
+
+     [Logger]
+     public ILogger Logger { get; set; }
+
+     private System.IO.Ports.SerialPort serialPort = new System.IO.Ports.SerialPort();
+     
+     private void SetColor(string color)
+     {
+         this.serialPort.Write("set:color:" + color + "\n");
+     }
+
+     private string comport;
+     [Message]
+     public string Comport
+     {
+         set
+         {
+             try
+             {
+                 if (this.serialPort.PortName != value)
+                 {
+                     this.serialPort = new System.IO.Ports.SerialPort();
+                     this.serialPort.PortName = value;
+                     this.serialPort.BaudRate = 9600;
+                     this.serialPort.DataBits = 8;
+                     this.serialPort.StopBits = System.IO.Ports.StopBits.One;
+                     this.serialPort.Parity = System.IO.Ports.Parity.Even; 
+                 }
+             }
+             catch (System.Exception ex)
+             {
+                 Logger.Write("[ERROR]" + ex.Message);
+             }
+         }
+         get => comport;
+     }
+
+     [Message]
+     public string OffOn
+     {
+         set
+         {
+             if (OffOnArgument != null)
+             {
+                 OffOnArgument.TryToGetValue("Argument", out Value v);
+                 if (v.String() == "yellow")
+                 {
+                     this.SetColor(v.String());
+                 }
+                 else if (v.String() == "red")
+                 {
+                     this.SetColor(v.String());
+                 }
+                 this.offon = value;
+                 this.serialPort.Write(value + "\n");
+                 Logger.Write("[SET]" + v.String());
+             }
+
+
+         }
+         get => this.offon;
+     }
 ``` 
 
 #### heater package 
@@ -206,7 +317,7 @@ sample/
 
 ## How to add messages 
 ___
-To declare a message, you need to edit the `*.msg` file in the sub-folder you created. By defining message data types and attributes as shown below, you can later utilize various features such as automatic logging and backup. Additionally, you can define relationships using predefined relations.
+To declare a message, you need to edit the `*.msg` file in the sub-folder you created. By defining message data types and Annotation as shown below, you can later utilize various features such as automatic logging and backup. Additionally, you can define relationships using predefined relations.
 
 #### Sample message files
 ```

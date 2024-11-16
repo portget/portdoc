@@ -102,8 +102,8 @@ name | range | description
 
 #### ./room1/*.msg
 ```console
- BulbOnOff     enum.OffOn  pkg:Blub1.Power
- BulbOnOff     enum.OffOn  pkg:Blub1.Power         
+ BulbOnOff     enum.OffOn  pkg:Blub1.Power   property:{"Arguments":"yellow"}
+ BulbOnOff     enum.OffOn  pkg:Blub1.Power   property:{"Arguments":"red"}      
  RoomHeater1   enum.OffOn  pkg:Heater1.Power property:{"Arguments":"1,0"}
  RoomHeater2   enum.OffOn  pkg:Heater1.Power property:{"Arguments":"2,0"}
  RoomTemp      num         pkg:Heater1.Temp  property:{"MIN":0,"MAX":300} 
