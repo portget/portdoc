@@ -129,12 +129,15 @@
         <li class="first-level active"><a href="#whats-package">What's Package</a></li>
             <li class="second-level"><a href="#download">Download</a></li>
                 
-            <li class="second-level"><a href="#package-attributes">Package Attributes</a></li>
+            <li class="second-level"><a href="#package-annotation">Package Annotation</a></li>
                 
-                <li class="third-level"><a href="#message-attributes">Message Attributes</a></li>
-                <li class="third-level"><a href="#regex-attributes">Regex Attributes</a></li>
-                <li class="third-level"><a href="#enumcode-attributes">EnumCode Attributes</a></li>
-                <li class="third-level"><a href="#comment-attributes">Comment Attributes</a></li>
+                <li class="third-level"><a href="#port">Port</a></li>
+                <li class="third-level"><a href="#property">Property</a></li>
+                <li class="third-level"><a href="#message">Message</a></li>
+                <li class="third-level"><a href="#logger">Logger</a></li>
+                <li class="third-level"><a href="#regex">Regex</a></li>
+                <li class="third-level"><a href="#enumcode">EnumCode</a></li>
+                <li class="third-level"><a href="#comment">Comment</a></li>
             <li class="second-level"><a href="#how-to-create-a-packages">How to create a packages</a></li>
                 
                 <li class="third-level"><a href="#net">.net</a></li>
@@ -181,7 +184,7 @@
 </tbody>
 </table>
 <p><br></p>
-<h2 id="package-attributes">Package Attributes<a class="headerlink" href="#package-attributes" title="Permanent link">&para;</a></h2>
+<h2 id="package-annotation">Package Annotation<a class="headerlink" href="#package-annotation" title="Permanent link">&para;</a></h2>
 <hr />
 <table>
 <thead>
@@ -203,6 +206,16 @@
 <td>Messages are declared, and the values defined as properties can be controlled through package calls.</td>
 </tr>
 <tr>
+<td>Logger</td>
+<td><code>-</code></td>
+<td>Specifies that the Logger field is to be injected with a logging system or service.</td>
+</tr>
+<tr>
+<td>Property</td>
+<td><code>-</code></td>
+<td>Maps the property to a pre-declared Message Property.</td>
+</tr>
+<tr>
 <td>Regex</td>
 <td><code>[Pattern|Type]</code></td>
 <td>It is validated through a regular expression check. If the value matches the specified regular expression, it is accepted as valid; otherwise, an input exception is triggered.</td>
@@ -219,13 +232,57 @@
 </tr>
 </tbody>
 </table>
-<h4 id="message-attributes">Message Attributes<a class="headerlink" href="#message-attributes" title="Permanent link">&para;</a></h4>
-<p>Properties declared with Message Attributes are defined as API Messages and made available to the end-user. They apply only to properties with get and set accessors, and these getters and setters can be accessed and modified via a REST API.</p>
-<pre><code>    [Message]
-    public int NValue { get =&gt; 3; }
+<h4 id="port">Port<a class="headerlink" href="#port" title="Permanent link">&para;</a></h4>
+<p>This annotation indicates that the Bulb class is managed within the Port Package.</p>
+<pre><code>    [Port(typeof(Bulb))]
+    public class Bulb
+    ...
 </code></pre>
-<h4 id="regex-attributes">Regex Attributes<a class="headerlink" href="#regex-attributes" title="Permanent link">&para;</a></h4>
-<p>Properties with Regex Attributes are subjected to a regular expression check when their values are changed. If the value does not pass the validation check, it is not updated, ensuring consistency and validity of the property's value.</p>
+<h4 id="property">Property<a class="headerlink" href="#property" title="Permanent link">&para;</a></h4>
+<p>This annotation maps the property to a pre-declared Message Property named "OffOn".</p>
+<pre><code>    //Load from .msg files. yellow and red
+    [Property(&quot;OffOn&quot;)]
+    public IProperty OffOnArgument { set; get; } 
+
+</code></pre>
+<h4 id="message">Message<a class="headerlink" href="#message" title="Permanent link">&para;</a></h4>
+<p>Properties declared with Message Annotation are defined as API Messages and made available to the end-user. They apply only to properties with get and set accessors, and these getters and setters can be accessed and modified via a REST API.</p>
+<pre><code>    [Message]
+    public string OffOn
+    {
+        set
+        {
+            if (OffOnArgument != null)
+            {
+                OffOnArgument.TryToGetValue(&quot;Argument&quot;, out Value v);
+                if (v.String() == &quot;yellow&quot;)
+                {
+                    this.SetColor(v.String());
+                }
+                else if (v.String() == &quot;red&quot;)
+                {
+                    this.SetColor(v.String());
+                }
+                Logger.Write(&quot;[SET]&quot; + v.String());
+            }
+
+            this.offon = value;
+        }
+        get =&gt; this.offon;
+    }
+</code></pre>
+<h4 id="logger">Logger<a class="headerlink" href="#logger" title="Permanent link">&para;</a></h4>
+<p>This annotation specifies that the Logger field is to be injected with a logging system or service.</p>
+<pre><code>    [Logger]
+    public ILogger Logger { get; set; }
+
+    ...
+    Logger.Write(string.Join(&quot;,&quot;, v));
+    ...        
+
+</code></pre>
+<h4 id="regex">Regex<a class="headerlink" href="#regex" title="Permanent link">&para;</a></h4>
+<p>Properties with Regex Annotation are subjected to a regular expression check when their values are changed. If the value does not pass the validation check, it is not updated, ensuring consistency and validity of the property's value.</p>
 <pre><code>    [Message, Regex(RegexAttribute.Ip4vRegex)]
     public string Address
     {
@@ -233,8 +290,8 @@
         set;
     }
 </code></pre>
-<h4 id="enumcode-attributes">EnumCode Attributes<a class="headerlink" href="#enumcode-attributes" title="Permanent link">&para;</a></h4>
-<p>EnumCode Attributes are declared, the values of the enum can be accessed via an API. The API allows for the retrieval of information about the enumeration values, enabling external systems or users to interact with and obtain details about the enum through the API interface.</p>
+<h4 id="enumcode">EnumCode<a class="headerlink" href="#enumcode" title="Permanent link">&para;</a></h4>
+<p>EnumCode Annotation are declared, the values of the enum can be accessed via an API. The API allows for the retrieval of information about the enumeration values, enabling external systems or users to interact with and obtain details about the enum through the API interface.</p>
 <pre><code>    [EnumCode]
     public enum TestEnum : ushort
     {
@@ -243,8 +300,8 @@
         TestEnumItem2,
     }
 </code></pre>
-<h4 id="comment-attributes">Comment Attributes<a class="headerlink" href="#comment-attributes" title="Permanent link">&para;</a></h4>
-<p>When Comment Attributes are declared, the comments associated with the property can be exposed through the API. This allows users or external systems to access descriptive information or documentation about the property via the API, providing context and clarity on the property's purpose or usage.</p>
+<h4 id="comment">Comment<a class="headerlink" href="#comment" title="Permanent link">&para;</a></h4>
+<p>When Comment Annotation are declared, the comments associated with the property can be exposed through the API. This allows users or external systems to access descriptive information or documentation about the property via the API, providing context and clarity on the property's purpose or usage.</p>
 <pre><code>     [Message,Commnet(&quot;this is a numberic&quot;)]
      public int NValue { get =&gt; 3; }
 </code></pre>
@@ -366,7 +423,7 @@ public class Bulb
 </code></pre>
 <h2 id="how-to-add-messages">How to add messages<a class="headerlink" href="#how-to-add-messages" title="Permanent link">&para;</a></h2>
 <hr />
-<p>To declare a message, you need to edit the <code>*.msg</code> file in the sub-folder you created. By defining message data types and attributes as shown below, you can later utilize various features such as automatic logging and backup. Additionally, you can define relationships using predefined relations.</p>
+<p>To declare a message, you need to edit the <code>*.msg</code> file in the sub-folder you created. By defining message data types and Annotation as shown below, you can later utilize various features such as automatic logging and backup. Additionally, you can define relationships using predefined relations.</p>
 <h4 id="sample-message-files">Sample message files<a class="headerlink" href="#sample-message-files" title="Permanent link">&para;</a></h4>
 <pre><code>    BulbOnOff     enum.OffOn  pkg:Blub1.OffOn     
     RoomTemp1     num         pkg:Heater1.Temp  property:{&quot;MIN&quot;:0,&quot;MAX&quot;:300,&quot;Arguments&quot;:&quot;C&quot;}
