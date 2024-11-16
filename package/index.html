@@ -312,19 +312,75 @@
 <h3 id="net">.net<a class="headerlink" href="#net" title="Permanent link">&para;</a></h3>
 <h4 id="bulb-package">bulb package<a class="headerlink" href="#bulb-package" title="Permanent link">&para;</a></h4>
 <pre><code class="language-C#">
-[Port(typeof(Bulb))]
-public class Bulb 
-{   
-    public string offon = string.Empty;
+ [Port(typeof(Bulb))]
+ public class Bulb
+ {
+     public string offon = &quot;Off&quot;;
 
-    [Message]
-    public string OffOn
-    {
-        set =&gt; this.offon = value;
-        get =&gt; this.offon;
-    }
-}
+     [Property(&quot;OffOn&quot;)]
+     public IProperty OffOnArgument { set; get; }
 
+     [Logger]
+     public ILogger Logger { get; set; }
+
+     private System.IO.Ports.SerialPort serialPort = new System.IO.Ports.SerialPort();
+
+     private void SetColor(string color)
+     {
+         this.serialPort.Write(&quot;set:color:&quot; + color + &quot;\n&quot;);
+     }
+
+     private string comport;
+     [Message]
+     public string Comport
+     {
+         set
+         {
+             try
+             {
+                 if (this.serialPort.PortName != value)
+                 {
+                     this.serialPort = new System.IO.Ports.SerialPort();
+                     this.serialPort.PortName = value;
+                     this.serialPort.BaudRate = 9600;
+                     this.serialPort.DataBits = 8;
+                     this.serialPort.StopBits = System.IO.Ports.StopBits.One;
+                     this.serialPort.Parity = System.IO.Ports.Parity.Even; 
+                 }
+             }
+             catch (System.Exception ex)
+             {
+                 Logger.Write(&quot;[ERROR]&quot; + ex.Message);
+             }
+         }
+         get =&gt; comport;
+     }
+
+     [Message]
+     public string OffOn
+     {
+         set
+         {
+             if (OffOnArgument != null)
+             {
+                 OffOnArgument.TryToGetValue(&quot;Argument&quot;, out Value v);
+                 if (v.String() == &quot;yellow&quot;)
+                 {
+                     this.SetColor(v.String());
+                 }
+                 else if (v.String() == &quot;red&quot;)
+                 {
+                     this.SetColor(v.String());
+                 }
+                 this.offon = value;
+                 this.serialPort.Write(value + &quot;\n&quot;);
+                 Logger.Write(&quot;[SET]&quot; + v.String());
+             }
+
+
+         }
+         get =&gt; this.offon;
+     }
 </code></pre>
 <h4 id="heater-package">heater package<a class="headerlink" href="#heater-package" title="Permanent link">&para;</a></h4>
 <pre><code class="language-C#">
