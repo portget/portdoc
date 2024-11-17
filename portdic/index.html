@@ -154,11 +154,32 @@
 </thead>
 <tbody>
 <tr>
-<td>Port.Library</td>
+<td>portdic</td>
+<td>C++</td>
+<td>not yet</td>
+<td>Windows</td>
+<td>No</td>
+</tr>
+<tr>
+<td>portdic</td>
+<td>Delphi</td>
+<td>not yet</td>
+<td>Windows</td>
+<td>No</td>
+</tr>
+<tr>
+<td>portdic</td>
 <td>C#</td>
 <td>nuget</td>
 <td>Windows</td>
 <td>Yes</td>
+</tr>
+<tr>
+<td>portdic</td>
+<td>Python</td>
+<td>not yet</td>
+<td>Windows</td>
+<td>No</td>
 </tr>
 <tr>
 <td>portdic</td>
@@ -242,7 +263,7 @@
 <h2 id="net">.Net<a class="headerlink" href="#net" title="Permanent link">&para;</a></h2>
 <h3 id="setget">SET/GET<a class="headerlink" href="#setget" title="Permanent link">&para;</a></h3>
 <pre><code class="language-C#">    ...
-    PortDic dic = PortDic.GetDictionary(&quot;http://localhost:5001&quot;);
+    private static IPortDic port = Port.GetDictionary(&quot;http://localhost:5001&quot;,&quot;sample&quot;);
 
     var ok = dic.Set('room1','BulbOnOff','On');
     if(ok){
@@ -268,7 +289,7 @@
 
 <pre><code class="language-C#">
     //class1.cs
-    PortDic dic = PortDic.GetDictionary(&quot;http://localhost:5001&quot;);
+     private static IPortDic port = Port.GetDictionary(&quot;http://localhost:5001&quot;,&quot;sample&quot;);
 
     dic.Create(PortDic.Structure.Queue,'TEST')
 
@@ -280,7 +301,7 @@
 
 
     //class2.cs
-    PortDic dic = PortDic.GetDictionary(&quot;http://localhost:5001&quot;);
+     private static IPortDic port = Port.GetDictionary(&quot;http://localhost:5001&quot;,&quot;sample&quot;);
 
     var q1 = dic.Queue('TEST')
 
@@ -302,7 +323,7 @@
 
 <pre><code class="language-C#">
     //class1.cs
-    PortDic dic = PortDic.GetDictionary(&quot;http://localhost:5001&quot;);
+     private static IPortDic port = Port.GetDictionary(&quot;http://localhost:5001&quot;,&quot;sample&quot;);
 
     dic.Create(PortDic.Structure.Stack,'TEST')
 
@@ -312,7 +333,7 @@
 
 
     //class2.cs
-    PortDic dic = PortDic.GetDictionary(&quot;http://localhost:5001&quot;);
+     private static IPortDic port = Port.GetDictionary(&quot;http://localhost:5001&quot;,&quot;sample&quot;);
 
     var stack = Port.Stack('TEST')
 
@@ -330,7 +351,7 @@
 <pre><code class="language-C#">
     //class1.cs
 
-    PortDic dic = PortDic.GetDictionary(&quot;http://localhost:5001&quot;);
+     private static IPortDic port = Port.GetDictionary(&quot;http://localhost:5001&quot;,&quot;sample&quot;);
 
     dic.Create(PortDic.Structure.List,'TEST')
 
@@ -342,7 +363,7 @@
 
 
     //class2.cs
-    PortDic dic = PortDic.GetDictionary(&quot;http://localhost:5001&quot;);
+     private static IPortDic port = Port.GetDictionary(&quot;http://localhost:5001&quot;,&quot;sample&quot;);
 
    var list = Port.List('TEST')
 
@@ -362,7 +383,7 @@
 
 <pre><code class="language-C#">
     //class1.cs
-    PortDic dic = PortDic.GetDictionary(&quot;http://localhost:5001&quot;);
+     private static IPortDic port = Port.GetDictionary(&quot;http://localhost:5001&quot;,&quot;sample&quot;);
 
     dic.Create(PortDic.Structure.Storage,'TEST')
 
@@ -376,7 +397,7 @@
 
 
     //class2.cs
-    PortDic dic = PortDic.GetDictionary(&quot;http://localhost:5001&quot;);
+     private static IPortDic port = Port.GetDictionary(&quot;http://localhost:5001&quot;,&quot;sample&quot;);
 
     var s = Port.Storage('TEST')
 
