@@ -4,7 +4,10 @@ PortDic is a key-value pair data structure storage object provided by Port. User
 ## Download  
 NAME | Language |Package Manager | OS | STABLE | 
 ------|--------|--------|--------|--------
-Port.Library |  C# | nuget |Windows| Yes | 
+portdic |  C++ | not yet |Windows| No | 
+portdic |  Delphi | not yet |Windows| No |
+portdic |  C# | nuget |Windows| Yes | 
+portdic |  Python | not yet |Windows| No | 
 portdic |  Javascript | npm |Any | Yes | 
 
 ## React 
@@ -86,7 +89,7 @@ portdic |  Javascript | npm |Any | Yes |
 
 ```C#
     ...
-    PortDic dic = PortDic.GetDictionary("http://localhost:5001");
+    private static IPortDic port = Port.GetDictionary("http://localhost:5001","sample");
 
     var ok = dic.Set('room1','BulbOnOff','On');
     if(ok){
@@ -112,7 +115,7 @@ portdic |  Javascript | npm |Any | Yes |
 ```C#
 
     //class1.cs
-    PortDic dic = PortDic.GetDictionary("http://localhost:5001");
+     private static IPortDic port = Port.GetDictionary("http://localhost:5001","sample");
 
     dic.Create(PortDic.Structure.Queue,'TEST')
 
@@ -124,7 +127,7 @@ portdic |  Javascript | npm |Any | Yes |
 
 
     //class2.cs
-    PortDic dic = PortDic.GetDictionary("http://localhost:5001");
+     private static IPortDic port = Port.GetDictionary("http://localhost:5001","sample");
 
     var q1 = dic.Queue('TEST')
 
@@ -145,7 +148,7 @@ portdic |  Javascript | npm |Any | Yes |
 ```C#
 
     //class1.cs
-    PortDic dic = PortDic.GetDictionary("http://localhost:5001");
+     private static IPortDic port = Port.GetDictionary("http://localhost:5001","sample");
 
     dic.Create(PortDic.Structure.Stack,'TEST')
 
@@ -155,7 +158,7 @@ portdic |  Javascript | npm |Any | Yes |
 
 
     //class2.cs
-    PortDic dic = PortDic.GetDictionary("http://localhost:5001");
+     private static IPortDic port = Port.GetDictionary("http://localhost:5001","sample");
 
     var stack = Port.Stack('TEST')
 
@@ -172,7 +175,7 @@ portdic |  Javascript | npm |Any | Yes |
 
     //class1.cs
     
-    PortDic dic = PortDic.GetDictionary("http://localhost:5001");
+     private static IPortDic port = Port.GetDictionary("http://localhost:5001","sample");
     
     dic.Create(PortDic.Structure.List,'TEST')
     
@@ -184,7 +187,7 @@ portdic |  Javascript | npm |Any | Yes |
 
 
     //class2.cs
-    PortDic dic = PortDic.GetDictionary("http://localhost:5001");
+     private static IPortDic port = Port.GetDictionary("http://localhost:5001","sample");
 
    var list = Port.List('TEST')
 
@@ -203,7 +206,7 @@ portdic |  Javascript | npm |Any | Yes |
 ```C#
 
     //class1.cs
-    PortDic dic = PortDic.GetDictionary("http://localhost:5001");
+     private static IPortDic port = Port.GetDictionary("http://localhost:5001","sample");
 
     dic.Create(PortDic.Structure.Storage,'TEST')
     
@@ -217,7 +220,7 @@ portdic |  Javascript | npm |Any | Yes |
 
 
     //class2.cs
-    PortDic dic = PortDic.GetDictionary("http://localhost:5001");
+     private static IPortDic port = Port.GetDictionary("http://localhost:5001","sample");
 
     var s = Port.Storage('TEST')
 

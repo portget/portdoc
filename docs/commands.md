@@ -8,9 +8,8 @@ ___
 
 ### System
  command | arguments | description
- ------|-------- |--------
-       |`[../something.js]` | Run the specified javascript. 
- ?     |`[script]` | Run the specified script. 
+ ------|-------- |-------- 
+ ?     |`[script|../something.js]` | Run the specified script. 
  version |`-` | Displays the version information. 
  new | `[name]`  | Can specify rules to manage the values of corresponding messages. 
  push|`-` | Push project to repository.
