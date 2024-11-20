@@ -9,7 +9,7 @@ ___
 ### System
  command | arguments | description
  ------|-------- |-------- 
- ?     |`[script|../something.js]` | Run the specified script. 
+ ?     |`[script|../something.sc]` | Run the specified script. 
  version |`-` | Displays the version information. 
  new | `[name]`  | Can specify rules to manage the values of corresponding messages. 
  push|`-` | Push project to repository.
@@ -35,28 +35,23 @@ ___
  list|<p>`[new] [name]` <p>`[ls]` <p>`[view] [name]` <p>`[add] [name] [value]` <p>`[insert] [name] [index] [value]`  <p>`[remove] [name] [index] [value]` |<p>  Create new list. <p> Displays a lists. <p> Displays list items. <p> Add a item. </p> <p> Insert a item. </p> <p> Remove a item. </p>
  flow|  <p>`[load] [flow-key]`  <p>`[init] [flow-key]`   <p>`[remove] [flow-key]` <p>`[event] [flow-key]`| <p> Loads the Flow resource into the currently running pkg server. <p> Initializes the Flow resource.</p> <p> Remove Flow resource </p><p> Displays a events from the Flow resource.</p>
 
-## Repository
-
+## System
+ 
+### `script`
+- ECMAScript5 Script  
+<a>https://ecma-international.org/ecmascript-development-archive/2009-ecmascript-archives/<a/>
+<a>https://www.w3schools.com/js/js_es5.asp</a>
 
 ### `port push` 
 - push project to repository
+
 ### `port pull` 
 - pull project from repository
 
 !!!tip
     The application runs based on the values stored in the repository. The push action must precede the application startup. 
     Subsequently, users can perform a pull action at any desired moment to restore the repository.
-
-## Server 
-
-### `port run [repository-name]` 
-- run server from repository
-
-### `port shutdown` 
-- terminated current server
  
-## Message
-
 ### `port set [group] [message] [value]` 
 
 - set the message value to current repository
@@ -74,3 +69,12 @@ port set groupA sayHelloMessage1 Hello?
 port get groupA sayHelloMessage1
 [Hello?]
 ```
+
+## Server 
+
+### `port run [repository-name]` 
+- run server from repository
+
+### `port shutdown` 
+- terminated current server
+ 

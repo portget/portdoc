@@ -89,7 +89,7 @@ portdic |  Javascript | npm |Any | Yes |
 
 ```C#
     ...
-    private static IPortDic port = Port.GetDictionary("http://localhost:5001","sample");
+    private static IPortDic port = Port.GetDictionary("sample");
 
     var ok = dic.Set('room1','BulbOnOff','On');
     if(ok){
@@ -115,7 +115,7 @@ portdic |  Javascript | npm |Any | Yes |
 ```C#
 
     //class1.cs
-     private static IPortDic port = Port.GetDictionary("http://localhost:5001","sample");
+     private static IPortDic port = Port.GetDictionary("sample");
 
     dic.Create(PortDic.Structure.Queue,'TEST')
 
@@ -127,7 +127,7 @@ portdic |  Javascript | npm |Any | Yes |
 
 
     //class2.cs
-     private static IPortDic port = Port.GetDictionary("http://localhost:5001","sample");
+     private static IPortDic port = Port.GetDictionary("sample");
 
     var q1 = dic.Queue('TEST')
 
@@ -148,7 +148,7 @@ portdic |  Javascript | npm |Any | Yes |
 ```C#
 
     //class1.cs
-     private static IPortDic port = Port.GetDictionary("http://localhost:5001","sample");
+     private static IPortDic port = Port.GetDictionary("sample");
 
     dic.Create(PortDic.Structure.Stack,'TEST')
 
@@ -158,7 +158,7 @@ portdic |  Javascript | npm |Any | Yes |
 
 
     //class2.cs
-     private static IPortDic port = Port.GetDictionary("http://localhost:5001","sample");
+     private static IPortDic port = Port.GetDictionary("sample");
 
     var stack = Port.Stack('TEST')
 
@@ -175,7 +175,7 @@ portdic |  Javascript | npm |Any | Yes |
 
     //class1.cs
     
-     private static IPortDic port = Port.GetDictionary("http://localhost:5001","sample");
+     private static IPortDic port = Port.GetDictionary("sample");
     
     dic.Create(PortDic.Structure.List,'TEST')
     
@@ -187,7 +187,7 @@ portdic |  Javascript | npm |Any | Yes |
 
 
     //class2.cs
-     private static IPortDic port = Port.GetDictionary("http://localhost:5001","sample");
+     private static IPortDic port = Port.GetDictionary("sample");
 
    var list = Port.List('TEST')
 
@@ -206,7 +206,7 @@ portdic |  Javascript | npm |Any | Yes |
 ```C#
 
     //class1.cs
-     private static IPortDic port = Port.GetDictionary("http://localhost:5001","sample");
+     private static IPortDic port = Port.GetDictionary("sample");
 
     dic.Create(PortDic.Structure.Storage,'TEST')
     
@@ -220,7 +220,7 @@ portdic |  Javascript | npm |Any | Yes |
 
 
     //class2.cs
-     private static IPortDic port = Port.GetDictionary("http://localhost:5001","sample");
+     private static IPortDic port = Port.GetDictionary("sample");
 
     var s = Port.Storage('TEST')
 
