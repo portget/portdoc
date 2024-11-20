@@ -9,7 +9,7 @@ ___
 ### System
  command | arguments | description
  ------|-------- |-------- 
- ?     |`[script|../something.sc]` | Run the specified script. 
+ ?     |`[script|../something.js]` | Run the specified script. 
  version |`-` | Displays the version information. 
  new | `[name]`  | Can specify rules to manage the values of corresponding messages. 
  push|`-` | Push project to repository.
@@ -38,7 +38,7 @@ ___
 ## System
  
 ### `script`
-- ECMAScript5 Script  
+-Support for ECMAScript5  
 <a>https://ecma-international.org/ecmascript-development-archive/2009-ecmascript-archives/<a/>
 <a>https://www.w3schools.com/js/js_es5.asp</a>
 
