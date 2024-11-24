@@ -19,8 +19,9 @@ Please see the documentation [lincense](license.md)
 
 VERSION | OS |STABLE | URL 
 ------|--------|--------|--------
-v1.0.32 | Windows x64 | Yes | [v1.0.32-win-installer](https://github.com/portget/port/archive/refs/tags/v1.0.32-win-installer.zip){:download}  
-v1.0.31 | Windows x64 | Yes | [v1.0.31-win-installer](https://github.com/portget/port/archive/refs/tags/v1.0.31-win-installer.zip){:download}  
+v1.0.34 | Windows x64 | Yes | [v1.0.34-win-installer](https://github.com/portget/port/archive/refs/tags/v1.0.34-win-installer.zip){:download} 
+v1.0.33 | Windows x64 | Yes | [v1.0.33-win-installer](https://github.com/portget/port/archive/refs/tags/v1.0.33-win-installer.zip){:download} 
+v1.0.32 | Windows x64 | Yes | [v1.0.32-win-installer](https://github.com/portget/port/archive/refs/tags/v1.0.32-win-installer.zip){:download}   
 
 
 ## Project Layout

@@ -27,7 +27,7 @@ ___
  set |`[group-name|pkg-name] [message-name] [value]` | Set values in the pkg server.
  get |`[group-name|pkg-name] [message-name]`  | Get values from the pkg server.
  init  |`[pkg-name]`  | Initializes the Package.
- event |`[pkg-name]`  | Displays a events.
+ event |`[event-name] [--alert] [message]`  | Displays events or alert event message.
  view |`[group-name|pkg-name] [--message|--history] [name|args|arguments|event]`  | detail view.
  queue|<p>`[new] [name]` <p>`[ls]` <p>`[view] [name]` <p>`[push] [name] [value]` <p>`[pop] [name]` | <p>  Create new queue. <p> Displays queue list. <p> Displays queue items. <p> Push a item to queue. </p> <p> Pop a item from queue. </p>
  stack|<p>`[new] [name]` <p>`[ls]` <p>`[view] [name]` <p>`[push] [name] [value]` <p>`[pop] [name]` | <p>  Create new stack. <p> Displays stack list. <p> Displays stack items. <p> Push a item to stack. </p> <p> Pop a item from stack. </p>
@@ -39,7 +39,9 @@ ___
  
 ### `script`
 -Support for ECMAScript5  
+
 [ecmascript](https://ecma-international.org/ecmascript-development-archive/2009-ecmascript-archives/)
+
 [js_es5](https://www.w3schools.com/js/js_es5.asp)
 
 ### `port push` 
