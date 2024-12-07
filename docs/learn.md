@@ -60,6 +60,21 @@ To declare a message, you need to edit the `*.msg` file in the sub-folder you cr
 
 ```
 
+## How to add rules
+___
+To declare a rule, you need to edit the `*.rule` file in the sub-folder you created. The rule script can control whether the user can modify settings through the setable function. The first parameter is the condition that triggers the rule, and the second parameter is the condition that determines whether the setting is modifiable. When the user changes the message value, the function is automatically called to check these conditions.
+
+#### Setable script structure:
+setable(`[group.message-name]|[operator]|[set-value]`,`[script]`)
+
+#### Sample rule files
+```
+setable("room1.BulbOnOff==Off","(room1.RoomTemp1>=20)&&(room2.RoomTemp2>=20)")
+setable("room1.RoomTemp2>=30","room2.RoomTemp2>=5")
+```
+
+
+
 
 ## How to link packages
 ___

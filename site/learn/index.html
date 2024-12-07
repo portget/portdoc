@@ -139,6 +139,10 @@
             <li class="second-level"><a href="#how-to-add-messages">How to add messages</a></li>
                 
                 <li class="third-level"><a href="#sample-message-files">Sample message files</a></li>
+            <li class="second-level"><a href="#how-to-add-rules">How to add rules</a></li>
+                
+                <li class="third-level"><a href="#setable-script-structure">Setable script structure:</a></li>
+                <li class="third-level"><a href="#sample-rule-files">Sample rule files</a></li>
             <li class="second-level"><a href="#how-to-link-packages">How to link packages</a></li>
                 
                 <li class="third-level"><a href="#check-packages">Check packages</a></li>
@@ -197,6 +201,15 @@ Try creating and editing a basic project to see how you can modify and configure
  RoomTemp1     num         pkg:Heater1.Temp  property:{&quot;MIN&quot;:0,&quot;MAX&quot;:300,&quot;Arguments&quot;:&quot;C&quot;}
  RoomTemp2     num         pkg:Heater1.Temp  property:{&quot;MIN&quot;:0,&quot;MAX&quot;:300,&quot;Arguments&quot;:&quot;F&quot;}        
 
+</code></pre>
+<h2 id="how-to-add-rules">How to add rules<a class="headerlink" href="#how-to-add-rules" title="Permanent link">&para;</a></h2>
+<hr />
+<p>To declare a rule, you need to edit the <code>*.rule</code> file in the sub-folder you created. The rule script can control whether the user can modify settings through the setable function. The first parameter is the condition that triggers the rule, and the second parameter is the condition that determines whether the setting is modifiable. When the user changes the message value, the function is automatically called to check these conditions.</p>
+<h4 id="setable-script-structure">Setable script structure:<a class="headerlink" href="#setable-script-structure" title="Permanent link">&para;</a></h4>
+<p>setable(<code>[group.message-name]|[operator]|[set-value]</code>,<code>[script]</code>)</p>
+<h4 id="sample-rule-files">Sample rule files<a class="headerlink" href="#sample-rule-files" title="Permanent link">&para;</a></h4>
+<pre><code>setable(&quot;room1.BulbOnOff==Off&quot;,&quot;(room1.RoomTemp1&gt;=20)&amp;&amp;(room2.RoomTemp2&gt;=20)&quot;)
+setable(&quot;room1.RoomTemp2&gt;=30&quot;,&quot;room2.RoomTemp2&gt;=5&quot;)
 </code></pre>
 <h2 id="how-to-link-packages">How to link packages<a class="headerlink" href="#how-to-link-packages" title="Permanent link">&para;</a></h2>
 <hr />
