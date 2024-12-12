@@ -234,23 +234,13 @@
 <tbody>
 <tr>
 <td>set</td>
-<td><p><code>[group-name] [message-name] [value]</code><p><code>[package-name] [message-name] [value]</code><p><code>[script-name] [function-name] [arguments]</code> <p><code>password [user-name] [old-password] [new-password]</code> <p><code>grant [user-level]</code> <p><code>notify [message]</code></td>
+<td><p><code>[group-name] [message-name] [value]</code><p><code>[package-name] [message-name] [value]</code><p><code>[script-name] [function-name] [arguments]</code> <p><code>password [user-name] [old-password] [new-password]</code> <p><code>grant [user-name] [user-level]</code> <p><code>notify [message]</code> <p><code>init [package-name]</code></td>
 <td>Set values in the pkg server.</td>
 </tr>
 <tr>
 <td>get</td>
 <td><p><code>[group-name] [message-name]</code> <p><code>[group-name] [message-name]</code> <p><code>[workid]</code>  <p> <code>[project-name].log</code> <p> <code>[package-name].log</code>  <p> <code>[package-name].event</code> <p> <code>status</code></td>
 <td>Get values from the pkg server.</td>
-</tr>
-<tr>
-<td>init</td>
-<td><code>[pkg-name]</code></td>
-<td>Initializes the Package.</td>
-</tr>
-<tr>
-<td>event</td>
-<td><code>[event-name] [--alert] [message]</code></td>
-<td>Displays events or alert event message.</td>
 </tr>
 <tr>
 <td><!-- queue|<p>`[new] [name]` <p>`[ls]` <p>`[view] [name]` <p>`[push] [name] [value]` <p>`[pop] [name]` | <p>  Create new queue. <p> Displays queue list. <p> Displays queue items. <p> Push a item to queue. </p> <p> Pop a item from queue. </p>
