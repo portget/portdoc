@@ -137,11 +137,9 @@
                 
                 <li class="third-level"><a href="#how-to-use-putty-to-ssh-on-windows">how to use putty to SSH on windows</a></li>
         <li class="first-level "><a href="#what-is-mqtt-message-queuing-telemetry-transport">What is MQTT (Message Queuing Telemetry Transport)</a></li>
-            <li class="second-level"><a href="#syntax">Syntax</a></li>
-                
             <li class="second-level"><a href="#sample">Sample</a></li>
                 
-            <li class="second-level"><a href="#default-configure">Default Configure</a></li>
+            <li class="second-level"><a href="#default">Default</a></li>
                 
     </ul>
 </div></div>
@@ -177,16 +175,13 @@ During the connection process, the client provides authentication credentials to
 <p><img alt="poster" src="../img/putty3.png" /></p>
 <h1 id="what-is-mqtt-message-queuing-telemetry-transport">What is MQTT (Message Queuing Telemetry Transport)<a class="headerlink" href="#what-is-mqtt-message-queuing-telemetry-transport" title="Permanent link">&para;</a></h1>
 <p>MQTT is a lightweight messaging protocol primarily designed for efficient message transmission between IoT (Internet of Things) devices. This protocol is optimized to work in environments with limited network bandwidth, offering fast and reliable communication. MQTT is based on a publish/subscribe model, simplifying interactions between clients that send and receive data.</p>
-<h3 id="syntax">Syntax<a class="headerlink" href="#syntax" title="Permanent link">&para;</a></h3>
-<p>[group] [message-name] </p>
 <h3 id="sample">Sample<a class="headerlink" href="#sample" title="Permanent link">&para;</a></h3>
-<p>..\sample\app\mqtt\room1.pub</p>
-<pre><code>room1 RoomTemp1
+<p><code>path : ..\sample\app\mqtt\room1.pub</code></p>
+<p><code>url  : app\mqtt\room1.pub</code></p>
+<pre><code>room1 RoomTemp1 \\ [group-name] [message-name] 
 room2 RoomTemp1
 </code></pre>
-<pre><code>url : app\mqtt\room1.pub
-</code></pre>
-<h3 id="default-configure">Default Configure<a class="headerlink" href="#default-configure" title="Permanent link">&para;</a></h3>
+<h3 id="default">Default<a class="headerlink" href="#default" title="Permanent link">&para;</a></h3>
 <pre><code>Username admin
 Password admin
 Host localhost
