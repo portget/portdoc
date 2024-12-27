@@ -6,7 +6,7 @@ Please see the documentation [lincense](license.md)
 
 ## The Requirements 
 ---
-* os         : windows 7+ / windows server 2003+
+* os         : windows 11+ / windows server 2003+
 * memory     : minimum 32GB
 * requirements : 
 
@@ -22,34 +22,21 @@ VERSION | OS |STABLE | URL
 v1.0.35 | Windows x64 | Yes | [v1.0.35-win-installer](https://github.com/portget/port/archive/refs/tags/v1.0.35-win-installer.zip){:download} 
 v1.0.34 | Windows x64 | Yes | [v1.0.34-win-installer](https://github.com/portget/port/archive/refs/tags/v1.0.34-win-installer.zip){:download} 
 
+
 ## Project Layout
 ___
 The Port project is remarkably simple and straightforward. To get started, first create a project folder in the console, then type port new sample. This will quickly generate the project files. After that, create sub-group folders and add .msg files to each sub-group folder. Feel free to create messages using text, num, and enum types as you like. Once you've specified the attributes, type port push and Port will automatically store everything. Now, just run port run sample, and the server will start, allowing you to safely and easily share messages across multiple applications.
 
+
+
+
+
 ### Repository 
 
-<div class="console">
-  <div class="console-content">
-  port new [name]
-  </div>
-</div>
+![poster](img/new_project.png)
 
 
 
-___
-#### Layout 
-``` 
-APT/
-│
-├── room1/      # The group directory. 
-│   ├── *.msg   # The message file 
-│
-├── room2/      # The group directory. 
-│   ├── *.msg   # The message file 
-│
-└── *.enum
-└── port.toml   # The configuration file.
-```
 ___
 
 !!! tip
@@ -60,13 +47,8 @@ ___
 ### Group 
 A group serves as the root of messages. Within a single group, multiple message files can be stored, allowing for easy retrieval and editing. By managing several .msg files within the group folder, you can conveniently organize and abstract them for streamlined management.
 
-<div class="console">
-  <div class="console-content">
-  port add --group [name]
-  </div>
-</div>
+![poster](img/add_group.png)
 
- 
 ___
 
 <br/>
@@ -100,6 +82,7 @@ name | range | description
 <br/>
 
 #### ./room1/*.msg
+
 ```console
  BulbOnOff     enum.OffOn  pkg:Blub1.Power   property:{"Arguments":"yellow"}
  BulbOnOff     enum.OffOn  pkg:Blub1.Power   property:{"Arguments":"red"}      
@@ -136,7 +119,29 @@ OffOn       Off:0       On:1
 OnOff       On:0       Off:1
 ```
 
+___
+#### Layout 
 
+
+``` 
+sample // project root directory
+│
+├── room1 // messsage directory
+│   ├── *.msg
+│
+├── room2 // messsage directory
+│   ├── *.msg 
+│
+├── app //application directory 
+│    ├── *.enum
+│    ├── *.rule
+│
+└── proj.toml
+```
+
+___
+Download [sample project](file/sample.zip){:sample} 
+___
 
 
 

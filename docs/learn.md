@@ -36,15 +36,19 @@ Before starting a Port project, you need to create a root folder that defines yo
 
 #### Project Layouts
 ``` 
-sample/
+sample // project root directory
 │
-├── room1/
+├── room1 // messsage directory
 │   ├── *.msg
 │
-├── room2/
+├── room2 // messsage directory
 │   ├── *.msg 
 │
-└── *.enum
+├── app //application directory 
+│    ├── *.enum
+│    ├── *.rule
+│
+└── proj.toml
 ```
 
 ## How to add messages 
