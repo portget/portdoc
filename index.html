@@ -199,16 +199,19 @@
 
 <hr />
 <h4 id="layout">Layout<a class="headerlink" href="#layout" title="Permanent link">&para;</a></h4>
-<pre><code>hotel/
+<pre><code>sample // project root directory
 │
-├── room1/      # The group directory. 
-│   ├── *.msg   # The message file 
+├── room1 // messsage directory
+│   ├── *.msg
 │
-├── room2/      # The group directory. 
-│   ├── *.msg   # The message file 
+├── room2 // messsage directory
+│   ├── *.msg 
 │
-└── *.enum
-└── port.toml   # The configuration file.
+├── app //application directory 
+│    ├── *.enum
+│    ├── *.rule
+│
+└── proj.toml
 </code></pre>
 <hr />
 <div class="admonition tip">
@@ -492,5 +495,5 @@ OnOff       On:0       Off:1
 
 <!--
 MkDocs version : 1.6.0
-Build Date UTC : 2024-12-27 05:40:01.535787+00:00
+Build Date UTC : 2024-12-27 06:32:02.483472+00:00
 -->
