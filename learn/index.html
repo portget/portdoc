@@ -138,7 +138,11 @@
                 <li class="third-level"><a href="#heres-an-example">Here's an example</a></li>
             <li class="second-level"><a href="#how-to-add-messages">How to add messages</a></li>
                 
+                <li class="third-level"><a href="#datatype">datatype</a></li>
+                <li class="third-level"><a href="#attribute">attribute</a></li>
+                <li class="third-level"><a href="#room1msg">./room1/*.msg</a></li>
                 <li class="third-level"><a href="#sample-message-files">Sample message files</a></li>
+                <li class="third-level"><a href="#enum-enum">Enum (*.enum)</a></li>
             <li class="second-level"><a href="#how-to-add-rules">How to add rules</a></li>
                 
                 <li class="third-level"><a href="#setable-script-structure">Setable script structure:</a></li>
@@ -162,25 +166,10 @@ Try creating and editing a basic project to see how you can modify and configure
 <hr />
 <p>Before starting a Port project, you need to create a root folder that defines your messages. The subfolders within this root folder are managed as groups by Port, allowing users to organize messages by group. The root folder contains files with the <code>*.enum</code> extension and the structure of sub-group folders. Within the sub-group folders, message definition documents with the <code>*.msg</code> extension are created.</p>
 <h3 id="heres-an-example"><code>Here's an example</code><a class="headerlink" href="#heres-an-example" title="Permanent link">&para;</a></h3>
-<p><br/></p>
-<div class="console">
-    <div class="console-content">
-    cd C:\Users\sample
-  </div>
-</div>
-<p><br/></p>
-<div class="console">
-    <div class="console-content">
-    port new sample
-  </div>
-</div>
-<p><br/></p>
-<div class="console">
-   <div class="console-content">
-    port add --group room1,room2
-  </div>
-</div>
-
+<p>create a project</p>
+<p><img alt="poster" src="../img/new_project.png" /></p>
+<p>add a group </p>
+<p><img alt="poster" src="../img/add_group.png" /></p>
 <h4 id="project-layouts">Project Layouts<a class="headerlink" href="#project-layouts" title="Permanent link">&para;</a></h4>
 <pre><code>sample // project root directory
 │
@@ -199,6 +188,76 @@ Try creating and editing a basic project to see how you can modify and configure
 <h2 id="how-to-add-messages">How to add messages<a class="headerlink" href="#how-to-add-messages" title="Permanent link">&para;</a></h2>
 <hr />
 <p>To declare a message, you need to edit the <code>*.msg</code> file in the sub-folder you created. By defining message data types and attributes as shown below, you can later utilize various features such as automatic logging and backup. Additionally, you can define relationships using predefined relations.</p>
+<h4 id="datatype">datatype<a class="headerlink" href="#datatype" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>range</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>text</td>
+<td><code>0~255</code></td>
+<td>The length can be specified as a value from 0 to 255.</td>
+</tr>
+<tr>
+<td>num</td>
+<td><code>-1.7e+308 ~</code> <p><code>+1.7e+308</code></td>
+<td>The floating-point type that allows for the representation of decimal numbers and is capable of representing a wide range of values, both very small and very large.</td>
+</tr>
+<tr>
+<td>enum</td>
+<td><code>0 ~ 65535</code></td>
+<td>The user can utilize the fixed list values specified in the .enum file, which can be used at a lower cost than text values and with stricter usage.</td>
+</tr>
+</tbody>
+</table>
+<p><br/></p>
+<h4 id="attribute">attribute<a class="headerlink" href="#attribute" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pkg</td>
+<td>Real-time synchronization and messaging are handled within the corresponding external library. For more details, please refer to the pkg documentation.</td>
+</tr>
+<tr>
+<td>backup</td>
+<td>Changes are saved to the backup database as they occur, ensuring that values are restored upon application restart. and values are not propagated pkg messages during program execution.</td>
+</tr>
+<tr>
+<td>property</td>
+<td>Can specify a custom property</td>
+</tr>
+<tr>
+<td>rule</td>
+<td>Can specify rules to manage the values of corresponding messages.</td>
+</tr>
+</tbody>
+</table>
+<p><br/></p>
+<h4 id="room1msg">./room1/*.msg<a class="headerlink" href="#room1msg" title="Permanent link">&para;</a></h4>
+<pre><code class="language-console"> BulbOnOff     enum.OffOn  pkg:Blub1.Power   property:{&quot;Arguments&quot;:&quot;yellow&quot;}
+ BulbOnOff     enum.OffOn  pkg:Blub1.Power   property:{&quot;Arguments&quot;:&quot;red&quot;}      
+ RoomHeater1   enum.OffOn  pkg:Heater1.Power property:{&quot;Arguments&quot;:&quot;1,0&quot;}
+ RoomHeater2   enum.OffOn  pkg:Heater1.Power property:{&quot;Arguments&quot;:&quot;2,0&quot;}
+ RoomTemp      num         pkg:Heater1.Temp  property:{&quot;MIN&quot;:0,&quot;MAX&quot;:300} 
+ ...
+</code></pre>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>message document do not using special characters. </p>
+</div>
+<p><br/>
+<br/></p>
 <h4 id="sample-message-files">Sample message files<a class="headerlink" href="#sample-message-files" title="Permanent link">&para;</a></h4>
 <pre><code>
  BulbOnOff     enum.OffOn  pkg:Blub1.OffOn     
@@ -206,6 +265,22 @@ Try creating and editing a basic project to see how you can modify and configure
  RoomTemp2     num         pkg:Heater1.Temp  property:{&quot;MIN&quot;:0,&quot;MAX&quot;:300,&quot;Arguments&quot;:&quot;F&quot;}        
 
 </code></pre>
+<h3 id="enum-enum">Enum (*.enum)<a class="headerlink" href="#enum-enum" title="Permanent link">&para;</a></h3>
+<hr />
+<p>Enums are particularly useful when you have a fixed set of values that a variable can take, such as days of the week, months of the year, or status codes. They help make your code more expressive, self-documenting, and less error-prone because you're working with named constants instead of raw integer values. </p>
+<ul>
+<li>enum item format like this<code>[key] [item-name:number_key] [item-name:number_key]</code> </li>
+<li><code>[key]</code>      - unique key in the enum message</li>
+<li><code>[item-name]</code>- name by enum-item</li>
+<li><code>[property]</code> - unique key in enum value</li>
+</ul>
+<h4 id="enum">*.enum<a class="headerlink" href="#enum" title="Permanent link">&para;</a></h4>
+<pre><code class="language-console">TFalse      True:0      False:1
+FTrue       False:0     True:1
+OffOn       Off:0       On:1
+OnOff       On:0       Off:1
+</code></pre>
+<hr />
 <h2 id="how-to-add-rules">How to add rules<a class="headerlink" href="#how-to-add-rules" title="Permanent link">&para;</a></h2>
 <hr />
 <p>To declare a rule, you need to edit the <code>*.rule</code> file in the sub-folder you created. The rule script can control whether the user can modify settings through the setable function. The first parameter is the condition that triggers the rule, and the second parameter is the condition that determines whether the setting is modifiable. When the user changes the message value, the function is automatically called to check these conditions.</p>
@@ -308,6 +383,9 @@ granting administrator privileges to the port.exe program will resolve the issue
 <p><a href="http://localhost:5001/api/app/ng/?view=table">http://localhost:5001/api/app/ng/?view=table</a></p></p>
 </div>
 <h4 id="good-luck">Good luck!<a class="headerlink" href="#good-luck" title="Permanent link">&para;</a></h4>
+<hr />
+<p>Download <a href="../file/sample.zip" sample="sample">sample project</a> </p>
+<hr />
 <style>
 
 .console {
