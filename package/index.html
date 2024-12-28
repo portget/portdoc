@@ -147,20 +147,11 @@
             <li class="second-level"><a href="#how-to-create-a-packages">How to create a packages</a></li>
                 
                 <li class="third-level"><a href="#net">.net</a></li>
-            <li class="second-level"><a href="#how-to-create-a-port-project">How to create a port-project</a></li>
-                
-                <li class="third-level"><a href="#heres-an-example">Here's an example</a></li>
-            <li class="second-level"><a href="#how-to-add-messages">How to add messages</a></li>
-                
-                <li class="third-level"><a href="#sample-message-files">Sample message files</a></li>
             <li class="second-level"><a href="#how-to-link-packages">How to link packages</a></li>
                 
                 <li class="third-level"><a href="#checking-for-package">checking for package</a></li>
                 <li class="third-level"><a href="#packages-list">packages list</a></li>
                 <li class="third-level"><a href="#set-a-packages">Set a packages</a></li>
-            <li class="second-level"><a href="#how-to-start-project">How to start project</a></li>
-                
-                <li class="third-level"><a href="#good-luck">Good luck!</a></li>
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
@@ -449,48 +440,6 @@
 </div>
 
 <p><br></p>
-<h2 id="how-to-create-a-port-project">How to create a port-project<a class="headerlink" href="#how-to-create-a-port-project" title="Permanent link">&para;</a></h2>
-<hr />
-<p>Before starting a Port project, you need to create a root folder that defines your messages. The subfolders within this root folder are managed as groups by Port, allowing users to organize messages by group. The root folder contains files with the <code>*.enum</code> extension and the structure of sub-group folders. Within the sub-group folders, message definition documents with the <code>*.msg</code> extension are created.</p>
-<h3 id="heres-an-example"><code>Here's an example</code><a class="headerlink" href="#heres-an-example" title="Permanent link">&para;</a></h3>
-<p><br/></p>
-<div class="console">
-    <div class="console-content">
-    cd C:\Users\sample
-  </div>
-</div>
-<p><br/></p>
-<div class="console">
-    <div class="console-content">
-    port new sample
-  </div>
-</div>
-<p><br/></p>
-<div class="console">
-   <div class="console-content">
-    port add --group room1,room2
-  </div>
-</div>
-
-<h4 id="project-layouts">Project Layouts<a class="headerlink" href="#project-layouts" title="Permanent link">&para;</a></h4>
-<pre><code>sample/
-│
-├── room1/
-│   ├── *.msg
-│
-├── room2/
-│   ├── *.msg 
-│
-└── *.enum
-</code></pre>
-<h2 id="how-to-add-messages">How to add messages<a class="headerlink" href="#how-to-add-messages" title="Permanent link">&para;</a></h2>
-<hr />
-<p>To declare a message, you need to edit the <code>*.msg</code> file in the sub-folder you created. By defining message data types and Annotation as shown below, you can later utilize various features such as automatic logging and backup. Additionally, you can define relationships using predefined relations.</p>
-<h4 id="sample-message-files">Sample message files<a class="headerlink" href="#sample-message-files" title="Permanent link">&para;</a></h4>
-<pre><code>    BulbOnOff     enum.OffOn  pkg:Blub1.OffOn     
-    RoomTemp1     num         pkg:Heater1.Temp  property:{&quot;MIN&quot;:0,&quot;MAX&quot;:300,&quot;Arguments&quot;:&quot;C&quot;}
-    RoomTemp2     num         pkg:Heater1.Temp  property:{&quot;MIN&quot;:0,&quot;MAX&quot;:300,&quot;Arguments&quot;:&quot;F&quot;}       
-</code></pre>
 <h2 id="how-to-link-packages">How to link packages<a class="headerlink" href="#how-to-link-packages" title="Permanent link">&para;</a></h2>
 <hr />
 <h4 id="checking-for-package">checking for package<a class="headerlink" href="#checking-for-package" title="Permanent link">&para;</a></h4>
@@ -546,37 +495,6 @@
 granting administrator privileges to the port.exe program will resolve the issue.</p>
 </div>
 <p>After linking the relations to your project, you can verify the integration using the following command</p>
-<h2 id="how-to-start-project">How to start project<a class="headerlink" href="#how-to-start-project" title="Permanent link">&para;</a></h2>
-<p>Once all message definitions are complete, you can start the message server based on these definitions. Before running the server, upload all updated content to the local repository by entering <code>port push</code> in the console. Then, run the server with the command <code>port run [project-name]</code>.</p>
-<div class="console">
-    <div class="console-content">
-       port push 
-    </div>
-</div>
-
-<p><br></p>
-<div class="console">
-    <div class="console-content">
-       port run sample  
-    </div>
-</div>
-<p><br></p>
-<div class="console">
-    <div class="console-content">
-      [localhost:5001]Port Running ... OK
-       Access point count [4]
-       Package count [2]
-       Pressing 'CTRL + C' will initiate server shutdown.
-       Please wait for all processes to safely terminate before closing the application.
-    </div>
-</div>
-
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>When running the server, if you include <code>--ng ignore</code> in the command, it will summarize only the points where errors (NG) occur. For detailed information on these NG points, you can visit the following URL to view the NG point table: 
-<p><a href="http://localhost:5001/api/app/ng/?view=table">http://localhost:5001/api/app/ng/?view=table</a></p></p>
-</div>
-<h4 id="good-luck">Good luck!<a class="headerlink" href="#good-luck" title="Permanent link">&para;</a></h4>
 <style>
 
 .console {

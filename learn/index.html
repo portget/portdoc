@@ -148,7 +148,8 @@
                 <li class="third-level"><a href="#sample-enum-files">Sample enum files</a></li>
             <li class="second-level"><a href="#how-to-add-rules">How to add rules</a></li>
                 
-                <li class="third-level"><a href="#setable-script-structure">Setable script structure:</a></li>
+                <li class="third-level"><a href="#set-rule-script-syntax">Set-Rule script syntax</a></li>
+                <li class="third-level"><a href="#gettrigger-script-syntax">GetTrigger script syntax</a></li>
                 <li class="third-level"><a href="#sample-rule-files">Sample rule files</a></li>
             <li class="second-level"><a href="#how-to-link-packages">How to link packages</a></li>
                 
@@ -304,8 +305,61 @@ OnOff       On:0       Off:1
 <h2 id="how-to-add-rules">How to add rules<a class="headerlink" href="#how-to-add-rules" title="Permanent link">&para;</a></h2>
 <hr />
 <p>To declare a rule, you need to edit the <code>*.rule</code> file in the sub-folder you created. The rule script can control whether the user can modify settings through the setable function. The first parameter is the condition that triggers the rule, and the second parameter is the condition that determines whether the setting is modifiable. When the user changes the message value, the function is automatically called to check these conditions.</p>
-<h4 id="setable-script-structure">Setable script structure:<a class="headerlink" href="#setable-script-structure" title="Permanent link">&para;</a></h4>
-<p>set(<code>[group.message-name]|[operator]|[set-value]</code>,<code>[script]</code>)</p>
+<h4 id="set-rule-script-syntax">Set-Rule script syntax<a class="headerlink" href="#set-rule-script-syntax" title="Permanent link">&para;</a></h4>
+<p>set(<code>[group.message-name][operator][value]</code>,<code>[script]</code>)</p>
+<h4 id="gettrigger-script-syntax">GetTrigger script syntax<a class="headerlink" href="#gettrigger-script-syntax" title="Permanent link">&para;</a></h4>
+<p>Overview</p>
+<p>The get function serves as a conditional trigger mechanism for executing specific actions when defined conditions are met. It is composed of two main parts:</p>
+<p>Trigger Condition: A logical expression that evaluates to true or false.</p>
+<p>Action Script: A set of instructions executed when the trigger condition evaluates to true.</p>
+<p>Syntax</p>
+<p>get("<Trigger Condition>", "<Action Script>");</p>
+<p>Parameters</p>
+<p>Trigger Condition (String):</p>
+<p>A logical expression enclosed in double quotes ("), specifying the condition to be evaluated.</p>
+<p>The condition may include variables, comparison operators, and logical connectors.</p>
+<p>Examples:</p>
+<p>(room1.RoomTemp1 &gt;= 0) &amp;&amp; (room2.RoomTemp2 &gt;= 0)</p>
+<p>device.Status == "ON" || sensor.Value &lt; 50</p>
+<p>Action Script (String):</p>
+<p>A series of commands, separated by semicolons (;), executed if the trigger condition evaluates to true.</p>
+<p>Each command consists of a variable assignment, setting a specific state or value.</p>
+<p>Examples:</p>
+<p>room1.BulbOnOff = Off; room2.BulbOnOff = Off;</p>
+<p>device.Power = "OFF"; alert.Level = "High";</p>
+<p>Execution Flow</p>
+<p>Evaluation Phase:</p>
+<p>The Trigger Condition is evaluated.</p>
+<p>If the condition is true, proceed to the action phase. If false, no further steps are executed.</p>
+<p>Action Phase:</p>
+<p>The Action Script is executed sequentially.</p>
+<p>Commands in the script modify states or perform actions as defined.</p>
+<p>Examples</p>
+<p>Example 1: Temperature-Based Trigger</p>
+<p>get("(room1.RoomTemp1 &gt;= 0) &amp;&amp; (room2.RoomTemp2 &gt;= 0)", "room1.BulbOnOff = Off; room2.BulbOnOff = Off;");</p>
+<p>Description:</p>
+<p>Trigger Condition: Checks if RoomTemp1 in room1 and RoomTemp2 in room2 are greater than or equal to 0.</p>
+<p>Action Script: Turns off the bulbs in room1 and room2 if the condition is satisfied.</p>
+<p>Example 2: Device Status Monitoring</p>
+<p>get("device.Status == 'ON'", "device.Power = 'OFF'; alert.Level = 'High';");</p>
+<p>Description:</p>
+<p>Trigger Condition: Verifies if the device's status is "ON".</p>
+<p>Action Script: Sets the device power to "OFF" and raises the alert level to "High".</p>
+<p>Supported Features</p>
+<p>Comparison Operators: &gt;=, &lt;=, &gt;, &lt;, ==, !=</p>
+<p>Logical Connectors: &amp;&amp; (AND), || (OR)</p>
+<p>Variables: Accessed using dot notation (e.g., room1.RoomTemp1)</p>
+<p>Value Types: Numbers (e.g., 0, 50) and strings (e.g., 'ON', 'OFF').</p>
+<p>Notes</p>
+<p>Ensure all variables used in the Trigger Condition and Action Script are defined and accessible.</p>
+<p>Enclose string values in single quotes (') within conditions and assignments.</p>
+<p>Separate multiple commands in the Action Script using semicolons (;).</p>
+<p>Troubleshooting</p>
+<p>Condition Always False: Verify the logical expression and ensure variable values are updated correctly.</p>
+<p>No Action Executed: Check that the Trigger Condition evaluates to true as expected.</p>
+<p>By following this manual, users can effectively utilize the get function to automate conditional tasks and actions.</p>
+<p>Syntax </p>
+<p>get(<code>[group-name.message-name][operator][value]</code>,<code>[script]</code>)</p>
 <h4 id="sample-rule-files">Sample rule files<a class="headerlink" href="#sample-rule-files" title="Permanent link">&para;</a></h4>
 <pre><code>set(&quot;room1.BulbOnOff==Off&quot;,&quot;(room1.RoomTemp1&gt;=20)&amp;&amp;(room2.RoomTemp2&gt;=20)&quot;)
 set(&quot;room1.RoomTemp2&gt;=30&quot;,&quot;room2.RoomTemp2&gt;=5&quot;) 
