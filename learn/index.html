@@ -135,14 +135,17 @@
         <li class="first-level active"><a href="#quick-start">Quick Start</a></li>
             <li class="second-level"><a href="#how-to-create-a-port-project">How to create a port-project</a></li>
                 
-                <li class="third-level"><a href="#heres-an-example">Here's an example</a></li>
+            <li class="second-level"><a href="#project-repository">Project Repository</a></li>
+                
+                <li class="third-level"><a href="#group">Group</a></li>
             <li class="second-level"><a href="#how-to-add-messages">How to add messages</a></li>
                 
-                <li class="third-level"><a href="#datatype">datatype</a></li>
-                <li class="third-level"><a href="#attribute">attribute</a></li>
-                <li class="third-level"><a href="#room1msg">./room1/*.msg</a></li>
+                <li class="third-level"><a href="#message-structure">Message Structure</a></li>
                 <li class="third-level"><a href="#sample-message-files">Sample message files</a></li>
-                <li class="third-level"><a href="#enum-enum">Enum (*.enum)</a></li>
+            <li class="second-level"><a href="#how-to-add-enums">How to add enums</a></li>
+                
+                <li class="third-level"><a href="#enum-file">Enum file</a></li>
+                <li class="third-level"><a href="#sample-enum-files">Sample enum files</a></li>
             <li class="second-level"><a href="#how-to-add-rules">How to add rules</a></li>
                 
                 <li class="third-level"><a href="#setable-script-structure">Setable script structure:</a></li>
@@ -165,10 +168,24 @@ Try creating and editing a basic project to see how you can modify and configure
 <h2 id="how-to-create-a-port-project">How to create a port-project<a class="headerlink" href="#how-to-create-a-port-project" title="Permanent link">&para;</a></h2>
 <hr />
 <p>Before starting a Port project, you need to create a root folder that defines your messages. The subfolders within this root folder are managed as groups by Port, allowing users to organize messages by group. The root folder contains files with the <code>*.enum</code> extension and the structure of sub-group folders. Within the sub-group folders, message definition documents with the <code>*.msg</code> extension are created.</p>
-<h3 id="heres-an-example"><code>Here's an example</code><a class="headerlink" href="#heres-an-example" title="Permanent link">&para;</a></h3>
-<p>create a project</p>
+<h2 id="project-repository">Project Repository<a class="headerlink" href="#project-repository" title="Permanent link">&para;</a></h2>
+<hr />
+<p>The Port project is remarkably simple and straightforward. To get started, first create a project folder in the console, then type port new sample. This will quickly generate the project files. After that, create sub-group folders and add .msg files to each sub-group folder. Feel free to create messages using text, num, and enum types as you like. Once you've specified the attributes, type port push and Port will automatically store everything. Now, just run port run sample, and the server will start, allowing you to safely and easily share messages across multiple applications.</p>
+<hr />
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The repository name cannot contain special characters. 
+It follows the directory naming rules provided by the operating system.</p>
+</div>
+<hr />
+<h4>Create a project</h4>
+
 <p><img alt="poster" src="../img/new_project.png" /></p>
-<p>add a group </p>
+<h3 id="group">Group<a class="headerlink" href="#group" title="Permanent link">&para;</a></h3>
+<p>A group serves as the root of messages. Within a single group, multiple message files can be stored, allowing for easy retrieval and editing. By managing several .msg files within the group folder, you can conveniently organize and abstract them for streamlined management.</p>
+<hr />
+<h4>Add a group</h4>
+
 <p><img alt="poster" src="../img/add_group.png" /></p>
 <h4 id="project-layouts">Project Layouts<a class="headerlink" href="#project-layouts" title="Permanent link">&para;</a></h4>
 <pre><code>sample // project root directory
@@ -188,6 +205,16 @@ Try creating and editing a basic project to see how you can modify and configure
 <h2 id="how-to-add-messages">How to add messages<a class="headerlink" href="#how-to-add-messages" title="Permanent link">&para;</a></h2>
 <hr />
 <p>To declare a message, you need to edit the <code>*.msg</code> file in the sub-folder you created. By defining message data types and attributes as shown below, you can later utilize various features such as automatic logging and backup. Additionally, you can define relationships using predefined relations.</p>
+<h3 id="message-structure">Message Structure<a class="headerlink" href="#message-structure" title="Permanent link">&para;</a></h3>
+<p>A message is an object that allows users to specify pkg properties in a pre-provided Application Service. The message is a kv, and types and properties can be defined in that message. 
+Please attach the materials attached below. </p>
+<hr />
+<ul>
+<li>message item format like this <code>[key] [datatype] [option...]</code></li>
+<li><code>[key]</code>      - unique key in the message group</li>
+<li><code>[datatype]</code> - text | num | enum </li>
+<li><code>[attribute]</code> - pkg,backup,rule,frame,property</li>
+</ul>
 <h4 id="datatype">datatype<a class="headerlink" href="#datatype" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -215,7 +242,6 @@ Try creating and editing a basic project to see how you can modify and configure
 </tr>
 </tbody>
 </table>
-<p><br/></p>
 <h4 id="attribute">attribute<a class="headerlink" href="#attribute" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -241,32 +267,26 @@ Try creating and editing a basic project to see how you can modify and configure
 <td>rule</td>
 <td>Can specify rules to manage the values of corresponding messages.</td>
 </tr>
+<tr>
+<td>logging</td>
+<td>logging</td>
+</tr>
 </tbody>
 </table>
-<p><br/></p>
-<h4 id="room1msg">./room1/*.msg<a class="headerlink" href="#room1msg" title="Permanent link">&para;</a></h4>
-<pre><code class="language-console"> BulbOnOff     enum.OffOn  pkg:Blub1.Power   property:{&quot;Arguments&quot;:&quot;yellow&quot;}
- BulbOnOff     enum.OffOn  pkg:Blub1.Power   property:{&quot;Arguments&quot;:&quot;red&quot;}      
- RoomHeater1   enum.OffOn  pkg:Heater1.Power property:{&quot;Arguments&quot;:&quot;1,0&quot;}
- RoomHeater2   enum.OffOn  pkg:Heater1.Power property:{&quot;Arguments&quot;:&quot;2,0&quot;}
- RoomTemp      num         pkg:Heater1.Temp  property:{&quot;MIN&quot;:0,&quot;MAX&quot;:300} 
- ...
-</code></pre>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>message document do not using special characters. </p>
 </div>
-<p><br/>
-<br/></p>
-<h4 id="sample-message-files">Sample message files<a class="headerlink" href="#sample-message-files" title="Permanent link">&para;</a></h4>
+<h3 id="sample-message-files">Sample message files<a class="headerlink" href="#sample-message-files" title="Permanent link">&para;</a></h3>
 <pre><code>
  BulbOnOff     enum.OffOn  pkg:Blub1.OffOn     
  RoomTemp1     num         pkg:Heater1.Temp  property:{&quot;MIN&quot;:0,&quot;MAX&quot;:300,&quot;Arguments&quot;:&quot;C&quot;}
  RoomTemp2     num         pkg:Heater1.Temp  property:{&quot;MIN&quot;:0,&quot;MAX&quot;:300,&quot;Arguments&quot;:&quot;F&quot;}        
 
 </code></pre>
-<h3 id="enum-enum">Enum (*.enum)<a class="headerlink" href="#enum-enum" title="Permanent link">&para;</a></h3>
+<h2 id="how-to-add-enums">How to add enums<a class="headerlink" href="#how-to-add-enums" title="Permanent link">&para;</a></h2>
 <hr />
+<h3 id="enum-file">Enum file<a class="headerlink" href="#enum-file" title="Permanent link">&para;</a></h3>
 <p>Enums are particularly useful when you have a fixed set of values that a variable can take, such as days of the week, months of the year, or status codes. They help make your code more expressive, self-documenting, and less error-prone because you're working with named constants instead of raw integer values. </p>
 <ul>
 <li>enum item format like this<code>[key] [item-name:number_key] [item-name:number_key]</code> </li>
@@ -274,7 +294,7 @@ Try creating and editing a basic project to see how you can modify and configure
 <li><code>[item-name]</code>- name by enum-item</li>
 <li><code>[property]</code> - unique key in enum value</li>
 </ul>
-<h4 id="enum">*.enum<a class="headerlink" href="#enum" title="Permanent link">&para;</a></h4>
+<h3 id="sample-enum-files">Sample enum files<a class="headerlink" href="#sample-enum-files" title="Permanent link">&para;</a></h3>
 <pre><code class="language-console">TFalse      True:0      False:1
 FTrue       False:0     True:1
 OffOn       Off:0       On:1
@@ -285,10 +305,11 @@ OnOff       On:0       Off:1
 <hr />
 <p>To declare a rule, you need to edit the <code>*.rule</code> file in the sub-folder you created. The rule script can control whether the user can modify settings through the setable function. The first parameter is the condition that triggers the rule, and the second parameter is the condition that determines whether the setting is modifiable. When the user changes the message value, the function is automatically called to check these conditions.</p>
 <h4 id="setable-script-structure">Setable script structure:<a class="headerlink" href="#setable-script-structure" title="Permanent link">&para;</a></h4>
-<p>setable(<code>[group.message-name]|[operator]|[set-value]</code>,<code>[script]</code>)</p>
+<p>set(<code>[group.message-name]|[operator]|[set-value]</code>,<code>[script]</code>)</p>
 <h4 id="sample-rule-files">Sample rule files<a class="headerlink" href="#sample-rule-files" title="Permanent link">&para;</a></h4>
-<pre><code>setable(&quot;room1.BulbOnOff==Off&quot;,&quot;(room1.RoomTemp1&gt;=20)&amp;&amp;(room2.RoomTemp2&gt;=20)&quot;)
-setable(&quot;room1.RoomTemp2&gt;=30&quot;,&quot;room2.RoomTemp2&gt;=5&quot;)
+<pre><code>set(&quot;room1.BulbOnOff==Off&quot;,&quot;(room1.RoomTemp1&gt;=20)&amp;&amp;(room2.RoomTemp2&gt;=20)&quot;)
+set(&quot;room1.RoomTemp2&gt;=30&quot;,&quot;room2.RoomTemp2&gt;=5&quot;) 
+get(&quot;(room1.RoomTemp1&gt;=0)&amp;&amp;(room2.RoomTemp2&gt;=0)&quot;,&quot;room1.BulbOnOff=Off;room2.BulbOnOff=Off;&quot;)
 </code></pre>
 <h2 id="how-to-link-packages">How to link packages<a class="headerlink" href="#how-to-link-packages" title="Permanent link">&para;</a></h2>
 <hr />

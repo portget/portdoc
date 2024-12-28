@@ -137,12 +137,6 @@
                 
             <li class="second-level"><a href="#download-url">Download URL</a></li>
                 
-            <li class="second-level"><a href="#project-layout">Project Layout</a></li>
-                
-                <li class="third-level"><a href="#repository">Repository</a></li>
-                <li class="third-level"><a href="#group">Group</a></li>
-                <li class="third-level"><a href="#message-msg">Message (*.msg)</a></li>
-                <li class="third-level"><a href="#enum-enum">Enum (*.enum)</a></li>
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
@@ -187,117 +181,6 @@
 </tr>
 </tbody>
 </table>
-<h2 id="project-layout">Project Layout<a class="headerlink" href="#project-layout" title="Permanent link">&para;</a></h2>
-<hr />
-<p>The Port project is remarkably simple and straightforward. To get started, first create a project folder in the console, then type port new sample. This will quickly generate the project files. After that, create sub-group folders and add .msg files to each sub-group folder. Feel free to create messages using text, num, and enum types as you like. Once you've specified the attributes, type port push and Port will automatically store everything. Now, just run port run sample, and the server will start, allowing you to safely and easily share messages across multiple applications.</p>
-<h3 id="repository">Repository<a class="headerlink" href="#repository" title="Permanent link">&para;</a></h3>
-<hr />
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>The repository name cannot contain special characters. 
-It follows the directory naming rules provided by the operating system.</p>
-</div>
-<hr />
-<h3 id="group">Group<a class="headerlink" href="#group" title="Permanent link">&para;</a></h3>
-<p>A group serves as the root of messages. Within a single group, multiple message files can be stored, allowing for easy retrieval and editing. By managing several .msg files within the group folder, you can conveniently organize and abstract them for streamlined management.</p>
-<hr />
-<p><br/></p>
-<h3 id="message-msg">Message (*.msg)<a class="headerlink" href="#message-msg" title="Permanent link">&para;</a></h3>
-<p>A message is an object that allows users to specify pkg properties in a pre-provided Application Service. The message is a kv, and types and properties can be defined in that message. 
-Please attach the materials attached below. </p>
-<hr />
-<ul>
-<li>message item format like this <code>[key] [datatype] [option...]</code></li>
-<li><code>[key]</code>      - unique key in the message group</li>
-<li><code>[datatype]</code> - text | num | enum </li>
-<li><code>[attribute]</code> - pkg,backup,rule,frame,property</li>
-</ul>
-<h4 id="datatype">datatype<a class="headerlink" href="#datatype" title="Permanent link">&para;</a></h4>
-<table>
-<thead>
-<tr>
-<th>name</th>
-<th>range</th>
-<th>description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>text</td>
-<td><code>0~255</code></td>
-<td>The length can be specified as a value from 0 to 255.</td>
-</tr>
-<tr>
-<td>num</td>
-<td><code>-1.7e+308 ~</code> <p><code>+1.7e+308</code></td>
-<td>The floating-point type that allows for the representation of decimal numbers and is capable of representing a wide range of values, both very small and very large.</td>
-</tr>
-<tr>
-<td>enum</td>
-<td><code>0 ~ 65535</code></td>
-<td>The user can utilize the fixed list values specified in the .enum file, which can be used at a lower cost than text values and with stricter usage.</td>
-</tr>
-</tbody>
-</table>
-<p><br/></p>
-<h4 id="attribute">attribute<a class="headerlink" href="#attribute" title="Permanent link">&para;</a></h4>
-<table>
-<thead>
-<tr>
-<th>name</th>
-<th>description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>pkg</td>
-<td>Real-time synchronization and messaging are handled within the corresponding external library. For more details, please refer to the pkg documentation.</td>
-</tr>
-<tr>
-<td>backup</td>
-<td>Changes are saved to the backup database as they occur, ensuring that values are restored upon application restart. and values are not propagated pkg messages during program execution.</td>
-</tr>
-<tr>
-<td>property</td>
-<td>Can specify a custom property</td>
-</tr>
-<tr>
-<td>rule</td>
-<td>Can specify rules to manage the values of corresponding messages.</td>
-</tr>
-</tbody>
-</table>
-<p><br/></p>
-<h4 id="room1msg">./room1/*.msg<a class="headerlink" href="#room1msg" title="Permanent link">&para;</a></h4>
-<pre><code class="language-console"> BulbOnOff     enum.OffOn  pkg:Blub1.Power   property:{&quot;Arguments&quot;:&quot;yellow&quot;}
- BulbOnOff     enum.OffOn  pkg:Blub1.Power   property:{&quot;Arguments&quot;:&quot;red&quot;}      
- RoomHeater1   enum.OffOn  pkg:Heater1.Power property:{&quot;Arguments&quot;:&quot;1,0&quot;}
- RoomHeater2   enum.OffOn  pkg:Heater1.Power property:{&quot;Arguments&quot;:&quot;2,0&quot;}
- RoomTemp      num         pkg:Heater1.Temp  property:{&quot;MIN&quot;:0,&quot;MAX&quot;:300} 
- ...
-</code></pre>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>message document do not using special characters. </p>
-</div>
-<p><br/>
-<br/></p>
-<h3 id="enum-enum">Enum (*.enum)<a class="headerlink" href="#enum-enum" title="Permanent link">&para;</a></h3>
-<hr />
-<p>Enums are particularly useful when you have a fixed set of values that a variable can take, such as days of the week, months of the year, or status codes. They help make your code more expressive, self-documenting, and less error-prone because you're working with named constants instead of raw integer values. </p>
-<ul>
-<li>enum item format like this<code>[key] [item-name:number_key] [item-name:number_key]</code> </li>
-<li><code>[key]</code>      - unique key in the enum message</li>
-<li><code>[item-name]</code>- name by enum-item</li>
-<li><code>[property]</code> - unique key in enum value</li>
-</ul>
-<h4 id="enum">*.enum<a class="headerlink" href="#enum" title="Permanent link">&para;</a></h4>
-<pre><code class="language-console">TFalse      True:0      False:1
-FTrue       False:0     True:1
-OffOn       Off:0       On:1
-OnOff       On:0       Off:1
-</code></pre>
-<hr />
 <style>
 
 .console {
@@ -468,5 +351,5 @@ OnOff       On:0       Off:1
 
 <!--
 MkDocs version : 1.6.0
-Build Date UTC : 2024-12-27 13:57:05.708454+00:00
+Build Date UTC : 2024-12-28 08:31:18.548975+00:00
 -->
