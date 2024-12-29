@@ -272,59 +272,8 @@ Let's develop a package. In the Port Application, all operations are grouped at 
 </div>
 
 <br>
+  
 
-## How to create a port-project
-___
-Before starting a Port project, you need to create a root folder that defines your messages. The subfolders within this root folder are managed as groups by Port, allowing users to organize messages by group. The root folder contains files with the `*.enum` extension and the structure of sub-group folders. Within the sub-group folders, message definition documents with the `*.msg` extension are created.
-
-### `Here's an example` 
-
-<br/>
-<div class="console">
-    <div class="console-content">
-    cd C:\Users\sample
-  </div>
-</div>
-<br/>
- 
-<div class="console">
-    <div class="console-content">
-    port new sample
-  </div>
-</div>
-<br/>
-
-<div class="console">
-   <div class="console-content">
-    port add --group room1,room2
-  </div>
-</div>
-
- 
-
-#### Project Layouts
-``` 
-sample/
-│
-├── room1/
-│   ├── *.msg
-│
-├── room2/
-│   ├── *.msg 
-│
-└── *.enum
-```
-
-## How to add messages 
-___
-To declare a message, you need to edit the `*.msg` file in the sub-folder you created. By defining message data types and Annotation as shown below, you can later utilize various features such as automatic logging and backup. Additionally, you can define relationships using predefined relations.
-
-#### Sample message files
-```
-    BulbOnOff     enum.OffOn  pkg:Blub1.OffOn     
-    RoomTemp1     num         pkg:Heater1.Temp  property:{"MIN":0,"MAX":300,"Arguments":"C"}
-    RoomTemp2     num         pkg:Heater1.Temp  property:{"MIN":0,"MAX":300,"Arguments":"F"}       
-```
  
 ## How to link packages
 ___
@@ -390,38 +339,6 @@ ___
 After linking the relations to your project, you can verify the integration using the following command
 
 
-## How to start project
-Once all message definitions are complete, you can start the message server based on these definitions. Before running the server, upload all updated content to the local repository by entering `port push` in the console. Then, run the server with the command `port run [project-name]`.
-
-<div class="console">
-    <div class="console-content">
-       port push 
-    </div>
-</div>
-
-<br>
-<div class="console">
-    <div class="console-content">
-       port run sample  
-    </div>
-</div>
-<br>
-<div class="console">
-    <div class="console-content">
-      [localhost:5001]Port Running ... OK
-       Access point count [4]
-       Package count [2]
-       Pressing 'CTRL + C' will initiate server shutdown.
-       Please wait for all processes to safely terminate before closing the application.
-    </div>
-</div>
-      
-
-!!!tip
-    When running the server, if you include `--ng ignore` in the command, it will summarize only the points where errors (NG) occur. For detailed information on these NG points, you can visit the following URL to view the NG point table: 
-    <p><a href="http://localhost:5001/api/app/ng/?view=table">http://localhost:5001/api/app/ng/?view=table</a></p>
-
-####   Good luck!
 
 <style>
 
