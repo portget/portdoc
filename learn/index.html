@@ -267,7 +267,7 @@ Please attach the materials attached below. </p>
 <p>message document do not using special characters. </p>
 </div>
 <h3 id="2-sample">2. Sample<a class="headerlink" href="#2-sample" title="Permanent link">&para;</a></h3>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a> BulbOnOff     enum.OffOn  pkg:Blub1.OffOn     
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a> BulbOnOff     enum.OffOn  pkg:Bulb1.OffOn     
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a> RoomTemp1     num         pkg:Heater1.Temp  property:{&quot;MIN&quot;:0,&quot;MAX&quot;:300,&quot;Arguments&quot;:&quot;C&quot;}
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a> RoomTemp2     num         pkg:Heater1.Temp  property:{&quot;MIN&quot;:0,&quot;MAX&quot;:300,&quot;Arguments&quot;:&quot;F&quot;}        
 </span></code></pre></div>
@@ -346,17 +346,17 @@ Below is the typical structure of the boot.js file:
 <div class="code-box">
   <pre>
   <code id="code-snippet" class="language-javascript"> 
-  import Blub1 from `BulbLib1`
-  import Blub2 from `BulbLib2`
+  import Bulb1 from `BulbLib1`
+  import Bulb2 from `BulbLib2`
   import Heater1 from `HeaterLib1`
   import Heater2 from `HeaterLib2`
 
   function boot(){ 
-    if (!Blub1.Valid()){
+    if (!Bulb1.Valid()){
         console.log("invalid Bubl1");
         return false;
     }
-    if (!Blub2.Valid()){
+    if (!Bulb2.Valid()){
         console.log("invalid Bubl2");
         return false;
     }
