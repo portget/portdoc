@@ -18,15 +18,13 @@ Port.SDK |  C# | Nuget |Windows x64 | Yes |
 ## Package Annotation
 ___
 
- name | arguments | description
- ------|-------- |--------
- Port   |`Class Type` | Declaring a port attribute in a class designates that class as one managed by the port system. Once declared, the class can be registered as part of a package.
- Message   |`-` |  Messages are declared, and the values defined as properties can be controlled through package calls.
- Logger   |`-` |  Specifies that the Logger field is to be injected with a logging system or service.
- Property |`Message` | Maps the property to a pre-declared Message Property.
- Regex  |`[Pattern|Type]` |  It is validated through a regular expression check. If the value matches the specified regular expression, it is accepted as valid; otherwise, an input exception is triggered.
- EnumCode   |`-` |  The Enum type is declared, allowing you to retrieve the Enum values through this declaration.
- Comment  |`-` |  A comment is declared, allowing you to retrieve the comment through this declaration.
+ name | targets | type |arguments | description
+ ------|-------- |-------- |-------- |--------
+ Port   |class|-| `Class Type`| Declaring a port attribute in a class designates that class as one managed by the port system. Once declared, the class can be registered as part of a package.
+ Message   |property|string/double |`-` |  Messages are declared, and the values defined as properties can be controlled through package calls.
+ Logger   |property|ILogger|`-` |  Specifies that the Logger field is to be injected with a logging system or service.
+ Property |property|IProperty|`Message name` | Maps the property to a pre-declared Message Property.
+ Vaild |method<p>property|bool|`invalid comment` | Maps the property to a pre-declared Message Property.
 
 #### Port
 
@@ -273,73 +271,7 @@ Let's develop a package. In the Port Application, all operations are grouped at 
 
 <br>
   
-
  
-## How to link packages
-___
-
-
-
-#### checking for package
-
-<div class="console">
-    <div class="console-content"> 
-    port ls pkg 
-   </div>
-</div>
-<br>
-
-#### packages list
-
-<div class="console">
-    <div class="console-content"> 
-    package1  [DateTime]
-    package2  [DateTime]
-    package3  [DateTime]
-    package4  [DateTime] 
-   </div>
-</div>
-
-<br>
-
-#### Set a packages 
-
-`[proj.toml]`
-<div class="console">
-    <div class="console-content">
-        ...
-
-        # packages 
-        [[packages]]
-        key = 'Blub1'
-        load = 'BulbLib.dll'
-        path = 'pkg:BulbLib1.pkg'
-
-        [[packages]]
-        key = 'Blub2'
-        load = 'BulbLib.dll'
-        path = 'pkg:BulbLib2.pkg'
-
-        [[packages]]
-        key = 'Heater1'
-        load = 'HeaterLib.dll'
-        path = 'pkg:HeaterLib1.pkg'
-
-        [[packages]]
-        key = 'Heater2'
-        load = 'HeaterLib.dll'
-        path = 'pkg:HeaterLib2.pkg'
-    </div>
-</div>
-<br/> 
-!!!tip
-    If you see a message like `[ERROR][open ..\proj.toml: Access is denied.]`
-    granting administrator privileges to the port.exe program will resolve the issue.
-
-After linking the relations to your project, you can verify the integration using the following command
-
-
-
 <style>
 
 .console {

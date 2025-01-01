@@ -8,13 +8,23 @@ nav:
   - Commands: commands.md
   - Supported: supported.md
 markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
   - admonition
   - footnotes
   - meta
   - toc:
       permalink: true
-  - attr_list
-
+  - attr_list 
 theme:
   name: null
   custom_dir: 'cinder'
+  features:
+    - content.code.copy
+    - content.code.select
+    - content.code.annotate

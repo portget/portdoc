@@ -39,22 +39,10 @@ ___
 
  
 
-#### Project Layouts
-``` 
-sample // project root directory
-│
-├── room1 // messsage directory
-│   ├── *.msg
-│
-├── room2 // messsage directory
-│   ├── *.msg 
-│
-├── app //application directory 
-│    ├── *.enum
-│    ├── *.rule
-│
-└── proj.toml
-```
+#### Sample Project
+
+![poster](img/expl.png)
+
 
 ## How to add messages 
 ___
@@ -187,7 +175,7 @@ In summary, port packages:
 
 
 
-#### Check packages list
+#### 1. Check packages list
 
 ![poster](img/lsPkg.png)
 
@@ -195,95 +183,84 @@ In summary, port packages:
 
 <br>
 
-### Add packages
+#### 2. Manual for boot.js in Port Application
+
+<br>
+Overview
+<br>
+The boot.js file is a critical component of the Port Application. It initializes the system by importing and validating the necessary packages. If any package fails validation, the application stops booting and logs an error.
+
+<br>
+Location
+<br>
+The boot.js file is located in the app folder of the Port Application project. Ensure all edits are made directly in this file to modify the initialization process.
+
+<br>
+Structure of boot.js
+<br>
+Below is the typical structure of the boot.js file:
+<br>
+
+<div class="code-box">
+  <pre>
+  <code id="code-snippet" class="language-javascript"> 
+  import Blub1 from `BulbLib1`
+  import Blub2 from `BulbLib2`
+  import Heater1 from `HeaterLib1`
+  import Heater2 from `HeaterLib2`
+
+  function boot(){ 
+    if (!Blub1.Valid()){
+        console.log("invalid Bubl1");
+        return false;
+    }
+    if (!Blub2.Valid()){
+        console.log("invalid Bubl2");
+        return false;
+    }
+    if (!Heater1.Valid()){
+        console.log("invalid Heater1");
+        return false;
+    }
+    if (!Heater2.Valid()){
+        console.log("invalid Heater2");
+        return false;
+    }
+
+    return true;
+  } 
+  </code></pre>
+  <button class="copy-button" onclick="copyCode('code-snippet')">
+    <img src="/img/copy.svg">
+  </button>
+</div> 
+
+
 
 <br>
 
-#### move directory
 
-<div class="console">
-    <div class="console-content">
-    cd C:\Users\Demo
-   </div>
-</div>
-<br/>
-
-#### Add the package to the current project under the name "bulb1"
-
-<div class="console">
-    <div class="console-content">
-    port add --pkg bulb1 bulb
-   </div>
-</div>
-<br/>
-
-#### Add the package to the current project under the name "bulb2"
-
-<div class="console">
-    <div class="console-content">
-    port add --pkg bulb2 bulb
-   </div>
-</div>
-<br/>
-
-#### Add the package to the current project under the name "heater1"
-
-<div class="console">
-    <div class="console-content">
-    port add --pkg heater1 heater
-   </div>
-</div>
-<br/>
-
-#### Add the package to the current project under the name "heater2"
-
-<div class="console">
-    <div class="console-content">
-    port add --pkg heater2 heater
-   </div>
-</div>
-    
-!!!tip
-    If you see a message like `[ERROR][open ..\proj.toml: Access is denied.]`
-    granting administrator privileges to the port.exe program will resolve the issue.
 
 After linking the relations to your project, you can verify the integration using the following command
 
 
-## How to start project
+## How to start project with console
+
 Once all message definitions are complete, you can start the message server based on these definitions. Before running the server, upload all updated content to the local repository by entering `port push` in the console. Then, run the server with the command `port run [project-name]`.
 
-<div class="console">
-    <div class="console-content">
-       port push 
-    </div>
-</div>
+![poster](img/start project.png)
 
-<br>
-<div class="console">
-    <div class="console-content">
-       port run sample  
-    </div>
-</div>
-<br>
-<div class="console">
-    <div class="console-content">
-      [localhost:5001]Port Running ... OK
-       Access point count [4]
-       Package count [2]
-       Pressing 'CTRL + C' will initiate server shutdown.
-       Please wait for all processes to safely terminate before closing the application.
-    </div>
-</div>
-      
+![poster](img/start project2.png)
 
 !!!tip
     When running the server, if you include `--ng ignore` in the command, it will summarize only the points where errors (NG) occur. For detailed information on these NG points, you can visit the following URL to view the NG point table: 
     <p><a href="http://localhost:5001/api/app/ng/?view=table">http://localhost:5001/api/app/ng/?view=table</a></p>
 
-####   Good luck!
+
+## How to start project with application
 
 
+##   Good luck!
 ___
 Download [sample project](file/sample.zip){:sample} 
 ___
@@ -354,4 +331,62 @@ ___
     margin: 0 0 10px;
     line-height: 1.5;
 }
+
+.code-box {
+  position: relative;
+  background: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 15px;
+  margin: 20px 0;
+  overflow: auto;
+  font-family: "Courier New", Courier, monospace;
+}
+
+/* Code Styling */
+.code-box pre {
+  margin: 0;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  background: none;
+  padding: 0;
+}
+
+/* Copy Button */
+.copy-button {
+  position: absolute;
+  top: 30px;
+  right: 30px;  
+  color: white;
+  border: none;
+  border-radius: 3px;
+  padding: 5px 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+}
+
+.copy-button:hover {
+  background-color: #e5e5e5;
+}
 </style>
+
+<script>
+  function copyCode(elementId) {
+  const codeElement = document.getElementById(elementId);
+  const codeText = codeElement.innerText || codeElement.textContent;
+
+  navigator.clipboard.writeText(codeText).then(() => {
+    alert("Code copied to clipboard!");
+  }).catch((error) => {
+    console.error("Failed to copy code: ", error);
+  });
+}
+</script>
+<!-- Prism.js CSS (for syntax highlighting) -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
+
+<!-- Prism.js JavaScript (for syntax highlighting functionality) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>

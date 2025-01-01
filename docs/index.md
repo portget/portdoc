@@ -4,13 +4,14 @@
 
 Please see the documentation [lincense](license.md)
 
-## Application Layout 
+
+
+## 1. Application Layout 
 
 ![poster](img/diagram.png)
 
 
-
-## The Requirements 
+## 2. The Requirements 
 ---
 * os         : windows 11+ / windows server 2003+
 * memory     : minimum 32GB
@@ -20,7 +21,7 @@ Please see the documentation [lincense](license.md)
 !!! tip
     System Requirements [.sdk-8.0.403-windows-x64-installer](https://dotnet.microsoft.com/ko-kr/download/dotnet/thank-you/sdk-8.0.403-windows-x64-installer){:download}
 
-## Download URL
+## 3. Download
 ---
 
 VERSION | OS |STABLE | URL 
@@ -28,10 +29,7 @@ VERSION | OS |STABLE | URL
 v1.0.35 | Windows x64 | Yes | [v1.0.35-win-installer](https://github.com/portget/port/archive/refs/tags/v1.0.35-win-installer.zip){:download} 
 v1.0.34 | Windows x64 | Yes | [v1.0.34-win-installer](https://github.com/portget/port/archive/refs/tags/v1.0.34-win-installer.zip){:download} 
 
-
-
-
-
+ 
 
 <style>
 
