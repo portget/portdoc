@@ -101,7 +101,7 @@ After the communication, a client can disconnect from the broker, but the broker
 4.Key Concepts
 
 - Publish : A client sends a message to a topic (e.g., sending sensor data).
-- Subscribe : A client listens to a specific topic to receive messages.
+- Subscribe : A client listens to a specific topic to receive messagees.
 - Broker : A server that handles the routing and delivery of messages.
 - Topics : Categories or channels that messages are published to and subscribed from.
 

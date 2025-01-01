@@ -43,6 +43,10 @@ ___
 
 ![poster](img/expl.png)
 
+___
+Download [sample project](file/sample.zip){:sample} 
+___
+
 
 ## How to add messages 
 ___
@@ -82,7 +86,7 @@ name | range | description
 ### 2. Sample
 ``` 
 
- BulbOnOff     enum.OffOn  pkg:Blub1.OffOn     
+ BulbOnOff     enum.OffOn  pkg:Bulb1.OffOn     
  RoomTemp1     num         pkg:Heater1.Temp  property:{"MIN":0,"MAX":300,"Arguments":"C"}
  RoomTemp2     num         pkg:Heater1.Temp  property:{"MIN":0,"MAX":300,"Arguments":"F"}        
 
@@ -204,17 +208,17 @@ Below is the typical structure of the boot.js file:
 <div class="code-box">
   <pre>
   <code id="code-snippet" class="language-javascript"> 
-  import Blub1 from `BulbLib1`
-  import Blub2 from `BulbLib2`
+  import Bulb1 from `BulbLib1`
+  import Bulb2 from `BulbLib2`
   import Heater1 from `HeaterLib1`
   import Heater2 from `HeaterLib2`
 
   function boot(){ 
-    if (!Blub1.Valid()){
+    if (!Bulb1.Valid()){
         console.log("invalid Bubl1");
         return false;
     }
-    if (!Blub2.Valid()){
+    if (!Bulb2.Valid()){
         console.log("invalid Bubl2");
         return false;
     }
@@ -244,8 +248,9 @@ Below is the typical structure of the boot.js file:
 After linking the relations to your project, you can verify the integration using the following command
 
 
-## How to start project with console
+## How to start project 
 
+### a. With console
 Once all message definitions are complete, you can start the message server based on these definitions. Before running the server, upload all updated content to the local repository by entering `port push` in the console. Then, run the server with the command `port run [project-name]`.
 
 ![poster](img/start project.png)
@@ -257,14 +262,15 @@ Once all message definitions are complete, you can start the message server base
     <p><a href="http://localhost:5001/api/app/ng/?view=table">http://localhost:5001/api/app/ng/?view=table</a></p>
 
 
-## How to start project with application
+### b. With application(WPF)
 
 
-##   Good luck!
-___
-Download [sample project](file/sample.zip){:sample} 
-___
+![poster](img/start project with wpf netCore.png)
 
+
+##   Good Job!
+
+![poster](img/mqtt_view.gif)
 
 <style>
 
