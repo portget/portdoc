@@ -147,11 +147,6 @@
             <li class="second-level"><a href="#how-to-create-a-packages">How to create a packages</a></li>
                 
                 <li class="third-level"><a href="#net">.net</a></li>
-            <li class="second-level"><a href="#how-to-link-packages">How to link packages</a></li>
-                
-                <li class="third-level"><a href="#checking-for-package">checking for package</a></li>
-                <li class="third-level"><a href="#packages-list">packages list</a></li>
-                <li class="third-level"><a href="#set-a-packages">Set a packages</a></li>
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
@@ -187,6 +182,8 @@
 <thead>
 <tr>
 <th>name</th>
+<th>targets</th>
+<th>type</th>
 <th>arguments</th>
 <th>description</th>
 </tr>
@@ -194,38 +191,38 @@
 <tbody>
 <tr>
 <td>Port</td>
+<td>class</td>
+<td>-</td>
 <td><code>Class Type</code></td>
 <td>Declaring a port attribute in a class designates that class as one managed by the port system. Once declared, the class can be registered as part of a package.</td>
 </tr>
 <tr>
 <td>Message</td>
+<td>property</td>
+<td>string/double</td>
 <td><code>-</code></td>
 <td>Messages are declared, and the values defined as properties can be controlled through package calls.</td>
 </tr>
 <tr>
 <td>Logger</td>
+<td>property</td>
+<td>ILogger</td>
 <td><code>-</code></td>
 <td>Specifies that the Logger field is to be injected with a logging system or service.</td>
 </tr>
 <tr>
 <td>Property</td>
-<td><code>Message</code></td>
+<td>property</td>
+<td>IProperty</td>
+<td><code>Message name</code></td>
 <td>Maps the property to a pre-declared Message Property.</td>
 </tr>
 <tr>
-<td>Regex</td>
-<td><code>[Pattern|Type]</code></td>
-<td>It is validated through a regular expression check. If the value matches the specified regular expression, it is accepted as valid; otherwise, an input exception is triggered.</td>
-</tr>
-<tr>
-<td>EnumCode</td>
-<td><code>-</code></td>
-<td>The Enum type is declared, allowing you to retrieve the Enum values through this declaration.</td>
-</tr>
-<tr>
-<td>Comment</td>
-<td><code>-</code></td>
-<td>A comment is declared, allowing you to retrieve the comment through this declaration.</td>
+<td>Vaild</td>
+<td>method<p>property</td>
+<td>bool</td>
+<td><code>invalid comment</code></td>
+<td>Maps the property to a pre-declared Message Property.</td>
 </tr>
 </tbody>
 </table>
@@ -435,61 +432,6 @@
 </div>
 
 <p><br></p>
-<h2 id="how-to-link-packages">How to link packages<a class="headerlink" href="#how-to-link-packages" title="Permanent link">&para;</a></h2>
-<hr />
-<h4 id="checking-for-package">checking for package<a class="headerlink" href="#checking-for-package" title="Permanent link">&para;</a></h4>
-<div class="console">
-    <div class="console-content"> 
-    port ls pkg 
-   </div>
-</div>
-<p><br></p>
-<h4 id="packages-list">packages list<a class="headerlink" href="#packages-list" title="Permanent link">&para;</a></h4>
-<div class="console">
-    <div class="console-content"> 
-    package1  [DateTime]
-    package2  [DateTime]
-    package3  [DateTime]
-    package4  [DateTime] 
-   </div>
-</div>
-
-<p><br></p>
-<h4 id="set-a-packages">Set a packages<a class="headerlink" href="#set-a-packages" title="Permanent link">&para;</a></h4>
-<p><code>[proj.toml]</code></p>
-<div class="console">
-    <div class="console-content">
-        ...
-
-        # packages 
-        [[packages]]
-        key = 'Blub1'
-        load = 'BulbLib.dll'
-        path = 'pkg:BulbLib1.pkg'
-
-        [[packages]]
-        key = 'Blub2'
-        load = 'BulbLib.dll'
-        path = 'pkg:BulbLib2.pkg'
-
-        [[packages]]
-        key = 'Heater1'
-        load = 'HeaterLib.dll'
-        path = 'pkg:HeaterLib1.pkg'
-
-        [[packages]]
-        key = 'Heater2'
-        load = 'HeaterLib.dll'
-        path = 'pkg:HeaterLib2.pkg'
-    </div>
-</div>
-<p><br/> </p>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>If you see a message like <code>[ERROR][open ..\proj.toml: Access is denied.]</code>
-granting administrator privileges to the port.exe program will resolve the issue.</p>
-</div>
-<p>After linking the relations to your project, you can verify the integration using the following command</p>
 <style>
 
 .console {
