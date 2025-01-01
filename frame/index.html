@@ -138,40 +138,40 @@
 <h3 id="make-frame">Make frame<a class="headerlink" href="#make-frame" title="Permanent link">&para;</a></h3>
 <hr />
 <h4 id="create-a-message-document">Create a Message Document<a class="headerlink" href="#create-a-message-document" title="Permanent link">&para;</a></h4>
-<p>[../AZone/sample1.msg]</p>
-<pre><code class="language-TEXT">    DevAPowerStatus    enum.DeviceAStatus   api:DeviceA.GetStatus       frame:HTS1.PowerStatus 
-...
-</code></pre>
-<p>[../BZone/sample1.msg]</p>
-<pre><code class="language-TEXT">    DevAPowerStatus    enum.DeviceAStatus   api:DeviceA.GetStatus       frame:HTS2.PowerStatus
-...
-</code></pre>
+<p>[../AZone/sample1.msg]
+<div class="language-TEXT highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>    DevAPowerStatus    enum.DeviceAStatus   api:DeviceA.GetStatus       frame:HTS1.PowerStatus 
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>...
+</span></code></pre></div></p>
+<p>[../BZone/sample1.msg]
+<div class="language-TEXT highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>    DevAPowerStatus    enum.DeviceAStatus   api:DeviceA.GetStatus       frame:HTS2.PowerStatus
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>...
+</span></code></pre></div></p>
 <h4 id="create-a-relationobject">Create a RelationObject<a class="headerlink" href="#create-a-relationobject" title="Permanent link">&para;</a></h4>
-<pre><code class="language-C#"> public class HeatingScenario : ScenarioRelationService
- {   
-    ...
-
-     [Message, Shot(1)]
-     public ShotResult EVENT_1
-     {
-         set
-         {
-             var strValue = frame.GetValue(&quot;PowerStatus&quot;);
-
-             if (strValue == &quot;OK&quot;)
-             {
-                 value.NextShot();
-             }
-         }
-     }
-
-    ...
- }
-</code></pre>
+<div class="language-C# highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">HeatingScenario</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ScenarioRelationService</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w"> </span><span class="p">{</span><span class="w">   </span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="p">...</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">     </span><span class="na">[Message, Shot(1)]</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">     </span><span class="k">public</span><span class="w"> </span><span class="n">ShotResult</span><span class="w"> </span><span class="n">EVENT_1</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">     </span><span class="p">{</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">         </span><span class="k">set</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">         </span><span class="p">{</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">             </span><span class="kt">var</span><span class="w"> </span><span class="n">strValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">frame</span><span class="p">.</span><span class="n">GetValue</span><span class="p">(</span><span class="s">&quot;PowerStatus&quot;</span><span class="p">);</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">             </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">strValue</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;OK&quot;</span><span class="p">)</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">             </span><span class="p">{</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">                 </span><span class="k">value</span><span class="p">.</span><span class="n">NextShot</span><span class="p">();</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">             </span><span class="p">}</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">         </span><span class="p">}</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">     </span><span class="p">}</span>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="w">    </span><span class="p">...</span>
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="w"> </span><span class="p">}</span>
+</span></code></pre></div>
 <h4 id="command">Command<a class="headerlink" href="#command" title="Permanent link">&para;</a></h4>
-<pre><code>port add --scenario heating1 /HeatingLib/HeatingLib.dll
-port add --scenario heating2 /HeatingLib/HeatingLib.dll
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>port add --scenario heating1 /HeatingLib/HeatingLib.dll
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>port add --scenario heating2 /HeatingLib/HeatingLib.dll
+</span></code></pre></div></div>
         
         
     </div>
