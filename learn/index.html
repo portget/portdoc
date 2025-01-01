@@ -154,11 +154,11 @@
                 
                 <li class="third-level"><a href="#1-check-packages-list">1. Check packages list</a></li>
                 <li class="third-level"><a href="#2-manual-for-bootjs-in-port-application">2. Manual for boot.js in Port Application</a></li>
-            <li class="second-level"><a href="#how-to-start-project-with-console">How to start project with console</a></li>
+            <li class="second-level"><a href="#how-to-start-project">How to start project</a></li>
                 
-            <li class="second-level"><a href="#how-to-start-project-with-application">How to start project with application</a></li>
-                
-            <li class="second-level"><a href="#good-luck">Good luck!</a></li>
+                <li class="third-level"><a href="#a-with-console">a. With console</a></li>
+                <li class="third-level"><a href="#b-with-applicationwpf">b. With application(WPF)</a></li>
+            <li class="second-level"><a href="#good-job">Good Job!</a></li>
                 
     </ul>
 </div></div>
@@ -192,6 +192,9 @@ It follows the directory naming rules provided by the operating system.</p>
 <p><img alt="poster" src="../img/add_group.png" /></p>
 <h4 id="sample-project">Sample Project<a class="headerlink" href="#sample-project" title="Permanent link">&para;</a></h4>
 <p><img alt="poster" src="../img/expl.png" /></p>
+<hr />
+<p>Download <a href="../file/sample.zip" sample="sample">sample project</a> </p>
+<hr />
 <h2 id="how-to-add-messages">How to add messages<a class="headerlink" href="#how-to-add-messages" title="Permanent link">&para;</a></h2>
 <hr />
 <p>To declare a message, you need to edit the <code>*.msg</code> file in the sub-folder you created. By defining message data types and attributes as shown below, you can later utilize various features such as automatic logging and backup. Additionally, you can define relationships using predefined relations.</p>
@@ -379,7 +382,8 @@ Below is the typical structure of the boot.js file:
 
 <p><br></p>
 <p>After linking the relations to your project, you can verify the integration using the following command</p>
-<h2 id="how-to-start-project-with-console">How to start project with console<a class="headerlink" href="#how-to-start-project-with-console" title="Permanent link">&para;</a></h2>
+<h2 id="how-to-start-project">How to start project<a class="headerlink" href="#how-to-start-project" title="Permanent link">&para;</a></h2>
+<h3 id="a-with-console">a. With console<a class="headerlink" href="#a-with-console" title="Permanent link">&para;</a></h3>
 <p>Once all message definitions are complete, you can start the message server based on these definitions. Before running the server, upload all updated content to the local repository by entering <code>port push</code> in the console. Then, run the server with the command <code>port run [project-name]</code>.</p>
 <p><img alt="poster" src="../img/start%20project.png" /></p>
 <p><img alt="poster" src="../img/start%20project2.png" /></p>
@@ -388,11 +392,10 @@ Below is the typical structure of the boot.js file:
 <p>When running the server, if you include <code>--ng ignore</code> in the command, it will summarize only the points where errors (NG) occur. For detailed information on these NG points, you can visit the following URL to view the NG point table: 
 <p><a href="http://localhost:5001/api/app/ng/?view=table">http://localhost:5001/api/app/ng/?view=table</a></p></p>
 </div>
-<h2 id="how-to-start-project-with-application">How to start project with application<a class="headerlink" href="#how-to-start-project-with-application" title="Permanent link">&para;</a></h2>
-<h2 id="good-luck">Good luck!<a class="headerlink" href="#good-luck" title="Permanent link">&para;</a></h2>
-<hr />
-<p>Download <a href="../file/sample.zip" sample="sample">sample project</a> </p>
-<hr />
+<h3 id="b-with-applicationwpf">b. With application(WPF)<a class="headerlink" href="#b-with-applicationwpf" title="Permanent link">&para;</a></h3>
+<p><img alt="poster" src="../img/start%20project%20with%20wpf%20netCore.png" /></p>
+<h2 id="good-job">Good Job!<a class="headerlink" href="#good-job" title="Permanent link">&para;</a></h2>
+<p><img alt="poster" src="../img/mqtt_view.gif" /></p>
 <style>
 
 .console {
