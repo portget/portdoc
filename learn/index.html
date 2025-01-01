@@ -154,9 +154,12 @@
                 
                 <li class="third-level"><a href="#1-check-packages-list">1. Check packages list</a></li>
                 <li class="third-level"><a href="#2-manual-for-bootjs-in-port-application">2. Manual for boot.js in Port Application</a></li>
-            <li class="second-level"><a href="#how-to-start-project">How to start project</a></li>
+            <li class="second-level"><a href="#how-to-start-project-with-console">How to start project with console</a></li>
                 
-                <li class="third-level"><a href="#good-luck">Good luck!</a></li>
+            <li class="second-level"><a href="#how-to-start-project-with-application">How to start project with application</a></li>
+                
+            <li class="second-level"><a href="#good-luck">Good luck!</a></li>
+                
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
@@ -188,20 +191,7 @@ It follows the directory naming rules provided by the operating system.</p>
 
 <p><img alt="poster" src="../img/add_group.png" /></p>
 <h4 id="project-layouts">Project Layouts<a class="headerlink" href="#project-layouts" title="Permanent link">&para;</a></h4>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sample // project root directory
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>│
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├── room1 // messsage directory
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│   ├── *.msg
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>├── room2 // messsage directory
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>│   ├── *.msg 
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>│
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>├── app //application directory 
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>│    ├── *.enum
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>│    ├── *.rule
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>│
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>└── proj.toml
-</span></code></pre></div>
+<p><img alt="poster" src="../img/expl.png" /></p>
 <h2 id="how-to-add-messages">How to add messages<a class="headerlink" href="#how-to-add-messages" title="Permanent link">&para;</a></h2>
 <hr />
 <p>To declare a message, you need to edit the <code>*.msg</code> file in the sub-folder you created. By defining message data types and attributes as shown below, you can later utilize various features such as automatic logging and backup. Additionally, you can define relationships using predefined relations.</p>
@@ -277,9 +267,9 @@ Please attach the materials attached below. </p>
 <p>message document do not using special characters. </p>
 </div>
 <h3 id="2-sample">2. Sample<a class="headerlink" href="#2-sample" title="Permanent link">&para;</a></h3>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a> BulbOnOff     enum.OffOn  pkg:Blub1.OffOn     
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a> RoomTemp1     num         pkg:Heater1.Temp  property:{&quot;MIN&quot;:0,&quot;MAX&quot;:300,&quot;Arguments&quot;:&quot;C&quot;}
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a> RoomTemp2     num         pkg:Heater1.Temp  property:{&quot;MIN&quot;:0,&quot;MAX&quot;:300,&quot;Arguments&quot;:&quot;F&quot;}        
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a> BulbOnOff     enum.OffOn  pkg:Blub1.OffOn     
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a> RoomTemp1     num         pkg:Heater1.Temp  property:{&quot;MIN&quot;:0,&quot;MAX&quot;:300,&quot;Arguments&quot;:&quot;C&quot;}
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a> RoomTemp2     num         pkg:Heater1.Temp  property:{&quot;MIN&quot;:0,&quot;MAX&quot;:300,&quot;Arguments&quot;:&quot;F&quot;}        
 </span></code></pre></div>
 <h2 id="how-to-add-enums">How to add enums<a class="headerlink" href="#how-to-add-enums" title="Permanent link">&para;</a></h2>
 <hr />
@@ -292,10 +282,10 @@ Please attach the materials attached below. </p>
 <li><code>[property]</code> - unique key in enum value</li>
 </ul>
 <h3 id="2-sample_1">2. Sample<a class="headerlink" href="#2-sample_1" title="Permanent link">&para;</a></h3>
-<div class="language-console highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="go">TFalse      True:0      False:1</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="go">FTrue       False:0     True:1</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="go">OffOn       Off:0       On:1</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="go">OnOff       On:0       Off:1</span>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="go">TFalse      True:0      False:1</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="go">FTrue       False:0     True:1</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="go">OffOn       Off:0       On:1</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="go">OnOff       On:0       Off:1</span>
 </span></code></pre></div>
 <hr />
 <h2 id="how-to-add-rules">How to add rules<a class="headerlink" href="#how-to-add-rules" title="Permanent link">&para;</a></h2>
@@ -322,9 +312,9 @@ conditions are met. It is composed of two main parts:</p>
 <p>get(<code>&lt;Trigger Condition&gt;</code>, <code>&lt;Action Script&gt;</code>);</p>
 <p><br/></p>
 <h3 id="3-sample">3. Sample<a class="headerlink" href="#3-sample" title="Permanent link">&para;</a></h3>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>    set(&quot;room1.BulbOnOff==Off&quot;,&quot;(room1.RoomTemp1&gt;=20)&amp;&amp;(room2.RoomTemp2&gt;=20)&quot;)
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    set(&quot;room1.RoomTemp2&gt;=30&quot;,&quot;room2.RoomTemp2&gt;=5&quot;) 
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    get(&quot;(room1.RoomTemp1&gt;=0)&amp;&amp;(room2.RoomTemp2&gt;=0)&quot;,&quot;room1.BulbOnOff=Off;room2.BulbOnOff=Off;&quot;)
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>    set(&quot;room1.BulbOnOff==Off&quot;,&quot;(room1.RoomTemp1&gt;=20)&amp;&amp;(room2.RoomTemp2&gt;=20)&quot;)
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    set(&quot;room1.RoomTemp2&gt;=30&quot;,&quot;room2.RoomTemp2&gt;=5&quot;) 
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    get(&quot;(room1.RoomTemp1&gt;=0)&amp;&amp;(room2.RoomTemp2&gt;=0)&quot;,&quot;room1.BulbOnOff=Off;room2.BulbOnOff=Off;&quot;)
 </span></code></pre></div>
 <h2 id="how-to-import-packages">How to import packages<a class="headerlink" href="#how-to-import-packages" title="Permanent link">&para;</a></h2>
 <p>A port package, in the context of software development, is a collection of pre-written code or modules that provide specific functionality, designed to be reused across different projects. By incorporating port packages into your application, you can save time and effort by leveraging existing solutions instead of building everything from scratch. Port packages typically include libraries, utilities, or tools that handle common tasks, such as data manipulation, network communication, or file handling.</p>
@@ -382,42 +372,24 @@ Below is the typical structure of the boot.js file:
     return true;
   } 
   </code></pre>
-  <button class="copy-button" onclick="copyCode('code-snippet')">Copy</button>
+  <button class="copy-button" onclick="copyCode('code-snippet')">
+    <img src="/img/copy.svg">
+  </button>
 </div>
 
 <p><br></p>
 <p>After linking the relations to your project, you can verify the integration using the following command</p>
-<h2 id="how-to-start-project">How to start project<a class="headerlink" href="#how-to-start-project" title="Permanent link">&para;</a></h2>
+<h2 id="how-to-start-project-with-console">How to start project with console<a class="headerlink" href="#how-to-start-project-with-console" title="Permanent link">&para;</a></h2>
 <p>Once all message definitions are complete, you can start the message server based on these definitions. Before running the server, upload all updated content to the local repository by entering <code>port push</code> in the console. Then, run the server with the command <code>port run [project-name]</code>.</p>
-<div class="console">
-    <div class="console-content">
-       port push 
-    </div>
-</div>
-
-<p><br></p>
-<div class="console">
-    <div class="console-content">
-       port run sample  
-    </div>
-</div>
-<p><br></p>
-<div class="console">
-    <div class="console-content">
-      [localhost:5001]Port Running ... OK
-       Access point count [4]
-       Package count [2]
-       Pressing 'CTRL + C' will initiate server shutdown.
-       Please wait for all processes to safely terminate before closing the application.
-    </div>
-</div>
-
+<p><img alt="poster" src="../img/start%20project.png" /></p>
+<p><img alt="poster" src="../img/start%20project2.png" /></p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>When running the server, if you include <code>--ng ignore</code> in the command, it will summarize only the points where errors (NG) occur. For detailed information on these NG points, you can visit the following URL to view the NG point table: 
 <p><a href="http://localhost:5001/api/app/ng/?view=table">http://localhost:5001/api/app/ng/?view=table</a></p></p>
 </div>
-<h4 id="good-luck">Good luck!<a class="headerlink" href="#good-luck" title="Permanent link">&para;</a></h4>
+<h2 id="how-to-start-project-with-application">How to start project with application<a class="headerlink" href="#how-to-start-project-with-application" title="Permanent link">&para;</a></h2>
+<h2 id="good-luck">Good luck!<a class="headerlink" href="#good-luck" title="Permanent link">&para;</a></h2>
 <hr />
 <p>Download <a href="../file/sample.zip" sample="sample">sample project</a> </p>
 <hr />
@@ -511,20 +483,20 @@ Below is the typical structure of the boot.js file:
 /* Copy Button */
 .copy-button {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  background-color: #0078d7;
+  top: 30px;
+  right: 30px;  
   color: white;
   border: none;
   border-radius: 3px;
-  padding: 5px 10px;
+  padding: 5px 5px;
   font-size: 14px;
   cursor: pointer;
   transition: background-color 0.3s;
+
 }
 
 .copy-button:hover {
-  background-color: #005a9e;
+  background-color: #e5e5e5;
 }
 </style>
 

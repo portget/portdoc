@@ -133,14 +133,15 @@
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
         <li class="first-level active"><a href="#what-is-ssh-secure-shell">What is SSH (Secure Shell)?</a></li>
-            <li class="second-level"><a href="#how-does-ssh-work">How Does SSH Work?</a></li>
+            <li class="second-level"><a href="#how-does-ssh-work">How does SSH work?</a></li>
                 
                 <li class="third-level"><a href="#how-to-use-putty-to-ssh-on-windows">how to use putty to SSH on windows</a></li>
         <li class="first-level "><a href="#what-is-mqtt-message-queuing-telemetry-transport">What is MQTT (Message Queuing Telemetry Transport)</a></li>
-            <li class="second-level"><a href="#sample">Sample</a></li>
+            <li class="second-level"><a href="#how-does-mqtt-work">How does MQTT work?</a></li>
                 
-            <li class="second-level"><a href="#default">Default</a></li>
-                
+                <li class="third-level"><a href="#mqtt-operation-flow">MQTT Operation Flow</a></li>
+                <li class="third-level"><a href="#subscription">Subscription</a></li>
+                <li class="third-level"><a href="#how-to-use-mosquitto-on-windows">How to use Mosquitto on windows</a></li>
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
@@ -149,7 +150,7 @@
 <p>Secure Shell, often referred to as SSH or Secure Socket Shell, is a protocol that facilitates secure connections to remote computers or servers through a text-based interface.</p>
 <p>Once an SSH connection is successfully established, a shell session begins, allowing users to interact with and control the remote server by executing commands from their local computer.</p>
 <p>Widely used by system and network administrators, SSH is an essential tool for managing remote servers and machines. Its robust security features make it indispensable for anyone needing to remotely access and manage computers with a high degree of security.</p>
-<h2 id="how-does-ssh-work">How Does SSH Work?<a class="headerlink" href="#how-does-ssh-work" title="Permanent link">&para;</a></h2>
+<h2 id="how-does-ssh-work">How does SSH work?<a class="headerlink" href="#how-does-ssh-work" title="Permanent link">&para;</a></h2>
 <p>Both the client and server actively contribute to establishing a secure SSH communication channel. The process involves several key components and steps:</p>
 <p>Client-Side Component:
 The client-side component is a software application or program used to connect to a remote machine. It initiates the connection by sending the remote host's information to the server. Once the provided credentials are verified, the program establishes an encrypted connection, allowing secure communication.</p>
@@ -175,18 +176,46 @@ During the connection process, the client provides authentication credentials to
 <p><img alt="poster" src="../img/putty3.png" /></p>
 <h1 id="what-is-mqtt-message-queuing-telemetry-transport">What is MQTT (Message Queuing Telemetry Transport)<a class="headerlink" href="#what-is-mqtt-message-queuing-telemetry-transport" title="Permanent link">&para;</a></h1>
 <p>MQTT is a lightweight messaging protocol primarily designed for efficient message transmission between IoT (Internet of Things) devices. This protocol is optimized to work in environments with limited network bandwidth, offering fast and reliable communication. MQTT is based on a publish/subscribe model, simplifying interactions between clients that send and receive data.</p>
-<h3 id="sample">Sample<a class="headerlink" href="#sample" title="Permanent link">&para;</a></h3>
+<h2 id="how-does-mqtt-work">How does MQTT work?<a class="headerlink" href="#how-does-mqtt-work" title="Permanent link">&para;</a></h2>
+<p>MQTT (Message Queuing Telemetry Transport) operates on the publish/subscribe model, where devices (clients) communicate through a central server known as the broker. Here's how it works in a simplified flow:</p>
+<h3 id="mqtt-operation-flow">MQTT Operation Flow<a class="headerlink" href="#mqtt-operation-flow" title="Permanent link">&para;</a></h3>
+<p>1.Clients</p>
+<p>Clients can either publish messages to a specific topic or subscribe to topics to receive messages. A client can act as both a publisher and a subscriber.</p>
+<p>2.Broker</p>
+<p>The broker is the central server that manages message distribution. It receives messages from publishers and forwards them to subscribers who are subscribed to the relevant topic(s).</p>
+<p>3.Topics</p>
+<p>A topic is a string that represents the channel or category of a message. Clients subscribe to topics to receive messages. Topics can be hierarchical, allowing complex topic structures (e.g., home/livingroom/temperature).
+Steps in MQTT Communication:</p>
+<p>4.Connection</p>
+<p>A client connects to the MQTT broker using a specific IP address and port. It may provide credentials for authentication.</p>
+<h3 id="subscription">Subscription<a class="headerlink" href="#subscription" title="Permanent link">&para;</a></h3>
+<p>A client subscribes to one or more topics of interest. This tells the broker which messages it wants to receive.</p>
+<p>1.Publishing</p>
+<p>Another client can publish a message to a topic. The broker will check which clients are subscribed to that topic.
+Message Distribution:</p>
+<p>The broker sends the message to all clients subscribed to the topic. The message is delivered according to the Quality of Service (QoS) level defined by the publisher and subscriber.</p>
+<p>2.QoS Levels</p>
+<p>QoS 0: Message is delivered at most once (no guarantee of delivery).
+QoS 1: Message is delivered at least once (guaranteed delivery but possible duplication).
+QoS 2: Message is delivered exactly once (guaranteed delivery without duplication).</p>
+<p>3.Disconnect</p>
+<p>After the communication, a client can disconnect from the broker, but the broker retains subscriptions for clients that maintain a persistent session.</p>
+<p>4.Key Concepts</p>
+<ul>
+<li>Publish : A client sends a message to a topic (e.g., sending sensor data).</li>
+<li>Subscribe : A client listens to a specific topic to receive messages.</li>
+<li>Broker : A server that handles the routing and delivery of messages.</li>
+<li>Topics : Categories or channels that messages are published to and subscribed from.</li>
+</ul>
+<h3 id="how-to-use-mosquitto-on-windows">How to use Mosquitto on windows<a class="headerlink" href="#how-to-use-mosquitto-on-windows" title="Permanent link">&para;</a></h3>
 <p><code>path : ..\sample\app\mqtt\room1.pub</code></p>
 <p><code>url  : app\mqtt\room1.pub</code></p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>room1 RoomTemp1 \\ [group-name] [message-name] 
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>room2 RoomTemp1
 </span></code></pre></div>
-<h3 id="default">Default<a class="headerlink" href="#default" title="Permanent link">&para;</a></h3>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Username admin
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Password admin
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>Host localhost
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>Port 1833
-</span></code></pre></div></div>
+<p><a download="download" href="https://mosquitto.org/download/">mosquitto</a> </p>
+<p><img alt="poster" src="../img/mosquitto_login.png" /></p>
+<p><img alt="poster" src="../img/mosquitto.png" /></p></div>
         
         
     </div>
