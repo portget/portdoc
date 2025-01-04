@@ -98,12 +98,6 @@
                     </li>
                 
                 
-                
-                    <li >
-                        <a href="../supported/">Supported</a>
-                    </li>
-                
-                
                 </ul>
 
             <ul class="nav navbar-nav navbar-right">
@@ -158,8 +152,18 @@
                 
                 <li class="third-level"><a href="#a-with-console">a. With console</a></li>
                 <li class="third-level"><a href="#b-with-applicationwpf">b. With application(WPF)</a></li>
-            <li class="second-level"><a href="#its-working">It's working!</a></li>
+            <li class="second-level"><a href="#how-can-use-ssh">How can use SSH</a></li>
                 
+                <li class="third-level"><a href="#1-install-putty-application">1. Install Putty application</a></li>
+                <li class="third-level"><a href="#2-connect-to-12700122">2. Connect to 127.0.0.1:22</a></li>
+                <li class="third-level"><a href="#3-enter-the-username-and-password-default-admin-admin">3. Enter the username and password (default : admin / admin)</a></li>
+                <li class="third-level"><a href="#4-enter-the-commands">4. Enter the commands</a></li>
+            <li class="second-level"><a href="#how-can-use-mqtt">How can use MQTT</a></li>
+                
+                <li class="third-level"><a href="#1-mqtt-operation-flow">1. MQTT Operation Flow</a></li>
+                <li class="third-level"><a href="#2-subscription">2. Subscription</a></li>
+                <li class="third-level"><a href="#3-how-to-use-mosquitto">3. How to use Mosquitto</a></li>
+                <li class="third-level"><a href="#4-its-working">4. It's working!</a></li>
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
@@ -396,7 +400,68 @@ Below is the typical structure of the boot.js file:
 </div>
 <h3 id="b-with-applicationwpf">b. With application(WPF)<a class="headerlink" href="#b-with-applicationwpf" title="Permanent link">&para;</a></h3>
 <p><img alt="poster" src="../img/start%20project%20with%20wpf%20netCore.png" /></p>
-<h2 id="its-working">It's working!<a class="headerlink" href="#its-working" title="Permanent link">&para;</a></h2>
+<h2 id="how-can-use-ssh">How can use SSH<a class="headerlink" href="#how-can-use-ssh" title="Permanent link">&para;</a></h2>
+<p>SSH is a network protocol used for secure remote access to a computer system. It provides a secure way to access a remote computer without having direct access to its network. SSH is commonly used to connect to remote servers, perform administrative tasks, and access files and directories.</p>
+<h3 id="1-install-putty-application">1. Install Putty application<a class="headerlink" href="#1-install-putty-application" title="Permanent link">&para;</a></h3>
+<p>PuTTY is a popular free and open-source terminal emulator that supports various network protocols, such as SSH (Secure Shell), Telnet, and Rlogin. It is widely used for remotely accessing servers and systems over a network. PuTTY allows users to interact with remote machines via a command-line interface, making it a valuable tool for system administrators, developers, and IT professionals.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Download a <a download="download" href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html">putty application</a></p>
+</div>
+<h3 id="2-connect-to-12700122">2. Connect to 127.0.0.1:22<a class="headerlink" href="#2-connect-to-12700122" title="Permanent link">&para;</a></h3>
+<p><img alt="poster" src="../img/putty1.png" /></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Default ssh port : 22</p>
+</div>
+<h3 id="3-enter-the-username-and-password-default-admin-admin">3. Enter the username and password (default : admin / admin)<a class="headerlink" href="#3-enter-the-username-and-password-default-admin-admin" title="Permanent link">&para;</a></h3>
+<p><img alt="poster" src="../img/putty2.png" /></p>
+<h3 id="4-enter-the-commands">4. Enter the commands<a class="headerlink" href="#4-enter-the-commands" title="Permanent link">&para;</a></h3>
+<p><img alt="poster" src="../img/putty3.png" /></p>
+<h2 id="how-can-use-mqtt">How can use MQTT<a class="headerlink" href="#how-can-use-mqtt" title="Permanent link">&para;</a></h2>
+<p>MQTT is a lightweight messaging protocol primarily designed for efficient message transmission between IoT (Internet of Things) devices. This protocol is optimized to work in environments with limited network bandwidth, offering fast and reliable communication. MQTT is based on a publish/subscribe model, simplifying interactions between clients that send and receive data.</p>
+<h3 id="1-mqtt-operation-flow">1. MQTT Operation Flow<a class="headerlink" href="#1-mqtt-operation-flow" title="Permanent link">&para;</a></h3>
+<p>1.Clients</p>
+<p>Clients can either publish messages to a specific topic or subscribe to topics to receive messages. A client can act as both a publisher and a subscriber.</p>
+<p>2.Broker</p>
+<p>The broker is the central server that manages message distribution. It receives messages from publishers and forwards them to subscribers who are subscribed to the relevant topic(s).</p>
+<p>3.Topics</p>
+<p>A topic is a string that represents the channel or category of a message. Clients subscribe to topics to receive messages. Topics can be hierarchical, allowing complex topic structures (e.g., home/livingroom/temperature).
+Steps in MQTT Communication:</p>
+<p>4.Connection</p>
+<p>A client connects to the MQTT broker using a specific IP address and port. It may provide credentials for authentication.</p>
+<h3 id="2-subscription">2. Subscription<a class="headerlink" href="#2-subscription" title="Permanent link">&para;</a></h3>
+<p>A client subscribes to one or more topics of interest. This tells the broker which messages it wants to receive.</p>
+<p>1.Publishing</p>
+<p>Another client can publish a message to a topic. The broker will check which clients are subscribed to that topic.
+Message Distribution:</p>
+<p>The broker sends the message to all clients subscribed to the topic. The message is delivered according to the Quality of Service (QoS) level defined by the publisher and subscriber.</p>
+<p>2.QoS Levels</p>
+<p>QoS 0: Message is delivered at most once (no guarantee of delivery).
+QoS 1: Message is delivered at least once (guaranteed delivery but possible duplication).
+QoS 2: Message is delivered exactly once (guaranteed delivery without duplication).</p>
+<p>3.Disconnect</p>
+<p>After the communication, a client can disconnect from the broker, but the broker retains subscriptions for clients that maintain a persistent session.</p>
+<p>4.Key Concepts</p>
+<ul>
+<li>Publish : A client sends a message to a topic (e.g., sending sensor data).</li>
+<li>Subscribe : A client listens to a specific topic to receive messagees.</li>
+<li>Broker : A server that handles the routing and delivery of messages.</li>
+<li>Topics : Categories or channels that messages are published to and subscribed from.</li>
+</ul>
+<h3 id="3-how-to-use-mosquitto">3. How to use Mosquitto<a class="headerlink" href="#3-how-to-use-mosquitto" title="Permanent link">&para;</a></h3>
+<p>First, you make *.pub file in your project directory</p>
+<p><code>path : ..\sample\app\mqtt\room1.pub</code></p>
+<p><code>url  : app\mqtt\room1.pub</code></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>room1 RoomTemp1 \\ [group-name] [message-name] 
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>room2 RoomTemp1
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><a download="download" href="https://mosquitto.org/download/">mosquitto.org/download</a> </p>
+</div>
+<p><img alt="poster" src="../img/mosquitto_login.png" /></p>
+<h3 id="4-its-working">4. It's working!<a class="headerlink" href="#4-its-working" title="Permanent link">&para;</a></h3>
 <p><img alt="poster" src="../img/mqtt_view.gif" /></p>
 <style>
 
