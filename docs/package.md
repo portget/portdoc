@@ -21,7 +21,7 @@ ___
  name | targets | type |arguments | description
  ------|-------- |-------- |-------- |--------
  Port   |class|-| `Class Type`| Declaring a port attribute in a class designates that class as one managed by the port system. Once declared, the class can be registered as part of a package.
- Message   |property|string/double |`-` |  Messages are declared, and the values defined as properties can be controlled through package calls.
+ Message   |property|Cache |`-` |  Messages are declared, and the values defined as properties can be controlled through package calls.
  Logger   |property|ILogger|`-` |  Specifies that the Logger field is to be injected with a logging system or service.
  Property |property|IProperty|`Message name` | Maps the property to a pre-declared Message Property.
  Vaild |method<p>property|bool|`invalid comment` | Maps the property to a pre-declared Message Property.
@@ -37,11 +37,33 @@ This annotation indicates that the Bulb class is managed within the Port Package
 ```
 
 #### Property
-This annotation maps the property to a pre-declared Message Property named "OffOn".
+This annotation maps the property to a pre-declared Message Property.
 ```
-    //Load from .msg files. yellow and red
-    [Property("OffOn")]
-    public IProperty OffOnArgument { set; get; } 
+    //if you want to use property for message
+    [Message(PortDataType.Enum), Property] 
+    public Cache OffOn
+    {
+           set
+           {
+               var prop = MessageProperty.Get();
+               try
+               {
+                   if (prop != null)
+                   {
+                       Logger.Write("[Arguments]" + prop.Arguments[0]);
+                       this.offon = value.String();
+                   }
+               }
+               catch (Exception ex)
+               {
+                   Logger.Write("[ERROR]" + ex.Message);
+               }
+           }
+           get
+           {
+               return new Cache(this.offon);
+           }
+    }
     
 ```
 
