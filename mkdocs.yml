@@ -6,7 +6,6 @@ nav:
   - Packages: package.md
   - Dictionary: portdic.md
   - Commands: commands.md
-  - Supported: supported.md
 markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true

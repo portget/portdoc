@@ -133,75 +133,74 @@ Let's develop a package. In the Port Application, all operations are grouped at 
 
 ```C# 
  
- [Port(typeof(Bulb))]
- public class Bulb
- {
-     public string offon = "Off";
+   [Port(typeof(Bulb))]
+   public class Bulb
+   {
+       [Logger]
+       public ILogger Logger { get; set; }
 
-     [Property("OffOn")]
-     public IProperty OffOnArgument { set; get; }
+       private SerialPortStream serialPort = new SerialPortStream();
 
-     [Logger]
-     public ILogger Logger { get; set; }
+       [Valid("")]
+       public bool Valid()
+       {
+           return true;
+       }
 
-     private System.IO.Ports.SerialPort serialPort = new System.IO.Ports.SerialPort();
-     
-     private void SetColor(string color)
-     {
-         this.serialPort.Write("set:color:" + color + "\n");
-     }
-
-     private string comport;
-     [Message]
-     public string Comport
-     {
-         set
-         {
-             try
-             {
-                 if (this.serialPort.PortName != value)
-                 {
-                     this.serialPort = new System.IO.Ports.SerialPort();
-                     this.serialPort.PortName = value;
-                     this.serialPort.BaudRate = 9600;
-                     this.serialPort.DataBits = 8;
-                     this.serialPort.StopBits = System.IO.Ports.StopBits.One;
-                     this.serialPort.Parity = System.IO.Ports.Parity.Even; 
-                 }
-             }
-             catch (System.Exception ex)
-             {
-                 Logger.Write("[ERROR]" + ex.Message);
-             }
-         }
-         get => comport;
-     }
-
-     [Message]
-     public string OffOn
-     {
-         set
-         {
-             if (OffOnArgument != null)
-             {
-                 OffOnArgument.TryToGetValue("Argument", out Value v);
-                 if (v.String() == "yellow")
-                 {
-                     this.SetColor(v.String());
-                 }
-                 else if (v.String() == "red")
-                 {
-                     this.SetColor(v.String());
-                 }
-                 this.offon = value;
-                 this.serialPort.Write(value + "\n");
-                 Logger.Write("[SET]" + v.String());
-             }
-
-
-         }
-         get => this.offon;
-     }
+       private string comport;
+       [Message(PortDataType.Text)]
+       public Cache Comport
+       {
+           set
+           {
+               try
+               {
+                   if (this.serialPort.PortName != value)
+                   {
+                       this.serialPort = new SerialPortStream();
+                       this.serialPort.PortName = value.ToString();
+                       this.serialPort.BaudRate = 9600;
+                       this.serialPort.DataBits = 8;
+                       this.serialPort.StopBits = StopBits.One;
+                       this.serialPort.Parity = Parity.Even;
+                   }
+               }
+               catch (System.Exception ex)
+               {
+                   Logger.Write("[ERROR]" + ex.Message);
+               }
+           }
+           get
+           {
+               return new Cache(comport);
+           }
+       }
+       private string offon = string.Empty;
+       [Message(PortDataType.Enum), Property]
+       public Cache OffOn
+       {
+           set
+           {
+               var prop = MessageProperty.Get();
+               try
+               {
+                   if (prop != null)
+                   {
+                       Logger.Write("[Arguments]" + prop.Arguments[0]);
+                       this.offon = value.String();
+                   }
+               }
+               catch (Exception ex)
+               {
+                   Logger.Write("[ERROR]" + ex.Message);
+               }
+           }
+           get
+           {
+               return new Cache(this.offon);
+           }
+       }
+   }
 ``` 
 
 #### heater package 
@@ -209,42 +208,44 @@ Let's develop a package. In the Port Application, all operations are grouped at 
 ```C# 
  
  [Port(typeof(Heater))]
- public class Heater
- {  
-    [Message]
+public class Heater
+{
+
+    [Message(PortDataType.Text)]
     public string Power
-    {
-         set;
-         get;
-    }
-    // "Property" applied to the TempProperty property.
-    [Property("Temp")]
-    public IProperty TempProperty
     {
         set;
         get;
     }
-    // "Message" applied to the Temp property.
-    [Message]
-    public double Temp
+
+    [Valid("Invlid for connection")]
+    public bool Valid()
+    {
+        return true;
+    }
+
+    private static Random r = new Random(100);
+    [Message(PortDataType.Num), Property]
+    public Cache Temp
     {
         get
         {
-            Random r = new Random(100);
-            // Checks if the "Arguments" parameter of TempProperty is set to "F" for Fahrenheit. 
-            if (this.TempProperty["Arguments"] == "F")
+            var prop = MessageProperty.Get();
+            if (prop != null)
             {
-                return (r.NextDouble() * 9 / 5) + 32;
+                if (prop["Arguments"] == "F")
+                {
+                    return new Cache((r.NextDouble() * 9 / 5) + 32);
+                }
+                else if (prop["Arguments"] == "C")
+                {
+                    return new Cache(r.NextDouble());
+                }
             }
-            // Checks if the "Arguments" parameter of TempProperty is set to "C" for Celsius.
-            else if (this.TempProperty["Arguments"] == "C")
-            {
-                return r.NextDouble();
-            }
-            return 1;
+            return new Cache(1);
         }
-    } 
- }
+    }
+}
 
 ``` 
 

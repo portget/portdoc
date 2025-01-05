@@ -24,7 +24,7 @@ ___
 ### Server
  command | arguments | description
  ------|-------- |--------
- set |<p>`[group-name] [message-name] [value]`<p>`[package-name] [message-name] [value]`<p>`[script-name] [function-name] [arguments]` <p>`password [user-name] [old-password] [new-password]` <p>`grant [user-name] [user-level]` <p>`notify [message]` <p>`init [package-name]` | Set values in the pkg server.
+ set |<p>`[group-name] [message-name] [value]`<p>`[package-name] [message-name] [value]`<p>`[*.js] [function-name] [arguments]` <p>`[*.pub]` <p>`password [user-name] [old-password] [new-password]` <p>`grant [user-name] [user-level]` <p>`notify [message]` <p>`init [package-name]` | Set values in the pkg server.
  get |<p>`[group-name] [message-name]` <p>`[package-name] [message-name]` <p>`[workid]`  <p> `[project-name].log` <p> `[package-name].log`  <p> `[package-name].event` <p> `status`  <p> `mls`  | Get values from the pkg server.
  <!-- queue|<p>`[new] [name]` <p>`[ls]` <p>`[view] [name]` <p>`[push] [name] [value]` <p>`[pop] [name]` | <p>  Create new queue. <p> Displays queue list. <p> Displays queue items. <p> Push a item to queue. </p> <p> Pop a item from queue. </p>
  stack|<p>`[new] [name]` <p>`[ls]` <p>`[view] [name]` <p>`[push] [name] [value]` <p>`[pop] [name]` | <p>  Create new stack. <p> Displays stack list. <p> Displays stack items. <p> Push a item to stack. </p> <p> Pop a item from stack. </p>

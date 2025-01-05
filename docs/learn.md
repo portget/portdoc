@@ -250,6 +250,10 @@ After linking the relations to your project, you can verify the integration usin
 
 ## How to start project 
 
+Push to repository.
+
+`port push`
+
 ### a. With console
 Once all message definitions are complete, you can start the message server based on these definitions. Before running the server, upload all updated content to the local repository by entering `port push` in the console. Then, run the server with the command `port run [project-name]`.
 
@@ -268,7 +272,142 @@ Once all message definitions are complete, you can start the message server base
 ![poster](img/start project with wpf netCore.png)
 
 
-##   Good Job!
+## How to check logs
+
+Port Application records events and activities related to loaded packages, resource loading, console commands, services, and the overall project in various log folders. Logs play a vital role in troubleshooting and system analysis, providing users with crucial information and diagnostic tools.
+
+### a. With log files
+
+`.../documents/port/logs`
+
+Port Application provides the following subfolders under the port/logs/ path. Each folder records logs for specific activities:
+
+- Pkg Folder : 
+Logs are created when a package is loaded, and all events related to the package are recorded.
+
+- Boot Folder : 
+Logs are created when resources needed for project execution are loaded.
+
+- Console Folder : 
+Logs commands invoked through the Port Application.
+
+- Service Folder : 
+Logs related to the Port Package Manager service.
+
+- Project Folder : 
+Logs related to set/get operations and overall project-related logs.
+
+![poster](img/log dir.png)
+
+
+### b. With ssh
+
+Enter the command in your ssh application
+`get sample.log`
+
+![poster](img/putty logs.png)
+
+
+## How to use SSH
+
+SSH is a network protocol used for secure remote access to a computer system. It provides a secure way to access a remote computer without having direct access to its network. SSH is commonly used to connect to remote servers, perform administrative tasks, and access files and directories.
+
+### 1. Install Putty application
+
+
+PuTTY is a popular free and open-source terminal emulator that supports various network protocols, such as SSH (Secure Shell), Telnet, and Rlogin. It is widely used for remotely accessing servers and systems over a network. PuTTY allows users to interact with remote machines via a command-line interface, making it a valuable tool for system administrators, developers, and IT professionals.
+
+!!! Tip
+    Download a [putty application](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html){:download}
+
+### 2. Connect to 127.0.0.1:22 
+ 
+![poster](img/putty1.png)
+
+!!! Tip
+    Default ssh port : 22
+
+
+### 3. Enter the username and password (default : admin / admin) 
+
+![poster](img/putty2.png)
+
+
+
+### 4. Enter the commands 
+
+![poster](img/putty3.png)
+
+## How to use MQTT
+MQTT is a lightweight messaging protocol primarily designed for efficient message transmission between IoT (Internet of Things) devices. This protocol is optimized to work in environments with limited network bandwidth, offering fast and reliable communication. MQTT is based on a publish/subscribe model, simplifying interactions between clients that send and receive data.
+
+### 1. MQTT Operation Flow
+
+1.Clients
+
+Clients can either publish messages to a specific topic or subscribe to topics to receive messages. A client can act as both a publisher and a subscriber.
+
+2.Broker
+
+The broker is the central server that manages message distribution. It receives messages from publishers and forwards them to subscribers who are subscribed to the relevant topic(s).
+
+3.Topics
+
+A topic is a string that represents the channel or category of a message. Clients subscribe to topics to receive messages. Topics can be hierarchical, allowing complex topic structures (e.g., home/livingroom/temperature).
+Steps in MQTT Communication:
+
+4.Connection
+
+A client connects to the MQTT broker using a specific IP address and port. It may provide credentials for authentication.
+
+### 2. Subscription
+
+A client subscribes to one or more topics of interest. This tells the broker which messages it wants to receive.
+
+1.Publishing
+
+Another client can publish a message to a topic. The broker will check which clients are subscribed to that topic.
+Message Distribution:
+
+The broker sends the message to all clients subscribed to the topic. The message is delivered according to the Quality of Service (QoS) level defined by the publisher and subscriber.
+
+2.QoS Levels
+
+QoS 0: Message is delivered at most once (no guarantee of delivery).
+QoS 1: Message is delivered at least once (guaranteed delivery but possible duplication).
+QoS 2: Message is delivered exactly once (guaranteed delivery without duplication).
+
+3.Disconnect
+
+After the communication, a client can disconnect from the broker, but the broker retains subscriptions for clients that maintain a persistent session.
+
+4.Key Concepts
+
+- Publish : A client sends a message to a topic (e.g., sending sensor data).
+- Subscribe : A client listens to a specific topic to receive messagees.
+- Broker : A server that handles the routing and delivery of messages.
+- Topics : Categories or channels that messages are published to and subscribed from.
+
+### 3. How to use Mosquitto
+
+First, you make *.pub file in your project directory
+
+`path : ..\sample\app\mqtt\room1.pub`
+
+`url  : app\mqtt\room1.pub`
+
+``` 
+room1 RoomTemp1 \\ [group-name] [message-name] 
+room2 RoomTemp1
+``` 
+
+
+!!! Tip
+    [mosquitto.org/download](https://mosquitto.org/download/){:download} 
+
+![poster](img/mosquitto_login.png)
+ 
+### 4. It's working!
 
 ![poster](img/mqtt_view.gif)
 

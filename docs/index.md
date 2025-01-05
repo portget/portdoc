@@ -26,10 +26,8 @@ Please see the documentation [lincense](license.md)
 
 VERSION | OS |STABLE | URL 
 ------|--------|--------|--------
-v1.0.35 | Windows x64 | Yes | [v1.0.35-win-installer](https://github.com/portget/port/archive/refs/tags/v1.0.35-win-installer.zip){:download} 
-v1.0.34 | Windows x64 | Yes | [v1.0.34-win-installer](https://github.com/portget/port/archive/refs/tags/v1.0.34-win-installer.zip){:download} 
+v1.0.35 | Windows x64 | Yes | [v1.0.35-win-installer](file/Setup.zip){:port_win_installer} 
 
- 
 
 <style>
 
