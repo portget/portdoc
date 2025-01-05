@@ -152,6 +152,10 @@
                 
                 <li class="third-level"><a href="#a-with-console">a. With console</a></li>
                 <li class="third-level"><a href="#b-with-applicationwpf">b. With application(WPF)</a></li>
+            <li class="second-level"><a href="#how-to-check-logs">How to check logs</a></li>
+                
+                <li class="third-level"><a href="#a-with-log-files">a. With log files</a></li>
+                <li class="third-level"><a href="#b-with-ssh">b. With ssh</a></li>
             <li class="second-level"><a href="#how-to-use-ssh">How to use SSH</a></li>
                 
                 <li class="third-level"><a href="#1-install-putty-application">1. Install Putty application</a></li>
@@ -400,6 +404,38 @@ Below is the typical structure of the boot.js file:
 </div>
 <h3 id="b-with-applicationwpf">b. With application(WPF)<a class="headerlink" href="#b-with-applicationwpf" title="Permanent link">&para;</a></h3>
 <p><img alt="poster" src="../img/start%20project%20with%20wpf%20netCore.png" /></p>
+<h2 id="how-to-check-logs">How to check logs<a class="headerlink" href="#how-to-check-logs" title="Permanent link">&para;</a></h2>
+<p>Port Application records events and activities related to loaded packages, resource loading, console commands, services, and the overall project in various log folders. Logs play a vital role in troubleshooting and system analysis, providing users with crucial information and diagnostic tools.</p>
+<h3 id="a-with-log-files">a. With log files<a class="headerlink" href="#a-with-log-files" title="Permanent link">&para;</a></h3>
+<p><code>.../documents/port/logs</code></p>
+<p>Port Application provides the following subfolders under the port/logs/ path. Each folder records logs for specific activities:</p>
+<ul>
+<li>
+<p>Pkg Folder : 
+Logs are created when a package is loaded, and all events related to the package are recorded.</p>
+</li>
+<li>
+<p>Boot Folder : 
+Logs are created when resources needed for project execution are loaded.</p>
+</li>
+<li>
+<p>Console Folder : 
+Logs commands invoked through the Port Application.</p>
+</li>
+<li>
+<p>Service Folder : 
+Logs related to the Port Package Manager service.</p>
+</li>
+<li>
+<p>Project Folder : 
+Logs related to set/get operations and overall project-related logs.</p>
+</li>
+</ul>
+<p><img alt="poster" src="../img/log%20dir.png" /></p>
+<h3 id="b-with-ssh">b. With ssh<a class="headerlink" href="#b-with-ssh" title="Permanent link">&para;</a></h3>
+<p>Enter the command in your ssh application
+<code>get sample.log</code></p>
+<p><img alt="poster" src="../img/putty%20logs.png" /></p>
 <h2 id="how-to-use-ssh">How to use SSH<a class="headerlink" href="#how-to-use-ssh" title="Permanent link">&para;</a></h2>
 <p>SSH is a network protocol used for secure remote access to a computer system. It provides a secure way to access a remote computer without having direct access to its network. SSH is commonly used to connect to remote servers, perform administrative tasks, and access files and directories.</p>
 <h3 id="1-install-putty-application">1. Install Putty application<a class="headerlink" href="#1-install-putty-application" title="Permanent link">&para;</a></h3>
