@@ -240,26 +240,26 @@
     [Message(PortDataType.Enum), Property] 
     public string OffOn
     {
-           set
-           {
-               var prop = MessageProperty.Get();
-               try
-               {
-                   if (prop != null)
-                   {
-                       Logger.Write("[Arguments]" + prop.Arguments[0]);
-                       this.offon = value.String();
-                   }
-               }
-               catch (Exception ex)
-               {
+        set
+        {
+            var prop = MessageProperty.Get();
+            try
+            {
+                if (prop != null)
+                {
+                    Logger.Write("[Arguments]" + prop.Arguments[0]);
+                    this.offon = value.String();
+                }
+            }
+            catch (Exception ex)
+            {
                    Logger.Write("[ERROR]" + ex.Message);
-               }
-           }
-           get
-           {
-               return new Cache(this.offon);
-           }
+            }
+        }
+        get
+        {
+            return new Cache(this.offon);
+        }
     }
 
 </code>
