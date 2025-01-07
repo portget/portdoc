@@ -140,7 +140,8 @@
                 <li class="third-level"><a href="#comment">Comment</a></li>
             <li class="second-level"><a href="#how-to-create-a-packages">How to create a packages</a></li>
                 
-                <li class="third-level"><a href="#net">.net</a></li>
+                <li class="third-level"><a href="#create-a-class-librarynet">Create a class library(.net)</a></li>
+                <li class="third-level"><a href="#packing-packages">Packing packages</a></li>
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
@@ -333,7 +334,7 @@ public double Temp
 <hr />
 <p>Let's develop a package. In the Port Application, all operations are grouped at the package level and function at the message level. Every operation is defined within messages, allowing users to increase code reusability through messages.</p>
 <p><br></p>
-<h3 id="net">.net<a class="headerlink" href="#net" title="Permanent link">&para;</a></h3>
+<h3 id="create-a-class-librarynet">Create a class library(.net)<a class="headerlink" href="#create-a-class-librarynet" title="Permanent link">&para;</a></h3>
 <h4 id="bulb-package">bulb package<a class="headerlink" href="#bulb-package" title="Permanent link">&para;</a></h4>
 <div class="code-box">
 <pre>
@@ -460,8 +461,19 @@ public class Bulb
 
 <p><br/>
 <br/></p>
-<h4 id="build-packages">build packages<a class="headerlink" href="#build-packages" title="Permanent link">&para;</a></h4>
-<p><code>port pack [dll-path] [pkg-name]</code></p>
+<h3 id="packing-packages">Packing packages<a class="headerlink" href="#packing-packages" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p><code>cd [Publish target location]</code></p>
+</li>
+<li>
+<p><code>port pack [dllname] [pkg-name]</code></p>
+</li>
+<li>
+<p>check logs
+<br></p>
+</li>
+</ol>
 <div class="console">
     <div class="console-content">
         PS C:\Users\Public\Dev\publish> port pack HeaterLib.dll HeaterLib1
