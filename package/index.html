@@ -461,19 +461,21 @@ public class Bulb
 <p><br/>
 <br/></p>
 <h4 id="build-packages">build packages<a class="headerlink" href="#build-packages" title="Permanent link">&para;</a></h4>
-<p><br/></p>
+<p><code>port pack [dll-path] [pkg-name]</code></p>
 <div class="console">
     <div class="console-content">
-        port build 'path' --o BulbLib1
-        port build 'path' --o BulbLib2
-    </div>
-</div>
-
-<p><br></p>
-<div class="console">
-    <div class="console-content">
-        port build 'path' --o HeaterLib1
-        port build 'path' --o HeaterLib2
+        PS C:\Users\Public\Dev\publish> port pack HeaterLib.dll HeaterLib1
+        [PATH]C:\Users\Public\Dev\publish\HeaterLib.dll
+        [ALREADY_RUN]PORT PACKAGE MANAGER
+        [RUN]PORT PACKAGE MANAGER
+        [PACK][pack] Packing started at 2025-01-07T21:17:19+09:00
+        [PACK]load compelete C:\Users\Public\Dev\publish\HeaterLib.dll : heaterlib
+        [PACK][GET][0] Power
+        [PACK][GET][1] Temp
+        [PACK][SET][0] Power
+        [PACK]heaterlib,65025
+        [PACK]initialization
+        [CREATED][PACKAGE] ...\port\pkg\HeaterLib1.pkg
     </div>
 </div>
 
