@@ -141,6 +141,7 @@
             <li class="second-level"><a href="#how-to-create-a-packages">How to create a packages</a></li>
                 
                 <li class="third-level"><a href="#create-a-class-librarynet">Create a class library(.net)</a></li>
+                <li class="third-level"><a href="#how-to-publish-a-library-net">How to publish a library (.NET)</a></li>
                 <li class="third-level"><a href="#packing-packages">Packing packages</a></li>
     </ul>
 </div></div>
@@ -461,7 +462,89 @@ public class Bulb
 
 <p><br/>
 <br/></p>
-<p>!!! Recommand:</p>
+<h3 id="how-to-publish-a-library-net">How to publish a library (.NET)<a class="headerlink" href="#how-to-publish-a-library-net" title="Permanent link">&para;</a></h3>
+<div> 
+    <p>This manual provides step-by-step instructions on how to publish a .NET Core project using Visual Studio Code.</p>
+    <h3> 1. Prerequisites </h3>
+    <ul>
+        <li><strong>Install .NET SDK:</strong> Make sure you have the latest version of the .NET SDK installed. <a href="https://dotnet.microsoft.com/download" target="_blank">Download here</a>.</li>
+        <li><strong>Install C# Extension:</strong> Install the C# extension in Visual Studio Code from the <a href="https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp" target="_blank">Marketplace</a>.</li>
+        <li><strong>Verify the Build:</strong> Ensure your project builds and runs correctly:
+            <pre><code>dotnet build
+            dotnet run</code></pre>
+        </li>
+    </ul>
+    <h3>2. Publish Command</h3>
+    <h3>Basic Publish Command</h3>
+    <p>Run the following command to publish your project:</p>
+    <pre><code>dotnet publish -c Release -o ./publish</code></pre>
+    <ul>
+        <li><code>-c Release</code>: Builds the project in Release mode.</li>
+        <li><code>-o ./publish</code>: Specifies the output folder for the published files.</li>
+    </ul>
+    <h3>Publishing for Specific Runtime</h3>
+    <p>To target a specific runtime (e.g., Windows, Linux, macOS), use the following command:</p>
+    <pre><code>dotnet publish -c Release -r win-x64 --self-contained false</code></pre>
+    <ul>
+        <li><code>-r win-x64</code>: Targets Windows 64-bit. Examples for other platforms:</li>
+        <ul>
+            <li><code>linux-x64</code>: Linux 64-bit</li>
+            <li><code>osx-x64</code>: macOS 64-bit</li>
+        </ul>
+        <li><code>--self-contained false</code>: Requires .NET runtime to be installed on the target environment.</li>
+    </ul>
+    <h2>3. Automating Publish with Tasks in VS Code</h2>
+    <p>Set up a task in VS Code to automate the publish process:</p>
+    <ol>
+        <li>Open the <code>.vscode/tasks.json</code> file. If it doesn’t exist, create it.</li>
+        <li>Add the following configuration:</li>
+    </ol>
+    <pre><code>{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Publish .NET Core",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "-c",
+                "Release",
+                "-o",
+                "./publish"
+            ],
+            "problemMatcher": "$msCompile"
+        }
+    ]
+}</code></pre>
+    <p>Run the task in VS Code:</p>
+    <ol>
+        <li>Open the Command Palette (<code>Ctrl+Shift+P</code>).</li>
+        <li>Select <code>Tasks: Run Task</code>.</li>
+        <li>Choose <code>Publish .NET Core</code>.</li>
+    </ol>
+    <h2>4. Deployment</h2>
+    <p>The published files will be available in the <code>./publish</code> folder. Copy these files to the desired deployment location:</p>
+    <ul>
+        <li><strong>Local Deployment:</strong> Copy files to a server or hosting environment.</li>
+        <li><strong>Docker Deployment:</strong> Use a <code>Dockerfile</code> to containerize your application:
+            <pre><code>FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
+WORKDIR /app
+COPY ./publish .
+ENTRYPOINT ["dotnet", "YourApp.dll"]</code></pre>
+        </li>
+    </ul>
+    <h2>5. Logging and Debugging</h2>
+    <p>To log publish output to a file, use:</p>
+    <pre><code>dotnet publish > publish_log.txt</code></pre>
+    <p>Check the logs for any errors and resolve them before deployment.</p>
+    <h2>6. Additional Resources</h2>
+    <ul>
+        <li><a href="https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-publish" target="_blank">Official .NET Publish Documentation</a></li>
+        <li><a href="https://code.visualstudio.com/docs" target="_blank">Visual Studio Code Documentation</a></li>
+    </ul>
+</div>
+
 <h3 id="packing-packages">Packing packages<a class="headerlink" href="#packing-packages" title="Permanent link">&para;</a></h3>
 <ol>
 <li>
@@ -495,15 +578,17 @@ public class Bulb
 <p><br></p>
 <style>
 
+
+
+
 .console {
     width: 80%;
     height: 80%;
     background-color: whitesmoke;
     color: black;
-    padding: 20px;
+    padding: 0px;
     box-sizing: border-box;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     overflow-y: auto;
 }
 .yellow{
@@ -558,6 +643,19 @@ public class Bulb
     margin: 0 0 10px;
     line-height: 1.5;
 }
+
+ pre {
+            color: #f8f8f2;
+            border-radius: 5px;
+          padding:0px;
+          overflow-x: auto;
+        }
+        code {
+            font-family: monospace;
+            background-color: #f4f4f4;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
 </style>
 <p><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"></p>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
