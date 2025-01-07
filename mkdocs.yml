@@ -7,6 +7,9 @@ nav:
   - Dictionary: portdic.md
   - Commands: commands.md
 markdown_extensions:
+  - codehilite:
+      guess_lang: false
+      use_pygments: true  # Pygments 사용
   - pymdownx.highlight:
       anchor_linenums: true
       line_spans: __span

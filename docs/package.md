@@ -20,81 +20,94 @@ ___
 
  name | targets | type |arguments | description
  ------|-------- |-------- |-------- |--------
- Port   |class|-| `Class Type`| Declaring a port attribute in a class designates that class as one managed by the port system. Once declared, the class can be registered as part of a package.
- Message   |property|Cache |`-` |  Messages are declared, and the values defined as properties can be controlled through package calls.
- Logger   |property|ILogger|`-` |  Specifies that the Logger field is to be injected with a logging system or service.
- Property |property|IProperty|`Message name` | Maps the property to a pre-declared Message Property.
- Vaild |method<p>property|bool|`invalid comment` | Maps the property to a pre-declared Message Property.
+ Port   |class|`-`| `Class Type`| Declaring a port attribute in a class designates that class as one managed by the port system. Once declared, the class can be registered as part of a package.
+ Message   |property| `string|double` |`-` |  Messages are declared, and the values defined as properties can be controlled through package calls.
+ Logger   |property|`ILogger`|`-` |  Specifies that the Logger field is to be injected with a logging system or service.
+ Property |property|`IProperty`|`Message name` | Maps the property to a pre-declared Message Property.
+ Vaild |method<p>property|`bool`|`invalid comment` | Maps the property to a pre-declared Message Property.
 
 #### Port
 
 This annotation indicates that the Bulb class is managed within the Port Package.
 
-```
+<div class="code-box">
+<pre>
+<code id="code-snippet" class="language-csharp">  
     [Port(typeof(Bulb))]
     public class Bulb
     ...
-```
+</code>
+</div>
+</pre>
 
 #### Property
 This annotation maps the property to a pre-declared Message Property.
-```
+
+<div class="code-box">
+<pre>
+<code id="code-snippet" class="language-csharp">  
     //if you want to use property for message
     [Message(PortDataType.Enum), Property] 
-    public Cache OffOn
-    {
-           set
-           {
-               var prop = MessageProperty.Get();
-               try
-               {
-                   if (prop != null)
-                   {
-                       Logger.Write("[Arguments]" + prop.Arguments[0]);
-                       this.offon = value.String();
-                   }
-               }
-               catch (Exception ex)
-               {
-                   Logger.Write("[ERROR]" + ex.Message);
-               }
-           }
-           get
-           {
-               return new Cache(this.offon);
-           }
-    }
-    
-```
-
-#### Message
-Properties declared with Message Annotation are defined as API Messages and made available to the end-user. They apply only to properties with get and set accessors, and these getters and setters can be accessed and modified via a REST API.
-
-```
-    [Message]
     public string OffOn
     {
         set
         {
-            if (OffOnArgument != null)
+            var prop = MessageProperty.Get();
+            try
             {
-                OffOnArgument.TryToGetValue("Argument", out Value v);
-                if (v.String() == "yellow")
+                if (prop != null)
                 {
-                    this.SetColor(v.String());
+                    Logger.Write("[Arguments]" + prop.Arguments[0]);
+                    this.offon = value.String();
                 }
-                else if (v.String() == "red")
-                {
-                    this.SetColor(v.String());
-                }
-                Logger.Write("[SET]" + v.String());
             }
-
-            this.offon = value;
+            catch (Exception ex)
+            {
+                   Logger.Write("[ERROR]" + ex.Message);
+            }
         }
-        get => this.offon;
+        get
+        {
+            return new Cache(this.offon);
+        }
     }
-```
+
+</code>
+</div>
+</pre>
+ 
+#### Message
+Properties declared with Message Annotation are defined as API Messages and made available to the end-user. They apply only to properties with get and set accessors, and these getters and setters can be accessed and modified via a REST API.
+
+<div class="code-box">
+<pre>
+<code id="code-snippet" class="language-csharp">  
+private static Random r = new Random(100);
+
+[Message(PortDataType.Num), Property(PropertyFormat.Json)]
+public double Temp
+{
+    get
+    {
+        var prop = MessageProperty.Get();
+        if (prop != null)
+        {
+            if (prop.TryToGetValue("Arguments", out object value) && value.ToString() == "F")
+            {
+                return ((r.NextDouble() * 9 / 5) + 32);
+            }
+            else if (prop.TryToGetValue("Arguments", out object v2) && v2.ToString() == "C")
+            {
+                return (r.NextDouble());
+            }
+        }
+        return (1);
+    }
+}
+
+</code>
+</div>
+</pre>
  
 #### Logger
 This annotation specifies that the Logger field is to be injected with a logging system or service.
@@ -153,85 +166,91 @@ Let's develop a package. In the Port Application, all operations are grouped at 
 
 #### bulb package 
 
-```C# 
- 
-   [Port(typeof(Bulb))]
-   public class Bulb
-   {
-       [Logger]
-       public ILogger Logger { get; set; }
+<div class="code-box">
+<pre>
+<code id="code-snippet" class="language-csharp">  
+[Port(typeof(Bulb))]
+public class Bulb
+{ 
+    [Logger]
+    public ILogger Logger { get; set; }
 
-       private SerialPortStream serialPort = new SerialPortStream();
+    private SerialPortStream serialPort = new SerialPortStream();
 
-       [Valid("")]
-       public bool Valid()
-       {
-           return true;
-       }
+    [Valid("")]
+    public bool Valid()
+    {
+        return true;
+    }
 
-       private string comport;
-       [Message(PortDataType.Text)]
-       public Cache Comport
-       {
-           set
-           {
-               try
-               {
-                   if (this.serialPort.PortName != value)
-                   {
-                       this.serialPort = new SerialPortStream();
-                       this.serialPort.PortName = value.ToString();
-                       this.serialPort.BaudRate = 9600;
-                       this.serialPort.DataBits = 8;
-                       this.serialPort.StopBits = StopBits.One;
-                       this.serialPort.Parity = Parity.Even;
-                   }
-               }
-               catch (System.Exception ex)
-               {
-                   Logger.Write("[ERROR]" + ex.Message);
-               }
-           }
-           get
-           {
-               return new Cache(comport);
-           }
-       }
-       private string offon = string.Empty;
-       [Message(PortDataType.Enum), Property]
-       public Cache OffOn
-       {
-           set
-           {
-               var prop = MessageProperty.Get();
-               try
-               {
-                   if (prop != null)
-                   {
-                       Logger.Write("[Arguments]" + prop.Arguments[0]);
-                       this.offon = value.String();
-                   }
-               }
-               catch (Exception ex)
-               {
-                   Logger.Write("[ERROR]" + ex.Message);
-               }
-           }
-           get
-           {
-               return new Cache(this.offon);
-           }
+    private string comport;
+    [Message(PortDataType.Text)]
+    public string Comport
+    {
+        set
+        {
+            try
+            {
+                if (this.serialPort.PortName != value)
+                {
+                    this.serialPort = new SerialPortStream();
+                    this.serialPort.PortName = value.ToString();
+                    this.serialPort.BaudRate = 9600;
+                    this.serialPort.DataBits = 8;
+                    this.serialPort.StopBits = StopBits.One;
+                    this.serialPort.Parity = Parity.Even;
+                }
+            }
+            catch (System.Exception ex)
+            {
+                Logger.Write("[ERROR]" + ex.Message);
+            }
+        }
+        get
+        {
+           return comport;
        }
    }
-``` 
+   private string offon = string.Empty;
+   [Message(PortDataType.Enum), Property(PropertyFormat.Json)]
+   public string OffOn
+   {
+       set
+       {
+           var prop = MessageProperty.Get();
+           try
+           {
+               if (prop != null)
+               {
+                   //prop.Arguments[0]
+                   //Logger.Write("[Arguments]" + prop.Arguments[0]);
+                   this.offon = value;
+               }
+           }
+           catch (Exception ex)
+           {
+               Logger.Write("[ERROR]" + ex.Message);
+           }
+       }
+       get
+       {
+           return this.offon;
+       }
+   }
+}
+</code>
+</pre>
+</div>
+
 
 #### heater package 
- 
-```C# 
- 
+
+<div class="code-box">
+<pre>
+<code id="code-snippet" class="language-csharp">  
  [Port(typeof(Heater))]
-public class Heater
-{
+ public class Heater
+ {
 
     [Message(PortDataType.Text)]
     public string Power
@@ -243,33 +262,34 @@ public class Heater
     [Valid("Invlid for connection")]
     public bool Valid()
     {
-        return true;
+       return true;
     }
 
     private static Random r = new Random(100);
-    [Message(PortDataType.Num), Property]
-    public Cache Temp
+    [Message(PortDataType.Num), Property(PropertyFormat.Json)]
+    public double Temp
     {
-        get
-        {
-            var prop = MessageProperty.Get();
-            if (prop != null)
-            {
-                if (prop["Arguments"] == "F")
-                {
-                    return new Cache((r.NextDouble() * 9 / 5) + 32);
-                }
-                else if (prop["Arguments"] == "C")
-                {
-                    return new Cache(r.NextDouble());
-                }
-            }
-            return new Cache(1);
-        }
+         get
+         {
+             var prop = MessageProperty.Get();
+             if (prop != null)
+             {
+                 if (prop.TryToGetValue("Arguments", out object value) && value.ToString() == "F")
+                 {
+                     return ((r.NextDouble() * 9 / 5) + 32);
+                 }
+                 else if (prop.TryToGetValue("Arguments", out object v2) && v2.ToString() == "C")
+                 {
+                     return (r.NextDouble());
+                 }
+             }
+             return (1);
+         }
     }
 }
-
-``` 
+</code>
+</pre>
+</div>
 
 <br/>
 <br/>
@@ -361,3 +381,6 @@ public class Heater
     line-height: 1.5;
 }
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>

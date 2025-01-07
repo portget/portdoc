@@ -10,78 +10,106 @@ portdic |  C# | nuget |Windows| Yes |
 portdic |  Python | not yet |Windows| No | 
 portdic |  Javascript | npm |Any | Yes | 
 
-## React 
+## React (With vite)
+
+___
+Download [sample project](file/react_sample_source.zip){:sample} 
+___
 
 ### SET / GET
 ```Javascript
-    import { useState ,useEffect} from 'react'
-    import reactLogo from './assets/react.svg'
-    import viteLogo from '/vite.svg'
-    import './App.css'
-    import { CallPortdic } from 'portdic';
 
-    function App() {
-    const [count, setCount] = useState(0) 
-    const [portdic, setPortdic] = useState(0);
-    
-    useEffect(() => {
-        CallPortdic("localhost:5001").then(setPortdic).catch(console.error); 
-    }, []);
+import { useState ,useEffect} from 'react'
+import reactLogo from './assets/react.svg'
+import viteLogo from '/vite.svg'
+import './App.css'
+import { CallPortdic } from 'portdic';
 
-    
-    return (
-        <>
-        <div>
-            <a href="https://vite.dev" target="_blank">
-            <img src={viteLogo} className="logo" alt="Vite logo" />
-            </a>
-            <a href="https://react.dev" target="_blank">
-            <img src={reactLogo} className="logo react" alt="React logo" />
-            </a>
-        </div>
+function App() {
+  const [setValue, setSetValue] = useState("");
+  const [count, setCount] = useState(0) 
+  const [portdic, setPortdic] = useState(0); 
+  useEffect(() => {
+    CallPortdic("localhost:5001").then(setPortdic).catch(console.error); 
+  }, []); 
+  return (
+    <>
+      <div>
+        <a href="https://vite.dev" target="_blank">
+          <img src={viteLogo} className="logo" alt="Vite logo" />
+        </a>
+        <a href="https://react.dev" target="_blank">
+          <img src={reactLogo} className="logo react" alt="React logo" />
+        </a>
+      </div>
+      <div style={{ display: "flex", gap: "20px", alignItems: "center" }}> 
+      <button
+        onClick={() => {
+          const data = portdic.Execute("version");
 
-        <div> 
-            <button onClick={() => {
-            var data =  portdic.Execute("version");
-
-            data.then(resp => resp.json())  
-            .then(data => {  
-                console.log("success received:", data);
+          data
+            .then((resp) => resp.json())
+            .then((data) => {
+              console.log("success received:", data);
             })
-            .catch(error => { 
-                console.error("error occurred:", error);
+            .catch((error) => {
+              console.error("error occurred:", error);
             });
-
-            }}>Version</button>
-        </div> 
-        <div> 
-           <!-- get value from dictionary port --> 
-            <button onClick={() => console.log(portdic.Get("room1","RoomTemp1"))}>Get</button>
-        </div>
-        <div> 
-             <!-- set value to dictionary port --> 
-            <button onClick={() => portdic.Set("room1","RoomTemp1","34")}>Set</button>
-        </div> 
-        <h1>Vite + React</h1>
-        <div className="card">
-            <button onClick={() => setCount((count) => count + 1)}>
-            count is {count}
-            </button>
-            <p>
-            Edit <code>src/App.jsx</code> and save to test HMR
-            </p>
-        </div>
-        <p className="read-the-docs">
-            Click on the Vite and React logos to learn more
+        }}
+      >
+      Version
+      </button> 
+      <button
+        onClick={() =>
+          console.log(portdic.Get("room1", "RoomTemp3"))
+        }
+      >
+        Get
+      </button> 
+      <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+        <input
+          type="text"
+          placeholder="Set Value"
+          value={setValue}
+          onChange={(e) => setSetValue(e.target.value)}
+          style={{
+            padding: "5px",
+            fontSize: "14px",
+            borderRadius: "4px",
+            border: "1px solid #ccc",
+          }}
+        />
+        <button
+          onClick={() => {
+            portdic.Set("room1", "RoomTemp3", setValue);
+            console.log(`Set value: ${setValue}`);
+          }}
+        >
+          Set
+        </button>
+      </div>
+    </div>
+      <h1>Vite + React</h1>
+      <div className="card">
+        <button onClick={() => setCount((count) => count + 1)}>
+          count is {count}
+        </button>
+        <p>
+          Edit <code>src/App.jsx</code> and save to test HMR
         </p>
-        </>
-        )
-    }
-
-    
-    export default App
-
+      </div>
+      <p className="read-the-docs">
+        Click on the Vite and React logos to learn more
+      </p>
+    </>
+  )
+}
+export default App 
 ```  
+
+### It's working!
+
+![poster](img/react_set_get.gif)
 
 ## .Net 
 
