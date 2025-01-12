@@ -160,12 +160,12 @@
                 
                 <li class="third-level"><a href="#1-install-putty-application">1. Install Putty application</a></li>
                 <li class="third-level"><a href="#2-connect-to-12700122">2. Connect to 127.0.0.1:22</a></li>
-                <li class="third-level"><a href="#3-enter-the-username-and-password-default-admin-admin">3. Enter the username and password (default : admin / admin)</a></li>
+                <li class="third-level"><a href="#3-enter-the-username-and-password">3. Enter the username and password</a></li>
                 <li class="third-level"><a href="#4-enter-the-commands">4. Enter the commands</a></li>
             <li class="second-level"><a href="#how-to-use-mqtt">How to use MQTT</a></li>
                 
                 <li class="third-level"><a href="#1-mqtt-operation-flow">1. MQTT Operation Flow</a></li>
-                <li class="third-level"><a href="#2-subscription">2. Subscription</a></li>
+                <li class="third-level"><a href="#2-connect-to-1270018080">2. Connect to 127.0.0.1:8080</a></li>
                 <li class="third-level"><a href="#3-how-to-use-mqtt-explorer">3. How to use Mqtt-explorer</a></li>
                 <li class="third-level"><a href="#4-its-working">4. It's working!</a></li>
     </ul>
@@ -446,11 +446,11 @@ Logs related to set/get operations and overall project-related logs.</p>
 </div>
 <h3 id="2-connect-to-12700122">2. Connect to 127.0.0.1:22<a class="headerlink" href="#2-connect-to-12700122" title="Permanent link">&para;</a></h3>
 <p><img alt="poster" src="../img/putty1.png" /></p>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>Default ssh port : 22</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>port : 22 / username : admin / password : admin</p>
 </div>
-<h3 id="3-enter-the-username-and-password-default-admin-admin">3. Enter the username and password (default : admin / admin)<a class="headerlink" href="#3-enter-the-username-and-password-default-admin-admin" title="Permanent link">&para;</a></h3>
+<h3 id="3-enter-the-username-and-password">3. Enter the username and password<a class="headerlink" href="#3-enter-the-username-and-password" title="Permanent link">&para;</a></h3>
 <p><img alt="poster" src="../img/putty2.png" /></p>
 <h3 id="4-enter-the-commands">4. Enter the commands<a class="headerlink" href="#4-enter-the-commands" title="Permanent link">&para;</a></h3>
 <p><img alt="poster" src="../img/putty3.png" /></p>
@@ -466,7 +466,7 @@ Logs related to set/get operations and overall project-related logs.</p>
 Steps in MQTT Communication:</p>
 <p>4.Connection</p>
 <p>A client connects to the MQTT broker using a specific IP address and port. It may provide credentials for authentication.</p>
-<h3 id="2-subscription">2. Subscription<a class="headerlink" href="#2-subscription" title="Permanent link">&para;</a></h3>
+<h3 id="2-connect-to-1270018080">2. Connect to 127.0.0.1:8080<a class="headerlink" href="#2-connect-to-1270018080" title="Permanent link">&para;</a></h3>
 <p>A client subscribes to one or more topics of interest. This tells the broker which messages it wants to receive.</p>
 <p>1.Publishing</p>
 <p>Another client can publish a message to a topic. The broker will check which clients are subscribed to that topic.
@@ -485,6 +485,10 @@ QoS 2: Message is delivered exactly once (guaranteed delivery without duplicatio
 <li>Broker : A server that handles the routing and delivery of messages.</li>
 <li>Topics : Categories or channels that messages are published to and subscribed from.</li>
 </ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>port : 8080 / username : admin / password : admin</p>
+</div>
 <h3 id="3-how-to-use-mqtt-explorer">3. How to use Mqtt-explorer<a class="headerlink" href="#3-how-to-use-mqtt-explorer" title="Permanent link">&para;</a></h3>
 <p>First, you make *.pub file in your project directory</p>
 <p><code>path : ..\sample\app\mqtt\room1.pub</code></p>
@@ -492,10 +496,6 @@ QoS 2: Message is delivered exactly once (guaranteed delivery without duplicatio
 <div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>room1 RoomTemp1 \\ [group-name] [message-name] 
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>room2 RoomTemp1
 </span></code></pre></div>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>username : admin / password : admin</p>
-</div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p><a download="download" href="https://mqtt-explorer.com/">mosquitto.org/download</a> </p>
