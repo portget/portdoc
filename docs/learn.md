@@ -324,11 +324,11 @@ PuTTY is a popular free and open-source terminal emulator that supports various 
  
 ![poster](img/putty1.png)
 
-!!! Tip
-    Default ssh port : 22
+!!! Note
+    port : 22 / username : admin / password : admin
 
 
-### 3. Enter the username and password (default : admin / admin) 
+### 3. Enter the username and password
 
 ![poster](img/putty2.png)
 
@@ -360,7 +360,7 @@ Steps in MQTT Communication:
 
 A client connects to the MQTT broker using a specific IP address and port. It may provide credentials for authentication.
 
-### 2. Subscription
+### 2. Connect to 127.0.0.1:8080
 
 A client subscribes to one or more topics of interest. This tells the broker which messages it wants to receive.
 
@@ -388,7 +388,11 @@ After the communication, a client can disconnect from the broker, but the broker
 - Broker : A server that handles the routing and delivery of messages.
 - Topics : Categories or channels that messages are published to and subscribed from.
 
-### 3. How to use Mosquitto
+!!! Note
+    port : 8080 / username : admin / password : admin
+
+
+### 3. How to use Mqtt-explorer
 
 First, you make *.pub file in your project directory
 
@@ -403,7 +407,7 @@ room2 RoomTemp1
 
 
 !!! Tip
-    [mosquitto.org/download](https://mosquitto.org/download/){:download} 
+    [mosquitto.org/download](https://mqtt-explorer.com/){:download} 
 
 ![poster](img/mosquitto_login.png)
  

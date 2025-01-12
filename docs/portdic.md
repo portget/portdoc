@@ -13,7 +13,7 @@ portdic |  Javascript | npm |Any | Yes |
 ## React (With vite)
 
 ___
-Download [sample project](file/react_sample_source.zip){:sample} 
+Download : [React project](file/react_sample_source.zip){:sample} 
 ___
 
 ### SET / GET
