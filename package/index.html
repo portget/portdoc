@@ -465,7 +465,7 @@ public class Bulb
 <h3 id="how-to-publish-a-library-net">How to publish a library (.NET)<a class="headerlink" href="#how-to-publish-a-library-net" title="Permanent link">&para;</a></h3>
 <div> 
     <p>This manual provides step-by-step instructions on how to publish a .NET Core project using Visual Studio Code.</p>
-    <h3> 1. Prerequisites </h3>
+    <h4> 1. Prerequisites </h4>
     <ul>
         <li><strong>Install .NET SDK:</strong> Make sure you have the latest version of the .NET SDK installed. <a href="https://dotnet.microsoft.com/download" target="_blank">Download here</a>.</li>
         <li><strong>Install C# Extension:</strong> Install the C# extension in Visual Studio Code from the <a href="https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp" target="_blank">Marketplace</a>.</li>
@@ -474,15 +474,15 @@ public class Bulb
             dotnet run</code></pre>
         </li>
     </ul>
-    <h3>2. Publish Command</h3>
-    <h3>Basic Publish Command</h3>
+    <h4>2. Publish Command</h4>
+    <h4>Basic Publish Command</h4>
     <p>Run the following command to publish your project:</p>
     <pre><code>dotnet publish -c Release -o ./publish</code></pre>
     <ul>
         <li><code>-c Release</code>: Builds the project in Release mode.</li>
         <li><code>-o ./publish</code>: Specifies the output folder for the published files.</li>
     </ul>
-    <h3>Publishing for Specific Runtime</h3>
+    <h4>Publishing for Specific Runtime</h4>
     <p>To target a specific runtime (e.g., Windows, Linux, macOS), use the following command:</p>
     <pre><code>dotnet publish -c Release -r win-x64 --self-contained false</code></pre>
     <ul>
@@ -493,7 +493,7 @@ public class Bulb
         </ul>
         <li><code>--self-contained false</code>: Requires .NET runtime to be installed on the target environment.</li>
     </ul>
-    <h3>3. Automating Publish with Tasks in VS Code</h3>
+    <h4>3. Automating Publish with Tasks in VS Code</h4>
     <p>Set up a task in VS Code to automate the publish process:</p>
     <ol>
         <li>Open the <code>.vscode/tasks.json</code> file. If it doesn’t exist, create it.</li>
@@ -523,7 +523,7 @@ public class Bulb
         <li>Select <code>Tasks: Run Task</code>.</li>
         <li>Choose <code>Publish .NET Core</code>.</li>
     </ol>
-    <h3>4. Deployment</h3>
+    <h4>4. Deployment</h4>
     <p>The published files will be available in the <code>./publish</code> folder. Copy these files to the desired deployment location:</p>
     <ul>
         <li><strong>Local Deployment:</strong> Copy files to a server or hosting environment.</li>
@@ -534,11 +534,11 @@ COPY ./publish .
 ENTRYPOINT ["dotnet", "YourApp.dll"]</code></pre>
         </li>
     </ul>
-    <h3>5. Logging and Debugging</h3>
+    <h4>5. Logging and Debugging</h4>
     <p>To log publish output to a file, use:</p>
     <pre><code>dotnet publish > publish_log.txt</code></pre>
     <p>Check the logs for any errors and resolve them before deployment.</p>
-    <h3>6. Additional Resources</h3>
+    <h4>6. Additional Resources</h4>
     <ul>
         <li><a href="https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-publish" target="_blank">Official .NET Publish Documentation</a></li>
         <li><a href="https://code.visualstudio.com/docs" target="_blank">Visual Studio Code Documentation</a></li>
