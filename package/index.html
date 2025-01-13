@@ -140,7 +140,7 @@
                 <li class="third-level"><a href="#comment">Comment</a></li>
             <li class="second-level"><a href="#how-to-create-a-packages">How to create a packages</a></li>
                 
-                <li class="third-level"><a href="#create-a-class-librarynet">Create a class library(.net)</a></li>
+                <li class="third-level"><a href="#create-a-class-librarynet">Create a class library(.NET)</a></li>
                 <li class="third-level"><a href="#how-to-publish-a-library-net">How to publish a library (.NET)</a></li>
                 <li class="third-level"><a href="#packing-packages">Packing packages</a></li>
     </ul>
@@ -336,7 +336,7 @@ public double Temp
 <hr />
 <p>Let's develop a package. In the Port Application, all operations are grouped at the package level and function at the message level. Every operation is defined within messages, allowing users to increase code reusability through messages.</p>
 <p><br></p>
-<h3 id="create-a-class-librarynet">Create a class library(.net)<a class="headerlink" href="#create-a-class-librarynet" title="Permanent link">&para;</a></h3>
+<h3 id="create-a-class-librarynet">Create a class library(.NET)<a class="headerlink" href="#create-a-class-librarynet" title="Permanent link">&para;</a></h3>
 <h4 id="bulb-package">bulb package<a class="headerlink" href="#bulb-package" title="Permanent link">&para;</a></h4>
 <div class="code-box">
 <pre>
@@ -461,15 +461,13 @@ public class Bulb
 </pre>
 </div>
 
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>When creating a library in a .NET environment, declaring an excessively large array may result in a PrivateImplementationDetails error. It is recommended to use a List instead.</p>
+</div>
 <p><br/>
 <br/></p>
 <h3 id="how-to-publish-a-library-net">How to publish a library (.NET)<a class="headerlink" href="#how-to-publish-a-library-net" title="Permanent link">&para;</a></h3>
-<p><img alt="poster" src="../img/package/1.png" />
-<img alt="poster" src="../img/package/2.png" />
-<img alt="poster" src="../img/package/3.png" />
-<img alt="poster" src="../img/package/4.png" />
-<img alt="poster" src="../img/package/5.png" />
-<img alt="poster" src="../img/package/6.png" /></p>
 <div> 
     <p>This manual provides step-by-step instructions on how to publish a .NET Core project using Visual Studio Code.</p>
     <h4> 1. Prerequisites </h4>
@@ -552,6 +550,17 @@ ENTRYPOINT ["dotnet", "YourApp.dll"]</code></pre>
     </ul>
 </div>
 
+<h4 id="7-with-vs2022">7. With VS2022<a class="headerlink" href="#7-with-vs2022" title="Permanent link">&para;</a></h4>
+<p></p>
+<p><img alt="poster" src="../img/package/1.png" /></p>
+<p></p>
+<p><img alt="poster" src="../img/package/2.png" /></p>
+<p></p>
+<p><img alt="poster" src="../img/package/3.png" /></p>
+<p></p>
+<p><img alt="poster" src="../img/package/5.png" /></p>
+<p></p>
+<p><img alt="poster" src="../img/package/6.png" /></p>
 <h3 id="packing-packages">Packing packages<a class="headerlink" href="#packing-packages" title="Permanent link">&para;</a></h3>
 <ol>
 <li>
