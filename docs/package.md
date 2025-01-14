@@ -165,7 +165,7 @@ Let's develop a package. In the Port Application, all operations are grouped at 
 <br>
 
 
-### Create a class library(.net) 
+### Create a class library(.NET) 
 
 #### bulb package 
 
@@ -294,10 +294,14 @@ public class Bulb
 </pre>
 </div>
 
+!!! WARNING
+    When creating a library in a .NET environment, declaring an excessively large array may result in a PrivateImplementationDetails error. It is recommended to use a List instead.
+
 <br/>
 <br/>
 
 ### How to publish a library (.NET)
+
 
 <div> 
     <p>This manual provides step-by-step instructions on how to publish a .NET Core project using Visual Studio Code.</p>
@@ -380,6 +384,26 @@ ENTRYPOINT ["dotnet", "YourApp.dll"]</code></pre>
         <li><a href="https://code.visualstudio.com/docs" target="_blank">Visual Studio Code Documentation</a></li>
     </ul>
 </div>
+
+
+
+
+#### 7. With VS2022 
+<p></p>
+![poster](img/package/1.png)
+
+<p></p>
+![poster](img/package/2.png)
+
+<p></p>
+![poster](img/package/3.png)
+
+<p></p>
+![poster](img/package/5.png)
+
+<p></p> 
+![poster](img/package/6.png)
+
 
 ### Packing packages
 
