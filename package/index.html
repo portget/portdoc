@@ -138,10 +138,10 @@
                 <li class="third-level"><a href="#message">Message</a></li>
                 <li class="third-level"><a href="#enumcode">EnumCode</a></li>
                 <li class="third-level"><a href="#comment">Comment</a></li>
-            <li class="second-level"><a href="#how-to-create-a-packages">How to create a packages</a></li>
+            <li class="second-level"><a href="#how-to-create-a-packages-net">How to create a packages (.NET)</a></li>
                 
-                <li class="third-level"><a href="#create-a-class-librarynet">Create a class library(.NET)</a></li>
-                <li class="third-level"><a href="#how-to-publish-a-library-net">How to publish a library (.NET)</a></li>
+                <li class="third-level"><a href="#create-a-class-library">Create a class library</a></li>
+                <li class="third-level"><a href="#how-to-publish-a-library">How to publish a library</a></li>
                 <li class="third-level"><a href="#packing-packages">Packing packages</a></li>
     </ul>
 </div></div>
@@ -332,83 +332,84 @@ public double Temp
 <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>     [Message,Commnet(&quot;this is a numberic&quot;)]
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>     public int NValue { get =&gt; 3; }
 </span></code></pre></div></p>
-<h2 id="how-to-create-a-packages">How to create a packages<a class="headerlink" href="#how-to-create-a-packages" title="Permanent link">&para;</a></h2>
+<h2 id="how-to-create-a-packages-net">How to create a packages (.NET)<a class="headerlink" href="#how-to-create-a-packages-net" title="Permanent link">&para;</a></h2>
 <hr />
 <p>Let's develop a package. In the Port Application, all operations are grouped at the package level and function at the message level. Every operation is defined within messages, allowing users to increase code reusability through messages.</p>
 <p><br></p>
-<h3 id="create-a-class-librarynet">Create a class library(.NET)<a class="headerlink" href="#create-a-class-librarynet" title="Permanent link">&para;</a></h3>
+<h3 id="create-a-class-library">Create a class library<a class="headerlink" href="#create-a-class-library" title="Permanent link">&para;</a></h3>
 <h4 id="bulb-package">bulb package<a class="headerlink" href="#bulb-package" title="Permanent link">&para;</a></h4>
 <div class="code-box">
 <pre>
 <code id="code-snippet" class="language-csharp">  
 [Port(typeof(Bulb))]
 public class Bulb
-{ 
-    [Logger]
-    public ILogger Logger { get; set; }
+{
+     [Logger]
+     public ILogger Logger { get; set; }
 
-    private SerialPortStream serialPort = new SerialPortStream();
+     [Property]
+     public IProperty Property { get; set; }
 
-    [Valid("")]
-    public bool Valid()
-    {
-        return true;
-    }
+     private SerialPortStream serialPort = new SerialPortStream();
 
-    private string comport;
-    [Message(PortDataType.Text)]
-    public string Comport
-    {
-        set
-        {
-            try
-            {
-                if (this.serialPort.PortName != value)
-                {
-                    this.serialPort = new SerialPortStream();
-                    this.serialPort.PortName = value.ToString();
-                    this.serialPort.BaudRate = 9600;
-                    this.serialPort.DataBits = 8;
-                    this.serialPort.StopBits = StopBits.One;
-                    this.serialPort.Parity = Parity.Even;
-                }
-            }
-            catch (System.Exception ex)
-            {
-                Logger.Write("[ERROR]" + ex.Message);
-            }
-        }
-        get
-        {
-           return comport;
-       }
-   }
-   private string offon = string.Empty;
-   [Message(PortDataType.Enum), Property(PropertyFormat.Json)]
-   public string OffOn
-   {
-       set
-       {
-           var prop = MessageProperty.Get();
-           try
-           {
-               if (prop != null)
-               {
-                   //prop.Arguments[0]
-                   //Logger.Write("[Arguments]" + prop.Arguments[0]);
-                   this.offon = value;
-               }
-           }
-           catch (Exception ex)
-           {
-               Logger.Write("[ERROR]" + ex.Message);
-           }
-       }
-       get
-       {
-           return this.offon;
-       }
-   }
+     [Valid("")]
+     public bool Valid()
+     {
+         return true;
+     }
+
+     private string comport;
+     [Message(PortDataType.Text)]
+     public string Comport
+     {
+         set
+         {
+             try
+             {
+                 if (this.serialPort.PortName != value)
+                 {
+                     this.serialPort = new SerialPortStream();
+                     this.serialPort.PortName = value.ToString();
+                     this.serialPort.BaudRate = 9600;
+                     this.serialPort.DataBits = 8;
+                     this.serialPort.StopBits = StopBits.One;
+                     this.serialPort.Parity = Parity.Even;
+                 }
+             }
+             catch (System.Exception ex)
+             {
+                 Logger.Write("[ERROR]" + ex.Message);
+             }
+         }
+         get
+         {
+             return comport;
+         }
+     }
+     private string offon = string.Empty;
+     [Message(PortDataType.Enum, PropertyFormat.Json)]
+     public string OffOn
+     {
+         set
+         {
+             var prop = this.Property;
+             try
+             {
+                 if (prop != null)
+                 { 
+                     this.offon = value;
+                 }
+             }
+             catch (Exception ex)
+             {
+                 Logger.Write("[ERROR]" + ex.Message);
+             }
+         }
+         get
+         {
+             return this.offon;
+         }
+     }
 }
 </code>
 </pre>
@@ -418,43 +419,139 @@ public class Bulb
 <div class="code-box">
 <pre>
 <code id="code-snippet" class="language-csharp">  
- [Port(typeof(Heater))]
- public class Heater
- {
-
-    [Message(PortDataType.Text)]
-    public string Power
+ namespace HeaterLib
+{
+    [Port(typeof(Heater))]
+    public class Heater
     {
-        set;
-        get;
-    }
+        [Logger]
+        public ILogger Logger { get; set; }
+        [Property]
+        public IProperty Property { get; set; }
 
-    [Valid("Invlid for connection")]
-    public bool Valid()
-    {
-       return true;
-    }
+        [Message(PortDataType.Text)]
+        public string Power
+        {
+            set;
+            get;
+        }
 
-    private static Random r = new Random(100);
-    [Message(PortDataType.Num), Property(PropertyFormat.Json)]
-    public double Temp
-    {
-         get
-         {
-             var prop = MessageProperty.Get();
-             if (prop != null)
-             {
-                 if (prop.TryToGetValue("Arguments", out object value) && value.ToString() == "F")
-                 {
-                     return ((r.NextDouble() * 9 / 5) + 32);
-                 }
-                 else if (prop.TryToGetValue("Arguments", out object v2) && v2.ToString() == "C")
-                 {
-                     return (r.NextDouble());
-                 }
-             }
-             return (1);
-         }
+        [Valid("Invlid for connection")]
+        public bool Valid()
+        {
+            return true;
+        }
+
+        private static Random r = new Random(100);
+        [Message(PortDataType.Num, PropertyFormat.Json, "Unit")]
+        public double Temp
+        {
+            get
+            {
+                try
+                {
+                    if (this.Property != null)
+                    {
+                        if (this.Property.TryToGetValue("Unit", out string v1) && (v1 == "F"))
+                        {
+                            var ret = (r.NextDouble() * 9 / 5) + 32;
+                            if (ret == 0)
+                            {
+                                return 1;
+                            }
+                            return ret;
+                        }
+                        else if (this.Property.TryToGetValue("Unit", out string v2) && (v2 == "C"))
+                        {
+                            var ret = (r.NextDouble());
+                            if (ret == 0)
+                            {
+                                return 1;
+                            }
+                            return ret;
+                        }
+                        else
+                        {
+                            return double.NaN;
+                        }
+                    }
+                    return double.NaN;
+                }
+                catch (Exception e)
+                {
+                    if (Logger != null)
+                        Logger.Write(e.Message);
+                }
+                return double.NaN;
+            }
+        }
+
+
+        [Message(PortDataType.Num, PropertyFormat.Json, "Unit")]
+        public double Temp2
+        {
+            get
+            {
+                try
+                {
+                    if (this.Property != null)
+                    {
+                        if (this.Property.TryToGetValue("Unit", out string v1) && (v1 == "F"))
+                        {
+                            return ((r.NextDouble() * 9 / 5) + 32) * 2;
+                        }
+                        else if (this.Property.TryToGetValue("Unit", out string v2) && (v2 == "C"))
+                        {
+                            return (r.NextDouble()) * 2;
+                        }
+                        else
+                        {
+                            return double.NaN;
+                        }
+                    }
+                    return double.NaN;
+                }
+                catch (Exception e)
+                {
+                    if (Logger != null)
+                        Logger.Write(e.Message);
+                }
+                return double.NaN;
+            }
+        }
+
+        [Message(PortDataType.Num, PropertyFormat.Json, "Unit")]
+        public double Temp3
+        {
+            get
+            {
+                try
+                {
+                    if (this.Property != null)
+                    {
+                        if (this.Property.TryToGetValue("Unit", out string v1) && (v1 == "F"))
+                        {
+                            return ((r.NextDouble() * 9 / 5) + 32) * 3;
+                        }
+                        else if (this.Property.TryToGetValue("Unit", out string v2) && (v2 == "C"))
+                        {
+                            return (r.NextDouble()) * 3;
+                        }
+                        else
+                        {
+                            return double.NaN;
+                        }
+                    }
+                    return double.NaN;
+                }
+                catch (Exception e)
+                {
+                    if (Logger != null)
+                        Logger.Write(e.Message);
+                }
+                return double.NaN;
+            }
+        }
     }
 }
 </code>
@@ -467,7 +564,7 @@ public class Bulb
 </div>
 <p><br/>
 <br/></p>
-<h3 id="how-to-publish-a-library-net">How to publish a library (.NET)<a class="headerlink" href="#how-to-publish-a-library-net" title="Permanent link">&para;</a></h3>
+<h3 id="how-to-publish-a-library">How to publish a library<a class="headerlink" href="#how-to-publish-a-library" title="Permanent link">&para;</a></h3>
 <div> 
     <p>This manual provides step-by-step instructions on how to publish a .NET Core project using Visual Studio Code.</p>
     <h4> 1. Prerequisites </h4>
