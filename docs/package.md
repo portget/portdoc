@@ -157,7 +157,7 @@ When Comment Annotation are declared, the comments associated with the property 
 ```
 
 
-## How to create a packages 
+## How to create a packages (.NET)
 
 ___
 Let's develop a package. In the Port Application, all operations are grouped at the package level and function at the message level. Every operation is defined within messages, allowing users to increase code reusability through messages.
@@ -165,7 +165,7 @@ Let's develop a package. In the Port Application, all operations are grouped at 
 <br>
 
 
-### Create a class library(.NET) 
+### Create a class library
 
 #### bulb package 
 
@@ -174,72 +174,73 @@ Let's develop a package. In the Port Application, all operations are grouped at 
 <code id="code-snippet" class="language-csharp">  
 [Port(typeof(Bulb))]
 public class Bulb
-{ 
-    [Logger]
-    public ILogger Logger { get; set; }
+{
+     [Logger]
+     public ILogger Logger { get; set; }
 
-    private SerialPortStream serialPort = new SerialPortStream();
+     [Property]
+     public IProperty Property { get; set; }
 
-    [Valid("")]
-    public bool Valid()
-    {
-        return true;
-    }
+     private SerialPortStream serialPort = new SerialPortStream();
 
-    private string comport;
-    [Message(PortDataType.Text)]
-    public string Comport
-    {
-        set
-        {
-            try
-            {
-                if (this.serialPort.PortName != value)
-                {
-                    this.serialPort = new SerialPortStream();
-                    this.serialPort.PortName = value.ToString();
-                    this.serialPort.BaudRate = 9600;
-                    this.serialPort.DataBits = 8;
-                    this.serialPort.StopBits = StopBits.One;
-                    this.serialPort.Parity = Parity.Even;
-                }
-            }
-            catch (System.Exception ex)
-            {
-                Logger.Write("[ERROR]" + ex.Message);
-            }
-        }
-        get
-        {
-           return comport;
-       }
-   }
-   private string offon = string.Empty;
-   [Message(PortDataType.Enum), Property(PropertyFormat.Json)]
-   public string OffOn
-   {
-       set
-       {
-           var prop = MessageProperty.Get();
-           try
-           {
-               if (prop != null)
-               {
-                   //prop.Arguments[0]
-                   //Logger.Write("[Arguments]" + prop.Arguments[0]);
-                   this.offon = value;
-               }
-           }
-           catch (Exception ex)
-           {
-               Logger.Write("[ERROR]" + ex.Message);
-           }
-       }
-       get
-       {
-           return this.offon;
-       }
-   }
+     [Valid("")]
+     public bool Valid()
+     {
+         return true;
+     }
+
+     private string comport;
+     [Message(PortDataType.Text)]
+     public string Comport
+     {
+         set
+         {
+             try
+             {
+                 if (this.serialPort.PortName != value)
+                 {
+                     this.serialPort = new SerialPortStream();
+                     this.serialPort.PortName = value.ToString();
+                     this.serialPort.BaudRate = 9600;
+                     this.serialPort.DataBits = 8;
+                     this.serialPort.StopBits = StopBits.One;
+                     this.serialPort.Parity = Parity.Even;
+                 }
+             }
+             catch (System.Exception ex)
+             {
+                 Logger.Write("[ERROR]" + ex.Message);
+             }
+         }
+         get
+         {
+             return comport;
+         }
+     }
+     private string offon = string.Empty;
+     [Message(PortDataType.Enum, PropertyFormat.Json)]
+     public string OffOn
+     {
+         set
+         {
+             var prop = this.Property;
+             try
+             {
+                 if (prop != null)
+                 { 
+                     this.offon = value;
+                 }
+             }
+             catch (Exception ex)
+             {
+                 Logger.Write("[ERROR]" + ex.Message);
+             }
+         }
+         get
+         {
+             return this.offon;
+         }
+     }
 }
 </code>
 </pre>
@@ -251,43 +252,66 @@ public class Bulb
 <div class="code-box">
 <pre>
 <code id="code-snippet" class="language-csharp">  
- [Port(typeof(Heater))]
- public class Heater
- {
-
+[Port(typeof(Heater))]
+public class Heater
+{
+    [Logger]
+    public ILogger Logger { get; set; }
+    [Property]
+    public IProperty Property { get; set; }
     [Message(PortDataType.Text)]
     public string Power
     {
         set;
         get;
     }
-
     [Valid("Invlid for connection")]
     public bool Valid()
     {
-       return true;
+        return true;
     }
-
     private static Random r = new Random(100);
-    [Message(PortDataType.Num), Property(PropertyFormat.Json)]
+    [Message(PortDataType.Num, PropertyFormat.Json, "Unit")]
     public double Temp
     {
-         get
-         {
-             var prop = MessageProperty.Get();
-             if (prop != null)
-             {
-                 if (prop.TryToGetValue("Arguments", out object value) && value.ToString() == "F")
-                 {
-                     return ((r.NextDouble() * 9 / 5) + 32);
-                 }
-                 else if (prop.TryToGetValue("Arguments", out object v2) && v2.ToString() == "C")
-                 {
-                     return (r.NextDouble());
-                 }
-             }
-             return (1);
-         }
+        get
+        {
+            try
+            {
+                if (this.Property != null)
+                {
+                    if (this.Property.TryToGetValue("Unit", out string v1) && (v1 == "F"))
+                    {
+                        var ret = (r.NextDouble() * 9 / 5) + 32;
+                        if (ret == 0)
+                        {
+                            return 1;
+                        }
+                        return ret;
+                    }
+                    else if (this.Property.TryToGetValue("Unit", out string v2) && (v2 == "C"))
+                    {
+                        var ret = (r.NextDouble());
+                        if (ret == 0)
+                        {
+                            return 1;
+                        }
+                        return ret;
+                    }
+                    else
+                    {
+                        return double.NaN;
+                    }
+                }
+                return double.NaN;
+            }
+            catch (Exception e)
+            {
+                if (Logger != null)
+                    Logger.Write(e.Message);
+            }
+            return double.NaN;
+        }
     }
 }
 </code>
@@ -300,7 +324,7 @@ public class Bulb
 <br/>
 <br/>
 
-### How to publish a library (.NET)
+### How to publish a library
 
 
 <div> 
