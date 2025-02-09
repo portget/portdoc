@@ -66,7 +66,7 @@ Please attach the materials attached below.
 #### datatype
 name | range | description
  ------|--------|--------
- text | `0~255` | The length can be specified as a value from 0 to 255.
+ char | `0~255` | A fixed-length type with a total length of 255, where the variable is of the CHAR data type, allowing string values to be stored.
  num  | `-1.7e+308 ~` <p>`+1.7e+308`  | The floating-point type that allows for the representation of decimal numbers and is capable of representing a wide range of values, both very small and very large.
  enum | `0 ~ 65535` | The user can utilize the fixed list values specified in the .enum file, which can be used at a lower cost than text values and with stricter usage.  
   
