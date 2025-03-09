@@ -268,6 +268,10 @@ public bool Valid()
 <div class="code-box">
 <pre>
 <code id="code-snippet" class="language-csharp">  
+using portpackage;
+using portdatatype;
+...
+
 [Port(typeof(Heater))]
 public class Heater
 ...
@@ -279,6 +283,10 @@ public class Heater
 <div class="code-box">
 <pre>
 <code id="code-snippet" class="language-csharp">  
+using portpackage;
+using portdatatype;
+...
+
 [Logger]
 public ILogger Logger { get; set; }
 
@@ -293,6 +301,10 @@ Logger.Write(string.Join(",", v));
 <div class="code-box">
 <pre>
 <code id="code-snippet" class="language-csharp">  
+using portpackage;
+using portdatatype;
+...
+
 [Property]
 public IProperty Property { get; set; }
 ...
@@ -308,6 +320,10 @@ if (this.Property.TryToGetValue("Unit", out string v1)){
 <div class="code-box">
 <pre>
 <code id="code-snippet" class="language-csharp">  
+using portpackage;
+using portdatatype;
+...
+
 private static Random r = new Random(100);
 
 [Message(PortDataType.Num, PropertyFormat.Json, "Unit")]
@@ -369,6 +385,10 @@ public double Temp
 <div class="code-box">
 <pre>
 <code id="code-snippet" class="language-csharp">  
+using portpackage;
+using portdatatype;
+...
+
 [Port(typeof(Bulb))]
 public class Bulb
 {
@@ -446,7 +466,11 @@ public class Bulb
 <h4 id="heater-package">heater package<a class="headerlink" href="#heater-package" title="Permanent link">&para;</a></h4>
 <div class="code-box">
 <pre>
-<code id="code-snippet" class="language-csharp">  
+<code id="code-snippet" class="language-csharp">
+using portpackage;
+using portdatatype;
+...
+
 [Port(typeof(Heater))]
 public class Heater
 {
