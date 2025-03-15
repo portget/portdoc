@@ -4,16 +4,16 @@ The Port package is a collection of reusable libraries. Users can develop packag
 
 
 
-## Download
+## Download  
 NAME | Language |Package Manager | OS | STABLE | 
 ------|--------|--------|--------|--------
-Port.SDK |  C# | Nuget |Windows x64 | Yes | 
-
-
+portdic |  C++ | not yet |Windows| No | 
+portdic |  Delphi | not yet |Windows| No |
+portdic |  C# | nuget |Windows| Yes | 
+portdic |  Python | not yet |Windows| No | 
+portdic |  Javascript | npm |Any | Yes | 
 
 <br>
-
-
 
 ## Package Annotation
 ___
@@ -47,6 +47,10 @@ This annotation indicates that the Heater class is managed within the Port Packa
 <div class="code-box">
 <pre>
 <code id="code-snippet" class="language-csharp">  
+using portpackage;
+using portdatatype;
+...
+
 [Port(typeof(Heater))]
 public class Heater
 ...
@@ -59,6 +63,10 @@ This annotation specifies that the Logger field is to be injected with a logging
 <div class="code-box">
 <pre>
 <code id="code-snippet" class="language-csharp">  
+using portpackage;
+using portdatatype;
+...
+
 [Logger]
 public ILogger Logger { get; set; }
 
@@ -76,6 +84,10 @@ This annotation maps the property to a declared Message Property.
 <div class="code-box">
 <pre>
 <code id="code-snippet" class="language-csharp">  
+using portpackage;
+using portdatatype;
+...
+
 [Property]
 public IProperty Property { get; set; }
 ...
@@ -95,6 +107,10 @@ Properties declared with Message Annotation are defined as API Messages and made
 <div class="code-box">
 <pre>
 <code id="code-snippet" class="language-csharp">  
+using portpackage;
+using portdatatype;
+...
+
 private static Random r = new Random(100);
 
 [Message(PortDataType.Num, PropertyFormat.Json, "Unit")]
@@ -172,6 +188,10 @@ Let's develop a package. In the Port Application, all operations are grouped at 
 <div class="code-box">
 <pre>
 <code id="code-snippet" class="language-csharp">  
+using portpackage;
+using portdatatype;
+...
+
 [Port(typeof(Bulb))]
 public class Bulb
 {
@@ -251,7 +271,11 @@ public class Bulb
 
 <div class="code-box">
 <pre>
-<code id="code-snippet" class="language-csharp">  
+<code id="code-snippet" class="language-csharp">
+using portpackage;
+using portdatatype;
+...
+
 [Port(typeof(Heater))]
 public class Heater
 {

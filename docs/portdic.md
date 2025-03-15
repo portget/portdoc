@@ -113,20 +113,97 @@ export default App
 
 ## .Net 
 
+### Run
+```C#
+  ...
+  private static IPortDic port = Port.GetDictionary("sample");
+
+  public Form()
+  {
+     InitializeComponent();
+     //  
+     port.OnOccurred += Port_OnOccurred;
+     port.OnStatusChanged += Port_OnStatusChanged;
+     //
+     port.Run(); 
+  }
+  
+  /// <summary>
+  /// The OnStatusChanged event is typically used to notify when the status of an port server
+  /// has changed. 
+  /// This event provides details about the event through <see cref="PortStatusHandler"/>.
+  /// </summary>
+  private void Port_OnStatusChanged(object sender, PortStatusArgs e)
+  {
+      switch (e.Status)
+      {
+          case PortStauts.Initializing:
+              break;
+          case PortStauts.Running:
+              OnReady = true;
+              break;
+          case PortStauts.Stopped:
+              break;
+          case PortStauts.Shutdown:
+              break;
+          case PortStauts.Failed:
+              break;
+      }
+  }
+
+  /// <summary>
+  /// The OnStatusChanged event is typically used to notify when the status of an port server
+  /// has changed. 
+  /// This event provides details about the event through <see cref="PortStatusHandler"/>.
+  /// </summary>
+  private void Port_OnOccurred(object sender, PortEventArgs e)
+  {
+      switch (e.EventType)
+      {
+          default:
+              Console.WriteLine(e.Message);
+              break;
+      }
+  }
+  ...
+```
+
+### Test Package 
+```C#
+ ...
+  private static IPortDic port = Port.GetDictionary("sample");
+
+  public Form()
+  {
+    InitializeComponent();
+    // Test Mode Heater Class with messaegs.
+    port.Test("Heater1", new Heater());
+
+    port.OnOccurred += Port_OnOccurred;
+    port.OnStatusChanged += Port_OnStatusChanged;
+    //
+    port.Run();
+  }
+  ...
+```
 ### SET/GET
 
 ```C#
     ...
-    private static IPortDic port = Port.GetDictionary("sample");
-
+    
     var ok = dic.Set('room1','BulbOnOff','On');
     if(ok){
         Console.WriteLine("ok");
-    }
+    } 
 
-    var v = dic.Get('room1','BulbOnOff')
     // 'On'
-    Console.WriteLine(v.Text()); 
+    Console.WriteLine(dic.Get('room1','BulbOnOff').Text()); 
+
+    port["room1"].Set("BulbOnOff", 'Off'); 
+
+    // 'Off'
+    Console.WriteLine(dic.Get('room1','BulbOnOff').Text()); 
+   
 
     var t1 = dic.Get('room1','RoomTemp1')
     // random number unit Celsius

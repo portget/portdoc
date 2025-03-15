@@ -26,7 +26,7 @@ Please see the documentation [lincense](license.md)
 
 VERSION | OS |STABLE | URL 
 ------|--------|--------|--------
-v1.0.40 | Windows x64 | Yes | [v1.0.40-win-installer](file/Setup.zip){:port_win_installer} 
+v1.0.47 | Windows x64 | Yes | [v1.0.47-win-installer](file/Setup.zip){:port_win_installer} 
 
 
 <style>
