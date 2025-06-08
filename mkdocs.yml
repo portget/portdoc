@@ -6,6 +6,7 @@ nav:
   - Packages: package.md
   - Dictionary: portdic.md
   - Commands: commands.md
+  - Secs: secs.md
 markdown_extensions:
   - codehilite:
       guess_lang: false
