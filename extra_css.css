@@ -1,0 +1,45 @@
+/* Hide MkDocs Material footer completely */
+.md-footer {
+    display: none !important;
+}
+
+.md-footer-meta {
+    display: none !important;
+}
+
+.md-footer-meta__inner {
+    display: none !important;
+}
+
+/* Hide any "Made with Material for MkDocs" text */
+.md-footer-meta__inner[data-md-component="footer"] {
+    display: none !important;
+}
+
+/* Hide footer copyright and generator text */
+.md-footer-copyright {
+    display: none !important;
+}
+
+.md-footer-copyright__highlight {
+    display: none !important;
+}
+
+/* Additional selectors to ensure complete removal */
+footer {
+    display: none !important;
+}
+
+[data-md-component="footer"] {
+    display: none !important;
+}
+
+/* Remove any Material for MkDocs branding */
+a[href*="squidfunk.github.io"] {
+    display: none !important;
+}
+
+/* Hide any text containing "Material for MkDocs" */
+*:contains("Material for MkDocs") {
+    display: none !important;
+} 
