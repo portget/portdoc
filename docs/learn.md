@@ -1,541 +1,1273 @@
-# Quick Start
-___
-Port operates by reflecting messages in the most recently updated repository. 
-Try creating and editing a basic project to see how you can modify and configure projects. Follow along to understand the process better.
+# Port Learning Guide
 
+## Table of Contents
+1. [Overview](#overview)
+2. [Creating Port Projects](#creating-port-projects)
+3. [Message System](#message-system)
+4. [Enum Definitions](#enum-definitions)
+5. [Rule System](#rule-system)
+6. [Package Management](#package-management)
+7. [Package Development](#package-development)
+8. [PortDic SDK](#portdic-sdk)
+9. [Project Execution](#project-execution)
+10. [Logging and Monitoring](#logging-and-monitoring)
+11. [Remote Access](#remote-access)
+12. [MQTT Integration](#mqtt-integration)
 
- 
-## How to create a port-project
-___
-Before starting a Port project, you need to create a root folder that defines your messages. The subfolders within this root folder are managed as groups by Port, allowing users to organize messages by group. The root folder contains files with the `*.enum` extension and the structure of sub-group folders. Within the sub-group folders, message definition documents with the `*.msg` extension are created.
+## Overview
 
+Port operates by reflecting messages in the most recently updated repository. This quick start guide will help you understand how to create, configure, and manage Port projects effectively.
 
-### 1. Repository
-___
-The Port project is remarkably simple and straightforward. To get started, first create a project folder in the console, then type port new sample. This will quickly generate the project files. After that, create sub-group folders and add .msg files to each sub-group folder. Feel free to create messages using text, num, and enum types as you like. Once you've specified the attributes, type port push and Port will automatically store everything. Now, just run port run sample, and the server will start, allowing you to safely and easily share messages across multiple applications.
- 
-___
+Port provides a comprehensive ecosystem for:
+- **Message-based Communication**: Structured data exchange between components
+- **Package Integration**: Modular architecture with reusable components  
+- **Real-time Monitoring**: Live project status and logging capabilities
+- **Remote Management**: SSH and web-based administration
+- **IoT Integration**: MQTT protocol support for device communication
 
-!!! tip
-    The repository name cannot contain special characters. 
-    It follows the directory naming rules provided by the operating system.
-___
-   
+## Creating Port Projects
 
-<h4>Create a project</h4>
+### Project Structure Overview {#project-structure}
 
-![poster](img/new_project.png)
+Port projects are organized hierarchically with a clear folder structure:
 
+- **Root Folder**: Contains project configuration and `*.enum` files
+- **Group Folders**: Organize messages by functional areas
+- **Message Files**: Individual `*.msg` files defining message properties
 
-### 2. Group 
-A group serves as the root of messages. Within a single group, multiple message files can be stored, allowing for easy retrieval and editing. By managing several .msg files within the group folder, you can conveniently organize and abstract them for streamlined management.
+### Repository Setup {#repository-setup}
 
-___
+The Port project structure is simple and straightforward. Follow these steps to create your first project:
 
-<h4>Add a group</h4> 
+1. **Create Project Directory**: Start with a dedicated project folder
+2. **Initialize Project**: Use `port new [project-name]` to generate project files
+3. **Add Groups**: Create sub-folders for message organization
+4. **Define Messages**: Add `*.msg` files to group folders
+5. **Configure Types**: Specify text, num, and enum data types
+6. **Deploy**: Use `port push` to store project configuration
 
-![poster](img/add_group.png)
+!!! tip "Repository Naming Rules"
+    Repository names cannot contain special characters and must follow operating system directory naming conventions.
 
+#### Creating a New Project {#creating-new-project}
 
- 
+![Create Project](img/new_project.png)
 
-#### Sample Project
-
-![poster](img/expl.png)
-
-___
-Download [sample project](file/sample.zip){:sample} 
-___
-
-
-## How to add messages 
-___
-To declare a message, you need to edit the `*.msg` file in the sub-folder you created. By defining message data types and attributes as shown below, you can later utilize various features such as automatic logging and backup. Additionally, you can define relationships using predefined relations.
-
-### 1. Message syntax
- `[key] [datatype] [option...]`
-
-A message is an object that allows users to specify pkg properties in a pre-provided Application Service. The message is a kv, and types and properties can be defined in that message. 
-Please attach the materials attached below. 
-  
-* `[key]`      - unique key in the message group
-* `[datatype]` - text | num | enum 
-* `[attribute]` - pkg,backup,rule,frame,property
-
-
-#### datatype
-name | range | description
- ------|--------|--------
- char | `0~255` | A fixed-length type with a total length of 255, where the variable is of the CHAR data type, allowing string values to be stored.
- num  | `-1.7e+308 ~` <p>`+1.7e+308`  | The floating-point type that allows for the representation of decimal numbers and is capable of representing a wide range of values, both very small and very large.
- enum | `0 ~ 65535` | The user can utilize the fixed list values specified in the .enum file, which can be used at a lower cost than text values and with stricter usage.  
-  
-#### attribute
- 
- name|description
- ------|--------
- pkg     | Real-time synchronization and messaging are handled within the corresponding external library. For more details, please refer to the pkg documentation.
- backup  | Changes are saved to the backup database as they occur, ensuring that values are restored upon application restart. and values are not propagated pkg messages during program execution.
- property| Can specify a custom property
- rule    | Can specify rules to manage the values of corresponding messages.  
- logging | Auto logging support for messages 
-
-!!! tip
-    message document do not using special characters. 
- 
-### 2. Sample
-``` 
-
- BulbOnOff     enum.OffOn  pkg:Bulb1.OffOn     
- RoomTemp1     num         pkg:Heater1.Temp  property:{"MIN":0,"MAX":300,"Arguments":"C"}
- RoomTemp2     num         pkg:Heater1.Temp  property:{"MIN":0,"MAX":300,"Arguments":"F"}        
-
+**Command:**
+```bash
+port new [project-name]
 ```
 
+### Group Management {#group-management}
 
+Groups serve as logical containers for related messages. Each group can contain multiple message files, enabling organized and abstracted message management.
 
+#### Adding Groups {#adding-groups}
 
-## How to add enums
-___
+![Add Group](img/add_group.png)
 
-### 1. Enum syntax
+**Benefits of Groups:**
+- **Organization**: Logical separation of message types
+- **Maintainability**: Easier to locate and edit related messages
+- **Scalability**: Support for large projects with many messages
+- **Abstraction**: Simplified management of complex message relationships
 
-Enums are particularly useful when you have a fixed set of values that a variable can take, such as days of the week, months of the year, or status codes. They help make your code more expressive, self-documenting, and less error-prone because you're working with named constants instead of raw integer values. 
+#### Sample Project Structure {#sample-project-structure}
 
-* enum item format like this`[key] [item-name:number_key] [item-name:number_key]` 
-* `[key]`      - unique key in the enum message
-* `[item-name]`- name by enum-item
-* `[property]` - unique key in enum value
+![Project Structure](img/expl.png)
 
+**Download Sample:**
+[Download Sample Project](file/sample.zip)
 
+## Message System
 
+### Message Definition Syntax {#message-syntax}
 
-### 2. Sample
-```console
+Messages are the core communication units in Port. Each message is defined using a specific syntax:
+
+```
+[key] [datatype] [option...]
+```
+
+**Components:**
+- **`[key]`**: Unique identifier within the message group
+- **`[datatype]`**: Data type specification (text, num, enum)
+- **`[option...]`**: Additional attributes and configurations
+
+### Data Types {#data-types}
+
+Port supports three primary data types for message definitions:
+
+| Name | Range | Description |
+|------|-------|-------------|
+| **char** | `0~255` | Fixed-length string type with maximum 255 characters for text storage |
+| **num** | `-1.7e+308 ~ +1.7e+308` | Floating-point type supporting wide range of decimal values |
+| **enum** | `0 ~ 65535` | User-defined fixed list from `.enum` files with efficient storage |
+
+### Message Attributes {#message-attributes}
+
+Attributes provide additional functionality and behavior for messages:
+
+| Attribute | Description |
+|-----------|-------------|
+| **pkg** | Real-time synchronization with external libraries (see package documentation) |
+| **backup** | Automatic database backup with restore on application restart |
+| **property** | Custom property specifications for message configuration |
+| **rule** | Value validation and management rules |
+| **logging** | Automatic logging support for message operations |
+
+!!! warning "Special Characters"
+    Message documents should not use special characters in identifiers.
+
+### Message Examples {#message-examples}
+
+```
+BulbOnOff     enum.OffOn  pkg:Bulb1.OffOn
+RoomTemp1     num         pkg:Heater1.Temp  property:{"MIN":0,"MAX":300,"Arguments":"C"}
+RoomTemp2     num         pkg:Heater1.Temp  property:{"MIN":0,"MAX":300,"Arguments":"F"}
+```
+
+**Explanation:**
+- **BulbOnOff**: Enum-based control linked to Bulb1 package
+- **RoomTemp1**: Numeric temperature in Celsius with validation range
+- **RoomTemp2**: Numeric temperature in Fahrenheit with validation range
+
+## Enum Definitions
+
+### Enum Syntax {#enum-syntax}
+
+Enums provide a way to define fixed sets of named values, improving code readability and reducing errors.
+
+**Format:**
+```
+[key] [item-name:number_key] [item-name:number_key] ...
+```
+
+**Components:**
+- **`[key]`**: Unique enum identifier
+- **`[item-name]`**: Descriptive name for enum value
+- **`[number_key]`**: Numeric value associated with the item
+
+### Enum Benefits {#enum-benefits}
+
+Enums are particularly useful for:
+- **Fixed Value Sets**: Days of the week, months, status codes
+- **Code Clarity**: Self-documenting code with named constants
+- **Error Prevention**: Type safety instead of raw numeric values
+- **Maintenance**: Centralized value management
+
+### Enum Examples {#enum-examples}
+
+```
 TFalse      True:0      False:1
 FTrue       False:0     True:1
 OffOn       Off:0       On:1
-OnOff       On:0       Off:1
+OnOff       On:0        Off:1
 ```
 
-___
+**Use Cases:**
+- **Boolean States**: True/False, On/Off toggles
+- **Status Indicators**: Active/Inactive, Enabled/Disabled
+- **Mode Selection**: Manual/Automatic, Local/Remote
 
+## Rule System
 
+### Rule Definition {#rule-definition}
 
-## How to add rules
-___
-To declare a rule, you need to edit the `*.rule` file in the sub-folder you created. The rule script can control whether the user can modify settings through the setable function. The first parameter is the condition that triggers the rule, and the second parameter is the condition that determines whether the setting is modifiable. When the user changes the message value, the function is automatically called to check these conditions.
+Rules provide conditional logic for message validation and automatic actions. They are defined in `*.rule` files within group folders.
 
-<br/>
+### SetTrigger Rules {#settrigger-rules}
 
-### 1. SetTrigger script syntax
-The set function is a conditional validation mechanism used to check and enforce logical constraints before accepting input actions. It is composed of two main parts:
- 
-#### Input Condition
-A logical expression that specifies the input condition to be validated.
+SetTrigger rules control user modification permissions through conditional validation.
 
-#### Validation Condition
-A logical expression that must evaluate to true for the input action to be accepted.
-
-#### Syntax
-set(`<Input Condition>`, `<Validation Condition>`);
-
-<br/>
-
-### 2. GetTrigger script syntax
-  
-The GetTrigger serves as a conditional trigger mechanism for executing specific actions when defined 
-conditions are met. It is composed of two main parts:
-
-#### Trigger Condition
-A logical expression that evaluates to true or false.
-
-#### Action Script
-A set of instructions executed when the trigger condition evaluates to true.
-
-#### Syntax
-get(`<Trigger Condition>`, `<Action Script>`);
-
-<br/>
-
-### 3. Sample
-```
-    set("room1.BulbOnOff==Off","(room1.RoomTemp1>=20)&&(room2.RoomTemp2>=20)")
-    set("room1.RoomTemp2>=30","room2.RoomTemp2>=5") 
-    get("(room1.RoomTemp1>=0)&&(room2.RoomTemp2>=0)","room1.BulbOnOff=Off;room2.BulbOnOff=Off;")
+#### Syntax {#settrigger-syntax}
+```javascript
+set("<Input Condition>", "<Validation Condition>");
 ```
 
-## How to import packages
-A port package, in the context of software development, is a collection of pre-written code or modules that provide specific functionality, designed to be reused across different projects. By incorporating port packages into your application, you can save time and effort by leveraging existing solutions instead of building everything from scratch. Port packages typically include libraries, utilities, or tools that handle common tasks, such as data manipulation, network communication, or file handling.
+**Components:**
+- **Input Condition**: Logical expression specifying the input to validate
+- **Validation Condition**: Expression that must evaluate to true for acceptance
 
-The main advantage of using port packages is that they promote reusability, allowing developers to share and reuse code, which improves efficiency and reduces redundancy. Additionally, port packages help to organize your code in a modular way, making it easier to maintain and update. it becomes much easier to install, update, and track dependencies, ensuring your application is always running with the right set of tools.
+#### SetTrigger Examples {#settrigger-examples}
+```javascript
+set("room1.BulbOnOff==Off", "(room1.RoomTemp1>=20)&&(room2.RoomTemp2>=20)")
+set("room1.RoomTemp2>=30", "room2.RoomTemp2>=5")
+```
 
-In summary, port packages:
+### GetTrigger Rules {#gettrigger-rules}
 
-1. Increase reusability by enabling the sharing of commonly used code.
-2. Enhance efficiency by reducing the need to write code from scratch.
-3. Improve maintainability by organizing code into smaller, manageable components.
-4. Simplify management through package managers that handle installation, updates, and dependency tracking.
+GetTrigger rules execute automatic actions when specified conditions are met.
 
+#### Syntax {#gettrigger-syntax}
+```javascript
+get("<Trigger Condition>", "<Action Script>");
+```
 
+**Components:**
+- **Trigger Condition**: Boolean expression for condition evaluation
+- **Action Script**: Instructions executed when condition is true
 
-#### 1. Check packages list
+#### GetTrigger Examples {#gettrigger-examples}
+```javascript
+get("(room1.RoomTemp1>=0)&&(room2.RoomTemp2>=0)", "room1.BulbOnOff=Off;room2.BulbOnOff=Off;")
+```
 
-![poster](img/lsPkg.png)
+### Rule Benefits {#rule-benefits}
 
+- **Validation**: Enforce business logic and data integrity
+- **Automation**: Trigger actions based on system state
+- **Safety**: Prevent invalid configurations
+- **Efficiency**: Reduce manual intervention needs
 
+## Package Management
 
-<br>
+### Package Overview {#package-overview}
 
-#### 2. Manual for boot.js in Port Application
+Port packages are collections of pre-written code modules that provide specific functionality for reuse across projects.
 
-<br>
-Overview
-<br>
-The boot.js file is a critical component of the Port Application. It initializes the system by importing and validating the necessary packages. If any package fails validation, the application stops booting and logs an error.
+**Package Benefits:**
+1. **Reusability**: Share common code across multiple projects
+2. **Efficiency**: Reduce development time by leveraging existing solutions
+3. **Maintainability**: Organize code into manageable, modular components
+4. **Dependency Management**: Simplified installation, updates, and tracking
 
-<br>
-Location
-<br>
-The boot.js file is located in the app folder of the Port Application project. Ensure all edits are made directly in this file to modify the initialization process.
+### Package Discovery {#package-discovery}
 
-<br>
-Structure of boot.js
-<br>
-Below is the typical structure of the boot.js file:
-<br>
+#### Listing Available Packages {#listing-packages}
 
-<div class="code-box">
-  <pre>
-  <code id="code-snippet" class="language-javascript"> 
-  import Bulb1 from `BulbLib1`
-  import Bulb2 from `BulbLib2`
-  import Heater1 from `HeaterLib1`
-  import Heater2 from `HeaterLib2`
+![Package List](img/lsPkg.png)
 
-  function boot(){ 
-    if (!Bulb1.Valid()){
-        console.log("invalid Bubl1");
+Use the package manager to browse and select available packages for your project.
+
+### Boot Configuration {#boot-configuration}
+
+#### boot.js Structure {#boot-js-structure}
+
+The `boot.js` file initializes your application by importing and validating packages:
+
+**Location:** `app/boot.js`
+
+```javascript
+import Bulb1 from 'BulbLib1'
+import Bulb2 from 'BulbLib2'
+import Heater1 from 'HeaterLib1'
+import Heater2 from 'HeaterLib2'
+
+function boot() {
+    if (!Bulb1.Valid()) {
+        console.log("invalid Bulb1");
         return false;
     }
-    if (!Bulb2.Valid()){
-        console.log("invalid Bubl2");
+    if (!Bulb2.Valid()) {
+        console.log("invalid Bulb2");
         return false;
     }
-    if (!Heater1.Valid()){
+    if (!Heater1.Valid()) {
         console.log("invalid Heater1");
         return false;
     }
-    if (!Heater2.Valid()){
+    if (!Heater2.Valid()) {
         console.log("invalid Heater2");
         return false;
     }
-
+    
     return true;
-  } 
-  </code></pre>
-  <button class="copy-button" onclick="copyCode('code-snippet')">
-    <img src="/img/copy.svg">
-  </button>
-</div> 
+}
+```
 
+**Validation Process:**
+1. **Import Packages**: Load required package modules
+2. **Validate Each Package**: Check package integrity and dependencies
+3. **Error Handling**: Stop boot process if validation fails
+4. **Success Confirmation**: Return true when all packages are valid
 
+## Package Development
 
-<br>
+### Package Development Overview {#package-development-overview}
 
+The Port package system allows developers to create reusable libraries by inheriting from `PortObject` and linking them to Messages. This enables straightforward usage through Message calls and promotes modular development.
 
+Port packages provide a standardized way to:
+- Create reusable components
+- Manage dependencies and configurations  
+- Enable seamless integration with the Port ecosystem
+- Facilitate API-driven interactions
 
-After linking the relations to your project, you can verify the integration using the following command
+### Package Downloads and Availability {#package-downloads-availability}
 
+The following packages are available across different programming languages and platforms:
 
-## How to start project 
+| NAME | Language | Package Manager | OS | STABLE |
+|------|----------|-----------------|----| -------|
+| portdic | C++ | not yet | Windows | No |
+| portdic | Delphi | not yet | Windows | No |
+| portdic | C# | nuget | Windows | Yes |
+| portdic | Python | not yet | Windows | No |
+| portdic | Javascript | npm | Any | Yes |
 
-Push to repository.
+### Package Annotations System {#package-annotations-system}
 
-`port push`
+Port packages use annotations to define behavior, configuration, and API endpoints. These annotations provide metadata that the Port system uses for:
 
-### a. With console
-Once all message definitions are complete, you can start the message server based on these definitions. Before running the server, upload all updated content to the local repository by entering `port push` in the console. Then, run the server with the command `port run [project-name]`.
+- **Class Registration**: Identifying Port-managed classes
+- **API Generation**: Creating REST endpoints automatically
+- **Dependency Injection**: Managing services and resources
+- **Validation**: Ensuring data integrity and business rules
 
-![poster](img/start project.png)
+#### Annotation Reference {#annotation-reference-detailed}
 
-![poster](img/start project2.png)
+| Name | Targets | Type | Arguments | Description |
+|------|---------|------|-----------|-------------|
+| [Port](#port-annotation-detailed) | class | `-` | `Class Type` | Declares a class as Port-managed for package registration |
+| [Valid](#valid-annotation-detailed) | method, property | `bool` | `invalid comment` | Defines validation logic with custom error messages |
+| [Message](#message-annotation-detailed) | property | `string`, `double` | `-` | Creates API endpoints for property access |
+| [Logger](#logger-annotation-detailed) | property | `ILogger` | `-` | Enables dependency injection for logging services |
+| [Property](#property-annotation-detailed) | property | `IProperty` | `Message name` | Maps properties to pre-declared Message Properties |
+| [EnumCode](#enumcode-annotation-detailed) | enum | `-` | `-` | Exposes enum values through API endpoints |
+| [Comment](#comment-annotation-detailed) | property | `-` | `comment text` | Provides API documentation for properties |
 
-!!!tip
-    When running the server, if you include `--ng ignore` in the command, it will summarize only the points where errors (NG) occur. For detailed information on these NG points, you can visit the following URL to view the NG point table: 
-    <p><a href="http://localhost:5001/api/app/ng/?view=table">http://localhost:5001/api/app/ng/?view=table</a></p>
+### Detailed Annotation Usage {#detailed-annotation-usage}
 
+#### Valid Annotation {#valid-annotation-detailed}
 
-### b. With application(WPF)
+The `Valid` annotation defines validation logic for methods or properties, with custom error messages for validation failures.
 
-
-![poster](img/start project with wpf netCore.png)
-
-
-## How to check logs
-
-Port Application records events and activities related to loaded packages, resource loading, console commands, services, and the overall project in various log folders. Logs play a vital role in troubleshooting and system analysis, providing users with crucial information and diagnostic tools.
-
-### a. With log files
-
-`.../documents/port/logs`
-
-Port Application provides the following subfolders under the port/logs/ path. Each folder records logs for specific activities:
-
-- Pkg Folder : 
-Logs are created when a package is loaded, and all events related to the package are recorded.
-
-- Boot Folder : 
-Logs are created when resources needed for project execution are loaded.
-
-- Console Folder : 
-Logs commands invoked through the Port Application.
-
-- Service Folder : 
-Logs related to the Port Package Manager service.
-
-- Project Folder : 
-Logs related to set/get operations and overall project-related logs.
-
-![poster](img/log dir.png)
-
-
-### b. With ssh
-
-Enter the command in your ssh application
-`get sample.log`
-
-![poster](img/putty logs.png)
-
-
-## How to use SSH
-
-SSH is a network protocol used for secure remote access to a computer system. It provides a secure way to access a remote computer without having direct access to its network. SSH is commonly used to connect to remote servers, perform administrative tasks, and access files and directories.
-
-### 1. Install Putty application
-
-
-PuTTY is a popular free and open-source terminal emulator that supports various network protocols, such as SSH (Secure Shell), Telnet, and Rlogin. It is widely used for remotely accessing servers and systems over a network. PuTTY allows users to interact with remote machines via a command-line interface, making it a valuable tool for system administrators, developers, and IT professionals.
-
-!!! Tip
-    Download a [putty application](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html){:download}
-
-### 2. Connect to 127.0.0.1:22 
- 
-![poster](img/putty1.png)
-
-!!! Note
-    port : 22 / username : admin / password : admin
-
-
-### 3. Enter the username and password
-
-![poster](img/putty2.png)
-
-
-
-### 4. Enter the commands 
-
-![poster](img/putty3.png)
-
-## How to use MQTT
-MQTT is a lightweight messaging protocol primarily designed for efficient message transmission between IoT (Internet of Things) devices. This protocol is optimized to work in environments with limited network bandwidth, offering fast and reliable communication. MQTT is based on a publish/subscribe model, simplifying interactions between clients that send and receive data.
-
-### 1. MQTT Operation Flow
-
-1.Clients
-
-Clients can either publish messages to a specific topic or subscribe to topics to receive messages. A client can act as both a publisher and a subscriber.
-
-2.Broker
-
-The broker is the central server that manages message distribution. It receives messages from publishers and forwards them to subscribers who are subscribed to the relevant topic(s).
-
-3.Topics
-
-A topic is a string that represents the channel or category of a message. Clients subscribe to topics to receive messages. Topics can be hierarchical, allowing complex topic structures (e.g., home/livingroom/temperature).
-Steps in MQTT Communication:
-
-4.Connection
-
-A client connects to the MQTT broker using a specific IP address and port. It may provide credentials for authentication.
-
-### 2. Connect to 127.0.0.1:8080
-
-A client subscribes to one or more topics of interest. This tells the broker which messages it wants to receive.
-
-1.Publishing
-
-Another client can publish a message to a topic. The broker will check which clients are subscribed to that topic.
-Message Distribution:
-
-The broker sends the message to all clients subscribed to the topic. The message is delivered according to the Quality of Service (QoS) level defined by the publisher and subscriber.
-
-2.QoS Levels
-
-QoS 0: Message is delivered at most once (no guarantee of delivery).
-QoS 1: Message is delivered at least once (guaranteed delivery but possible duplication).
-QoS 2: Message is delivered exactly once (guaranteed delivery without duplication).
-
-3.Disconnect
-
-After the communication, a client can disconnect from the broker, but the broker retains subscriptions for clients that maintain a persistent session.
-
-4.Key Concepts
-
-- Publish : A client sends a message to a topic (e.g., sending sensor data).
-- Subscribe : A client listens to a specific topic to receive messagees.
-- Broker : A server that handles the routing and delivery of messages.
-- Topics : Categories or channels that messages are published to and subscribed from.
-
-!!! Note
-    port : 8080 / username : admin / password : admin
-
-
-### 3. How to use Mqtt-explorer
-
-First, you make *.pub file in your project directory
-
-`path : ..\sample\app\mqtt\room1.pub`
-
-`url  : app\mqtt\room1.pub`
-
-``` 
-room1 RoomTemp1 \\ [group-name] [message-name] 
+```csharp
+[Valid("Invalid for connection")]
+public bool Valid()
+{
+    return true;
+}
+```
+
+**Usage:**
+- Applied to methods returning `bool`
+- Provides custom error messages for validation failures
+- Automatically called during package validation
+
+#### Port Annotation {#port-annotation-detailed}
+
+The `Port` annotation indicates that a class is managed within the Port Package system.
+
+```csharp
+using portpackage;
+using portdatatype;
+
+[Port(typeof(Heater))]
+public class Heater
+{
+    // Implementation
+}
+```
+
+**Usage:**
+- Applied to class declarations
+- Registers the class with the Port system
+- Enables package management and API generation
+
+#### Logger Annotation {#logger-annotation-detailed}
+
+The `Logger` annotation specifies that a field should be injected with a logging system or service.
+
+```csharp
+using portpackage;
+using portdatatype;
+
+[Logger]
+public ILogger Logger { get; set; }
+
+// Usage example
+Logger.Write(string.Join(",", values));
+```
+
+**Usage:**
+- Applied to `ILogger` properties
+- Enables dependency injection for logging
+- Provides centralized logging capabilities
+
+#### Property Annotation {#property-annotation-detailed}
+
+The `Property` annotation maps a property to declared Message Properties for configuration access.
+
+```csharp
+using portpackage;
+using portdatatype;
+
+[Property]
+public IProperty Property { get; set; }
+
+// Usage example
+if (this.Property.TryToGetValue("Unit", out string value))
+{
+    // Handle configuration value
+}
+```
+
+**Usage:**
+- Applied to `IProperty` properties
+- Enables access to configuration values
+- Supports key-value property retrieval
+
+#### Message Annotation {#message-annotation-detailed}
+
+Properties declared with `Message` annotation become API endpoints, accessible via REST API.
+
+```csharp
+using portpackage;
+using portdatatype;
+
+private static Random r = new Random(100);
+
+[Message(PortDataType.Num, PropertyFormat.Json, "Unit")]
+public double Temp
+{
+    get
+    {
+        try
+        {
+            if (this.Property != null)
+            {
+                if (this.Property.TryToGetValue("Unit", out string v1) && (v1 == "F"))
+                {
+                    return (r.NextDouble() * 9 / 5) + 32;
+                }
+                else if (this.Property.TryToGetValue("Unit", out string v2) && (v2 == "C"))
+                {
+                    return (r.NextDouble());
+                }
+                else
+                {
+                    return double.NaN;
+                }
+            }
+            return double.NaN;
+        }
+        catch (Exception e)
+        {
+            if (Logger != null)
+                Logger.Write(e.Message);
+        }
+        return double.NaN;
+    }
+}
+```
+
+**Usage:**
+- Applied to properties with get/set accessors
+- Creates REST API endpoints automatically
+- Supports various data types and formats
+
+#### EnumCode Annotation {#enumcode-annotation-detailed}
+
+The `EnumCode` annotation exposes enum values through API endpoints for external access.
+
+```csharp
+[EnumCode]
+public enum TestEnum : ushort
+{
+    _ = 0,
+    TestEnumItem1,
+    TestEnumItem2,
+}
+```
+
+**Usage:**
+- Applied to enum declarations
+- Makes enum values accessible via API
+- Enables external systems to query enum information
+
+#### Comment Annotation {#comment-annotation-detailed}
+
+The `Comment` annotation provides documentation for properties, exposed through the API.
+
+```csharp
+[Message, Comment("this is a numeric")]
+public int NValue { get => 3; }
+```
+
+**Usage:**
+- Applied alongside other annotations
+- Provides API documentation
+- Enhances developer experience with contextual information
+
+### Creating .NET Packages {#creating-net-packages}
+
+Port applications organize operations at the package level and functionality at the message level. All operations are defined within messages, enabling code reusability through message-based architecture.
+
+#### Class Library Examples {#class-library-examples-detailed}
+
+##### Bulb Package Example {#bulb-package-example-detailed}
+
+```csharp
+using portpackage;
+using portdatatype;
+
+[Port(typeof(Bulb))]
+public class Bulb
+{
+    [Logger]
+    public ILogger Logger { get; set; }
+
+    [Property]
+    public IProperty Property { get; set; }
+
+    private SerialPortStream serialPort = new SerialPortStream();
+
+    [Valid("")]
+    public bool Valid()
+    {
+        return true;
+    }
+
+    private string comport;
+    [Message(PortDataType.Text)]
+    public string Comport
+    {
+        set
+        {
+            try
+            {
+                if (this.serialPort.PortName != value)
+                {
+                    this.serialPort = new SerialPortStream();
+                    this.serialPort.PortName = value.ToString();
+                    this.serialPort.BaudRate = 9600;
+                    this.serialPort.DataBits = 8;
+                    this.serialPort.StopBits = StopBits.One;
+                    this.serialPort.Parity = Parity.Even;
+                }
+            }
+            catch (System.Exception ex)
+            {
+                Logger.Write("[ERROR]" + ex.Message);
+            }
+        }
+        get
+        {
+            return comport;
+        }
+    }
+
+    private string offon = string.Empty;
+    [Message(PortDataType.Enum, PropertyFormat.Json)]
+    public string OffOn
+    {
+        set
+        {
+            var prop = this.Property;
+            try
+            {
+                if (prop != null)
+                { 
+                    this.offon = value;
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Write("[ERROR]" + ex.Message);
+            }
+        }
+        get
+        {
+            return this.offon;
+        }
+    }
+}
+```
+
+##### Heater Package Example {#heater-package-example-detailed}
+
+```csharp
+using portpackage;
+using portdatatype;
+
+[Port(typeof(Heater))]
+public class Heater
+{
+    [Logger]
+    public ILogger Logger { get; set; }
+    
+    [Property]
+    public IProperty Property { get; set; }
+    
+    [Message(PortDataType.Text)]
+    public string Power { set; get; }
+    
+    [Valid("Invalid for connection")]
+    public bool Valid()
+    {
+        return true;
+    }
+    
+    private static Random r = new Random(100);
+    
+    [Message(PortDataType.Num, PropertyFormat.Json, "Unit")]
+    public double Temp
+    {
+        get
+        {
+            try
+            {
+                if (this.Property != null)
+                {
+                    if (this.Property.TryToGetValue("Unit", out string v1) && (v1 == "F"))
+                    {
+                        var ret = (r.NextDouble() * 9 / 5) + 32;
+                        return ret == 0 ? 1 : ret;
+                    }
+                    else if (this.Property.TryToGetValue("Unit", out string v2) && (v2 == "C"))
+                    {
+                        var ret = (r.NextDouble());
+                        return ret == 0 ? 1 : ret;
+                    }
+                    else
+                    {
+                        return double.NaN;
+                    }
+                }
+                return double.NaN;
+            }
+            catch (Exception e)
+            {
+                if (Logger != null)
+                    Logger.Write(e.Message);
+            }
+            return double.NaN;
+        }
+    }
+}
+```
+
+!!! warning "Array Declaration Warning"
+    When creating a library in a .NET environment, declaring an excessively large array may result in a PrivateImplementationDetails error. It is recommended to use a List instead.
+
+### Publishing Libraries {#publishing-libraries-detailed}
+
+#### Prerequisites {#prerequisites-detailed}
+
+Before publishing your .NET Core project, ensure you have the following:
+
+- **[.NET SDK](https://dotnet.microsoft.com/download)**: Install the latest version
+- **[C# Extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)**: Install in Visual Studio Code
+- **Verified Build**: Ensure your project builds and runs correctly:
+
+```bash
+dotnet build
+dotnet run
+```
+
+#### Basic Publish Commands {#basic-publish-commands-detailed}
+
+##### Standard Release Build
+
+```bash
+dotnet publish -c Release -o ./publish
+```
+
+- `-c Release`: Builds in Release mode
+- `-o ./publish`: Specifies output folder
+
+##### Platform-Specific Publishing
+
+```bash
+dotnet publish -c Release -r win-x64 --self-contained false
+```
+
+**Available Runtimes:**
+- `win-x64`: Windows 64-bit
+- `linux-x64`: Linux 64-bit  
+- `osx-x64`: macOS 64-bit
+
+#### Automation with VS Code Tasks {#automation-vscode-tasks}
+
+Create `.vscode/tasks.json` to automate publishing:
+
+```json
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Publish .NET Core",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "-c",
+                "Release",
+                "-o",
+                "./publish"
+            ],
+            "problemMatcher": "$msCompile"
+        }
+    ]
+}
+```
+
+**To run the task:**
+1. Open Command Palette (`Ctrl+Shift+P`)
+2. Select `Tasks: Run Task`
+3. Choose `Publish .NET Core`
+
+#### Deployment Options {#deployment-options-detailed}
+
+##### Local Deployment
+Copy published files to target server or hosting environment.
+
+##### Docker Deployment
+Create a `Dockerfile` for containerization:
+
+```dockerfile
+FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
+WORKDIR /app
+COPY ./publish .
+ENTRYPOINT ["dotnet", "YourApp.dll"]
+```
+
+#### Visual Studio 2022 Publishing {#vs2022-publishing}
+
+For GUI-based publishing with Visual Studio 2022:
+
+![Publishing Step 1](img/package/1.png)
+
+![Publishing Step 2](img/package/2.png)
+
+![Publishing Step 3](img/package/3.png)
+
+![Publishing Step 4](img/package/5.png)
+
+![Publishing Step 5](img/package/6.png)
+
+#### Troubleshooting Publishing {#troubleshooting-publishing}
+
+##### Logging Output
+To capture publish logs:
+
+```bash
+dotnet publish > publish_log.txt
+```
+
+##### Additional Resources
+- [Official .NET Publish Documentation](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-publish)
+- [Visual Studio Code Documentation](https://code.visualstudio.com/docs)
+
+### Package Creation and Management {#package-creation-management}
+
+#### Creating Package Files {#creating-package-files-detailed}
+
+After publishing your library, create a Port package using the following steps:
+
+##### 1. Navigate to Publish Directory
+```bash
+cd [Publish target location]
+```
+
+##### 2. Pack the Library
+```bash
+port pack [dllname] [pkg-name]
+```
+
+##### 3. Verify Package Creation
+Check the console output for successful packaging:
+
+```
+PS C:\Users\Public\Dev\publish> port pack HeaterLib.dll HeaterLib1
+[PATH]C:\Users\Public\Dev\publish\HeaterLib.dll
+[ALREADY_RUN]PORT PACKAGE MANAGER
+[RUN]PORT PACKAGE MANAGER
+[PACK][pack] Packing started at 2025-01-07T21:17:19+09:00
+[PACK]load complete C:\Users\Public\Dev\publish\HeaterLib.dll : heaterlib
+[PACK][GET][0] Power
+[PACK][GET][1] Temp
+[PACK][SET][0] Power
+[PACK]heaterlib,65025
+[PACK]initialization
+[CREATED][PACKAGE] ...\port\pkg\HeaterLib1.pkg
+```
+
+#### Package Structure Analysis {#package-structure-analysis}
+
+The packaging process includes:
+
+1. **Analysis**: Scans the DLL for Port annotations
+2. **Extraction**: Identifies all Message properties and methods
+3. **Validation**: Ensures package integrity
+4. **Creation**: Generates `.pkg` file in the Port package directory
+
+#### Package Distribution {#package-distribution}
+
+Once created, packages can be:
+- Loaded into Port applications
+- Distributed to other environments
+- Managed through the Port Package Manager
+- Accessed via REST API endpoints
+
+## PortDic SDK
+
+### PortDic Overview {#portdic-overview}
+
+PortDic is a key-value pair data structure storage object provided by Port. It enables users to quickly look up values using keys, allowing for efficient data retrieval. This structure supports storage and editing of multiple data structures, facilitating stable and reliable development.
+
+### PortDic Platform Support {#portdic-platform-support}
+
+| NAME | Language | Package Manager | OS | STABLE |
+|------|----------|-----------------|----| -------|
+| portdic | C++ | not yet | Windows | No |
+| portdic | Delphi | not yet | Windows | No |
+| portdic | C# | nuget | Windows | Yes |
+| portdic | Python | not yet | Windows | No |
+| portdic | Javascript | npm | Any | Yes |
+
+### React Integration with Vite {#react-integration-vite}
+
+#### Sample Project Setup {#react-sample-setup}
+
+**Download Sample:**
+[React Project Sample](file/react_sample_source.zip)
+
+#### React Implementation {#react-implementation}
+
+```javascript
+import { useState, useEffect } from 'react'
+import reactLogo from './assets/react.svg'
+import viteLogo from '/vite.svg'
+import './App.css'
+import { CallPortdic } from 'portdic';
+
+function App() {
+  const [setValue, setSetValue] = useState("");
+  const [count, setCount] = useState(0) 
+  const [portdic, setPortdic] = useState(0); 
+  
+  useEffect(() => {
+    CallPortdic("localhost:5001").then(setPortdic).catch(console.error); 
+  }, []); 
+  
+  return (
+    <>
+      <div>
+        <a href="https://vite.dev" target="_blank">
+          <img src={viteLogo} className="logo" alt="Vite logo" />
+        </a>
+        <a href="https://react.dev" target="_blank">
+          <img src={reactLogo} className="logo react" alt="React logo" />
+        </a>
+      </div>
+      <div style={{ display: "flex", gap: "20px", alignItems: "center" }}> 
+        <button
+          onClick={() => {
+            const data = portdic.Execute("version");
+            data
+              .then((resp) => resp.json())
+              .then((data) => {
+                console.log("success received:", data);
+              })
+              .catch((error) => {
+                console.error("error occurred:", error);
+              });
+          }}
+        >
+          Version
+        </button> 
+        <button
+          onClick={() =>
+            console.log(portdic.Get("room1", "RoomTemp3"))
+          }
+        >
+          Get
+        </button> 
+        <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+          <input
+            type="text"
+            placeholder="Set Value"
+            value={setValue}
+            onChange={(e) => setSetValue(e.target.value)}
+            style={{
+              padding: "5px",
+              fontSize: "14px",
+              borderRadius: "4px",
+              border: "1px solid #ccc",
+            }}
+          />
+          <button
+            onClick={() => {
+              portdic.Set("room1", "RoomTemp3", setValue);
+              console.log(`Set value: ${setValue}`);
+            }}
+          >
+            Set
+          </button>
+        </div>
+      </div>
+      <h1>Vite + React</h1>
+      <div className="card">
+        <button onClick={() => setCount((count) => count + 1)}>
+          count is {count}
+        </button>
+        <p>
+          Edit <code>src/App.jsx</code> and save to test HMR
+        </p>
+      </div>
+      <p className="read-the-docs">
+        Click on the Vite and React logos to learn more
+      </p>
+    </>
+  )
+}
+
+export default App
+```
+
+#### React Integration Demo {#react-integration-demo}
+
+![React SET/GET Demo](img/react_set_get.gif)
+
+### .NET Integration {#dotnet-integration}
+
+#### Initialization and Setup {#dotnet-initialization}
+
+```csharp
+private static IPortDic port = Port.GetDictionary("sample");
+
+public Form()
+{
+   InitializeComponent();
+   
+   // Event handlers
+   port.OnOccurred += Port_OnOccurred;
+   port.OnStatusChanged += Port_OnStatusChanged;
+   
+   // Start the Port system
+   port.Run(); 
+}
+```
+
+#### Event Handling {#dotnet-event-handling}
+
+##### Status Change Events
+
+```csharp
+/// <summary>
+/// The OnStatusChanged event notifies when the port server status changes.
+/// Provides details through PortStatusHandler.
+/// </summary>
+private void Port_OnStatusChanged(object sender, PortStatusArgs e)
+{
+    switch (e.Status)
+    {
+        case PortStauts.Initializing:
+            break;
+        case PortStauts.Running:
+            OnReady = true;
+            break;
+        case PortStauts.Stopped:
+            break;
+        case PortStauts.Shutdown:
+            break;
+        case PortStauts.Failed:
+            break;
+    }
+}
+```
+
+##### Occurrence Events
+
+```csharp
+/// <summary>
+/// The OnOccurred event handles system events and messages.
+/// Provides event details through PortEventArgs.
+/// </summary>
+private void Port_OnOccurred(object sender, PortEventArgs e)
+{
+    switch (e.EventType)
+    {
+        default:
+            Console.WriteLine(e.Message);
+            break;
+    }
+}
+```
+
+#### Test Package Integration {#test-package-integration}
+
+```csharp
+private static IPortDic port = Port.GetDictionary("sample");
+
+public Form()
+{
+  InitializeComponent();
+  
+  // Test Mode: Heater Class with messages
+  port.Test("Heater1", new Heater());
+
+  port.OnOccurred += Port_OnOccurred;
+  port.OnStatusChanged += Port_OnStatusChanged;
+  
+  port.Run();
+}
+```
+
+#### SET/GET Operations {#dotnet-set-get-operations}
+
+```csharp
+// Setting values
+var ok = dic.Set("room1", "BulbOnOff", "On");
+if(ok){
+    Console.WriteLine("ok");
+} 
+
+// Getting values - returns 'On'
+Console.WriteLine(dic.Get("room1", "BulbOnOff").Text()); 
+
+// Alternative syntax
+port["room1"].Set("BulbOnOff", "Off"); 
+
+// Getting values - returns 'Off'
+Console.WriteLine(dic.Get("room1", "BulbOnOff").Text()); 
+
+// Getting temperature values
+var t1 = dic.Get("room1", "RoomTemp1");
+// random number unit Celsius
+Console.WriteLine(t1.Text()); 
+
+var t2 = dic.Get("room1", "RoomTemp2");
+// random number unit Fahrenheit
+Console.WriteLine(t2.Text());
+```
+
+### PortDic Features {#portdic-features}
+
+- **Efficient Lookup**: Fast key-value pair retrieval
+- **Multi-platform Support**: Available across different programming languages
+- **Real-time Updates**: Live data synchronization
+- **Event-driven Architecture**: Responsive to system changes
+- **Test Mode Support**: Package testing and validation
+- **Type Safety**: Proper data type handling and conversion
+
+## Project Execution
+
+### Repository Updates {#repository-updates}
+
+Before starting your project, ensure all changes are committed to the repository:
+
+```bash
+port push
+```
+
+### Console Execution {#console-execution}
+
+#### Starting the Server {#starting-server}
+
+![Start Project Console](img/start%20project.png)
+
+![Start Project Console 2](img/start%20project2.png)
+
+**Command:**
+```bash
+port run [project-name]
+```
+
+**Process:**
+1. **Upload Changes**: Use `port push` to sync repository
+2. **Start Server**: Execute `port run [project-name]`
+3. **Verify Operation**: Check console output for success/error messages
+
+#### Error Handling {#error-handling}
+
+!!! tip "Error Summarization"
+    Use `--ng ignore` flag to summarize only error points:
+    ```bash
+    port run [project-name] --ng ignore
+    ```
+    
+    **Detailed Error Analysis:**
+    Visit [http://localhost:5001/api/app/ng/?view=table](http://localhost:5001/api/app/ng/?view=table) for comprehensive error details.
+
+### GUI Application {#gui-application}
+
+#### WPF Application Execution {#wpf-execution}
+
+![Start Project WPF](img/start%20project%20with%20wpf%20netCore.png)
+
+Use the graphical interface for easier project management and monitoring.
+
+## Logging and Monitoring
+
+### Log System Overview {#log-system}
+
+Port Application maintains comprehensive logs for troubleshooting and system analysis across multiple categories.
+
+### Log Categories {#log-categories}
+
+**Log Directory:** `.../documents/port/logs`
+
+| Folder | Purpose | Content |
+|--------|---------|---------|
+| **Pkg** | Package operations | Package loading events and activities |
+| **Boot** | Resource loading | Project initialization and startup logs |
+| **Console** | Command execution | Console commands and their outputs |
+| **Service** | Port Package Manager | Service-related activities and status |
+| **Project** | Project operations | Set/get operations and project-wide events |
+
+### File-based Logging {#file-logging}
+
+![Log Directory Structure](img/log%20dir.png)
+
+**Log Management:**
+- **Automatic Creation**: Logs generated automatically during operations
+- **Categorized Storage**: Separate folders for different log types
+- **Troubleshooting**: Comprehensive information for issue diagnosis
+- **System Analysis**: Performance and behavior tracking
+
+### SSH Log Access {#ssh-log-access}
+
+Retrieve logs remotely using SSH commands:
+
+```bash
+get sample.log
+```
+
+![SSH Log Access](img/putty%20logs.png)
+
+## Remote Access
+
+### SSH Protocol Overview {#ssh-overview}
+
+SSH (Secure Shell) provides secure remote access to Port systems for administration and monitoring.
+
+### SSH Client Setup {#ssh-client-setup}
+
+#### PuTTY Installation {#putty-installation}
+
+PuTTY is a free, open-source terminal emulator supporting SSH, Telnet, and other network protocols.
+
+!!! tip "Download PuTTY"
+    [Download PuTTY Application](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)
+
+### SSH Connection Process {#ssh-connection}
+
+#### 1. Connection Configuration {#ssh-connection-config}
+
+![PuTTY Connection](img/putty1.png)
+
+**Connection Details:**
+- **Host**: `127.0.0.1`
+- **Port**: `22`
+- **Protocol**: SSH
+
+!!! note "Default Credentials"
+    - **Username**: `admin`
+    - **Password**: `admin`
+
+#### 2. Authentication {#ssh-authentication}
+
+![SSH Login](img/putty2.png)
+
+Enter your credentials when prompted to establish the secure connection.
+
+#### 3. Command Execution {#ssh-commands}
+
+![SSH Commands](img/putty3.png)
+
+Once connected, you can execute various Port commands remotely:
+- View system status
+- Access log files
+- Monitor project operations
+- Perform administrative tasks
+
+## MQTT Integration
+
+### MQTT Protocol Overview {#mqtt-overview}
+
+MQTT (Message Queuing Telemetry Transport) is a lightweight communication protocol designed for IoT devices and efficient message transmission in bandwidth-constrained environments.
+
+### MQTT Architecture {#mqtt-architecture}
+
+#### Core Components {#mqtt-components}
+
+**1. Clients**
+- **Publishers**: Send messages to specific topics
+- **Subscribers**: Receive messages from subscribed topics
+- **Dual Role**: Clients can both publish and subscribe
+
+**2. Broker**
+- **Message Distribution**: Central server managing message routing
+- **Topic Management**: Handles topic subscriptions and publications
+- **Client Coordination**: Manages connections and message delivery
+
+**3. Topics**
+- **Message Categories**: String-based channels for message organization
+- **Hierarchical Structure**: Support for complex topic hierarchies (e.g., `home/livingroom/temperature`)
+- **Subscription Management**: Clients subscribe to topics of interest
+
+### MQTT Communication Flow {#mqtt-flow}
+
+#### Connection Process {#mqtt-connection-process}
+
+1. **Client Connection**: Connect to MQTT broker with IP address and port
+2. **Authentication**: Provide credentials if required
+3. **Topic Subscription**: Subscribe to relevant topics
+4. **Message Publishing**: Publish messages to topics
+5. **Message Distribution**: Broker delivers messages to subscribers
+6. **Quality of Service**: Message delivery guarantees based on QoS level
+
+#### Quality of Service Levels {#mqtt-qos}
+
+| QoS Level | Guarantee | Description |
+|-----------|-----------|-------------|
+| **QoS 0** | At most once | No delivery guarantee, possible message loss |
+| **QoS 1** | At least once | Guaranteed delivery, possible duplication |
+| **QoS 2** | Exactly once | Guaranteed delivery without duplication |
+
+### MQTT Configuration {#mqtt-configuration}
+
+#### Connection Settings {#mqtt-connection-settings}
+
+**Broker Details:**
+- **Host**: `127.0.0.1`
+- **Port**: `8080`
+- **Username**: `admin`
+- **Password**: `admin`
+
+!!! note "Connection Credentials"
+    Use the default credentials for local MQTT broker access.
+
+### MQTT Explorer Setup {#mqtt-explorer-setup}
+
+#### Publication Configuration {#mqtt-publication-config}
+
+Create publication files in your project directory:
+
+**File Path:** `../sample/app/mqtt/room1.pub`
+**Relative Path:** `app/mqtt/room1.pub`
+
+**File Content:**
+```
+room1 RoomTemp1  // [group-name] [message-name]
 room2 RoomTemp1
-``` 
+```
 
+#### MQTT Explorer Installation {#mqtt-explorer-installation}
 
-!!! Tip
-    [mosquitto.org/download](https://mqtt-explorer.com/){:download} 
+!!! tip "Download MQTT Explorer"
+    [MQTT Explorer Download](https://mqtt-explorer.com/)
 
-![poster](img/mosquitto_login.png)
- 
-### 4. It's working!
+#### Explorer Configuration {#mqtt-explorer-configuration}
 
-![poster](img/mqtt_view.gif)
+![MQTT Explorer Login](img/mosquitto_login.png)
 
-<style>
+Configure the MQTT Explorer with your broker settings for real-time message monitoring.
 
-.console {
-    width: 80%;
-    height: 80%;
-    background-color: whitesmoke;
-    color: black;
-    padding: 20px;
-    box-sizing: border-box;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    overflow-y: auto;
-}
-.yellow{
-    color:yellow;
-}
-.console-content {
-    white-space: pre-wrap;
-}
+#### Live Monitoring {#mqtt-live-monitoring}
 
-.console-content p {
-    margin: 0;
-}
+![MQTT Live View](img/mqtt_view.gif)
 
+Monitor real-time MQTT message flow and topic activity through the graphical interface.
 
-.notepad {
-    width: 100%;
-    height: 80%;
-    background-color: white;
-    color: black;
-    padding: 20px;
-    box-sizing: border-box;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    overflow-y: auto;
-}
+### MQTT Integration Benefits {#mqtt-benefits}
 
-.notepad:before {
-    content: '';
-    position: absolute;
-    top: 10px;
-    left: 20px;
-    right: 20px;
-    height: 2px;
-    background-color: #ccc;
-}
-
-.notepad:after {
-    content: '';
-    position: absolute;
-    top: 30px;
-    left: 20px;
-    right: 20px;
-    height: 2px;
-    background-color: #ccc;
-}
-
-.notepad-content {
-    margin-top: 40px;
-}
-
-.notepad-content p {
-    margin: 0 0 10px;
-    line-height: 1.5;
-}
-
-.code-box {
-  position: relative;
-  background: #f5f5f5;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  padding: 15px;
-  margin: 20px 0;
-  overflow: auto;
-  font-family: "Courier New", Courier, monospace;
-}
-
-/* Code Styling */
-.code-box pre {
-  margin: 0;
-  overflow-x: auto;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  background: none;
-  padding: 0;
-}
-
-/* Copy Button */
-.copy-button {
-  position: absolute;
-  top: 30px;
-  right: 30px;  
-  color: white;
-  border: none;
-  border-radius: 3px;
-  padding: 5px 5px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-
-}
-
-.copy-button:hover {
-  background-color: #e5e5e5;
-}
-</style>
-
-<script>
-  function copyCode(elementId) {
-  const codeElement = document.getElementById(elementId);
-  const codeText = codeElement.innerText || codeElement.textContent;
-
-  navigator.clipboard.writeText(codeText).then(() => {
-    alert("Code copied to clipboard!");
-  }).catch((error) => {
-    console.error("Failed to copy code: ", error);
-  });
-}
-</script>
-<!-- Prism.js CSS (for syntax highlighting) -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
-
-<!-- Prism.js JavaScript (for syntax highlighting functionality) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+- **Lightweight Protocol**: Minimal bandwidth usage for IoT applications
+- **Real-time Communication**: Instant message delivery and updates
+- **Scalable Architecture**: Support for numerous connected devices
+- **Reliable Messaging**: QoS levels ensure appropriate delivery guarantees
+- **Flexible Topics**: Hierarchical topic structure for organized messaging 

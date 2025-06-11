@@ -168,10 +168,11 @@ div.source-links {
 .bs-callout {
     padding: 20px;
     margin: 20px 0;
-    border: 1px solid #eee;
+    border: 1px solid #3e3e42;
     border-left-width: 5px;
     border-radius: 3px;
-    background-color: #FCFDFF;
+    background-color: #252526;
+    color: #d4d4d4;
 }
 .bs-callout h4 {
     font-style: normal;
@@ -240,10 +241,11 @@ h1:hover .headerlink, h2:hover .headerlink, h3:hover .headerlink, h4:hover .head
 .admonition {
     padding: 20px;
     margin: 20px 0;
-    border: 1px solid #eee;
+    border: 1px solid #3e3e42;
     border-left-width: 5px;
     border-radius: 3px;
-    background-color: #FCFDFF;
+    background-color: #252526;
+    color: #d4d4d4;
 }
 
 .admonition p:last-child {

@@ -1,115 +1,146 @@
-# What's Package
-___
-The Port package is a collection of reusable libraries. Users can develop packages by inheriting the `PortObject`, then link it to a Message, allowing for straightforward usage through Message calls.
+# Port Package Documentation
 
+## Table of Contents
+1. [Overview](#overview)
+2. [Package Downloads](#package-downloads)
+3. [Package Annotations](#package-annotations)
+4. [Annotation Reference](#annotation-reference)
+5. [Creating Packages (.NET)](#creating-packages-net)
+6. [Publishing Libraries](#publishing-libraries)
+7. [Package Management](#package-management)
 
+## Overview
 
-## Download  
-NAME | Language |Package Manager | OS | STABLE | 
-------|--------|--------|--------|--------
-portdic |  C++ | not yet |Windows| No | 
-portdic |  Delphi | not yet |Windows| No |
-portdic |  C# | nuget |Windows| Yes | 
-portdic |  Python | not yet |Windows| No | 
-portdic |  Javascript | npm |Any | Yes | 
+The Port package is a collection of reusable libraries designed for modular development. Users can create packages by inheriting from `PortObject` and link them to Messages, enabling straightforward usage through Message calls.
 
-<br>
+Port packages provide a standardized way to:
+- Create reusable components
+- Manage dependencies and configurations
+- Enable seamless integration with the Port ecosystem
+- Facilitate API-driven interactions
 
-## Package Annotation
-___
+## Package Downloads
 
- name | targets | type |arguments | description
- ------|-------- |-------- |-------- |--------
- Port   |class|`-`| `Class Type`| Declaring a port attribute in a class designates that class as one managed by the port system. Once declared, the class can be registered as part of a package.
- Vaild |method<p>property|`bool`|`invalid comment` | Maps the property to a pre-declared Message Property.
- Message   |property| `string|double` |`-` |  Messages are declared, and the values defined as properties can be controlled through package calls.
- Logger   |property|`ILogger`|`-` |  Specifies that the Logger field is to be injected with a logging system or service.
- Property |property|`IProperty`|`Message name` | Maps the property to a pre-declared Message Property.
+The following packages are available across different programming languages and platforms:
 
-#### Valid
+| NAME | Language | Package Manager | OS | STABLE |
+|------|----------|-----------------|----| -------|
+| portdic | C++ | not yet | Windows | No |
+| portdic | Delphi | not yet | Windows | No |
+| portdic | C# | nuget | Windows | Yes |
+| portdic | Python | not yet | Windows | No |
+| portdic | Javascript | npm | Any | Yes |
 
-<div class="code-box">
-<pre>
-<code id="code-snippet" class="language-csharp">  
-[Valid("Invlid for connection")]
+## Package Annotations
+
+Port packages use annotations to define behavior, configuration, and API endpoints. These annotations provide metadata that the Port system uses for:
+
+- **Class Registration**: Identifying Port-managed classes
+- **API Generation**: Creating REST endpoints automatically
+- **Dependency Injection**: Managing services and resources
+- **Validation**: Ensuring data integrity and business rules
+
+### Annotation Summary
+
+| Name | Targets | Type | Arguments | Description |
+|------|---------|------|-----------|-------------|
+| [Port](#port-annotation) | class | `-` | `Class Type` | Declares a class as Port-managed for package registration |
+| [Valid](#valid-annotation) | method, property | `bool` | `invalid comment` | Defines validation logic with custom error messages |
+| [Message](#message-annotation) | property | `string`, `double` | `-` | Creates API endpoints for property access |
+| [Logger](#logger-annotation) | property | `ILogger` | `-` | Enables dependency injection for logging services |
+| [Property](#property-annotation) | property | `IProperty` | `Message name` | Maps properties to pre-declared Message Properties |
+| [EnumCode](#enumcode-annotation) | enum | `-` | `-` | Exposes enum values through API endpoints |
+| [Comment](#comment-annotation) | property | `-` | `comment text` | Provides API documentation for properties |
+
+## Annotation Reference
+
+### Valid Annotation {#valid-annotation}
+
+The `Valid` annotation defines validation logic for methods or properties, with custom error messages for validation failures.
+
+```csharp
+[Valid("Invalid for connection")]
 public bool Valid()
 {
     return true;
 }
-</code>
-</pre>
-</div>
+```
 
-#### Port
+**Usage:**
+- Applied to methods returning `bool`
+- Provides custom error messages for validation failures
+- Automatically called during package validation
 
-This annotation indicates that the Heater class is managed within the Port Package.
+### Port Annotation {#port-annotation}
 
-<div class="code-box">
-<pre>
-<code id="code-snippet" class="language-csharp">  
+The `Port` annotation indicates that a class is managed within the Port Package system.
+
+```csharp
 using portpackage;
 using portdatatype;
-...
 
 [Port(typeof(Heater))]
 public class Heater
-...
-</code>
-</div>
-</pre>
+{
+    // Implementation
+}
+```
 
-#### Logger
-This annotation specifies that the Logger field is to be injected with a logging system or service.
-<div class="code-box">
-<pre>
-<code id="code-snippet" class="language-csharp">  
+**Usage:**
+- Applied to class declarations
+- Registers the class with the Port system
+- Enables package management and API generation
+
+### Logger Annotation {#logger-annotation}
+
+The `Logger` annotation specifies that a field should be injected with a logging system or service.
+
+```csharp
 using portpackage;
 using portdatatype;
-...
 
 [Logger]
 public ILogger Logger { get; set; }
 
-...
-Logger.Write(string.Join(",", v));
-...
-</code>
-</div>
-</pre>
+// Usage example
+Logger.Write(string.Join(",", values));
+```
 
+**Usage:**
+- Applied to `ILogger` properties
+- Enables dependency injection for logging
+- Provides centralized logging capabilities
 
-#### Property
-This annotation maps the property to a declared Message Property.
+### Property Annotation {#property-annotation}
 
-<div class="code-box">
-<pre>
-<code id="code-snippet" class="language-csharp">  
+The `Property` annotation maps a property to declared Message Properties for configuration access.
+
+```csharp
 using portpackage;
 using portdatatype;
-...
 
 [Property]
 public IProperty Property { get; set; }
-...
-if (this.Property.TryToGetValue("Unit", out string v1)){
-    ...
+
+// Usage example
+if (this.Property.TryToGetValue("Unit", out string value))
+{
+    // Handle configuration value
 }
-...    
-</code>
-</div>
-</pre>
+```
 
+**Usage:**
+- Applied to `IProperty` properties
+- Enables access to configuration values
+- Supports key-value property retrieval
 
- 
-#### Message
-Properties declared with Message Annotation are defined as API Messages and made available to the end-user. They apply only to properties with get and set accessors, and these getters and setters can be accessed and modified via a REST API.
+### Message Annotation {#message-annotation}
 
-<div class="code-box">
-<pre>
-<code id="code-snippet" class="language-csharp">  
+Properties declared with `Message` annotation become API endpoints, accessible via REST API.
+
+```csharp
 using portpackage;
 using portdatatype;
-...
 
 private static Random r = new Random(100);
 
@@ -145,156 +176,157 @@ public double Temp
         return double.NaN;
     }
 }
-</code>
-</div>
-</pre>
- 
-
-
- 
-
-#### EnumCode
-EnumCode Annotation are declared, the values of the enum can be accessed via an API. The API allows for the retrieval of information about the enumeration values, enabling external systems or users to interact with and obtain details about the enum through the API interface.
-```   
-    [EnumCode]
-    public enum TestEnum : ushort
-    {
-        _ = 0,
-        TestEnumItem1,
-        TestEnumItem2,
-    }
 ```
 
-#### Comment
-When Comment Annotation are declared, the comments associated with the property can be exposed through the API. This allows users or external systems to access descriptive information or documentation about the property via the API, providing context and clarity on the property's purpose or usage.
-```  
-     [Message,Commnet("this is a numberic")]
-     public int NValue { get => 3; }
+**Usage:**
+- Applied to properties with get/set accessors
+- Creates REST API endpoints automatically
+- Supports various data types and formats
+
+### EnumCode Annotation {#enumcode-annotation}
+
+The `EnumCode` annotation exposes enum values through API endpoints for external access.
+
+```csharp
+[EnumCode]
+public enum TestEnum : ushort
+{
+    _ = 0,
+    TestEnumItem1,
+    TestEnumItem2,
+}
 ```
 
+**Usage:**
+- Applied to enum declarations
+- Makes enum values accessible via API
+- Enables external systems to query enum information
 
-## How to create a packages (.NET)
+### Comment Annotation {#comment-annotation}
 
-___
-Let's develop a package. In the Port Application, all operations are grouped at the package level and function at the message level. Every operation is defined within messages, allowing users to increase code reusability through messages.
- 
-<br>
+The `Comment` annotation provides documentation for properties, exposed through the API.
 
+```csharp
+[Message, Comment("this is a numeric")]
+public int NValue { get => 3; }
+```
 
-### Create a class library
+**Usage:**
+- Applied alongside other annotations
+- Provides API documentation
+- Enhances developer experience with contextual information
 
-#### bulb package 
+## Creating Packages (.NET)
 
-<div class="code-box">
-<pre>
-<code id="code-snippet" class="language-csharp">  
+Port applications organize operations at the package level and functionality at the message level. All operations are defined within messages, enabling code reusability through message-based architecture.
+
+### Class Library Examples
+
+#### Bulb Package {#bulb-package-example}
+
+```csharp
 using portpackage;
 using portdatatype;
-...
 
 [Port(typeof(Bulb))]
 public class Bulb
 {
-     [Logger]
-     public ILogger Logger { get; set; }
+    [Logger]
+    public ILogger Logger { get; set; }
 
-     [Property]
-     public IProperty Property { get; set; }
+    [Property]
+    public IProperty Property { get; set; }
 
-     private SerialPortStream serialPort = new SerialPortStream();
+    private SerialPortStream serialPort = new SerialPortStream();
 
-     [Valid("")]
-     public bool Valid()
-     {
-         return true;
-     }
+    [Valid("")]
+    public bool Valid()
+    {
+        return true;
+    }
 
-     private string comport;
-     [Message(PortDataType.Text)]
-     public string Comport
-     {
-         set
-         {
-             try
-             {
-                 if (this.serialPort.PortName != value)
-                 {
-                     this.serialPort = new SerialPortStream();
-                     this.serialPort.PortName = value.ToString();
-                     this.serialPort.BaudRate = 9600;
-                     this.serialPort.DataBits = 8;
-                     this.serialPort.StopBits = StopBits.One;
-                     this.serialPort.Parity = Parity.Even;
-                 }
-             }
-             catch (System.Exception ex)
-             {
-                 Logger.Write("[ERROR]" + ex.Message);
-             }
-         }
-         get
-         {
-             return comport;
-         }
-     }
-     private string offon = string.Empty;
-     [Message(PortDataType.Enum, PropertyFormat.Json)]
-     public string OffOn
-     {
-         set
-         {
-             var prop = this.Property;
-             try
-             {
-                 if (prop != null)
-                 { 
-                     this.offon = value;
-                 }
-             }
-             catch (Exception ex)
-             {
-                 Logger.Write("[ERROR]" + ex.Message);
-             }
-         }
-         get
-         {
-             return this.offon;
-         }
-     }
+    private string comport;
+    [Message(PortDataType.Text)]
+    public string Comport
+    {
+        set
+        {
+            try
+            {
+                if (this.serialPort.PortName != value)
+                {
+                    this.serialPort = new SerialPortStream();
+                    this.serialPort.PortName = value.ToString();
+                    this.serialPort.BaudRate = 9600;
+                    this.serialPort.DataBits = 8;
+                    this.serialPort.StopBits = StopBits.One;
+                    this.serialPort.Parity = Parity.Even;
+                }
+            }
+            catch (System.Exception ex)
+            {
+                Logger.Write("[ERROR]" + ex.Message);
+            }
+        }
+        get
+        {
+            return comport;
+        }
+    }
+
+    private string offon = string.Empty;
+    [Message(PortDataType.Enum, PropertyFormat.Json)]
+    public string OffOn
+    {
+        set
+        {
+            var prop = this.Property;
+            try
+            {
+                if (prop != null)
+                { 
+                    this.offon = value;
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Write("[ERROR]" + ex.Message);
+            }
+        }
+        get
+        {
+            return this.offon;
+        }
+    }
 }
-</code>
-</pre>
-</div>
+```
 
+#### Heater Package {#heater-package-example}
 
-#### heater package 
-
-<div class="code-box">
-<pre>
-<code id="code-snippet" class="language-csharp">
+```csharp
 using portpackage;
 using portdatatype;
-...
 
 [Port(typeof(Heater))]
 public class Heater
 {
     [Logger]
     public ILogger Logger { get; set; }
+    
     [Property]
     public IProperty Property { get; set; }
+    
     [Message(PortDataType.Text)]
-    public string Power
-    {
-        set;
-        get;
-    }
-    [Valid("Invlid for connection")]
+    public string Power { set; get; }
+    
+    [Valid("Invalid for connection")]
     public bool Valid()
     {
         return true;
     }
+    
     private static Random r = new Random(100);
+    
     [Message(PortDataType.Num, PropertyFormat.Json, "Unit")]
     public double Temp
     {
@@ -307,20 +339,12 @@ public class Heater
                     if (this.Property.TryToGetValue("Unit", out string v1) && (v1 == "F"))
                     {
                         var ret = (r.NextDouble() * 9 / 5) + 32;
-                        if (ret == 0)
-                        {
-                            return 1;
-                        }
-                        return ret;
+                        return ret == 0 ? 1 : ret;
                     }
                     else if (this.Property.TryToGetValue("Unit", out string v2) && (v2 == "C"))
                     {
                         var ret = (r.NextDouble());
-                        if (ret == 0)
-                        {
-                            return 1;
-                        }
-                        return ret;
+                        return ret == 0 ? 1 : ret;
                     }
                     else
                     {
@@ -338,56 +362,54 @@ public class Heater
         }
     }
 }
-</code>
-</pre>
-</div>
+```
 
-!!! WARNING
+!!! warning "Array Declaration Warning"
     When creating a library in a .NET environment, declaring an excessively large array may result in a PrivateImplementationDetails error. It is recommended to use a List instead.
 
-<br/>
-<br/>
+## Publishing Libraries
 
-### How to publish a library
+### Prerequisites
 
+Before publishing your .NET Core project, ensure you have the following:
 
-<div> 
-    <p>This manual provides step-by-step instructions on how to publish a .NET Core project using Visual Studio Code.</p>
-    <h4> 1. Prerequisites </h4>
-    <ul>
-        <li><strong>Install .NET SDK:</strong> Make sure you have the latest version of the .NET SDK installed. <a href="https://dotnet.microsoft.com/download" target="_blank">Download here</a>.</li>
-        <li><strong>Install C# Extension:</strong> Install the C# extension in Visual Studio Code from the <a href="https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp" target="_blank">Marketplace</a>.</li>
-        <li><strong>Verify the Build:</strong> Ensure your project builds and runs correctly:
-            <pre><code>dotnet build
-            dotnet run</code></pre>
-        </li>
-    </ul>
-    <h4>2. Publish Command</h4>
-    <h4>Basic Publish Command</h4>
-    <p>Run the following command to publish your project:</p>
-    <pre><code>dotnet publish -c Release -o ./publish</code></pre>
-    <ul>
-        <li><code>-c Release</code>: Builds the project in Release mode.</li>
-        <li><code>-o ./publish</code>: Specifies the output folder for the published files.</li>
-    </ul>
-    <h4>Publishing for Specific Runtime</h4>
-    <p>To target a specific runtime (e.g., Windows, Linux, macOS), use the following command:</p>
-    <pre><code>dotnet publish -c Release -r win-x64 --self-contained false</code></pre>
-    <ul>
-        <li><code>-r win-x64</code>: Targets Windows 64-bit. Examples for other platforms:</li>
-        <ul>
-            <li><code>linux-x64</code>: Linux 64-bit</li>
-            <li><code>osx-x64</code>: macOS 64-bit</li>
-        </ul>
-        <li><code>--self-contained false</code>: Requires .NET runtime to be installed on the target environment.</li>
-    </ul>
-    <h4>3. Automating Publish with Tasks in VS Code</h4>
-    <p>Set up a task in VS Code to automate the publish process:</p>
-    <ol>
-        <li>Open the <code>.vscode/tasks.json</code> file. If it doesn’t exist, create it.</li>
-        <li>Add the following configuration:</li>
-    </ol>
-    <pre><code>{
+- **[.NET SDK](https://dotnet.microsoft.com/download)**: Install the latest version
+- **[C# Extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)**: Install in Visual Studio Code
+- **Verified Build**: Ensure your project builds and runs correctly:
+
+```bash
+dotnet build
+dotnet run
+```
+
+### Basic Publish Commands
+
+#### Standard Release Build
+
+```bash
+dotnet publish -c Release -o ./publish
+```
+
+- `-c Release`: Builds in Release mode
+- `-o ./publish`: Specifies output folder
+
+#### Platform-Specific Publishing
+
+```bash
+dotnet publish -c Release -r win-x64 --self-contained false
+```
+
+**Available Runtimes:**
+- `win-x64`: Windows 64-bit
+- `linux-x64`: Linux 64-bit  
+- `osx-x64`: macOS 64-bit
+
+### Automation with VS Code Tasks
+
+Create `.vscode/tasks.json` to automate publishing:
+
+```json
+{
     "version": "2.0.0",
     "tasks": [
         {
@@ -404,167 +426,103 @@ public class Heater
             "problemMatcher": "$msCompile"
         }
     ]
-}</code></pre>
-    <p>Run the task in VS Code:</p>
-    <ol>
-        <li>Open the Command Palette (<code>Ctrl+Shift+P</code>).</li>
-        <li>Select <code>Tasks: Run Task</code>.</li>
-        <li>Choose <code>Publish .NET Core</code>.</li>
-    </ol>
-    <h4>4. Deployment</h4>
-    <p>The published files will be available in the <code>./publish</code> folder. Copy these files to the desired deployment location:</p>
-    <ul>
-        <li><strong>Local Deployment:</strong> Copy files to a server or hosting environment.</li>
-        <li><strong>Docker Deployment:</strong> Use a <code>Dockerfile</code> to containerize your application:
-            <pre><code>FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
+}
+```
+
+**To run the task:**
+1. Open Command Palette (`Ctrl+Shift+P`)
+2. Select `Tasks: Run Task`
+3. Choose `Publish .NET Core`
+
+### Deployment Options
+
+#### Local Deployment
+Copy published files to target server or hosting environment.
+
+#### Docker Deployment
+Create a `Dockerfile` for containerization:
+
+```dockerfile
+FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
 WORKDIR /app
 COPY ./publish .
-ENTRYPOINT ["dotnet", "YourApp.dll"]</code></pre>
-        </li>
-    </ul>
-    <h4>5. Logging and Debugging</h4>
-    <p>To log publish output to a file, use:</p>
-    <pre><code>dotnet publish > publish_log.txt</code></pre>
-    <p>Check the logs for any errors and resolve them before deployment.</p>
-    <h4>6. Additional Resources</h4>
-    <ul>
-        <li><a href="https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-publish" target="_blank">Official .NET Publish Documentation</a></li>
-        <li><a href="https://code.visualstudio.com/docs" target="_blank">Visual Studio Code Documentation</a></li>
-    </ul>
-</div>
+ENTRYPOINT ["dotnet", "YourApp.dll"]
+```
 
+### Visual Studio 2022 Publishing
 
+For GUI-based publishing with Visual Studio 2022:
 
+![Publishing Step 1](img/package/1.png)
 
-#### 7. With VS2022 
-<p></p>
-![poster](img/package/1.png)
+![Publishing Step 2](img/package/2.png)
 
-<p></p>
-![poster](img/package/2.png)
+![Publishing Step 3](img/package/3.png)
 
-<p></p>
-![poster](img/package/3.png)
+![Publishing Step 4](img/package/5.png)
 
-<p></p>
-![poster](img/package/5.png)
+![Publishing Step 5](img/package/6.png)
 
-<p></p> 
-![poster](img/package/6.png)
+### Troubleshooting
 
+#### Logging Output
+To capture publish logs:
 
-### Packing packages
+```bash
+dotnet publish > publish_log.txt
+```
 
+#### Additional Resources
+- [Official .NET Publish Documentation](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-publish)
+- [Visual Studio Code Documentation](https://code.visualstudio.com/docs)
 
+## Package Management
 
-1. `cd [Publish target location]`
+### Creating Package Files
 
+After publishing your library, create a Port package using the following steps:
 
-2. `port pack [dllname] [pkg-name]`
+#### 1. Navigate to Publish Directory
+```bash
+cd [Publish target location]
+```
 
-3. check logs
-<br>
-<div class="console">
-    <div class="console-content">
-        PS C:\Users\Public\Dev\publish> port pack HeaterLib.dll HeaterLib1
-        [PATH]C:\Users\Public\Dev\publish\HeaterLib.dll
-        [ALREADY_RUN]PORT PACKAGE MANAGER
-        [RUN]PORT PACKAGE MANAGER
-        [PACK][pack] Packing started at 2025-01-07T21:17:19+09:00
-        [PACK]load compelete C:\Users\Public\Dev\publish\HeaterLib.dll : heaterlib
-        [PACK][GET][0] Power
-        [PACK][GET][1] Temp
-        [PACK][SET][0] Power
-        [PACK]heaterlib,65025
-        [PACK]initialization
-        [CREATED][PACKAGE] ...\port\pkg\HeaterLib1.pkg
-    </div>
-</div>
+#### 2. Pack the Library
+```bash
+port pack [dllname] [pkg-name]
+```
 
-<br>
-  
- 
-<style>
- 
- 
-    
+#### 3. Verify Package Creation
+Check the console output for successful packaging:
 
-.console {
-    width: 80%;
-    height: 80%;
-    background-color: whitesmoke;
-    color: black;
-    padding: 0px;
-    box-sizing: border-box;
-    border-radius: 8px;
-    overflow-y: auto;
-}
-.yellow{
-    color:yellow;
-}
-.console-content {
-    white-space: pre-wrap;
-}
+```
+PS C:\Users\Public\Dev\publish> port pack HeaterLib.dll HeaterLib1
+[PATH]C:\Users\Public\Dev\publish\HeaterLib.dll
+[ALREADY_RUN]PORT PACKAGE MANAGER
+[RUN]PORT PACKAGE MANAGER
+[PACK][pack] Packing started at 2025-01-07T21:17:19+09:00
+[PACK]load complete C:\Users\Public\Dev\publish\HeaterLib.dll : heaterlib
+[PACK][GET][0] Power
+[PACK][GET][1] Temp
+[PACK][SET][0] Power
+[PACK]heaterlib,65025
+[PACK]initialization
+[CREATED][PACKAGE] ...\port\pkg\HeaterLib1.pkg
+```
 
-.console-content p {
-    margin: 0;
-}
+### Package Structure
 
+The packaging process:
 
-.notepad {
-    width: 100%;
-    height: 80%;
-    background-color: white;
-    color: black;
-    padding: 20px;
-    box-sizing: border-box;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    overflow-y: auto;
-}
+1. **Analysis**: Scans the DLL for Port annotations
+2. **Extraction**: Identifies all Message properties and methods
+3. **Validation**: Ensures package integrity
+4. **Creation**: Generates `.pkg` file in the Port package directory
 
-.notepad:before {
-    content: '';
-    position: absolute;
-    top: 10px;
-    left: 20px;
-    right: 20px;
-    height: 2px;
-    background-color: #ccc;
-}
+### Package Installation
 
-.notepad:after {
-    content: '';
-    position: absolute;
-    top: 30px;
-    left: 20px;
-    right: 20px;
-    height: 2px;
-    background-color: #ccc;
-}
-
-.notepad-content {
-    margin-top: 40px;
-}
-
-.notepad-content p {
-    margin: 0 0 10px;
-    line-height: 1.5;
-}
-
- pre {
-            color: #f8f8f2;
-            border-radius: 5px;
-          padding:0px;
-          overflow-x: auto;
-        }
-        code {
-            font-family: monospace;
-            background-color: #f4f4f4;
-            padding: 2px 4px;
-            border-radius: 4px;
-        }
-</style>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
+Once created, packages can be:
+- Loaded into Port applications
+- Distributed to other environments
+- Managed through the Port Package Manager
+- Accessed via REST API endpoints

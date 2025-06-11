@@ -1,16 +1,16 @@
 site_name: Port
 site_url: https://portdic.com
 nav:
-  - Home: index.md
-  - Learn: learn.md
-  - Packages: package.md
-  - Dictionary: portdic.md
+  - Downloads: index.md
+  - Learn: learn.md 
   - Commands: commands.md
-  - Secs: secs.md
+  - SECS: secs.md
+hide:
+  - footer
 markdown_extensions:
   - codehilite:
       guess_lang: false
-      use_pygments: true  # Pygments 사용
+      use_pygments: true
   - pymdownx.highlight:
       anchor_linenums: true
       line_spans: __span
@@ -19,15 +19,61 @@ markdown_extensions:
   - pymdownx.snippets
   - pymdownx.superfences
   - admonition
+  - pymdownx.details
   - footnotes
   - meta
   - toc:
       permalink: true
-  - attr_list 
+  - attr_list
+  - pymdownx.emoji
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
 theme:
-  name: null
-  custom_dir: 'cinder'
+  name: material
+  logo: logo.ico
+  palette:
+    # Palette toggle for dark mode
+    - scheme: slate
+      primary: black
+      accent: cyan
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+    # Palette toggle for light mode
+    - scheme: default
+      primary: indigo
+      accent: cyan
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
   features:
+    - search.highlight
+    - search.share
+    - search.suggest
     - content.code.copy
     - content.code.select
     - content.code.annotate
+    - content.tabs.link
+    - content.tooltips
+  icon:
+    repo: fontawesome/brands/github
+  font:
+    text: Inter
+    code: JetBrains Mono
+
+plugins:
+  - search:
+      lang: en
+
+extra_css:
+  - extra_css.css
+
+# Disable all footer elements
+copyright: ""
+generator: false
