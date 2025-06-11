@@ -8927,12 +8927,12 @@
 <div class="language-text highlight"><pre><span></span><code><span id="__span-62-1"><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a>Format:
 </span><span id="__span-62-2"><a id="__codelineno-62-2" name="__codelineno-62-2" href="#__codelineno-62-2"></a>{L:2
 </span><span id="__span-62-3"><a id="__codelineno-62-3" name="__codelineno-62-3" href="#__codelineno-62-3"></a>  HCACK
-</span><span id="__span-62-4"><a id="__codelineno-62-4" name="__codelineno-62-4" href="#__codelineno-62-4"></a>  {L:n
-</span><span id="__span-62-5"><a id="__codelineno-62-5" name="__codelineno-62-5" href="#__codelineno-62-5"></a>    CPNAME_1
-</span><span id="__span-62-6"><a id="__codelineno-62-6" name="__codelineno-62-6" href="#__codelineno-62-6"></a>    CPNAME_2
-</span><span id="__span-62-7"><a id="__codelineno-62-7" name="__codelineno-62-7" href="#__codelineno-62-7"></a>    ...
-</span><span id="__span-62-8"><a id="__codelineno-62-8" name="__codelineno-62-8" href="#__codelineno-62-8"></a>    CPNAME_n
-</span><span id="__span-62-9"><a id="__codelineno-62-9" name="__codelineno-62-9" href="#__codelineno-62-9"></a>  }
+</span><span id="__span-62-4"><a id="__codelineno-62-4" name="__codelineno-62-4" href="#__codelineno-62-4"></a>    {L:n
+</span><span id="__span-62-5"><a id="__codelineno-62-5" name="__codelineno-62-5" href="#__codelineno-62-5"></a>      {L:2
+</span><span id="__span-62-6"><a id="__codelineno-62-6" name="__codelineno-62-6" href="#__codelineno-62-6"></a>        CPNAME
+</span><span id="__span-62-7"><a id="__codelineno-62-7" name="__codelineno-62-7" href="#__codelineno-62-7"></a>        CPACK
+</span><span id="__span-62-8"><a id="__codelineno-62-8" name="__codelineno-62-8" href="#__codelineno-62-8"></a>      }
+</span><span id="__span-62-9"><a id="__codelineno-62-9" name="__codelineno-62-9" href="#__codelineno-62-9"></a>    }
 </span><span id="__span-62-10"><a id="__codelineno-62-10" name="__codelineno-62-10" href="#__codelineno-62-10"></a>}
 </span><span id="__span-62-11"><a id="__codelineno-62-11" name="__codelineno-62-11" href="#__codelineno-62-11"></a>
 </span><span id="__span-62-12"><a id="__codelineno-62-12" name="__codelineno-62-12" href="#__codelineno-62-12"></a>Where:
@@ -8945,6 +8945,11 @@
 </span><span id="__span-62-19"><a id="__codelineno-62-19" name="__codelineno-62-19" href="#__codelineno-62-19"></a>  - 5: Rejected, already in desired condition
 </span><span id="__span-62-20"><a id="__codelineno-62-20" name="__codelineno-62-20" href="#__codelineno-62-20"></a>  - 6: No such object exists
 </span><span id="__span-62-21"><a id="__codelineno-62-21" name="__codelineno-62-21" href="#__codelineno-62-21"></a>- CPNAME: Command Parameter Name (A)
+</span><span id="__span-62-22"><a id="__codelineno-62-22" name="__codelineno-62-22" href="#__codelineno-62-22"></a>- CPACK     Format: B:1 (invariant)    
+</span><span id="__span-62-23"><a id="__codelineno-62-23" name="__codelineno-62-23" href="#__codelineno-62-23"></a>      remote command parameter acknowledge, only received if error (B[1])   
+</span><span id="__span-62-24"><a id="__codelineno-62-24" name="__codelineno-62-24" href="#__codelineno-62-24"></a>  1 - unknown CPNAME
+</span><span id="__span-62-25"><a id="__codelineno-62-25" name="__codelineno-62-25" href="#__codelineno-62-25"></a>  2 - illegal value for CPVAL
+</span><span id="__span-62-26"><a id="__codelineno-62-26" name="__codelineno-62-26" href="#__codelineno-62-26"></a>  3 - illegal format for CPVAL
 </span></code></pre></div>
 <h4 id="s2f43---reset-spooling-streams-and-functions"><strong>S2F43 - Reset Spooling Streams and Functions</strong><a class="headerlink" href="#s2f43---reset-spooling-streams-and-functions" title="Permanent link">&para;</a></h4>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-63-1"><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a>Format:
