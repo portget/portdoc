@@ -8,8 +8,10 @@
       
       
       
-        <link rel="canonical" href="https://portdic.com/frame/">
+        <link rel="canonical" href="https://portdic.com/mqtt/">
       
+      
+        <link rel="prev" href="../secs/">
       
       
       
@@ -18,7 +20,7 @@
     
     
       
-        <title>What's FRAME? - Port</title>
+        <title>MQTT - Port</title>
       
     
     
@@ -72,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#whats-frame" class="md-skip">
+        <a href="#mqtt-integration" class="md-skip">
           Skip to content
         </a>
       
@@ -107,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              What's FRAME?
+              MQTT
             
           </span>
         </div>
@@ -309,10 +311,28 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../mqtt/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    MQTT
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -321,6 +341,189 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mqtt-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      MQTT Integration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MQTT Integration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mqtt-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      MQTT Protocol Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mqtt-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      MQTT Architecture
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MQTT Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mqtt-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Core Components
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mqtt-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      MQTT Communication Flow
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MQTT Communication Flow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mqtt-connection-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connection Process
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mqtt-qos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quality of Service Levels
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mqtt-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      MQTT Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MQTT Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mqtt-connection-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connection Settings
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mqtt-explorer-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      MQTT Explorer Setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MQTT Explorer Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mqtt-publication-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      Publication Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mqtt-explorer-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      MQTT Explorer Installation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mqtt-explorer-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explorer Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mqtt-live-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      Live Monitoring
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mqtt-benefits" class="md-nav__link">
+    <span class="md-ellipsis">
+      MQTT Integration Benefits
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -342,8 +545,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -352,37 +553,160 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#make-frame" class="md-nav__link">
+  <a href="#mqtt-integration" class="md-nav__link">
     <span class="md-ellipsis">
-      Make frame
+      MQTT Integration
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Make frame">
+    <nav class="md-nav" aria-label="MQTT Integration">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#create-a-message-document" class="md-nav__link">
+  <a href="#mqtt-overview" class="md-nav__link">
     <span class="md-ellipsis">
-      Create a Message Document
+      MQTT Protocol Overview
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#create-a-relationobject" class="md-nav__link">
+  <a href="#mqtt-architecture" class="md-nav__link">
     <span class="md-ellipsis">
-      Create a RelationObject
+      MQTT Architecture
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MQTT Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mqtt-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Core Components
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mqtt-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      MQTT Communication Flow
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MQTT Communication Flow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mqtt-connection-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connection Process
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#command" class="md-nav__link">
+  <a href="#mqtt-qos" class="md-nav__link">
     <span class="md-ellipsis">
-      Command
+      Quality of Service Levels
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mqtt-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      MQTT Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MQTT Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mqtt-connection-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connection Settings
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mqtt-explorer-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      MQTT Explorer Setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MQTT Explorer Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mqtt-publication-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      Publication Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mqtt-explorer-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      MQTT Explorer Installation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mqtt-explorer-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Explorer Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mqtt-live-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      Live Monitoring
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mqtt-benefits" class="md-nav__link">
+    <span class="md-ellipsis">
+      MQTT Integration Benefits
     </span>
   </a>
   
@@ -408,46 +732,101 @@
                   
 
 
-<h1 id="whats-frame">What's FRAME?<a class="headerlink" href="#whats-frame" title="Permanent link">&para;</a></h1>
-<hr />
-<p>Frame refers to a set of messages designated within different groups and called from various relation objects. While the specification of frames in messages may vary from one project to another, maintaining consistent names in relation objects allows users to easily manage relation objects.</p>
-<h3 id="make-frame">Make frame<a class="headerlink" href="#make-frame" title="Permanent link">&para;</a></h3>
-<hr />
-<h4 id="create-a-message-document">Create a Message Document<a class="headerlink" href="#create-a-message-document" title="Permanent link">&para;</a></h4>
-<p>[../AZone/sample1.msg]
-<div class="language-TEXT highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>    DevAPowerStatus    enum.DeviceAStatus   api:DeviceA.GetStatus       frame:HTS1.PowerStatus 
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>...
+  <h1>MQTT</h1>
+
+<h2 id="mqtt-integration">MQTT Integration<a class="headerlink" href="#mqtt-integration" title="Permanent link">&para;</a></h2>
+<h3 id="mqtt-overview">MQTT Protocol Overview<a class="headerlink" href="#mqtt-overview" title="Permanent link">&para;</a></h3>
+<p>MQTT (Message Queuing Telemetry Transport) is a lightweight communication protocol designed for IoT devices and efficient message transmission in bandwidth-constrained environments.</p>
+<h3 id="mqtt-architecture">MQTT Architecture<a class="headerlink" href="#mqtt-architecture" title="Permanent link">&para;</a></h3>
+<h4 id="mqtt-components">Core Components<a class="headerlink" href="#mqtt-components" title="Permanent link">&para;</a></h4>
+<p><strong>1. Clients</strong>
+- <strong>Publishers</strong>: Send messages to specific topics
+- <strong>Subscribers</strong>: Receive messages from subscribed topics
+- <strong>Dual Role</strong>: Clients can both publish and subscribe</p>
+<p><strong>2. Broker</strong>
+- <strong>Message Distribution</strong>: Central server managing message routing
+- <strong>Topic Management</strong>: Handles topic subscriptions and publications
+- <strong>Client Coordination</strong>: Manages connections and message delivery</p>
+<p><strong>3. Topics</strong>
+- <strong>Message Categories</strong>: String-based channels for message organization
+- <strong>Hierarchical Structure</strong>: Support for complex topic hierarchies (e.g., <code>home/livingroom/temperature</code>)
+- <strong>Subscription Management</strong>: Clients subscribe to topics of interest</p>
+<h3 id="mqtt-flow">MQTT Communication Flow<a class="headerlink" href="#mqtt-flow" title="Permanent link">&para;</a></h3>
+<h4 id="mqtt-connection-process">Connection Process<a class="headerlink" href="#mqtt-connection-process" title="Permanent link">&para;</a></h4>
+<ol>
+<li><strong>Client Connection</strong>: Connect to MQTT broker with IP address and port</li>
+<li><strong>Authentication</strong>: Provide credentials if required</li>
+<li><strong>Topic Subscription</strong>: Subscribe to relevant topics</li>
+<li><strong>Message Publishing</strong>: Publish messages to topics</li>
+<li><strong>Message Distribution</strong>: Broker delivers messages to subscribers</li>
+<li><strong>Quality of Service</strong>: Message delivery guarantees based on QoS level</li>
+</ol>
+<h4 id="mqtt-qos">Quality of Service Levels<a class="headerlink" href="#mqtt-qos" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>QoS Level</th>
+<th>Guarantee</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>QoS 0</strong></td>
+<td>At most once</td>
+<td>No delivery guarantee, possible message loss</td>
+</tr>
+<tr>
+<td><strong>QoS 1</strong></td>
+<td>At least once</td>
+<td>Guaranteed delivery, possible duplication</td>
+</tr>
+<tr>
+<td><strong>QoS 2</strong></td>
+<td>Exactly once</td>
+<td>Guaranteed delivery without duplication</td>
+</tr>
+</tbody>
+</table>
+<h3 id="mqtt-configuration">MQTT Configuration<a class="headerlink" href="#mqtt-configuration" title="Permanent link">&para;</a></h3>
+<h4 id="mqtt-connection-settings">Connection Settings<a class="headerlink" href="#mqtt-connection-settings" title="Permanent link">&para;</a></h4>
+<p><strong>Broker Details:</strong>
+- <strong>Host</strong>: <code>127.0.0.1</code>
+- <strong>Port</strong>: <code>8080</code>
+- <strong>Username</strong>: <code>admin</code>
+- <strong>Password</strong>: <code>admin</code></p>
+<div class="admonition note">
+<p class="admonition-title">Connection Credentials</p>
+<p>Use the default credentials for local MQTT broker access.</p>
+</div>
+<h3 id="mqtt-explorer-setup">MQTT Explorer Setup<a class="headerlink" href="#mqtt-explorer-setup" title="Permanent link">&para;</a></h3>
+<h4 id="mqtt-publication-config">Publication Configuration<a class="headerlink" href="#mqtt-publication-config" title="Permanent link">&para;</a></h4>
+<p>Create publication files in your project directory:</p>
+<p><strong>File Path:</strong> <code>../sample/app/mqtt/room1.pub</code>
+<strong>Relative Path:</strong> <code>app/mqtt/room1.pub</code></p>
+<p><strong>File Content:</strong>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>room1 RoomTemp1  // [group-name] [message-name]
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>room2 RoomTemp1
 </span></code></pre></div></p>
-<p>[../BZone/sample1.msg]
-<div class="language-TEXT highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>    DevAPowerStatus    enum.DeviceAStatus   api:DeviceA.GetStatus       frame:HTS2.PowerStatus
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>...
-</span></code></pre></div></p>
-<h4 id="create-a-relationobject">Create a RelationObject<a class="headerlink" href="#create-a-relationobject" title="Permanent link">&para;</a></h4>
-<div class="language-C# highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">HeatingScenario</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ScenarioRelationService</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w"> </span><span class="p">{</span><span class="w">   </span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="p">...</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">     </span><span class="na">[Message, Shot(1)]</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">     </span><span class="k">public</span><span class="w"> </span><span class="n">ShotResult</span><span class="w"> </span><span class="n">EVENT_1</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">     </span><span class="p">{</span>
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">         </span><span class="k">set</span>
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">         </span><span class="p">{</span>
-</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">             </span><span class="kt">var</span><span class="w"> </span><span class="n">strValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">frame</span><span class="p">.</span><span class="n">GetValue</span><span class="p">(</span><span class="s">&quot;PowerStatus&quot;</span><span class="p">);</span>
-</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
-</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">             </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">strValue</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;OK&quot;</span><span class="p">)</span>
-</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">             </span><span class="p">{</span>
-</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">                 </span><span class="k">value</span><span class="p">.</span><span class="n">NextShot</span><span class="p">();</span>
-</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">             </span><span class="p">}</span>
-</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">         </span><span class="p">}</span>
-</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">     </span><span class="p">}</span>
-</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>
-</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="w">    </span><span class="p">...</span>
-</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="w"> </span><span class="p">}</span>
-</span></code></pre></div>
-<h4 id="command">Command<a class="headerlink" href="#command" title="Permanent link">&para;</a></h4>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>port add --scenario heating1 /HeatingLib/HeatingLib.dll
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>port add --scenario heating2 /HeatingLib/HeatingLib.dll
-</span></code></pre></div>
+<h4 id="mqtt-explorer-installation">MQTT Explorer Installation<a class="headerlink" href="#mqtt-explorer-installation" title="Permanent link">&para;</a></h4>
+<div class="admonition tip">
+<p class="admonition-title">Download MQTT Explorer</p>
+<p><a href="https://mqtt-explorer.com/">MQTT Explorer Download</a></p>
+</div>
+<h4 id="mqtt-explorer-configuration">Explorer Configuration<a class="headerlink" href="#mqtt-explorer-configuration" title="Permanent link">&para;</a></h4>
+<p><img alt="MQTT Explorer Login" src="../img/mosquitto_login.png" /></p>
+<p>Configure the MQTT Explorer with your broker settings for real-time message monitoring.</p>
+<h4 id="mqtt-live-monitoring">Live Monitoring<a class="headerlink" href="#mqtt-live-monitoring" title="Permanent link">&para;</a></h4>
+<p><img alt="MQTT Live View" src="../img/mqtt_view.gif" /></p>
+<p>Monitor real-time MQTT message flow and topic activity through the graphical interface.</p>
+<h3 id="mqtt-benefits">MQTT Integration Benefits<a class="headerlink" href="#mqtt-benefits" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Lightweight Protocol</strong>: Minimal bandwidth usage for IoT applications</li>
+<li><strong>Real-time Communication</strong>: Instant message delivery and updates</li>
+<li><strong>Scalable Architecture</strong>: Support for numerous connected devices</li>
+<li><strong>Reliable Messaging</strong>: QoS levels ensure appropriate delivery guarantees</li>
+<li><strong>Flexible Topics</strong>: Hierarchical topic structure for organized messaging </li>
+</ul>
 
 
 
