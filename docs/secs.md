@@ -1,72 +1,39 @@
 # SECS Message Format Specification
 
 ## Table of Contents
-1. [Overview](#overview)
-2. [HSMS Message Structure](#hsms-message-structure)
-3. [SECS-II Data Format](#secs-ii-data-format)
-4. [Stream Definitions](#stream-definitions)
-5. [Message Categories](#message-categories)
-6. [Common Message Examples](#common-message-examples)
-7. [Implementation Guidelines](#implementation-guidelines)
+1. [Overview](#overview) 
+2. [SECS-II Data Format](#secs-ii-data-format)
+3. [Stream Definitions](#stream-definitions)
+4. [Message Categories](#message-categories)
+5. [Common Message Examples](#common-message-examples)
+6. [Implementation Guidelines](#implementation-guidelines)
 
 ## Overview
 
-This document describes the SECS (Semiconductor Equipment Communication Standard) message format as defined in SEMI E5 specification 
+**SECS/GEM** (Semiconductor Equipment Communications Standard/Generic Equipment Model) is a comprehensive communication protocol suite specifically designed for semiconductor manufacturing equipment. Developed by SEMI (Semiconductor Equipment and Materials International), it provides standardized methods for equipment communication, control, and data collection in semiconductor fabrication facilities.
 
-SECS defines a standardized communication protocol for semiconductor manufacturing equipment, enabling consistent equipment integration and automation.
+### SECS-I (Physical Layer)
+- **Purpose**: Defines the physical communication interface
+- **Connection**: Traditional RS-232C serial communication
+- **Characteristics**: Point-to-point connection between equipment and host, slower data transmission rates, primarily used in legacy systems
 
-## HSMS Message Structure
+### SECS-II (Message Layer)
+- **Purpose**: Defines message structure and data formatting
+- **Data Types**: Supports various data formats including ASCII text, binary data, integers (1, 2, 4, 8 bytes, signed/unsigned), floating point numbers, and lists (nested data structures)
+- **Message Structure**: Hierarchical data organization using lists and items
 
-### Message Layout
-```
-[4 bytes: Length][10 bytes: Header][Variable: SECS-II Data]
-```
+### HSMS (High-Speed Message Services)
+- **Purpose**: Modern replacement for SECS-I physical layer
+- **Connection**: TCP/IP-based Ethernet communication
+- **Advantages**: Higher data transmission speeds, support for multiple simultaneous connections, better network integration capabilities, enhanced reliability and error handling
 
-### Header Format (10 bytes)
-```
-Byte 0-1: Session ID (2 bytes)
-Byte 2:   Stream (7 bits) + Wait Bit (1 bit)
-Byte 3:   Function (1 byte)
-Byte 4:   PType (1 byte) - always 0 for data messages
-Byte 5:   SType (1 byte) - always 0 for data messages  
-Byte 6-9: System Bytes (4 bytes) - unique message identifier
-```
+### GEM (Generic Equipment Model)
+- **Purpose**: Defines standard behaviors and capabilities for equipment
+- **Functionality**: Establishes common equipment states, events, and control mechanisms
 
-### Wait Bit
-- **Set (1)**: Primary message requiring response
-- **Clear (0)**: Secondary message (response) or no response required
+## Core Communication Concepts
 
-### Message Length
-- **4-byte big-endian integer** preceding the header
-- **Excludes** the length field itself (only counts header + data)
-
-## SECS-II Data Format
-
-### Data Item Format
-```
-[Format Byte][Length Byte(s)][Data Bytes]
-```
-
-### Format Codes
-| Format | Type | Description |
-|--------|------|-------------|
-| 0x01   | List | Container for multiple items |
-| 0x21   | Binary | Binary data (1 byte length) |
-| 0x25   | Binary | Binary data (2 byte length) |
-| 0x29   | Binary | Binary data (3 byte length) |
-| 0x41   | ASCII | ASCII text (1 byte length) |
-| 0x45   | ASCII | ASCII text (2 byte length) |
-| 0x61   | JIS-8 | Japanese text (1 byte length) |
-| 0x71   | 2-byte | Signed 2-byte integer (1 byte length) |
-| 0x75   | 2-byte | Signed 2-byte integer (2 byte length) |
-| 0x81   | 1-byte | Signed 1-byte integer (1 byte length) |
-| 0x91   | 8-byte | Signed 8-byte integer (1 byte length) |
-| 0xA1   | 4-byte | Signed 4-byte integer (1 byte length) |
-| 0xB1   | Float  | 4-byte floating point (1 byte length) |
-| 0xC1   | 8-byte | Unsigned 8-byte integer (1 byte length) |
-| 0xD1   | 4-byte | Unsigned 4-byte integer (1 byte length) |
-| 0xE1   | 2-byte | Unsigned 2-byte integer (1 byte length) |
-| 0xF1   | 1-byte | Unsigned 1-byte integer (1 byte length) |
+SECS defines a standardized communication protocol for semiconductor manufacturing equipment, enabling consistent equipment integration and automation through stream and function organization, where streams (S1-S127) categorize message types by functionality and functions (F1-F255) define specific operations within each stream.
 
 ## Stream Definitions
 
@@ -2281,6 +2248,390 @@ Where:
   - 4: Acknowledge after completion
   - 5: Rejected, already in desired condition
   - 6: No such object exists
+```
+
+#### **S4F7 - Transfer Job Pause** {#s4f7---transfer-job-pause}
+```
+Format:
+{L:2
+  DATAID
+  JOBID
+}
+
+Where:
+- DATAID: Data ID (U1, U2, U4, or A)
+- JOBID: Job ID (A)
+```
+
+#### **S4F8 - Transfer Job Pause Acknowledge** {#s4f8---transfer-job-pause-acknowledge}
+```
+Format:
+{L:2
+  DATAID
+  HCACK
+}
+
+Where:
+- DATAID: Data ID (U1, U2, U4, or A)
+- HCACK: Host Command Acknowledge (B[1])
+  - 0: Acknowledged
+  - 1: Invalid command
+  - 2: Cannot perform now
+  - 3: At least one parameter invalid
+  - 4: Acknowledge after completion
+  - 5: Rejected, already in desired condition
+  - 6: No such object exists
+```
+
+#### **S4F9 - Transfer Job Stop** {#s4f9---transfer-job-stop}
+```
+Format:
+{L:2
+  DATAID
+  JOBID
+}
+
+Where:
+- DATAID: Data ID (U1, U2, U4, or A)
+- JOBID: Job ID (A)
+```
+
+#### **S4F10 - Transfer Job Stop Acknowledge** {#s4f10---transfer-job-stop-acknowledge}
+```
+Format:
+{L:2
+  DATAID
+  HCACK
+}
+
+Where:
+- DATAID: Data ID (U1, U2, U4, or A)
+- HCACK: Host Command Acknowledge (B[1])
+  - 0: Acknowledged
+  - 1: Invalid command
+  - 2: Cannot perform now
+  - 3: At least one parameter invalid
+  - 4: Acknowledge after completion
+  - 5: Rejected, already in desired condition
+  - 6: No such object exists
+```
+
+#### **S4F11 - Transfer Job Abort** {#s4f11---transfer-job-abort}
+```
+Format:
+{L:2
+  DATAID
+  JOBID
+}
+
+Where:
+- DATAID: Data ID (U1, U2, U4, or A)
+- JOBID: Job ID (A)
+```
+
+#### **S4F12 - Transfer Job Abort Acknowledge** {#s4f12---transfer-job-abort-acknowledge}
+```
+Format:
+{L:2
+  DATAID
+  HCACK
+}
+
+Where:
+- DATAID: Data ID (U1, U2, U4, or A)
+- HCACK: Host Command Acknowledge (B[1])
+  - 0: Acknowledged
+  - 1: Invalid command
+  - 2: Cannot perform now
+  - 3: At least one parameter invalid
+  - 4: Acknowledge after completion
+  - 5: Rejected, already in desired condition
+  - 6: No such object exists
+```
+
+#### **S4F13 - Transfer Job Resume** {#s4f13---transfer-job-resume}
+```
+Format:
+{L:2
+  DATAID
+  JOBID
+}
+
+Where:
+- DATAID: Data ID (U1, U2, U4, or A)
+- JOBID: Job ID (A)
+```
+
+#### **S4F14 - Transfer Job Resume Acknowledge** {#s4f14---transfer-job-resume-acknowledge}
+```
+Format:
+{L:2
+  DATAID
+  HCACK
+}
+
+Where:
+- DATAID: Data ID (U1, U2, U4, or A)
+- HCACK: Host Command Acknowledge (B[1])
+  - 0: Acknowledged
+  - 1: Invalid command
+  - 2: Cannot perform now
+  - 3: At least one parameter invalid
+  - 4: Acknowledge after completion
+  - 5: Rejected, already in desired condition
+  - 6: No such object exists
+```
+
+#### **S4F15 - Transfer Job Status Request** {#s4f15---transfer-job-status-request}
+```
+Format:
+{L:n
+  JOBID_1
+  JOBID_2
+  ...
+  JOBID_n
+}
+
+Where:
+- JOBID: Job ID (A)
+```
+
+#### **S4F16 - Transfer Job Status Response** {#s4f16---transfer-job-status-response}
+```
+Format:
+{L:n
+  {L:5
+    JOBID
+    CARRIERID
+    FROMPTN
+    TOPTN
+    JOBST
+  }
+}
+
+Where:
+- JOBID: Job ID (A)
+- CARRIERID: Carrier ID (A)
+- FROMPTN: From Port Number (U1)
+- TOPTN: To Port Number (U1)
+- JOBST: Job State (U1)
+  - 0: Queued
+  - 1: Selected
+  - 2: Executing
+  - 3: Completed
+  - 4: Canceled
+  - 5: Aborted
+  - 6: Failed
+```
+
+#### **S4F17 - Transfer Job Priority Update** {#s4f17---transfer-job-priority-update}
+```
+Format:
+{L:3
+  DATAID
+  JOBID
+  PRIORITY
+}
+
+Where:
+- DATAID: Data ID (U1, U2, U4, or A)
+- JOBID: Job ID (A)
+- PRIORITY: Transfer Priority (U1)
+```
+
+#### **S4F18 - Transfer Job Priority Acknowledge** {#s4f18---transfer-job-priority-acknowledge}
+```
+Format:
+{L:2
+  DATAID
+  HCACK
+}
+
+Where:
+- DATAID: Data ID (U1, U2, U4, or A)
+- HCACK: Host Command Acknowledge (B[1])
+  - 0: Acknowledged
+  - 1: Invalid command
+  - 2: Cannot perform now
+  - 3: At least one parameter invalid
+  - 4: Acknowledge after completion
+  - 5: Rejected, already in desired condition
+  - 6: No such object exists
+```
+
+#### **S4F19 - Transfer Command** {#s4f19---transfer-command}
+```
+Format:
+{L:4
+  DATAID
+  TRANSFERTYPE
+  SOURCEID
+  DESTID
+}
+
+Where:
+- DATAID: Data ID (U1, U2, U4, or A)
+- TRANSFERTYPE: Transfer Type (U1)
+  - 1: Material Transfer
+  - 2: Carrier Transfer
+  - 3: Substrate Transfer
+- SOURCEID: Source Location ID (A)
+- DESTID: Destination Location ID (A)
+```
+
+#### **S4F20 - Transfer Command Acknowledge** {#s4f20---transfer-command-acknowledge}
+```
+Format:
+{L:2
+  DATAID
+  HCACK
+}
+
+Where:
+- DATAID: Data ID (U1, U2, U4, or A)
+- HCACK: Host Command Acknowledge (B[1])
+  - 0: Acknowledged
+  - 1: Invalid command
+  - 2: Cannot perform now
+  - 3: At least one parameter invalid
+  - 4: Acknowledge after completion
+  - 5: Rejected, already in desired condition
+  - 6: No such object exists
+```
+
+#### **S4F21 - Enhanced Transfer Command** {#s4f21---enhanced-transfer-command}
+```
+Format:
+{L:5
+  DATAID
+  TRANSFERTYPE
+  SOURCEID
+  DESTID
+  {L:n
+    {L:2
+      PARAMID
+      PARAMVAL
+    }
+  }
+}
+
+Where:
+- DATAID: Data ID (U1, U2, U4, or A)
+- TRANSFERTYPE: Transfer Type (U1)
+  - 1: Material Transfer
+  - 2: Carrier Transfer
+  - 3: Substrate Transfer
+- SOURCEID: Source Location ID (A)
+- DESTID: Destination Location ID (A)
+- PARAMID: Parameter ID (A)
+- PARAMVAL: Parameter Value (any format)
+```
+
+#### **S4F22 - Enhanced Transfer Acknowledge** {#s4f22---enhanced-transfer-acknowledge}
+```
+Format:
+{L:2
+  DATAID
+  HCACK
+}
+
+Where:
+- DATAID: Data ID (U1, U2, U4, or A)
+- HCACK: Host Command Acknowledge (B[1])
+  - 0: Acknowledged
+  - 1: Invalid command
+  - 2: Cannot perform now
+  - 3: At least one parameter invalid
+  - 4: Acknowledge after completion
+  - 5: Rejected, already in desired condition
+  - 6: No such object exists
+```
+
+#### **S4F23 - Transfer Status Send** {#s4f23---transfer-status-send}
+```
+Format:
+{L:4
+  DATAID
+  TRANSFERID
+  TRANSFERSTATUS
+  {L:n
+    {L:2
+      STATID
+      STATVAL
+    }
+  }
+}
+
+Where:
+- DATAID: Data ID (U1, U2, U4, or A)
+- TRANSFERID: Transfer ID (A)
+- TRANSFERSTATUS: Transfer Status (U1)
+  - 0: Idle
+  - 1: Executing
+  - 2: Paused
+  - 3: Completed
+  - 4: Failed
+- STATID: Status ID (A)
+- STATVAL: Status Value (any format)
+```
+
+#### **S4F24 - Transfer Status Acknowledge** {#s4f24---transfer-status-acknowledge}
+```
+Format:
+{L:2
+  DATAID
+  HCACK
+}
+
+Where:
+- DATAID: Data ID (U1, U2, U4, or A)
+- HCACK: Host Command Acknowledge (B[1])
+  - 0: Acknowledged
+  - 1: Invalid command
+  - 2: Cannot perform now
+  - 3: At least one parameter invalid
+  - 4: Acknowledge after completion
+  - 5: Rejected, already in desired condition
+  - 6: No such object exists
+```
+
+#### **S4F25 - Material Status Request** {#s4f25---material-status-request}
+```
+Format:
+{L:n
+  MATERIALID_1
+  MATERIALID_2
+  ...
+  MATERIALID_n
+}
+
+Where:
+- MATERIALID: Material ID (A)
+```
+
+#### **S4F26 - Material Status Response** {#s4f26---material-status-response}
+```
+Format:
+{L:n
+  {L:4
+    MATERIALID
+    MATERIALTYPE
+    LOCATION
+    {L:m
+      {L:2
+        ATTRID
+        ATTRVAL
+      }
+    }
+  }
+}
+
+Where:
+- MATERIALID: Material ID (A)
+- MATERIALTYPE: Material Type (A)
+- LOCATION: Current Location (A)
+- ATTRID: Attribute ID (A)
+- ATTRVAL: Attribute Value (any format)
 ```
 
 ### Stream 5: Exception Reporting
@@ -4784,7 +5135,6 @@ Where:
 ```
 
 #### **S16F12 - Process Job Priority Response**
-```
 Format:
 {L:2
   PJOBID
