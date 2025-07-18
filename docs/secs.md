@@ -161,27 +161,27 @@ List with 2 items:
 |---------|-----------|-------------|
 | [S1F1](#s1f1---are-you-there-request)    | → Equipment | Are You There (Request) |
 | [S1F2](#s1f2---are-you-there-response)    | ← Equipment | Are You There (Response) |
-| [S1F3R](#s1f3r---selected-equipment-status-request)    | → Equipment | Selected Equipment Status Request |
+| [S1F3](#s1f3r---selected-equipment-status-request)    | → Equipment | Selected Equipment Status Request |
 | [S1F4](#s1f4---selected-equipment-status-data)    | ← Equipment | Selected Equipment Status Data |
-| [S1F5R](#s1f5r---formatted-status-request)    | → Equipment | Formatted Status Request |
+| [S1F5](#s1f5r---formatted-status-request)    | → Equipment | Formatted Status Request |
 | [S1F6](#s1f6---formatted-status-data)    | ← Equipment | Formatted Status Data |
 | [S1F7](#s1f7---fixed-form-request)    | → Equipment | Fixed Form Request |
 | [S1F8](#s1f8---fixed-form-data)    | ← Equipment | Fixed Form Data |
-| [S1F9R](#s1f9r---material-transfer-status-request)    | → Equipment | Material Transfer Status Request |
+| [S1F9](#s1f9r---material-transfer-status-request)    | → Equipment | Material Transfer Status Request |
 | [S1F10](#s1f10---material-transfer-status-data)    | ← Equipment | Material Transfer Status Data |
-| [S1F11R](#s1f11r---status-variable-namelist-request)   | → Equipment | Status Variable Namelist Request |
+| [S1F11](#s1f11r---status-variable-namelist-request)   | → Equipment | Status Variable Namelist Request |
 | [S1F12](#s1f12---status-variable-namelist-reply)   | ← Equipment | Status Variable Namelist Reply |
-| [S1F13R](#s1f13r---establish-communications-request)   | → Equipment | Establish Communications Request |
+| [S1F13](#s1f13r---establish-communications-request)   | → Equipment | Establish Communications Request |
 | [S1F14](#s1f14---establish-communications-request-acknowledge)   | ← Equipment | Establish Communications Request Acknowledge |
-| [S1F15R](#s1f15r---request-offline)   | → Equipment | Request OFF-LINE |
+| [S1F15](#s1f15r---request-offline)   | → Equipment | Request OFF-LINE |
 | [S1F16](#s1f16---offline-acknowledge)   | ← Equipment | OFF-LINE Acknowledge |
-| [S1F17R](#s1f17r---request-online)   | → Equipment | Request ON-LINE |
+| [S1F17](#s1f17r---request-online)   | → Equipment | Request ON-LINE |
 | [S1F18](#s1f18---online-acknowledge)   | ← Equipment | ON-LINE Acknowledge |
-| [S1F19R](#s1f19r---get-attribute)   | → Equipment | Get Attribute |
+| [S1F19](#s1f19r---get-attribute)   | → Equipment | Get Attribute |
 | [S1F20](#s1f20---attribute-data)   | ← Equipment | Attribute Data |
-| [S1F21R](#s1f21r---data-variable-namelist-request)   | → Equipment | Data Variable Namelist Request |
+| [S1F21](#s1f21r---data-variable-namelist-request)   | → Equipment | Data Variable Namelist Request |
 | [S1F22](#s1f22---data-variable-namelist-reply)   | ← Equipment | Data Variable Namelist Reply |
-| [S1F23R](#s1f23r---collection-event-namelist-request)   | → Equipment | Collection Event Namelist Request |
+| [S1F23](#s1f23r---collection-event-namelist-request)   | → Equipment | Collection Event Namelist Request |
 | [S1F24](#s1f24---collection-event-namelist-reply)   | ← Equipment | Collection Event Namelist Reply |
 
 #### **S1F1 - Are You There (Request)** {#s1f1---are-you-there-request}
@@ -196,7 +196,7 @@ or
 {L:0}
 ```
 
-#### **S1F3R - Selected Equipment Status Request** {#s1f3r---selected-equipment-status-request}	
+#### **S1F3 - Selected Equipment Status Request** {#s1f3r---selected-equipment-status-request}	
 ```
   {L[n]
     SVID
@@ -209,7 +209,8 @@ or
   SV
 } 
 ```
-#### **S1F5R	Formatted Status Request** {#s1f5r---formatted-status-request}
+
+#### **S1F5	Formatted Status Request** {#s1f5r---formatted-status-request}
 ``` 
 SFCD
 ```
@@ -237,7 +238,7 @@ SFCD
 }
 ```
 
-#### **S1F9R	Material Transfer Status Request** {#s1f9r---material-transfer-status-request} 
+#### **S1F9	Material Transfer Status Request** {#s1f9r---material-transfer-status-request} 
 ```
 {}
 
@@ -250,9 +251,10 @@ SFCD
   TSOP
 }
 ```
-#### **S1F11R	Status Variable Namelist Request** {#s1f11r---status-variable-namelist-request}	 
 
- ```
+#### **S1F11	Status Variable Namelist Request** {#s1f11r---status-variable-namelist-request}	 
+
+```
 {L[n]
   SVID
 }
