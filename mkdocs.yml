@@ -1,14 +1,16 @@
 site_name: Port
 site_url: https://portdic.com
-site_favicon: 'img/logo.ico'
 nav:
-  - Downloads: index.md
-  - Learn: learn.md 
-  - Commands: commands.md
-  - SECS: secs.md
-  - MQTT: mqtt.md
-hide:
-  - footer
+  - Home: index.md
+  - Getting Started:
+    - Learn: learn.md
+    - .Net: dotnet.md
+  - Documentation:
+    - Commands: commands.md
+    - Remote Access: remote.md
+  - Protocols:
+    - SECS: secs.md
+    - MQTT: mqtt.md
 markdown_extensions:
   - codehilite:
       guess_lang: false
@@ -38,7 +40,8 @@ markdown_extensions:
 
 theme:
   name: material
-  logo: logo.ico
+  logo: img/logo.ico
+  favicon: img/logo.ico
   palette:
     # Palette toggle for dark mode
     - scheme: slate
@@ -63,6 +66,7 @@ theme:
     - content.code.annotate
     - content.tabs.link
     - content.tooltips
+    - navigation.footer
   icon:
     repo: fontawesome/brands/github
   font:
@@ -76,6 +80,5 @@ plugins:
 extra_css:
   - extra_css.css
 
-# Disable all footer elements
+# Disable generator but keep copyright
 copyright: ""
-generator: false
