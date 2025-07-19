@@ -2,26 +2,27 @@
 
 ## Table of Contents
 1. [Overview](#overview) 
-2. [SECS-II Data Format](#secs-ii-data-format)
-3. [Stream Definitions](#stream-definitions)
-4. [Message Categories](#message-categories)
-5. [Common Message Examples](#common-message-examples)
-6. [Implementation Guidelines](#implementation-guidelines)
+2. [Quick Link](#quick-link) 
+3. [Script Definitions](#script-stream-definitions)
 
-## Quick link
+## Overview
+
+Port Application provides simulation capabilities using scripts(*.sna). Users can utilize this to proceed with development based on testing before service deployment. 
+
+## **Quick link** {#quick-link}
 | Stream | Function |
 |---|---|
 | S1 | [F1](#s1f1---are-you-there-request) [F2](#s1f2---are-you-there-response) [F3](#s1f3r---selected-equipment-status-request) [F4](#s1f4---selected-equipment-status-data) [F5](#s1f5r---formatted-status-request) [F6](#s1f6---formatted-status-data) [F7](#s1f7---fixed-form-request) [F8](#s1f8---fixed-form-data) [F9](#s1f9r---material-transfer-status-request) [F10](#s1f10---material-transfer-status-data) [F11](#s1f11r---status-variable-namelist-request) [F12](#s1f12---status-variable-namelist-reply) [F13](#s1f13r---establish-communications-request) [F14](#s1f14---establish-communications-request-acknowledge) [F15](#s1f15r---request-offline) [F16](#s1f16---offline-acknowledge) [F17](#s1f17r---request-online) [F18](#s1f18---online-acknowledge) [F19](#s1f19r---get-attribute) [F20](#s1f20---attribute-data) [F21](#s1f21r---data-variable-namelist-request) [F22](#s1f22---data-variable-namelist-reply) [F23](#s1f23r---collection-event-namelist-request) [F24](#s1f24---collection-event-namelist-reply) |
 | S2 | [F1](#s2f1---equipment-status-request) [F2](#s2f2---equipment-status-response) [F3](#s2f3---status-variable-value-request) [F4](#s2f4---status-variable-value-response) [F5](#s2f5---send-equipment-status) [F6](#s2f6---send-equipment-status-acknowledge) [F7](#s2f7---load-port-status-request) [F8](#s2f8---load-port-status-response) [F9](#s2f9---equipment-status-multi-block-inquire) [F10](#s2f10---equipment-status-multi-block-grant) [F11](#s2f11---equipment-status-multi-block) [F12](#s2f12---equipment-status-multi-block-acknowledge) [F13](#s2f13---equipment-constant-request) [F14](#s2f14---equipment-constant-response) [F15](#s2f15---new-equipment-constant-send) [F16](#s2f16---new-equipment-constant-acknowledge) [F17](#s2f17---date-and-time-request) [F18](#s2f18---date-and-time-response) [F19](#s2f19---recipe-body-request) [F20](#s2f20---recipe-body-response) [F21](#s2f21---recipe-body-send) [F22](#s2f22---recipe-body-acknowledge) [F23](#s2f23---trace-initialize-send) [F24](#s2f24---trace-initialize-acknowledge) [F25](#s2f25---loopback-diagnostic-request) [F26](#s2f26---loopback-diagnostic-response) [F27](#s2f27---initiate-processing-request) [F28](#s2f28---initiate-processing-acknowledge) [F29](#s2f29---equipment-constant-namelist-request) [F30](#s2f30---equipment-constant-namelist-response) [F31](#s2f31---date-and-time-set-request) [F32](#s2f32---date-and-time-set-response) [F33](#s2f33---define-report) [F34](#s2f34---define-report-acknowledge) [F35](#s2f35---link-event-report) [F36](#s2f36---link-event-report-acknowledge) [F37](#s2f37---enabledisable-event-report) [F38](#s2f38---enabledisable-event-report-acknowledge) [F39](#s2f39---status-variable-namelist-request) [F40](#s2f40---status-variable-namelist-response) [F41](#s2f41---host-command-send) [F42](#s2f42---host-command-acknowledge) [F43](#s2f43---reset-spooling-streams-and-functions) [F44](#s2f44---reset-spooling-acknowledge) [F45](#s2f45---define-variable-limit-attributes) [F46](#s2f46---define-variable-limit-attributes-acknowledge) [F47](#s2f47---variable-limit-attribute-request) [F48](#s2f48---variable-limit-attribute-response) [F49](#s2f49---enhanced-remote-command) [F50](#s2f50---enhanced-remote-command-acknowledge) [F51](#s2f51---request-report-identifiers) [F52](#s2f52---return-report-identifiers) [F53](#s2f53---request-report-definitions) [F54](#s2f54---return-report-definitions) [F55](#s2f55---request-event-report-links) [F56](#s2f56---return-event-report-links) [F57](#s2f57---request-enabled-events) [F58](#s2f58---return-enabled-events) [F59](#s2f59---request-spool-streams-and-functions) [F60](#s2f60---return-spool-streams-and-functions) [F61](#s2f61---request-trace-identifiers) [F62](#s2f62---return-trace-identifiers) [F63](#s2f63---request-trace-definitions) [F64](#s2f64---return-trace-definitions) |
 | S3 | [F1](#s3f1---material-status-request) [F2](#s3f2---material-status-data) [F3](#s3f3---time-to-completion-data) [F4](#s3f4---time-to-completion-data) [F5](#s3f5---material-found-send) [F6](#s3f6---material-found-acknowledge) [F7](#s3f7---material-lost-send) [F8](#s3f8---material-lost-ack) [F9](#s3f9---matl-id-equate-send) [F10](#s3f10---port-status-acknowledge) [F11](#s3f11---matl-id-request) [F12](#s3f12---matl-id-request-ack) [F13](#s3f13---matl-id-send) [F14](#s3f14---matl-id-ack) [F15](#s3f15---matls-multi-block-inquire) [F16](#s3f16---matls-multi-block-grant) [F17](#s3f17---carrier-action-request-extended) [F18](#s3f18---carrier-action-response-extended) [F19](#s3f19---port-action-request) [F20](#s3f20---cancel-all-carrier-out-ack) [F21](#s3f21---port-group-defn) [F22](#s3f22---port-group-defn-ack) [F23](#s3f23---port-group-action-req) [F24](#s3f24---port-group-action-ack) [F25](#s3f25---port-action-req) [F26](#s3f26---port-action-ack) [F27](#s3f27---change-access) [F28](#s3f28---change-access-ack) [F29](#s3f29---carrier-tag-read-req) [F30](#s3f30---carrier-tag-read-data) [F31](#s3f31---carrier-tag-write-data) [F32](#s3f32---carrier-tag-write-ack) [F33](#s3f33---cancel-all-pod-out-req) [F34](#s3f34---cancel-all-pod-out-ack) [F35](#s3f35---reticle-transfer-job-req) [F36](#s3f36---reticle-transfer-job-ack) |
 | S4 | [F1](#s4f1---ready-to-send-materials) [F2](#s4f2---ready-to-send-acknowledge) [F3](#s4f3---send-material) [F5](#s4f5---handshake-complete) [F7](#s4f7---not-ready-to-send) [F9](#s4f9---stuck-in-sender) [F11](#s4f11---stuck-in-receiver) [F13](#s4f13---send-incomplete-timeout) [F15](#s4f15---material-received) [F17](#s4f17---request-to-receive) [F18](#s4f18---request-to-receive-acknowledge) [F19](#s4f19---transfer-job-create) [F20](#s4f20---transfer-job-acknowledge) [F21](#s4f21---transfer-job-command) |
-| S5 | [F1](#s5f1---alarm-report-send) [F2](#s5f2---alarm-report-acknowledge) [F3](#s5f3---enabledisable-alarm-send) [F4](#s5f4---enabledisable-alarm-acknowledge) [F5](#s5f5---list-alarms-request) [F6](#s5f6---list-alarms-response) [F7](#s5f7---list-enabled-alarm-request) [F8](#s5f8---list-enabled-alarm-response) [F9](#s5f9---alarm-summary-request) [F10](#s5f10---alarm-summary-response) [F11](#s5f11---alarm-summary-send) [F12](#s5f12---alarm-summary-acknowledge) [F13](#s5f13---alarm-history-request) [F14](#s5f14---alarm-history-response) [F15](#s5f15---alarm-history-send) [F16](#s5f16---alarm-history-acknowledge) [F17](#s5f17---alarm-acknowledge-request) [F18](#s5f18---alarm-acknowledge-response) [F19](#s5f19---alarm-acknowledge-send) [F20](#s5f20---alarm-acknowledge-acknowledge) [F21](#s5f21---alarm-clear-request) [F22](#s5f22---alarm-clear-response) [F23](#s5f23---alarm-clear-send) [F24](#s5f24---alarm-clear-acknowledge) [F25](#s5f25---alarm-test-request) [F26](#s5f26---alarm-test-response) [F27](#s5f27---alarm-test-send) [F28](#s5f28---alarm-test-acknowledge) [F29](#s5f29---alarm-reset-request) [F30](#s5f30---alarm-reset-response) |
+| S5 | [F1](#s5f1---alarm-report-send) [F2](#s5f2---alarm-report-acknowledge) [F3](#s5f3---enabledisable-alarm-send) [F4](#s5f4---enabledisable-alarm-acknowledge) [F5](#s5f5---list-alarms-request) [F6](#s5f6---list-alarms-response) [F7](#s5f7---list-enabled-alarm-request) [F8](#s5f8---list-enabled-alarm-response) |
 | S6 | [F1](#s6f1---trace-data-send) [F2](#s6f2---trace-data-acknowledge) [F3](#s6f3---discrete-variable-data-send) [F4](#s6f4---discrete-variable-data-acknowledge) [F5](#s6f5---multi-block-data-send-inquire) [F6](#s6f6---multi-block-grant) [F7](#s6f7---data-transfer-request) [F8](#s6f8---data-transfer-data) [F9](#s6f9---formatted-variable-send) [F10](#s6f10---formatted-variable-acknowledge) [F11](#s6f11---event-report-send) [F12](#s6f12---event-report-acknowledge) [F13](#s6f13---annotated-event-report-send) [F14](#s6f14---annotated-event-report-acknowledge) [F15](#s6f15---event-report-request) [F16](#s6f16---event-report-data) [F17](#s6f17---annotated-event-report-request) [F18](#s6f18---annotated-event-report-data) [F19](#s6f19---individual-report-request) [F20](#s6f20---individual-report-data) [F21](#s6f21---annotated-individual-report-request) [F22](#s6f22---annotated-individual-report-data) [F23](#s6f23---request-or-purge-spooled-data) [F24](#s6f24---request-or-purge-spooled-data-acknowledge) [F25](#s6f25---notification-report-send) [F26](#s6f26---notification-report-acknowledge) [F27](#s6f27---trace-report-send) [F28](#s6f28---trace-report-acknowledge) [F29](#s6f29---trace-report-request) [F30](#s6f30---trace-report-data) |
 | S7 | [F1](#s7f1---process-program-load-inquire) [F2](#s7f2---process-program-load-grant) [F3](#s7f3---process-program-send) [F4](#s7f4---process-program-send-acknowledge) [F5](#s7f5---process-program-request) [F6](#s7f6---process-program-data) [F7](#s7f7---process-program-id-request) [F8](#s7f8---process-program-id-data) [F9](#s7f9---material-process-matrix-request) [F10](#s7f10---material-process-matrix-data) [F11](#s7f11---material-process-matrix-update-send) [F12](#s7f12---material-process-matrix-update-acknowledge) [F13](#s7f13---material-process-matrix-delete-entry-send) [F14](#s7f14---delete-material-process-matrix-entry-acknowledge) [F15](#s7f15---matrix-mode-select-send) [F16](#s7f16---matrix-mode-select-acknowledge) [F17](#s7f17---delete-process-program-send) [F18](#s7f18---delete-process-program-acknowledge) [F19](#s7f19---current-process-program-directory-request) [F20](#s7f20---current-process-program-data) [F21](#s7f21---process-capabilities-request) [F22](#s7f22---process-capabilities-data) [F23](#s7f23---formatted-process-program-send) [F24](#s7f24---formatted-process-program-acknowledge) [F25](#s7f25---formatted-process-program-request) [F26](#s7f26---formatted-process-program-data) [F27](#s7f27---process-program-verification-send) [F28](#s7f28---process-program-verification-acknowledge) [F29](#s7f29---process-program-verification-inquire) [F30](#s7f30---process-program-verification-grant) [F31](#s7f31---verification-request-send) [F32](#s7f32---verification-request-acknowledge) [F33](#s7f33---process-program-available-request) [F34](#s7f34---process-program-availability-data) [F35](#s7f35---process-program-for-mid-request) [F36](#s7f36---process-program-for-mid-data) [F37](#s7f37---large-process-program-send) [F38](#s7f38---large-process-program-send-acknowledge) [F39](#s7f39---large-formatted-process-program-send) [F40](#s7f40---large-formatted-process-program-acknowledge) [F41](#s7f41---large-process-program-request) [F42](#s7f42---large-process-program-request-acknowledge) [F43](#s7f43---large-formatted-process-program-request) [F44](#s7f44---large-formatted-process-program-request-acknowledge) |
 | S8 | [F1](#s8f1---boot-program-request) [F2](#s8f2---boot-program-data) [F3](#s8f3---executive-program-request) [F4](#s8f4---executive-program-data) |
-| S9 | [F1](#s9f1---unrecognized-device-id) [F2](#s9f2---unrecognized-device-id-acknowledge) [F3](#s9f3---unrecognized-stream-type) [F4](#s9f4---unrecognized-stream-type-acknowledge) [F5](#s9f5---unrecognized-function-type) [F6](#s9f6---unrecognized-function-type-acknowledge) [F7](#s9f7---illegal-data) [F8](#s9f8---illegal-data-acknowledge) [F9](#s9f9---transaction-timer-timeout) [F10](#s9f10---transaction-timer-timeout-acknowledge) [F11](#s9f11---data-too-long) [F12](#s9f12---data-too-long-acknowledge) [F13](#s9f13---conversation-timeout) [F14](#s9f14---conversation-timeout-acknowledge) [F15](#s9f15---invalid-command) [F16](#s9f16---invalid-command-acknowledge) [F17](#s9f17---invalid-parameter) [F18](#s9f18---invalid-parameter-acknowledge) [F19](#s9f19---invalid-data) [F20](#s9f20---invalid-data-acknowledge) [F21](#s9f21---invalid-format) [F22](#s9f22---invalid-format-acknowledge) [F23](#s9f23---invalid-sequence) [F24](#s9f24---invalid-sequence-acknowledge) [F25](#s9f25---invalid-timestamp) [F26](#s9f26---invalid-timestamp-acknowledge) [F27](#s9f27---invalid-status) [F28](#s9f28---invalid-status-acknowledge) [F29](#s9f29---invalid-version) [F30](#s9f30---invalid-version-acknowledge) |
+| S9 | [F1](#s9f1---unrecognized-device-id) [F3](#s9f3---unrecognized-stream-type) [F5](#s9f5---unrecognized-function-type) [F7](#s9f7---illegal-data) [F9](#s9f9---transaction-timer-timeout) [F11](#s9f11---data-too-long) [F13](#s9f13---conversation-timeout) |
 | S10 | [F1](#s10f1---terminal-request) [F2](#s10f2---terminal-response) [F3](#s10f3---terminal-display-single) [F5](#s10f5---terminal-display-multi-block) [F7](#s10f7---multi-block-not-allowed) [F9](#s10f9---broadcast-display-request) [F10](#s10f10---broadcast-display-acknowledge) |
-| S12 | [F1](#s12f1---map-setup-data-send) [F2](#s12f2---map-setup-data-acknowledge) [F3](#s12f3---map-setup-data-request) [F4](#s12f4---map-setup-data-response) [F5](#s12f5---map-transmit-inquire) [F6](#s12f6---map-transmit-grant) [F7](#s12f7---map-data-send) [F8](#s12f8---map-data-acknowledge) [F9](#s12f9---map-data-request) [F10](#s12f10---map-data-response) [F11](#s12f11---map-data-request-2) [F12](#s12f12---map-data-response-2) [F13](#s12f13---map-error-report) [F14](#s12f14---map-error-acknowledge) [F15](#s12f15---map-sample-send) [F16](#s12f16---map-sample-acknowledge) [F17](#s12f17---map-sample-request) [F18](#s12f18---map-sample-response) [F19](#s12f19---map-update-send) [F20](#s12f20---map-update-acknowledge) [F21](#s12f21---map-status-request) [F22](#s12f22---map-status-response) [F23](#s12f23---map-status-send) [F24](#s12f24---map-status-acknowledge) [F25](#s12f25---map-command-request) [F26](#s12f26---map-command-response) [F27](#s12f27---map-command-send) [F28](#s12f28---map-command-acknowledge) [F29](#s12f29---map-parameter-request) [F30](#s12f30---map-parameter-response) |
+| S12 | [F1](#s12f1---map-setup-data-send) [F2](#s12f2---map-setup-data-acknowledge) [F3](#s12f3---map-setup-data-request) [F4](#s12f4---map-setup-data-response) [F5](#s12f5---map-transmit-inquire) [F6](#s12f6---map-transmit-grant) [F7](#s12f7---map-data-send-type-1) [F8](#s12f8---map-data-ack-type-1) [F9](#s12f9---map-data-send-type-2) [F10](#s12f10---map-data-ack-type-2) [F11](#s12f11---map-data-send-type-3) [F12](#s12f12---map-data-ack-type-3) [F13](#s12f13---map-data-request-type-1) [F14](#s12f14---map-data-type-1) [F15](#s12f15---map-data-request-type-2) [F16](#s12f16---map-data-type-2) [F17](#s12f17---map-data-request-type-3) [F18](#s12f18---map-data-type-3) [F19](#s12f19---map-error-report-send) [F20](#s12f20---map-error-report-ack) [F21](#s12f21---map-status-request) [F22](#s12f22---map-status-response) [F23](#s12f23---map-status-send) [F24](#s12f24---map-status-acknowledge) [F25](#s12f25---map-command-request) [F26](#s12f26---map-command-response) [F27](#s12f27---map-command-send) [F28](#s12f28---map-command-acknowledge) [F29](#s12f29---map-parameter-request) [F30](#s12f30---map-parameter-response) |
 | S13 | [F1](#s13f1---send-data-set-send) [F2](#s13f2---send-data-set-ack) [F3](#s13f3---open-data-set-request) [F4](#s13f4---open-data-set-data) [F5](#s13f5---read-data-set-request) [F6](#s13f6---read-data-set-data) [F7](#s13f7---close-data-set-send) [F8](#s13f8---close-data-set-ack) [F9](#s13f9---reset-data-set-send) [F10](#s13f10---reset-data-set-ack) [F11](#s13f11---data-set-obj-multi-block-inquire) [F12](#s13f12---data-set-obj-multi-block-grant) [F13](#s13f13---table-data-send) [F14](#s13f14---table-data-ack) [F15](#s13f15---table-data-request) [F16](#s13f16---table-data) |
 | S14 | [F1](#s14f1---get-attributes-request) [F2](#s14f2---attribute-data) [F3](#s14f3---set-attributes) [F4](#s14f4---set-attributes-reply) [F5](#s14f5---get-type-data) [F6](#s14f6---type-data) [F7](#s14f7---get-attribute-names) [F8](#s14f8---attribute-names) [F9](#s14f9---create-obj-request) [F10](#s14f10---create-obj-ack) [F11](#s14f11---delete-obj-request) [F12](#s14f12---delete-obj-ack) [F13](#s14f13---object-attach-request) [F14](#s14f14---object-attach-ack) [F15](#s14f15---attached-obj-action-req) [F16](#s14f16---attached-obj-action-ack) [F17](#s14f17---supervised-obj-action-req) [F18](#s14f18---supervised-obj-action-ack) [F19](#s14f19---generic-service-req) [F20](#s14f20---generic-service-ack) [F21](#s14f21---generic-service-completion) [F22](#s14f22---generic-service-comp-ack) [F23](#s14f23---multi-block-generic-service-inquire) [F24](#s14f24---multi-block-generic-service-grant) [F25](#s14f25---service-name-request) [F26](#s14f26---service-name-data) [F27](#s14f27---service-parameter-name-req) [F28](#s14f28---service-parameter-name-data) |
 | S15 | [F1](#s15f1---recipe-management-multi-block-inquire) [F2](#s15f2---recipe-management-multi-block-grant) [F3](#s15f3---recipe-namespace-action-req) [F4](#s15f4---recipe-namespace-action) [F5](#s15f5---recipe-namespace-rename-req) [F6](#s15f6---recipe-namespace-rename-ack) [F7](#s15f7---recipe-space-req) [F8](#s15f8---recipe-space-data) [F9](#s15f9---recipe-status-request) [F10](#s15f10---recipe-status-data) [F11](#s15f11---recipe-version-request) [F12](#s15f12---recipe-version-data) [F13](#s15f13---recipe-create-req) [F14](#s15f14---recipe-create-ack) [F15](#s15f15---recipe-store-req) [F16](#s15f16---recipe-store-ack) [F17](#s15f17---recipe-retrieve-req) [F18](#s15f18---recipe-retrieve-data) [F19](#s15f19---recipe-rename-req) [F20](#s15f20---recipe-rename-ack) [F21](#s15f21---recipe-action-req) [F22](#s15f22---recipe-action-ack) [F23](#s15f23---recipe-descriptor-req) [F24](#s15f24---recipe-descriptor-data) [F25](#s15f25---recipe-parameter-update-req) [F26](#s15f26---recipe-parameter-update-ack) [F27](#s15f27---recipe-download-req) [F28](#s15f28---recipe-download-ack) [F29](#s15f29---recipe-verify-req) [F30](#s15f30---recipe-verify-ack) [F31](#s15f31---recipe-unload-req) [F32](#s15f32---recipe-unload-data) [F33](#s15f33---recipe-select-req) [F34](#s15f34---recipe-select-ack) [F35](#s15f35---recipe-delete-req) [F36](#s15f36---recipe-delete-ack) [F37](#s15f37---drns-segment-approve-action-req) [F38](#s15f38---drns-segment-approve-action-ack) [F39](#s15f39---drns-recorder-seg-req) [F40](#s15f40---drns-recorder-seg-ack) [F41](#s15f41---drns-recorder-mod-req) [F42](#s15f42---drns-recorder-mod-ack) [F43](#s15f43---drns-get-change-req) [F44](#s15f44---drns-get-change-ack) [F45](#s15f45---drns-mgr-seg-aprvl-req) [F46](#s15f46---drns-mgr-seg-aprvl-ack) [F47](#s15f47---drns-mgr-rebuild-req) [F48](#s15f48---drns-mgr-rebuild-ack) [F49](#s15f49---large-recipe-download-req) [F50](#s15f50---large-recipe-download-ack) [F51](#s15f51---large-recipe-upload-req) [F52](#s15f52---large-recipe-upload-ack) [F53](#s15f53---recipe-verification-send) [F54](#s15f54---recipe-verification-ack) |
@@ -33,41 +34,6 @@
 | S21 | [F1](#s21f1---material-transfer-plan) [F2](#s21f2---material-transfer-plan-response) [F3](#s21f3---item-send) [F4](#s21f4---item-send-acknowledge) [F5](#s21f5---item-request) [F6](#s21f6---item-data) [F7](#s21f7---item-type-list-request) [F8](#s21f8---item-type-list-results) [F9](#s21f9---supported-item-type-list-request) [F10](#s21f10---supported-item-type-list-result) [F11](#s21f11---item-delete) [F12](#s21f12---item-delete-acknowledge) [F13](#s21f13---request-permission-to-send-item) [F14](#s21f14---grant-permission-to-send-item) [F15](#s21f15---item-request) [F16](#s21f16---item-request-grant) [F17](#s21f17---send-item-part) [F18](#s21f18---send-item-part-acknowledge) [F19](#s21f19---item-type-feature-support) [F20](#s21f20---item-type-feature-support-results) |
 
 
-## Overview
-
-**SECS/GEM** (Semiconductor Equipment Communications Standard/Generic Equipment Model) is a comprehensive communication protocol suite specifically designed for semiconductor manufacturing equipment. Developed by SEMI (Semiconductor Equipment and Materials International), it provides standardized methods for equipment communication, control, and data collection in semiconductor fabrication facilities.
-
-## Core Communication Concepts
-
-SECS defines a standardized communication protocol for semiconductor manufacturing equipment, enabling consistent equipment integration and automation through stream and function organization, where streams (S1-S127) categorize message types by functionality and functions (F1-F255) define specific operations within each stream.
-
-## SECS-II Data Format {#secs-ii-data-format}
-
-SECS-II defines a comprehensive data format specification for message structure and data representation in semiconductor equipment communication. The format supports hierarchical data organization through nested lists and various data types.
-
-### Data Types
-
-#### Numeric Data Types
-- **U1**: 1-byte unsigned integer (0-255)
-- **U2**: 2-byte unsigned integer (0-65535)
-- **U4**: 4-byte unsigned integer (0-4294967295)
-- **U8**: 8-byte unsigned integer
-- **I1**: 1-byte signed integer (-128 to 127)
-- **I2**: 2-byte signed integer (-32768 to 32767)
-- **I4**: 4-byte signed integer (-2147483648 to 2147483647)
-- **I8**: 8-byte signed integer
-- **F4**: 4-byte floating point (IEEE 754 single precision)
-- **F8**: 8-byte floating point (IEEE 754 double precision)
-
-#### Text and Binary Data Types
-- **A**: ASCII text string (printable characters)
-- **B**: Binary data (raw bytes)
-- **J**: JIS-8 Japanese text string
-- **U**: Unicode text string
-
-#### Structured Data Types
-- **L**: List (container for multiple items)
-- **BOOLEAN**: Boolean value (TRUE/FALSE)
 
 ### Message Structure
 
@@ -79,79 +45,22 @@ SECS-II defines a comprehensive data format specification for message structure 
   ...
   item_n
 }
-```
 
-```
-```
+or
 
-- **L[n]**: List containing n items
-- **item**: Individual data element of any supported type
-
-#### Nested Lists
-Lists can contain other lists, creating hierarchical data structures:
-```
-{L[2]
-  {L[3]
-    item_1_1
-    item_1_2
-    item_1_3
-  }
-  {L[2]
-    item_2_1
-    item_2_2
-  }
+{L[n]
+  GET(group_name.message_name1)
+  GET(group_name.message_name2)
+  ...
+  GET(group_name.message_name[n])
 }
 ```
+ 
+- **L[n]**: List containing n items
+- **item**: Individual data element of any supported type
+ 
 
-#### Empty Data
-- **Empty Message**: No data content
-- **Empty List**: `{L:0}` - List with zero items
-
-### Data Encoding
-
-#### Length Encoding
-Each data item includes:
-1. **Format Code**: 1 byte specifying data type
-2. **Length**: Variable length field (1-4 bytes)
-3. **Data**: Actual data content
-
-#### Format Code Structure
-- **Bits 7-2**: Data type identifier
-- **Bits 1-0**: Length field size (0-3 bytes)
-
-#### Example Encodings
-```
-ASCII String "HELLO":
--  0x41 (ASCII, 1-byte length)
-- Length: 0x05 (5 characters)
-- Data: 0x48 0x45 0x4C 0x4C 0x4F
-
-U2 Value 1000:
--  0xA9 (U2, 2-byte length)
-- Length: 0x00 0x02 (2 bytes)
-- Data: 0x03 0xE8 (1000 in big-endian)
-
-List with 2 items:
--  0x01 (List, 1-byte length)
-- Length: 0x02 (2 items)
-- Data: [encoded items]
-```
-
-### Message Validation
-
-#### Requirements
-- All numeric data must be in big-endian (network) byte order
-- ASCII strings must contain only printable characters (0x20-0x7E)
-- Lists must accurately specify item count
-- Message structure must match stream/function specification
-
-#### Error Conditions
-- Invalid data type for message context
-- Incorrect data length
-- Malformed list structure
-- Character encoding violations
-
-## Stream Definitions
+## **Script Stream Definitions** {#script-stream-definitions}
 
 ### Stream 1: Equipment Status
 **Purpose**: Equipment state information and basic communication
@@ -183,206 +92,508 @@ List with 2 items:
 | [S1F23](#s1f23r---collection-event-namelist-request)   | → Equipment | Collection Event Namelist Request |
 | [S1F24](#s1f24---collection-event-namelist-reply)   | ← Equipment | Collection Event Namelist Reply |
 
+
 #### **S1F1 - Are You There (Request)** {#s1f1---are-you-there-request}
+
 ```
+<-S1F1 or S1F1->
 {}
 ```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| Empty | - | Empty list (header only message) |
+ 
+
+---
 
 #### **S1F2 - Are You There (Response)** {#s1f2---are-you-there-response}
-```
-{} 
-or
-{L:0}
-```
 
-#### **S1F3 - Selected Equipment Status Request** {#s1f3r---selected-equipment-status-request}	
-```
-  {L[n]
-    SVID
-  }
-```
 
-#### **S1F4	Selected Equipment Status Data** {#s1f4---selected-equipment-status-data}
-``` 
-{L[n]
-  SV
-} 
 ```
-
-#### **S1F5	Formatted Status Request** {#s1f5r---formatted-status-request}
-``` 
-SFCD
-```
-
-#### **S1F6	Formatted Status Data** {#s1f6---formatted-status-data}
-```
-{L[n]
-  SV
+S1F2-> or <-S1F2
+{L:2
+  MDLN    // Equipment model name
+  SOFTREV // Software revision
 }
 ```
 
-#### **S1F7	Fixed Form Request** {#s1f7---fixed-form-request} 
-```
-SFCD
-```
+**Parameters**:
 
-#### **S1F8	Fixed Form Data** {#s1f8---fixed-form-data}
-
-```
-{L[n]
-  {L[2]
-  SVNAME
-  SV0
-  }
-}
-```
-
-#### **S1F9	Material Transfer Status Request** {#s1f9r---material-transfer-status-request} 
-```
-{}
-
-```
-#### **S1F10	Material Transfer Status Data** {#s1f10---material-transfer-status-data} 
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| MDLN | ASCII | Equipment model name |
+| SOFTREV | ASCII | Software revision |
  
+---
+
+#### **S1F3 - Selected Equipment Status Request** {#s1f3r---selected-equipment-status-request}
+  
 ```
-{L[2]
-  TSIP
-  TSOP
+<-S1F3
+{L:n
+  SVID    // Status Variable ID list
 }
 ```
 
-#### **S1F11	Status Variable Namelist Request** {#s1f11r---status-variable-namelist-request}	 
+**Parameters**:
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| SVID | List | List of Status Variable IDs to request |
+
+ 
+---
+
+#### **S1F4 - Selected Equipment Status Data** {#s1f4---selected-equipment-status-data}
 
 ```
-{L[n]
-  SVID
+S1F4->
+{L:n
+  SV      // Status Variable values
 }
 ```
 
-#### **S1F12	Status Variable Namelist Reply** {#s1f12---status-variable-namelist-reply}	
+**Parameters**:
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| SV | List | Status variable values corresponding to requested SVIDs |
+
+**Note**: Zero length values are returned for unknown SVIDs.
+
+---
+
+#### **S1F5R - Formatted Status Request** {#s1f5r---formatted-status-request}
 
 ```
-{L[n]
-  {L[3]
-    SVID
-    SVNAME
-    UNITS
+<-S1F5
+SFCD     // Status Format Code
+```
+
+**Parameters**:
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| SFCD | U1/U2/U4/A | Status Format Code defining the requested format |
+
+---
+
+#### **S1F6 - Formatted Status Data** {#s1f6---formatted-status-data}
+
+```
+S1F6->
+{L:n
+  SV      // Status Variable values
+}
+```
+
+**Parameters**:
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| SV | List | Formatted status variable values |
+
+**Note**: Message structure varies by implementation and is superseded by dynamic reports.
+
+---
+
+#### **S1F7 - Fixed Form Request** {#s1f7---fixed-form-request}
+
+```
+<-S1F7
+SFCD     // Status Format Code
+```
+
+**Parameters**:
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| SFCD | U1/U2/U4/A | Status Format Code for fixed format |
+
+---
+
+#### **S1F8 - Fixed Form Data** {#s1f8---fixed-form-data}
+
+```
+S1F8->
+{L:n
+  {L:2
+    SVNAME // Status Variable Name
+    SV0    // Status Variable Value
   }
 }
 ```
 
-#### **S1F13R	Establish Communications Request** {#s1f13r---establish-communications-request}
+**Parameters**:
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| SVNAME | ASCII | Status Variable Name |
+| SV0 | Various | Status Variable Value |
+
+---
+
+#### **S1F9R - Material Transfer Status Request** {#s1f9r---material-transfer-status-request}
 
 ```
+<-S1F9
+Header only
+```
 
-P->
-{L[2]
-  MDLN
-  SOFTREV
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| Empty | - | Header only message |
+
+
+---
+
+#### **S1F10 - Material Transfer Status Data** {#s1f10---material-transfer-status-data}
+
+```
+S1F10->
+{L:2
+  TSIP    // Transfer Status Input Ports
+  TSOP    // Transfer Status Output Ports
 }
+```
 
-A->
-L[0]
+**Parameters**:
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TSIP | List | Transfer Status Input Ports |
+| TSOP | List | Transfer Status Output Ports |
+
+**Note**: An L:0 reply can be sent if there are no material ports.
+
+---
+
+#### **S1F11R - Status Variable Namelist Request** {#s1f11r---status-variable-namelist-request}
 
 ```
-#### **S1F14	Establish Communications Request Acknowledge** {#s1f14---establish-communications-request-acknowledge}
+<-S1F11
+{L:n
+  SVID    // Status Variable ID list
+}
+```
+
+**Parameters**:
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| SVID | List | List of Status Variable IDs (L:0 requests all SVIDs) |
+
+**Usage**: Host requests information about available status variables.
+
+---
+
+#### **S1F12 - Status Variable Namelist Reply** {#s1f12---status-variable-namelist-reply}
 
 ```
-P->
-{L[2]
-  COMMACK
-  {L[2]
-    MDLN
-    SOFTREV
+S1F12->
+{L:n
+  {L:3
+    SVID    // Status Variable ID
+    SVNAME  // Status Variable Name
+    UNITS   // Units of measurement
   }
 }
+```
 
-A->
-{L[2]
-  COMMACK
+**Parameters**:
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| SVID | U1/U2/U4 | Status Variable ID |
+| SVNAME | ASCII | Status Variable Name |
+| UNITS | ASCII | Units of measurement |
+
+**Note**: A:0 for SVNAME and UNITS indicates unknown SVID.
+
+---
+
+#### **S1F13R - Establish Communications Request** {#s1f13r---establish-communications-request}
+
+**Equipment Send Format**:
+```
+S1F13-> or <-S1F13
+{L:2
+  MDLN    // Equipment model name
+  SOFTREV // Software revision
+}
+```
+
+**Host Send Format**:
+```
+<-S1F13
+L:0
+```
+
+**Parameters**:
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| MDLN | ASCII | Equipment model name |
+| SOFTREV | ASCII | Software revision |
+
+**Usage**: Initial communication establishment between host and equipment.
+
+---
+
+#### **S1F14 - Establish Communications Request Acknowledge** {#s1f14---establish-communications-request-acknowledge}
+
+**Equipment Send Format**:
+```
+S1F14-> or <-S1F14
+{L:2
+  COMMACK // Communication Acknowledge
+  {L:2
+    MDLN    // Equipment model name
+    SOFTREV // Software revision
+  }
+}
+```
+
+**Host Send Format**:
+```
+S1F14-> or <-S1F14
+{L:2
+  COMMACK // Communication Acknowledge
   L:0
 }
 ```
-#### **S1F15R	Request OFF-LINE** {#s1f15r---request-offline}	
-```
-{}
-```
-#### **S1F16	OFF-LINE Acknowledge** {#s1f16---offline-acknowledge}	
-```
-OFLACK
-```
-#### **S1F17R	Request ON-LINE** {#s1f17r---request-online}	
-```
-{}
-```
-#### **S1F18	ON-LINE Acknowledge** {#s1f18---online-acknowledge}	
-```
-ONLACK
-```
-#### **S1F19R	Get Attribute** {#s1f19r---get-attribute}	
-```
-{L[3]
-  OBJTYPE
-  {L[n]
-    OBJID
-  }
-  {L[n]
-    ATTRID
-  }
-}
-```
-#### **S1F20	Attribute Data** {#s1f20---attribute-data}	
-```
-{L[2]
-  {L[n]
-    {L[n]
-    ATTRDATA
-    }
-    }
-    {L[n]
-    {L[2]
-      ERRCODE
-      ERRTEXT
-    }
-  }
-}
-```
-#### **S1F21R	Data Variable Namelist Request** {#s1f21r---data-variable-namelist-request}	
-```
-{L[n]
-  VID
-}
-```
-#### **S1F22	Data Variable Namelist Reply** {#s1f22---data-variable-namelist-reply}	
+
+**Parameters**:
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| COMMACK | U1/U2/U4 | Communication Acknowledge code |
+| MDLN | ASCII | Equipment model name |
+| SOFTREV | ASCII | Software revision |
+
+**Note**: MDLN and SOFTREV may not be valid unless COMMACK value is 0.
+
+---
+
+#### **S1F15R - Request OFF-LINE** {#s1f15r---request-offline}
 
 ```
-{L[n]
-  {L[3]
-    VID
-    DVVALNAME
-    UNITS
-  }
-}
+<-S1F15
+Header only
+```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| Empty | - | Header only message |
+
+**Usage**: Host requests equipment to enter offline state.
+
+---
+
+#### **S1F16 - OFF-LINE Acknowledge** {#s1f16---offline-acknowledge}
+
+**Direction**: Equipment → Host  
+**Description**: Acknowledge offline request
 
 ```
-#### **S1F23R	Collection Event Namelist Request** {#s1f23r---collection-event-namelist-request}
+S1F16->
+OFLACK   // Offline Acknowledge
 ```
-{L[n]
-  CEID
+
+**Parameters**:
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| OFLACK | U1/U2/U4 | Offline Acknowledge code |
+
+---
+
+#### **S1F17R - Request ON-LINE** {#s1f17r---request-online}
+
+```
+<-S1F17
+Header only
+```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| Empty | - | Header only message |
+
+**Usage**: Host requests equipment to enter online state.
+
+---
+
+#### **S1F18 - ON-LINE Acknowledge** {#s1f18---online-acknowledge}
+
+```
+S1F18->
+ONLACK   // Online Acknowledge
+```
+
+**Parameters**:
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ONLACK | U1/U2/U4 | Online Acknowledge code |
+
+---
+
+#### **S1F19R - Get Attribute** {#s1f19r---get-attribute}
+
+```
+<-S1F19
+{L:3
+  OBJTYPE // Object Type
+  {L:m
+    OBJID  // Object ID list
+  }
+  {L:n
+    ATTRID // Attribute ID list
+  }
 }
 ```
-#### **S1F24	Collection Event Namelist Reply** {#s1f24---collection-event-namelist-reply}
+
+**Parameters**:
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| OBJTYPE | U1/U2/U4/A | Object Type |
+| OBJID | List | Object ID list |
+| ATTRID | List | Attribute ID list |
+
+**Note**: L:m = L:0 for all objects, L:n = L:0 for all attributes.
+
+---
+
+#### **S1F20 - Attribute Data** {#s1f20---attribute-data}
+
 ```
-{L[n]
-  {L[3]
-    CEID
-    CENAME
-    {L[n]
-     VID
+S1F20->
+{L:2
+  {L:m
+    {L:n
+      ATTRDATA // Attribute Data
+    }
+  }
+  {L[p]
+    {L:2
+      ERRCODE  // Error Code
+      ERRTEXT  // Error Text
     }
   }
 }
 ```
+
+**Parameters**:
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ATTRDATA | Various | Attribute Data |
+| ERRCODE | U1/U2/U4/A | Error Code |
+| ERRTEXT | ASCII | Error Text |
+
+**Note**: Ordered per request. m=0 means OBJTYPE unknown, n=0 means instance not found.
+
+---
+
+#### **S1F21R - Data Variable Namelist Request** {#s1f21r---data-variable-namelist-request}
+
+```
+<-S1F21
+{L:n
+  VID     // Variable ID list
+}
+```
+
+**Parameters**:
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| VID | List | Variable ID list (L:0 requests all DVVALs) |
+
+**Note**: VIDs are limited to DVVAL variables only.
+
+---
+
+#### **S1F22 - Data Variable Namelist Reply** {#s1f22---data-variable-namelist-reply}
+
+```
+S1F22->
+{L:n
+  {L:3
+    VID        // Variable ID
+    DVVALNAME  // Data Variable Name
+    UNITS      // Units of measurement
+  }
+}
+```
+
+**Parameters**:
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| VID | U1/U2/U4 | Variable ID |
+| DVVALNAME | ASCII | Data Variable Name |
+| UNITS | ASCII | Units of measurement |
+
+**Note**: A:0 for DVVALNAME and UNITS indicates unknown VID or that VID is not a DVVAL.
+
+---
+
+#### **S1F23R - Collection Event Namelist Request** {#s1f23r---collection-event-namelist-request}
+
+```
+<-S1F23
+{L:n
+  CEID    // Collection Event ID list
+}
+```
+
+**Parameters**:
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| CEID | List | Collection Event ID list (L:0 implies all CEIDs) |
+
+**Usage**: Host requests information about available collection events.
+
+---
+
+#### **S1F24 - Collection Event Namelist Reply** {#s1f24---collection-event-namelist-reply}
+
+```
+S1F24->
+{L:n
+  {L:3
+    CEID   // Collection Event ID
+    CENAME // Collection Event Name
+    {L:a
+      VID   // Variable ID list
+    }
+  }
+}
+```
+
+**Parameters**:
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| CEID | U1/U2/U4 | Collection Event ID |
+| CENAME | ASCII | Collection Event Name |
+| VID | List | Associated Variable ID list |
+
+**Note**: Only associated DVVAL VIDs are listed. A:0 for CENAME and L:0 for L:a indicates non-existent CEID.
+
+
 ### Stream 2: Equipment Control and Diagnostics
 **Purpose**: Equipment configuration and diagnostic operations
 
@@ -438,23 +649,24 @@ ONLACK
 | [S2F48](#s2f48---variable-limit-attribute-response)   | ← Equipment | Variable Limit Attribute Response |
 | [S2F49](#s2f49---enhanced-remote-command)   | → Equipment | Enhanced Remote Command |
 | [S2F50](#s2f50---enhanced-remote-command-acknowledge)   | ← Equipment | Enhanced Remote Command Acknowledge |
-| [S2F51](#s2f51---automated-substrate-mapping)   | → Equipment | Automated Substrate Mapping |
-| [S2F52](#s2f52---automated-substrate-mapping-acknowledge)   | ← Equipment | Automated Substrate Mapping Acknowledge |
-| [S2F53](#s2f53---enhanced-define-report)   | → Equipment | Enhanced Define Report |
-| [S2F54](#s2f54---enhanced-define-report-acknowledge)   | ← Equipment | Enhanced Define Report Acknowledge |
-| [S2F55](#s2f55---enhanced-link-event-report)   | → Equipment | Enhanced Link Event Report |
-| [S2F56](#s2f56---enhanced-link-event-report-acknowledge)   | ← Equipment | Enhanced Link Event Report Acknowledge |
-| [S2F57](#s2f57---enhanced-enabledisable-event-report)   | → Equipment | Enhanced Enable/Disable Event Report |
-| [S2F58](#s2f58---enhanced-enabledisable-event-report-acknowledge)   | ← Equipment | Enhanced Enable/Disable Event Report Acknowledge |
-| [S2F59](#s2f59---formatted-process-program-send)   | → Equipment | Formatted Process Program Send |
-| [S2F60](#s2f60---formatted-process-program-acknowledge)   | ← Equipment | Formatted Process Program Acknowledge |
-| [S2F61](#s2f61---formatted-process-program-request)   | → Equipment | Formatted Process Program Request |
-| [S2F62](#s2f62---formatted-process-program-response)   | ← Equipment | Formatted Process Program Response |
-| [S2F63](#s2f63---define-object)   | → Equipment | Define Object |
-| [S2F64](#s2f64---define-object-acknowledge)   | ← Equipment | Define Object Acknowledge |
+| [S2F51](#s2f51---request-report-identifiers)   | → Equipment | Request Report Identifiers |
+| [S2F52](#s2f52---return-report-identifiers)   | ← Equipment | Return Report Identifiers |
+| [S2F53](#s2f53---request-report-definitions)   | → Equipment | Request Report Definitions |
+| [S2F54](#s2f54---return-report-definitions)   | ← Equipment | Return Report Definitions |
+| [S2F55](#s2f55---request-event-report-links)   | → Equipment | Request Event Report Links |
+| [S2F56](#s2f56---return-event-report-links)   | ← Equipment | Return Event Report Links |
+| [S2F57](#s2f57---request-enabled-events)   | → Equipment | Request Enabled Events |
+| [S2F58](#s2f58---return-enabled-events)   | ← Equipment | Return Enabled Events |
+| [S2F59](#s2f59---request-spool-streams-and-functions)   | → Equipment | Request Spool Streams and Functions |
+| [S2F60](#s2f60---return-spool-streams-and-functions)   | ← Equipment | Return Spool Streams and Functions |
+| [S2F61](#s2f61---request-trace-identifiers)   | → Equipment | Request Trace Identifiers |
+| [S2F62](#s2f62---return-trace-identifiers)   | ← Equipment | Return Trace Identifiers |
+| [S2F63](#s2f63---request-trace-definitions)   | → Equipment | Request Trace Definitions |
+| [S2F64](#s2f64---return-trace-definitions)   | ← Equipment | Return Trace Definitions |
 
 #### **S2F1 - Equipment Status Request** {#s2f1---equipment-status-request}
 ```
+<-S2F1
 {L[n]
   SVID_1
   SVID_2
@@ -464,11 +676,14 @@ ONLACK
 ```
 
 **Parameters:**
-- SVID: Status Variable ID (U1, U2, U4, or A)
 
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| SVID | U1/U2/U4/A | Status Variable ID |
 
 #### **S2F2 - Equipment Status Response** {#s2f2---equipment-status-response}
 ```
+S2F2->
 {L[n]
   SV_1
   SV_2
@@ -478,11 +693,15 @@ ONLACK
 ```
 
 **Parameters:**
-- SV: Status Variable Value (corresponding to SVID in S2F1)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| SV | Various | Status Variable Value (corresponding to SVID in S2F1) |
 
 
 #### **S2F3 - Status Variable Value Request** {#s2f3---status-variable-value-request}
 ```
+<-S2F3
 {L[n]
   SVID_1
   SVID_2
@@ -492,11 +711,15 @@ ONLACK
 ```
 
 **Parameters:**
-- SVID: Status Variable ID (U1, U2, U4, or A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| SVID | U1/U2/U4/A | Status Variable ID |
 
 
 #### **S2F4 - Status Variable Value Response** {#s2f4---status-variable-value-response}
 ```
+S2F4->
 {L[n]
   SV_1
   SV_2
@@ -506,11 +729,15 @@ ONLACK
 ```
 
 **Parameters:**
-- SV: Status Variable Value (corresponding to SVID in S2F3)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| SV | Various | Status Variable Value (corresponding to SVID in S2F3) |
 
 
 #### **S2F5 - Send Equipment Status** {#s2f5---send-equipment-status}
 ```
+S2F5->
 {L[n]
   SV_1
   SV_2
@@ -520,29 +747,41 @@ ONLACK
 ```
 
 **Parameters:**
-- SV: Status Variable Value (U1, U2, U4, or A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| SV | U1/U2/U4/A | Status Variable Value |
 
 
 #### **S2F6 - Send Equipment Status Acknowledge** {#s2f6---send-equipment-status-acknowledge}
 ```
+<-S2F6
 {}
 ```
 
 **Parameters:**
-- Empty list (acknowledgment)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| Empty | - | Empty list (acknowledgment) |
 
 
 #### **S2F7 - Load Port Status Request** {#s2f7---load-port-status-request}
 ```
+<-S2F7
 {}
 ```
 
 **Parameters:**
-- Empty list (request for all load port status)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| Empty | - | Empty list (request for all load port status) |
 
 
 #### **S2F8 - Load Port Status Response** {#s2f8---load-port-status-response}
 ```
+S2F8->
 {L[n]
   {L[2]
     PORTID
@@ -552,12 +791,16 @@ ONLACK
 ```
 
 **Parameters:**
-- PORTID: Port Identifier (U1, U2, U4, or A)
-- PORTSTATUS: Port Status (U1, U2, U4, or A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| PORTID | U1/U2/U4/A | Port Identifier |
+| PORTSTATUS | U1/U2/U4/A | Port Status |
 
 
 #### **S2F9 - Equipment Status Multi-Block Inquire** {#s2f9---equipment-status-multi-block-inquire}
 ```
+<-S2F9
 {L[n]
   SVID_1
   SVID_2
@@ -567,20 +810,28 @@ ONLACK
 ```
 
 **Parameters:**
-- SVID: Status Variable ID (U1, U2, U4, or A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| SVID | U1/U2/U4/A | Status Variable ID |
 
 
 #### **S2F10 - Equipment Status Multi-Block Grant** {#s2f10---equipment-status-multi-block-grant}
 ```
+S2F10->
 GRANT
 ```
 
 **Parameters:**
-- GRANT: Grant permission for multi-block transfer
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| GRANT | U1/U2/U4/A | Grant permission for multi-block transfer |
 
 
 #### **S2F11 - Equipment Status Multi-Block** {#s2f11---equipment-status-multi-block}
 ```
+S2F11->
 {L[n]
   SV_1
   SV_2
@@ -590,7 +841,10 @@ GRANT
 ```
 
 **Parameters:**
-- SV: Status Variable Value (corresponding to SVID in S2F9)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| SV | Various | Status Variable Value (corresponding to SVID in S2F9) |
 
 
 #### **S2F12 - Equipment Status Multi-Block Acknowledge** {#s2f12---equipment-status-multi-block-acknowledge}
@@ -599,7 +853,10 @@ GRANT
 ```
 
 **Parameters:**
-- Empty list (acknowledgment)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| Empty | - | Empty list (acknowledgment) |
 
 
 #### **S2F13 - Equipment Constant Request** {#s2f13---equipment-constant-request}
@@ -613,7 +870,10 @@ GRANT
 ```
 
 **Parameters:**
-- ECID: Equipment Constant ID (U1, U2, U4, or A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ECID | U1/U2/U4/A | Equipment Constant ID |
 
 
 #### **S2F14 - Equipment Constant Response** {#s2f14---equipment-constant-response}
@@ -627,7 +887,10 @@ GRANT
 ```
 
 **Parameters:**
-- ECV: Equipment Constant Value (corresponding to ECID in S2F13)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ECV | Various | Equipment Constant Value (corresponding to ECID in S2F13) |
 
 
 #### **S2F15 - New Equipment Constant Send** {#s2f15---new-equipment-constant-send}
@@ -650,8 +913,11 @@ GRANT
 ```
 
 **Parameters:**
-- ECID: Equipment Constant ID (U1, U2, U4, or A)
-- ECV: Equipment Constant Value (U1, U2, U4, or A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ECID | U1/U2/U4/A | Equipment Constant ID |
+| ECV | U1/U2/U4/A | Equipment Constant Value |
 
 
 #### **S2F16 - New Equipment Constant Acknowledge** {#s2f16---new-equipment-constant-acknowledge}
@@ -660,7 +926,10 @@ EAC
 ```
 
 **Parameters:**
-- EAC: Equipment Acknowledge Code (U1, U2, U4, or A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| EAC | U1/U2/U4/A | Equipment Acknowledge Code |
 
 
 #### **S2F17 - Date and Time Request** {#s2f17---date-and-time-request}
@@ -669,7 +938,10 @@ EAC
 ```
 
 **Parameters:**
-- Empty list (request for current date and time)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| - | - | Empty list (request for current date and time) |
 
 
 #### **S2F18 - Date and Time Response** {#s2f18---date-and-time-response}
@@ -678,7 +950,10 @@ TIME
 ```
 
 **Parameters:**
-- TIME: Date and Time value (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TIME | A | Date and Time value |
 
 
 #### **S2F19 - Recipe Body Request** {#s2f19---recipe-body-request}
@@ -690,8 +965,11 @@ TIME
 ```
 
 **Parameters:**
-- RCMD: Recipe Command (A)
-- RPARM: Recipe Parameter (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| RCMD | A | Recipe Command |
+| RPARM | A | Recipe Parameter |
 
 
 #### **S2F20 - Recipe Body Response** {#s2f20---recipe-body-response}
@@ -703,8 +981,11 @@ TIME
 ```
 
 **Parameters:**
-- RCMD: Recipe Command (A)
-- RPARM: Recipe Parameter (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| RCMD | A | Recipe Command |
+| RPARM | A | Recipe Parameter |
 
 
 #### **S2F21 - Recipe Body Send** {#s2f21---recipe-body-send}
@@ -716,8 +997,11 @@ TIME
 ```
 
 **Parameters:**
-- RCMD: Recipe Command (A)
-- RPARM: Recipe Parameter (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| RCMD | A | Recipe Command |
+| RPARM | A | Recipe Parameter |
 
 
 #### **S2F22 - Recipe Body Acknowledge** {#s2f22---recipe-body-acknowledge}
@@ -726,11 +1010,15 @@ CMDA
 ```
 
 **Parameters:**
-- CMDA: Command Acknowledge (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| CMDA | A | Command Acknowledge |
 
 
 #### **S2F23 - Trace Initialize Send** {#s2f23---trace-initialize-send}
 ```
+S2F23->
 {L[5]
   TRID
   DSPER
@@ -743,42 +1031,58 @@ CMDA
 ```
 
 **Parameters:**
-- TRID: Trace ID (A)
-- DSPER: Display Period (U1, U2, U4)
-- TOTSMP: Total Samples (U1, U2, U4)
-- REPGSZ: Report Page Size (U1, U2, U4)
-- SVID: Status Variable ID (U1, U2, U4, or A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TRID | A | Trace ID |
+| DSPER | U1/U2/U4 | Display Period |
+| TOTSMP | U1/U2/U4 | Total Samples |
+| REPGSZ | U1/U2/U4 | Report Page Size |
+| SVID | U1/U2/U4/A | Status Variable ID |
 
 
 #### **S2F24 - Trace Initialize Acknowledge** {#s2f24---trace-initialize-acknowledge}
 ```
+<-S2F24
 TIAACK
 ```
 
 **Parameters:**
-- TIAACK: Trace Initialize Acknowledge (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TIAACK | A | Trace Initialize Acknowledge |
 
 
 #### **S2F25 - Loopback Diagnostic Request** {#s2f25---loopback-diagnostic-request}
 ```
+<-S2F25
 ABS
 ```
 
 **Parameters:**
-- ABS: Arbitrary Binary String (B)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ABS | B | Arbitrary Binary String |
 
 
 #### **S2F26 - Loopback Diagnostic Response** {#s2f26---loopback-diagnostic-response}
 ```
+S2F26->
 ABS
 ```
 
 **Parameters:**
-- ABS: Arbitrary Binary String (B)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ABS | B | Arbitrary Binary String |
 
 
 #### **S2F27 - Initiate Processing Request** {#s2f27---initiate-processing-request}
 ```
+<-S2F27
 {L[3]
   LOC
   PPID
@@ -789,22 +1093,30 @@ ABS
 ```
 
 **Parameters:**
-- LOC: Location (A)
-- PPID: Process Program ID (A)
-- MID: Material ID (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| LOC | A | Location |
+| PPID | A | Process Program ID |
+| MID | A | Material ID |
 
 
 #### **S2F28 - Initiate Processing Acknowledge** {#s2f28---initiate-processing-acknowledge}
 ```
+S2F28->
 CMDA
 ```
 
 **Parameters:**
-- CMDA: Command Acknowledge (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| CMDA | A | Command Acknowledge |
 
 
 #### **S2F29 - Equipment Constant Namelist Request** {#s2f29---equipment-constant-namelist-request}
 ```
+<-S2F29
 {L[n]
   ECID_1
   ECID_2
@@ -814,11 +1126,15 @@ CMDA
 ```
 
 **Parameters:**
-- ECID: Equipment Constant ID (U1, U2, U4, or A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ECID | U1/U2/U4/A | Equipment Constant ID |
 
 
 #### **S2F30 - Equipment Constant Namelist Response** {#s2f30---equipment-constant-namelist-response}
 ```
+S2F30->
 {L[n]
   {L[6]
     ECID
@@ -832,34 +1148,46 @@ CMDA
 ```
 
 **Parameters:**
-- ECID: Equipment Constant ID (U1, U2, U4, or A)
-- ECNAME: Equipment Constant Name (A)
-- ECMIN: Equipment Constant Minimum Value (U1, U2, U4, or A)
-- ECMAX: Equipment Constant Maximum Value (U1, U2, U4, or A)
-- ECDEF: Equipment Constant Default Value (U1, U2, U4, or A)
-- UNITS: Units (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ECID | U1/U2/U4/A | Equipment Constant ID |
+| ECNAME | A | Equipment Constant Name |
+| ECMIN | U1/U2/U4/A | Equipment Constant Minimum Value |
+| ECMAX | U1/U2/U4/A | Equipment Constant Maximum Value |
+| ECDEF | U1/U2/U4/A | Equipment Constant Default Value |
+| UNITS | A | Units |
 
 
 #### **S2F31 - Date and Time Set Request** {#s2f31---date-and-time-set-request}
 ```
+<-S2F31
 TIME
 ```
 
 **Parameters:**
-- TIME: Date and Time value (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TIME | A | Date and Time value |
 
 
 #### **S2F32 - Date and Time Set Response** {#s2f32---date-and-time-set-response}
 ```
+S2F32->
 TIACK
 ```
 
 **Parameters:**
-- TIACK: Time Acknowledge (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TIACK | A | Time Acknowledge |
 
 
 #### **S2F33 - Define Report** {#s2f33---define-report}
 ```
+<-S2F33
 {L[2]
   DATAID
   {L[n]
@@ -867,29 +1195,37 @@ TIACK
       RPTID
       {L[n]
         VID
-  }
-}
+      }
+    }
   }
 }
 ```
 
 **Parameters:**
-- DATAID: Data ID (U1, U2, U4, or A)
-- RPTID: Report ID (U1, U2, U4, or A)
-- VID: Variable ID (U1, U2, U4, or A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| DATAID | U1/U2/U4/A | Data ID |
+| RPTID | U1/U2/U4/A | Report ID |
+| VID | U1/U2/U4/A | Variable ID |
 
 
 #### **S2F34 - Define Report Acknowledge** {#s2f34---define-report-acknowledge}
 ```
+S2F34->
 DRACK
 ```
 
 **Parameters:**
-- DRACK: Define Report Acknowledge (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| DRACK | A | Define Report Acknowledge |
 
 
 #### **S2F35 - Link Event Report** {#s2f35---link-event-report}
 ```
+S2F35->
 {L[2]
   DATAID
 {L[n]
@@ -904,22 +1240,30 @@ DRACK
 ```
 
 **Parameters:**
-- DATAID: Data ID (U1, U2, U4, or A)
-- CEID: Collection Event ID (U1, U2, U4, or A)
-- RPTID: Report ID (U1, U2, U4, or A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| DATAID | U1/U2/U4/A | Data ID |
+| CEID | U1/U2/U4/A | Collection Event ID |
+| RPTID | U1/U2/U4/A | Report ID |
 
 
 #### **S2F36 - Link Event Report Acknowledge** {#s2f36---link-event-report-acknowledge}
 ```
+<-S2F36
 LRACK
 ```
 
 **Parameters:**
-- LRACK: Link Event Report Acknowledge (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| LRACK | A | Link Event Report Acknowledge |
 
 
 #### **S2F37 - Enable/Disable Event Report** {#s2f37---enabledisable-event-report}
 ```
+<-S2F37
 {L[2]
   CEED
   {L[n]
@@ -929,21 +1273,29 @@ LRACK
 ```
 
 **Parameters:**
-- CEED: Collection Event Enable/Disable (U1, U2, U4, or A)
-- CEID: Collection Event ID (U1, U2, U4, or A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| CEED | U1/U2/U4/A | Collection Event Enable/Disable |
+| CEID | U1/U2/U4/A | Collection Event ID |
 
 
 #### **S2F38 - Enable/Disable Event Report Acknowledge** {#s2f38---enabledisable-event-report-acknowledge}
 ```
+S2F38->
 ERACK
 ```
 
 **Parameters:**
-- ERACK: Event Report Acknowledge (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ERACK | A | Event Report Acknowledge |
 
 
 #### **S2F39 - Status Variable Namelist Request** {#s2f39---status-variable-namelist-request}
 ```
+<-S2F39
 {L[2]
   DATAID
   DATALENGTH
@@ -951,21 +1303,29 @@ ERACK
 ```
 
 **Parameters:**
-- DATAID: Data ID (U1, U2, U4, or A)
-- DATALENGTH: Data Length (U1, U2, U4)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| DATAID | U1/U2/U4/A | Data ID |
+| DATALENGTH | U1/U2/U4 | Data Length |
 
 
 #### **S2F40 - Status Variable Namelist Response** {#s2f40---status-variable-namelist-response}
 ```
+S2F40->
 GRANT
 ```
 
 **Parameters:**
-- GRANT: Grant permission for multi-block transfer
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| GRANT | - | Grant permission for multi-block transfer |
 
 
 #### **S2F41 - Host Command Send** {#s2f41---host-command-send}
 ```
+<-S2F41
 {L[2]
   RCMD
   {L[n]
@@ -978,13 +1338,17 @@ GRANT
 ```
 
 **Parameters:**
-- RCMD: Remote Command (A)
-- CPNAME: Command Parameter Name (A)
-- CPVAL: Command Parameter Value (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| RCMD | A | Remote Command |
+| CPNAME | A | Command Parameter Name |
+| CPVAL | A | Command Parameter Value |
 
 
 #### **S2F42 - Host Command Acknowledge** {#s2f42---host-command-acknowledge}
 ```
+S2F42->
 {L[2]
   HCACK
     {L[n]
@@ -997,13 +1361,17 @@ GRANT
 ```
 
 **Parameters:**
-- HCACK: Host Command Acknowledge (A)
-- CPNAME: Command Parameter Name (A)
-- CPACK: Command Parameter Acknowledge (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| HCACK | A | Host Command Acknowledge |
+| CPNAME | A | Command Parameter Name |
+| CPACK | A | Command Parameter Acknowledge |
 
 
 #### **S2F43 - Reset Spooling Streams and Functions** {#s2f43---reset-spooling-streams-and-functions}
 ```
+<-S2F43
 {L[n]
 {L[2]
   STRID
@@ -1015,12 +1383,16 @@ GRANT
 ```
 
 **Parameters:**
-- STRID: Stream ID (U1, U2, U4, or A)
-- FCNID: Function ID (U1, U2, U4, or A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| STRID | U1/U2/U4/A | Stream ID |
+| FCNID | U1/U2/U4/A | Function ID |
 
 
 #### **S2F44 - Reset Spooling Acknowledge** {#s2f44---reset-spooling-acknowledge}
 ```
+S2F44->
 {L[2]
 RSPACK
   {L[n]
@@ -1036,14 +1408,18 @@ RSPACK
 ```
 
 **Parameters:**
-- RSPACK: Reset Spooling Acknowledge (A)
-- STRID: Stream ID (U1, U2, U4, or A)
-- STRACK: Stream Acknowledge (A)
-- FCNID: Function ID (U1, U2, U4, or A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| RSPACK | A | Reset Spooling Acknowledge |
+| STRID | U1/U2/U4/A | Stream ID |
+| STRACK | A | Stream Acknowledge |
+| FCNID | U1/U2/U4/A | Function ID |
 
 
 #### **S2F45 - Define Variable Limit Attributes** {#s2f45---define-variable-limit-attributes}
 ```
+<-S2F45
 {L[2]
   DATAID
 {L[n]
@@ -1064,15 +1440,19 @@ RSPACK
 ```
 
 **Parameters:**
-- DATAID: Data ID (U1, U2, U4, or A)
-- VID: Variable ID (U1, U2, U4, or A)
-- LIMITID: Limit ID (U1, U2, U4, or A)
-- UPPERDB: Upper Database (U1, U2, U4, or A)
-- LOWERDB: Lower Database (U1, U2, U4, or A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| DATAID | U1/U2/U4/A | Data ID |
+| VID | U1/U2/U4/A | Variable ID |
+| LIMITID | U1/U2/U4/A | Limit ID |
+| UPPERDB | U1/U2/U4/A | Upper Database |
+| LOWERDB | U1/U2/U4/A | Lower Database |
 
 
 #### **S2F46 - Define Variable Limit Attributes Acknowledge** {#s2f46---define-variable-limit-attributes-acknowledge}
 ```
+S2F46->
 {L[2]
   VLAACK
   {L[n]
@@ -1089,15 +1469,19 @@ RSPACK
 ```
 
 **Parameters:**
-- VLAACK: Variable Limit Attributes Acknowledge (A)
-- VID: Variable ID (U1, U2, U4, or A)
-- LVACK: Limit Value Acknowledge (A)
-- LIMITID: Limit ID (U1, U2, U4, or A)
-- LIMITACK: Limit Acknowledge (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| VLAACK | A | Variable Limit Attributes Acknowledge |
+| VID | U1/U2/U4/A | Variable ID |
+| LVACK | A | Limit Value Acknowledge |
+| LIMITID | U1/U2/U4/A | Limit ID |
+| LIMITACK | A | Limit Acknowledge |
 
 
 #### **S2F47 - Variable Limit Attribute Request** {#s2f47---variable-limit-attribute-request}
 ```
+<-S2F47
 {L[n]
   VID_1
   VID_2
@@ -1107,11 +1491,15 @@ RSPACK
 ```
 
 **Parameters:**
-- VID: Variable ID (U1, U2, U4, or A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| VID | U1/U2/U4/A | Variable ID |
 
 
 #### **S2F48 - Variable Limit Attribute Response** {#s2f48---variable-limit-attribute-response}
 ```
+S2F48->
 {L[n]
   {L[2]
     VID
@@ -1132,17 +1520,21 @@ RSPACK
 ```
 
 **Parameters:**
-- VID: Variable ID (U1, U2, U4, or A)
-- UNITS: Units (A)
-- LIMITMIN: Limit Minimum (U1, U2, U4, or A)
-- LIMITMAX: Limit Maximum (U1, U2, U4, or A)
-- LIMITID: Limit ID (U1, U2, U4, or A)
-- UPPERDB: Upper Database (U1, U2, U4, or A)
-- LOWERDB: Lower Database (U1, U2, U4, or A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| VID | U1/U2/U4/A | Variable ID |
+| UNITS | A | Units |
+| LIMITMIN | U1/U2/U4/A | Limit Minimum |
+| LIMITMAX | U1/U2/U4/A | Limit Maximum |
+| LIMITID | U1/U2/U4/A | Limit ID |
+| UPPERDB | U1/U2/U4/A | Upper Database |
+| LOWERDB | U1/U2/U4/A | Lower Database |
 
 
 #### **S2F49 - Enhanced Remote Command** {#s2f49---enhanced-remote-command}
 ```
+<-S2F49
 {L[4]
   RCMD
       CPNAME
@@ -1152,14 +1544,18 @@ RSPACK
 ```
 
 **Parameters:**
-- RCMD: Remote Command (A)
-- CPNAME: Command Parameter Name (A)
-- CEPVAL: Command Parameter Value (A)
-- CPACK: Command Parameter Acknowledge (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| RCMD | A | Remote Command |
+| CPNAME | A | Command Parameter Name |
+| CEPVAL | A | Command Parameter Value |
+| CPACK | A | Command Parameter Acknowledge |
 
 
 #### **S2F50 - Enhanced Remote Command Acknowledge** {#s2f50---enhanced-remote-command-acknowledge}
 ```
+S2F50->
 {L[2]
   HCACK
   {L[n]
@@ -1172,40 +1568,58 @@ RSPACK
 ```
 
 **Parameters:**
-- HCACK: Host Command Acknowledge (A)
-- CPNAME: Command Parameter Name (A)
-- CEPACK: Command Parameter Acknowledge (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| HCACK | A | Host Command Acknowledge |
+| CPNAME | A | Command Parameter Name |
+| CEPACK | A | Command Parameter Acknowledge |
 
 
 #### **S2F51 - Request Report Identifiers** {#s2f51---request-report-identifiers}
 ```
 header only
 ```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| Empty | - | Header only message |
  
 
 
 #### **S2F52 - Return Report Identifiers** {#s2f52---return-report-identifiers}
 ```
+S2F52->
   {L[n]
   RPTID
 }
 ```
 **Parameters:**
-- RPTID: Report ID (U1, U2, U4, or A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| RPTID | U1, U2, U4, or A | Report ID |
 
 
 #### **S2F53 - Request Report Definitions** {#s2f53---request-report-definitions}
 ```
+<-S2F53
 {L[n]
   RPTID
 }
 ```
 **Parameters:**
-- RPTID: Report ID (U1, U2, U4, or A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| RPTID | U1, U2, U4, or A | Report ID |
 
 
 #### **S2F54 - Return Report Definitions** {#s2f54---return-report-definitions}
 ```
+S2F54->
   {L[n]
     {L[2]
       RPTID
@@ -1216,22 +1630,30 @@ header only
 }
 ```
 **Parameters:**
-- RPTID: Report ID (U1, U2, U4, or A)
-- VID: Variable ID (U1, U2, U4, or A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| RPTID | U1, U2, U4, or A | Report ID |
+| VID | U1, U2, U4, or A | Variable ID |
 
 
 #### **S2F55 - Request Event Report Links** {#s2f55---request-event-report-links}
 ```
+<-S2F55
 {L[n]
   CEID
 }
 ```
 **Parameters:**
-- CEID: Collection Event ID (U1, U2, U4, or A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| CEID | U1, U2, U4, or A | Collection Event ID |
 
 
 #### **S2F56 - Return Event Report Links** {#s2f56---return-event-report-links}
 ```
+S2F56->
   {L[n]
   {L[3]
       CEID
@@ -1243,25 +1665,38 @@ header only
 }
 ```
 **Parameters:**
-- CEID: Collection Event ID (U1, U2, U4, or A)
-- CENAME: Collection Event Name (A)
-- RPTID: Report ID (U1, U2, U4, or A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| CEID | U1, U2, U4, or A | Collection Event ID |
+| CENAME | A | Collection Event Name |
+| RPTID | U1, U2, U4, or A | Report ID |
 
 
 #### **S2F57 - Request Enabled Events** {#s2f57---request-enabled-events}
 ```
 {}
 ```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| Empty | - | Empty list (header only message) |
  
 
 #### **S2F58 - Return Enabled Events** {#s2f58---return-enabled-events}
 ```
+S2F58->
   {L[n]
   CEID
   }
 ```
 **Parameters:**
-- CEID: Collection Event ID (U1, U2, U4, or A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| CEID | U1, U2, U4, or A | Collection Event ID |
 
 
 #### **S2F59 - Request Spool Streams and Functions** {#s2f59---request-spool-streams-and-functions}
@@ -1269,9 +1704,16 @@ header only
 {}
 ```
 
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| Empty | - | Empty list (header only message) |
+
 
 #### **S2F60 - Return Spool Streams and Functions** {#s2f60---return-spool-streams-and-functions}
 ```
+S2F60->
 {L[n]
   {L[2]
     STRID
@@ -1282,38 +1724,56 @@ header only
 }
 ```
 **Parameters:**
-- STRID: Stream ID (U1, U2, U4, or A)
-- FCNID: Function ID (U1, U2, U4, or A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| STRID | U1, U2, U4, or A | Stream ID |
+| FCNID | U1, U2, U4, or A | Function ID |
 
 
 #### **S2F61 - Request Trace Identifiers** {#s2f61---request-trace-identifiers}
 ```
 {}
 ```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| Empty | - | Empty list (header only message) |
  
 
 #### **S2F62 - Return Trace Identifiers** {#s2f62---return-trace-identifiers}
 ```
+S2F62->
 {L[n]
   TRID
 }
 ```
 **Parameters:**
-- TRID: Trace ID (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TRID | A | Trace ID |
 
 
 #### **S2F63 - Request Trace Definitions** {#s2f63---request-trace-definitions}
 ```
+<-S2F63
 {L[n]
   TRID
 }
 ```
 **Parameters:**
-- TRID: Trace ID (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TRID | A | Trace ID |
 
 
 #### **S2F64 - Return Trace Definitions** {#s2f64---return-trace-definitions}
 ```
+S2F64->
   {L[n]
   {L[5]
     TRID
@@ -1327,11 +1787,14 @@ header only
   }
 ```
 **Parameters:**
-- TRID: Trace ID (A)
-- DSPER: Display Period (U1, U2, U4)
-- TOTSMP: Total Samples (U1, U2, U4)
-- REPGSZ: Report Page Size (U1, U2, U4)
-- SVID: Status Variable ID (U1, U2, U4, or A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TRID | A | Trace ID |
+| DSPER | U1, U2, U4 | Display Period |
+| TOTSMP | U1, U2, U4 | Total Samples |
+| REPGSZ | U1, U2, U4 | Report Page Size |
+| SVID | U1, U2, U4, or A | Status Variable ID |
 
 
 
@@ -1359,8 +1822,8 @@ header only
 | [S3F17](#s3f17---carrier-action-request-extended)   | → Equipment | Carrier Action Request |
 | [S3F18](#s3f18---carrier-action-response-extended)   | ← Equipment | Carrier Action Ack |
 | [S3F19](#s3f19---port-action-request)   | → Equipment | Cancel All Carrier Out Req |
-| [S3F20](#s3f20---port-action-response)   | ← Equipment | Cancel All Carrier Out Ack |
-| [S3F21](#s3f21---port-group-request)   | → Equipment | Port Group Defn |
+| [S3F20](#s3f20---cancel-all-carrier-out-ack)   | ← Equipment | Cancel All Carrier Out Ack |
+| [S3F21](#s3f21---port-group-defn)   | → Equipment | Port Group Defn |
 | [S3F22](#s3f22---port-group-response)   | ← Equipment | Port Group Defn Ack |
 | [S3F23](#s3f23---port-group-define)   | → Equipment | Port Group Action Req |
 | [S3F24](#s3f24---port-group-define-acknowledge)   | ← Equipment | Port Group Action Req |
@@ -1379,11 +1842,19 @@ header only
 
 #### **S3F1 - Material Status Request** {#s3f1---material-status-request}
 ```
+<-S3F1
 {}
-``` 
+```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| Empty | - | Empty list (header only message) | 
 
 #### **S3F2 - Material Status Data** {#s3f2---material-status-data}
 ```
+S3F2->
 {L[2]
   MF
   {L[n]
@@ -1398,11 +1869,19 @@ header only
 
 #### **S3F3 - Time to Completion Data** {#s3f3---time-to-completion-data}
 ```
+<-S3F3
 {}
-``` 
+```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| Empty | - | Empty list (header only message) | 
 
 #### **S3F4 - Time to Completion Data** {#s3f4---time-to-completion-data}
 ```
+S3F4->
 {L[2]
   MF
   {L[n]
@@ -1418,6 +1897,7 @@ header only
 
 #### **S3F5 - Material Found Send** {#s3f5---material-found-send}
 ``` 
+S3F5->
 {L[2]
   MF
   QUA
@@ -1427,16 +1907,21 @@ header only
 
 #### **S3F6 - Material Found Acknowledge** {#s3f6---material-found-acknowledge}
 ```
+<-S3F6
 ACKC3
 ```
-```
-- ACKC3: Acknowledge Code (B[1])
-  - 0: Acknowledged
-  - 1: Error
-```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ACKC3 | B[1] | Acknowledge Code |
+| | | 0: Acknowledged |
+| | | 1: Error |
 
 #### **S3F7 - Material Lost Send** {#s3f7---material-lost-send}
 ```
+S3F7->
 {L[3]
   MF
   QUA
@@ -1446,20 +1931,23 @@ ACKC3
 ``` 
 
 #### **S3F8 - Material Lost Ack** {#s3f8---material-lost-ack}
-
 ```
+S3F8->
 ACKC3
-``` 
+```
 
-```
-- ACKC3: Acknowledge Code (B[1])
-  - 0: Acknowledged
-  - 1: Error
-```
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ACKC3 | B[1] | Acknowledge Code |
+| | | 0: Acknowledged |
+| | | 1: Error |
 
 #### **S3F9 - Matl ID Equate Send** {#s3f9---matl-id-equate-send}
 ```
 
+S3F9->
 {L[2]
   MID
   EMID
@@ -1470,19 +1958,21 @@ ACKC3
 
 #### **S3F10 - Port Status Acknowledge** {#s3f10---port-status-acknowledge}
 ```
-
+<-S3F10
 ACKC3
-
-```
 ```
 
-- ACKC3: Acknowledge Code (B[1])
-  - 0: Acknowledged
-  - 1: Error
-```
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ACKC3 | B[1] | Acknowledge Code |
+| | | 0: Acknowledged |
+| | | 1: Error |
 
 #### **S3F11 - Matl ID Request** {#s3f11---matl-id-request}
 ```
+<-S3F11
 {
   PTN
 }
@@ -1490,6 +1980,7 @@ ACKC3
 
 #### **S3F12 - Matl ID Request Ack** {#s3f12---matl-id-request-ack}
 ```
+S3F12->
 {L[3]
   PTN
   MIDRA
@@ -1500,6 +1991,7 @@ ACKC3
 
 #### **S3F13 - Matl ID Send** {#s3f13---matl-id-send}
 ```
+S3F13->
 {L[2]
   PTN
   MID
@@ -1508,6 +2000,7 @@ ACKC3
 
 #### **S3F14 - Matl ID Ack** {#s3f14---matl-id-ack}
 ```
+<-S3F14
 {
   MIDAC
 }
@@ -1516,6 +2009,7 @@ ACKC3
  
 #### **S3F15 - Matls Multi-block Inquire(SECS-I)** {#s3f15---matls-multi-block-inquire}
 ```
+<-S3F15
 {L[2]
   DATAID
   DATALENGTH
@@ -1524,6 +2018,7 @@ ACKC3
 
 #### **S3F16 - Matls Multi-block Grant** {#s3f16---matls-multi-block-grant}
 ```
+S3F16->
 {
   GRANT
 }
@@ -1531,7 +2026,7 @@ ACKC3
 ``` 
 #### **S3F17 - Carrier Action Request (Extended)** {#s3f17---carrier-action-request-extended}
 ```
-
+<-S3F17
 {L[5]
   DATAID
   CARRIERACTION
@@ -1544,39 +2039,41 @@ ACKC3
     }
   }
 }
-
-```
 ```
 
-- DATAID: Data ID (U1, U2, U4, or A)
-- CARRIERACTION: Carrier Action (U1)
-- CARRIERID: Carrier ID (A)
-- PTN: Port Number (U1)
-- CATTRID: Carrier Attribute ID (U1, U2, U4, or A)
-- CATTRDATA: Carrier Attribute Data (any format)
-```
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| DATAID | U1/U2/U4/A | Data ID |
+| CARRIERACTION | U1 | Carrier Action |
+| CARRIERID | A | Carrier ID |
+| PTN | U1 | Port Number |
+| CATTRID | U1/U2/U4/A | Carrier Attribute ID |
+| CATTRDATA | any format | Carrier Attribute Data |
 
 #### **S3F18 - Carrier Action Response (Extended)** {#s3f18---carrier-action-response-extended}
 ```
-
+S3F18->
 {L[2]
   DATAID
   CAACK
 }
-
-```
 ```
 
-- DATAID: Data ID (matching request)
-- CAACK: Carrier Action Acknowledge (U1)
-  - 0: Acknowledged
-  - 1: Denied, Invalid Command
-  - 2: Denied, Cannot Perform Now
-```
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| DATAID | - | Data ID (matching request) |
+| CAACK | U1 | Carrier Action Acknowledge |
+| | | 0: Acknowledged |
+| | | 1: Denied, Invalid Command |
+| | | 2: Denied, Cannot Perform Now |
 
 #### **S3F19 - Port Action Request** {#s3f19---port-action-request}
 ```
-
+<-S3F19
 {L[4]
   DATAID
   PORTACTION
@@ -1588,23 +2085,25 @@ ACKC3
     }
   }
 }
-
-```
 ```
 
-- DATAID: Data ID (U1, U2, U4, or A)
-- PORTACTION: Port Action (U1)
-  - 1: Open
-  - 2: Close
-  - 3: Lock
-  - 4: Unlock
-- PTN: Port Number (U1)
-- PATTRID: Port Attribute ID (U1, U2, U4, or A)
-- PATTRDATA: Port Attribute Data (any format)
-```
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| DATAID | U1/U2/U4/A | Data ID |
+| PORTACTION | U1 | Port Action |
+| | | 1: Open |
+| | | 2: Close |
+| | | 3: Lock |
+| | | 4: Unlock |
+| PTN | U1 | Port Number |
+| PATTRID | U1/U2/U4/A | Port Attribute ID |
+| PATTRDATA | any format | Port Attribute Data |
 
 #### **S3F20 - Cancel All Carrier Out Ack** {#s3f20---cancel-all-carrier-out-ack}
 ```
+S3F20->
 {L[2]
   CAACK
   {L[n]
@@ -1618,6 +2117,7 @@ ACKC3
 
 #### **S3F21 - Port Group Defn** {#s3f21---port-group-defn}
 ```
+<-S3F21
 {L[3]
   PORTGRPNAME
   ACCESSMODE
@@ -1630,6 +2130,7 @@ ACKC3
 
 #### **S3F22 - Port Group Defn Ack** {#s3f22---port-group-defn-ack}
 ```
+S3F22->
 {L[2]
   CAACK
   {L[n]
@@ -1643,6 +2144,7 @@ ACKC3
 
 #### **S3F23 - Port Group Action Req** {#s3f23---port-group-action-req}
 ```
+<-S3F23
 {L[3]
   PGRPACTION
   PORTGRPNAME
@@ -1658,6 +2160,7 @@ ACKC3
 
 #### **S3F24 - Port Group Action Ack** {#s3f24---port-group-action-ack}
 ```
+S3F24->
 {L[2]
   CAACK
   {L[n]
@@ -1672,6 +2175,7 @@ ACKC3
 #### **S3F25 - Port Action Req** {#s3f25---port-action-req}
 
 ```
+<-S3F25
 {L[3]
   PORTACTION
   PTN
@@ -1686,6 +2190,7 @@ ACKC3
 
 #### **S3F26 - Port Action Ack** {#s3f26---port-action-ack}
 ```
+S3F26->
 {L[2]
   CAACK
   {L[n]
@@ -1699,16 +2204,18 @@ ACKC3
 
 #### **S3F27 - Change Access** {#s3f27---change-access}
 ```
+<-S3F27
 {L[2]
   ACCESSMODE
   {L[n]
   PTN
   }
-} 
+}
 ``` 
 
 #### **S3F28 - Change Access Ack** {#s3f28---change-access-ack}
 ```
+S3F28->
 {L[2]
   CAACK
   {L[n]
@@ -1724,6 +2231,7 @@ ACKC3
 
 #### **S3F29 - Carrier Tag Read Req** {#s3f29---carrier-tag-read-req}
 ```
+<-S3F29
 {L[4]
   LOCID
   CARRIERSPEC
@@ -1733,6 +2241,7 @@ ACKC3
 ``` 
 #### **S3F30 - Carrier Tag Read Data** {#s3f30---carrier-tag-read-data}
 ```
+S3F30->
 {L[2]
   DATA
   {L[2]
@@ -1750,6 +2259,7 @@ ACKC3
 #### **S3F31 - Carrier Tag Write Data** {#s3f31---carrier-tag-write-data}
 ```
 
+<-S3F31
 {L[5]
   LOCID
   CARRIERSPEC
@@ -1762,6 +2272,7 @@ ACKC3
 
 #### **S3F32 - Carrier Tag Write Ack** {#s3f32---carrier-tag-write-ack}
 ```
+S3F32->
 {L[2]
   CAACK
   {L[n]
@@ -1770,17 +2281,19 @@ ACKC3
       ERRTEXT
     }
   }
-} 
+}
 ``` 
 
 #### **S3F33 - Cancel All Pod Out Req** {#s3f33---cancel-all-pod-out-req}
 ```
+<-S3F33
 {}
 
 ``` 
 
 #### **S3F34 - Cancel All Pod Out Ack** {#s3f34---cancel-all-pod-out-ack}
 ```
+S3F34->
 {L[2]
   CAACK
   {L[n]
@@ -1794,6 +2307,7 @@ ACKC3
 
 #### **S3F35 - Reticle Transfer Job Req** {#s3f35---reticle-transfer-job-req}
 ```
+<-S3F35
 {L[7]
   JOBACTION
   PODID
@@ -1828,6 +2342,7 @@ ACKC3
 
 #### **S3F36 - Reticle Transfer Job Ack** {#s3f36---reticle-transfer-job-ack}
 ```
+S3F36->
 {L[2]
   RPMACK
   {L[n]
@@ -1836,7 +2351,7 @@ ACKC3
       ERRTEXT
     }
   }
-} 
+}
 ``` 
 
 ### Stream 4: Material Control
@@ -1872,6 +2387,7 @@ ACKC3
 | [S4F26](#s4f26---material-status-response)   | ← Equipment | Material Status Response |
 #### **S4F1 - Ready to Send Materials** {#s4f1---ready-to-send-materials}
 ```
+<-S4F1
 {L[2]
   PTN
   MID
@@ -1879,21 +2395,29 @@ ACKC3
 ```
 
 **Parameters:**
-- PTN: Port Number (U1)
-- MID: Material ID (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| PTN | U1 | Port Number |
+| MID | A | Material ID |
 
 #### **S4F2 - Ready to Send Acknowledge** {#s4f2---ready-to-send-acknowledge}
 ```
+S4F2->
 RSACK
 ```
 
 **Parameters:**
-- RSACK: Ready to Send Acknowledge (B[1])
-  - 0: Acknowledged
-  - 1: Not ready
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| RSACK | B[1] | Ready to Send Acknowledge |
+| | | 0: Acknowledged |
+| | | 1: Not ready |
 
 #### **S4F3 - Send Material** {#s4f3---send-material}
 ```
+<-S4F3
 {L[2]
   PTN
   MID
@@ -1901,11 +2425,15 @@ RSACK
 ```
 
 **Parameters:**
-- PTN: Port Number (U1)
-- MID: Material ID (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| PTN | U1 | Port Number |
+| MID | A | Material ID |
 
 #### **S4F5 - Handshake Complete** {#s4f5---handshake-complete}
 ```
+S4F5->
 {L[2]
   PTN
   MID
@@ -1913,11 +2441,15 @@ RSACK
 ```
 
 **Parameters:**
-- PTN: Port Number (U1)
-- MID: Material ID (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| PTN | U1 | Port Number |
+| MID | A | Material ID |
 
 #### **S4F7 - Not Ready to Send** {#s4f7---not-ready-to-send}
 ```
+S4F7->
 {L[2]
   PTN
   MID
@@ -1925,11 +2457,15 @@ RSACK
 ```
 
 **Parameters:**
-- PTN: Port Number (U1)
-- MID: Material ID (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| PTN | U1 | Port Number |
+| MID | A | Material ID |
 
 #### **S4F9 - Stuck in Sender** {#s4f9---stuck-in-sender}
 ```
+S4F9->
 {L[2]
   PTN
   MID
@@ -1937,11 +2473,15 @@ RSACK
 ```
 
 **Parameters:**
-- PTN: Port Number (U1)
-- MID: Material ID (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| PTN | U1 | Port Number |
+| MID | A | Material ID |
 
 #### **S4F11 - Stuck in Receiver** {#s4f11---stuck-in-receiver}
 ```
+S4F11->
 {L[2]
   PTN
   MID
@@ -1949,11 +2489,15 @@ RSACK
 ```
 
 **Parameters:**
-- PTN: Port Number (U1)
-- MID: Material ID (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| PTN | U1 | Port Number |
+| MID | A | Material ID |
 
 #### **S4F13 - Send Incomplete Timeout** {#s4f13---send-incomplete-timeout}
 ```
+S4F13->
 {L[2]
   PTN
   MID
@@ -1961,11 +2505,15 @@ RSACK
 ```
 
 **Parameters:**
-- PTN: Port Number (U1)
-- MID: Material ID (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| PTN | U1 | Port Number |
+| MID | A | Material ID |
 
 #### **S4F15 - Material Received** {#s4f15---material-received}
 ```
+S4F15->
 {L[2]
   PTN
   MID
@@ -1973,11 +2521,15 @@ RSACK
 ```
 
 **Parameters:**
-- PTN: Port Number (U1)
-- MID: Material ID (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| PTN | U1 | Port Number |
+| MID | A | Material ID |
 
 #### **S4F17 - Request to Receive** {#s4f17---request-to-receive}
 ```
+<-S4F17
 {L[2]
   PTN
   MID
@@ -1985,18 +2537,25 @@ RSACK
 ```
 
 **Parameters:**
-- PTN: Port Number (U1)
-- MID: Material ID (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| PTN | U1 | Port Number |
+| MID | A | Material ID |
 
 #### **S4F18 - Request to Receive Acknowledge** {#s4f18---request-to-receive-acknowledge}
 ```
+S4F18->
 RRACK
 ```
 
 **Parameters:**
-- RRACK: Request to Receive Acknowledge (B[1])
-  - 0: Acknowledged
-  - 1: Not ready
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| RRACK | B[1] | Request to Receive Acknowledge |
+| | | 0: Acknowledged |
+| | | 1: Not ready |
 
 #### **S4F19 - Transfer Job Create** {#s4f19---transfer-job-create}
 ```
@@ -2023,20 +2582,23 @@ RRACK
 ```
 
 **Parameters:**
-- DATAID: Data ID (U1, U2, U4, or A)
-- TRJOBNAME: Transfer Job Name (A)
-- TRLINK: Transfer Link (U1)
-- TRPORT: Transfer Port (U1)
-- TROBJNAME: Transfer Object Name (A)
-- TROBJTYPE: Transfer Object Type (A)
-- TRROLE: Transfer Role (A)
-- TRRCP: Transfer RCP (A)
-- TRPTNR: Transfer Partner (A)
-- TRPTPORT: Transfer Partner Port (U1)
-- TRDIR: Transfer Direction (A)
-- TRTYPE: Transfer Type (A)
-- TRLOCATION: Transfer Location (A)
-- TRAUTOSTART: Transfer Auto Start (B[1])
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| DATAID | U1/U2/U4/A | Data ID |
+| TRJOBNAME | A | Transfer Job Name |
+| TRLINK | U1 | Transfer Link |
+| TRPORT | U1 | Transfer Port |
+| TROBJNAME | A | Transfer Object Name |
+| TROBJTYPE | A | Transfer Object Type |
+| TRROLE | A | Transfer Role |
+| TRRCP | A | Transfer RCP |
+| TRPTNR | A | Transfer Partner |
+| TRPTPORT | U1 | Transfer Partner Port |
+| TRDIR | A | Transfer Direction |
+| TRTYPE | A | Transfer Type |
+| TRLOCATION | A | Transfer Location |
+| TRAUTOSTART | B[1] | Transfer Auto Start |
 
 #### **S4F20 - Transfer Job Acknowledge** {#s4f20---transfer-job-acknowledge}
 ```
@@ -2058,11 +2620,14 @@ RRACK
 ```
 
 **Parameters:**
-- TRJOBID: Transfer Job ID (A)
-- TRATOMCID: Transfer Atomic ID (A)
-- TRACK: Transfer Acknowledge (B[1])
-- ERRCODE: Error Code (U1)
-- ERRTEXT: Error Text (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TRJOBID | A | Transfer Job ID |
+| TRATOMCID | A | Transfer Atomic ID |
+| TRACK | B[1] | Transfer Acknowledge |
+| ERRCODE | U1 | Error Code |
+| ERRTEXT | A | Error Text |
 
 #### **S4F21 - Transfer Job Command** {#s4f21---transfer-job-command}
 ```
@@ -2079,10 +2644,13 @@ RRACK
 ```
 
 **Parameters:**
-- TRJOBID: Transfer Job ID (A)
-- TRCMDNAME: Transfer Command Name (A)
-- CPNAME: Command Parameter Name (A)
-- CPVAL: Command Parameter Value (any format)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TRJOBID | A | Transfer Job ID |
+| TRCMDNAME | A | Transfer Command Name |
+| CPNAME | A | Command Parameter Name |
+| CPVAL | any format | Command Parameter Value |
 
 #### **S4F22 - Transfer Job Command Acknowledge** {#s4f22---transfer-job-command-acknowledge}
 ```
@@ -2098,9 +2666,12 @@ RRACK
 ```
 
 **Parameters:**
-- TRACK: Transfer Acknowledge (B[1])
-- ERRCODE: Error Code (U1)
-- ERRTEXT: Error Text (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TRACK | B[1] | Transfer Acknowledge |
+| ERRCODE | U1 | Error Code |
+| ERRTEXT | A | Error Text |
 
 #### **S4F23 - Transfer Command Alert** {#s4f23---transfer-command-alert}
 ```
@@ -2121,12 +2692,15 @@ RRACK
 ```
 
 **Parameters:**
-- TRJOBID: Transfer Job ID (A)
-- TRJOBNAME: Transfer Job Name (A)
-- TRJOBMS: Transfer Job Message (A)
-- TRACK: Transfer Acknowledge (B[1])
-- ERRCODE: Error Code (U1)
-- ERRTEXT: Error Text (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TRJOBID | A | Transfer Job ID |
+| TRJOBNAME | A | Transfer Job Name |
+| TRJOBMS | A | Transfer Job Message |
+| TRACK | B[1] | Transfer Acknowledge |
+| ERRCODE | U1 | Error Code |
+| ERRTEXT | A | Error Text |
 
 #### **S4F24 - Transfer Alert Acknowledge** {#s4f24---transfer-alert-acknowledge}
 ```
@@ -2134,7 +2708,10 @@ header only
 ```
 
 **Parameters:**
-- Header only message
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| Header only | - | Header only message |
 
 #### **S4F25 - Multi-block Inquire** {#s4f25---multi-block-inquire}
 ```
@@ -2145,8 +2722,11 @@ header only
 ```
 
 **Parameters:**
-- DATAID: Data ID (U1, U2, U4, or A)
-- DATALENGTH: Data Length (U4)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| DATAID | U1/U2/U4/A | Data ID |
+| DATALENGTH | U4 | Data Length |
 
 #### **S4F26 - Multi-block Grant** {#s4f26---multi-block-grant}
 ```
@@ -2154,9 +2734,12 @@ GRANT
 ```
 
 **Parameters:**
-- GRANT: Grant signal (B[1])
-  - 0: Not granted
-  - 1: Granted
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| GRANT | B[1] | Grant signal |
+| | | 0: Not granted |
+| | | 1: Granted |
 
 #### **S4F27 - Handoff Ready** {#s4f27---handoff-ready}
 ```
@@ -2178,17 +2761,20 @@ GRANT
 ```
 
 **Parameters:**
-- EQNAME: Equipment Name (A)
-- TRLINK: Transfer Link (U1)
-- TRPORT: Transfer Port (U1)
-- TROBJNAME: Transfer Object Name (A)
-- TROBJTYPE: Transfer Object Type (A)
-- TRROLE: Transfer Role (A)
-- TRPTNR: Transfer Partner (A)
-- TRPTPORT: Transfer Partner Port (U1)
-- TRDIR: Transfer Direction (A)
-- TRTYPE: Transfer Type (A)
-- TRLOCATION: Transfer Location (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| EQNAME | A | Equipment Name |
+| TRLINK | U1 | Transfer Link |
+| TRPORT | U1 | Transfer Port |
+| TROBJNAME | A | Transfer Object Name |
+| TROBJTYPE | A | Transfer Object Type |
+| TRROLE | A | Transfer Role |
+| TRPTNR | A | Transfer Partner |
+| TRPTPORT | U1 | Transfer Partner Port |
+| TRDIR | A | Transfer Direction |
+| TRTYPE | A | Transfer Type |
+| TRLOCATION | A | Transfer Location |
 
 #### **S4F29 - Handoff Command** {#s4f29---handoff-command}
 ```
@@ -2206,11 +2792,14 @@ GRANT
 ```
 
 **Parameters:**
-- TRLINK: Transfer Link (U1)
-- MCINDEX: Machine Control Index (U1)
-- HOCMDNAME: Handoff Command Name (A)
-- CPNAME: Command Parameter Name (A)
-- CPVAL: Command Parameter Value (any format)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TRLINK | U1 | Transfer Link |
+| MCINDEX | U1 | Machine Control Index |
+| HOCMDNAME | A | Handoff Command Name |
+| CPNAME | A | Command Parameter Name |
+| CPVAL | any format | Command Parameter Value |
 
 #### **S4F31 - Handoff Command Complete** {#s4f31---handoff-command-complete}
 ```
@@ -2230,11 +2819,14 @@ GRANT
 ```
 
 **Parameters:**
-- TRLINK: Transfer Link (U1)
-- MCINDEX: Machine Control Index (U1)
-- HOACK: Handoff Acknowledge (B[1])
-- ERRCODE: Error Code (U1)
-- ERRTEXT: Error Text (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TRLINK | U1 | Transfer Link |
+| MCINDEX | U1 | Machine Control Index |
+| HOACK | B[1] | Handoff Acknowledge |
+| ERRCODE | U1 | Error Code |
+| ERRTEXT | A | Error Text |
 
 #### **S4F33 - Handoff Verified** {#s4f33---handoff-verified}
 ```
@@ -2251,10 +2843,13 @@ GRANT
 ```
 
 **Parameters:**
-- TRLINK: Transfer Link (U1)
-- HOACK: Handoff Acknowledge (B[1])
-- ERRCODE: Error Code (U1)
-- ERRTEXT: Error Text (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TRLINK | U1 | Transfer Link |
+| HOACK | B[1] | Handoff Acknowledge |
+| ERRCODE | U1 | Error Code |
+| ERRTEXT | A | Error Text |
 
 #### **S4F35 - Handoff Cancel Ready** {#s4f35---handoff-cancel-ready}
 ```
@@ -2262,7 +2857,10 @@ TRLINK
 ```
 
 **Parameters:**
-- TRLINK: Transfer Link (U1)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TRLINK | U1 | Transfer Link |
 
 #### **S4F37 - Handoff Cancel Ready Acknowledge** {#s4f37---handoff-cancel-ready-acknowledge}
 ```
@@ -2273,8 +2871,11 @@ TRLINK
 ```
 
 **Parameters:**
-- TRLINK: Transfer Link (U1)
-- HOCANCELACK: Handoff Cancel Acknowledge (B[1])
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TRLINK | U1 | Transfer Link |
+| HOCANCELACK | B[1] | Handoff Cancel Acknowledge |
 
 #### **S4F39 - Handoff Halt** {#s4f39---handoff-halt}
 ```
@@ -2282,7 +2883,10 @@ TRLINK
 ```
 
 **Parameters:**
-- TRLINK: Transfer Link (U1)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TRLINK | U1 | Transfer Link |
 
 #### **S4F41 - Handoff Halt Acknowledge** {#s4f41---handoff-halt-acknowledge}
 ```
@@ -2293,8 +2897,11 @@ TRLINK
 ```
 
 **Parameters:**
-- TRLINK: Transfer Link (U1)
-- HOHALTACK: Handoff Halt Acknowledge (B[1])
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TRLINK | U1 | Transfer Link |
+| HOHALTACK | B[1] | Handoff Halt Acknowledge |
 
 
 ### Stream 5: Exception Reporting
@@ -2313,39 +2920,42 @@ TRLINK
 
 #### **S5F1 - Alarm Report Send** {#s5f1---alarm-report-send}
 ```
-
+S5F1->
 {L[3]
   ALCD
   ALID
   ALTX
 }
-
-```
 ```
 
-- ALCD: Alarm Code (B[1])
-  - Bit 0: Alarm Set (1) or Clear (0)
-  - Bit 7: Alarm (1) or Warning (0)
-- ALID: Alarm ID (U1, U2, U4, or A)
-- ALTX: Alarm Text (A[120])
-```
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ALCD | B[1] | Alarm Code |
+| | | Bit 0: Alarm Set (1) or Clear (0) |
+| | | Bit 7: Alarm (1) or Warning (0) |
+| ALID | U1/U2/U4/A | Alarm ID |
+| ALTX | A[120] | Alarm Text |
 
 #### **S5F2 - Alarm Report Acknowledge** {#s5f2---alarm-report-acknowledge}
 ```
-
+<-S5F2
 ACKC5
-
-```
 ```
 
-- ACKC5: Acknowledge Code (B[1])
-  - 0: Acknowledged
-  - 1: Error
-```
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ACKC5 | B[1] | Acknowledge Code |
+| | | 0: Acknowledged |
+| | | 1: Error |
 
 #### **S5F3 - Enable/Disable Alarm Send** {#s5f3---enabledisable-alarm-send}
 ```
 
+<-S5F3
 {L[2]
   ALED
   {L[n]
@@ -2359,33 +2969,50 @@ ACKC5
 ```
 ```
 
-- ALED: Alarm Enable/Disable (B[1])
-  - 128 (0x80): Enable
-  - 0: Disable
-- ALID: Alarm ID (U1, U2, U4, or A)
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ALED | B[1] | Alarm Enable/Disable |
+| | | 128 (0x80): Enable |
+| | | 0: Disable |
+| ALID | U1, U2, U4, or A | Alarm ID |
 ```
 
 #### **S5F4 - Enable/Disable Alarm Acknowledge** {#s5f4---enabledisable-alarm-acknowledge}
 ```
 
+S5F4->
 ACKC5
 
 ```
 ```
 
-- ACKC5: Acknowledge Code (B[1])
-  - 0: Acknowledged
-  - 1: Error
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ACKC5 | B[1] | Acknowledge Code |
+| | | 0: Acknowledged |
+| | | 1: Error |
 ```
 
 #### **S5F5 - List Alarms Request** {#s5f5---list-alarms-request}
 ```
+<-S5F5
 {}
 ```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| Empty | - | Empty list (header only message) |
 
 #### **S5F6 - List Alarms Response** {#s5f6---list-alarms-response}
 ```
 
+S5F6->
 {L[n]
   ALID_1
   ALID_2
@@ -2396,17 +3023,29 @@ ACKC5
 ```
 ```
 
-- ALID: Alarm ID (U1, U2, U4, or A)
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ALID | U1, U2, U4, or A | Alarm ID |
 ```
 
 #### **S5F7 - List Enabled Alarm Request** {#s5f7---list-enabled-alarm-request}
 ```
+<-S5F7
 {}
 ```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| Empty | - | Empty list (header only message) |
 
 #### **S5F8 - List Enabled Alarm Response** {#s5f8---list-enabled-alarm-response}
 ```
 
+S5F8->
 {L[n]
   ALID_1
   ALID_2
@@ -2417,7 +3056,11 @@ ACKC5
 ```
 ```
 
-- ALID: Alarm ID (U1, U2, U4, or A) - Only enabled alarms
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ALID | U1, U2, U4, or A | Alarm ID - Only enabled alarms |
 ```
 
 ### Stream 6: Data Collection
@@ -2458,6 +3101,7 @@ ACKC5
 
 #### **S6F1 - Trace Data Send** {#s6f1---trace-data-send}
 ```
+S6F1->
 {L[4]
   TRID
   SMPLN
@@ -2469,23 +3113,31 @@ ACKC5
 ```
 
 **Parameters:**
-- TRID: Trace Request ID (U1, U2, U4, or A)
-- SMPLN: Sample Number (U1, U2, U4)
-- STIME: Sample Time (A)
-- SV: Sample Value (any format)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TRID | U1, U2, U4, or A | Trace Request ID |
+| SMPLN | U1, U2, U4 | Sample Number |
+| STIME | A | Sample Time |
+| SV | any format | Sample Value |
 
 #### **S6F2 - Trace Data Acknowledge** {#s6f2---trace-data-acknowledge}
 ```
+<-S6F2
 ACKC6
 ```
 
 **Parameters:**
-- ACKC6: Acknowledge Code (B[1])
-  - 0: Acknowledged
-  - 1: Error
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ACKC6 | B[1] | Acknowledge Code |
+| | | 0: Acknowledged |
+| | | 1: Error |
 
 #### **S6F3 - Discrete Variable Data Send** {#s6f3---discrete-variable-data-send}
 ```
+S6F3->
 {L[3]
   DATAID
   CEID
@@ -2504,24 +3156,32 @@ ACKC6
 ```
 
 **Parameters:**
-- DATAID: Data ID (U1, U2, U4, or A)
-- CEID: Collection Event ID (U1, U2, U4, or A)
-- DSID: Data Set ID (U1, U2, U4, or A)
-- DVNAME: Discrete Variable Name (A)
-- DVVAL: Discrete Variable Value (any format)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| DATAID | U1, U2, U4, or A | Data ID |
+| CEID | U1, U2, U4, or A | Collection Event ID |
+| DSID | U1, U2, U4, or A | Data Set ID |
+| DVNAME | A | Discrete Variable Name |
+| DVVAL | any format | Discrete Variable Value |
 
 #### **S6F4 - Discrete Variable Data Acknowledge** {#s6f4---discrete-variable-data-acknowledge}
 ```
+<-S6F4
 ACKC6
 ```
 
 **Parameters:**
-- ACKC6: Acknowledge Code (B[1])
-  - 0: Acknowledged
-  - 1: Error
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ACKC6 | B[1] | Acknowledge Code |
+| | | 0: Acknowledged |
+| | | 1: Error |
 
 #### **S6F5 - Multi-block Data Send Inquire** {#s6f5---multi-block-data-send-inquire}
 ```
+S6F5->
 {L[2]
   DATAID
   DATALENGTH
@@ -2529,27 +3189,38 @@ ACKC6
 ```
 
 **Parameters:**
-- DATAID: Data ID (U1, U2, U4, or A)
-- DATALENGTH: Data Length (U4)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| DATAID | U1, U2, U4, or A | Data ID |
+| DATALENGTH | U4 | Data Length |
 
 #### **S6F6 - Multi-block Grant** {#s6f6---multi-block-grant}
 ```
+<-S6F6
 GRANT6
 ```
 
 **Parameters:**
-- GRANT6: Grant Code (B[1])
-  - 0: Granted
-  - 1: Busy, try again
-  - 2: No space
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| GRANT6 | B[1] | Grant Code |
+| | | 0: Granted |
+| | | 1: Busy, try again |
+| | | 2: No space |
 
 #### **S6F7 - Data Transfer Request** {#s6f7---data-transfer-request}
 ```
+<-S6F7
 DATAID
 ```
 
 **Parameters:**
-- DATAID: Data ID (U1, U2, U4, or A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| DATAID | U1, U2, U4, or A | Data ID |
 
 #### **S6F8 - Data Transfer Data** {#s6f8---data-transfer-data}
 ```
@@ -2569,11 +3240,14 @@ DATAID
 ```
 
 **Parameters:**
-- DATAID: Data ID (U1, U2, U4, or A)
-- CEID: Collection Event ID (U1, U2, U4, or A)
-- DSID: Data Set ID (U1, U2, U4, or A)
-- DVNAME: Discrete Variable Name (A)
-- DVVAL: Discrete Variable Value (any format)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| DATAID | U1/U2/U4/A | Data ID |
+| CEID | U1/U2/U4/A | Collection Event ID |
+| DSID | U1/U2/U4/A | Data Set ID |
+| DVNAME | A | Discrete Variable Name |
+| DVVAL | any format | Discrete Variable Value |
 
 #### **S6F9 - Formatted Variable Send** {#s6f9---formatted-variable-send}
 ```
@@ -2593,11 +3267,14 @@ DATAID
 ```
 
 **Parameters:**
-- PFCD: Process Function Code (A)
-- DATAID: Data ID (U1, U2, U4, or A)
-- CEID: Collection Event ID (U1, U2, U4, or A)
-- DSID: Data Set ID (U1, U2, U4, or A)
-- DVVAL: Discrete Variable Value (any format)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| PFCD | A | Process Function Code |
+| DATAID | U1/U2/U4/A | Data ID |
+| CEID | U1/U2/U4/A | Collection Event ID |
+| DSID | U1/U2/U4/A | Data Set ID |
+| DVVAL | any format | Discrete Variable Value |
 
 #### **S6F10 - Formatted Variable Acknowledge** {#s6f10---formatted-variable-acknowledge}
 ```
@@ -2605,9 +3282,12 @@ ACKC6
 ```
 
 **Parameters:**
-- ACKC6: Acknowledge Code (B[1])
-  - 0: Acknowledged
-  - 1: Error
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ACKC6 | B[1] | Acknowledge Code |
+| | | 0: Acknowledged |
+| | | 1: Error |
 
 #### **S6F11 - Event Report Send** {#s6f11---event-report-send}
 ```
@@ -2626,10 +3306,13 @@ ACKC6
 ```
 
 **Parameters:**
-- DATAID: Data ID (U1, U2, U4, or A)
-- CEID: Collection Event ID (U1, U2, U4, or A)
-- RPTID: Report ID (U1, U2, U4, or A)
-- V: Variable Value (any format)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| DATAID | U1/U2/U4/A | Data ID |
+| CEID | U1/U2/U4/A | Collection Event ID |
+| RPTID | U1/U2/U4/A | Report ID |
+| V | any format | Variable Value |
 
 #### **S6F12 - Event Report Acknowledge** {#s6f12---event-report-acknowledge}
 ```
@@ -2637,9 +3320,12 @@ ACKC6
 ```
 
 **Parameters:**
-- ACKC6: Acknowledge Code (B[1])
-  - 0: Acknowledged
-  - 1: Error
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ACKC6 | B[1] | Acknowledge Code |
+| | | 0: Acknowledged |
+| | | 1: Error |
 
 #### **S6F13 - Annotated Event Report Send** {#s6f13---annotated-event-report-send}
 ```
@@ -2661,11 +3347,14 @@ ACKC6
 ```
 
 **Parameters:**
-- DATAID: Data ID (U1, U2, U4, or A)
-- CEID: Collection Event ID (U1, U2, U4, or A)
-- RPTID: Report ID (U1, U2, U4, or A)
-- VID: Variable ID (U1, U2, U4, or A)
-- V: Variable Value (any format)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| DATAID | U1/U2/U4/A | Data ID |
+| CEID | U1/U2/U4/A | Collection Event ID |
+| RPTID | U1/U2/U4/A | Report ID |
+| VID | U1/U2/U4/A | Variable ID |
+| V | any format | Variable Value |
 
 #### **S6F14 - Annotated Event Report Acknowledge** {#s6f14---annotated-event-report-acknowledge}
 ```
@@ -2673,9 +3362,12 @@ ACKC6
 ```
 
 **Parameters:**
-- ACKC6: Acknowledge Code (B[1])
-  - 0: Acknowledged
-  - 1: Error
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ACKC6 | B[1] | Acknowledge Code |
+| | | 0: Acknowledged |
+| | | 1: Error |
 
 #### **S6F15 - Event Report Request** {#s6f15---event-report-request}
 ```
@@ -2683,7 +3375,10 @@ CEID
 ```
 
 **Parameters:**
-- CEID: Collection Event ID (U1, U2, U4, or A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| CEID | U1/U2/U4/A | Collection Event ID |
 
 #### **S6F16 - Event Report Data** {#s6f16---event-report-data}
 ```
@@ -2702,10 +3397,13 @@ CEID
 ```
 
 **Parameters:**
-- DATAID: Data ID (U1, U2, U4, or A)
-- CEID: Collection Event ID (U1, U2, U4, or A)
-- RPTID: Report ID (U1, U2, U4, or A)
-- V: Variable Value (any format)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| DATAID | U1/U2/U4/A | Data ID |
+| CEID | U1/U2/U4/A | Collection Event ID |
+| RPTID | U1/U2/U4/A | Report ID |
+| V | any format | Variable Value |
 
 #### **S6F17 - Annotated Event Report Request** {#s6f17---annotated-event-report-request}
 ```
@@ -2713,7 +3411,10 @@ CEID
 ```
 
 **Parameters:**
-- CEID: Collection Event ID (U1, U2, U4, or A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| CEID | U1/U2/U4/A | Collection Event ID |
 
 #### **S6F18 - Annotated Event Report Data** {#s6f18---annotated-event-report-data}
 ```
@@ -2735,11 +3436,14 @@ CEID
 ```
 
 **Parameters:**
-- DATAID: Data ID (U1, U2, U4, or A)
-- CEID: Collection Event ID (U1, U2, U4, or A)
-- RPTID: Report ID (U1, U2, U4, or A)
-- VID: Variable ID (U1, U2, U4, or A)
-- V: Variable Value (any format)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| DATAID | U1/U2/U4/A | Data ID |
+| CEID | U1/U2/U4/A | Collection Event ID |
+| RPTID | U1/U2/U4/A | Report ID |
+| VID | U1/U2/U4/A | Variable ID |
+| V | any format | Variable Value |
 
 #### **S6F19 - Individual Report Request** {#s6f19---individual-report-request}
 ```
@@ -2747,7 +3451,10 @@ RPTID
 ```
 
 **Parameters:**
-- RPTID: Report ID (U1, U2, U4, or A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| RPTID | U1/U2/U4/A | Report ID |
 
 #### **S6F20 - Individual Report Data** {#s6f20---individual-report-data}
 ```
@@ -2757,7 +3464,10 @@ RPTID
 ```
 
 **Parameters:**
-- V: Variable Value (any format)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| V | any format | Variable Value |
 
 #### **S6F21 - Annotated Individual Report Request** {#s6f21---annotated-individual-report-request}
 ```
@@ -2765,7 +3475,10 @@ RPTID
 ```
 
 **Parameters:**
-- RPTID: Report ID (U1, U2, U4, or A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| RPTID | U1/U2/U4/A | Report ID |
 
 #### **S6F22 - Annotated Individual Report Data** {#s6f22---annotated-individual-report-data}
 ```
@@ -2778,8 +3491,11 @@ RPTID
 ```
 
 **Parameters:**
-- VID: Variable ID (U1, U2, U4, or A)
-- V: Variable Value (any format)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| VID | U1, U2, U4, or A | Variable ID |
+| V | any format | Variable Value |
 
 #### **S6F23 - Request or Purge Spooled Data** {#s6f23---request-or-purge-spooled-data}
 ```
@@ -2787,7 +3503,10 @@ RSDC
 ```
 
 **Parameters:**
-- RSDC: Request or Purge Spooled Data Command (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| RSDC | A | Request or Purge Spooled Data Command |
 
 #### **S6F24 - Request or Purge Spooled Data Acknowledge** {#s6f24---request-or-purge-spooled-data-acknowledge}
 ```
@@ -2795,7 +3514,10 @@ RSDA
 ```
 
 **Parameters:**
-- RSDA: Request or Purge Spooled Data Acknowledge (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| RSDA | A | Request or Purge Spooled Data Acknowledge |
 
 #### **S6F25 - Notification Report Send** {#s6f25---notification-report-send}
 ```
@@ -2824,16 +3546,19 @@ RSDA
 ```
 
 **Parameters:**
-- DATAID: Data ID (U1, U2, U4, or A)
-- OPID: Operator ID (A)
-- LINKID: Link ID (A)
-- RCPSPEC: Recipe Specification (A)
-- RMCHGSTAT: Recipe Change Status (A)
-- RCPATTRID: Recipe Attribute ID (A)
-- RCPATTRDATA: Recipe Attribute Data (any format)
-- RMACK: Recipe Acknowledge (B[1])
-- ERRCODE: Error Code (U1)
-- ERRTEXT: Error Text (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| DATAID | U1, U2, U4, or A | Data ID |
+| OPID | A | Operator ID |
+| LINKID | A | Link ID |
+| RCPSPEC | A | Recipe Specification |
+| RMCHGSTAT | A | Recipe Change Status |
+| RCPATTRID | A | Recipe Attribute ID |
+| RCPATTRDATA | any format | Recipe Attribute Data |
+| RMACK | B[1] | Recipe Acknowledge |
+| ERRCODE | U1 | Error Code |
+| ERRTEXT | A | Error Text |
 
 #### **S6F26 - Notification Report Acknowledge** {#s6f26---notification-report-acknowledge}
 ```
@@ -2841,9 +3566,12 @@ ACKC6
 ```
 
 **Parameters:**
-- ACKC6: Acknowledge Code (B[1])
-  - 0: Acknowledged
-  - 1: Error
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ACKC6 | B[1] | Acknowledge Code |
+| | | 0: Acknowledged |
+| | | 1: Error |
 
 #### **S6F27 - Trace Report Send** {#s6f27---trace-report-send}
 ```
@@ -2864,10 +3592,13 @@ ACKC6
 ```
 
 **Parameters:**
-- DATAID: Data ID (U1, U2, U4, or A)
-- TRID: Trace Request ID (U1, U2, U4, or A)
-- RPTID: Report ID (U1, U2, U4, or A)
-- V: Variable Value (any format)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| DATAID | U1, U2, U4, or A | Data ID |
+| TRID | U1, U2, U4, or A | Trace Request ID |
+| RPTID | U1, U2, U4, or A | Report ID |
+| V | any format | Variable Value |
 
 #### **S6F28 - Trace Report Acknowledge** {#s6f28---trace-report-acknowledge}
 ```
@@ -2875,7 +3606,10 @@ TRID
 ```
 
 **Parameters:**
-- TRID: Trace Request ID (U1, U2, U4, or A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TRID | U1, U2, U4, or A | Trace Request ID |
 
 #### **S6F29 - Trace Report Request** {#s6f29---trace-report-request}
 ```
@@ -2883,7 +3617,10 @@ TRID
 ```
 
 **Parameters:**
-- TRID: Trace Request ID (U1, U2, U4, or A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TRID | U1, U2, U4, or A | Trace Request ID |
 
 #### **S6F30 - Trace Report Data** {#s6f30---trace-report-data}
 ```
@@ -2902,10 +3639,13 @@ TRID
 ```
 
 **Parameters:**
-- TRID: Trace Request ID (U1, U2, U4, or A)
-- RPTID: Report ID (U1, U2, U4, or A)
-- V: Variable Value (any format)
-- ERRCODE: Error Code (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TRID | U1, U2, U4, or A | Trace Request ID |
+| RPTID | U1, U2, U4, or A | Report ID |
+| V | any format | Variable Value |
+| ERRCODE | A | Error Code |
 
 
 
@@ -2960,6 +3700,7 @@ TRID
 | [S7F44](#s7f44---large-formatted-process-program-request-acknowledge)    | ↔ Host/Equipment | Large Formatted Process Program Request Acknowledge |
 #### **S7F1 - Process Program Load Inquire** {#s7f1---process-program-load-inquire}
 ```
+S7F1-> or <-S7F1
 {L[2]
   PPID
   LENGTH
@@ -2967,23 +3708,31 @@ TRID
 ```
 
 **Parameters:**
-- PPID: Process Program ID (A)
-- LENGTH: Length of Process Program (U1, U2, U4)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| PPID | A | Process Program ID |
+| LENGTH | U1/U2/U4 | Length of Process Program |
 
 #### **S7F2 - Process Program Load Grant** {#s7f2---process-program-load-grant}
 ```
+S7F2-> or <-S7F2
 PPGNT
 ```
 
 **Parameters:**
-- PPGNT: Process Program Grant (B[1])
-  - 0: Granted
-  - 1: Busy, try again
-  - 2: No space
-  - 3: Invalid PPID
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| PPGNT | B[1] | Process Program Grant |
+| | | 0: Granted |
+| | | 1: Busy, try again |
+| | | 2: No space |
+| | | 3: Invalid PPID |
 
 #### **S7F3 - Process Program Send** {#s7f3---process-program-send}
 ```
+S7F3-> or <-S7F3
 {L[2]
   PPID
   PPBODY
@@ -2991,35 +3740,47 @@ PPGNT
 ```
 
 **Parameters:**
-- PPID: Process Program ID (A)
-- PPBODY: Process Program Body (A or B)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| PPID | A | Process Program ID |
+| PPBODY | A/B | Process Program Body |
 
 #### **S7F4 - Process Program Send Acknowledge** {#s7f4---process-program-send-acknowledge}
 ```
+S7F4-> or <-S7F4
 ACKC7
 ```
 
 **Parameters:**
-- ACKC7: Acknowledge Code (B[1])
-  - 0: Accepted
-  - 1: Permission not granted
-  - 2: Length error
-  - 3: Matrix overflow
-  - 4: PPID not found
-  - 5: Mode unsupported
-  - 6: Communication not available
-  - 7: Busy
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ACKC7 | B[1] | Acknowledge Code |
+| | | 0: Accepted |
+| | | 1: Permission not granted |
+| | | 2: Length error |
+| | | 3: Matrix overflow |
+| | | 4: PPID not found |
+| | | 5: Mode unsupported |
+| | | 6: Communication not available |
+| | | 7: Busy |
 
 #### **S7F5 - Process Program Request** {#s7f5---process-program-request}
 ```
+S7F5-> or <-S7F5
 PPID
 ```
 
 **Parameters:**
-- PPID: Process Program ID (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| PPID | ASCII | Process Program ID |
 
 #### **S7F6 - Process Program Data** {#s7f6---process-program-data}
 ```
+S7F6-> or <-S7F6
 {L[2]
   PPID
   PPBODY
@@ -3027,19 +3788,27 @@ PPID
 ```
 
 **Parameters:**
-- PPID: Process Program ID (A)
-- PPBODY: Process Program Body (A or B)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| PPID | ASCII | Process Program ID |
+| PPBODY | ASCII/Binary | Process Program Body |
 
 #### **S7F7 - Process Program ID Request** {#s7f7---process-program-id-request}
 ```
+<-S7F7
 MID
 ```
 
 **Parameters:**
-- MID: Material ID (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| MID | ASCII | Material ID |
 
 #### **S7F8 - Process Program ID Data** {#s7f8---process-program-id-data}
 ```
+S7F8->
 {L[2]
   PPID
   MID
@@ -3047,19 +3816,27 @@ MID
 ```
 
 **Parameters:**
-- PPID: Process Program ID (A)
-- MID: Material ID (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| PPID | ASCII | Process Program ID |
+| MID | ASCII | Material ID |
 
 #### **S7F9 - Material/Process Matrix Request** {#s7f9---material-process-matrix-request}
 ```
+S7F9-> or <-S7F9
 header only
 ```
 
 **Parameters:**
-- Header only message
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| Header | - | Header only message |
 
 #### **S7F10 - Material/Process Matrix Data** {#s7f10---material-process-matrix-data}
 ```
+S7F10-> or <-S7F10
 {L[n]
   {L[2]
     PPID
@@ -3071,8 +3848,11 @@ header only
 ```
 
 **Parameters:**
-- PPID: Process Program ID (A)
-- MID: Material ID (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| PPID | ASCII | Process Program ID |
+| MID | ASCII | Material ID |
 
 #### **S7F11 - Material/Process Matrix Update Send** {#s7f11---material-process-matrix-update-send}
 ```
@@ -3087,8 +3867,11 @@ header only
 ```
 
 **Parameters:**
-- PPID: Process Program ID (A)
-- MID: Material ID (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| PPID | ASCII | Process Program ID |
+| MID | ASCII | Material ID |
 
 #### **S7F12 - Material/Process Matrix Update Acknowledge** {#s7f12---material-process-matrix-update-acknowledge}
 ```
@@ -3096,15 +3879,18 @@ ACKC7
 ```
 
 **Parameters:**
-- ACKC7: Acknowledge Code (B[1])
-  - 0: Accepted
-  - 1: Permission not granted
-  - 2: Length error
-  - 3: Matrix overflow
-  - 4: PPID not found
-  - 5: Mode unsupported
-  - 6: Communication not available
-  - 7: Busy
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ACKC7 | B[1] | Acknowledge Code |
+| | | 0: Accepted |
+| | | 1: Permission not granted |
+| | | 2: Length error |
+| | | 3: Matrix overflow |
+| | | 4: PPID not found |
+| | | 5: Mode unsupported |
+| | | 6: Communication not available |
+| | | 7: Busy |
 
 #### **S7F13 - Material/Process Matrix Delete Entry Send** {#s7f13---material-process-matrix-delete-entry-send}
 ```
@@ -3119,8 +3905,11 @@ ACKC7
 ```
 
 **Parameters:**
-- PPID: Process Program ID (A)
-- MID: Material ID (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| PPID | ASCII | Process Program ID |
+| MID | ASCII | Material ID |
 
 #### **S7F14 - Delete Material/Process Matrix Entry Acknowledge** {#s7f14---delete-material-process-matrix-entry-acknowledge}
 ```
@@ -3128,15 +3917,18 @@ ACKC7
 ```
 
 **Parameters:**
-- ACKC7: Acknowledge Code (B[1])
-  - 0: Accepted
-  - 1: Permission not granted
-  - 2: Length error
-  - 3: Matrix overflow
-  - 4: PPID not found
-  - 5: Mode unsupported
-  - 6: Communication not available
-  - 7: Busy
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ACKC7 | B[1] | Acknowledge Code |
+| | | 0: Accepted |
+| | | 1: Permission not granted |
+| | | 2: Length error |
+| | | 3: Matrix overflow |
+| | | 4: PPID not found |
+| | | 5: Mode unsupported |
+| | | 6: Communication not available |
+| | | 7: Busy |
 
 #### **S7F15 - Matrix Mode Select Send** {#s7f15---matrix-mode-select-send}
 ```
@@ -3144,7 +3936,10 @@ MMODE
 ```
 
 **Parameters:**
-- MMODE: Matrix Mode (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| MMODE | ASCII | Matrix Mode |
 
 #### **S7F16 - Matrix Mode Select Acknowledge** {#s7f16---matrix-mode-select-acknowledge}
 ```
@@ -3152,70 +3947,94 @@ ACKC7
 ```
 
 **Parameters:**
-- ACKC7: Acknowledge Code (B[1])
-  - 0: Accepted
-  - 1: Permission not granted
-  - 2: Length error
-  - 3: Matrix overflow
-  - 4: PPID not found
-  - 5: Mode unsupported
-  - 6: Communication not available
-  - 7: Busy
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ACKC7 | B[1] | Acknowledge Code |
+| | | 0: Accepted |
+| | | 1: Permission not granted |
+| | | 2: Length error |
+| | | 3: Matrix overflow |
+| | | 4: PPID not found |
+| | | 5: Mode unsupported |
+| | | 6: Communication not available |
+| | | 7: Busy |
 
 #### **S7F17 - Delete Process Program Send** {#s7f17---delete-process-program-send}
 ```
+<-S7F17
 {L[n]
   PPID
 }
 ```
 
 **Parameters:**
-- PPID: Process Program ID (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| PPID | ASCII | Process Program ID |
 
 #### **S7F18 - Delete Process Program Acknowledge** {#s7f18---delete-process-program-acknowledge}
 ```
+S7F18->
 ACKC7
 ```
 
 **Parameters:**
-- ACKC7: Acknowledge Code (B[1])
-  - 0: Accepted
-  - 1: Permission not granted
-  - 2: Length error
-  - 3: Matrix overflow
-  - 4: PPID not found
-  - 5: Mode unsupported
-  - 6: Communication not available
-  - 7: Busy
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ACKC7 | B[1] | Acknowledge Code |
+| | | 0: Accepted |
+| | | 1: Permission not granted |
+| | | 2: Length error |
+| | | 3: Matrix overflow |
+| | | 4: PPID not found |
+| | | 5: Mode unsupported |
+| | | 6: Communication not available |
+| | | 7: Busy |
 
 #### **S7F19 - Current Process Program Directory Request** {#s7f19---current-process-program-directory-request}
 ```
+<-S7F19
 header only
 ```
 
 **Parameters:**
-- Header only message
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| Header | - | Header only message |
 
 #### **S7F20 - Current Process Program Data** {#s7f20---current-process-program-data}
 ```
+S7F20->
 {L[n]
     PPID
     }
 ```
 
 **Parameters:**
-- PPID: Process Program ID (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| PPID | ASCII | Process Program ID |
 
 #### **S7F21 - Process Capabilities Request** {#s7f21---process-capabilities-request}
 ```
+<-S7F21
 header only
 ```
 
 **Parameters:**
-- Header only message
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| Header | - | Header only message |
 
 #### **S7F22 - Process Capabilities Data** {#s7f22---process-capabilities-data}
 ```
+S7F22->
 {L[5]
   MDLN
   SOFTREV
@@ -3242,24 +4061,28 @@ header only
 ```
 
 **Parameters:**
-- MDLN: Model Number (A)
-- SOFTREV: Software Revision (A)
-- CMDMAX: Command Maximum (U1, U2, U4)
-- BYTMAX: Byte Maximum (U1, U2, U4)
-- CCODE: Command Code (A)
-- CNAME: Command Name (A)
-- RQCMD: Required Command (A)
-- BLKDEF: Block Definition (A)
-- BCDS: Block Code Data Set (A)
-- IBCDS: Input Block Code Data Set (A)
-- NBCDS: Number Block Code Data Set (A)
-- ACDS: Alarm Code Data Set (A)
-- IACDS: Input Alarm Code Data Set (A)
-- NACDS: Number Alarm Code Data Set (A)
-- L[x]: Variable length data (any format)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| MDLN | ASCII | Model Number |
+| SOFTREV | ASCII | Software Revision |
+| CMDMAX | U1/U2/U4 | Command Maximum |
+| BYTMAX | U1/U2/U4 | Byte Maximum |
+| CCODE | ASCII | Command Code |
+| CNAME | ASCII | Command Name |
+| RQCMD | ASCII | Required Command |
+| BLKDEF | ASCII | Block Definition |
+| BCDS | ASCII | Block Code Data Set |
+| IBCDS | ASCII | Input Block Code Data Set |
+| NBCDS | ASCII | Number Block Code Data Set |
+| ACDS | ASCII | Alarm Code Data Set |
+| IACDS | ASCII | Input Alarm Code Data Set |
+| NACDS | ASCII | Number Alarm Code Data Set |
+| L[x] | Various | Variable length data (any format) |
 
 #### **S7F23 - Formatted Process Program Send** {#s7f23---formatted-process-program-send}
 ```
+<-S7F23
 {L[4]
   PPID
   MDLN
@@ -3276,38 +4099,50 @@ header only
 ```
 
 **Parameters:**
-- PPID: Process Program ID (A)
-- MDLN: Model Number (A)
-- SOFTREV: Software Revision (A)
-- CCODE: Command Code (A)
-- PPARM: Process Program Parameter (any format)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| PPID | ASCII | Process Program ID |
+| MDLN | ASCII | Model Number |
+| SOFTREV | ASCII | Software Revision |
+| CCODE | ASCII | Command Code |
+| PPARM | Various | Process Program Parameter (any format) |
 
 #### **S7F24 - Formatted Process Program Acknowledge** {#s7f24---formatted-process-program-acknowledge}
 ```
+S7F24->
 ACKC7
 ```
 
 **Parameters:**
-- ACKC7: Acknowledge Code (B[1])
-  - 0: Accepted
-  - 1: Permission not granted
-  - 2: Length error
-  - 3: Matrix overflow
-  - 4: PPID not found
-  - 5: Mode unsupported
-  - 6: Communication not available
-  - 7: Busy
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ACKC7 | B[1] | Acknowledge Code |
+| | | 0: Accepted |
+| | | 1: Permission not granted |
+| | | 2: Length error |
+| | | 3: Matrix overflow |
+| | | 4: PPID not found |
+| | | 5: Mode unsupported |
+| | | 6: Communication not available |
+| | | 7: Busy |
 
 #### **S7F25 - Formatted Process Program Request** {#s7f25---formatted-process-program-request}
 ```
+<-S7F25
 PPID
 ```
 
 **Parameters:**
-- PPID: Process Program ID (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| PPID | ASCII | Process Program ID |
 
 #### **S7F26 - Formatted Process Program Data** {#s7f26---formatted-process-program-data}
 ```
+S7F26->
 {L[4]
   PPID
   MDLN
@@ -3324,11 +4159,14 @@ PPID
 ```
 
 **Parameters:**
-- PPID: Process Program ID (A)
-- MDLN: Model Number (A)
-- SOFTREV: Software Revision (A)
-- CCODE: Command Code (A)
-- PPARM: Process Program Parameter (any format)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| PPID | ASCII | Process Program ID |
+| MDLN | ASCII | Model Number |
+| SOFTREV | ASCII | Software Revision |
+| CCODE | ASCII | Command Code |
+| PPARM | Various | Process Program Parameter (any format) |
 
 #### **S7F27 - Process Program Verification Send** {#s7f27---process-program-verification-send}
 ```
@@ -3345,10 +4183,13 @@ PPID
 ```
 
 **Parameters:**
-- PPID: Process Program ID (A)
-- ACKC7A: Acknowledge Code 7A (B[1])
-- SEQNUM: Sequence Number (U1, U2, U4)
-- ERRW7: Error Word 7 (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| PPID | ASCII | Process Program ID |
+| ACKC7A | B[1] | Acknowledge Code 7A |
+| SEQNUM | U1/U2/U4 | Sequence Number |
+| ERRW7 | ASCII | Error Word 7 |
 
 #### **S7F28 - Process Program Verification Acknowledge** {#s7f28---process-program-verification-acknowledge}
 ```
@@ -3356,7 +4197,10 @@ header only
 ```
 
 **Parameters:**
-- Header only message
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| Header | - | Header only message |
 
 #### **S7F29 - Process Program Verification Inquire** {#s7f29---process-program-verification-inquire}
 ```
@@ -3364,7 +4208,10 @@ LENGTH
 ```
 
 **Parameters:**
-- LENGTH: Length of S7F27 message (U4)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| LENGTH | U4 | Length of S7F27 message |
 
 #### **S7F30 - Process Program Verification Grant** {#s7f30---process-program-verification-grant}
 ```
@@ -3372,11 +4219,14 @@ PPGNT
 ```
 
 **Parameters:**
-- PPGNT: Process Program Grant (B[1])
-  - 0: Granted
-  - 1: Busy, try again
-  - 2: No space
-  - 3: Invalid PPID
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| PPGNT | B[1] | Process Program Grant |
+| | | 0: Granted |
+| | | 1: Busy, try again |
+| | | 2: No space |
+| | | 3: Invalid PPID |
 
 #### **S7F31 - Verification Request Send** {#s7f31---verification-request-send}
 ```
@@ -3396,11 +4246,14 @@ PPGNT
 ```
 
 **Parameters:**
-- PPID: Process Program ID (A)
-- MDLN: Model Number (A)
-- SOFTREV: Software Revision (A)
-- CCODE: Command Code (A)
-- PPARM: Process Program Parameter (any format)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| PPID | A | Process Program ID |
+| MDLN | A | Model Number |
+| SOFTREV | A | Software Revision |
+| CCODE | A | Command Code |
+| PPARM | any format | Process Program Parameter |
 
 #### **S7F32 - Verification Request Acknowledge** {#s7f32---verification-request-acknowledge}
 ```
@@ -3408,15 +4261,18 @@ ACKC7
 ```
 
 **Parameters:**
-- ACKC7: Acknowledge Code (B[1])
-  - 0: Accepted
-  - 1: Permission not granted
-  - 2: Length error
-  - 3: Matrix overflow
-  - 4: PPID not found
-  - 5: Mode unsupported
-  - 6: Communication not available
-  - 7: Busy
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ACKC7 | B[1] | Acknowledge Code |
+| | | 0: Accepted |
+| | | 1: Permission not granted |
+| | | 2: Length error |
+| | | 3: Matrix overflow |
+| | | 4: PPID not found |
+| | | 5: Mode unsupported |
+| | | 6: Communication not available |
+| | | 7: Busy |
 
 #### **S7F33 - Process Program Available Request** {#s7f33---process-program-available-request}
 ```
@@ -3424,7 +4280,10 @@ PPID
 ```
 
 **Parameters:**
-- PPID: Process Program ID (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| PPID | A | Process Program ID |
 
 #### **S7F34 - Process Program Availability Data** {#s7f34---process-program-availability-data}
 ```
@@ -3436,9 +4295,12 @@ PPID
 ```
 
 **Parameters:**
-- PPID: Process Program ID (A)
-- UNFLEN: Unformatted Length (U1, U2, U4)
-- FRMLEN: Formatted Length (U1, U2, U4)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| PPID | A | Process Program ID |
+| UNFLEN | U1/U2/U4 | Unformatted Length |
+| FRMLEN | U1/U2/U4 | Formatted Length |
 
 #### **S7F35 - Process Program for MID Request** {#s7f35---process-program-for-mid-request}
 ```
@@ -3446,7 +4308,10 @@ MID
 ```
 
 **Parameters:**
-- MID: Material ID (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| MID | A | Material ID |
 
 #### **S7F36 - Process Program for MID Data** {#s7f36---process-program-for-mid-data}
 ```
@@ -3458,9 +4323,12 @@ MID
 ```
 
 **Parameters:**
-- MID: Material ID (A)
-- PPID: Process Program ID (A)
-- PPBODY: Process Program Body (A or B)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| MID | A | Material ID |
+| PPID | A | Process Program ID |
+| PPBODY | A/B | Process Program Body |
 
 #### **S7F37 - Large Process Program Send** {#s7f37---large-process-program-send}
 ```
@@ -3468,7 +4336,10 @@ DSNAME
 ```
 
 **Parameters:**
-- DSNAME: Data Set Name (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| DSNAME | A | Data Set Name |
 
 #### **S7F38 - Large Process Program Send Acknowledge** {#s7f38---large-process-program-send-acknowledge}
 ```
@@ -3476,15 +4347,18 @@ ACKC7
 ```
 
 **Parameters:**
-- ACKC7: Acknowledge Code (B[1])
-  - 0: Accepted
-  - 1: Permission not granted
-  - 2: Length error
-  - 3: Matrix overflow
-  - 4: PPID not found
-  - 5: Mode unsupported
-  - 6: Communication not available
-  - 7: Busy
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ACKC7 | B[1] | Acknowledge Code |
+| | | 0: Accepted |
+| | | 1: Permission not granted |
+| | | 2: Length error |
+| | | 3: Matrix overflow |
+| | | 4: PPID not found |
+| | | 5: Mode unsupported |
+| | | 6: Communication not available |
+| | | 7: Busy |
 
 #### **S7F39 - Large Formatted Process Program Send** {#s7f39---large-formatted-process-program-send}
 ```
@@ -3492,7 +4366,10 @@ DSNAME
 ```
 
 **Parameters:**
-- DSNAME: Data Set Name (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| DSNAME | A | Data Set Name |
 
 #### **S7F40 - Large Formatted Process Program Acknowledge** {#s7f40---large-formatted-process-program-acknowledge}
 ```
@@ -3500,15 +4377,18 @@ ACKC7
 ```
 
 **Parameters:**
-- ACKC7: Acknowledge Code (B[1])
-  - 0: Accepted
-  - 1: Permission not granted
-  - 2: Length error
-  - 3: Matrix overflow
-  - 4: PPID not found
-  - 5: Mode unsupported
-  - 6: Communication not available
-  - 7: Busy
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ACKC7 | B[1] | Acknowledge Code |
+| | | 0: Accepted |
+| | | 1: Permission not granted |
+| | | 2: Length error |
+| | | 3: Matrix overflow |
+| | | 4: PPID not found |
+| | | 5: Mode unsupported |
+| | | 6: Communication not available |
+| | | 7: Busy |
 
 #### **S7F41 - Large Process Program Request** {#s7f41---large-process-program-request}
 ```
@@ -3516,7 +4396,10 @@ DSNAME
 ```
 
 **Parameters:**
-- DSNAME: Data Set Name (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| DSNAME | A | Data Set Name |
 
 #### **S7F42 - Large Process Program Request Acknowledge** {#s7f42---large-process-program-request-acknowledge}
 ```
@@ -3524,15 +4407,18 @@ ACKC7
 ```
 
 **Parameters:**
-- ACKC7: Acknowledge Code (B[1])
-  - 0: Accepted
-  - 1: Permission not granted
-  - 2: Length error
-  - 3: Matrix overflow
-  - 4: PPID not found
-  - 5: Mode unsupported
-  - 6: Communication not available
-  - 7: Busy
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ACKC7 | B[1] | Acknowledge Code |
+| | | 0: Accepted |
+| | | 1: Permission not granted |
+| | | 2: Length error |
+| | | 3: Matrix overflow |
+| | | 4: PPID not found |
+| | | 5: Mode unsupported |
+| | | 6: Communication not available |
+| | | 7: Busy |
 
 #### **S7F43 - Large Formatted Process Program Request** {#s7f43---large-formatted-process-program-request}
 ```
@@ -3540,7 +4426,10 @@ DSNAME
 ```
 
 **Parameters:**
-- DSNAME: Data Set Name (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| DSNAME | A | Data Set Name |
 
 #### **S7F44 - Large Formatted Process Program Request Acknowledge** {#s7f44---large-formatted-process-program-request-acknowledge}
 ```
@@ -3548,15 +4437,18 @@ ACKC7
 ```
 
 **Parameters:**
-- ACKC7: Acknowledge Code (B[1])
-  - 0: Accepted
-  - 1: Permission not granted
-  - 2: Length error
-  - 3: Matrix overflow
-  - 4: PPID not found
-  - 5: Mode unsupported
-  - 6: Communication not available
-  - 7: Busy
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ACKC7 | B[1] | Acknowledge Code |
+| | | 0: Accepted |
+| | | 1: Permission not granted |
+| | | 2: Length error |
+| | | 3: Matrix overflow |
+| | | 4: PPID not found |
+| | | 5: Mode unsupported |
+| | | 6: Communication not available |
+| | | 7: Busy |
 
 
 ### Stream 8: Control Program Management
@@ -3571,35 +4463,51 @@ ACKC7
 
 #### **S8F1 - Boot Program Request** {#s8f1---boot-program-request}
 ```
+<-S8F1
 {}
 ```
 
 **Parameters:**
-- Empty list (header only message)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| - | - | Empty list (header only message) |
 
 #### **S8F2 - Boot Program Data** {#s8f2---boot-program-data}
 ```
+S8F2->
 BPD
 ```
 
 **Parameters:**
-- BPD: Boot Program Data (B)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| BPD | B | Boot Program Data |
 
 #### **S8F3 - Executive Program Request** {#s8f3---executive-program-request}
 ```
+<-S8F3
 {}
 ```
 
 **Parameters:**
-- Empty list (header only message)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| - | - | Empty list (header only message) |
 
 #### **S8F4 - Executive Program Data** {#s8f4---executive-program-data}
 ```
+S8F4->
 EPD
 ```
 
 **Parameters:**
-- EPD: Executive Program Data (B)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| EPD | B | Executive Program Data |
 
 
 
@@ -3619,91 +4527,109 @@ EPD
 #### **S9F1 - Unrecognized Device ID** {#s9f1---unrecognized-device-id}
 ```
 
+S9F1->
 MHEAD
 
 ```
-```
+ 
+**Parameters:**
 
-- MHEAD: Message Header (B[10])
-  The complete 10-byte header of the unrecognized message
-```
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| MHEAD | B[10] | Message Header (The complete 10-byte header of the unrecognized message) |
+ 
 
 #### **S9F3 - Unrecognized Stream Type** {#s9f3---unrecognized-stream-type}
 ```
 
+S9F3->
 MHEAD
 
 ```
-```
+ 
 
-- MHEAD: Message Header (B[10])
-  The complete 10-byte header of the message with unrecognized stream type
-```
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| MHEAD | B[10] | Message Header (The complete 10-byte header of the message with unrecognized stream type) |
+ 
 
 #### **S9F5 - Unrecognized Function Type** {#s9f5---unrecognized-function-type}
 ```
 
+S9F5->
 MHEAD
 
 ```
-```
+ 
+**Parameters:**
 
-- MHEAD: Message Header (B[10])
-  The complete 10-byte header of the message with unrecognized function type
-```
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| MHEAD | B[10] | Message Header (The complete 10-byte header of the message with unrecognized function type) |
+ 
 
 #### **S9F7 - Illegal Data** {#s9f7---illegal-data}
 ```
 
+S9F7->
 MHEAD
 
 ```
-```
+ 
+**Parameters:**
 
-- MHEAD: Message Header (B[10])
-  The complete 10-byte header of the message with illegal data
-```
-
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| MHEAD | B[10] | Message Header (The complete 10-byte header of the message with illegal data) |
+ 
 #### **S9F9 - Transaction Timer Timeout** {#s9f9---transaction-timer-timeout}
 ```
 
+S9F9->
 MHEAD
 
 ```
-```
+**Parameters:**
 
-- MHEAD: Message Header (B[10])
-  The complete 10-byte header of the message that timed out
-```
-
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| MHEAD | B[10] | Message Header (The complete 10-byte header of the message that timed out) |
+ 
 #### **S9F11 - Data Too Long** {#s9f11---data-too-long}
 ```
 
+S9F11->
 MHEAD
 
 ```
-```
 
-- MHEAD: Message Header (B[10])
-  The complete 10-byte header of the message that was too long
-```
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| MHEAD | B[10] | Message Header (The complete 10-byte header of the message that was too long) |
+ 
 
 #### **S9F13 - Conversation Timeout** {#s9f13---conversation-timeout}
 ```
 
+S9F13->
 {L[2]
   MEXP
   EDID
 }
 
 ```
-```
 
-- MEXP: Message Expected (B[1])
-  - Stream and Function of the expected message
-- EDID: Equipment ID (U1, U2, U4, or A)
-  - ID of the equipment that timed out
-```
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| MEXP | B[1] | Message Expected (Stream and Function of the expected message) |
+| EDID | U1/U2/U4/A | Equipment ID (ID of the equipment that timed out) |
+ 
 
 ### Stream 10: Terminal Services
 **Purpose**: Operator interface communication
@@ -3721,54 +4647,60 @@ MHEAD
 #### **S10F1 - Terminal Request** {#s10f1---terminal-request}
 ```
 
+<-S10F1
 {L[2]
   TID
   TEXT
 }
 
 ```
-```
+**Parameters:**
 
-- TID: Terminal ID (U1)
-- TEXT: Text Message (A)
-```
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TID | U1 | Terminal ID |
+| TEXT | ASCII | Text Message |
+ 
 
 #### **S10F2 - Terminal Response** {#s10f2---terminal-response}
 ```
-
+S10F2->
 {L[2]
   TID
   ACKC10
 }
+```
+**Parameters:**
 
-```
-```
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TID | U1 | Terminal ID |
+| ACKC10 | B[1] | Acknowledge Code |
+| | | 0: Acknowledged |
+| | | 1: Error |
+| | | 2: Terminal not available |
 
-- TID: Terminal ID (U1)
-- ACKC10: Acknowledge Code (B[1])
-  - 0: Acknowledged
-  - 1: Error
-  - 2: Terminal not available
-```
 
 #### **S10F3 - Terminal Display, Single** {#s10f3---terminal-display-single}
 ```
-
+S10F3->
 {L[2]
   TID
   TEXT
 }
-
-```
 ```
 
-- TID: Terminal ID (U1)
-- TEXT: Text Message (A)
-```
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TID | U1 | Terminal ID |
+| TEXT | A | Text Message |
+
 
 #### **S10F5 - Terminal Display, Multi-Block** {#s10f5---terminal-display-multi-block}
 ```
-
+S10F5->
 {L[3]
   TID
   {L[n]
@@ -3779,43 +4711,55 @@ MHEAD
   }
   MHEAD
 }
+```
+ **Parameters:**
 
-```
-```
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TID | U1 | Terminal ID |
+| TEXT | ASCII | Text Message |
+| MHEAD | B[10] | Message Header |
 
-- TID: Terminal ID (U1)
-- TEXT: Text Message (A)
-- MHEAD: Message Header (B[10])
-```
 
 #### **S10F7 - Multi-block Not Allowed** {#s10f7---multi-block-not-allowed}
 ```
+S10F7->
 TID
 ```
 
 **Parameters:**
-- TID: Transaction ID (U1, U2, U4, or A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TID | U1/U2/U4/A | Transaction ID |
 
 #### **S10F9 - Broadcast Display Request** {#s10f9---broadcast-display-request}
 ```
+<-S10F9
 TEXT
 ```
 
 **Parameters:**
-- TEXT: Text Message (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TEXT | ASCII | Text Message |
 
 #### **S10F10 - Broadcast Display Acknowledge** {#s10f10---broadcast-display-acknowledge}
 ```
+S10F10->
 ACKC10
 ```
-```
+ 
 **Parameters:**
-- ACKC10: Acknowledge Code (B[1])
-  - 0: Acknowledged
-  - 1: Error
-  - 2: Broadcast not supported
-  - 1: Error
-```
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ACKC10 | B[1] | Acknowledge Code |
+| | | 0: Acknowledged |
+| | | 1: Error |
+| | | 2: Broadcast not supported |
+ 
  
 
 ### Stream 12: Wafer Mapping
@@ -3845,6 +4789,7 @@ ACKC10
 
 #### **S12F1 - Map Setup Data Send** {#s12f1---map-setup-data-send}
 ```
+<-S12F1
 {L[15]
   MID
   IDTYP
@@ -3867,34 +4812,42 @@ ACKC10
 ```
 
 **Parameters:**
-- MID: Map ID (A)
-- IDTYP: ID Type (B[1])
-- FNLOC: Final Location (A)
-- FFROT: Final Format Rotation (A)
-- ORLOC: Origin Location (A)
-- RPSEL: Reference Point Select (A)
-- REFP: Reference Point (A)
-- DUTMS: Die Unit Time Stamp (A)
-- XDIES: X Dies (U1, U2, U4)
-- YDIES: Y Dies (U1, U2, U4)
-- ROWCT: Row Count (U1, U2, U4)
-- COLCT: Column Count (U1, U2, U4)
-- NULBC: Null Block Count (U1, U2, U4)
-- PRDCT: Production Count (U1, U2, U4)
-- PRAXI: Production Axis (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| MID | ASCII | Map ID |
+| IDTYP | B[1] | ID Type |
+| FNLOC | ASCII | Final Location |
+| FFROT | ASCII | Final Format Rotation |
+| ORLOC | ASCII | Origin Location |
+| RPSEL | ASCII | Reference Point Select |
+| REFP | ASCII | Reference Point |
+| DUTMS | ASCII | Die Unit Time Stamp |
+| XDIES | U1/U2/U4 | X Dies |
+| YDIES | U1/U2/U4 | Y Dies |
+| ROWCT | U1/U2/U4 | Row Count |
+| COLCT | U1/U2/U4 | Column Count |
+| NULBC | U1/U2/U4 | Null Block Count |
+| PRDCT | U1/U2/U4 | Production Count |
+| PRAXI | ASCII | Production Axis |
 
 #### **S12F2 - Map Setup Data Acknowledge** {#s12f2---map-setup-data-acknowledge}
 ```
+S12F2->
 SDACK
 ```
 
 **Parameters:**
-- SDACK: Setup Data Acknowledge (B[1])
-  - 0: Acknowledged
-  - 1: Error
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| SDACK | B[1] | Setup Data Acknowledge |
+| | | 0: Acknowledged |
+| | | 1: Error |
 
 #### **S12F3 - Map Setup Data Request** {#s12f3---map-setup-data-request}
 ```
+<-S12F3
 {L[9]
   MID
   IDTYP
@@ -3909,18 +4862,22 @@ SDACK
 ```
 
 **Parameters:**
-- MID: Map ID (A)
-- IDTYP: ID Type (B[1])
-- MAPFT: Map Format (A)
-- FNLOC: Final Location (A)
-- FFROT: Final Format Rotation (A)
-- ORLOC: Origin Location (A)
-- PRAXI: Production Axis (A)
-- BCEQU: Block Count Equal (U1, U2, U4)
-- NULBC: Null Block Count (U1, U2, U4)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| MID | ASCII | Map ID |
+| IDTYP | B[1] | ID Type |
+| MAPFT | ASCII | Map Format |
+| FNLOC | ASCII | Final Location |
+| FFROT | ASCII | Final Format Rotation |
+| ORLOC | ASCII | Origin Location |
+| PRAXI | ASCII | Production Axis |
+| BCEQU | U1/U2/U4 | Block Count Equal |
+| NULBC | U1/U2/U4 | Null Block Count |
 
 #### **S12F4 - Map Setup Data Response** {#s12f4---map-setup-data-response}
 ```
+S12F4->
 {L[15]
   MID
   IDTYP
@@ -3943,24 +4900,28 @@ SDACK
 ```
 
 **Parameters:**
-- MID: Map ID (A)
-- IDTYP: ID Type (B[1])
-- FNLOC: Final Location (A)
-- ORLOC: Origin Location (A)
-- RPSEL: Reference Point Select (A)
-- REFP: Reference Point (A)
-- DUTMS: Die Unit Time Stamp (A)
-- XDIES: X Dies (U1, U2, U4)
-- YDIES: Y Dies (U1, U2, U4)
-- ROWCT: Row Count (U1, U2, U4)
-- COLCT: Column Count (U1, U2, U4)
-- PRDCT: Production Count (U1, U2, U4)
-- BCEQU: Block Count Equal (U1, U2, U4)
-- NULBC: Null Block Count (U1, U2, U4)
-- MLCL: Map Location (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| MID | ASCII | Map ID |
+| IDTYP | B[1] | ID Type |
+| FNLOC | ASCII | Final Location |
+| ORLOC | ASCII | Origin Location |
+| RPSEL | ASCII | Reference Point Select |
+| REFP | ASCII | Reference Point |
+| DUTMS | ASCII | Die Unit Time Stamp |
+| XDIES | U1/U2/U4 | X Dies |
+| YDIES | U1/U2/U4 | Y Dies |
+| ROWCT | U1/U2/U4 | Row Count |
+| COLCT | U1/U2/U4 | Column Count |
+| PRDCT | U1/U2/U4 | Production Count |
+| BCEQU | U1/U2/U4 | Block Count Equal |
+| NULBC | U1/U2/U4 | Null Block Count |
+| MLCL | ASCII | Map Location |
 
 #### **S12F5 - Map Transmit Inquire** {#s12f5---map-transmit-inquire}
 ```
+<-S12F5
 {L[4]
   MID
   IDTYP
@@ -3970,24 +4931,32 @@ SDACK
 ```
 
 **Parameters:**
-- MID: Map ID (A)
-- IDTYP: ID Type (B[1])
-- MAPFT: Map Format (A)
-- MLCL: Map Location (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| MID | ASCII | Map ID |
+| IDTYP | B[1] | ID Type |
+| MAPFT | ASCII | Map Format |
+| MLCL | ASCII | Map Location |
 
 #### **S12F6 - Map Transmit Grant** {#s12f6---map-transmit-grant}
 ```
+S12F6->
 GRNT1
 ```
 
 **Parameters:**
-- GRNT1: Grant Type 1 (B[1])
-  - 0: Granted
-  - 1: Busy, try again
-  - 2: No space
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| GRNT1 | B[1] | Grant Type 1 |
+| | | 0: Granted |
+| | | 1: Busy, try again |
+| | | 2: No space |
 
 #### **S12F7 - Map Data Send Type 1** {#s12f7---map-data-send-type-1}
 ```
+<-S12F7
 {L[3]
   MID
   IDTYP
@@ -4001,23 +4970,31 @@ GRNT1
 ```
 
 **Parameters:**
-- MID: Map ID (A)
-- IDTYP: ID Type (B[1])
-- RSINF: Row Information (A)
-- BINLT: Binary Data (B)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| MID | ASCII | Map ID |
+| IDTYP | B[1] | ID Type |
+| RSINF | ASCII | Row Information |
+| BINLT | Binary | Binary Data |
 
 #### **S12F8 - Map Data Ack Type 1** {#s12f8---map-data-ack-type-1}
 ```
+S12F8->
 MDACK
 ```
 
 **Parameters:**
-- MDACK: Map Data Acknowledge (B[1])
-  - 0: Acknowledged
-  - 1: Error
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| MDACK | B[1] | Map Data Acknowledge |
+| | | 0: Acknowledged |
+| | | 1: Error |
 
 #### **S12F9 - Map Data Send Type 2** {#s12f9---map-data-send-type-2}
 ```
+<-S12F9
 {L[4]
   MID
   IDTYP
@@ -4027,23 +5004,31 @@ MDACK
 ```
 
 **Parameters:**
-- MID: Map ID (A)
-- IDTYP: ID Type (B[1])
-- STRP: Strip Data (A)
-- BINLT: Binary Data (B)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| MID | ASCII | Map ID |
+| IDTYP | B[1] | ID Type |
+| STRP | ASCII | Strip Data |
+| BINLT | Binary | Binary Data |
 
 #### **S12F10 - Map Data Ack Type 2** {#s12f10---map-data-ack-type-2}
 ```
+S12F10->
 MDACK
 ```
 
 **Parameters:**
-- MDACK: Map Data Acknowledge (B[1])
-  - 0: Acknowledged
-  - 1: Error
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| MDACK | B[1] | Map Data Acknowledge |
+| | | 0: Acknowledged |
+| | | 1: Error |
 
 #### **S12F11 - Map Data Send Type 3** {#s12f11---map-data-send-type-3}
 ```
+<-S12F11
 {L[3]
   MID
   IDTYP
@@ -4057,10 +5042,13 @@ MDACK
 ```
 
 **Parameters:**
-- MID: Map ID (A)
-- IDTYP: ID Type (B[1])
-- XYPOS: XY Position (A)
-- BINLT: Binary Data (B)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| MID | ASCII | Map ID |
+| IDTYP | B[1] | ID Type |
+| XYPOS | ASCII | XY Position |
+| BINLT | Binary | Binary Data |
 
 #### **S12F12 - Map Data Ack Type 3** {#s12f12---map-data-ack-type-3}
 ```
@@ -4068,9 +5056,12 @@ MDACK
 ```
 
 **Parameters:**
-- MDACK: Map Data Acknowledge (B[1])
-  - 0: Acknowledged
-  - 1: Error
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| MDACK | B[1] | Map Data Acknowledge |
+| | | 0: Acknowledged |
+| | | 1: Error |
 
 #### **S12F13 - Map Data Request Type 1** {#s12f13---map-data-request-type-1}
 ```
@@ -4081,8 +5072,11 @@ MDACK
 ```
 
 **Parameters:**
-- MID: Map ID (A)
-- IDTYP: ID Type (B[1])
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| MID | ASCII | Map ID |
+| IDTYP | B[1] | ID Type |
 
 #### **S12F14 - Map Data Type 1** {#s12f14---map-data-type-1}
 ```
@@ -4099,10 +5093,13 @@ MDACK
 ```
 
 **Parameters:**
-- MID: Map ID (A)
-- IDTYP: ID Type (B[1])
-- RSINF: Row Information (A)
-- BINLT: Binary Data (B)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| MID | ASCII | Map ID |
+| IDTYP | B[1] | ID Type |
+| RSINF | ASCII | Row Information |
+| BINLT | Binary | Binary Data |
 
 #### **S12F15 - Map Data Request Type 2** {#s12f15---map-data-request-type-2}
 ```
@@ -4113,8 +5110,11 @@ MDACK
 ```
 
 **Parameters:**
-- MID: Map ID (A)
-- IDTYP: ID Type (B[1])
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| MID | A | Map ID |
+| IDTYP | B[1] | ID Type |
 
 #### **S12F16 - Map Data Type 2** {#s12f16---map-data-type-2}
 ```
@@ -4127,10 +5127,13 @@ MDACK
 ```
 
 **Parameters:**
-- MID: Map ID (A)
-- IDTYP: ID Type (B[1])
-- STRP: Strip Data (A)
-- BINLT: Binary Data (B)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| MID | A | Map ID |
+| IDTYP | B[1] | ID Type |
+| STRP | A | Strip Data |
+| BINLT | B | Binary Data |
 
 
 #### **S12F17 - Map Data Request Type 3** {#s12f17---map-data-request-type-3}
@@ -4143,9 +5146,12 @@ MDACK
 ```
 
 **Parameters:**
-- MID: Map ID (A)
-- IDTYP: ID Type (B[1])
-- SDBIN: Sub Data Binary (B)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| MID | A | Map ID |
+| IDTYP | B[1] | ID Type |
+| SDBIN | B | Sub Data Binary |
 
 #### **S12F18 - Map Data Type 3** {#s12f18---map-data-type-3}
 ```
@@ -4162,10 +5168,13 @@ MDACK
 ```
 
 **Parameters:**
-- MID: Map ID (A)
-- IDTYP: ID Type (B[1])
-- XYPOS: XY Position (A)
-- BINLT: Binary Data (B)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| MID | A | Map ID |
+| IDTYP | B[1] | ID Type |
+| XYPOS | A | XY Position |
+| BINLT | B | Binary Data |
 
 #### **S12F19 - Map Error Report Send** {#s12f19---map-error-report-send}
 ```
@@ -4176,8 +5185,11 @@ MDACK
 ```
 
 **Parameters:**
-- MAPER: Map Error (A)
-- DATLC: Data Location (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| MAPER | ASCII | Map Error |
+| DATLC | ASCII | Data Location |
 
 
 
@@ -4211,8 +5223,11 @@ MDACK
 ```
 
 **Parameters:**
-- DSNAME: Data Set Name (A)
-- Comment: S13F1 seems to have the L: wrapper that S13F2 is missing. Be prepared to receive DSNAME without the L:
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| DSNAME | ASCII | Data Set Name |
+| Comment | - | S13F1 seems to have the L: wrapper that S13F2 is missing. Be prepared to receive DSNAME without the L: |
 
 #### **S13F2 - Send Data Set Ack** {#s13f2---send-data-set-ack}
 ```
@@ -4223,11 +5238,14 @@ MDACK
 ```
 
 **Parameters:**
-- DSNAME: Data Set Name (A)
-- ACKC13: Acknowledge Code (B[1])
-  - 0: Acknowledged
-  - 1: Error
-- Comment: The standards have had an erroneous structure for years - the L:2 has been missing. Unfortunately some implementations have not realized it was an error. The latest Hume versions automagically create the L:2 wrapper when it is missing.
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| DSNAME | ASCII | Data Set Name |
+| ACKC13 | B[1] | Acknowledge Code |
+| | | 0: Acknowledged |
+| | | 1: Error |
+| Comment | - | The standards have had an erroneous structure for years - the L:2 has been missing. Unfortunately some implementations have not realized it was an error. The latest Hume versions automagically create the L:2 wrapper when it is missing. |
 
 #### **S13F3 - Open Data Set Request** {#s13f3---open-data-set-request}
 ```
@@ -4239,10 +5257,13 @@ MDACK
 ```
 
 **Parameters:**
-- HANDLE: Handle (A)
-- DSNAME: Data Set Name (A)
-- CKPNT: Checkpoint (A)
-- Comment: Sent by the receiver to open a data set for reading
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| HANDLE | ASCII | Handle |
+| DSNAME | ASCII | Data Set Name |
+| CKPNT | ASCII | Checkpoint |
+| Comment | - | Sent by the receiver to open a data set for reading |
 
 #### **S13F4 - Open Data Set Data** {#s13f4---open-data-set-data}
 ```
@@ -4256,11 +5277,14 @@ MDACK
 ```
 
 **Parameters:**
-- HANDLE: Handle (A)
-- DSNAME: Data Set Name (A)
-- ACKC13: Acknowledge Code (B[1])
-- RTYPE: Record Type (A)
-- RECLEN: Record Length (U1, U2, U4)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| HANDLE | ASCII | Handle |
+| DSNAME | ASCII | Data Set Name |
+| ACKC13 | B[1] | Acknowledge Code |
+| RTYPE | ASCII | Record Type |
+| RECLEN | U1/U2/U4 | Record Length |
 
 #### **S13F5 - Read Data Set Request** {#s13f5---read-data-set-request}
 ```
@@ -4271,8 +5295,11 @@ MDACK
 ```
 
 **Parameters:**
-- HANDLE: Handle (A)
-- READLN: Read Length (U1, U2, U4)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| HANDLE | ASCII | Handle |
+| READLN | U1/U2/U4 | Read Length |
 
 #### **S13F6 - Read Data Set Data** {#s13f6---read-data-set-data}
 ```
@@ -4287,10 +5314,13 @@ MDACK
 ```
 
 **Parameters:**
-- HANDLE: Handle (A)
-- ACKC13: Acknowledge Code (B[1])
-- CKPNT: Checkpoint (A)
-- FILDAT: File Data (any format)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| HANDLE | ASCII | Handle |
+| ACKC13 | B[1] | Acknowledge Code |
+| CKPNT | ASCII | Checkpoint |
+| FILDAT | Various | File Data (any format) |
 
 #### **S13F7 - Close Data Set Send** {#s13f7---close-data-set-send}
 ```
@@ -4300,7 +5330,10 @@ MDACK
 ```
 
 **Parameters:**
-- HANDLE: Handle (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| HANDLE | ASCII | Handle |
 
 #### **S13F8 - Close Data Set Ack** {#s13f8---close-data-set-ack}
 ```
@@ -4311,10 +5344,13 @@ MDACK
 ```
 
 **Parameters:**
-- HANDLE: Handle (A)
-- ACKC13: Acknowledge Code (B[1])
-  - 0: Acknowledged
-  - 1: Error
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| HANDLE | ASCII | Handle |
+| ACKC13 | B[1] | Acknowledge Code |
+| | | 0: Acknowledged |
+| | | 1: Error |
 
 #### **S13F9 - Reset Data Set Send** {#s13f9---reset-data-set-send}
 ```
@@ -4322,7 +5358,10 @@ MDACK
 ```
 
 **Parameters:**
-- Empty list (header only message)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| Header | - | Empty list (header only message) |
 
 #### **S13F10 - Reset Data Set Ack** {#s13f10---reset-data-set-ack}
 ```
@@ -4330,7 +5369,10 @@ MDACK
 ```
 
 **Parameters:**
-- Empty list (header only message)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| Header | - | Empty list (header only message) |
 
 #### **S13F11 - Data Set Obj Multi-Block Inquire** {#s13f11---data-set-obj-multi-block-inquire}
 ```
@@ -4342,9 +5384,12 @@ MDACK
 ```
 
 **Parameters:**
-- DATAID: Data ID (U1, U2, U4, or A)
-- OBJSPEC: Object Specification (A)
-- DATALENGTH: Data Length (U1, U2, U4)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| DATAID | U1/U2/U4/A | Data ID |
+| OBJSPEC | ASCII | Object Specification |
+| DATALENGTH | U1/U2/U4 | Data Length |
 
 #### **S13F12 - Data Set Obj Multi-Block Grant** {#s13f12---data-set-obj-multi-block-grant}
 ```
@@ -4352,9 +5397,12 @@ GRANT
 ```
 
 **Parameters:**
-- GRANT: Grant signal (B[1])
-  - 0: Not granted
-  - 1: Granted
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| GRANT | B[1] | Grant signal |
+| | | 0: Not granted |
+| | | 1: Granted |
 
 #### **S13F13 - Table Data Send** {#s13f13---table-data-send}
 ```
@@ -4382,16 +5430,19 @@ GRANT
 ```
 
 **Parameters:**
-- DATAID: Data ID (U1, U2, U4, or A)
-- OBJSPEC: Object Specification (A)
-- TBLTYP: Table Type (A)
-- TBLID: Table ID (A)
-- TBLCMD: Table Command (A)
-- ATTRID: Attribute ID (A)
-- ATTRDATA: Attribute Data (any format)
-- COLHDR: Column Header (A)
-- TBLELT: Table Element (any format)
-- Comment: The first element of every row is a primary key value which identifies the row. The row items correspond in sequence to the column headers. E58 uses attributes NumCols, NumRows, and DataLength
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| DATAID | U1/U2/U4/A | Data ID |
+| OBJSPEC | ASCII | Object Specification |
+| TBLTYP | ASCII | Table Type |
+| TBLID | ASCII | Table ID |
+| TBLCMD | ASCII | Table Command |
+| ATTRID | ASCII | Attribute ID |
+| ATTRDATA | Various | Attribute Data (any format) |
+| COLHDR | ASCII | Column Header |
+| TBLELT | Various | Table Element (any format) |
+| Comment | - | The first element of every row is a primary key value which identifies the row. The row items correspond in sequence to the column headers. E58 uses attributes NumCols, NumRows, and DataLength |
 
 #### **S13F14 - Table Data Ack** {#s13f14---table-data-ack}
 ```
@@ -4407,9 +5458,12 @@ GRANT
 ```
 
 **Parameters:**
-- TBLACK: Table Acknowledge (B[1])
-- ERRCODE: Error Code (U1, U2, U4, or A)
-- ERRTEXT: Error Text (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TBLACK | B[1] | Table Acknowledge |
+| ERRCODE | U1/U2/U4/A | Error Code |
+| ERRTEXT | ASCII | Error Text |
 
 #### **S13F15 - Table Data Request** {#s13f15---table-data-request}
 ```
@@ -4429,14 +5483,17 @@ GRANT
 ```
 
 **Parameters:**
-- DATAID: Data ID (U1, U2, U4, or A)
-- OBJSPEC: Object Specification (A)
-- TBLTYP: Table Type (A)
-- TBLID: Table ID (A)
-- TBLCMD: Table Command (A)
-- COLHDR: Column Header (A)
-- TBLELT: Table Element (any format)
-- Comment: Either p or q or both are 0.
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| DATAID | U1/U2/U4/A | Data ID |
+| OBJSPEC | ASCII | Object Specification |
+| TBLTYP | ASCII | Table Type |
+| TBLID | ASCII | Table ID |
+| TBLCMD | ASCII | Table Command |
+| COLHDR | ASCII | Column Header |
+| TBLELT | Various | Table Element (any format) |
+| Comment | - | Either p or q or both are 0. |
 
 #### **S13F16 - Table Data** {#s13f16---table-data}
 ```
@@ -4470,15 +5527,18 @@ GRANT
 ```
 
 **Parameters:**
-- TBLTYP: Table Type (A)
-- TBLID: Table ID (A)
-- ATTRID: Attribute ID (A)
-- ATTRDATA: Attribute Data (any format)
-- COLHDR: Column Header (A)
-- TBLELT: Table Element (any format)
-- TBLACK: Table Acknowledge (B[1])
-- ERRCODE: Error Code (U1, U2, U4, or A)
-- ERRTEXT: Error Text (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TBLTYP | ASCII | Table Type |
+| TBLID | ASCII | Table ID |
+| ATTRID | ASCII | Attribute ID |
+| ATTRDATA | Various | Attribute Data (any format) |
+| COLHDR | ASCII | Column Header |
+| TBLELT | Various | Table Element (any format) |
+| TBLACK | B[1] | Table Acknowledge |
+| ERRCODE | U1/U2/U4/A | Error Code |
+| ERRTEXT | ASCII | Error Text |
 
 
 ### Stream 14: Object Services
@@ -4517,6 +5577,7 @@ GRANT
 
 #### **S14F1 - Get Attributes Request** {#s14f1---get-attributes-request}
 ```
+<-S14F1
 {L[5]
   OBJSPEC
   OBJTYPE
@@ -4537,16 +5598,20 @@ GRANT
 ```
 
 **Parameters:**
-- OBJSPEC: Object Specification (A)
-- OBJTYPE: Object Type (A)
-- OBJID: Object ID (A)
-- ATTRID: Attribute ID (A)
-- ATTRDATA: Attribute Data (any format)
-- ATTRRELN: Attribute Relation (A)
-- Comment: List lengths can be 0, and OBJSPEC can be zero-length.
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| OBJSPEC | ASCII | Object Specification |
+| OBJTYPE | ASCII | Object Type |
+| OBJID | ASCII | Object ID |
+| ATTRID | ASCII | Attribute ID |
+| ATTRDATA | Various | Attribute Data (any format) |
+| ATTRRELN | ASCII | Attribute Relation |
+| Comment | - | List lengths can be 0, and OBJSPEC can be zero-length. |
 
 #### **S14F2 - Attribute Data** {#s14f2---attribute-data}
 ```
+S14F2->
 {L[2]
   {L[n]
     {L[2]
@@ -4572,15 +5637,19 @@ GRANT
 ```
 
 **Parameters:**
-- OBJID: Object ID (A)
-- ATTRID: Attribute ID (A)
-- ATTRDATA: Attribute Data (any format)
-- OBJACK: Object Acknowledge (B[1])
-- ERRCODE: Error Code (U1, U2, U4, or A)
-- ERRTEXT: Error Text (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| OBJID | ASCII | Object ID |
+| ATTRID | ASCII | Attribute ID |
+| ATTRDATA | Various | Attribute Data (any format) |
+| OBJACK | B[1] | Object Acknowledge |
+| ERRCODE | U1/U2/U4/A | Error Code |
+| ERRTEXT | ASCII | Error Text |
 
 #### **S14F3 - Set Attributes** {#s14f3---set-attributes}
 ```
+<-S14F3
 {L[4]
   OBJSPEC
   OBJTYPE
@@ -4597,15 +5666,19 @@ GRANT
 ```
 
 **Parameters:**
-- OBJSPEC: Object Specification (A)
-- OBJTYPE: Object Type (A)
-- OBJID: Object ID (A)
-- ATTRID: Attribute ID (A)
-- ATTRDATA: Attribute Data (any format)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| OBJSPEC | ASCII | Object Specification |
+| OBJTYPE | ASCII | Object Type |
+| OBJID | ASCII | Object ID |
+| ATTRID | ASCII | Attribute ID |
+| ATTRDATA | Various | Attribute Data (any format) |
 
 
 #### **S14F4 - Set Attributes Reply** {#s14f4---set-attributes-reply}
 ```
+S14F4->
 {L[2]
   {L[i]
     {L[2]
@@ -4631,24 +5704,32 @@ GRANT
 ```
 
 **Parameters:**
-- OBJID: Object ID (A)
-- ATTRID: Attribute ID (A)
-- ATTRDATA: Attribute Data (any format)
-- OBJACK: Object Acknowledge (B[1])
-- ERRCODE: Error Code (U1, U2, U4, or A)
-- ERRTEXT: Error Text (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| OBJID | ASCII | Object ID |
+| ATTRID | ASCII | Attribute ID |
+| ATTRDATA | Various | Attribute Data (any format) |
+| OBJACK | B[1] | Object Acknowledge |
+| ERRCODE | U1/U2/U4/A | Error Code |
+| ERRTEXT | ASCII | Error Text |
 
 #### **S14F5 - Get Type Data** {#s14f5---get-type-data}
 ```
+<-S14F5
 OBJSPEC
 ```
 
 **Parameters:**
-- OBJSPEC: Object Specification (A)
-- Comment: Asks for the types of objects owned by the type of specified object
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| OBJSPEC | ASCII | Object Specification |
+| Comment | - | Asks for the types of objects owned by the type of specified object |
 
 #### **S14F6 - Type Data** {#s14f6---type-data}
 ```
+S14F6->
 {L[2]
   {L[n]
     OBJTYPE
@@ -4666,10 +5747,13 @@ OBJSPEC
 ```
 
 **Parameters:**
-- OBJTYPE: Object Type (A)
-- OBJACK: Object Acknowledge (B[1])
-- ERRCODE: Error Code (U1, U2, U4, or A)
-- ERRTEXT: Error Text (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| OBJTYPE | ASCII | Object Type |
+| OBJACK | B[1] | Object Acknowledge |
+| ERRCODE | U1/U2/U4/A | Error Code |
+| ERRTEXT | ASCII | Error Text |
 
 #### **S14F7 - Get Attribute Names** {#s14f7---get-attribute-names}
 ```
@@ -4682,8 +5766,11 @@ OBJSPEC
 ```
 
 **Parameters:**
-- OBJSPEC: Object Specification (A)
-- OBJTYPE: Object Type (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| OBJSPEC | ASCII | Object Specification |
+| OBJTYPE | ASCII | Object Type |
 
 #### **S14F8 - Attribute Names** {#s14f8---attribute-names}
 ```
@@ -4709,11 +5796,14 @@ OBJSPEC
 ```
 
 **Parameters:**
-- OBJTYPE: Object Type (A)
-- ATTRID: Attribute ID (A)
-- OBJACK: Object Acknowledge (B[1])
-- ERRCODE: Error Code (U1, U2, U4, or A)
-- ERRTEXT: Error Text (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| OBJTYPE | ASCII | Object Type |
+| ATTRID | ASCII | Attribute ID |
+| OBJACK | B[1] | Object Acknowledge |
+| ERRCODE | U1/U2/U4/A | Error Code |
+| ERRTEXT | ASCII | Error Text |
 
 #### **S14F9 - Create Object Request** {#s14f9---create-obj-request}
 ```
@@ -4730,10 +5820,13 @@ OBJSPEC
 ```
 
 **Parameters:**
-- OBJSPEC: Object Specification (A)
-- OBJTYPE: Object Type (A)
-- ATTRID: Attribute ID (A)
-- ATTRDATA: Attribute Data (any format)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| OBJSPEC | ASCII | Object Specification |
+| OBJTYPE | ASCII | Object Type |
+| ATTRID | ASCII | Attribute ID |
+| ATTRDATA | Various | Attribute Data (any format) |
 
 #### **S14F10 - Create Object Acknowledge** {#s14f10---create-obj-ack}
 ```
@@ -4758,12 +5851,15 @@ OBJSPEC
 ```
 
 **Parameters:**
-- OBJSPEC: Object Specification (A)
-- ATTRID: Attribute ID (A)
-- ATTRDATA: Attribute Data (any format)
-- OBJACK: Object Acknowledge (B[1])
-- ERRCODE: Error Code (U1, U2, U4, or A)
-- ERRTEXT: Error Text (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| OBJSPEC | ASCII | Object Specification |
+| ATTRID | ASCII | Attribute ID |
+| ATTRDATA | Various | Attribute Data (any format) |
+| OBJACK | B[1] | Object Acknowledge |
+| ERRCODE | U1/U2/U4/A | Error Code |
+| ERRTEXT | ASCII | Error Text |
 
 #### **S14F11 - Delete Object Request** {#s14f11---delete-obj-request}
 ```
@@ -4779,9 +5875,12 @@ OBJSPEC
 ```
 
 **Parameters:**
-- OBJSPEC: Object Specification (A)
-- ATTRID: Attribute ID (A)
-- ATTRDATA: Attribute Data (any format)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| OBJSPEC | ASCII | Object Specification |
+| ATTRID | ASCII | Attribute ID |
+| ATTRDATA | Various | Attribute Data (any format) |
 
 #### **S14F12 - Delete Object Acknowledge** {#s14f12---delete-obj-ack}
 ```
@@ -4805,11 +5904,14 @@ OBJSPEC
 ```
 
 **Parameters:**
-- ATTRID: Attribute ID (A)
-- ATTRDATA: Attribute Data (any format)
-- OBJACK: Object Acknowledge (B[1])
-- ERRCODE: Error Code (U1, U2, U4, or A)
-- ERRTEXT: Error Text (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ATTRID | ASCII | Attribute ID |
+| ATTRDATA | Various | Attribute Data (any format) |
+| OBJACK | B[1] | Object Acknowledge |
+| ERRCODE | U1/U2/U4/A | Error Code |
+| ERRTEXT | ASCII | Error Text |
 
 #### **S14F13 - Object Attach Request** {#s14f13---object-attach-request}
 ```
@@ -4825,9 +5927,12 @@ OBJSPEC
 ```
 
 **Parameters:**
-- OBJSPEC: Object Specification (A)
-- ATTRID: Attribute ID (A)
-- ATTRDATA: Attribute Data (any format)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| OBJSPEC | ASCII | Object Specification |
+| ATTRID | ASCII | Attribute ID |
+| ATTRDATA | Various | Attribute Data (any format) |
 
 
 #### **S14F14 - Object Attach Acknowledge** {#s14f14---object-attach-ack}
@@ -4853,12 +5958,15 @@ OBJSPEC
 ```
 
 **Parameters:**
-- OBJTOKEN: Object Token (A)
-- ATTRID: Attribute ID (A)
-- ATTRDATA: Attribute Data (any format)
-- OBJACK: Object Acknowledge (B[1])
-- ERRCODE: Error Code (U1, U2, U4, or A)
-- ERRTEXT: Error Text (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| OBJTOKEN | A | Object Token |
+| ATTRID | A | Attribute ID |
+| ATTRDATA | any format | Attribute Data |
+| OBJACK | B[1] | Object Acknowledge |
+| ERRCODE | U1, U2, U4, or A | Error Code |
+| ERRTEXT | A | Error Text |
 
 #### **S14F15 - Attached Object Action Request** {#s14f15---attached-obj-action-req}
 ```
@@ -4876,11 +5984,14 @@ OBJSPEC
 ```
 
 **Parameters:**
-- OBJSPEC: Object Specification (A)
-- OBJCMD: Object Command (A)
-- OBJTOKEN: Object Token (A)
-- ATTRID: Attribute ID (A)
-- ATTRDATA: Attribute Data (any format)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| OBJSPEC | A | Object Specification |
+| OBJCMD | A | Object Command |
+| OBJTOKEN | A | Object Token |
+| ATTRID | A | Attribute ID |
+| ATTRDATA | any format | Attribute Data |
 
 #### **S14F16 - Attached Object Action Acknowledge** {#s14f16---attached-obj-action-ack}
 ```
@@ -4904,11 +6015,14 @@ OBJSPEC
 ```
 
 **Parameters:**
-- ATTRID: Attribute ID (A)
-- ATTRDATA: Attribute Data (any format)
-- OBJACK: Object Acknowledge (B[1])
-- ERRCODE: Error Code (U1, U2, U4, or A)
-- ERRTEXT: Error Text (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ATTRID | A | Attribute ID |
+| ATTRDATA | any format | Attribute Data |
+| OBJACK | B[1] | Object Acknowledge |
+| ERRCODE | U1, U2, U4, or A | Error Code |
+| ERRTEXT | A | Error Text |
 
 #### **S14F17 - Supervised Object Action Request** {#s14f17---supervised-obj-action-req}
 ```
@@ -4926,11 +6040,14 @@ OBJSPEC
 ```
 
 **Parameters:**
-- OBJSPEC: Object Specification (A)
-- OBJCMD: Object Command (A)
-- TARGETSPEC: Target Specification (A)
-- ATTRID: Attribute ID (A)
-- ATTRDATA: Attribute Data (any format)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| OBJSPEC | A | Object Specification |
+| OBJCMD | A | Object Command |
+| TARGETSPEC | A | Target Specification |
+| ATTRID | A | Attribute ID |
+| ATTRDATA | any format | Attribute Data |
 
 #### **S14F18 - Supervised Object Action Acknowledge** {#s14f18---supervised-obj-action-ack}
 ```
@@ -4954,11 +6071,14 @@ OBJSPEC
 ```
 
 **Parameters:**
-- ATTRID: Attribute ID (A)
-- ATTRDATA: Attribute Data (any format)
-- OBJACK: Object Acknowledge (B[1])
-- ERRCODE: Error Code (U1, U2, U4, or A)
-- ERRTEXT: Error Text (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ATTRID | A | Attribute ID |
+| ATTRDATA | any format | Attribute Data |
+| OBJACK | B[1] | Object Acknowledge |
+| ERRCODE | U1, U2, U4, or A | Error Code |
+| ERRTEXT | A | Error Text |
 
 #### **S14F19 - Generic Service Request** {#s14f19---generic-service-req}
 ```
@@ -4977,12 +6097,15 @@ OBJSPEC
 ```
 
 **Parameters:**
-- DATAID: Data ID (U1, U2, U4, or A)
-- OPID: Operation ID (A)
-- OBJSPEC: Object Specification (A)
-- SVCNAME: Service Name (A)
-- SPNAME: Service Parameter Name (A)
-- SPVAL: Service Parameter Value (any format)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| DATAID | U1, U2, U4, or A | Data ID |
+| OPID | A | Operation ID |
+| OBJSPEC | A | Object Specification |
+| SVCNAME | A | Service Name |
+| SPNAME | A | Service Parameter Name |
+| SPVAL | any format | Service Parameter Value |
 
 #### **S14F20 - Generic Service Acknowledge** {#s14f20---generic-service-ack}
 ```
@@ -5008,13 +6131,16 @@ OBJSPEC
 ```
 
 **Parameters:**
-- SVCACK: Service Acknowledge (B[1])
-- LINKID: Link ID (A)
-- SPNAME: Service Parameter Name (A)
-- SPVAL: Service Parameter Value (any format)
-- ERRCODE: Error Code (U1, U2, U4, or A)
-- ERRTEXT: Error Text (A)
-- Comment: It is not a mistake that SVCACK is included twice
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| SVCACK | B[1] | Service Acknowledge |
+| LINKID | A | Link ID |
+| SPNAME | A | Service Parameter Name |
+| SPVAL | any format | Service Parameter Value |
+| ERRCODE | U1, U2, U4, or A | Error Code |
+| ERRTEXT | A | Error Text |
+| | | Comment: It is not a mistake that SVCACK is included twice |
 
 #### **S14F21 - Generic Service Completion** {#s14f21---generic-service-completion}
 ```
@@ -5041,14 +6167,17 @@ OBJSPEC
 ```
 
 **Parameters:**
-- DATAID: Data ID (U1, U2, U4, or A)
-- OPID: Operation ID (A)
-- LINKID: Link ID (A)
-- SPNAME: Service Parameter Name (A)
-- SPVAL: Service Parameter Value (any format)
-- SVCACK: Service Acknowledge (B[1])
-- ERRCODE: Error Code (U1, U2, U4, or A)
-- ERRTEXT: Error Text (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| DATAID | U1, U2, U4, or A | Data ID |
+| OPID | A | Operation ID |
+| LINKID | A | Link ID |
+| SPNAME | A | Service Parameter Name |
+| SPVAL | any format | Service Parameter Value |
+| SVCACK | B[1] | Service Acknowledge |
+| ERRCODE | U1, U2, U4, or A | Error Code |
+| ERRTEXT | A | Error Text |
 
 #### **S14F22 - Generic Service Completion Acknowledge** {#s14f22---generic-service-comp-ack}
 ```
@@ -5056,7 +6185,10 @@ DATAACK
 ```
 
 **Parameters:**
-- DATAACK: Data Acknowledge (B[1])
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| DATAACK | B[1] | Data Acknowledge |
 
 #### **S14F23 - Multi-block Generic Service Inquire** {#s14f23---multi-block-generic-service-inquire}
 ```
@@ -5067,9 +6199,12 @@ DATAACK
 ```
 
 **Parameters:**
-- DATAID: Data ID (U1, U2, U4, or A)
-- DATALENGTH: Data Length (U1, U2, U4)
-- Comment: You are advised not to implement this message.
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| DATAID | U1, U2, U4, or A | Data ID |
+| DATALENGTH | U1, U2, U4 | Data Length |
+| | | Comment: You are advised not to implement this message |
 
 #### **S14F24 - Multi-block Generic Service Grant** {#s14f24---multi-block-generic-service-grant}
 ```
@@ -5077,9 +6212,10 @@ GRANT
 ```
 
 **Parameters:**
-- GRANT: Grant signal (B[1])
-  - 0: Not granted
-  - 1: Granted
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| GRANT | B[1] | Grant signal (0: Not granted, 1: Granted) |
 
 #### **S14F25 - Service Name Request** {#s14f25---service-name-request}
 ```
@@ -5092,8 +6228,11 @@ GRANT
 ```
 
 **Parameters:**
-- OBJSPEC: Object Specification (A)
-- OBJTYPE: Object Type (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| OBJSPEC | ASCII | Object Specification |
+| OBJTYPE | ASCII | Object Type |
 
 #### **S14F26 - Service Name Data** {#s14f26---service-name-data}
 ```
@@ -5119,11 +6258,14 @@ GRANT
 ```
 
 **Parameters:**
-- OBJTYPE: Object Type (A)
-- SVCNAME: Service Name (A)
-- OBJACK: Object Acknowledge (B[1])
-- ERRCODE: Error Code (U1, U2, U4, or A)
-- ERRTEXT: Error Text (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| OBJTYPE | ASCII | Object Type |
+| SVCNAME | ASCII | Service Name |
+| OBJACK | B[1] | Object Acknowledge |
+| ERRCODE | U1/U2/U4/A | Error Code |
+| ERRTEXT | ASCII | Error Text |
 
 #### **S14F27 - Service Parameter Name Request** {#s14f27---service-parameter-name-req}
 ```
@@ -5137,9 +6279,12 @@ GRANT
 ```
 
 **Parameters:**
-- OBJSPEC: Object Specification (A)
-- OBJTYPE: Object Type (A)
-- SVCNAME: Service Name (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| OBJSPEC | ASCII | Object Specification |
+| OBJTYPE | ASCII | Object Type |
+| SVCNAME | ASCII | Service Name |
 
 #### **S14F28 - Service Parameter Name Data** {#s14f28---service-parameter-name-data}
 ```
@@ -5165,11 +6310,14 @@ GRANT
 ```
 
 **Parameters:**
-- SVCNAME: Service Name (A)
-- SPNAME: Service Parameter Name (A)
-- OBJACK: Object Acknowledge (B[1])
-- ERRCODE: Error Code (U1, U2, U4, or A)
-- ERRTEXT: Error Text (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| SVCNAME | ASCII | Service Name |
+| SPNAME | ASCII | Service Parameter Name |
+| OBJACK | B[1] | Object Acknowledge |
+| ERRCODE | U1/U2/U4/A | Error Code |
+| ERRTEXT | ASCII | Error Text |
 
 
 
@@ -5236,8 +6384,9 @@ GRANT
 #### **S15F1 - Recipe Management Multi-Block Inquire** {#s15f1---recipe-management-multi-block-inquire}
 **Comment**: E5 fails to mention the message type is optional for HSMS
 
-**Format**:
+
 ```
+S15F1-> or <-S15F1
 {L[3]
 DATAID
 RCPSPEC
@@ -5246,14 +6395,16 @@ RMDATASIZE
 ```
 
 #### **S15F2 - Recipe Management Multi-block Grant** {#s15f2---recipe-management-multi-block-grant}
-**Format**:
+
 ```
+S15F2-> or <-S15F2
 RMGRNT
 ```
 
 #### **S15F3 - Recipe Namespace Action Req** {#s15f3---recipe-namespace-action-req}
-**Format**:
+
 ```
+S15F3-> or <-S15F3
 {L[2]
 RMNSSPEC
 RMNSCMD
@@ -5261,11 +6412,12 @@ RMNSCMD
 ```
 
 #### **S15F4 - Recipe Namespace Action** {#s15f4---recipe-namespace-action}
-**Format**:
+
 ```
+S15F4-> or <-S15F4
 {L[2]
 RMACK
-{L:p
+{L[p]
 {L[2]
 ERRCODE
 ERRTEXT
@@ -5275,8 +6427,9 @@ ERRTEXT
 ```
 
 #### **S15F5 - Recipe Namespace Rename Req** {#s15f5---recipe-namespace-rename-req}
-**Format**:
+
 ```
+S15F5-> or <-S15F5
 {L[2]
 RMNSSPEC
 RMNEWNS
@@ -5284,11 +6437,12 @@ RMNEWNS
 ```
 
 #### **S15F6 - Recipe Namespace Rename Ack** {#s15f6---recipe-namespace-rename-ack}
-**Format**:
+
 ```
+S15F6-> or <-S15F6
 {L[2]
 RMACK
-{L:p
+{L[p]
 {L[2]
 ERRCODE
 ERRTEXT
@@ -5298,19 +6452,21 @@ ERRTEXT
 ```
 
 #### **S15F7 - Recipe Space Req** {#s15f7---recipe-space-req}
-**Format**:
+
 ```
+S15F7-> or <-S15F7
 OBJSPEC
 ```
 
 #### **S15F8 - Recipe Space Data** {#s15f8---recipe-space-data}
-**Format**:
+
 ```
+S15F8-> or <-S15F8
 {L[2]
 RMSPACE
 {L[2]
 RMACK
-{L:p
+{L[p]
 {L[2]
 ERRCODE
 ERRTEXT
@@ -5321,20 +6477,22 @@ ERRTEXT
 ```
 
 #### **S15F9 - Recipe Status Request** {#s15f9---recipe-status-request}
-**Format**:
+
 ```
+S15F9-> or <-S15F9
 RCPSPEC
 ```
 
 #### **S15F10 - Recipe Status Data** {#s15f10---recipe-status-data}
-**Format**:
+
 ```
+S15F10-> or <-S15F10
 {L[3]
 RCPSTAT
 RCPVERS
 {L[2]
 RMACK
-{L:p
+{L[p]
 {L[2]
 ERRCODE
 ERRTEXT
@@ -5345,8 +6503,9 @@ ERRTEXT
 ```
 
 #### **S15F11 - Recipe Version Request** {#s15f11---recipe-version-request}
-**Format**:
+
 ```
+S15F11-> or <-S15F11
 {L[4]
 RMNSSPEC
 RCPCLASS
@@ -5356,14 +6515,15 @@ AGENT
 ```
 
 #### **S15F12 - Recipe Version Data** {#s15f12---recipe-version-data}
-**Format**:
+
 ```
+S15F12-> or <-S15F12
 {L[3]
 AGENT
 RCPVERS
 {L[2]
 RMACK
-{L:p
+{L[p]
 {L[2]
 ERRCODE
 ERRTEXT
@@ -5374,7 +6534,7 @@ ERRTEXT
 ```
 
 #### **S15F13 - Recipe Create Req** {#s15f13---recipe-create-req}
-**Format**:
+
 ```
 {L[5]
 DATAID
@@ -5391,73 +6551,73 @@ RCPBODY
 ```
 
 #### **S15F14 - Recipe Create Ack** {#s15f14---recipe-create-ack}
-**Format**:
+
 ```
 {L[2]
-RMACK
-{L:p
-{L[2]
-ERRCODE
-ERRTEXT
-}
-}
+  RMACK
+  {L[p]
+    {L[2]
+      ERRCODE
+      ERRTEXT
+    }
+  }
 }
 ```
 
 #### **S15F15 - Recipe Store Req** {#s15f15---recipe-store-req}
-**Comment**: L[2]* can be L[2] or L:0; E5 documentation is inadequate for L:q other than L[3]
+**Comment**: L[2]* can be L[2] or L:0; E5 documentation is inadequate for L[n] other than L[3]
 
-**Format**:
+
 ```
 {L[4]
-DATAID
-RCPSPEC
-RCPSECCODE
-{L[3]
-{L[2]*
-RCPSECNM
-{L:g
-{L[2]
-RCPATTRID
-RCPATTRDATA
-}
-}
-}
-RCPBODY
-{L[n]
-{L[2]
-RCPSECNM
-{L[n]
-{L[2]
-RCPATTRID
-RCPATTRDATA
-}
-}
-}
-}
-}
+  DATAID
+  RCPSPEC
+  RCPSECCODE
+  {L[3]
+    {L[2]*
+      RCPSECNM
+        {L[o]
+          {L[2]
+            RCPATTRID
+            RCPATTRDATA
+          }
+        }
+    }
+    RCPBODY
+    {L[n]
+      {L[2]
+          RCPSECNM
+          {L[n]
+            {L[2]
+            RCPATTRID
+            RCPATTRDATA
+          }
+        }
+      }
+    }
+  }
 }
 ```
 
 #### **S15F16 - Recipe Store Ack** {#s15f16---recipe-store-ack}
-**Format**:
+
 ```
 {L[2]
-RCPSECCODE
-{L[2]
-RMACK
-{L:p
-{L[2]
-ERRCODE
-ERRTEXT
-}
-}
-}
+  RCPSECCODE
+  {L[2]
+    RMACK
+    {L[p]
+      {L[2]
+        ERRCODE
+        ERRTEXT
+      }
+    }
+  }
 }
 ```
 
 #### **S15F17 - Recipe Retrieve Req** {#s15f17---recipe-retrieve-req}
-**Format**:
+
 ```
 {L[2]
 RCPSPEC
@@ -5466,303 +6626,311 @@ RCPSECCODE
 ```
 
 #### **S15F18 - Recipe Retrieve Data** {#s15f18---recipe-retrieve-data}
-**Format**:
+
 ```
 {L[2]
-{L:q
-{L:r
-RCPSECNM
-{L:g
-{L[2]
-RCPATTRID
-RCPATTRDATA
-}
-}
-}
-RCPBODY
-{L[n]
-{L[2]
-RCPSECNM
-{L[n]
-{L[2]
-RCPATTRID
-RCPATTRDATA
-}
-}
-}
-}
-}
-{L[2]
-RMACK
-{L:p
-{L[2]
-ERRCODE
-ERRTEXT
-}
-}
-}
+  {L[n]
+    {L[n]
+      RCPSECNM
+      {L[n]
+        {L[2]
+          RCPATTRID
+          RCPATTRDATA
+          }
+        }
+      }
+      RCPBODY
+      {L[n]
+        {L[2]
+          RCPSECNM
+          {L[n]
+            {L[2]
+            RCPATTRID
+            RCPATTRDATA
+            }
+          }
+        }
+      }
+    }
+    {L[2]
+    RMACK
+    {L[p]
+      {L[2]
+        ERRCODE
+        ERRTEXT
+      }
+    }
+  }
 }
 ```
 
 #### **S15F19 - Recipe Rename Req** {#s15f19---recipe-rename-req}
-**Format**:
+
 ```
 {L[3]
-RCPSPEC
-RCPRENAME
-RCPNEWID
+  RCPSPEC
+  RCPRENAME
+  RCPNEWID
 }
 ```
 
 #### **S15F20 - Recipe Rename Ack** {#s15f20---recipe-rename-ack}
-**Format**:
+
 ```
 {L[2]
-RMACK
-{L:p
-{L[2]
-ERRCODE
-ERRTEXT
-}
-}
+  RMACK
+  {L[p]
+    {L[2]
+      ERRCODE
+      ERRTEXT
+    }
+  }
 }
 ```
 
 #### **S15F21 - Recipe Action Req** {#s15f21---recipe-action-req}
-**Format**:
+
 ```
-{L:6
-DATAID
-RCPCMD
-RMNSSPEC
-OPID
-AGENT
-{L[n]
-RCPID
-}
+{L[6]
+  DATAID
+  RCPCMD
+  RMNSSPEC
+  OPID
+  AGENT
+  {L[n]
+    RCPID
+  }
 }
 ```
 
 #### **S15F22 - Recipe Action Ack** {#s15f22---recipe-action-ack}
-**Format**:
+
 ```
 {L[4]
-AGENT
-LINKID
-RCPCMD
-{L[2]
-RMACK
-{L:p
-{L[2]
-ERRCODE
-ERRTEXT
-}
-}
-}
+  AGENT
+  LINKID
+  RCPCMD
+  {L[2]
+    RMACK
+    {L[p]
+      {L[2]
+        ERRCODE
+        ERRTEXT
+      }
+    }
+  }
 }
 ```
 
 #### **S15F23 - Recipe Descriptor Req** {#s15f23---recipe-descriptor-req}
-**Format**:
+
 ```
 {L[3]
-DATAID
-OBJSPEC
-{L[n]
-RCPID
-}
+  DATAID
+  OBJSPEC
+  {L[n]
+    RCPID
+  }
 }
 ```
 
 #### **S15F24 - Recipe Descriptor Data** {#s15f24---recipe-descriptor-data}
-**Format**:
+
 ```
 {L[2]
-{L[n]
-{L[n]
-{L[3]*
-RCPDESCNM
-RCPDESCTIME
-RCPDESCLTH
-}
-}
-}
-{L[2]
-RMACK
-{L:p
-{L[2]
-ERRCODE
-ERRTEXT
-}
-}
-}
+  {L[n]
+    {L[n]
+      {L[3]*
+        RCPDESCNM
+        RCPDESCTIME
+        RCPDESCLTH
+      }
+    }
+  }
+  {L[2]
+    RMACK
+    {L[p]
+      {L[2]
+        ERRCODE
+        ERRTEXT
+      }
+    }
+  }
 }
 ```
 
 #### **S15F25 - Recipe Parameter Update Req** {#s15f25---recipe-parameter-update-req}
-**Format**:
+
 ```
 {L[4]
-DATAID
-RMNSSPEC
-AGENT
-{L[n]
-{L[3]
-RCPPARNM
-RCPPARVAL
-RCPPARRULE
-}
-}
+  DATAID
+  RMNSSPEC
+  AGENT
+  {L[n]
+    {L[3]
+      RCPPARNM
+      RCPPARVAL
+      RCPPARRULE
+    }
+  }
 }
 ```
 
 #### **S15F26 - Recipe Parameter Update Ack** {#s15f26---recipe-parameter-update-ack}
-**Format**:
+
 ```
 {L[2]
-RMACK
-{L:p
-{L[2]
-ERRCODE
-ERRTEXT
-}
-}
+  RMACK
+  {L[p]
+    {L[2]
+      ERRCODE
+      ERRTEXT
+    }
+  }
 }
 ```
 
 #### **S15F27 - Recipe Download Req** {#s15f27---recipe-download-req}
-**Format**:
+
 ```
+<-S15F27
 {L[5]
-DATAID
-RCPOWCODE
-RCPSPEC
-{L[n]
-{L[2]
-RCPATTRID
-RCPATTRDATA
-}
-}
-RCPBODY
+  DATAID
+  RCPOWCODE
+  RCPSPEC
+  {L[n]
+    {L[2]
+      RCPATTRID
+      RCPATTRDATA
+    }
+  }
+  RCPBODY
 }
 ```
 
 #### **S15F28 - Recipe Download Ack** {#s15f28---recipe-download-ack}
-**Format**:
+
 ```
+S15F28->
 {L[3]
-RCPID
-{L[n]
-{L[2]
-RCPATTRID
-RCPATTRDATA
-}
-}
-{L[2]
-RMACK
-{L:p
-{L[2]
-ERRCODE
-ERRTEXT
-}
-}
-}
+  RCPID
+  {L[n]
+    {L[2]
+      RCPATTRID
+      RCPATTRDATA
+    }
+  }
+  {L[2]
+    RMACK
+    {L[p]
+      {L[2]
+        ERRCODE
+        ERRTEXT
+      }
+    }
+  }
 }
 ```
 
 #### **S15F29 - Recipe Verify Req** {#s15f29---recipe-verify-req}
-**Format**:
+
 ```
+<-S15F29
 {L[4]
-DATAID
-OPID
-RESPEC
-{L[n]
-RCPID
-}
+  DATAID
+  OPID
+  RESPEC
+  {L[n]
+    RCPID
+  }
 }
 ```
 
 #### **S15F30 - Recipe Verify Ack** {#s15f30---recipe-verify-ack}
-**Format**:
+
 ```
+S15F30->
 {L[5]
-OPID
-LINKID
-RCPID
-{L[n]
-{L[2]
-RCPATTRID
-RCPATTRDATA
-}
-}
-{L[2]
-RMACK
-{L:p
-{L[2]
-ERRCODE
-ERRTEXT
-}
-}
-}
+  OPID
+  LINKID
+  RCPID
+  {L[n]
+    {L[2]
+      RCPATTRID
+      RCPATTRDATA
+    }
+  }
+  {L[2]
+    RMACK
+    {L[p]
+      {L[2]
+        ERRCODE
+        ERRTEXT
+      }
+    }
+  }
 }
 ```
 
 #### **S15F31 - Recipe Unload Req** {#s15f31---recipe-unload-req}
-**Format**:
+
 ```
+<-S15F31
 RCPSPEC
 ```
 
 #### **S15F32 - Recipe Unload Data** {#s15f32---recipe-unload-data}
-**Format**:
+
 ```
+S15F32->
 {L[4]
-RCPSPEC
-{L[n]
-{L[2]
-RCPATTRID
-RCPATTRDATA
-}
-}
-RCPBODY
-{L[2]
-RMACK
-{L:p
-{L[2]
-ERRCODE
-ERRTEXT
-}
-}
-}
+  RCPSPEC
+  {L[n]
+    {L[2]
+      RCPATTRID
+      RCPATTRDATA
+    }
+  }
+  RCPBODY
+  {L[2]
+    RMACK
+    {L[p]
+      {L[2]
+        ERRCODE
+        ERRTEXT
+      }
+    }
+  }
 }
 ```
 
 #### **S15F33 - Recipe Select Req** {#s15f33---recipe-select-req}
-**Format**:
+
 ```
+<-S15F33
 {L[3]
-DATAID
-RESPEC
-{L:r
-{L[2]
-RCPID
-{L:p
-{L[2]
-RCPPARNM
-RCPPARVAL
-}
-}
-}
-}
+  DATAID
+  RESPEC
+  {L[m]
+    {L[2]
+      RCPID
+      {L[p]
+        {L[2]
+          RCPPARNM
+          RCPPARVAL
+        }
+      }
+    }
+  }
 }
 ```
  
 #### **S15F34 - Recipe Select Acknowledge** {#s15f34---recipe-select-ack}
 ```
+S15F34->
 {L[2]
   RMACK
-  {L:p
+  {L[p]
     {L[2]
       ERRCODE
       ERRTEXT
@@ -5772,15 +6940,17 @@ RCPPARVAL
 ```
 
 **Parameters:**
-- RMACK: Recipe Management Acknowledge (B[1])
-  - 0: Acknowledged
-  - 1: Error
-- ERRCODE: Error Code (U1, U2, U4, or A)
-- ERRTEXT: Error Text (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| RMACK | B[1] | Recipe Management Acknowledge<br>0: Acknowledged<br>1: Error |
+| ERRCODE | U1/U2/U4/A | Error Code |
+| ERRTEXT | A | Error Text |
 
 
 #### **S15F35 - Recipe Delete Request** {#s15f35---recipe-delete-req}
 ```
+<-S15F35
 {L[4]
   DATAID
   RESPEC
@@ -5792,19 +6962,21 @@ RCPPARVAL
 ```
 
 **Parameters:**
-- DATAID: Data ID (U1, U2, U4, or A)
-- RESPEC: Recipe Specification (A)
-- RCPDEL: Recipe Delete (B[1])
-  - 0: Delete
-  - 1: Keep
-- RCPID: Recipe ID (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| DATAID | U1/U2/U4/A | Data ID |
+| RESPEC | A | Recipe Specification |
+| RCPDEL | B[1] | Recipe Delete<br>0: Delete<br>1: Keep |
+| RCPID | A | Recipe ID |
 
 
 #### **S15F36 - Recipe Delete Acknowledge** {#s15f36---recipe-delete-ack}
 ```
+S15F36->
 {L[2]
   RMACK
-  {L:p
+  {L[p]
     {L[2]
       ERRCODE
       ERRTEXT
@@ -5814,11 +6986,12 @@ RCPPARVAL
 ```
 
 **Parameters:**
-- RMACK: Recipe Management Acknowledge (B[1])
-  - 0: Acknowledged
-  - 1: Error
-- ERRCODE: Error Code (U1, U2, U4, or A)
-- ERRTEXT: Error Text (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| RMACK | B[1] | Recipe Management Acknowledge<br>0: Acknowledged<br>1: Error |
+| ERRCODE | U1/U2/U4/A | Error Code |
+| ERRTEXT | A | Error Text |
 
 
 #### **S15F37 - DRNS Segment Approve Action Request** {#s15f37---drns-segment-approve-action-req}
@@ -5834,21 +7007,22 @@ RCPPARVAL
 ```
 
 **Parameters:**
-- RMSEGSPEC: Recipe Management Segment Specification (A)
-- OBJTOKEN: Object Token (A)
-- RMGRNT: Recipe Management Grant (B[1])
-  - 0: Granted
-  - 1: Not granted
-- OPID: Operation ID (A)
-- RCPID: Recipe ID (A)
-- RMCHGTYPE: Recipe Management Change Type (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| RMSEGSPEC | A | Recipe Management Segment Specification |
+| OBJTOKEN | A | Object Token |
+| RMGRNT | B[1] | Recipe Management Grant<br>0: Granted<br>1: Not granted |
+| OPID | A | Operation ID |
+| RCPID | A | Recipe ID |
+| RMCHGTYPE | A | Recipe Management Change Type |
 
 
 #### **S15F38 - DRNS Segment Approve Action Acknowledge** {#s15f38---drns-segment-approve-action-ack}
 ```
 {L[2]
   RMACK
-  {L:p
+  {L[p]
     {L[2]
       ERRCODE
       ERRTEXT
@@ -5858,11 +7032,12 @@ RCPPARVAL
 ```
 
 **Parameters:**
-- RMACK: Recipe Management Acknowledge (B[1])
-  - 0: Acknowledged
-  - 1: Error
-- ERRCODE: Error Code (U1, U2, U4, or A)
-- ERRTEXT: Error Text (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| RMACK | B[1] | Recipe Management Acknowledge<br>0: Acknowledged<br>1: Error |
+| ERRCODE | U1/U2/U4/A | Error Code |
+| ERRTEXT | A | Error Text |
 
 
 #### **S15F39 - DRNS Recorder Segment Request** {#s15f39---drns-recorder-seg-req}
@@ -5877,18 +7052,21 @@ RCPPARVAL
 ```
 
 **Parameters:**
-- DATAID: Data ID (U1, U2, U4, or A)
-- RMNSCMD: Recipe Management Namespace Command (A)
-- RMRECSPEC: Recipe Management Recorder Specification (A)
-- RMSEGSPEC: Recipe Management Segment Specification (A)
-- OBJTOKEN: Object Token (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| DATAID | U1/U2/U4/A | Data ID |
+| RMNSCMD | A | Recipe Management Namespace Command |
+| RMRECSPEC | A | Recipe Management Recorder Specification |
+| RMSEGSPEC | A | Recipe Management Segment Specification |
+| OBJTOKEN | A | Object Token |
 
 
 #### **S15F40 - DRNS Recorder Segment Acknowledge** {#s15f40---drns-recorder-seg-ack}
 ```
 {L[2]
   RMACK
-  {L:p
+  {L[p]
     {L[2]
       ERRCODE
       ERRTEXT
@@ -5898,11 +7076,12 @@ RCPPARVAL
 ```
 
 **Parameters:**
-- RMACK: Recipe Management Acknowledge (B[1])
-  - 0: Acknowledged
-  - 1: Error
-- ERRCODE: Error Code (U1, U2, U4, or A)
-- ERRTEXT: Error Text (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| RMACK | B[1] | Recipe Management Acknowledge<br>0: Acknowledged<br>1: Error |
+| ERRCODE | U1/U2/U4/A | Error Code |
+| ERRTEXT | A | Error Text |
 
 
 #### **S15F41 - DRNS Recorder Module Request** {#s15f41---drns-recorder-mod-req}
@@ -5925,24 +7104,27 @@ RCPPARVAL
 ```
 
 **Parameters:**
-- DATAID: Data ID (U1, U2, U4, or A)
-- RMRECSPEC: Recipe Management Recorder Specification (A)
-- OBJTOKEN: Object Token (A)
-- RMNSCMD: Recipe Management Namespace Command (A)
-- RCPID: Recipe ID (A)
-- RCPNEWID: Recipe New ID (A)
-- RMSEGSPEC: Recipe Management Segment Specification (A)
-- RMCHGTYPE: Recipe Management Change Type (A)
-- OPID: Operation ID (A)
-- TIMESTAMP: Time Stamp (A)
-- RMREQUESTOR: Recipe Management Requestor (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| DATAID | U1/U2/U4/A | Data ID |
+| RMRECSPEC | A | Recipe Management Recorder Specification |
+| OBJTOKEN | A | Object Token |
+| RMNSCMD | A | Recipe Management Namespace Command |
+| RCPID | A | Recipe ID |
+| RCPNEWID | A | Recipe New ID |
+| RMSEGSPEC | A | Recipe Management Segment Specification |
+| RMCHGTYPE | A | Recipe Management Change Type |
+| OPID | A | Operation ID |
+| TIMESTAMP | A | Time Stamp |
+| RMREQUESTOR | A | Recipe Management Requestor |
 
 
 #### **S15F42 - DRNS Recorder Module Acknowledge** {#s15f42---drns-recorder-mod-ack}
 ```
 {L[2]
   RMACK
-  {L:p
+  {L[p]
     {L[2]
       ERRCODE
       ERRTEXT
@@ -5952,11 +7134,12 @@ RCPPARVAL
 ```
 
 **Parameters:**
-- RMACK: Recipe Management Acknowledge (B[1])
-  - 0: Acknowledged
-  - 1: Error
-- ERRCODE: Error Code (U1, U2, U4, or A)
-- ERRTEXT: Error Text (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| RMACK | B[1] | Recipe Management Acknowledge<br>0: Acknowledged<br>1: Error |
+| ERRCODE | U1/U2/U4/A | Error Code |
+| ERRTEXT | A | Error Text |
 
 
 #### **S15F43 - DRNS Get Change Request** {#s15f43---drns-get-change-req}
@@ -5969,9 +7152,12 @@ RCPPARVAL
 ```
 
 **Parameters:**
-- DATAID: Data ID (U1, U2, U4, or A)
-- OBJSPEC: Object Specification (A)
-- TARGETSPEC: Target Specification (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| DATAID | U1/U2/U4/A | Data ID |
+| OBJSPEC | A | Object Specification |
+| TARGETSPEC | A | Target Specification |
 
 
 #### **S15F44 - DRNS Get Change Acknowledge** {#s15f44---drns-get-change-ack}
@@ -5990,7 +7176,7 @@ RCPPARVAL
   }
   {L[2]
     RMACK
-    {L:p
+    {L[p]
       {L[2]
         ERRCODE
         ERRTEXT
@@ -6001,18 +7187,19 @@ RCPPARVAL
 ```
 
 **Parameters:**
-- RCPID: Recipe ID (A)
-- RCPNEWID: Recipe New ID (A)
-- RMSEGSPEC: Recipe Management Segment Specification (A)
-- RMCHGTYPE: Recipe Management Change Type (A)
-- OPID: Operation ID (A)
-- TIMESTAMP: Time Stamp (A)
-- RMREQUESTOR: Recipe Management Requestor (A)
-- RMACK: Recipe Management Acknowledge (B[1])
-  - 0: Acknowledged
-  - 1: Error
-- ERRCODE: Error Code (U1, U2, U4, or A)
-- ERRTEXT: Error Text (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| RCPID | A | Recipe ID |
+| RCPNEWID | A | Recipe New ID |
+| RMSEGSPEC | A | Recipe Management Segment Specification |
+| RMCHGTYPE | A | Recipe Management Change Type |
+| OPID | A | Operation ID |
+| TIMESTAMP | A | Time Stamp |
+| RMREQUESTOR | A | Recipe Management Requestor |
+| RMACK | B[1] | Recipe Management Acknowledge<br>0: Acknowledged<br>1: Error |
+| ERRCODE | U1/U2/U4/A | Error Code |
+| ERRTEXT | A | Error Text |
 
 
 #### **S15F45 - DRNS Manager Segment Approval Request** {#s15f45---drns-mgr-seg-aprvl-req}
@@ -6026,10 +7213,13 @@ RCPPARVAL
 ```
 
 **Parameters:**
-- DATAID: Data ID (U1, U2, U4, or A)
-- RCPSPEC: Recipe Specification (A)
-- RCPNEWID: Recipe New ID (A)
-- RMCHGTYPE: Recipe Management Change Type (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| DATAID | U1/U2/U4/A | Data ID |
+| RCPSPEC | A | Recipe Specification |
+| RCPNEWID | A | Recipe New ID |
+| RMCHGTYPE | A | Recipe Management Change Type |
 
 
 #### **S15F46 - DRNS Manager Segment Approval Acknowledge** {#s15f46---drns-mgr-seg-aprvl-ack}
@@ -6042,11 +7232,12 @@ RCPPARVAL
 ```
 
 **Parameters:**
-- RMCHGTYPE: Recipe Management Change Type (A)
-- RMGRNT: Recipe Management Grant (B[1])
-  - 0: Granted
-  - 1: Not granted
-- OPID: Operation ID (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| RMCHGTYPE | A | Recipe Management Change Type |
+| RMGRNT | B[1] | Recipe Management Grant<br>0: Granted<br>1: Not granted |
+| OPID | A | Operation ID |
 
 
 #### **S15F47 - DRNS Manager Rebuild Request** {#s15f47---drns-mgr-rebuild-req}
@@ -6063,18 +7254,21 @@ RCPPARVAL
 ```
 
 **Parameters:**
-- DATAID: Data ID (U1, U2, U4, or A)
-- OBJSPEC: Object Specification (A)
-- RMNSSPEC: Recipe Management Namespace Specification (A)
-- RMRECSPEC: Recipe Management Recorder Specification (A)
-- RMSEGSPEC: Recipe Management Segment Specification (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| DATAID | U1/U2/U4/A | Data ID |
+| OBJSPEC | A | Object Specification |
+| RMNSSPEC | A | Recipe Management Namespace Specification |
+| RMRECSPEC | A | Recipe Management Recorder Specification |
+| RMSEGSPEC | A | Recipe Management Segment Specification |
 
 
 #### **S15F48 - DRNS Manager Rebuild Acknowledge** {#s15f48---drns-mgr-rebuild-ack}
 ```
 {L[2]
   RMACK
-  {L:p
+  {L[p]
     {L[2]
       ERRCODE
       ERRTEXT
@@ -6084,11 +7278,12 @@ RCPPARVAL
 ```
 
 **Parameters:**
-- RMACK: Recipe Management Acknowledge (B[1])
-  - 0: Acknowledged
-  - 1: Error
-- ERRCODE: Error Code (U1, U2, U4, or A)
-- ERRTEXT: Error Text (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| RMACK | B[1] | Recipe Management Acknowledge<br>0: Acknowledged<br>1: Error |
+| ERRCODE | U1/U2/U4/A | Error Code |
+| ERRTEXT | A | Error Text |
 
 
 #### **S15F49 - Large Recipe Download Request** {#s15f49---large-recipe-download-req}
@@ -6100,8 +7295,11 @@ RCPPARVAL
 ```
 
 **Parameters:**
-- DSNAME: Data Set Name (A) - The RCPSPEC for Stream 13 transfer
-- RCPOWCODE: Recipe Owner Code (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| DSNAME | A | Data Set Name - The RCPSPEC for Stream 13 transfer |
+| RCPOWCODE | A | Recipe Owner Code |
 
 
 #### **S15F50 - Large Recipe Download Acknowledge** {#s15f50---large-recipe-download-ack}
@@ -6110,9 +7308,10 @@ ACKC15
 ```
 
 **Parameters:**
-- ACKC15: Acknowledge Code (B[1])
-  - 0: Acknowledged
-  - 1: Error
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ACKC15 | B[1] | Acknowledge Code<br>0: Acknowledged<br>1: Error |
 
 
 #### **S15F51 - Large Recipe Upload Request** {#s15f51---large-recipe-upload-req}
@@ -6121,7 +7320,10 @@ DSNAME
 ```
 
 **Parameters:**
-- DSNAME: Data Set Name (A) - The RCPSPEC used in Stream 13
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| DSNAME | A | Data Set Name - The RCPSPEC used in Stream 13 |
 
 
 #### **S15F52 - Large Recipe Upload Acknowledge** {#s15f52---large-recipe-upload-ack}
@@ -6130,13 +7332,15 @@ ACKC15
 ```
 
 **Parameters:**
-- ACKC15: Acknowledge Code (B[1])
-  - 0: Acknowledged
-  - 1: Error
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ACKC15 | B[1] | Acknowledge Code<br>0: Acknowledged<br>1: Error |
 
 
 #### **S15F53 - Recipe Verification Send** {#s15f53---recipe-verification-send}
 ```
+S15F53->
 {L[3]
   RCPSPEC
   RCPID
@@ -6153,22 +7357,27 @@ ACKC15
 ```
 
 **Parameters:**
-- RCPSPEC: Recipe Specification (A)
-- RCPID: Recipe ID (A)
-- RMACK: Recipe Management Acknowledge (B[1])
-  - 0: Acknowledged
-  - 1: Error
-- ERRCODE: Error Code (U1, U2, U4, or A)
-- ERRTEXT: Error Text (A)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| RCPSPEC | A | Recipe Specification |
+| RCPID | A | Recipe ID |
+| RMACK | B[1] | Recipe Management Acknowledge<br>0: Acknowledged<br>1: Error |
+| ERRCODE | U1/U2/U4/A | Error Code |
+| ERRTEXT | A | Error Text |
 
 
 #### **S15F54 - Recipe Verification Acknowledge** {#s15f54---recipe-verification-ack}
 ```
+<-S15F54
 {}
 ```
 
 **Parameters:**
-- Empty message (header only)
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| - | - | Empty message (header only) |
 
 
 
@@ -6210,6 +7419,7 @@ ACKC15
 #### **S16F1 - Process Job Data MBI** {#s16f1---process-job-data-mbi}
 ```
 
+<-S16F1
 {L[2]
   DATAID
   DATALENGTH
@@ -6226,6 +7436,7 @@ ACKC15
 #### **S16F2 - PJD MBI Grant** {#s16f2---pjd-mbi-grant}
 ```
 
+S16F2->
 GRANT
 
 ```
@@ -6240,6 +7451,7 @@ GRANT
 #### **S16F3 - Process Job Create Req** {#s16f3---process-job-create-req}
 ```
 
+<-S16F3
 {L[5]
   DATAID
   MF
@@ -6275,6 +7487,7 @@ GRANT
 #### **S16F4 - Process Job Create Ack** {#s16f4---process-job-create-ack}
 ```
 
+S16F4->
 {L[2]
   PRJOBID
   {L[2]
@@ -6302,6 +7515,7 @@ GRANT
 #### **S16F5 - Process Job Cmd Req** {#s16f5---process-job-cmd-req}
 ```
 
+<-S16F5
 {L[4]
   DATAID
   PRJOBID
@@ -6327,6 +7541,7 @@ GRANT
 #### **S16F6 - Process Job Cmd Ack** {#s16f6---process-job-cmd-ack}
 ```
 
+S16F6->
 {L[2]
   PRJOBID
   {L[2]
@@ -6354,6 +7569,7 @@ GRANT
 #### **S16F7 - Process Job Alert Notify** {#s16f7---process-job-alert-notify}
 ```
 
+S16F7->
 {L[4]
   TIMESTAMP
   PRJOBID
@@ -6370,8 +7586,7 @@ GRANT
 }
 
 ```
-```
-
+``` 
 - TIMESTAMP: Timestamp (A)
 - PRJOBID: Process Job ID (A)
 - PRJOBMILESTONE: Process Job Milestone (A)
@@ -6384,17 +7599,11 @@ GRANT
 
 #### **S16F8 - Process Job Alert Ack** {#s16f8---process-job-alert-ack}
 ```
-
 {}
-
-```
-```
-
-- No parameters required
-```
+``` 
 
 #### **S16F9 - Process Job Event Notify** {#s16f9---process-job-event-notify}
-```
+ 
 
 {L[4]
   PREVENTID
@@ -6408,151 +7617,154 @@ GRANT
   }
 }
 
-```
-```
+ 
 
-- PREVENTID: Process Event ID (A)
-- TIMESTAMP: Timestamp (A)
-- PRJOBID: Process Job ID (A)
-- VID: Variable ID (U1, U2, U4, or A)
-- V: Variable Value (any format)
-```
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| PREVENTID | A | Process Event ID |
+| TIMESTAMP | A | Timestamp |
+| PRJOBID | A | Process Job ID |
+| VID | U1/U2/U4/A | Variable ID |
+| V | any format | Variable Value |
+ 
 
 #### **S16F10 - Process Job Event Ack** {#s16f10---process-job-event-ack}
 ```
-
 {}
 
 ```
-```
 
-- No parameters required
-```
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| - | - | No parameters required |
 
 #### **S16F11 - Recipe Upload Send** {#s16f11---recipe-upload-send}
 ```
-
 {L[3]
   EQUIPMENTID
   RECIPETYPE
   RECIPEDATA
 }
-
-```
 ```
 
-- EQUIPMENTID: Equipment ID (A)
-- RECIPETYPE: Recipe Type (U1)
-- RECIPEDATA: Recipe Data (any format)
-```
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| EQUIPMENTID | A | Equipment ID |
+| RECIPETYPE | U1 | Recipe Type |
+| RECIPEDATA | any format | Recipe Data |
 
 #### **S16F12 - Recipe Upload Acknowledge** {#s16f12---recipe-upload-acknowledge}
 ```
-
 {L[2]
   EQUIPMENTID
   ACKC16
 }
-
-```
 ```
 
-- EQUIPMENTID: Equipment ID (A)
-- ACKC16: Acknowledge Code (B[1])
-  - 0: Acknowledged
-  - 1: Error
-  - 2: Invalid recipe type
-  - 3: Equipment not found
-```
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| EQUIPMENTID | A | Equipment ID |
+| ACKC16 | B[1] | Acknowledge Code |
+| | | 0: Acknowledged |
+| | | 1: Error |
+| | | 2: Invalid recipe type |
+| | | 3: Equipment not found |
 
 #### **S16F13 - Recipe Download Request** {#s16f13---recipe-download-request}
 ```
-
 {L[2]
   EQUIPMENTID
   RECIPETYPE
 }
-
-```
 ```
 
-- EQUIPMENTID: Equipment ID (A)
-- RECIPETYPE: Recipe Type (U1)
-```
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| EQUIPMENTID | A | Equipment ID |
+| RECIPETYPE | U1 | Recipe Type |
 
 #### **S16F14 - Recipe Download Response** {#s16f14---recipe-download-response}
 ```
-
 {L[3]
   EQUIPMENTID
   RECIPETYPE
   RECIPEDATA
 }
-
-```
 ```
 
-- EQUIPMENTID: Equipment ID (A)
-- RECIPETYPE: Recipe Type (U1)
-- RECIPEDATA: Recipe Data (any format)
-```
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| EQUIPMENTID | A | Equipment ID |
+| RECIPETYPE | U1 | Recipe Type |
+| RECIPEDATA | any format | Recipe Data |
 
 #### **S16F15 - Recipe Download Send** {#s16f15---recipe-download-send}
 ```
-
 {L[3]
   EQUIPMENTID
   RECIPETYPE
   RECIPEDATA
 }
-
-```
 ```
 
-- EQUIPMENTID: Equipment ID (A)
-- RECIPETYPE: Recipe Type (U1)
-- RECIPEDATA: Recipe Data (any format)
-```
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| EQUIPMENTID | A | Equipment ID |
+| RECIPETYPE | U1 | Recipe Type |
+| RECIPEDATA | any format | Recipe Data |
 
 #### **S16F16 - Recipe Download Acknowledge** {#s16f16---recipe-download-acknowledge}
 ```
-
 {L[2]
   EQUIPMENTID
   ACKC16
 }
-
-```
 ```
 
-- EQUIPMENTID: Equipment ID (A)
-- ACKC16: Acknowledge Code (B[1])
-  - 0: Acknowledged
-  - 1: Error
-  - 2: Invalid recipe type
-  - 3: Equipment not found
-```
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| EQUIPMENTID | A | Equipment ID |
+| ACKC16 | B[1] | Acknowledge Code |
+| | | 0: Acknowledged |
+| | | 1: Error |
+| | | 2: Invalid recipe type |
+| | | 3: Equipment not found |
 
 #### **S16F17 - Recipe Validate Request** {#s16f17---recipe-validate-request}
 ```
-
 {L[3]
   EQUIPMENTID
   RECIPETYPE
   RECIPEDATA
 }
-
-```
 ```
 
-- EQUIPMENTID: Equipment ID (A)
-- RECIPETYPE: Recipe Type (U1)
-- RECIPEDATA: Recipe Data (any format)
-```
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| EQUIPMENTID | A | Equipment ID |
+| RECIPETYPE | U1 | Recipe Type |
+| RECIPEDATA | any format | Recipe Data |
 
 #### **S16F18 - Recipe Validate Response** {#s16f18---recipe-validate-response}
 ```
-
 {L[3]
   EQUIPMENTID
   VALRESULT
@@ -6563,217 +7775,219 @@ GRANT
     ERROR_n
   }
 }
-
-```
 ```
 
-- EQUIPMENTID: Equipment ID (A)
-- VALRESULT: Validation Result (B[1])
-  - 0: Valid
-  - 1: Invalid
-- ERROR: Validation Error (A)
-```
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| EQUIPMENTID | A | Equipment ID |
+| VALRESULT | B[1] | Validation Result |
+| | | 0: Valid |
+| | | 1: Invalid |
+| ERROR | A | Validation Error |
 
 #### **S16F19 - Recipe Validate Send** {#s16f19---recipe-validate-send}
 ```
-
 {L[3]
   EQUIPMENTID
   RECIPETYPE
   RECIPEDATA
 }
-
-```
 ```
 
-- EQUIPMENTID: Equipment ID (A)
-- RECIPETYPE: Recipe Type (U1)
-- RECIPEDATA: Recipe Data (any format)
-```
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| EQUIPMENTID | A | Equipment ID |
+| RECIPETYPE | U1 | Recipe Type |
+| RECIPEDATA | any format | Recipe Data |
 
 #### **S16F20 - Recipe Validate Acknowledge** {#s16f20---recipe-validate-acknowledge}
 ```
-
 {L[2]
   EQUIPMENTID
   ACKC16
 }
-
-```
 ```
 
-- EQUIPMENTID: Equipment ID (A)
-- ACKC16: Acknowledge Code (B[1])
-  - 0: Acknowledged
-  - 1: Error
-  - 2: Invalid recipe type
-  - 3: Equipment not found
-```
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| EQUIPMENTID | A | Equipment ID |
+| ACKC16 | B[1] | Acknowledge Code |
+| | | 0: Acknowledged |
+| | | 1: Error |
+| | | 2: Invalid recipe type |
+| | | 3: Equipment not found |
 
 #### **S16F21 - Recipe Compress Request** {#s16f21---recipe-compress-request}
 ```
-
 {L[3]
   EQUIPMENTID
   RECIPETYPE
   RECIPEDATA
 }
-
-```
 ```
 
-- EQUIPMENTID: Equipment ID (A)
-- RECIPETYPE: Recipe Type (U1)
-- RECIPEDATA: Recipe Data (any format)
-```
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| EQUIPMENTID | A | Equipment ID |
+| RECIPETYPE | U1 | Recipe Type |
+| RECIPEDATA | any format | Recipe Data |
 
 #### **S16F22 - Recipe Compress Response** {#s16f22---recipe-compress-response}
 ```
-
 {L[3]
   EQUIPMENTID
   RECIPETYPE
   COMPRESSEDDATA
 }
-
-```
 ```
 
-- EQUIPMENTID: Equipment ID (A)
-- RECIPETYPE: Recipe Type (U1)
-- COMPRESSEDDATA: Compressed Data (B)
-```
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| EQUIPMENTID | A | Equipment ID |
+| RECIPETYPE | U1 | Recipe Type |
+| COMPRESSEDDATA | B | Compressed Data |
 
 #### **S16F23 - Recipe Compress Send** {#s16f23---recipe-compress-send}
 ```
-
 {L[3]
   EQUIPMENTID
   RECIPETYPE
   COMPRESSEDDATA
 }
-
-```
 ```
 
-- EQUIPMENTID: Equipment ID (A)
-- RECIPETYPE: Recipe Type (U1)
-- COMPRESSEDDATA: Compressed Data (B)
-```
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| EQUIPMENTID | A | Equipment ID |
+| RECIPETYPE | U1 | Recipe Type |
+| COMPRESSEDDATA | B | Compressed Data |
 
 #### **S16F24 - Recipe Compress Acknowledge** {#s16f24---recipe-compress-acknowledge}
 ```
-
 {L[2]
   EQUIPMENTID
   ACKC16
 }
-
-```
 ```
 
-- EQUIPMENTID: Equipment ID (A)
-- ACKC16: Acknowledge Code (B[1])
-  - 0: Acknowledged
-  - 1: Error
-  - 2: Invalid recipe type
-  - 3: Equipment not found
-```
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| EQUIPMENTID | A | Equipment ID |
+| ACKC16 | B[1] | Acknowledge Code |
+| | | 0: Acknowledged |
+| | | 1: Error |
+| | | 2: Invalid recipe type |
+| | | 3: Equipment not found |
 
 #### **S16F25 - Recipe Encrypt Request** {#s16f25---recipe-encrypt-request}
 ```
-
 {L[3]
   EQUIPMENTID
   RECIPETYPE
   RECIPEDATA
 }
-
-```
 ```
 
-- EQUIPMENTID: Equipment ID (A)
-- RECIPETYPE: Recipe Type (U1)
-- RECIPEDATA: Recipe Data (any format)
-```
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| EQUIPMENTID | A | Equipment ID |
+| RECIPETYPE | U1 | Recipe Type |
+| RECIPEDATA | any format | Recipe Data |
 
 #### **S16F26 - Recipe Encrypt Response** {#s16f26---recipe-encrypt-response}
 ```
-
 {L[3]
   EQUIPMENTID
   RECIPETYPE
   ENCRYPTEDDATA
 }
-
-```
 ```
 
-- EQUIPMENTID: Equipment ID (A)
-- RECIPETYPE: Recipe Type (U1)
-- ENCRYPTEDDATA: Encrypted Data (B)
-```
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| EQUIPMENTID | A | Equipment ID |
+| RECIPETYPE | U1 | Recipe Type |
+| ENCRYPTEDDATA | B | Encrypted Data |
 
 #### **S16F27 - Recipe Encrypt Send** {#s16f27---recipe-encrypt-send}
 ```
-
 {L[3]
   EQUIPMENTID
   RECIPETYPE
   ENCRYPTEDDATA
 }
-
-```
 ```
 
-- EQUIPMENTID: Equipment ID (A)
-- RECIPETYPE: Recipe Type (U1)
-- ENCRYPTEDDATA: Encrypted Data (B)
-```
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| EQUIPMENTID | A | Equipment ID |
+| RECIPETYPE | U1 | Recipe Type |
+| ENCRYPTEDDATA | B | Encrypted Data |
 
 #### **S16F28 - Recipe Encrypt Acknowledge** {#s16f28---recipe-encrypt-acknowledge}
 ```
-
 {L[2]
   EQUIPMENTID
   ACKC16
 }
-
-```
 ```
 
-- EQUIPMENTID: Equipment ID (A)
-- ACKC16: Acknowledge Code (B[1])
-  - 0: Acknowledged
-  - 1: Error
-  - 2: Invalid recipe type
-  - 3: Equipment not found
-```
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| EQUIPMENTID | A | Equipment ID |
+| ACKC16 | B[1] | Acknowledge Code |
+| | | 0: Acknowledged |
+| | | 1: Error |
+| | | 2: Invalid recipe type |
+| | | 3: Equipment not found |
 
 #### **S16F29 - PRSetMtrlOrder** {#s16f29---prsetmtrlorder}
 ```
-
 PRMTRLORDER
-
-```
 ```
 
-- PRMTRLORDER: Process Material Order (U2)
-```
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| PRMTRLORDER | U2 | Process Material Order |
 
 #### **S16F30 - PRSetMtrlOrder Ack** {#s16f30---prsetmtrlorder-ack}
 ```
-
 ACKA
+```
 
-```
-```
-- ACKA: Acknowledge Code (B[1])
-  - 0: Acknowledged
-  - 1: Error
-  - 2: Invalid material order
-  - 3: Process not found
-```
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ACKA | B[1] | Acknowledge Code |
+| | | 0: Acknowledged |
+| | | 1: Error |
+| | | 2: Invalid material order |
+| | | 3: Process not found |
 
 ### Stream 17: Data Report Management
 **Purpose**: Data report and trace management
@@ -6797,7 +8011,7 @@ ACKA
 
 #### **S17F1 - Data Report Create Request** {#s17f1---data-report-create-request}
 ```
-
+<-S17F1
 {L[4]
   DATAID
   RPTID
@@ -6806,48 +8020,51 @@ ACKA
     VID
   }
 }
-
-```
 ```
 
-- DATAID: Data ID (U4)
-- RPTID: Report ID (U4)
-- DATASRC: Data Source (A)
-- VID: Variable ID (U4)
-```
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| DATAID | U4 | Data ID |
+| RPTID | U4 | Report ID |
+| DATASRC | A | Data Source |
+| VID | U4 | Variable ID |
 
 #### **S17F2 - Data Report Create Acknowledgment** {#s17f2---data-report-create-acknowledgment}
 ```
-
+S17F2->
 {L[2]
   RPTID
   ERRCODE
 }
-
-```
 ```
 
-- RPTID: Report ID (U4)
-- ERRCODE: Error Code (U4)
-```
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| RPTID | U4 | Report ID |
+| ERRCODE | U4 | Error Code |
 
 #### **S17F3 - Data Report Delete Request** {#s17f3---data-report-delete-request}
 ```
-
+<-S17F3
 {L[n]
   RPTID
 }
-
-```
 ```
 
-- RPTID: Report ID (U4)
-- Comment: L:0 means delete all reports
-```
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| RPTID | U4 | Report ID |
+| | | L:0 means delete all reports |
 
 #### **S17F4 - Data Report Delete Acknowledgment** {#s17f4---data-report-delete-acknowledgment}
 ```
-
+S17F4->
 {L[2]
   ACKA
   {L[n]
@@ -6858,19 +8075,20 @@ ACKA
     }
   }
 }
-
-```
 ```
 
-- ACKA: Acknowledge Code (U4)
-- RPTID: Report ID (U4)
-- ERRCODE: Error Code (U4)
-- ERRTEXT: Error Text (A)
-```
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ACKA | U4 | Acknowledge Code |
+| RPTID | U4 | Report ID |
+| ERRCODE | U4 | Error Code |
+| ERRTEXT | A | Error Text |
 
 #### **S17F5 - Trace Create Request** {#s17f5---trace-create-request}
 ```
-
+<-S17F5
 {L:6
   DATAID
   TRID
@@ -6889,43 +8107,46 @@ ACKA
     RPTOC
   }
 }
-
-```
 ```
 
-- DATAID: Data ID (U4)
-- TRID: Trace ID (U4)
-- CEED: Collection Event Enable/Disable (B[1])
-- RPTID: Report ID (U4)
-- TOTSMP: Total Samples (U4)
-- REPGSZ: Report Group Size (U4)
-- EVNTSRC: Event Source (A)
-- CEIDSTART: Collection Event ID Start (U4)
-- EVNTSRC2: Event Source 2 (A)
-- CEIDSTOP: Collection Event ID Stop (U4)
-- TRAUTOD: Trace Auto Delete (B[1])
-- RPTOC: Report On Change (B[1])
-- Comment: We recommend the host always provides the L:8 values
-```
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| DATAID | U4 | Data ID |
+| TRID | U4 | Trace ID |
+| CEED | B[1] | Collection Event Enable/Disable |
+| RPTID | U4 | Report ID |
+| TOTSMP | U4 | Total Samples |
+| REPGSZ | U4 | Report Group Size |
+| EVNTSRC | A | Event Source |
+| CEIDSTART | U4 | Collection Event ID Start |
+| EVNTSRC2 | A | Event Source 2 |
+| CEIDSTOP | U4 | Collection Event ID Stop |
+| TRAUTOD | B[1] | Trace Auto Delete |
+| RPTOC | B[1] | Report On Change |
+| | | We recommend the host always provides the L:8 values |
 
 #### **S17F6 - Trace Create Acknowledgment** {#s17f6---trace-create-acknowledgment}
 ```
-
+S17F6->
 {L[2]
   TRID
   ERRCODE
 }
-
-```
 ```
 
-- TRID: Trace ID (U4)
-- ERRCODE: Error Code (U4)
-```
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TRID | U4 | Trace ID |
+| ERRCODE | U4 | Error Code |
 
 #### **S17F7 - Trace Delete Request** {#s17f7---trace-delete-request}
 ```
 
+<-S17F7
 {L[n]
   TRID
 }
@@ -6940,6 +8161,7 @@ ACKA
 #### **S17F8 - Trace Delete Acknowledgment** {#s17f8---trace-delete-acknowledgment}
 ```
 
+S17F8->
 {L[2]
   ACKA
   {L[n]
@@ -6963,6 +8185,7 @@ ACKA
 #### **S17F9 - Collection Event Link Request** {#s17f9---collection-event-link-request}
 ```
 
+<-S17F9
 {L[4]
   DATAID
   EVNTSRC
@@ -7095,6 +8318,7 @@ TRID
 #### **S18F1 - Read Attribute Request** {#s18f1---read-attribute-request}
 ```
 
+<-S18F1
 {L[2]
   TARGETID
   {L[n]
@@ -7112,6 +8336,7 @@ TRID
 #### **S18F2 - Read Attribute Data** {#s18f2---read-attribute-data}
 ```
 
+S18F2->
 {L[4]
   TARGETID
   SSACK
@@ -7124,18 +8349,20 @@ TRID
 }
 
 ```
-```
+**Parameters:**
 
-- TARGETID: Target ID (A)
-- SSACK: Subsystem Acknowledge (U4)
-- ATTRDATA: Attribute Data (any format)
-- STATUS: Status (A)
-- Comment: E5 differs from OEM tools
-```
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TARGETID | A | Target ID |
+| SSACK | U4 | Subsystem Acknowledge |
+| ATTRDATA | any format | Attribute Data |
+| STATUS | A | Status |
+| | | Comment: E5 differs from OEM tools |
 
 #### **S18F3 - Write Attribute Request** {#s18f3---write-attribute-request}
 ```
 
+<-S18F3
 {L[2]
   TARGETID
   {L[n]
@@ -7147,16 +8374,18 @@ TRID
 }
 
 ```
-```
+**Parameters:**
 
-- TARGETID: Target ID (A)
-- ATTRID: Attribute ID (A)
-- ATTRDATA: Attribute Data (any format)
-```
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TARGETID | A | Target ID |
+| ATTRID | A | Attribute ID |
+| ATTRDATA | any format | Attribute Data |
 
 #### **S18F4 - Write Attribute Acknowledgment** {#s18f4---write-attribute-acknowledgment}
 ```
 
+S18F4->
 {L[3]
   TARGETID
   SSACK
@@ -7166,17 +8395,19 @@ TRID
 }
 
 ```
-```
+**Parameters:**
 
-- TARGETID: Target ID (A)
-- SSACK: Subsystem Acknowledge (U4)
-- STATUS: Status (A)
-- Comment: Fixed E5 mistake
-```
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TARGETID | A | Target ID |
+| SSACK | U4 | Subsystem Acknowledge |
+| STATUS | A | Status |
+| | | Comment: Fixed E5 mistake |
 
 #### **S18F5 - Read Request** {#s18f5---read-request}
 ```
 
+<-S18F5
 {L[3]
   TARGETID
   DATASEG
@@ -7184,16 +8415,18 @@ TRID
 }
 
 ```
-```
+**Parameters:**
 
-- TARGETID: Target ID (A)
-- DATASEG: Data Segment (A)
-- DATALENGTH: Data Length (U4)
-```
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TARGETID | A | Target ID |
+| DATASEG | A | Data Segment |
+| DATALENGTH | U4 | Data Length |
 
 #### **S18F6 - Read Data** {#s18f6---read-data}
 ```
 
+S18F6->
 {L[4]
   TARGETID
   SSACK
@@ -7204,17 +8437,19 @@ TRID
 }
 
 ```
-```
+**Parameters:**
 
-- TARGETID: Target ID (A)
-- SSACK: Subsystem Acknowledge (U4)
-- DATA: Data (any format)
-- STATUS: Status (A)
-```
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TARGETID | A | Target ID |
+| SSACK | U4 | Subsystem Acknowledge |
+| DATA | any format | Data |
+| STATUS | A | Status |
 
 #### **S18F7 - Write Data Request** {#s18f7---write-data-request}
 ```
 
+<-S18F7
 {L[4]
   TARGETID
   DATASEG
@@ -7223,17 +8458,19 @@ TRID
 }
 
 ```
-```
+**Parameters:**
 
-- TARGETID: Target ID (A)
-- DATASEG: Data Segment (A)
-- DATALENGTH: Data Length (U4)
-- DATA: Data (any format)
-```
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TARGETID | A | Target ID |
+| DATASEG | A | Data Segment |
+| DATALENGTH | U4 | Data Length |
+| DATA | any format | Data |
 
 #### **S18F8 - Write Data Acknowledgment** {#s18f8---write-data-acknowledgment}
 ```
 
+S18F8->
 {L[3]
   TARGETID
   SSACK
@@ -7243,27 +8480,34 @@ TRID
 }
 
 ```
-```
+ 
+**Parameters:**
 
-- TARGETID: Target ID (A)
-- SSACK: Subsystem Acknowledge (U4)
-- STATUS: Status (A)
-```
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TARGETID | A | Target ID |
+| SSACK | U4 | Subsystem Acknowledge |
+| STATUS | A | Status |
+ 
 
 #### **S18F9 - Read ID Request** {#s18f9---read-id-request}
 ```
 
+<-S18F9
 TARGETID
 
 ```
-```
 
-- TARGETID: Target ID (A)
-```
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TARGETID | A | Target ID |
+ 
 
 #### **S18F10 - Read ID Data** {#s18f10---read-id-data}
 ```
-
+S18F10->
 {L[4]
   TARGETID
   SSACK
@@ -7272,34 +8516,38 @@ TARGETID
     STATUS
   }
 }
-
-```
 ```
 
-- TARGETID: Target ID (A)
-- SSACK: Subsystem Acknowledge (U4)
-- MID: Module ID (A)
-- STATUS: Status (A)
-```
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TARGETID | A | Target ID |
+| SSACK | U4 | Subsystem Acknowledge |
+| MID | A | Module ID |
+| STATUS | A | Status |
+ 
 
 #### **S18F11 - Write ID Request** {#s18f11---write-id-request}
 ```
-
+<-S18F11
 {L[2]
   TARGETID
   MID
 }
-
-```
 ```
 
-- TARGETID: Target ID (A)
-- MID: Module ID (A)
-```
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TARGETID | A | Target ID |
+| MID | A | Module ID |
+ 
 
 #### **S18F12 - Write ID Acknowledgment** {#s18f12---write-id-acknowledgment}
 ```
-
+S18F12->
 {L[3]
   TARGETID
   SSACK
@@ -7307,18 +8555,20 @@ TARGETID
     STATUS
   }
 }
-
-```
 ```
 
-- TARGETID: Target ID (A)
-- SSACK: Subsystem Acknowledge (U4)
-- STATUS: Status (A)
-```
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TARGETID | A | Target ID |
+| SSACK | U4 | Subsystem Acknowledge |
+| STATUS | A | Status |
+ 
 
 #### **S18F13 - Subsystem Command** {#s18f13---subsystem-command}
 ```
-
+<-S18F13
 {L[3]
   TARGETID
   SSCMD
@@ -7326,18 +8576,20 @@ TARGETID
     CPVAL
   }
 }
-
-```
 ```
 
-- TARGETID: Target ID (A)
-- SSCMD: Subsystem Command (A)
-- CPVAL: Command Parameter Value (any format)
-```
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TARGETID | A | Target ID |
+| SSCMD | A | Subsystem Command |
+| CPVAL | any format | Command Parameter Value |
+ 
 
 #### **S18F14 - Subsystem Command Acknowledgment** {#s18f14---subsystem-command-acknowledgment}
 ```
-
+S18F14->
 {L[3]
   TARGETID
   SSACK
@@ -7345,29 +8597,34 @@ TARGETID
     STATUS
   }
 }
-
-```
 ```
 
-- TARGETID: Target ID (A)
-- SSACK: Subsystem Acknowledge (U4)
-- STATUS: Status (A)
-```
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TARGETID | A | Target ID |
+| SSACK | U4 | Subsystem Acknowledge |
+| STATUS | A | Status |
+ 
 
 #### **S18F15 - Read 2D Code Condition Request** {#s18f15---read-2d-code-condition-request}
 ```
-
+<-S18F15
 TARGETID
-
 ```
 ```
 
-- TARGETID: Target ID (A)
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TARGETID | A | Target ID |
 ```
 
 #### **S18F16 - Read 2D Code Condition Data** {#s18f16---read-2d-code-condition-data}
 ```
-
+S18F16->
 {L[5]
   TARGETID
   SSACK
@@ -7379,17 +8636,19 @@ TARGETID
     CONDITION
   }
 }
-
-```
 ```
 
-- TARGETID: Target ID (A)
-- SSACK: Subsystem Acknowledge (U4)
-- MID: Module ID (A)
-- STATUS: Status (A)
-- CONDITION: Condition (A)
-```
+**Parameters:**
 
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TARGETID | A | Target ID |
+| SSACK | U4 | Subsystem Acknowledge |
+| MID | A | Module ID |
+| STATUS | A | Status |
+| CONDITION | A | Condition |
+ 
+ 
 ### Stream 19: Inventory Management
 **Purpose**: Equipment and material inventory tracking
 
@@ -7590,290 +8849,7 @@ INVID
 }
 ```
 
-
-S19F2	PDE Directory Data	Sent by Host and Equipment
-
-
-Comment: the list of PDEs, and their attributes matching the request
-Format:
-
-
-{L:3
-DIRRSPSTAT
-STATUSTXT
-{L:m
-{L:2
-UID
-{L:n
-{L:2
-PDEATTRIBUTE
-PDEATTRIBUTEVALUE
-}
-}
-}
-}
-}
-
-
-S19F3R	PDE Delete Request	Sent by Host Only
-
-
-Comment: L:0 is not allowed. Surprisingly the command is only defined for the host despite S19F1R being for both.
-Format:
-
-
-{L:n
-UID
-}
-
-
-S19F4	PDE Delete Acknowledge	Sent by Equipment Only
-
-
-Comment: Surprisingly L:0 is specified as the reply for L:0 input instead of S9F7.
-Format:
-
-
-{L:n
-{L:3
-UID
-DELRSPSTAT
-STATUSTXT
-}
-}
-
-
-S19F5R	PDE Header Data Request	Sent by Host and Equipment
-
-
-Comment: n = 0 is not allowed
-Format:
-
-
-{L:n
-UID
-}
-
-
-S19F6	PDE Header Data Reply	Sent by Host and Equipment
-
-
-Comment: A zero length TCID is sent if there are no code 0 PDEs. If L:0 S19F5R input then n=0 reply instead of S9F7!
-Format:
-
-
-{L:2
-TCID
-{L:n
-{L:3
-UID
-GETRSPSTAT
-STATUSTXT
-}
-}
-}
-
-
-S19F7R	request the transfer of PDEs via Stream 13	Sent by Host and Equipment
-
-
-Comment: n = 0 is not allowed
-Format:
-
-
-{L:n
-UID
-}
-
-
-S19F8	PDE Transfer Reply	Sent by Host and Equipment
-
-
-Comment: Each PDE data set with the GETRSPSTAT response code of 0 will be sent in a Stream 13 TransferContainer. A zero length TCID is sent if there are no code 0 PDEs. If L:0 S19F7R input then n=0 reply instead of S9F7!
-Format:
-
-
-{L:2
-TCID
-{L:n
-{L:3
-UID
-GETRSPSTAT
-STATUSTXT
-}
-}
-}
-
-
-S19F9R	Request to Send PDE	Sent by Host and Equipment
-
-
-Comment: Request permission to initiate PDE transfer using S19F11R.
-Format:
-
-
-{L:2
-TCID
-TRANSFERSIZE
-}
-
-
-S19F10	Initiate PDE transfer Reply	Sent by Host and Equipment
-
-
-Format:
-
-{L:3
-TCID
-RTSRSPSTAT
-STATUSTXT
-}
-
-
-S19F11R	Send PDE	Sent by Host and Equipment
-
-
-Comment: tells the receiver to initiate a Stream 13 transfer with the DSNAME = TCID
-Format:
-
-
-TCID
-
-
-S19F12	Send PDE Acknowledge	Sent by Host and Equipment
-
-
-Comment: Header only. The transfer result status is sent in S19F13.
-Format:
-
-
-header only
-
-
-S19F13R	TransferContainer Report	Sent by Host and Equipment
-
-
-Comment: Acknowledges the receipt of a TransferContainer using S13. Verification of transferred PDEs is rrequired when received by equipment.
-Format:
-
-
-{L:n
-{L:4
-UID
-SENDRSPSTAT
-VERIFYRSPSTAT
-STATUSTXT
-}
-}
-
-
-S19F14	TransferContainer Report Ack	Sent by Host and Equipment
-
-
-Comment: header only acknowledges the receipt S19F13R
-Format:
-
-
-header only
-
-
-S19F15R	Request PDE Resolution	Sent by Host Only
-
-
-Comment: Request the equipment to resolve PDEs in the target. n can be 0 for no InputMap
-Format:
-
-
-{L:2
-TARGETPDE
-{L:n
-{L:2
-PDEREF
-RESOLUTION
-}
-}
-}
-
-
-S19F16	PDE Resolution Data	Sent by Equipment Only
-
-
-Comment: The output map of the recipe structure. L:m has resolved PDEREF. n can be 0, n >= m
-Format:
-
-
-{L:2
-{L:m
-{L:2
-PDEREF
-RESOLUTION
-}
-}
-{L:n
-{L:3
-UID
-RESPDESTAT
-STATUSTXT
-}
-}
-}
-
-
-S19F17R	Verify PDE Request	Sent by Host Only
-
-
-Comment: n can be 0 when there is no InputMap
-Format:
-
-
-{L:4
-TARGETPDE
-{L:n
-{L:2
-PDEREF
-RESOLUTION
-}
-}
-VERIFYTYPE
-VERIFYDEPTH
-}
-
-
-S19F18	PDE Verification Result	Sent by Equipment Only
-
-
-Format:
-
-{L:2
-VERIFYSUCCESS
-{L:n
-{L:3
-UID
-VERIFYRSPSTAT
-STATUSTXT
-}
-}
-}
-
-
-S19F19R	S19 Multi-block Inquire	Sent by Host and Equipment
-
-
-Comment: SECS-I request permission to send multi-block S19F1,3,5,6,13,15,17. Not required for HSMS.
-Format:
-
-
-DATALENGTH
-
-
-S19F20	S19 Multi-block Grant	Sent by Host and Equipment
-
-
-Comment: Usage is not required by the standard. Should not have been included in the standard.
-Format:
-
-
-GRANT
+ 
 
 
 
@@ -8380,6 +9356,7 @@ PSREACK
 |---------|-----------|-------------|
 | [S21F1](#s21f1---material-transfer-plan)   | → Equipment | Material Transfer Plan |
 | [S21F2](#s21f2---material-transfer-plan-response)   | ← Equipment | Material Transfer Plan Response |
+
 #### **S21F1 - Material Transfer Plan** {#s21f1---material-transfer-plan}
 ```
 {L[4]
@@ -8612,1426 +9589,3 @@ header only
 }
 ```
 
-
-
-## Message Categories
-
-### Equipment Status (Stream 1)
-- Basic communication establishment
-- Equipment state monitoring
-- Online/Offline control
-
-### Equipment Control (Stream 2)
-- Configuration management
-- Time synchronization
-- Event reporting setup
-
-### Material Management (Streams 3-4)
-- Carrier and substrate tracking
-- Transfer job management
-- Material handling control
-
-### Exception Handling (Stream 5)
-- Alarm management
-- Exception reporting
-- Error notification
-
-### Data Collection (Stream 6)
-- Process data gathering
-- Event monitoring
-- Trace data collection
-
-### Program Management (Stream 7)
-- Recipe management
-- Process program control
-- EPPD handling
-
-### System Services (Streams 9-10)
-- Error reporting
-- Terminal communication
-- System diagnostics
-
-### Advanced Features (Streams 12+)
-- Wafer mapping
-- Object services
-- Recipe management
-- Processing control
-
-## Common Message Examples
-
-### S1F13 - Establish Communications Request
-```
-Hex 
-Length: 00 00 00 0C (12 bytes)
-Header: 00 00 81 0D 00 00 xx xx xx xx
-Data:   01 00 (empty list)
-
-SECS-II 
-{L:0}  // Empty list
-```
-
-### S1F14 - Establish Communications Response
-```
-Hex 
-Length: 00 00 00 0D (13 bytes)  
-Header: 00 00 01 0E 00 00 xx xx xx xx
-Data:   21 01 00 (COMMACK = 0, accepted)
-
-SECS-II 
-COMMACK = B[1] = 0  // Communication accepted
-
-Or with model info:
-{L[2]
-  COMMACK = B[1] = 0
-  {L[2]
-    MDLN = A[20] = "EQUIPMENT_MODEL_NAME"
-    SOFTREV = A[20] = "SOFTWARE_VERSION_1.0"
-  }
-}
-```
-
-### S1F1 - Are You There Request
-```
-Hex 
-Length: 00 00 00 0A (10 bytes)
-Header: 00 00 81 01 00 00 xx xx xx xx
-Data:   (empty)
-
-SECS-II 
-<none> (no data)
-```
-
-### S1F2 - Are You There Response  
-```
-Hex 
-Length: 00 00 00 0A (10 bytes)
-Header: 00 00 01 02 00 00 xx xx xx xx
-Data:   (empty)
-
-SECS-II 
-<none> (no data) or {L:0} (empty list)
-```
-
-### S5F1 - Alarm Report Example
-```
-Hex 
-Length: 00 00 00 1F (31 bytes)
-Header: 00 00 05 01 00 00 xx xx xx xx
-Data:   01 03 81 01 81 A1 01 01 41 0F Temperature Alarm
-
-SECS-II 
-{L[3]
-  ALCD = B[1] = 129 (0x81) // Alarm Set + Alarm Type
-  ALID = U1[1] = 1
-  ALTX = A[15] = "Temperature Alarm"
-}
-```
-
-### S6F11 - Event Report Example
-```
-SECS-II 
-{L[3]
-  DATAID = U4[1] = 12345
-  CEID = U2[1] = 1001
-  {L:1
-    {L[3]
-      RPTID = U2[1] = 2001
-      {L[2]
-        Temperature = F4[1] = 25.5
-        Pressure = F4[1] = 760.0
-      }
-    }
-  }
-}
-```
-
-### Data Type Format Examples
-```
-ASCII Text:    A[10] = "TEST_VALUE"
-                Hex: 41 0A 54 45 53 54 5F 56 41 4C 55 45
-
-Binary Data:   B[4] = 0x12345678
-                Hex: 21 04 12 34 56 78
-
-Unsigned Int:  U1[1] = 255
-                Hex: F1 01 FF
-
-               U2[1] = 65535
-                Hex: E1 02 FF FF
-
-               U4[1] = 4294967295
-
-## SECS Data Item Definitions
-
-This section provides definitions for all standard SECS data items used in message formats.
-
-### A
-
-**ABS** - Absolute Position (F4, F8)
-- Absolute position coordinate
-
-**ACCESSMODE** - Access Mode (U1)
-- 0: Read only
-- 1: Read/Write
-- 2: Write only
-
-**ACDS** - Alarm Collection Definition Send (various)
-- Alarm collection definition data
-
-**ACKA** - Acknowledge (B[1])
-- General acknowledge code
-
-**ACKC10** - Terminal Acknowledge Code (B[1])
-- 0: Acknowledged
-- 1: Error
-
-**ACKC13** - Data Set Acknowledge Code (B[1])
-- 0: Acknowledged
-- 1: Error
-- 2: Data set already exists
-- 3: No space available
-
-**ACKC15** - Recipe Acknowledge Code (B[1])
-- 0: Acknowledged
-- 1: Error
-- 2: Recipe already exists
-- 3: No space available
-
-**ACKC3** - Carrier Acknowledge Code (B[1])
-- 0: Completed successfully
-- 1: Command does not exist
-- 2: Cannot perform now
-- 3: At least one parameter invalid
-- 4: Acknowledge after completion
-- 5: Rejected, already in desired condition
-- 6: No such object exists
-
-**ACKC5** - Alarm Acknowledge Code (B[1])
-- 0: Acknowledged
-- 1: Error
-
-**ACKC6** - Data Collection Acknowledge Code (B[1])
-- 0: Acknowledged
-- 1: Error
-
-**ACKC7** - Process Program Acknowledge Code (B[1])
-- 0: Accepted
-- 1: Permission not granted
-- 2: Length error
-- 3: Matrix overflow
-- 4: PPID not found
-- 5: Mode unsupported
-- 6: Communication not available
-- 7: Busy
-
-**ACKC7A** - Alternative Process Program Acknowledge Code (B[1])
-- Same as ACKC7 with additional codes
-
-**AGENT** - Agent Identifier (A)
-- Software agent identification
-
-**ALCD** - Alarm Code (B[1])
-- Bit 0: Alarm Set (1) or Clear (0)
-- Bit 7: Alarm (1) or Warning (0)
-
-**ALED** - Alarm Enable/Disable (B[1])
-- 128 (0x80): Enable
-- 0: Disable
-
-**ALID** - Alarm ID (U1, U2, U4, or A)
-- Unique identifier for alarm
-
-**ALIDVECTOR** - Alarm ID Vector (List of ALID)
-- Collection of alarm identifiers
-
-**ALTX** - Alarm Text (A[120])
-- Descriptive text for alarm
-
-### B-C
-
-**ASSGNID** - Assignment ID (A)
-- Unique assignment identifier
-
-**ATTRDATA** - Attribute Data (various)
-- Data value for object attribute
-
-**ATTRID** - Attribute ID (U1, U2, U4, or A)
-- Identifier for object attribute
-
-**ATTRRELN** - Attribute Relation (U1)
-- Relationship type between attributes
-
-**AUTOCLEAR_DISABLE** - Auto Clear Disable (BOOLEAN)
-- Disable automatic clearing
-
-**AUTOCLOSE** - Auto Close (BOOLEAN)
-- Automatic closing flag
-
-**AUTOPOST_DISABLE** - Auto Post Disable (BOOLEAN)
-- Disable automatic posting
-
-**BCDS** - Binary Collection Definition Send (B)
-- Binary collection definition data
-
-**BCEQU** - Binary Collection Equipment (B)
-- Equipment binary collection data
-
-**BINLT** - Binary Data (B)
-- Binary data content
-
-**BLKDEF** - Block Definition (various)
-- Definition of data block structure
-
-**BPD** - Bytes Per Die (U2)
-- Number of bytes per die
-
-**BYTMAX** - Maximum Bytes (U4)
-- Maximum byte count
-
-**CAACK** - Carrier Action Acknowledge (B[1])
-- 0: Completed successfully
-- 1: Command does not exist
-- 2: Cannot perform now
-- 3: At least one parameter invalid
-
-**CARRIERACTION** - Carrier Action (U1)
-- 1: Load
-- 2: Unload
-- 3: Transfer
-- 4: Map
-- 5: Clamp
-- 6: Unclamp
-
-**CARRIERID** - Carrier ID (A)
-- Unique identifier for carrier
-
-**CARRIERSPEC** - Carrier Specification (various)
-- Carrier specification data
-
-**CATTRDATA** - Carrier Attribute Data (various)
-- Data for carrier attribute
-
-**CATTRID** - Carrier Attribute ID (U1, U2, U4, or A)
-- Identifier for carrier attribute
-
-**CCEACK** - Collection Event Change Acknowledge (B[1])
-- Collection event change response
-
-**CCODE** - Command Code (A)
-- Command identifier string
-
-**CEED** - Collection Event Enable/Disable (BOOLEAN)
-- Enable or disable collection event
-
-**CEID** - Collection Event ID (U1, U2, U4, or A)
-- Unique identifier for collection event
-
-**CEIDSTART** - Collection Event ID Start (CEID)
-- Starting collection event ID
-
-**CEIDSTOP** - Collection Event ID Stop (CEID)
-- Stopping collection event ID
-
-**CENAME** - Collection Event Name (A)
-- Name of collection event
-
-**CEPACK** - Collection Event Parameter Acknowledge (B[1])
-- Collection event parameter response
-
-**CEPVAL** - Collection Event Parameter Value (various)
-- Value of collection event parameter
-
-**CHKINFO** - Check Information (A)
-- Information for checking/validation
-
-**CKPNT** - Checkpoint (A)
-- Process checkpoint identifier
-
-**CMDA** - Command Acknowledge (B[1])
-- Command acknowledgment
-
-**CMDMAX** - Command Maximum (U2)
-- Maximum command value
-
-**CNAME** - Collection Name (A)
-- Name of data collection
-
-**COACK** - Control Job Command Acknowledge (B[1])
-- Control job command response
-
-**COLCT** - Collection Count (U2)
-- Number of items in collection
-
-**COLHDR** - Collection Header (various)
-- Header information for collection
-
-**COMMACK** - Communication Acknowledge (B[1])
-- 0: Accepted
-- 1: Denied, Try Again
-- 2: Denied, Permission Not Granted
-
-**COMPARISONOPERATOR** - Comparison Operator (U1)
-- 0: Equal
-- 1: Not equal
-- 2: Less than
-- 3: Less than or equal
-- 4: Greater than
-- 5: Greater than or equal
-
-**CONDITION** - Condition (A)
-- Condition specification
-
-**COPYID** - Copy ID (A)
-- Identifier for copy operation
-
-**CPACK** - Command Parameter Acknowledge (various)
-- Command parameter acknowledgment
-
-**CPNAME** - Command Parameter Name (A)
-- Name of command parameter
-
-**CPVAL** - Command Parameter Value (various)
-- Value of command parameter
-
-### D-E
-
-**CSAACK** - Carrier Slot Assignment Acknowledge (B[1])
-- Carrier slot assignment response
-
-**CTLJOBCMD** - Control Job Command (A)
-- Control job command string
-
-**CTLJOBID** - Control Job ID (A)
-- Unique identifier for control job
-
-**DATA** - Data (various)
-- Generic data field
-
-**DATAACK** - Data Acknowledge (B[1])
-- Data acknowledgment
-
-**DATAID** - Data ID (U1, U2, U4, or A)
-- Unique identifier for data
-
-**DATALENGTH** - Data Length (U1, U2, U4)
-- Length of data in bytes
-
-**DATASEG** - Data Segment (B)
-- Segment of larger data
-
-**DATASRC** - Data Source (A)
-- Source of data
-
-**DATLC** - Data Location (A)
-- Location of data
-
-**DELRSPSTAT** - Delete Response Status (B[1])
-- Status of delete operation
-
-**DIRRSPSTAT** - Directory Response Status (B[1])
-- Status of directory operation
-
-**DRACK** - Define Report Acknowledge (B[1])
-- 0: Acknowledged
-- 1: Denied, Insufficient space
-- 2: Denied, Invalid format
-- 3: Denied, At least one RPTID already defined
-- 4: Denied, At least one VID does not exist
-
-**DRRACK** - Define Report Request Acknowledge (B[1])
-- Define report request response
-
-**DSID** - Data Set ID (U1, U2, U4, or A)
-- Unique identifier for data set
-
-**DSNAME** - Data Set Name (A)
-- Name of data set
-
-**DSPER** - Data Sample Period (U1, U2, U4)
-- Sampling period for data collection
-
-**DUTMS** - Device Under Test Milliseconds (U4)
-- Time in milliseconds for device test
-
-**DVNAME** - Discrete Variable Name (A)
-- Name of discrete variable
-
-**DVVAL** - Discrete Variable Value (various)
-- Value of discrete variable
-
-**DVVALNAME** - Discrete Variable Value Name (A)
-- Name for discrete variable value
-
-**EAC** - Equipment Acknowledge Code (B[1])
-- 0: Accepted
-- 1: Denied, At least one constant does not exist
-- 2: Denied, Busy
-- 3: Denied, At least one constant out of range
-
-**ECDEF** - Equipment Constant Default (various)
-- Default value for equipment constant
-
-**ECID** - Equipment Constant ID (U1, U2, U4, or A)
-- Unique identifier for equipment constant
-
-**ECMAX** - Equipment Constant Maximum (various)
-- Maximum value for equipment constant
-
-**ECMIN** - Equipment Constant Minimum (various)
-- Minimum value for equipment constant
-
-**ECNAME** - Equipment Constant Name (A)
-- Name of equipment constant
-
-**ECV** - Equipment Constant Value (various)
-- Value of equipment constant
-
-**EDID** - Equipment ID (U1, U2, U4, or A)
-- Unique identifier for equipment
-
-**EMID** - Equipment Module ID (A)
-- Identifier for equipment module
-
-**EPD** - Equipment Parameter Data (various)
-- Equipment parameter information
-
-**EQID** - Equipment ID (A)
-- Equipment identifier
-
-**EQNAME** - Equipment Name (A)
-- Name of equipment
-
-**EQUSERID** - Equipment User ID (A)
-- User identifier for equipment access
-
-**ERACK** - Enable/Disable Event Report Acknowledge (B[1])
-- 0: Acknowledged
-- 1: Denied, At least one CEID does not exist
-- 2: Denied, Busy
-
-**ERRCODE** - Error Code (U2)
-- Numeric error code
-
-**ERRTEXT** - Error Text (A)
-- Descriptive error text
-
-**ERRW7** - Error W7 (B[1])
-- W7-specific error code
-
-**EVNTSRC** - Event Source (A)
-- Source of event
-
-**EVNTSRC2** - Event Source 2 (A)
-- Secondary event source
-
-**EXID** - Exception ID (U4)
-- Exception identifier
-
-**EXMESSAGE** - Exception Message (A)
-- Exception message text
-
-**EXRECVRA** - Exception Recovery Action (A)
-- Recovery action for exception
-
-**EXTYPE** - Exception Type (U1)
-- Type of exception
-
-### F-L
-
-**FCNID** - Function ID (B[1])
-- SECS function identifier
-
-**FFROT** - Flat Finder Rotation (F4)
-- Rotation angle for flat finder
-
-**FILDAT** - File Data (B)
-- File content data
-
-**FNLOC** - Final Location (A)
-- Final destination location
-
-**FRMLEN** - Frame Length (U2)
-- Length of data frame
-
-**GETRSPSTAT** - Get Response Status (B[1])
-- Status of get operation
-
-**GOILACK** - Go Online Acknowledge (B[1])
-- Go online response
-
-**GRANT** - Grant Code (B[1])
-- 0: Granted
-- 1: Busy, try again
-- 2: No space
-
-**GRANT6** - Grant Code 6 (B[1])
-- Stream 6 specific grant code
-
-**GRNT1** - Grant 1 (B[1])
-- First grant code
-
-**GRXLACK** - Get Recipe Acknowledge (B[1])
-- Recipe get acknowledgment
-
-**HANDLE** - Handle (A)
-- Object handle identifier
-
-**HCACK** - Host Command Acknowledge (B[1])
-- 0: Acknowledged
-- 1: Invalid command
-- 2: Cannot perform now
-- 3: At least one parameter invalid
-- 4: Acknowledge after completion
-- 5: Rejected, already in desired condition
-- 6: No such object exists
-
-**HOACK** - Host Online Acknowledge (B[1])
-- Host online acknowledgment
-
-**HOCANCELACK** - Host Online Cancel Acknowledge (B[1])
-- Host online cancel response
-
-**HOCMDNAME** - Host Online Command Name (A)
-- Name of host online command
-
-**HOHALTACK** - Host Online Halt Acknowledge (B[1])
-- Host online halt response
-
-**IACDS** - Input Alarm Collection Definition Send (various)
-- Input alarm collection definition
-
-**IBCDS** - Input Binary Collection Definition Send (B)
-- Input binary collection definition
-
-**IDTYP** - ID Type (B[1])
-- 0: Data ID
-- 1: Equipment ID
-
-**INPTN** - Input Pattern (A)
-- Input pattern specification
-
-**ITEMACK** - Item Acknowledge (B[1])
-- Item operation acknowledgment
-
-**ITEMERROR** - Item Error (A)
-- Error information for item
-
-**ITEMID** - Item ID (A)
-- Unique identifier for item
-
-**ITEMINDEX** - Item Index (U4)
-- Index position of item
-
-**ITEMLENGTH** - Item Length (U4)
-- Length of item data
-
-**ITEMPART** - Item Part (various)
-- Part of larger item
-
-**ITEMPARTCOUNT** - Item Part Count (U4)
-- Number of parts in item
-
-**ITEMPARTLENGTH** - Item Part Length (U4)
-- Length of item part
-
-**ITEMTYPE** - Item Type (U1)
-- Type classification of item
-
-**ITEMTYPESUPPORT** - Item Type Support (B[1])
-- Support indicator for item type
-
-**ITEMVERSION** - Item Version (A)
-- Version of item
-
-**JOBACTION** - Job Action (U1)
-- Action to perform on job
-
-**LENGTH** - Length (U1, U2, U4)
-- Generic length value
-
-**LIMITACK** - Limit Acknowledge (B[1])
-- Limit operation acknowledgment
-
-**LIMITID** - Limit ID (A)
-- Identifier for limit
-
-**LIMITMAX** - Limit Maximum (various)
-- Maximum limit value
-
-**LIMITMIN** - Limit Minimum (various)
-- Minimum limit value
-
-**LINKID** - Link ID (A)
-- Identifier for link
-
-**LOC** - Location (A)
-- General location identifier
-
-**LOCID** - Location ID (A)
-- Specific location identifier
-
-**LOWERDB** - Lower Deadband (various)
-- Lower deadband value
-
-**LRACK** - Link Report Acknowledge (B[1])
-- 0: Acknowledged
-- 1: Denied, Insufficient space
-- 2: Denied, Invalid format
-- 3: Denied, At least one CEID already defined
-- 4: Denied, At least one CEID does not exist
-- 5: Denied, At least one RPTID does not exist
-
-**LVACK** - Limit Value Acknowledge (B[1])
-- Limit value acknowledgment
-
-### M-P
-
-**MAPER** - Map Error (U1)
-- Map operation error code
-
-**MAPFT** - Map Format (U1)
-- Format of map data
-
-**MAXNUMBER** - Maximum Number (U4)
-- Maximum numeric value
-
-**MAXTIME** - Maximum Time (U4)
-- Maximum time value
-
-**MCINDEX** - Multi-Collection Index (U2)
-- Index for multi-collection
-
-**MDACK** - Mode Data Acknowledge (B[1])
-- Mode data acknowledgment
-
-**MDLN** - Model Number (A[20])
-- Equipment model designation
-
-**MEXP** - Message Expected (B[1])
-- Expected message indicator
-
-**MF** - Message Format (U1)
-- Format of message
-
-**MHEAD** - Message Header (B[10])
-- Complete 10-byte SECS message header
-
-**MID** - Message ID (U1, U2, U4, or A)
-- Message identifier
-
-**MIDAC** - Message ID Acknowledge (B[1])
-- Message ID acknowledgment
-
-**MIDRA** - Message ID Response Acknowledge (B[1])
-- Message ID response acknowledgment
-
-**MLCL** - Multi-Level Collection List (various)
-- Multi-level collection data
-
-**MMODE** - Machine Mode (U1)
-- Current machine operating mode
-
-**NACDS** - New Alarm Collection Definition Send (various)
-- New alarm collection definition
-
-**NBCDS** - New Binary Collection Definition Send (B)
-- New binary collection definition
-
-**NULBC** - Null Byte Count (U1)
-- Count of null bytes
-
-**OBJACK** - Object Acknowledge (B[1])
-- Object operation acknowledgment
-
-**OBJCMD** - Object Command (A)
-- Command for object
-
-**OBJID** - Object ID (A)
-- Unique identifier for object
-
-**OBJSPEC** - Object Specification (A)
-- Object specification string
-
-**OBJTOKEN** - Object Token (A)
-- Token for object access
-
-**OBJTYPE** - Object Type (A)
-- Type classification of object
-
-**OCEACK** - Object Collection Event Acknowledge (B[1])
-- Object collection event response
-
-**OFLACK** - Offline Acknowledge (B[1])
-- 0: Offline Accepted
-- 1: Offline Not Allowed
-
-**ONLACK** - Online Acknowledge (B[1])
-- 0: Online Accepted
-- 1: Online Not Allowed
-
-**OPEID** - Operation Event ID (A)
-- Identifier for operation event
-
-**OPETYPE** - Operation Event Type (U1)
-- Type of operation event
-
-**OPID** - Operation ID (A)
-- Unique operation identifier
-
-**ORLOC** - Origin Location (A)
-- Origin location identifier
-
-**OUTPTN** - Output Pattern (A)
-- Output pattern specification
-
-**PARAMNAME** - Parameter Name (A)
-- Name of parameter
-
-**PARAMVAL** - Parameter Value (various)
-- Value of parameter
-
-**PDEATTRIBUTE** - Process Data Element Attribute (various)
-- Process data element attribute
-
-**PDEATTRIBUTENAME** - Process Data Element Attribute Name (A)
-- Name of process data element attribute
-
-**PDEATTRIBUTEVALUE** - Process Data Element Attribute Value (various)
-- Value of process data element attribute
-
-**PDEREF** - Process Data Element Reference (A)
-- Reference to process data element
-
-**PECEACK** - Process Event Collection Enable Acknowledge (B[1])
-- Process event collection enable response
-
-**PECRSLT** - Process Event Collection Result (various)
-- Result of process event collection
-
-**PFCD** - Process Function Code (U1)
-- Function code for process
-
-**PGRPACTION** - Port Group Action (U1)
-- Action for port group
-
-**PODID** - Point of Delivery ID (A)
-- Identifier for delivery point
-
-**PORTACTION** - Port Action (U1)
-- Action for port
-
-**PORTGRPNAME** - Port Group Name (A)
-- Name of port group
-
-**PPARM** - Process Parameter (various)
-- Process parameter value
-
-**PPBODY** - Process Program Body (A or B)
-- Content of process program
-
-**PPGNT** - Process Program Grant (B[1])
-- Process program grant response
-
-**PPID** - Process Program ID (A)
-- Unique identifier for process program
-
-**PRAXI** - Process Axis (A)
-- Process axis identifier
-
-**PRCMDNAME** - Process Command Name (A)
-- Name of process command
-
-**PRCPREEXECHK** - Process Pre-Execution Check (B[1])
-- Pre-execution check flag
-
-**PRDCT** - Product (A)
-- Product identifier
-
-**PREACK** - Process Recipe Acknowledge (B[1])
-- Process recipe acknowledgment
-
-**PREVENTID** - Process Event ID (A)
-- Process event identifier
-
-**PRJOBID** - Process Job ID (A)
-- Process job identifier
-
-**PRJOBMILESTONE** - Process Job Milestone (A)
-- Process job milestone
-
-**PRJOBSPACE** - Process Job Space (A)
-- Process job space allocation
-
-**PRMTRLORDER** - Process Material Order (U2)
-- Order of process material
-
-**PRPAUSEEVENTID** - Process Pause Event ID (A)
-- Event ID for process pause
-
-**PRPROCESSSTART** - Process Process Start (A)
-- Process start identifier
-
-**PRRECIPEMETHOD** - Process Recipe Method (A)
-- Process recipe method
-
-**PRSTATE** - Process State (U1)
-- Current state of process
-
-**PSRACK** - Process Start Request Acknowledge (B[1])
-- Process start request response
-
-**PSREACK** - Process State Request Acknowledge (B[1])
-- Process state request response
-
-**PTN** - Port Number (U1)
-- Port identification number
-
-### Q-Z
-
-**QPRKEACK** - Query Process Recipe Key Acknowledge (B[1])
-- Query process recipe key response
-
-**QREACK** - Query Recipe Acknowledge (B[1])
-- Query recipe response
-
-**QRXLEACK** - Query Recipe Exclude Acknowledge (B[1])
-- Query recipe exclude response
-
-**QUA** - Quality (U1)
-- Quality indicator
-
-**RAC** - Report Acknowledge (B[1])
-- Report acknowledgment
-
-**RCMD** - Remote Command (A)
-- Remote command string
-
-**RCPATTRDATA** - Recipe Attribute Data (various)
-- Recipe attribute data
-
-**RCPATTRID** - Recipe Attribute ID (A)
-- Recipe attribute identifier
-
-**RCPBODY** - Recipe Body (A or B)
-- Recipe content
-
-**RCPBODYA** - Recipe Body A (A)
-- Recipe body in ASCII format
-
-**RCPCLASS** - Recipe Class (A)
-- Classification of recipe
-
-**RCPCMD** - Recipe Command (A)
-- Recipe command
-
-**RCPDEL** - Recipe Delete (A)
-- Recipe deletion identifier
-
-**RCPDESCLTH** - Recipe Description Length (U2)
-- Length of recipe description
-
-**RCPDESCNM** - Recipe Description Name (A)
-- Recipe description name
-
-**RCPDESCTIME** - Recipe Description Time (A)
-- Recipe description timestamp
-
-**RCPID** - Recipe ID (A)
-- Unique recipe identifier
-
-**RCPNAME** - Recipe Name (A)
-- Name of recipe
-
-**RCPNEWID** - Recipe New ID (A)
-- New recipe identifier
-
-**RCPOWCODE** - Recipe Owner Code (A)
-- Recipe ownership code
-
-**RCPPARNM** - Recipe Parameter Name (A)
-- Name of recipe parameter
-
-**RCPPARRULE** - Recipe Parameter Rule (A)
-- Rule for recipe parameter
-
-**RCPPARVAL** - Recipe Parameter Value (various)
-- Value of recipe parameter
-
-**RCPRENAME** - Recipe Rename (A)
-- New name for recipe
-
-**RCPSECCODE** - Recipe Security Code (A)
-- Security code for recipe
-
-**RCPSECNM** - Recipe Section Name (A)
-- Name of recipe section
-
-**RCPSPEC** - Recipe Specification (A)
-- Recipe specification
-
-**RCPSTAT** - Recipe Status (U1)
-- Status of recipe
-
-**RCPUPDT** - Recipe Update (A)
-- Recipe update identifier
-
-**RCPVERS** - Recipe Version (A)
-- Version of recipe
-
-**READLN** - Read Length (U4)
-- Length to read
-
-**REAPER** - Report Error (U1)
-- Report error code
-
-**RECLEN** - Record Length (U2)
-- Length of record
-
-**REFP** - Reference Point (F4, F8)
-- Reference coordinate point
-
-**REPGSZ** - Report Group Size (U2)
-- Size of report group
-
-**RESOLUTION** - Resolution (F4)
-- Measurement resolution
-
-**RESPDESTAT** - Response Delete Status (B[1])
-- Status of response deletion
-
-**RESPEC** - Request Specification (A)
-- Request specification string
-
-**RETAINRECIPE_DISABLE** - Retain Recipe Disable (BOOLEAN)
-- Disable recipe retention
-
-**RETICLEID** - Reticle ID (A)
-- Reticle identifier
-
-**RETICLEID2** - Reticle ID 2 (A)
-- Secondary reticle identifier
-
-**RETPLACEINSTR** - Reticle Place Instruction (A)
-- Instruction for reticle placement
-
-**RETREMOVEINSTR** - Reticle Remove Instruction (A)
-- Instruction for reticle removal
-
-**REVID** - Revision ID (A)
-- Revision identifier
-
-**RIC** - Report Item Count (U2)
-- Count of items in report
-
-**RMACK** - Resource Manager Acknowledge (B[1])
-- Resource manager acknowledgment
-
-**RMCHGSTAT** - Resource Manager Change Status (B[1])
-- Resource manager change status
-
-**RMCHGTYPE** - Resource Manager Change Type (U1)
-- Type of resource manager change
-
-**RMDATASIZE** - Resource Manager Data Size (U4)
-- Size of resource manager data
-
-**RMGRNT** - Resource Manager Grant (B[1])
-- Resource manager grant
-
-**RMNEWNS** - Resource Manager New Namespace (A)
-- New namespace for resource manager
-
-**RMNSCMD** - Resource Manager Namespace Command (A)
-- Resource manager namespace command
-
-**RMNSSPEC** - Resource Manager Namespace Specification (A)
-- Resource manager namespace specification
-
-**RMRECSPEC** - Resource Manager Record Specification (A)
-- Resource manager record specification
-
-**RMREQUESTOR** - Resource Manager Requestor (A)
-- Resource manager requestor identifier
-
-**RMSEGSPEC** - Resource Manager Segment Specification (A)
-- Resource manager segment specification
-
-**RMSPACE** - Resource Manager Space (A)
-- Resource manager space identifier
-
-**RMSPWD** - Resource Manager Space Password (A)
-- Password for resource manager space
-
-**RMSUSERID** - Resource Manager Space User ID (A)
-- User ID for resource manager space
-
-**ROWCT** - Row Count (U2)
-- Number of rows
-
-**RPMACK** - Report Parameter Acknowledge (B[1])
-- Report parameter acknowledgment
-
-**RPSEL** - Report Selection (U1)
-- Report selection criteria
-
-**RPTID** - Report ID (U1, U2, U4, or A)
-- Unique identifier for report
-
-**RPTOC** - Report Occurrence (U2)
-- Report occurrence count
-
-**RQCMD** - Request Command (A)
-- Request command string
-
-**RRACK** - Recipe Request Acknowledge (B[1])
-- Recipe request acknowledgment
-
-**RRACK_S20** - Recipe Request Acknowledge S20 (B[1])
-- S20 specific recipe request acknowledgment
-
-**RSACK** - Recipe Send Acknowledge (B[1])
-- Recipe send acknowledgment
-
-**RSDA** - Recipe Send Data A (A)
-- Recipe send data in ASCII
-
-**RSDC** - Recipe Send Data C (various)
-- Recipe send data compressed
-
-**RSINF** - Recipe Send Information (A)
-- Recipe send information
-
-**RSPACK** - Reset Spool Acknowledge (B[1])
-- Reset spool acknowledgment
-
-**RTSRSPSTAT** - Real Time Status Response Status (B[1])
-- Real time status response
-
-**RTYPE** - Report Type (U1)
-- Type of report
-
-**RecID** - Record ID (A)
-- Record identifier
-
-**SDACK** - Send Data Acknowledge (B[1])
-- Send data acknowledgment
-
-**SDBIN** - Send Data Binary (B)
-- Binary data to send
-
-**SENDRSPSTAT** - Send Response Status (B[1])
-- Status of send response
-
-**SEQNUM** - Sequence Number (U4)
-- Sequence number
-
-**SFCD** - Stream Function Code (U2)
-- SECS stream and function code
-
-**SHEAD** - Stream Header (B[4])
-- Stream header information
-
-**SLOTID** - Slot ID (U1, U2)
-- Slot identifier
-
-**SMPLN** - Sample Number (U1, U2, U4)
-- Sample identification number
-
-**SOFTREV** - Software Revision (A[20])
-- Software revision string
-
-**SPAACK** - Substrate Position Acknowledge (B[1])
-- Substrate position acknowledgment
-
-**SPD** - Substrate Position Data (various)
-- Substrate position information
-
-**SPID** - Substrate Position ID (A)
-- Substrate position identifier
-
-**SPNAME** - Substrate Position Name (A)
-- Name of substrate position
-
-**SPR** - Substrate Position Reference (A)
-- Reference for substrate position
-
-**SPVAL** - Substrate Position Value (various)
-- Value of substrate position
-
-**SSAACK** - Substrate Status Acknowledge (B[1])
-- Substrate status acknowledgment
-
-**SSACK** - Substrate Send Acknowledge (B[1])
-- Substrate send acknowledgment
-
-**SSCMD** - Substrate Send Command (A)
-- Substrate send command
-
-**STATUS** - Status (U1)
-- General status indicator
-
-**STATUSTXT** - Status Text (A)
-- Status description text
-
-**STIME** - Start Time (A)
-- Start time stamp
-
-**STRACK** - Substrate Track (A)
-- Substrate tracking identifier
-
-**STRID** - Stream ID (B[1])
-- SECS stream identifier
-
-**STRP** - Map Strip Data (various)
-- Wafer map strip data
-
-**SV** - Status Variable (various)
-- Status variable value
-
-**SV0** - Status Variable 0 (various)
-- First status variable
-
-**SVCACK** - Service Acknowledge (B[1])
-- Service acknowledgment
-
-**SVCNAME** - Service Name (A)
-- Name of service
-
-**SVID** - Status Variable ID (U1, U2, U4, or A)
-- Status variable identifier
-
-**SVNAME** - Status Variable Name (A)
-- Name of status variable
-
-**TARGETID** - Target ID (A)
-- Target identifier
-
-**TARGETPDE** - Target Process Data Element (A)
-- Target process data element
-
-**TARGETSPEC** - Target Specification (A)
-- Target specification
-
-**TBLACK** - Table Acknowledge (B[1])
-- Table operation acknowledgment
-
-**TBLCMD** - Table Command (A)
-- Table command
-
-**TBLELT** - Table Element (various)
-- Table element data
-
-**TBLID** - Table ID (A)
-- Table identifier
-
-**TBLTYP** - Table Type (U1)
-- Type of table
-
-**TCID** - Transaction Control ID (A)
-- Transaction control identifier
-
-**TEXT** - Text (A)
-- Text data
-
-**TIAACK** - Trace Initialize Acknowledge (B[1])
-- 0: Acknowledged
-- 1: Denied, Insufficient space
-- 2: Denied, Invalid format
-- 3: Denied, At least one SVID does not exist
-- 4: Denied, Busy
-
-**TIACK** - Time Acknowledge (B[1])
-- 0: Acknowledged
-- 1: Error
-
-**TID** - Terminal ID (B[1])
-- Terminal identifier
-
-**TIME** - Time (A[16])
-- Time stamp in format "YYMMDDhhmmss[cc]"
-
-**TIMESTAMP** - Time Stamp (A)
-- General timestamp
-
-**TOTSMP** - Total Samples (U1, U2, U4)
-- Total number of samples
-
-**TRACK** - Track (A)
-- Track identifier
-
-**TRANSFERSIZE** - Transfer Size (U4)
-- Size of data transfer
-
-**TRATOMCID** - Transaction Atomic ID (A)
-- Atomic transaction identifier
-
-**TRAUTOD** - Transaction Auto Delete (BOOLEAN)
-- Auto delete transaction flag
-
-**TRAUTOSTART** - Transaction Auto Start (BOOLEAN)
-- Auto start transaction flag
-
-**TRCMDNAME** - Transaction Command Name (A)
-- Name of transaction command
-
-**TRDIR** - Transfer Direction (U1)
-- Direction of transfer
-
-**TRID** - Trace Request ID (U1, U2, U4, or A)
-- Trace request identifier
-
-**TRJOBID** - Transaction Job ID (A)
-- Transaction job identifier
-
-**TRJOBMS** - Transaction Job Milestone (A)
-- Transaction job milestone
-
-**TRJOBNAME** - Transaction Job Name (A)
-- Name of transaction job
-
-**TRLINK** - Transaction Link (A)
-- Transaction link identifier
-
-**TRLOCATION** - Transaction Location (A)
-- Transaction location
-
-**TROBJNAME** - Transaction Object Name (A)
-- Name of transaction object
-
-**TROBJTYPE** - Transaction Object Type (A)
-- Type of transaction object
-
-**TRPORT** - Transfer Port (U1)
-- Transfer port number
-
-**TRPTNR** - Transfer Partner (A)
-- Transfer partner identifier
-
-**TRPTPORT** - Transfer Point Port (U1)
-- Transfer point port
-
-**TRRCP** - Transaction Recipe (A)
-- Transaction recipe
-
-**TRROLE** - Transaction Role (A)
-- Role in transaction
-
-**TRTYPE** - Transfer Type (U1)
-- Type of transfer
-
-**TSIP** - Time Stamp Input (A)
-- Input timestamp
-
-**TSOP** - Time Stamp Output (A)
-- Output timestamp
-
-**TTC** - Total Transfer Count (U4)
-- Total count of transfers
-
-**TYPEID** - Type ID (A)
-- Type identifier
-
-**UID** - User ID (A)
-- User identifier
-
-**UNFLEN** - Unformatted Length (U4)
-- Length of unformatted data
-
-**UNITS** - Units (A)
-- Measurement units
-
-**UPPERDB** - Upper Deadband (various)
-- Upper deadband value
-
-**V** - Variable Value (various)
-- Generic variable value
-
-**VERID** - Version ID (A)
-- Version identifier
-
-**VERIFYDEPTH** - Verify Depth (U1)
-- Depth of verification
-
-**VERIFYRSPSTAT** - Verify Response Status (B[1])
-- Verification response status
-
-**VERIFYSUCCESS** - Verify Success (BOOLEAN)
-- Verification success flag
-
-**VERIFYTYPE** - Verify Type (U1)
-- Type of verification
-
-**VID** - Variable ID (U1, U2, U4, or A)
-- Variable identifier
-
-**VLAACK** - Variable Limit Attribute Acknowledge (B[1])
-- Variable limit attribute acknowledgment
-
-**WRACK** - Write Acknowledge (B[1])
-- Write operation acknowledgment
-
-**XDIES** - X Dies (U2)
-- Number of dies in X direction
-
-**XYPOS** - XY Position (F4, F8)
-- X,Y coordinate position
-
-**YDIES** - Y Dies (U2)
-- Number of dies in Y direction
-                Hex: D1 04 FF FF FF FF
-
-Signed Int:    I1[1] = -128
-                Hex: 81 01 80
-
-               I2[1] = -32768
-                Hex: 71 01 80 00
-
-Float:         F4[1] = 3.14159
-                Hex: B1 04 40 49 0F D0
-
-List:          {L[2] item1 item2}
-                Hex: 01 02 ... ...
-
-Empty List:    {L:0}
-                Hex: 01 00
-```
-
-## Implementation Guidelines
-
-### 1. Message Validation
-- Verify message length consistency
-- Validate stream/function combinations
-- Check wait bit appropriateness
-- Ensure proper system bytes uniqueness
-
-### 2. Response Handling
-- Always respond to messages with wait bit set
-- Use same system bytes in response
-- Implement proper timeout handling
-- Handle transaction aborts gracefully
-
-### 3. State Management
-- Track connection state (Not Connected, Selected, Online)
-- Implement proper state transitions
-- Handle communication establishment sequence
-- Manage heartbeat and linktest mechanisms
-
-### 4. Error Handling
-- Implement S9 error messages for invalid requests
-- Use proper reject codes
-- Log communication errors appropriately
-- Provide meaningful error descriptions
-
-### 5. Data Encoding
-- Use appropriate SECS-II data types
-- Handle endianness correctly
-- Validate data item structure
-- Support multi-byte length fields when needed
-
-## References
-
-- SEMI E5 Specification
-- SEMI E37 HSMS Generic Services
-- SEMI E30 GEM (Generic Equipment Model)
-
---- 

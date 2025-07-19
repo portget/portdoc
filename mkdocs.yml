@@ -5,11 +5,16 @@ nav:
   - Getting Started:
     - Learn: learn.md
     - .Net: dotnet.md
+    - React: react.md
   - Documentation:
     - Commands: commands.md
     - Remote Access: remote.md
-  - Protocols:
+  - Protocols: 
+    - OPC UA: opcua.md
+    - Modbus: modbus.md
+    - EtherNet/IP: ethernetip.md
     - SECS: secs.md
+    - RTSP: rtsp.md
     - MQTT: mqtt.md
 markdown_extensions:
   - codehilite:

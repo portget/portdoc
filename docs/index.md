@@ -1,20 +1,22 @@
 # Welcome to Port
 
-`More Easily Create an API-Server with Port App`, designed to streamline the deployment of pkgs for developers. With this tool, developers can effortlessly deploy pkgs and integrate various applications to build a unified web service. Port Application simplifies the process, enabling developers to focus on creating seamless and efficient solutions with ease.
+##`"Any document can be a model."` 
+Port was created to enable users to easily develop applications using document files alone, offering an in-memory database that eliminates the need for queries. Designed with the motto `"Documents Made Simple. Applications Built Fast"` port empowers users to implement OPC UA, SECS, MQTT, REST APIs, and script-based flow control through straightforward document creation. Additionally, with Port packages, users can create reusable libraries for multiple programming languages.
 
 Please see the documentation [lincense](license.md)
  
-## 1. The Requirements 
+## The Requirements 
 ---
-* os         : windows 11+ / windows server 2003+
-* memory     : minimum 32GB
-* requirements : 
 
-    net.core 8.0 [.sdk-8.0.403-windows-x64-installer](https://dotnet.microsoft.com/ko-kr/download/dotnet/thank-you/sdk-8.0.403-windows-x64-installer){:download}
+| Requirement | Specification |
+|-------------|---------------|
+| **OS** | Windows 11+ / Windows Server 2003+ |
+| **Memory** | Minimum 32GB |
+| **Requirements** | [.SDK-8.0.403-windows-x64-installer](https://dotnet.microsoft.com/ko-kr/download/dotnet/thank-you/sdk-8.0.403-windows-x64-installer){:download} |
 
  
 
-## 2. Download
+## Download
 ---
 
 Name |VERSION | OS |STABLE | URL 
@@ -24,6 +26,17 @@ sample source| - | Windows x64 | Yes | [sample](file/sample.zip){:sample}
 
 
 
+## Package Downloads and Availability {#package-downloads-availability}
+
+The following packages are available across different programming languages and platforms:
+
+| NAME | Language | Package Manager | OS | STABLE |
+|------|----------|-----------------|----| -------|
+| portdic | C++ | not yet | Windows | No |
+| portdic | Delphi | not yet | Windows | No |
+| portdic | C# | nuget | Windows | Yes |
+| portdic | Python | not yet | Windows | No |
+| portdic | Javascript | npm | Any | Yes |
 
 <style>
 

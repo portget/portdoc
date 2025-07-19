@@ -8,11 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://portdic.com/mqtt/">
+        <link rel="canonical" href="https://portdic.com/rtsp/">
       
       
-        <link rel="prev" href="../rtsp/">
+        <link rel="prev" href="../secs/">
       
+      
+        <link rel="next" href="../mqtt/">
       
       
       <link rel="icon" href="../img/logo.ico">
@@ -20,7 +22,7 @@
     
     
       
-        <title>MQTT - Port</title>
+        <title>RTSP - Port</title>
       
     
     
@@ -74,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#table-of-contents" class="md-skip">
+        <a href="#rtsp-protocol" class="md-skip">
           Skip to content
         </a>
       
@@ -109,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              MQTT
+              RTSP
             
           </span>
         </div>
@@ -561,27 +563,6 @@
                 
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../rtsp/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    RTSP
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
     
   
   
@@ -591,12 +572,14 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
   
   <span class="md-ellipsis">
-    MQTT
+    RTSP
   </span>
   
 
@@ -607,7 +590,7 @@
         
   
   <span class="md-ellipsis">
-    MQTT
+    RTSP
   </span>
   
 
@@ -618,6 +601,8 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+  
+    
   
   
     <label class="md-nav__title" for="__toc">
@@ -636,151 +621,100 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#mqtt-overview" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
       Overview
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Overview">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-link" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick link
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quick link">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#mqtt-architecture" class="md-nav__link">
+  <a href="#key-features" class="md-nav__link">
     <span class="md-ellipsis">
-      MQTT Architecture
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="MQTT Architecture">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#mqtt-components" class="md-nav__link">
-    <span class="md-ellipsis">
-      Core Components
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#mqtt-flow" class="md-nav__link">
-    <span class="md-ellipsis">
-      MQTT Communication Flow
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="MQTT Communication Flow">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#mqtt-connection-process" class="md-nav__link">
-    <span class="md-ellipsis">
-      Connection Process
+      Key Features
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#mqtt-qos" class="md-nav__link">
+  <a href="#communication-model" class="md-nav__link">
     <span class="md-ellipsis">
-      Quality of Service Levels
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#mqtt-configuration" class="md-nav__link">
-    <span class="md-ellipsis">
-      MQTT Configuration
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="MQTT Configuration">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#mqtt-connection-settings" class="md-nav__link">
-    <span class="md-ellipsis">
-      Connection Settings
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#mqtt-explorer-setup" class="md-nav__link">
-    <span class="md-ellipsis">
-      MQTT Explorer Setup
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="MQTT Explorer Setup">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#mqtt-publication-config" class="md-nav__link">
-    <span class="md-ellipsis">
-      Publication Configuration
+      Communication Model
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#mqtt-explorer-installation" class="md-nav__link">
+  <a href="#rtsp-methods" class="md-nav__link">
     <span class="md-ellipsis">
-      MQTT Explorer Installation
+      RTSP Methods
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#mqtt-explorer-configuration" class="md-nav__link">
+  <a href="#transport-protocols" class="md-nav__link">
     <span class="md-ellipsis">
-      Explorer Configuration
+      Transport Protocols
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#mqtt-live-monitoring" class="md-nav__link">
+  <a href="#media-types" class="md-nav__link">
     <span class="md-ellipsis">
-      Live Monitoring
+      Media Types
     </span>
   </a>
   
 </li>
         
-      </ul>
-    </nav>
+          <li class="md-nav__item">
+  <a href="#session-states" class="md-nav__link">
+    <span class="md-ellipsis">
+      Session States
+    </span>
+  </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#mqtt-benefits" class="md-nav__link">
+  <a href="#response-codes" class="md-nav__link">
     <span class="md-ellipsis">
-      MQTT Integration Benefits
+      Response Codes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#header-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      Header Fields
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Use Cases
     </span>
   </a>
   
@@ -795,6 +729,27 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mqtt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MQTT
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -824,6 +779,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -841,151 +798,100 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#mqtt-overview" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
       Overview
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Overview">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-link" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick link
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quick link">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#mqtt-architecture" class="md-nav__link">
+  <a href="#key-features" class="md-nav__link">
     <span class="md-ellipsis">
-      MQTT Architecture
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="MQTT Architecture">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#mqtt-components" class="md-nav__link">
-    <span class="md-ellipsis">
-      Core Components
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#mqtt-flow" class="md-nav__link">
-    <span class="md-ellipsis">
-      MQTT Communication Flow
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="MQTT Communication Flow">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#mqtt-connection-process" class="md-nav__link">
-    <span class="md-ellipsis">
-      Connection Process
+      Key Features
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#mqtt-qos" class="md-nav__link">
+  <a href="#communication-model" class="md-nav__link">
     <span class="md-ellipsis">
-      Quality of Service Levels
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#mqtt-configuration" class="md-nav__link">
-    <span class="md-ellipsis">
-      MQTT Configuration
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="MQTT Configuration">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#mqtt-connection-settings" class="md-nav__link">
-    <span class="md-ellipsis">
-      Connection Settings
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#mqtt-explorer-setup" class="md-nav__link">
-    <span class="md-ellipsis">
-      MQTT Explorer Setup
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="MQTT Explorer Setup">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#mqtt-publication-config" class="md-nav__link">
-    <span class="md-ellipsis">
-      Publication Configuration
+      Communication Model
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#mqtt-explorer-installation" class="md-nav__link">
+  <a href="#rtsp-methods" class="md-nav__link">
     <span class="md-ellipsis">
-      MQTT Explorer Installation
+      RTSP Methods
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#mqtt-explorer-configuration" class="md-nav__link">
+  <a href="#transport-protocols" class="md-nav__link">
     <span class="md-ellipsis">
-      Explorer Configuration
+      Transport Protocols
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#mqtt-live-monitoring" class="md-nav__link">
+  <a href="#media-types" class="md-nav__link">
     <span class="md-ellipsis">
-      Live Monitoring
+      Media Types
     </span>
   </a>
   
 </li>
         
-      </ul>
-    </nav>
+          <li class="md-nav__item">
+  <a href="#session-states" class="md-nav__link">
+    <span class="md-ellipsis">
+      Session States
+    </span>
+  </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#mqtt-benefits" class="md-nav__link">
+  <a href="#response-codes" class="md-nav__link">
     <span class="md-ellipsis">
-      MQTT Integration Benefits
+      Response Codes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#header-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      Header Fields
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Use Cases
     </span>
   </a>
   
@@ -1011,108 +917,705 @@
                   
 
 
-  <h1>MQTT</h1>
-
+<h1 id="rtsp-protocol">RTSP Protocol<a class="headerlink" href="#rtsp-protocol" title="Permanent link">&para;</a></h1>
 <h2 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link">&para;</a></h2>
 <ol>
-<li><a href="#mqtt-architecture">MQTT Architecture</a></li>
-<li><a href="#mqtt-flow">MQTT Communication Flow</a></li>
-<li><a href="#mqtt-configuration">MQTT Configuration</a></li>
-<li><a href="#mqtt-explorer-setup">MQTT Explorer Setup</a></li>
-<li><a href="#mqtt-benefits">MQTT Integration Benefits</a></li>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#quick-link">Quick Link</a></li>
+<li><a href="#key-features">Key Features</a></li>
+<li><a href="#communication-model">Communication Model</a></li>
+<li><a href="#rtsp-methods">RTSP Methods</a></li>
+<li><a href="#transport-protocols">Transport Protocols</a></li>
+<li><a href="#media-types">Media Types</a></li>
+<li><a href="#session-states">Session States</a></li>
+<li><a href="#response-codes">Response Codes</a></li>
+<li><a href="#header-fields">Header Fields</a></li>
+<li><a href="#common-use-cases">Common Use Cases</a></li>
 </ol>
-<h2 id="mqtt-overview">Overview<a class="headerlink" href="#mqtt-overview" title="Permanent link">&para;</a></h2>
-<p>MQTT (Message Queuing Telemetry Transport) is a lightweight communication protocol designed for IoT devices and efficient message transmission in bandwidth-constrained environments.</p>
-<h3 id="mqtt-architecture">MQTT Architecture<a class="headerlink" href="#mqtt-architecture" title="Permanent link">&para;</a></h3>
-<h4 id="mqtt-components">Core Components<a class="headerlink" href="#mqtt-components" title="Permanent link">&para;</a></h4>
-<p><strong>1. Clients</strong>
-- <strong>Publishers</strong>: Send messages to specific topics
-- <strong>Subscribers</strong>: Receive messages from subscribed topics
-- <strong>Dual Role</strong>: Clients can both publish and subscribe</p>
-<p><strong>2. Broker</strong>
-- <strong>Message Distribution</strong>: Central server managing message routing
-- <strong>Topic Management</strong>: Handles topic subscriptions and publications
-- <strong>Client Coordination</strong>: Manages connections and message delivery</p>
-<p><strong>3. Topics</strong>
-- <strong>Message Categories</strong>: String-based channels for message organization
-- <strong>Hierarchical Structure</strong>: Support for complex topic hierarchies (e.g., <code>home/livingroom/temperature</code>)
-- <strong>Subscription Management</strong>: Clients subscribe to topics of interest</p>
-<h3 id="mqtt-flow">MQTT Communication Flow<a class="headerlink" href="#mqtt-flow" title="Permanent link">&para;</a></h3>
-<h4 id="mqtt-connection-process">Connection Process<a class="headerlink" href="#mqtt-connection-process" title="Permanent link">&para;</a></h4>
-<ol>
-<li><strong>Client Connection</strong>: Connect to MQTT broker with IP address and port</li>
-<li><strong>Authentication</strong>: Provide credentials if required</li>
-<li><strong>Topic Subscription</strong>: Subscribe to relevant topics</li>
-<li><strong>Message Publishing</strong>: Publish messages to topics</li>
-<li><strong>Message Distribution</strong>: Broker delivers messages to subscribers</li>
-<li><strong>Quality of Service</strong>: Message delivery guarantees based on QoS level</li>
-</ol>
-<h4 id="mqtt-qos">Quality of Service Levels<a class="headerlink" href="#mqtt-qos" title="Permanent link">&para;</a></h4>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>RTSP (Real Time Streaming Protocol) is a network protocol designed for controlling and delivering real-time multimedia content. It is used for establishing and controlling media sessions between endpoints, commonly used in video streaming applications, IP cameras, and live broadcasting systems.</p>
+<h2 id="quick-link"><strong>Quick link</strong><a class="headerlink" href="#quick-link" title="Permanent link">&para;</a></h2>
+<p><strong>Related Protocols:</strong> <a href="../secs/">SECS/GEM</a> | <a href="../modbus/">Modbus</a> | <a href="../ethernetip/">EtherNet/IP</a> | <a href="../opcua/">OPC UA</a></p>
+<h3 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Real-time Control</strong>: Provides real-time control over media streams</li>
+<li><strong>Session Management</strong>: Establishes and manages streaming sessions</li>
+<li><strong>Transport Independence</strong>: Works over various transport protocols (TCP, UDP)</li>
+<li><strong>Media Control</strong>: Supports play, pause, stop, and seek operations</li>
+<li><strong>Scalability</strong>: Supports multiple concurrent sessions</li>
+<li><strong>Interoperability</strong>: Standard protocol supported by various vendors</li>
+</ul>
+<h3 id="communication-model">Communication Model<a class="headerlink" href="#communication-model" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
-<th>QoS Level</th>
-<th>Guarantee</th>
+<th>Model</th>
 <th>Description</th>
+<th>Use Case</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>QoS 0</strong></td>
-<td>At most once</td>
-<td>No delivery guarantee, possible message loss</td>
+<td><strong>Client-Server</strong></td>
+<td>Traditional request-response model</td>
+<td>Media streaming control</td>
 </tr>
 <tr>
-<td><strong>QoS 1</strong></td>
-<td>At least once</td>
-<td>Guaranteed delivery, possible duplication</td>
+<td><strong>Session-based</strong></td>
+<td>Maintains session state</td>
+<td>Continuous media control</td>
 </tr>
 <tr>
-<td><strong>QoS 2</strong></td>
-<td>Exactly once</td>
-<td>Guaranteed delivery without duplication</td>
+<td><strong>Stateless</strong></td>
+<td>Each request is independent</td>
+<td>Simple control operations</td>
 </tr>
 </tbody>
 </table>
-<h3 id="mqtt-configuration">MQTT Configuration<a class="headerlink" href="#mqtt-configuration" title="Permanent link">&para;</a></h3>
-<h4 id="mqtt-connection-settings">Connection Settings<a class="headerlink" href="#mqtt-connection-settings" title="Permanent link">&para;</a></h4>
-<p><strong>Broker Details:</strong>
-- <strong>Host</strong>: <code>127.0.0.1</code>
-- <strong>Port</strong>: <code>8080</code>
-- <strong>Username</strong>: <code>admin</code>
-- <strong>Password</strong>: <code>admin</code></p>
-<div class="admonition note">
-<p class="admonition-title">Connection Credentials</p>
-<p>Use the default credentials for local MQTT broker access.</p>
-</div>
-<h3 id="mqtt-explorer-setup">MQTT Explorer Setup<a class="headerlink" href="#mqtt-explorer-setup" title="Permanent link">&para;</a></h3>
-<h4 id="mqtt-publication-config">Publication Configuration<a class="headerlink" href="#mqtt-publication-config" title="Permanent link">&para;</a></h4>
-<p>Create publication files in your project directory:</p>
-<p><strong>File Path:</strong> <code>../sample/app/mqtt/room1.pub</code>
-<strong>Relative Path:</strong> <code>app/mqtt/room1.pub</code></p>
-<p><strong>File Content:</strong>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>room1 RoomTemp1  // [group-name] [message-name]
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>room2 RoomTemp1
-</span></code></pre></div></p>
-<h4 id="mqtt-explorer-installation">MQTT Explorer Installation<a class="headerlink" href="#mqtt-explorer-installation" title="Permanent link">&para;</a></h4>
-<div class="admonition tip">
-<p class="admonition-title">Download MQTT Explorer</p>
-<p><a href="https://mqtt-explorer.com/">MQTT Explorer Download</a></p>
-</div>
-<h4 id="mqtt-explorer-configuration">Explorer Configuration<a class="headerlink" href="#mqtt-explorer-configuration" title="Permanent link">&para;</a></h4>
-<p><img alt="MQTT Explorer Login" src="../img/mosquitto_login.png" /></p>
-<p>Configure the MQTT Explorer with your broker settings for real-time message monitoring.</p>
-<h4 id="mqtt-live-monitoring">Live Monitoring<a class="headerlink" href="#mqtt-live-monitoring" title="Permanent link">&para;</a></h4>
-<p><img alt="MQTT Live View" src="../img/mqtt_view.gif" /></p>
-<p>Monitor real-time MQTT message flow and topic activity through the graphical interface.</p>
-<h3 id="mqtt-benefits">MQTT Integration Benefits<a class="headerlink" href="#mqtt-benefits" title="Permanent link">&para;</a></h3>
-<ul>
-<li><strong>Lightweight Protocol</strong>: Minimal bandwidth usage for IoT applications</li>
-<li><strong>Real-time Communication</strong>: Instant message delivery and updates</li>
-<li><strong>Scalable Architecture</strong>: Support for numerous connected devices</li>
-<li><strong>Reliable Messaging</strong>: QoS levels ensure appropriate delivery guarantees</li>
-<li><strong>Flexible Topics</strong>: Hierarchical topic structure for organized messaging </li>
-</ul>
+<h3 id="rtsp-methods">RTSP Methods<a class="headerlink" href="#rtsp-methods" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>DESCRIBE</strong></td>
+<td>Get media description</td>
+<td>Retrieve stream information</td>
+</tr>
+<tr>
+<td><strong>ANNOUNCE</strong></td>
+<td>Announce media description</td>
+<td>Server announces available streams</td>
+</tr>
+<tr>
+<td><strong>GET_PARAMETER</strong></td>
+<td>Get parameter values</td>
+<td>Retrieve session parameters</td>
+</tr>
+<tr>
+<td><strong>OPTIONS</strong></td>
+<td>Get supported methods</td>
+<td>Discover server capabilities</td>
+</tr>
+<tr>
+<td><strong>PAUSE</strong></td>
+<td>Pause media stream</td>
+<td>Temporarily stop playback</td>
+</tr>
+<tr>
+<td><strong>PLAY</strong></td>
+<td>Start media stream</td>
+<td>Begin media playback</td>
+</tr>
+<tr>
+<td><strong>RECORD</strong></td>
+<td>Start recording</td>
+<td>Begin media recording</td>
+</tr>
+<tr>
+<td><strong>REDIRECT</strong></td>
+<td>Redirect to another server</td>
+<td>Load balancing, failover</td>
+</tr>
+<tr>
+<td><strong>SETUP</strong></td>
+<td>Establish media session</td>
+<td>Prepare for streaming</td>
+</tr>
+<tr>
+<td><strong>SET_PARAMETER</strong></td>
+<td>Set parameter values</td>
+<td>Configure session parameters</td>
+</tr>
+<tr>
+<td><strong>TEARDOWN</strong></td>
+<td>End media session</td>
+<td>Terminate streaming session</td>
+</tr>
+</tbody>
+</table>
+<h3 id="transport-protocols">Transport Protocols<a class="headerlink" href="#transport-protocols" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Protocol</th>
+<th>Description</th>
+<th>Characteristics</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>RTP</strong></td>
+<td>Real-time Transport Protocol</td>
+<td>Media data delivery</td>
+</tr>
+<tr>
+<td><strong>RTCP</strong></td>
+<td>RTP Control Protocol</td>
+<td>Quality feedback</td>
+</tr>
+<tr>
+<td><strong>TCP</strong></td>
+<td>Transmission Control Protocol</td>
+<td>Reliable control channel</td>
+</tr>
+<tr>
+<td><strong>UDP</strong></td>
+<td>User Datagram Protocol</td>
+<td>Fast data delivery</td>
+</tr>
+</tbody>
+</table>
+<h3 id="media-types">Media Types<a class="headerlink" href="#media-types" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Video</strong></td>
+<td>Moving images</td>
+<td>H.264, H.265, MPEG-4</td>
+</tr>
+<tr>
+<td><strong>Audio</strong></td>
+<td>Sound data</td>
+<td>AAC, MP3, PCM</td>
+</tr>
+<tr>
+<td><strong>Text</strong></td>
+<td>Subtitle data</td>
+<td>SRT, VTT</td>
+</tr>
+<tr>
+<td><strong>Metadata</strong></td>
+<td>Stream information</td>
+<td>XML, JSON</td>
+</tr>
+</tbody>
+</table>
+<h3 id="session-states">Session States<a class="headerlink" href="#session-states" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th>Description</th>
+<th>Actions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>INIT</strong></td>
+<td>Initial state</td>
+<td>Session creation</td>
+</tr>
+<tr>
+<td><strong>READY</strong></td>
+<td>Ready to stream</td>
+<td>Setup complete</td>
+</tr>
+<tr>
+<td><strong>PLAYING</strong></td>
+<td>Active streaming</td>
+<td>Media delivery</td>
+</tr>
+<tr>
+<td><strong>PAUSED</strong></td>
+<td>Temporarily stopped</td>
+<td>Stream paused</td>
+</tr>
+<tr>
+<td><strong>RECORDING</strong></td>
+<td>Active recording</td>
+<td>Media capture</td>
+</tr>
+<tr>
+<td><strong>TEARDOWN</strong></td>
+<td>Session ending</td>
+<td>Cleanup</td>
+</tr>
+</tbody>
+</table>
+<h3 id="response-codes">Response Codes<a class="headerlink" href="#response-codes" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+<th>Category</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>100</strong></td>
+<td>Continue</td>
+<td>Informational</td>
+</tr>
+<tr>
+<td><strong>200</strong></td>
+<td>OK</td>
+<td>Success</td>
+</tr>
+<tr>
+<td><strong>201</strong></td>
+<td>Created</td>
+<td>Success</td>
+</tr>
+<tr>
+<td><strong>250</strong></td>
+<td>Low on Storage Space</td>
+<td>Success</td>
+</tr>
+<tr>
+<td><strong>300</strong></td>
+<td>Multiple Choices</td>
+<td>Redirection</td>
+</tr>
+<tr>
+<td><strong>301</strong></td>
+<td>Moved Permanently</td>
+<td>Redirection</td>
+</tr>
+<tr>
+<td><strong>302</strong></td>
+<td>Moved Temporarily</td>
+<td>Redirection</td>
+</tr>
+<tr>
+<td><strong>303</strong></td>
+<td>See Other</td>
+<td>Redirection</td>
+</tr>
+<tr>
+<td><strong>305</strong></td>
+<td>Use Proxy</td>
+<td>Redirection</td>
+</tr>
+<tr>
+<td><strong>400</strong></td>
+<td>Bad Request</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td><strong>401</strong></td>
+<td>Unauthorized</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td><strong>402</strong></td>
+<td>Payment Required</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td><strong>403</strong></td>
+<td>Forbidden</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td><strong>404</strong></td>
+<td>Not Found</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td><strong>405</strong></td>
+<td>Method Not Allowed</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td><strong>406</strong></td>
+<td>Not Acceptable</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td><strong>407</strong></td>
+<td>Proxy Authentication Required</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td><strong>408</strong></td>
+<td>Request Timeout</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td><strong>410</strong></td>
+<td>Gone</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td><strong>411</strong></td>
+<td>Length Required</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td><strong>412</strong></td>
+<td>Precondition Failed</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td><strong>413</strong></td>
+<td>Request Entity Too Large</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td><strong>414</strong></td>
+<td>Request-URI Too Large</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td><strong>415</strong></td>
+<td>Unsupported Media Type</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td><strong>451</strong></td>
+<td>Parameter Not Understood</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td><strong>452</strong></td>
+<td>Conference Not Found</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td><strong>453</strong></td>
+<td>Not Enough Bandwidth</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td><strong>454</strong></td>
+<td>Session Not Found</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td><strong>455</strong></td>
+<td>Method Not Valid in This State</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td><strong>456</strong></td>
+<td>Header Field Not Valid for Resource</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td><strong>457</strong></td>
+<td>Invalid Range</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td><strong>458</strong></td>
+<td>Parameter Is Read-Only</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td><strong>459</strong></td>
+<td>Aggregate Operation Not Allowed</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td><strong>460</strong></td>
+<td>Only Aggregate Operation Allowed</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td><strong>461</strong></td>
+<td>Unsupported Transport</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td><strong>462</strong></td>
+<td>Destination Unreachable</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td><strong>463</strong></td>
+<td>Key Management Failure</td>
+<td>Client Error</td>
+</tr>
+<tr>
+<td><strong>500</strong></td>
+<td>Internal Server Error</td>
+<td>Server Error</td>
+</tr>
+<tr>
+<td><strong>501</strong></td>
+<td>Not Implemented</td>
+<td>Server Error</td>
+</tr>
+<tr>
+<td><strong>502</strong></td>
+<td>Bad Gateway</td>
+<td>Server Error</td>
+</tr>
+<tr>
+<td><strong>503</strong></td>
+<td>Service Unavailable</td>
+<td>Server Error</td>
+</tr>
+<tr>
+<td><strong>504</strong></td>
+<td>Gateway Timeout</td>
+<td>Server Error</td>
+</tr>
+<tr>
+<td><strong>505</strong></td>
+<td>RTSP Version Not Supported</td>
+<td>Server Error</td>
+</tr>
+<tr>
+<td><strong>551</strong></td>
+<td>Option Not Supported</td>
+<td>Server Error</td>
+</tr>
+</tbody>
+</table>
+<h3 id="header-fields">Header Fields<a class="headerlink" href="#header-fields" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Header</th>
+<th>Description</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Accept</strong></td>
+<td>Acceptable media types</td>
+<td>Client preferences</td>
+</tr>
+<tr>
+<td><strong>Accept-Encoding</strong></td>
+<td>Acceptable encodings</td>
+<td>Compression support</td>
+</tr>
+<tr>
+<td><strong>Accept-Language</strong></td>
+<td>Acceptable languages</td>
+<td>Localization</td>
+</tr>
+<tr>
+<td><strong>Authorization</strong></td>
+<td>Authentication credentials</td>
+<td>Security</td>
+</tr>
+<tr>
+<td><strong>Bandwidth</strong></td>
+<td>Available bandwidth</td>
+<td>QoS control</td>
+</tr>
+<tr>
+<td><strong>Blocksize</strong></td>
+<td>Maximum block size</td>
+<td>Data transfer</td>
+</tr>
+<tr>
+<td><strong>Cache-Control</strong></td>
+<td>Caching directives</td>
+<td>Performance</td>
+</tr>
+<tr>
+<td><strong>Conference</strong></td>
+<td>Conference identifier</td>
+<td>Multi-party sessions</td>
+</tr>
+<tr>
+<td><strong>Connection</strong></td>
+<td>Connection management</td>
+<td>Transport control</td>
+</tr>
+<tr>
+<td><strong>Content-Base</strong></td>
+<td>Base URI for content</td>
+<td>Resource location</td>
+</tr>
+<tr>
+<td><strong>Content-Encoding</strong></td>
+<td>Content encoding</td>
+<td>Compression</td>
+</tr>
+<tr>
+<td><strong>Content-Language</strong></td>
+<td>Content language</td>
+<td>Localization</td>
+</tr>
+<tr>
+<td><strong>Content-Length</strong></td>
+<td>Content length</td>
+<td>Data size</td>
+</tr>
+<tr>
+<td><strong>Content-Location</strong></td>
+<td>Content location</td>
+<td>Resource location</td>
+</tr>
+<tr>
+<td><strong>Content-Type</strong></td>
+<td>Content type</td>
+<td>Media format</td>
+</tr>
+<tr>
+<td><strong>CSeq</strong></td>
+<td>Command sequence</td>
+<td>Message ordering</td>
+</tr>
+<tr>
+<td><strong>Date</strong></td>
+<td>Message date</td>
+<td>Timestamp</td>
+</tr>
+<tr>
+<td><strong>Expires</strong></td>
+<td>Expiration time</td>
+<td>Caching</td>
+</tr>
+<tr>
+<td><strong>From</strong></td>
+<td>Request originator</td>
+<td>Identification</td>
+</tr>
+<tr>
+<td><strong>If-Modified-Since</strong></td>
+<td>Conditional request</td>
+<td>Caching</td>
+</tr>
+<tr>
+<td><strong>Last-Modified</strong></td>
+<td>Last modification</td>
+<td>Caching</td>
+</tr>
+<tr>
+<td><strong>Proxy-Authenticate</strong></td>
+<td>Proxy authentication</td>
+<td>Security</td>
+</tr>
+<tr>
+<td><strong>Proxy-Require</strong></td>
+<td>Proxy requirements</td>
+<td>Features</td>
+</tr>
+<tr>
+<td><strong>Public</strong></td>
+<td>Supported methods</td>
+<td>Capabilities</td>
+</tr>
+<tr>
+<td><strong>Range</strong></td>
+<td>Byte range</td>
+<td>Partial content</td>
+</tr>
+<tr>
+<td><strong>Referer</strong></td>
+<td>Referrer URI</td>
+<td>Navigation</td>
+</tr>
+<tr>
+<td><strong>Require</strong></td>
+<td>Required features</td>
+<td>Capabilities</td>
+</tr>
+<tr>
+<td><strong>Retry-After</strong></td>
+<td>Retry delay</td>
+<td>Error handling</td>
+</tr>
+<tr>
+<td><strong>RTP-Info</strong></td>
+<td>RTP information</td>
+<td>Media control</td>
+</tr>
+<tr>
+<td><strong>Scale</strong></td>
+<td>Playback speed</td>
+<td>Media control</td>
+</tr>
+<tr>
+<td><strong>Session</strong></td>
+<td>Session identifier</td>
+<td>Session management</td>
+</tr>
+<tr>
+<td><strong>Speed</strong></td>
+<td>Playback speed</td>
+<td>Media control</td>
+</tr>
+<tr>
+<td><strong>Transport</strong></td>
+<td>Transport parameters</td>
+<td>Media delivery</td>
+</tr>
+<tr>
+<td><strong>Unsupported</strong></td>
+<td>Unsupported features</td>
+<td>Error reporting</td>
+</tr>
+<tr>
+<td><strong>User-Agent</strong></td>
+<td>Client identifier</td>
+<td>Identification</td>
+</tr>
+<tr>
+<td><strong>Via</strong></td>
+<td>Proxy chain</td>
+<td>Routing</td>
+</tr>
+<tr>
+<td><strong>WWW-Authenticate</strong></td>
+<td>Authentication challenge</td>
+<td>Security</td>
+</tr>
+</tbody>
+</table>
+<h3 id="common-use-cases">Common Use Cases<a class="headerlink" href="#common-use-cases" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Use Case</th>
+<th>Description</th>
+<th>Implementation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Live Streaming</strong></td>
+<td>Real-time video broadcast</td>
+<td>RTSP + RTP</td>
+</tr>
+<tr>
+<td><strong>Video on Demand</strong></td>
+<td>Pre-recorded content delivery</td>
+<td>RTSP + RTP</td>
+</tr>
+<tr>
+<td><strong>IP Camera</strong></td>
+<td>Security camera streaming</td>
+<td>RTSP + RTP</td>
+</tr>
+<tr>
+<td><strong>Video Conferencing</strong></td>
+<td>Multi-party communication</td>
+<td>RTSP + RTP</td>
+</tr>
+<tr>
+<td><strong>Media Server</strong></td>
+<td>Centralized content delivery</td>
+<td>RTSP + RTP</td>
+</tr>
+<tr>
+<td><strong>Mobile Streaming</strong></td>
+<td>Mobile device streaming</td>
+<td>RTSP + RTP</td>
+</tr>
+</tbody>
+</table>
 
 
 
@@ -1144,7 +1647,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../rtsp/" class="md-footer__link md-footer__link--prev" aria-label="Previous: RTSP">
+          <a href="../secs/" class="md-footer__link md-footer__link--prev" aria-label="Previous: SECS">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1154,11 +1657,27 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                RTSP
+                SECS
               </div>
             </div>
           </a>
         
+        
+          
+          <a href="../mqtt/" class="md-footer__link md-footer__link--next" aria-label="Next: MQTT">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                MQTT
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
         
       </nav>
     
