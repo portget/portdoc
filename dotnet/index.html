@@ -14,7 +14,7 @@
         <link rel="prev" href="../learn/">
       
       
-        <link rel="next" href="../commands/">
+        <link rel="next" href="../react/">
       
       
       <link rel="icon" href="../img/logo.ico">
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#dotnet-integration" class="md-skip">
+        <a href="#net-integration-guide" class="md-skip">
           Skip to content
         </a>
       
@@ -320,6 +320,8 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
@@ -348,6 +350,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -356,6 +360,25 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table of Contents
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#dotnet-integration" class="md-nav__link">
     <span class="md-ellipsis">
       .NET Integration
@@ -429,13 +452,18 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#portdic-features" class="md-nav__link">
     <span class="md-ellipsis">
       PortDic Features
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -521,46 +549,235 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#logging-and-monitoring" class="md-nav__link">
+  <a href="#package-development" class="md-nav__link">
     <span class="md-ellipsis">
-      Logging and Monitoring
+      Package Development
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Logging and Monitoring">
+    <nav class="md-nav" aria-label="Package Development">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#log-system" class="md-nav__link">
+  <a href="#package-development-overview" class="md-nav__link">
     <span class="md-ellipsis">
-      Log System Overview
+      Package Development Overview
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#log-categories" class="md-nav__link">
+  <a href="#package-annotations-system" class="md-nav__link">
     <span class="md-ellipsis">
-      Log Categories
+      Package Annotations System
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Package Annotations System">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#annotation-reference-detailed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Annotation Reference
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detailed-annotation-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detailed Annotation Usage
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Detailed Annotation Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#valid-annotation-detailed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Valid Annotation
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#file-logging" class="md-nav__link">
+  <a href="#port-annotation-detailed" class="md-nav__link">
     <span class="md-ellipsis">
-      File-based Logging
+      Port Annotation
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#ssh-log-access" class="md-nav__link">
+  <a href="#logger-annotation-detailed" class="md-nav__link">
     <span class="md-ellipsis">
-      SSH Log Access
+      Logger Annotation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#property-annotation-detailed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Property Annotation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#message-annotation-detailed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Message Annotation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enumcode-annotation-detailed" class="md-nav__link">
+    <span class="md-ellipsis">
+      EnumCode Annotation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comment-annotation-detailed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comment Annotation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-net-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating .NET Packages
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Creating .NET Packages">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#class-library-examples-detailed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Class Library Examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Class Library Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bulb-package-example-detailed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bulb Package Example
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#heater-package-example-detailed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Heater Package Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#publishing-libraries-detailed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Publishing Libraries
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Publishing Libraries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites-detailed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Summary">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-integration-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Integration Points
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Best Practices
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Next Steps
     </span>
   </a>
   
@@ -575,6 +792,27 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../react/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    React
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -856,6 +1094,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -864,6 +1104,25 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table of Contents
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#dotnet-integration" class="md-nav__link">
     <span class="md-ellipsis">
       .NET Integration
@@ -937,13 +1196,18 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#portdic-features" class="md-nav__link">
     <span class="md-ellipsis">
       PortDic Features
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1029,46 +1293,235 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#logging-and-monitoring" class="md-nav__link">
+  <a href="#package-development" class="md-nav__link">
     <span class="md-ellipsis">
-      Logging and Monitoring
+      Package Development
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Logging and Monitoring">
+    <nav class="md-nav" aria-label="Package Development">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#log-system" class="md-nav__link">
+  <a href="#package-development-overview" class="md-nav__link">
     <span class="md-ellipsis">
-      Log System Overview
+      Package Development Overview
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#log-categories" class="md-nav__link">
+  <a href="#package-annotations-system" class="md-nav__link">
     <span class="md-ellipsis">
-      Log Categories
+      Package Annotations System
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Package Annotations System">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#annotation-reference-detailed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Annotation Reference
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detailed-annotation-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detailed Annotation Usage
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Detailed Annotation Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#valid-annotation-detailed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Valid Annotation
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#file-logging" class="md-nav__link">
+  <a href="#port-annotation-detailed" class="md-nav__link">
     <span class="md-ellipsis">
-      File-based Logging
+      Port Annotation
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#ssh-log-access" class="md-nav__link">
+  <a href="#logger-annotation-detailed" class="md-nav__link">
     <span class="md-ellipsis">
-      SSH Log Access
+      Logger Annotation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#property-annotation-detailed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Property Annotation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#message-annotation-detailed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Message Annotation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enumcode-annotation-detailed" class="md-nav__link">
+    <span class="md-ellipsis">
+      EnumCode Annotation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comment-annotation-detailed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comment Annotation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-net-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating .NET Packages
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Creating .NET Packages">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#class-library-examples-detailed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Class Library Examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Class Library Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bulb-package-example-detailed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bulb Package Example
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#heater-package-example-detailed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Heater Package Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#publishing-libraries-detailed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Publishing Libraries
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Publishing Libraries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites-detailed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Summary">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-integration-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Integration Points
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Best Practices
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Next Steps
     </span>
   </a>
   
@@ -1094,8 +1547,34 @@
                   
 
 
-  <h1>.Net</h1>
-
+<h1 id="net-integration-guide">.NET Integration Guide<a class="headerlink" href="#net-integration-guide" title="Permanent link">&para;</a></h1>
+<h2 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#dotnet-integration">.NET Integration</a></li>
+<li><a href="#dotnet-initialization">Initialization and Setup</a></li>
+<li><a href="#dotnet-event-handling">Event Handling</a></li>
+<li><a href="#test-package-integration">Test Package Integration</a></li>
+<li><a href="#dotnet-set-get-operations">SET/GET Operations</a></li>
+<li><a href="#portdic-features">PortDic Features</a></li>
+<li><a href="#project-execution">Project Execution</a></li>
+<li><a href="#repository-updates">Repository Updates</a></li>
+<li><a href="#console-execution">Console Execution</a></li>
+<li><a href="#gui-application">GUI Application</a></li>
+<li><a href="#logging-and-monitoring">Logging and Monitoring</a></li>
+<li><a href="#log-system">Log System Overview</a></li>
+<li><a href="#log-categories">Log Categories</a></li>
+<li><a href="#file-logging">File-based Logging</a></li>
+<li><a href="#ssh-log-access">SSH Log Access</a></li>
+<li><a href="#package-development">Package Development</a></li>
+<li><a href="#package-development-overview">Package Development Overview</a></li>
+<li><a href="#package-annotations-system">Package Annotations System</a></li>
+<li><a href="#creating-net-packages">Creating .NET Packages</a></li>
+<li><a href="#publishing-libraries">Publishing Libraries</a></li>
+</ul>
+<hr />
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>This guide provides comprehensive information for integrating .NET applications with the Port system. It covers initialization, event handling, package development, and project execution.</p>
 <h3 id="dotnet-integration">.NET Integration<a class="headerlink" href="#dotnet-integration" title="Permanent link">&para;</a></h3>
 <h4 id="dotnet-initialization">Initialization and Setup<a class="headerlink" href="#dotnet-initialization" title="Permanent link">&para;</a></h4>
 <div class="language-csharp highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">private</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="n">IPortDic</span><span class="w"> </span><span class="n">port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Port</span><span class="p">.</span><span class="n">GetDictionary</span><span class="p">(</span><span class="s">&quot;sample&quot;</span><span class="p">);</span>
@@ -1193,14 +1672,40 @@
 </span><span id="__span-4-23"><a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">t2</span><span class="p">.</span><span class="n">Text</span><span class="p">());</span>
 </span></code></pre></div>
 <h3 id="portdic-features">PortDic Features<a class="headerlink" href="#portdic-features" title="Permanent link">&para;</a></h3>
-<ul>
-<li><strong>Efficient Lookup</strong>: Fast key-value pair retrieval</li>
-<li><strong>Multi-platform Support</strong>: Available across different programming languages</li>
-<li><strong>Real-time Updates</strong>: Live data synchronization</li>
-<li><strong>Event-driven Architecture</strong>: Responsive to system changes</li>
-<li><strong>Test Mode Support</strong>: Package testing and validation</li>
-<li><strong>Type Safety</strong>: Proper data type handling and conversion</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Efficient Lookup</strong></td>
+<td>Fast key-value pair retrieval</td>
+</tr>
+<tr>
+<td><strong>Multi-platform Support</strong></td>
+<td>Available across different programming languages</td>
+</tr>
+<tr>
+<td><strong>Real-time Updates</strong></td>
+<td>Live data synchronization</td>
+</tr>
+<tr>
+<td><strong>Event-driven Architecture</strong></td>
+<td>Responsive to system changes</td>
+</tr>
+<tr>
+<td><strong>Test Mode Support</strong></td>
+<td>Package testing and validation</td>
+</tr>
+<tr>
+<td><strong>Type Safety</strong></td>
+<td>Proper data type handling and conversion</td>
+</tr>
+</tbody>
+</table>
 <h2 id="project-execution">Project Execution<a class="headerlink" href="#project-execution" title="Permanent link">&para;</a></h2>
 <h3 id="repository-updates">Repository Updates<a class="headerlink" href="#repository-updates" title="Permanent link">&para;</a></h3>
 <p>Before starting your project, ensure all changes are committed to the repository:</p>
@@ -1229,59 +1734,580 @@ Visit <a href="http://localhost:5001/api/app/ng/?view=table">http://localhost:50
 <h3 id="gui-application">GUI Application<a class="headerlink" href="#gui-application" title="Permanent link">&para;</a></h3>
 <h4 id="wpf-execution">WPF Application Execution<a class="headerlink" href="#wpf-execution" title="Permanent link">&para;</a></h4>
 <p><img alt="Start Project WPF" src="../img/start%20project%20with%20wpf%20netCore.png" /></p>
-<p>Use the graphical interface for easier project management and monitoring.</p>
-<h2 id="logging-and-monitoring">Logging and Monitoring<a class="headerlink" href="#logging-and-monitoring" title="Permanent link">&para;</a></h2>
-<h3 id="log-system">Log System Overview<a class="headerlink" href="#log-system" title="Permanent link">&para;</a></h3>
-<p>Port Application maintains comprehensive logs for troubleshooting and system analysis across multiple categories.</p>
-<h3 id="log-categories">Log Categories<a class="headerlink" href="#log-categories" title="Permanent link">&para;</a></h3>
-<p><strong>Log Directory:</strong> <code>.../documents/port/logs</code></p>
+<h2 id="package-development">Package Development<a class="headerlink" href="#package-development" title="Permanent link">&para;</a></h2>
+<h3 id="package-development-overview">Package Development Overview<a class="headerlink" href="#package-development-overview" title="Permanent link">&para;</a></h3>
+<p>The Port package system allows developers to create reusable libraries by inheriting from <code>PortObject</code> and linking them to Messages. This enables straightforward usage through Message calls and promotes modular development.</p>
+<p>Port packages provide a standardized way to:</p>
 <table>
 <thead>
 <tr>
-<th>Folder</th>
-<th>Purpose</th>
-<th>Content</th>
+<th>Capability</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>Pkg</strong></td>
-<td>Package operations</td>
-<td>Package loading events and activities</td>
+<td><strong>Create reusable components</strong></td>
+<td>Build modular libraries for repeated use</td>
 </tr>
 <tr>
-<td><strong>Boot</strong></td>
-<td>Resource loading</td>
-<td>Project initialization and startup logs</td>
+<td><strong>Manage dependencies and configurations</strong></td>
+<td>Handle package dependencies and settings</td>
 </tr>
 <tr>
-<td><strong>Console</strong></td>
-<td>Command execution</td>
-<td>Console commands and their outputs</td>
+<td><strong>Enable seamless integration</strong></td>
+<td>Integrate smoothly with the Port ecosystem</td>
 </tr>
 <tr>
-<td><strong>Service</strong></td>
-<td>Port Package Manager</td>
-<td>Service-related activities and status</td>
-</tr>
-<tr>
-<td><strong>Project</strong></td>
-<td>Project operations</td>
-<td>Set/get operations and project-wide events</td>
+<td><strong>Facilitate API-driven interactions</strong></td>
+<td>Support REST API-based communication</td>
 </tr>
 </tbody>
 </table>
-<h3 id="file-logging">File-based Logging<a class="headerlink" href="#file-logging" title="Permanent link">&para;</a></h3>
-<p><img alt="Log Directory Structure" src="../img/log%20dir.png" /></p>
-<p><strong>Log Management:</strong>
-- <strong>Automatic Creation</strong>: Logs generated automatically during operations
-- <strong>Categorized Storage</strong>: Separate folders for different log types
-- <strong>Troubleshooting</strong>: Comprehensive information for issue diagnosis
-- <strong>System Analysis</strong>: Performance and behavior tracking</p>
-<h3 id="ssh-log-access">SSH Log Access<a class="headerlink" href="#ssh-log-access" title="Permanent link">&para;</a></h3>
-<p>Retrieve logs remotely using SSH commands:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>get<span class="w"> </span>sample.log
+<h3 id="package-annotations-system">Package Annotations System<a class="headerlink" href="#package-annotations-system" title="Permanent link">&para;</a></h3>
+<p>Port packages use annotations to define behavior, configuration, and API endpoints. These annotations provide metadata that the Port system uses for:</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Class Registration</strong></td>
+<td>Identifying Port-managed classes</td>
+</tr>
+<tr>
+<td><strong>API Generation</strong></td>
+<td>Creating REST endpoints automatically</td>
+</tr>
+<tr>
+<td><strong>Dependency Injection</strong></td>
+<td>Managing services and resources</td>
+</tr>
+<tr>
+<td><strong>Validation</strong></td>
+<td>Ensuring data integrity and business rules</td>
+</tr>
+</tbody>
+</table>
+<h4 id="annotation-reference-detailed">Annotation Reference<a class="headerlink" href="#annotation-reference-detailed" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Targets</th>
+<th>Type</th>
+<th>Arguments</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#port-annotation-detailed">Port</a></td>
+<td>class</td>
+<td><code>-</code></td>
+<td><code>Class Type</code></td>
+<td>Declares a class as Port-managed for package registration</td>
+</tr>
+<tr>
+<td><a href="#valid-annotation-detailed">Valid</a></td>
+<td>method, property</td>
+<td><code>bool</code></td>
+<td><code>invalid comment</code></td>
+<td>Defines validation logic with custom error messages</td>
+</tr>
+<tr>
+<td><a href="#message-annotation-detailed">Message</a></td>
+<td>property</td>
+<td><code>string</code>, <code>double</code></td>
+<td><code>-</code></td>
+<td>Creates API endpoints for property access</td>
+</tr>
+<tr>
+<td><a href="#logger-annotation-detailed">Logger</a></td>
+<td>property</td>
+<td><code>ILogger</code></td>
+<td><code>-</code></td>
+<td>Enables dependency injection for logging services</td>
+</tr>
+<tr>
+<td><a href="#property-annotation-detailed">Property</a></td>
+<td>property</td>
+<td><code>IProperty</code></td>
+<td><code>Message name</code></td>
+<td>Maps properties to pre-declared Message Properties</td>
+</tr>
+<tr>
+<td><a href="#enumcode-annotation-detailed">EnumCode</a></td>
+<td>enum</td>
+<td><code>-</code></td>
+<td><code>-</code></td>
+<td>Exposes enum values through API endpoints</td>
+</tr>
+<tr>
+<td><a href="#comment-annotation-detailed">Comment</a></td>
+<td>property</td>
+<td><code>-</code></td>
+<td><code>comment text</code></td>
+<td>Provides API documentation for properties</td>
+</tr>
+</tbody>
+</table>
+<h3 id="detailed-annotation-usage">Detailed Annotation Usage<a class="headerlink" href="#detailed-annotation-usage" title="Permanent link">&para;</a></h3>
+<h4 id="valid-annotation-detailed">Valid Annotation<a class="headerlink" href="#valid-annotation-detailed" title="Permanent link">&para;</a></h4>
+<p>The <code>Valid</code> annotation defines validation logic for methods or properties, with custom error messages for validation failures.</p>
+<div class="language-csharp highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="na">[Valid(&quot;Invalid for connection&quot;)]</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="k">public</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nf">Valid</span><span class="p">()</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="p">{</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">true</span><span class="p">;</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="p">}</span>
 </span></code></pre></div>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Target</strong></td>
+<td>Applied to methods returning <code>bool</code></td>
+</tr>
+<tr>
+<td><strong>Error Handling</strong></td>
+<td>Provides custom error messages for validation failures</td>
+</tr>
+<tr>
+<td><strong>Execution</strong></td>
+<td>Automatically called during package validation</td>
+</tr>
+</tbody>
+</table>
+<h4 id="port-annotation-detailed">Port Annotation<a class="headerlink" href="#port-annotation-detailed" title="Permanent link">&para;</a></h4>
+<p>The <code>Port</code> annotation indicates that a class is managed within the Port Package system.</p>
+<div class="language-csharp highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">using</span><span class="w"> </span><span class="nn">portpackage</span><span class="p">;</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="k">using</span><span class="w"> </span><span class="nn">portdatatype</span><span class="p">;</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="na">[Port(typeof(Heater))]</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">Heater</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="p">{</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">    </span><span class="c1">// Implementation</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="p">}</span>
+</span></code></pre></div>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Target</strong></td>
+<td>Applied to class declarations</td>
+</tr>
+<tr>
+<td><strong>Registration</strong></td>
+<td>Registers the class with the Port system</td>
+</tr>
+<tr>
+<td><strong>Functionality</strong></td>
+<td>Enables package management and API generation</td>
+</tr>
+</tbody>
+</table>
+<h4 id="logger-annotation-detailed">Logger Annotation<a class="headerlink" href="#logger-annotation-detailed" title="Permanent link">&para;</a></h4>
+<p>The <code>Logger</code> annotation specifies that a field should be injected with a logging system or service.</p>
+<div class="language-csharp highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">using</span><span class="w"> </span><span class="nn">portpackage</span><span class="p">;</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="k">using</span><span class="w"> </span><span class="nn">portdatatype</span><span class="p">;</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="na">[Logger]</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="k">public</span><span class="w"> </span><span class="n">ILogger</span><span class="w"> </span><span class="n">Logger</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="c1">// Usage example</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="n">Logger</span><span class="p">.</span><span class="n">Write</span><span class="p">(</span><span class="kt">string</span><span class="p">.</span><span class="n">Join</span><span class="p">(</span><span class="s">&quot;,&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">values</span><span class="p">));</span>
+</span></code></pre></div>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Target</strong></td>
+<td>Applied to <code>ILogger</code> properties</td>
+</tr>
+<tr>
+<td><strong>Injection</strong></td>
+<td>Enables dependency injection for logging</td>
+</tr>
+<tr>
+<td><strong>Capability</strong></td>
+<td>Provides centralized logging capabilities</td>
+</tr>
+</tbody>
+</table>
+<h4 id="property-annotation-detailed">Property Annotation<a class="headerlink" href="#property-annotation-detailed" title="Permanent link">&para;</a></h4>
+<p>The <code>Property</code> annotation maps a property to declared Message Properties for configuration access.</p>
+<div class="language-csharp highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">using</span><span class="w"> </span><span class="nn">portpackage</span><span class="p">;</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="k">using</span><span class="w"> </span><span class="nn">portdatatype</span><span class="p">;</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="na">[Property]</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="k">public</span><span class="w"> </span><span class="n">IProperty</span><span class="w"> </span><span class="n">Property</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="c1">// Usage example</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">Property</span><span class="p">.</span><span class="n">TryToGetValue</span><span class="p">(</span><span class="s">&quot;Unit&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">out</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="k">value</span><span class="p">))</span>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="p">{</span>
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="w">    </span><span class="c1">// Handle configuration value</span>
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="p">}</span>
+</span></code></pre></div>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Target</strong></td>
+<td>Applied to <code>IProperty</code> properties</td>
+</tr>
+<tr>
+<td><strong>Access</strong></td>
+<td>Enables access to configuration values</td>
+</tr>
+<tr>
+<td><strong>Retrieval</strong></td>
+<td>Supports key-value property retrieval</td>
+</tr>
+</tbody>
+</table>
+<h4 id="message-annotation-detailed">Message Annotation<a class="headerlink" href="#message-annotation-detailed" title="Permanent link">&para;</a></h4>
+<p>Properties declared with <code>Message</code> annotation become API endpoints, accessible via REST API.</p>
+<div class="language-csharp highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">using</span><span class="w"> </span><span class="nn">portpackage</span><span class="p">;</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="k">using</span><span class="w"> </span><span class="nn">portdatatype</span><span class="p">;</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="k">private</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="n">Random</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Random</span><span class="p">(</span><span class="m">100</span><span class="p">);</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="na">[Message(PortDataType.Num, PropertyFormat.Json, &quot;Unit&quot;)]</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="k">public</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">Temp</span>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="p">{</span>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="w">    </span><span class="k">get</span>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="w">        </span><span class="k">try</span>
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">Property</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="p">)</span>
+</span><span id="__span-12-14"><a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a><span class="w">            </span><span class="p">{</span>
+</span><span id="__span-12-15"><a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">Property</span><span class="p">.</span><span class="n">TryToGetValue</span><span class="p">(</span><span class="s">&quot;Unit&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">out</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">v1</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">v1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;F&quot;</span><span class="p">))</span>
+</span><span id="__span-12-16"><a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a><span class="w">                </span><span class="p">{</span>
+</span><span id="__span-12-17"><a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a><span class="w">                    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">NextDouble</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">9</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">32</span><span class="p">;</span>
+</span><span id="__span-12-18"><a id="__codelineno-12-18" name="__codelineno-12-18" href="#__codelineno-12-18"></a><span class="w">                </span><span class="p">}</span>
+</span><span id="__span-12-19"><a id="__codelineno-12-19" name="__codelineno-12-19" href="#__codelineno-12-19"></a><span class="w">                </span><span class="k">else</span><span class="w"> </span><span class="nf">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">Property</span><span class="p">.</span><span class="n">TryToGetValue</span><span class="p">(</span><span class="s">&quot;Unit&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">out</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">v2</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">v2</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="p">))</span>
+</span><span id="__span-12-20"><a id="__codelineno-12-20" name="__codelineno-12-20" href="#__codelineno-12-20"></a><span class="w">                </span><span class="p">{</span>
+</span><span id="__span-12-21"><a id="__codelineno-12-21" name="__codelineno-12-21" href="#__codelineno-12-21"></a><span class="w">                    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">NextDouble</span><span class="p">());</span>
+</span><span id="__span-12-22"><a id="__codelineno-12-22" name="__codelineno-12-22" href="#__codelineno-12-22"></a><span class="w">                </span><span class="p">}</span>
+</span><span id="__span-12-23"><a id="__codelineno-12-23" name="__codelineno-12-23" href="#__codelineno-12-23"></a><span class="w">                </span><span class="k">else</span>
+</span><span id="__span-12-24"><a id="__codelineno-12-24" name="__codelineno-12-24" href="#__codelineno-12-24"></a><span class="w">                </span><span class="p">{</span>
+</span><span id="__span-12-25"><a id="__codelineno-12-25" name="__codelineno-12-25" href="#__codelineno-12-25"></a><span class="w">                    </span><span class="k">return</span><span class="w"> </span><span class="kt">double</span><span class="p">.</span><span class="n">NaN</span><span class="p">;</span>
+</span><span id="__span-12-26"><a id="__codelineno-12-26" name="__codelineno-12-26" href="#__codelineno-12-26"></a><span class="w">                </span><span class="p">}</span>
+</span><span id="__span-12-27"><a id="__codelineno-12-27" name="__codelineno-12-27" href="#__codelineno-12-27"></a><span class="w">            </span><span class="p">}</span>
+</span><span id="__span-12-28"><a id="__codelineno-12-28" name="__codelineno-12-28" href="#__codelineno-12-28"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="kt">double</span><span class="p">.</span><span class="n">NaN</span><span class="p">;</span>
+</span><span id="__span-12-29"><a id="__codelineno-12-29" name="__codelineno-12-29" href="#__codelineno-12-29"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-12-30"><a id="__codelineno-12-30" name="__codelineno-12-30" href="#__codelineno-12-30"></a><span class="w">        </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span>
+</span><span id="__span-12-31"><a id="__codelineno-12-31" name="__codelineno-12-31" href="#__codelineno-12-31"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-12-32"><a id="__codelineno-12-32" name="__codelineno-12-32" href="#__codelineno-12-32"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Logger</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="p">)</span>
+</span><span id="__span-12-33"><a id="__codelineno-12-33" name="__codelineno-12-33" href="#__codelineno-12-33"></a><span class="w">                </span><span class="n">Logger</span><span class="p">.</span><span class="n">Write</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">Message</span><span class="p">);</span>
+</span><span id="__span-12-34"><a id="__codelineno-12-34" name="__codelineno-12-34" href="#__codelineno-12-34"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-12-35"><a id="__codelineno-12-35" name="__codelineno-12-35" href="#__codelineno-12-35"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kt">double</span><span class="p">.</span><span class="n">NaN</span><span class="p">;</span>
+</span><span id="__span-12-36"><a id="__codelineno-12-36" name="__codelineno-12-36" href="#__codelineno-12-36"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-12-37"><a id="__codelineno-12-37" name="__codelineno-12-37" href="#__codelineno-12-37"></a><span class="p">}</span>
+</span></code></pre></div>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Target</strong></td>
+<td>Applied to properties with get/set accessors</td>
+</tr>
+<tr>
+<td><strong>API Generation</strong></td>
+<td>Creates REST API endpoints automatically</td>
+</tr>
+<tr>
+<td><strong>Support</strong></td>
+<td>Supports various data types and formats</td>
+</tr>
+</tbody>
+</table>
+<h4 id="enumcode-annotation-detailed">EnumCode Annotation<a class="headerlink" href="#enumcode-annotation-detailed" title="Permanent link">&para;</a></h4>
+<p>The <code>EnumCode</code> annotation exposes enum values through API endpoints for external access.</p>
+<div class="language-csharp highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="na">[EnumCode]</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="k">public</span><span class="w"> </span><span class="k">enum</span><span class="w"> </span><span class="n">TestEnum</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kt">ushort</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="p">{</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">    </span><span class="n">_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="w">    </span><span class="n">TestEnumItem1</span><span class="p">,</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="w">    </span><span class="n">TestEnumItem2</span><span class="p">,</span>
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="p">}</span>
+</span></code></pre></div>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Target</strong></td>
+<td>Applied to enum declarations</td>
+</tr>
+<tr>
+<td><strong>Accessibility</strong></td>
+<td>Makes enum values accessible via API</td>
+</tr>
+<tr>
+<td><strong>Integration</strong></td>
+<td>Enables external systems to query enum information</td>
+</tr>
+</tbody>
+</table>
+<h4 id="comment-annotation-detailed">Comment Annotation<a class="headerlink" href="#comment-annotation-detailed" title="Permanent link">&para;</a></h4>
+<p>The <code>Comment</code> annotation provides documentation for properties, exposed through the API.</p>
+<div class="language-csharp highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="na">[Message, Comment(&quot;this is a numeric&quot;)]</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="k">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">NValue</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="m">3</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span></code></pre></div>
+<p><strong>Usage:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Application</strong></td>
+<td>Applied alongside other annotations</td>
+</tr>
+<tr>
+<td><strong>Documentation</strong></td>
+<td>Provides API documentation</td>
+</tr>
+<tr>
+<td><strong>Experience</strong></td>
+<td>Enhances developer experience with contextual information</td>
+</tr>
+</tbody>
+</table>
+<h3 id="creating-net-packages">Creating .NET Packages<a class="headerlink" href="#creating-net-packages" title="Permanent link">&para;</a></h3>
+<p>Port applications organize operations at the package level and functionality at the message level. All operations are defined within messages, enabling code reusability through message-based architecture.</p>
+<h4 id="class-library-examples-detailed">Class Library Examples<a class="headerlink" href="#class-library-examples-detailed" title="Permanent link">&para;</a></h4>
+<h5 id="bulb-package-example-detailed">Bulb Package Example<a class="headerlink" href="#bulb-package-example-detailed" title="Permanent link">&para;</a></h5>
+<div class="language-csharp highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">using</span><span class="w"> </span><span class="nn">portpackage</span><span class="p">;</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="k">using</span><span class="w"> </span><span class="nn">portdatatype</span><span class="p">;</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="na">[Port(typeof(Bulb))]</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">Bulb</span>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="p">{</span>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="w">    </span><span class="na">[Logger]</span>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">ILogger</span><span class="w"> </span><span class="n">Logger</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="w">    </span><span class="na">[Property]</span>
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">IProperty</span><span class="w"> </span><span class="n">Property</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>
+</span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="n">SerialPortStream</span><span class="w"> </span><span class="n">serialPort</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SerialPortStream</span><span class="p">();</span>
+</span><span id="__span-15-14"><a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a>
+</span><span id="__span-15-15"><a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a><span class="w">    </span><span class="na">[Valid(&quot;&quot;)]</span>
+</span><span id="__span-15-16"><a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nf">Valid</span><span class="p">()</span>
+</span><span id="__span-15-17"><a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-15-18"><a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">true</span><span class="p">;</span>
+</span><span id="__span-15-19"><a id="__codelineno-15-19" name="__codelineno-15-19" href="#__codelineno-15-19"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-15-20"><a id="__codelineno-15-20" name="__codelineno-15-20" href="#__codelineno-15-20"></a>
+</span><span id="__span-15-21"><a id="__codelineno-15-21" name="__codelineno-15-21" href="#__codelineno-15-21"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">comport</span><span class="p">;</span>
+</span><span id="__span-15-22"><a id="__codelineno-15-22" name="__codelineno-15-22" href="#__codelineno-15-22"></a><span class="w">    </span><span class="na">[Message(PortDataType.Text)]</span>
+</span><span id="__span-15-23"><a id="__codelineno-15-23" name="__codelineno-15-23" href="#__codelineno-15-23"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">Comport</span>
+</span><span id="__span-15-24"><a id="__codelineno-15-24" name="__codelineno-15-24" href="#__codelineno-15-24"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-15-25"><a id="__codelineno-15-25" name="__codelineno-15-25" href="#__codelineno-15-25"></a><span class="w">        </span><span class="k">set</span>
+</span><span id="__span-15-26"><a id="__codelineno-15-26" name="__codelineno-15-26" href="#__codelineno-15-26"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-15-27"><a id="__codelineno-15-27" name="__codelineno-15-27" href="#__codelineno-15-27"></a><span class="w">            </span><span class="k">try</span>
+</span><span id="__span-15-28"><a id="__codelineno-15-28" name="__codelineno-15-28" href="#__codelineno-15-28"></a><span class="w">            </span><span class="p">{</span>
+</span><span id="__span-15-29"><a id="__codelineno-15-29" name="__codelineno-15-29" href="#__codelineno-15-29"></a><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">serialPort</span><span class="p">.</span><span class="n">PortName</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">value</span><span class="p">)</span>
+</span><span id="__span-15-30"><a id="__codelineno-15-30" name="__codelineno-15-30" href="#__codelineno-15-30"></a><span class="w">                </span><span class="p">{</span>
+</span><span id="__span-15-31"><a id="__codelineno-15-31" name="__codelineno-15-31" href="#__codelineno-15-31"></a><span class="w">                    </span><span class="k">this</span><span class="p">.</span><span class="n">serialPort</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SerialPortStream</span><span class="p">();</span>
+</span><span id="__span-15-32"><a id="__codelineno-15-32" name="__codelineno-15-32" href="#__codelineno-15-32"></a><span class="w">                    </span><span class="k">this</span><span class="p">.</span><span class="n">serialPort</span><span class="p">.</span><span class="n">PortName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">value</span><span class="p">.</span><span class="n">ToString</span><span class="p">();</span>
+</span><span id="__span-15-33"><a id="__codelineno-15-33" name="__codelineno-15-33" href="#__codelineno-15-33"></a><span class="w">                    </span><span class="k">this</span><span class="p">.</span><span class="n">serialPort</span><span class="p">.</span><span class="n">BaudRate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">9600</span><span class="p">;</span>
+</span><span id="__span-15-34"><a id="__codelineno-15-34" name="__codelineno-15-34" href="#__codelineno-15-34"></a><span class="w">                    </span><span class="k">this</span><span class="p">.</span><span class="n">serialPort</span><span class="p">.</span><span class="n">DataBits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">8</span><span class="p">;</span>
+</span><span id="__span-15-35"><a id="__codelineno-15-35" name="__codelineno-15-35" href="#__codelineno-15-35"></a><span class="w">                    </span><span class="k">this</span><span class="p">.</span><span class="n">serialPort</span><span class="p">.</span><span class="n">StopBits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">StopBits</span><span class="p">.</span><span class="n">One</span><span class="p">;</span>
+</span><span id="__span-15-36"><a id="__codelineno-15-36" name="__codelineno-15-36" href="#__codelineno-15-36"></a><span class="w">                    </span><span class="k">this</span><span class="p">.</span><span class="n">serialPort</span><span class="p">.</span><span class="n">Parity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Parity</span><span class="p">.</span><span class="n">Even</span><span class="p">;</span>
+</span><span id="__span-15-37"><a id="__codelineno-15-37" name="__codelineno-15-37" href="#__codelineno-15-37"></a><span class="w">                </span><span class="p">}</span>
+</span><span id="__span-15-38"><a id="__codelineno-15-38" name="__codelineno-15-38" href="#__codelineno-15-38"></a><span class="w">            </span><span class="p">}</span>
+</span><span id="__span-15-39"><a id="__codelineno-15-39" name="__codelineno-15-39" href="#__codelineno-15-39"></a><span class="w">            </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="n">Exception</span><span class="w"> </span><span class="n">ex</span><span class="p">)</span>
+</span><span id="__span-15-40"><a id="__codelineno-15-40" name="__codelineno-15-40" href="#__codelineno-15-40"></a><span class="w">            </span><span class="p">{</span>
+</span><span id="__span-15-41"><a id="__codelineno-15-41" name="__codelineno-15-41" href="#__codelineno-15-41"></a><span class="w">                </span><span class="n">Logger</span><span class="p">.</span><span class="n">Write</span><span class="p">(</span><span class="s">&quot;[ERROR]&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ex</span><span class="p">.</span><span class="n">Message</span><span class="p">);</span>
+</span><span id="__span-15-42"><a id="__codelineno-15-42" name="__codelineno-15-42" href="#__codelineno-15-42"></a><span class="w">            </span><span class="p">}</span>
+</span><span id="__span-15-43"><a id="__codelineno-15-43" name="__codelineno-15-43" href="#__codelineno-15-43"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-15-44"><a id="__codelineno-15-44" name="__codelineno-15-44" href="#__codelineno-15-44"></a><span class="w">        </span><span class="k">get</span>
+</span><span id="__span-15-45"><a id="__codelineno-15-45" name="__codelineno-15-45" href="#__codelineno-15-45"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-15-46"><a id="__codelineno-15-46" name="__codelineno-15-46" href="#__codelineno-15-46"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">comport</span><span class="p">;</span>
+</span><span id="__span-15-47"><a id="__codelineno-15-47" name="__codelineno-15-47" href="#__codelineno-15-47"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-15-48"><a id="__codelineno-15-48" name="__codelineno-15-48" href="#__codelineno-15-48"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-15-49"><a id="__codelineno-15-49" name="__codelineno-15-49" href="#__codelineno-15-49"></a>
+</span><span id="__span-15-50"><a id="__codelineno-15-50" name="__codelineno-15-50" href="#__codelineno-15-50"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">offon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">string</span><span class="p">.</span><span class="n">Empty</span><span class="p">;</span>
+</span><span id="__span-15-51"><a id="__codelineno-15-51" name="__codelineno-15-51" href="#__codelineno-15-51"></a><span class="w">    </span><span class="na">[Message(PortDataType.Enum, PropertyFormat.Json)]</span>
+</span><span id="__span-15-52"><a id="__codelineno-15-52" name="__codelineno-15-52" href="#__codelineno-15-52"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">OffOn</span>
+</span><span id="__span-15-53"><a id="__codelineno-15-53" name="__codelineno-15-53" href="#__codelineno-15-53"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-15-54"><a id="__codelineno-15-54" name="__codelineno-15-54" href="#__codelineno-15-54"></a><span class="w">        </span><span class="k">set</span>
+</span><span id="__span-15-55"><a id="__codelineno-15-55" name="__codelineno-15-55" href="#__codelineno-15-55"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-15-56"><a id="__codelineno-15-56" name="__codelineno-15-56" href="#__codelineno-15-56"></a><span class="w">            </span><span class="kt">var</span><span class="w"> </span><span class="n">prop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="n">Property</span><span class="p">;</span>
+</span><span id="__span-15-57"><a id="__codelineno-15-57" name="__codelineno-15-57" href="#__codelineno-15-57"></a><span class="w">            </span><span class="k">try</span>
+</span><span id="__span-15-58"><a id="__codelineno-15-58" name="__codelineno-15-58" href="#__codelineno-15-58"></a><span class="w">            </span><span class="p">{</span>
+</span><span id="__span-15-59"><a id="__codelineno-15-59" name="__codelineno-15-59" href="#__codelineno-15-59"></a><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">prop</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="p">)</span>
+</span><span id="__span-15-60"><a id="__codelineno-15-60" name="__codelineno-15-60" href="#__codelineno-15-60"></a><span class="w">                </span><span class="p">{</span><span class="w"> </span>
+</span><span id="__span-15-61"><a id="__codelineno-15-61" name="__codelineno-15-61" href="#__codelineno-15-61"></a><span class="w">                    </span><span class="k">this</span><span class="p">.</span><span class="n">offon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">value</span><span class="p">;</span>
+</span><span id="__span-15-62"><a id="__codelineno-15-62" name="__codelineno-15-62" href="#__codelineno-15-62"></a><span class="w">                </span><span class="p">}</span>
+</span><span id="__span-15-63"><a id="__codelineno-15-63" name="__codelineno-15-63" href="#__codelineno-15-63"></a><span class="w">            </span><span class="p">}</span>
+</span><span id="__span-15-64"><a id="__codelineno-15-64" name="__codelineno-15-64" href="#__codelineno-15-64"></a><span class="w">            </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">ex</span><span class="p">)</span>
+</span><span id="__span-15-65"><a id="__codelineno-15-65" name="__codelineno-15-65" href="#__codelineno-15-65"></a><span class="w">            </span><span class="p">{</span>
+</span><span id="__span-15-66"><a id="__codelineno-15-66" name="__codelineno-15-66" href="#__codelineno-15-66"></a><span class="w">                </span><span class="n">Logger</span><span class="p">.</span><span class="n">Write</span><span class="p">(</span><span class="s">&quot;[ERROR]&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ex</span><span class="p">.</span><span class="n">Message</span><span class="p">);</span>
+</span><span id="__span-15-67"><a id="__codelineno-15-67" name="__codelineno-15-67" href="#__codelineno-15-67"></a><span class="w">            </span><span class="p">}</span>
+</span><span id="__span-15-68"><a id="__codelineno-15-68" name="__codelineno-15-68" href="#__codelineno-15-68"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-15-69"><a id="__codelineno-15-69" name="__codelineno-15-69" href="#__codelineno-15-69"></a><span class="w">        </span><span class="k">get</span>
+</span><span id="__span-15-70"><a id="__codelineno-15-70" name="__codelineno-15-70" href="#__codelineno-15-70"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-15-71"><a id="__codelineno-15-71" name="__codelineno-15-71" href="#__codelineno-15-71"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="n">offon</span><span class="p">;</span>
+</span><span id="__span-15-72"><a id="__codelineno-15-72" name="__codelineno-15-72" href="#__codelineno-15-72"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-15-73"><a id="__codelineno-15-73" name="__codelineno-15-73" href="#__codelineno-15-73"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-15-74"><a id="__codelineno-15-74" name="__codelineno-15-74" href="#__codelineno-15-74"></a><span class="p">}</span>
+</span></code></pre></div>
+<h5 id="heater-package-example-detailed">Heater Package Example<a class="headerlink" href="#heater-package-example-detailed" title="Permanent link">&para;</a></h5>
+<div class="language-csharp highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">using</span><span class="w"> </span><span class="nn">portpackage</span><span class="p">;</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="k">using</span><span class="w"> </span><span class="nn">portdatatype</span><span class="p">;</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="na">[Port(typeof(Heater))]</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">Heater</span>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="p">{</span>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="w">    </span><span class="na">[Logger]</span>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">ILogger</span><span class="w"> </span><span class="n">Logger</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="w">    </span><span class="na">[Property]</span>
+</span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">IProperty</span><span class="w"> </span><span class="n">Property</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-16-12"><a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a>
+</span><span id="__span-16-13"><a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a><span class="w">    </span><span class="na">[Message(PortDataType.Text)]</span>
+</span><span id="__span-16-14"><a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">Power</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-16-15"><a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a>
+</span><span id="__span-16-16"><a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a><span class="w">    </span><span class="na">[Valid(&quot;Invalid for connection&quot;)]</span>
+</span><span id="__span-16-17"><a id="__codelineno-16-17" name="__codelineno-16-17" href="#__codelineno-16-17"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nf">Valid</span><span class="p">()</span>
+</span><span id="__span-16-18"><a id="__codelineno-16-18" name="__codelineno-16-18" href="#__codelineno-16-18"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-16-19"><a id="__codelineno-16-19" name="__codelineno-16-19" href="#__codelineno-16-19"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">true</span><span class="p">;</span>
+</span><span id="__span-16-20"><a id="__codelineno-16-20" name="__codelineno-16-20" href="#__codelineno-16-20"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-16-21"><a id="__codelineno-16-21" name="__codelineno-16-21" href="#__codelineno-16-21"></a>
+</span><span id="__span-16-22"><a id="__codelineno-16-22" name="__codelineno-16-22" href="#__codelineno-16-22"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="n">Random</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Random</span><span class="p">(</span><span class="m">100</span><span class="p">);</span>
+</span><span id="__span-16-23"><a id="__codelineno-16-23" name="__codelineno-16-23" href="#__codelineno-16-23"></a>
+</span><span id="__span-16-24"><a id="__codelineno-16-24" name="__codelineno-16-24" href="#__codelineno-16-24"></a><span class="w">    </span><span class="na">[Message(PortDataType.Num, PropertyFormat.Json, &quot;Unit&quot;)]</span>
+</span><span id="__span-16-25"><a id="__codelineno-16-25" name="__codelineno-16-25" href="#__codelineno-16-25"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">Temp</span>
+</span><span id="__span-16-26"><a id="__codelineno-16-26" name="__codelineno-16-26" href="#__codelineno-16-26"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-16-27"><a id="__codelineno-16-27" name="__codelineno-16-27" href="#__codelineno-16-27"></a><span class="w">        </span><span class="k">get</span>
+</span><span id="__span-16-28"><a id="__codelineno-16-28" name="__codelineno-16-28" href="#__codelineno-16-28"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-16-29"><a id="__codelineno-16-29" name="__codelineno-16-29" href="#__codelineno-16-29"></a><span class="w">            </span><span class="k">try</span>
+</span><span id="__span-16-30"><a id="__codelineno-16-30" name="__codelineno-16-30" href="#__codelineno-16-30"></a><span class="w">            </span><span class="p">{</span>
+</span><span id="__span-16-31"><a id="__codelineno-16-31" name="__codelineno-16-31" href="#__codelineno-16-31"></a><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">Property</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="p">)</span>
+</span><span id="__span-16-32"><a id="__codelineno-16-32" name="__codelineno-16-32" href="#__codelineno-16-32"></a><span class="w">                </span><span class="p">{</span>
+</span><span id="__span-16-33"><a id="__codelineno-16-33" name="__codelineno-16-33" href="#__codelineno-16-33"></a><span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">Property</span><span class="p">.</span><span class="n">TryToGetValue</span><span class="p">(</span><span class="s">&quot;Unit&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">out</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">v1</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">v1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;F&quot;</span><span class="p">))</span>
+</span><span id="__span-16-34"><a id="__codelineno-16-34" name="__codelineno-16-34" href="#__codelineno-16-34"></a><span class="w">                    </span><span class="p">{</span>
+</span><span id="__span-16-35"><a id="__codelineno-16-35" name="__codelineno-16-35" href="#__codelineno-16-35"></a><span class="w">                        </span><span class="kt">var</span><span class="w"> </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">NextDouble</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">9</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">32</span><span class="p">;</span>
+</span><span id="__span-16-36"><a id="__codelineno-16-36" name="__codelineno-16-36" href="#__codelineno-16-36"></a><span class="w">                        </span><span class="k">return</span><span class="w"> </span><span class="n">ret</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ret</span><span class="p">;</span>
+</span><span id="__span-16-37"><a id="__codelineno-16-37" name="__codelineno-16-37" href="#__codelineno-16-37"></a><span class="w">                    </span><span class="p">}</span>
+</span><span id="__span-16-38"><a id="__codelineno-16-38" name="__codelineno-16-38" href="#__codelineno-16-38"></a><span class="w">                    </span><span class="k">else</span><span class="w"> </span><span class="nf">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">Property</span><span class="p">.</span><span class="n">TryToGetValue</span><span class="p">(</span><span class="s">&quot;Unit&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">out</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">v2</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">v2</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="p">))</span>
+</span><span id="__span-16-39"><a id="__codelineno-16-39" name="__codelineno-16-39" href="#__codelineno-16-39"></a><span class="w">                    </span><span class="p">{</span>
+</span><span id="__span-16-40"><a id="__codelineno-16-40" name="__codelineno-16-40" href="#__codelineno-16-40"></a><span class="w">                        </span><span class="kt">var</span><span class="w"> </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">NextDouble</span><span class="p">());</span>
+</span><span id="__span-16-41"><a id="__codelineno-16-41" name="__codelineno-16-41" href="#__codelineno-16-41"></a><span class="w">                        </span><span class="k">return</span><span class="w"> </span><span class="n">ret</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ret</span><span class="p">;</span>
+</span><span id="__span-16-42"><a id="__codelineno-16-42" name="__codelineno-16-42" href="#__codelineno-16-42"></a><span class="w">                    </span><span class="p">}</span>
+</span><span id="__span-16-43"><a id="__codelineno-16-43" name="__codelineno-16-43" href="#__codelineno-16-43"></a><span class="w">                    </span><span class="k">else</span>
+</span><span id="__span-16-44"><a id="__codelineno-16-44" name="__codelineno-16-44" href="#__codelineno-16-44"></a><span class="w">                    </span><span class="p">{</span>
+</span><span id="__span-16-45"><a id="__codelineno-16-45" name="__codelineno-16-45" href="#__codelineno-16-45"></a><span class="w">                        </span><span class="k">return</span><span class="w"> </span><span class="kt">double</span><span class="p">.</span><span class="n">NaN</span><span class="p">;</span>
+</span><span id="__span-16-46"><a id="__codelineno-16-46" name="__codelineno-16-46" href="#__codelineno-16-46"></a><span class="w">                    </span><span class="p">}</span>
+</span><span id="__span-16-47"><a id="__codelineno-16-47" name="__codelineno-16-47" href="#__codelineno-16-47"></a><span class="w">                </span><span class="p">}</span>
+</span><span id="__span-16-48"><a id="__codelineno-16-48" name="__codelineno-16-48" href="#__codelineno-16-48"></a><span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="kt">double</span><span class="p">.</span><span class="n">NaN</span><span class="p">;</span>
+</span><span id="__span-16-49"><a id="__codelineno-16-49" name="__codelineno-16-49" href="#__codelineno-16-49"></a><span class="w">            </span><span class="p">}</span>
+</span><span id="__span-16-50"><a id="__codelineno-16-50" name="__codelineno-16-50" href="#__codelineno-16-50"></a><span class="w">            </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span>
+</span><span id="__span-16-51"><a id="__codelineno-16-51" name="__codelineno-16-51" href="#__codelineno-16-51"></a><span class="w">            </span><span class="p">{</span>
+</span><span id="__span-16-52"><a id="__codelineno-16-52" name="__codelineno-16-52" href="#__codelineno-16-52"></a><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Logger</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="p">)</span>
+</span><span id="__span-16-53"><a id="__codelineno-16-53" name="__codelineno-16-53" href="#__codelineno-16-53"></a><span class="w">                    </span><span class="n">Logger</span><span class="p">.</span><span class="n">Write</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">Message</span><span class="p">);</span>
+</span><span id="__span-16-54"><a id="__codelineno-16-54" name="__codelineno-16-54" href="#__codelineno-16-54"></a><span class="w">            </span><span class="p">}</span>
+</span><span id="__span-16-55"><a id="__codelineno-16-55" name="__codelineno-16-55" href="#__codelineno-16-55"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="kt">double</span><span class="p">.</span><span class="n">NaN</span><span class="p">;</span>
+</span><span id="__span-16-56"><a id="__codelineno-16-56" name="__codelineno-16-56" href="#__codelineno-16-56"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-16-57"><a id="__codelineno-16-57" name="__codelineno-16-57" href="#__codelineno-16-57"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-16-58"><a id="__codelineno-16-58" name="__codelineno-16-58" href="#__codelineno-16-58"></a><span class="p">}</span>
+</span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Array Declaration Warning</p>
+<p>When creating a library in a .NET environment, declaring an excessively large array may result in a PrivateImplementationDetails error. It is recommended to use a List instead.</p>
+</div>
+<h3 id="publishing-libraries-detailed">Publishing Libraries<a class="headerlink" href="#publishing-libraries-detailed" title="Permanent link">&para;</a></h3>
+<h4 id="prerequisites-detailed">Prerequisites<a class="headerlink" href="#prerequisites-detailed" title="Permanent link">&para;</a></h4>
+<p>Before publishing your .NET Core project, ensure you have the following:</p>
+<table>
+<thead>
+<tr>
+<th>Requirement</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><a href="https://dotnet.microsoft.com/download">.NET SDK</a></strong></td>
+<td>Install the latest version</td>
+</tr>
+<tr>
+<td><strong><a href="https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp">C# Extension</a></strong></td>
+<td>Install in Visual Studio Code</td>
+</tr>
+<tr>
+<td><strong>Verified Build</strong></td>
+<td>Ensure your project builds and runs correctly</td>
+</tr>
+</tbody>
+</table>
+<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
+<p>This .NET Integration Guide provides comprehensive coverage of:</p>
+<h3 id="key-integration-points">Key Integration Points<a class="headerlink" href="#key-integration-points" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Initialization</strong>: Setting up Port system with .NET applications</li>
+<li><strong>Event Handling</strong>: Managing status changes and system events</li>
+<li><strong>Package Development</strong>: Creating reusable components with annotations</li>
+<li><strong>Project Execution</strong>: Running and monitoring applications</li>
+</ul>
+<h3 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Use proper annotation patterns for package development</li>
+<li>Implement comprehensive error handling</li>
+<li>Follow logging and monitoring guidelines</li>
+<li>Test packages thoroughly before deployment</li>
+</ul>
+<h3 id="next-steps">Next Steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Explore the <a href="../react/">React Integration Guide</a> for web development</li>
+<li>Review <a href="../package/">Package Management</a> for advanced features</li>
+<li>Check <a href="../secs/">SECS Protocol</a> for industrial communication</li>
+</ul>
+<hr />
+<p><em>For additional support and examples, refer to the <a href="../">Port Documentation</a>.</em></p>
 
 
 
@@ -1330,13 +2356,13 @@ Visit <a href="http://localhost:5001/api/app/ng/?view=table">http://localhost:50
         
         
           
-          <a href="../commands/" class="md-footer__link md-footer__link--next" aria-label="Next: Commands">
+          <a href="../react/" class="md-footer__link md-footer__link--next" aria-label="Next: React">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Commands
+                React
               </div>
             </div>
             <div class="md-footer__button md-icon">
