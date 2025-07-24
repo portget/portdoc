@@ -9,6 +9,26 @@
 
 Port Application provides simulation capabilities using scripts(*.sna). Users can utilize this to proceed with development based on testing before service deployment. 
 
+## Configure (../app/gem/.gem)
+
+```
+Mode = pasive
+Listen = 127.0.0.1:6000
+T1 = 1
+T2 = 10 
+T3 = 45
+T4 = 30
+T5 = 10
+T6 = 5
+T7 = 10
+T8 = 5
+LogFileExt = *.log
+LogDir	   = ./hsms
+LogRetentionDay = 30
+LogRotationHour = 1
+DeviceID = 0
+```
+
 ## **Quick link** {#quick-link}
 | Stream | Function |
 |---|---|
@@ -22,7 +42,7 @@ Port Application provides simulation capabilities using scripts(*.sna). Users ca
 | S8 | [F1](#s8f1---boot-program-request) [F2](#s8f2---boot-program-data) [F3](#s8f3---executive-program-request) [F4](#s8f4---executive-program-data) |
 | S9 | [F1](#s9f1---unrecognized-device-id) [F3](#s9f3---unrecognized-stream-type) [F5](#s9f5---unrecognized-function-type) [F7](#s9f7---illegal-data) [F9](#s9f9---transaction-timer-timeout) [F11](#s9f11---data-too-long) [F13](#s9f13---conversation-timeout) |
 | S10 | [F1](#s10f1---terminal-request) [F2](#s10f2---terminal-response) [F3](#s10f3---terminal-display-single) [F5](#s10f5---terminal-display-multi-block) [F7](#s10f7---multi-block-not-allowed) [F9](#s10f9---broadcast-display-request) [F10](#s10f10---broadcast-display-acknowledge) |
-| S12 | [F1](#s12f1---map-setup-data-send) [F2](#s12f2---map-setup-data-acknowledge) [F3](#s12f3---map-setup-data-request) [F4](#s12f4---map-setup-data-response) [F5](#s12f5---map-transmit-inquire) [F6](#s12f6---map-transmit-grant) [F7](#s12f7---map-data-send-type-1) [F8](#s12f8---map-data-ack-type-1) [F9](#s12f9---map-data-send-type-2) [F10](#s12f10---map-data-ack-type-2) [F11](#s12f11---map-data-send-type-3) [F12](#s12f12---map-data-ack-type-3) [F13](#s12f13---map-data-request-type-1) [F14](#s12f14---map-data-type-1) [F15](#s12f15---map-data-request-type-2) [F16](#s12f16---map-data-type-2) [F17](#s12f17---map-data-request-type-3) [F18](#s12f18---map-data-type-3) [F19](#s12f19---map-error-report-send) [F20](#s12f20---map-error-report-ack) [F21](#s12f21---map-status-request) [F22](#s12f22---map-status-response) [F23](#s12f23---map-status-send) [F24](#s12f24---map-status-acknowledge) [F25](#s12f25---map-command-request) [F26](#s12f26---map-command-response) [F27](#s12f27---map-command-send) [F28](#s12f28---map-command-acknowledge) [F29](#s12f29---map-parameter-request) [F30](#s12f30---map-parameter-response) |
+| S12 | [F1](#s12f1---map-setup-data-send) [F2](#s12f2---map-setup-data-acknowledge) [F3](#s12f3---map-setup-data-request) [F4](#s12f4---map-setup-data-response) [F5](#s12f5---map-transmit-inquire) [F6](#s12f6---map-transmit-grant) [F7](#s12f7---map-data-send-type-1) [F8](#s12f8---map-data-ack-type-1) [F9](#s12f9---map-data-send-type-2) [F10](#s12f10---map-data-ack-type-2) [F11](#s12f11---map-data-send-type-3) [F12](#s12f12---map-data-ack-type-3) [F13](#s12f13---map-data-request-type-1) [F14](#s12f14---map-data-type-1) [F15](#s12f15---map-data-request-type-2) [F16](#s12f16---map-data-type-2) [F17](#s12f17---map-data-request-type-3) [F18](#s12f18---map-data-type-3) [F19](#s12f19---map-error-report-send) |
 | S13 | [F1](#s13f1---send-data-set-send) [F2](#s13f2---send-data-set-ack) [F3](#s13f3---open-data-set-request) [F4](#s13f4---open-data-set-data) [F5](#s13f5---read-data-set-request) [F6](#s13f6---read-data-set-data) [F7](#s13f7---close-data-set-send) [F8](#s13f8---close-data-set-ack) [F9](#s13f9---reset-data-set-send) [F10](#s13f10---reset-data-set-ack) [F11](#s13f11---data-set-obj-multi-block-inquire) [F12](#s13f12---data-set-obj-multi-block-grant) [F13](#s13f13---table-data-send) [F14](#s13f14---table-data-ack) [F15](#s13f15---table-data-request) [F16](#s13f16---table-data) |
 | S14 | [F1](#s14f1---get-attributes-request) [F2](#s14f2---attribute-data) [F3](#s14f3---set-attributes) [F4](#s14f4---set-attributes-reply) [F5](#s14f5---get-type-data) [F6](#s14f6---type-data) [F7](#s14f7---get-attribute-names) [F8](#s14f8---attribute-names) [F9](#s14f9---create-obj-request) [F10](#s14f10---create-obj-ack) [F11](#s14f11---delete-obj-request) [F12](#s14f12---delete-obj-ack) [F13](#s14f13---object-attach-request) [F14](#s14f14---object-attach-ack) [F15](#s14f15---attached-obj-action-req) [F16](#s14f16---attached-obj-action-ack) [F17](#s14f17---supervised-obj-action-req) [F18](#s14f18---supervised-obj-action-ack) [F19](#s14f19---generic-service-req) [F20](#s14f20---generic-service-ack) [F21](#s14f21---generic-service-completion) [F22](#s14f22---generic-service-comp-ack) [F23](#s14f23---multi-block-generic-service-inquire) [F24](#s14f24---multi-block-generic-service-grant) [F25](#s14f25---service-name-request) [F26](#s14f26---service-name-data) [F27](#s14f27---service-parameter-name-req) [F28](#s14f28---service-parameter-name-data) |
 | S15 | [F1](#s15f1---recipe-management-multi-block-inquire) [F2](#s15f2---recipe-management-multi-block-grant) [F3](#s15f3---recipe-namespace-action-req) [F4](#s15f4---recipe-namespace-action) [F5](#s15f5---recipe-namespace-rename-req) [F6](#s15f6---recipe-namespace-rename-ack) [F7](#s15f7---recipe-space-req) [F8](#s15f8---recipe-space-data) [F9](#s15f9---recipe-status-request) [F10](#s15f10---recipe-status-data) [F11](#s15f11---recipe-version-request) [F12](#s15f12---recipe-version-data) [F13](#s15f13---recipe-create-req) [F14](#s15f14---recipe-create-ack) [F15](#s15f15---recipe-store-req) [F16](#s15f16---recipe-store-ack) [F17](#s15f17---recipe-retrieve-req) [F18](#s15f18---recipe-retrieve-data) [F19](#s15f19---recipe-rename-req) [F20](#s15f20---recipe-rename-ack) [F21](#s15f21---recipe-action-req) [F22](#s15f22---recipe-action-ack) [F23](#s15f23---recipe-descriptor-req) [F24](#s15f24---recipe-descriptor-data) [F25](#s15f25---recipe-parameter-update-req) [F26](#s15f26---recipe-parameter-update-ack) [F27](#s15f27---recipe-download-req) [F28](#s15f28---recipe-download-ack) [F29](#s15f29---recipe-verify-req) [F30](#s15f30---recipe-verify-ack) [F31](#s15f31---recipe-unload-req) [F32](#s15f32---recipe-unload-data) [F33](#s15f33---recipe-select-req) [F34](#s15f34---recipe-select-ack) [F35](#s15f35---recipe-delete-req) [F36](#s15f36---recipe-delete-ack) [F37](#s15f37---drns-segment-approve-action-req) [F38](#s15f38---drns-segment-approve-action-ack) [F39](#s15f39---drns-recorder-seg-req) [F40](#s15f40---drns-recorder-seg-ack) [F41](#s15f41---drns-recorder-mod-req) [F42](#s15f42---drns-recorder-mod-ack) [F43](#s15f43---drns-get-change-req) [F44](#s15f44---drns-get-change-ack) [F45](#s15f45---drns-mgr-seg-aprvl-req) [F46](#s15f46---drns-mgr-seg-aprvl-ack) [F47](#s15f47---drns-mgr-rebuild-req) [F48](#s15f48---drns-mgr-rebuild-ack) [F49](#s15f49---large-recipe-download-req) [F50](#s15f50---large-recipe-download-ack) [F51](#s15f51---large-recipe-upload-req) [F52](#s15f52---large-recipe-upload-ack) [F53](#s15f53---recipe-verification-send) [F54](#s15f54---recipe-verification-ack) |
