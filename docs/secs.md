@@ -12,8 +12,9 @@ Port Application provides simulation capabilities using scripts(*.sna). Users ca
 ## Configure (../app/gem/.gem)
 
 ```
-Mode = pasive
+Mode = active
 Listen = 127.0.0.1:6000
+DeviceID = 0
 T1 = 1
 T2 = 10 
 T3 = 45
@@ -22,11 +23,13 @@ T5 = 10
 T6 = 5
 T7 = 10
 T8 = 5
-LogFileExt = *.log
+LogFileExt = .log
 LogDir	   = ./hsms
 LogRetentionDay = 30
 LogRotationHour = 1
-DeviceID = 0
+MaxRetriesCount = 10
+RetryDelaySec = 3
+ConnectTimeout = 1021F10
 ```
 
 ## **Quick link** {#quick-link}
@@ -134,7 +137,7 @@ or
 
 ```
 S1F2-> or <-S1F2
-{L:2
+{L[2]
   MDLN    // Equipment model name
   SOFTREV // Software revision
 }
@@ -153,7 +156,7 @@ S1F2-> or <-S1F2
   
 ```
 <-S1F3
-{L:n
+{L[n]
   SVID    // Status Variable ID list
 }
 ```
@@ -171,7 +174,7 @@ S1F2-> or <-S1F2
 
 ```
 S1F4->
-{L:n
+{L[n]
   SV      // Status Variable values
 }
 ```
@@ -205,7 +208,7 @@ SFCD     // Status Format Code
 
 ```
 S1F6->
-{L:n
+{L[n]
   SV      // Status Variable values
 }
 ```
@@ -239,8 +242,8 @@ SFCD     // Status Format Code
 
 ```
 S1F8->
-{L:n
-  {L:2
+{L[n]
+  {L[2]
     SVNAME // Status Variable Name
     SV0    // Status Variable Value
   }
@@ -276,7 +279,7 @@ Header only
 
 ```
 S1F10->
-{L:2
+{L[2]
   TSIP    // Transfer Status Input Ports
   TSOP    // Transfer Status Output Ports
 }
@@ -297,7 +300,7 @@ S1F10->
 
 ```
 <-S1F11
-{L:n
+{L[n]
   SVID    // Status Variable ID list
 }
 ```
@@ -316,8 +319,8 @@ S1F10->
 
 ```
 S1F12->
-{L:n
-  {L:3
+{L[n]
+  {L[3]
     SVID    // Status Variable ID
     SVNAME  // Status Variable Name
     UNITS   // Units of measurement
@@ -342,7 +345,7 @@ S1F12->
 **Equipment Send Format**:
 ```
 S1F13-> or <-S1F13
-{L:2
+{L[2]
   MDLN    // Equipment model name
   SOFTREV // Software revision
 }
@@ -370,9 +373,9 @@ L:0
 **Equipment Send Format**:
 ```
 S1F14-> or <-S1F14
-{L:2
+{L[2]
   COMMACK // Communication Acknowledge
-  {L:2
+  {L[2]
     MDLN    // Equipment model name
     SOFTREV // Software revision
   }
@@ -382,7 +385,7 @@ S1F14-> or <-S1F14
 **Host Send Format**:
 ```
 S1F14-> or <-S1F14
-{L:2
+{L[2]
   COMMACK // Communication Acknowledge
   L:0
 }
@@ -471,12 +474,12 @@ ONLACK   // Online Acknowledge
 
 ```
 <-S1F19
-{L:3
+{L[3]
   OBJTYPE // Object Type
-  {L:m
+  {L[m]
     OBJID  // Object ID list
   }
-  {L:n
+  {L[n]
     ATTRID // Attribute ID list
   }
 }
@@ -490,7 +493,7 @@ ONLACK   // Online Acknowledge
 | OBJID | List | Object ID list |
 | ATTRID | List | Attribute ID list |
 
-**Note**: L:m = L:0 for all objects, L:n = L:0 for all attributes.
+**Note**: L:m = L:0 for all objects, L[n] = L:0 for all attributes.
 
 ---
 
@@ -498,14 +501,14 @@ ONLACK   // Online Acknowledge
 
 ```
 S1F20->
-{L:2
-  {L:m
-    {L:n
+{L[2]
+  {L[m]
+    {L[n]
       ATTRDATA // Attribute Data
     }
   }
   {L[p]
-    {L:2
+    {L[2]
       ERRCODE  // Error Code
       ERRTEXT  // Error Text
     }
@@ -529,7 +532,7 @@ S1F20->
 
 ```
 <-S1F21
-{L:n
+{L[n]
   VID     // Variable ID list
 }
 ```
@@ -548,8 +551,8 @@ S1F20->
 
 ```
 S1F22->
-{L:n
-  {L:3
+{L[n]
+  {L[3]
     VID        // Variable ID
     DVVALNAME  // Data Variable Name
     UNITS      // Units of measurement
@@ -573,7 +576,7 @@ S1F22->
 
 ```
 <-S1F23
-{L:n
+{L[n]
   CEID    // Collection Event ID list
 }
 ```
@@ -592,11 +595,11 @@ S1F22->
 
 ```
 S1F24->
-{L:n
-  {L:3
+{L[n]
+  {L[3]
     CEID   // Collection Event ID
     CENAME // Collection Event Name
-    {L:a
+    {L[a]
       VID   // Variable ID list
     }
   }
@@ -1612,7 +1615,7 @@ header only
 #### **S2F52 - Return Report Identifiers** {#s2f52---return-report-identifiers}
 ```
 S2F52->
-  {L[n]
+{L[n]
   RPTID
 }
 ```
@@ -1640,8 +1643,8 @@ S2F52->
 #### **S2F54 - Return Report Definitions** {#s2f54---return-report-definitions}
 ```
 S2F54->
-  {L[n]
-    {L[2]
+{L[n]
+  {L[2]
       RPTID
     {L[n]
       VID
@@ -1674,9 +1677,9 @@ S2F54->
 #### **S2F56 - Return Event Report Links** {#s2f56---return-event-report-links}
 ```
 S2F56->
-  {L[n]
+{L[n]
   {L[3]
-      CEID
+    CEID
     CENAME
     {L[n]
       RPTID
@@ -1708,9 +1711,9 @@ S2F56->
 #### **S2F58 - Return Enabled Events** {#s2f58---return-enabled-events}
 ```
 S2F58->
-  {L[n]
+{L[n]
   CEID
-  }
+}
 ```
 **Parameters:**
 
@@ -1794,7 +1797,7 @@ S2F62->
 #### **S2F64 - Return Trace Definitions** {#s2f64---return-trace-definitions}
 ```
 S2F64->
-  {L[n]
+{L[n]
   {L[5]
     TRID
     DSPER
@@ -1802,9 +1805,9 @@ S2F64->
     REPGSZ
     {L[n]
       SVID
-      }
     }
   }
+}
 ```
 **Parameters:**
 
@@ -2579,6 +2582,7 @@ RRACK
 
 #### **S4F19 - Transfer Job Create** {#s4f19---transfer-job-create}
 ```
+<-S4F19
 {L[3]
   DATAID
   TRJOBNAME
@@ -2622,19 +2626,20 @@ RRACK
 
 #### **S4F20 - Transfer Job Acknowledge** {#s4f20---transfer-job-acknowledge}
 ```
+S4F20->
 {L[3]
   TRJOBID
   {L[m]
     TRATOMCID
   }
-{L[2]
+  {L[2]
     TRACK
     {L[n]
-{L[2]
+      {L[2]
         ERRCODE
         ERRTEXT
       }
-}
+    }
   }
 }
 ```
@@ -2651,15 +2656,16 @@ RRACK
 
 #### **S4F21 - Transfer Job Command** {#s4f21---transfer-job-command}
 ```
+<-S4F21
 {L[3]
   TRJOBID
   TRCMDNAME
   {L[n]
-{L[2]
+    {L[2]
       CPNAME
       CPVAL
     }
-}
+  }
 }
 ```
 
@@ -2674,9 +2680,10 @@ RRACK
 
 #### **S4F22 - Transfer Job Command Acknowledge** {#s4f22---transfer-job-command-acknowledge}
 ```
+S4F22->
 {L[2]
   TRACK
-{L[n]
+  {L[n]
     {L[2]
       ERRCODE
       ERRTEXT
@@ -2695,19 +2702,20 @@ RRACK
 
 #### **S4F23 - Transfer Command Alert** {#s4f23---transfer-command-alert}
 ```
+S4F23->
 {L[4]
   TRJOBID
   TRJOBNAME
   TRJOBMS
   {L[2]
     TRACK
-{L[n]
+    {L[n]
       {L[2]
         ERRCODE
         ERRTEXT
       }
+    }
   }
-}
 }
 ```
 
@@ -2724,6 +2732,7 @@ RRACK
 
 #### **S4F24 - Transfer Alert Acknowledge** {#s4f24---transfer-alert-acknowledge}
 ```
+<-S4F24
 header only
 ```
 
@@ -2735,6 +2744,7 @@ header only
 
 #### **S4F25 - Multi-block Inquire** {#s4f25---multi-block-inquire}
 ```
+<-S4F25
 {L[2]
   DATAID
   DATALENGTH
@@ -2750,6 +2760,7 @@ header only
 
 #### **S4F26 - Multi-block Grant** {#s4f26---multi-block-grant}
 ```
+S4F26->
 GRANT
 ```
 
@@ -2763,6 +2774,7 @@ GRANT
 
 #### **S4F27 - Handoff Ready** {#s4f27---handoff-ready}
 ```
+S4F27->
 {L[2]
   EQNAME
   {L[11]
@@ -2798,6 +2810,7 @@ GRANT
 
 #### **S4F29 - Handoff Command** {#s4f29---handoff-command}
 ```
+<-S4F29
 {L[4]
   TRLINK
   MCINDEX
@@ -2823,10 +2836,11 @@ GRANT
 
 #### **S4F31 - Handoff Command Complete** {#s4f31---handoff-command-complete}
 ```
+S4F31->
 {L[3]
   TRLINK
   MCINDEX
-{L[2]
+  {L[2]
     HOACK
     {L[n]
       {L[2]
@@ -2850,7 +2864,8 @@ GRANT
 
 #### **S4F33 - Handoff Verified** {#s4f33---handoff-verified}
 ```
-    {L[2]
+S4F33->
+{L[2]
   TRLINK
   {L[2]
     HOACK
@@ -2873,6 +2888,7 @@ GRANT
 
 #### **S4F35 - Handoff Cancel Ready** {#s4f35---handoff-cancel-ready}
 ```
+S4F35->
 TRLINK
 ```
 
@@ -2884,6 +2900,7 @@ TRLINK
 
 #### **S4F37 - Handoff Cancel Ready Acknowledge** {#s4f37---handoff-cancel-ready-acknowledge}
 ```
+<-S4F37
 {L[2]
   TRLINK
   HOCANCELACK
@@ -2899,6 +2916,7 @@ TRLINK
 
 #### **S4F39 - Handoff Halt** {#s4f39---handoff-halt}
 ```
+S4F39->
 TRLINK
 ```
 
@@ -2910,7 +2928,8 @@ TRLINK
 
 #### **S4F41 - Handoff Halt Acknowledge** {#s4f41---handoff-halt-acknowledge}
 ```
-      {L[2]
+<-S4F41
+{L[2]
   TRLINK
   HOHALTACK
 }
@@ -3244,12 +3263,13 @@ DATAID
 
 #### **S6F8 - Data Transfer Data** {#s6f8---data-transfer-data}
 ```
+S6F8->
 {L[3]
   DATAID
   CEID
   {L[n]
     DSID
-      {L[m]
+    {L[m]
       {L[2]
         DVNAME
         DVVAL
@@ -3271,6 +3291,7 @@ DATAID
 
 #### **S6F9 - Formatted Variable Send** {#s6f9---formatted-variable-send}
 ```
+<-S6F9
 {L[4]
   PFCD
   DATAID
@@ -3280,8 +3301,8 @@ DATAID
       DSID
       {L[m]
         DVVAL
-  }
-}
+      }
+    }
   }
 }
 ```
@@ -3298,6 +3319,7 @@ DATAID
 
 #### **S6F10 - Formatted Variable Acknowledge** {#s6f10---formatted-variable-acknowledge}
 ```
+S6F10->
 ACKC6
 ```
 
@@ -3311,11 +3333,12 @@ ACKC6
 
 #### **S6F11 - Event Report Send** {#s6f11---event-report-send}
 ```
+S6F11->
 {L[3]
   DATAID
   CEID
   {L[a]
-{L[2]
+    {L[2]
       RPTID
       {L[b]
         V
@@ -5072,6 +5095,7 @@ MDACK
 
 #### **S12F12 - Map Data Ack Type 3** {#s12f12---map-data-ack-type-3}
 ```
+S12F12->
 MDACK
 ```
 
@@ -5085,6 +5109,7 @@ MDACK
 
 #### **S12F13 - Map Data Request Type 1** {#s12f13---map-data-request-type-1}
 ```
+<-S12F13
 {L[2]
   MID
   IDTYP
@@ -5100,6 +5125,7 @@ MDACK
 
 #### **S12F14 - Map Data Type 1** {#s12f14---map-data-type-1}
 ```
+S12F14->
 {L[3]
   MID
   IDTYP
@@ -5123,6 +5149,7 @@ MDACK
 
 #### **S12F15 - Map Data Request Type 2** {#s12f15---map-data-request-type-2}
 ```
+<-S12F15
 {L[2]
   MID
   IDTYP
@@ -5138,6 +5165,7 @@ MDACK
 
 #### **S12F16 - Map Data Type 2** {#s12f16---map-data-type-2}
 ```
+S12F16->
 {L[4]
   MID
   IDTYP
@@ -5158,6 +5186,7 @@ MDACK
 
 #### **S12F17 - Map Data Request Type 3** {#s12f17---map-data-request-type-3}
 ```
+<-S12F17
 {L[3]
   MID
   IDTYP
@@ -5265,7 +5294,7 @@ MDACK
 | ACKC13 | B[1] | Acknowledge Code |
 | | | 0: Acknowledged |
 | | | 1: Error |
-| Comment | - | The standards have had an erroneous structure for years - the L:2 has been missing. Unfortunately some implementations have not realized it was an error. The latest Hume versions automagically create the L:2 wrapper when it is missing. |
+| Comment | - | The standards have had an erroneous structure for years - the L[2] has been missing. Unfortunately some implementations have not realized it was an error. The latest Hume versions automagically create the L[2] wrapper when it is missing. |
 
 #### **S13F3 - Open Data Set Request** {#s13f3---open-data-set-request}
 ```
@@ -5287,6 +5316,7 @@ MDACK
 
 #### **S13F4 - Open Data Set Data** {#s13f4---open-data-set-data}
 ```
+S13F4->
 {L[5]
   HANDLE
   DSNAME
@@ -5308,6 +5338,7 @@ MDACK
 
 #### **S13F5 - Read Data Set Request** {#s13f5---read-data-set-request}
 ```
+<-S13F5
 {L[2]
   HANDLE
   READLN
@@ -5323,6 +5354,7 @@ MDACK
 
 #### **S13F6 - Read Data Set Data** {#s13f6---read-data-set-data}
 ```
+S13F6->
 {L[4]
   HANDLE
   ACKC13
@@ -5344,6 +5376,7 @@ MDACK
 
 #### **S13F7 - Close Data Set Send** {#s13f7---close-data-set-send}
 ```
+<-S13F7
 {L[1]
   HANDLE
 }
@@ -5357,6 +5390,7 @@ MDACK
 
 #### **S13F8 - Close Data Set Ack** {#s13f8---close-data-set-ack}
 ```
+S13F8->
 {L[2]
   HANDLE
   ACKC13
@@ -5374,6 +5408,7 @@ MDACK
 
 #### **S13F9 - Reset Data Set Send** {#s13f9---reset-data-set-send}
 ```
+<-S13F9
 {}
 ```
 
@@ -5777,6 +5812,7 @@ S14F6->
 
 #### **S14F7 - Get Attribute Names** {#s14f7---get-attribute-names}
 ```
+<-S14F7
 {L[2]
   OBJSPEC
   {L[n]
@@ -5794,6 +5830,7 @@ S14F6->
 
 #### **S14F8 - Attribute Names** {#s14f8---attribute-names}
 ```
+S14F8->
 {L[2]
   {L[n]
     {L[2]
@@ -5827,6 +5864,7 @@ S14F6->
 
 #### **S14F9 - Create Object Request** {#s14f9---create-obj-request}
 ```
+<-S14F9
 {L[3]
   OBJSPEC
   OBJTYPE
@@ -5850,6 +5888,7 @@ S14F6->
 
 #### **S14F10 - Create Object Acknowledge** {#s14f10---create-obj-ack}
 ```
+S14F10->
 {L[3]
   OBJSPEC
   {L[b]
@@ -5883,6 +5922,7 @@ S14F6->
 
 #### **S14F11 - Delete Object Request** {#s14f11---delete-obj-request}
 ```
+<-S14F11
 {L[2]
   OBJSPEC
   {L[a]
@@ -5904,6 +5944,7 @@ S14F6->
 
 #### **S14F12 - Delete Object Acknowledge** {#s14f12---delete-obj-ack}
 ```
+S14F12->
 {L[2]
   {L[b]
     {L[2]
@@ -5935,6 +5976,7 @@ S14F6->
 
 #### **S14F13 - Object Attach Request** {#s14f13---object-attach-request}
 ```
+<-S14F13
 {L[2]
   OBJSPEC
   {L[a]
@@ -5957,6 +5999,7 @@ S14F6->
 
 #### **S14F14 - Object Attach Acknowledge** {#s14f14---object-attach-ack}
 ```
+S14F14->
 {L[3]
   OBJTOKEN
   {L[b]
@@ -5990,6 +6033,7 @@ S14F6->
 
 #### **S14F15 - Attached Object Action Request** {#s14f15---attached-obj-action-req}
 ```
+<-S14F15
 {L[4]
   OBJSPEC
   OBJCMD
@@ -6015,6 +6059,7 @@ S14F6->
 
 #### **S14F16 - Attached Object Action Acknowledge** {#s14f16---attached-obj-action-ack}
 ```
+S14F16->
 {L[2]
   {L[b]
     {L[2]
@@ -6046,6 +6091,7 @@ S14F6->
 
 #### **S14F17 - Supervised Object Action Request** {#s14f17---supervised-obj-action-req}
 ```
+<-S14F17
 {L[4]
   OBJSPEC
   OBJCMD
@@ -6071,6 +6117,7 @@ S14F6->
 
 #### **S14F18 - Supervised Object Action Acknowledge** {#s14f18---supervised-obj-action-ack}
 ```
+S14F18->
 {L[2]
   {L[b]
     {L[2]
@@ -6102,6 +6149,7 @@ S14F6->
 
 #### **S14F19 - Generic Service Request** {#s14f19---generic-service-req}
 ```
+<-S14F19
 {L[5]
   DATAID
   OPID
@@ -6129,6 +6177,7 @@ S14F6->
 
 #### **S14F20 - Generic Service Acknowledge** {#s14f20---generic-service-ack}
 ```
+S14F20->
 {L[4]
   SVCACK
   LINKID
@@ -6164,6 +6213,7 @@ S14F6->
 
 #### **S14F21 - Generic Service Completion** {#s14f21---generic-service-completion}
 ```
+S14F21->
 {L[5]
   DATAID
   OPID
@@ -6201,6 +6251,7 @@ S14F6->
 
 #### **S14F22 - Generic Service Completion Acknowledge** {#s14f22---generic-service-comp-ack}
 ```
+<-S14F22
 DATAACK
 ```
 
@@ -6212,6 +6263,7 @@ DATAACK
 
 #### **S14F23 - Multi-block Generic Service Inquire** {#s14f23---multi-block-generic-service-inquire}
 ```
+<-S14F23
 {L[2]
   DATAID
   DATALENGTH
@@ -6228,6 +6280,7 @@ DATAACK
 
 #### **S14F24 - Multi-block Generic Service Grant** {#s14f24---multi-block-generic-service-grant}
 ```
+S14F24->
 GRANT
 ```
 
@@ -6239,6 +6292,7 @@ GRANT
 
 #### **S14F25 - Service Name Request** {#s14f25---service-name-request}
 ```
+<-S14F25
 {L[2]
   OBJSPEC
   {L[n]
@@ -6256,6 +6310,7 @@ GRANT
 
 #### **S14F26 - Service Name Data** {#s14f26---service-name-data}
 ```
+S14F26->
 {L[2]
   {L[n]
     {L[2]
@@ -6289,6 +6344,7 @@ GRANT
 
 #### **S14F27 - Service Parameter Name Request** {#s14f27---service-parameter-name-req}
 ```
+<-S14F27
 {L[3]
   OBJSPEC
   OBJTYPE
@@ -6308,6 +6364,7 @@ GRANT
 
 #### **S14F28 - Service Parameter Name Data** {#s14f28---service-parameter-name-data}
 ```
+S14F28->
 {L[2]
   {L[n]
     {L[2]
@@ -7016,6 +7073,7 @@ S15F36->
 
 #### **S15F37 - DRNS Segment Approve Action Request** {#s15f37---drns-segment-approve-action-req}
 ```
+S15F37-> or <-S15F37
 {L[6]
   RMSEGSPEC
   OBJTOKEN
@@ -7040,6 +7098,7 @@ S15F36->
 
 #### **S15F38 - DRNS Segment Approve Action Acknowledge** {#s15f38---drns-segment-approve-action-ack}
 ```
+S15F38-> or <-S15F38
 {L[2]
   RMACK
   {L[p]
@@ -7062,6 +7121,7 @@ S15F36->
 
 #### **S15F39 - DRNS Recorder Segment Request** {#s15f39---drns-recorder-seg-req}
 ```
+S15F39-> or <-S15F39
 {L[5]
   DATAID
   RMNSCMD
@@ -7084,6 +7144,7 @@ S15F36->
 
 #### **S15F40 - DRNS Recorder Segment Acknowledge** {#s15f40---drns-recorder-seg-ack}
 ```
+S15F40-> or <-S15F40
 {L[2]
   RMACK
   {L[p]
@@ -7106,6 +7167,7 @@ S15F36->
 
 #### **S15F41 - DRNS Recorder Module Request** {#s15f41---drns-recorder-mod-req}
 ```
+S15F41-> or <-S15F41
 {L[5]
   DATAID
   RMRECSPEC
@@ -7142,6 +7204,7 @@ S15F36->
 
 #### **S15F42 - DRNS Recorder Module Acknowledge** {#s15f42---drns-recorder-mod-ack}
 ```
+S15F42-> or <-S15F42
 {L[2]
   RMACK
   {L[p]
@@ -7164,6 +7227,7 @@ S15F36->
 
 #### **S15F43 - DRNS Get Change Request** {#s15f43---drns-get-change-req}
 ```
+S15F43-> or <-S15F43
 {L[3]
   DATAID
   OBJSPEC
@@ -7182,6 +7246,7 @@ S15F36->
 
 #### **S15F44 - DRNS Get Change Acknowledge** {#s15f44---drns-get-change-ack}
 ```
+S15F44-> or <-S15F44
 {L[2]
   {L[n]
     {L[7]
@@ -7224,6 +7289,7 @@ S15F36->
 
 #### **S15F45 - DRNS Manager Segment Approval Request** {#s15f45---drns-mgr-seg-aprvl-req}
 ```
+S15F45-> or <-S15F45
 {L[4]
   DATAID
   RCPSPEC
@@ -7244,6 +7310,7 @@ S15F36->
 
 #### **S15F46 - DRNS Manager Segment Approval Acknowledge** {#s15f46---drns-mgr-seg-aprvl-ack}
 ```
+S15F46-> or <-S15F46
 {L[3]
   RMCHGTYPE
   RMGRNT
@@ -7262,6 +7329,7 @@ S15F36->
 
 #### **S15F47 - DRNS Manager Rebuild Request** {#s15f47---drns-mgr-rebuild-req}
 ```
+S15F47-> or <-S15F47
 {L[5]
   DATAID
   OBJSPEC
@@ -7286,6 +7354,7 @@ S15F36->
 
 #### **S15F48 - DRNS Manager Rebuild Acknowledge** {#s15f48---drns-mgr-rebuild-ack}
 ```
+S15F48-> or <-S15F48
 {L[2]
   RMACK
   {L[p]
@@ -7308,6 +7377,7 @@ S15F36->
 
 #### **S15F49 - Large Recipe Download Request** {#s15f49---large-recipe-download-req}
 ```
+S15F49-> or <-S15F49
 {L[2]
   DSNAME
   RCPOWCODE
@@ -7324,6 +7394,7 @@ S15F36->
 
 #### **S15F50 - Large Recipe Download Acknowledge** {#s15f50---large-recipe-download-ack}
 ```
+S15F50-> or <-S15F50
 ACKC15
 ```
 
@@ -7336,6 +7407,7 @@ ACKC15
 
 #### **S15F51 - Large Recipe Upload Request** {#s15f51---large-recipe-upload-req}
 ```
+S15F51-> or <-S15F51
 DSNAME
 ```
 
@@ -7348,6 +7420,7 @@ DSNAME
 
 #### **S15F52 - Large Recipe Upload Acknowledge** {#s15f52---large-recipe-upload-ack}
 ```
+S15F52-> or <-S15F52
 ACKC15
 ```
 
@@ -8109,7 +8182,7 @@ S17F4->
 #### **S17F5 - Trace Create Request** {#s17f5---trace-create-request}
 ```
 <-S17F5
-{L:6
+{L[6]
   DATAID
   TRID
   CEED
@@ -8696,6 +8769,7 @@ S18F16->
 | [S19F20](#s19f20---inventory-audit-response)  | ← Equipment | Inventory Audit Response |
 #### **S19F1 - Inventory Request** {#s19f1---inventory-request}
 ```
+<-S19F1
 {L[n]
   INVTYPE_1
   INVTYPE_2
@@ -8706,6 +8780,7 @@ S18F16->
 
 #### **S19F2 - Inventory Response** {#s19f2---inventory-response}
 ```
+S19F2->
 {L[n]
   {L[3]
     INVTYPE
@@ -8717,6 +8792,7 @@ S18F16->
 
 #### **S19F3 - Inventory Update** {#s19f3---inventory-update}
 ```
+<-S19F3
 {L[3]
   INVTYPE
   INVID
@@ -8726,6 +8802,7 @@ S18F16->
 
 #### **S19F4 - Inventory Update Response** {#s19f4---inventory-update-response}
 ```
+S19F4->
 {L[2]
   INVID
   ACKC19
@@ -8734,6 +8811,7 @@ S18F16->
 
 #### **S19F5 - Inventory Add Request** {#s19f5---inventory-add-request}
 ```
+<-S19F5
 {L[4]
   INVTYPE
   INVID
@@ -8744,6 +8822,7 @@ S18F16->
 
 #### **S19F6 - Inventory Add Response** {#s19f6---inventory-add-response}
 ```
+S19F6->
 {L[2]
   INVID
   ACKC19
@@ -8752,6 +8831,7 @@ S18F16->
 
 #### **S19F7 - Inventory Remove Request** {#s19f7---inventory-remove-request}
 ```
+<-S19F7
 {L[2]
   INVTYPE
   INVID
@@ -8760,6 +8840,7 @@ S18F16->
 
 #### **S19F8 - Inventory Remove Response** {#s19f8---inventory-remove-response}
 ```
+S19F8->
 {L[2]
   INVID
   ACKC19
@@ -8768,11 +8849,13 @@ S18F16->
 
 #### **S19F9 - Inventory Status Request** {#s19f9---inventory-status-request}
 ```
+<-S19F9
 INVID
 ```
 
 #### **S19F10 - Inventory Status Response** {#s19f10---inventory-status-response}
 ```
+S19F10->
 {L[4]
   INVID
   INVSTATUS
@@ -8783,6 +8866,7 @@ INVID
 
 #### **S19F11 - Inventory Move Request** {#s19f11---inventory-move-request}
 ```
+<-S19F11
 {L[3]
   INVID
   SRCLOCATION
@@ -8792,6 +8876,7 @@ INVID
 
 #### **S19F12 - Inventory Move Response** {#s19f12---inventory-move-response}
 ```
+S19F12->
 {L[2]
   INVID
   ACKC19
@@ -8800,6 +8885,7 @@ INVID
 
 #### **S19F13 - Inventory Search Request** {#s19f13---inventory-search-request}
 ```
+<-S19F13
 {L[n]
   SEARCHCRITERIA
 }
@@ -8807,6 +8893,7 @@ INVID
 
 #### **S19F14 - Inventory Search Response** {#s19f14---inventory-search-response}
 ```
+S19F14->
 {L[n]
   {L[3]
     INVID
@@ -8818,6 +8905,7 @@ INVID
 
 #### **S19F15 - Inventory Lock Request** {#s19f15---inventory-lock-request}
 ```
+<-S19F15
 {L[2]
   INVID
   LOCKTYPE
@@ -8826,6 +8914,7 @@ INVID
 
 #### **S19F16 - Inventory Lock Response** {#s19f16---inventory-lock-response}
 ```
+S19F16->
 {L[2]
   INVID
   LOCKSTATUS
@@ -8834,6 +8923,7 @@ INVID
 
 #### **S19F17 - Inventory History Request** {#s19f17---inventory-history-request}
 ```
+<-S19F17
 {L[3]
   INVID
   STARTTIME
@@ -8843,11 +8933,12 @@ INVID
 
 #### **S19F18 - Inventory History Response** {#s19f18---inventory-history-response}
 ```
-  {L[n]
-    {L[4]
+S19F18->
+{L[n]
+  {L[4]
     INVID
     TIMESTAMP
-      ACTION
+    ACTION
     DETAILS
   }
 }
@@ -8855,6 +8946,7 @@ INVID
 
 #### **S19F19 - Inventory Audit Request** {#s19f19---inventory-audit-request}
 ```
+<-S19F19
 {L[2]
   AUDITTYPE
   AUDITPARAMS
@@ -8863,6 +8955,7 @@ INVID
 
 #### **S19F20 - Inventory Audit Response** {#s19f20---inventory-audit-response}
 ```
+S19F20->
 {L[2]
   AUDITSTATUS
   AUDITRESULTS
@@ -8901,6 +8994,7 @@ INVID
 
 #### **S20F1 - SetSRO Attributes Request** {#s20f1---setsro-attributes-request}
 ```
+<-S20F1
 {L[6]
   OBJID
   OBJTYPE
@@ -8914,12 +9008,14 @@ INVID
 
 #### **S20F2 - SetSRO Attributes Acknowledge** {#s20f2---setsro-attributes-acknowledge}
 ```
+S20F2->
 SSAACK
 ```
 
 
 #### **S20F3 - GetOperationIDList Request** {#s20f3---getoperationidlist-request}
 ```
+<-S20F3
 {L[3]
   OBJID
   OBJTYPE
@@ -8930,6 +9026,7 @@ SSAACK
 
 #### **S20F4 - GetOperationIDList Acknowledge** {#s20f4---getoperationidlist-acknowledge}
 ```
+S20F4->
 {L[2]
   {L[n]
     OPEID
@@ -8941,6 +9038,7 @@ SSAACK
 
 #### **S20F5 - OpenConnectionEvent Send** {#s20f5---openconnectionevent-send}
 ```
+<-S20F5
 {L[7]
   OBJID
   OBJTYPE
@@ -8955,6 +9053,7 @@ SSAACK
 
 #### **S20F6 - OpenConnectionEvent Acknowledge** {#s20f6---openconnectionevent-acknowledge}
 ```
+S20F6->
 {L[2]
   OPEID
   OCEACK
@@ -8964,6 +9063,7 @@ SSAACK
 
 #### **S20F7 - CloseConnectionEvent Send** {#s20f7---closeconnectionevent-send}
 ```
+<-S20F7
 {L[4]
   OBJID
   OBJTYPE
@@ -9097,7 +9197,7 @@ WRACK
   OBJTYPE
   OPETYPE
   OPEID
-{L[n]
+  {L[n]
     {L[9]
       TIMESTAMP
       OPEID
@@ -9379,6 +9479,7 @@ PSREACK
 
 #### **S21F1 - Material Transfer Plan** {#s21f1---material-transfer-plan}
 ```
+<-S21F1
 {L[4]
   ITEMTYPE
   ITEMID
@@ -9389,6 +9490,7 @@ PSREACK
 
 #### **S21F2 - Material Transfer Plan Response** {#s21f2---material-transfer-plan-response}
 ```
+S21F2->
 {L[2]
   ITEMACK
   ITEMERROR
@@ -9398,6 +9500,7 @@ PSREACK
 
 #### **S21F2 - Item Load Grant** {#s21f2---item-load-grant}
 ```
+S21F2->
 {L[2]
   ITEMACK
   ITEMERROR
@@ -9407,7 +9510,8 @@ PSREACK
 
 #### **S21F3 - Item Send** {#s21f3---item-send}
 ```
-  {L[5]
+<-S21F3
+{L[5]
   ITEMTYPE
   ITEMID
   ITEMLENGTH
@@ -9421,6 +9525,7 @@ PSREACK
 
 #### **S21F4 - Item Send Acknowledge** {#s21f4---item-send-acknowledge}
 ```
+S21F4->
 {L[2]
   ITEMACK
   ITEMERROR
@@ -9430,6 +9535,7 @@ PSREACK
 
 #### **S21F5 - Item Request** {#s21f5---item-request}
 ```
+<-S21F5
 {L[2]
   ITEMTYPE
   ITEMID
@@ -9439,6 +9545,7 @@ PSREACK
 
 #### **S21F6 - Item Data** {#s21f6---item-data}
 ```
+S21F6->
 {L[7]
   ITEMACK
   ITEMERROR
@@ -9455,12 +9562,14 @@ PSREACK
 
 #### **S21F7 - Item Type List Request** {#s21f7---item-type-list-request}
 ```
+<-S21F7
 ITEMTYPE
 ```
 
 
 #### **S21F8 - Item Type List Results** {#s21f8---item-type-list-results}
 ```
+S21F8->
 {L[7]
   ITEMACK
   ITEMERROR
@@ -9553,6 +9662,7 @@ header only
 
 #### **S21F16 - Item Request Grant** {#s21f16---item-request-grant}
 ```
+S21F16->
 {L[7]
   ITEMACK
   ITEMERROR
@@ -9567,6 +9677,7 @@ header only
 
 #### **S21F17 - Send Item Part** {#s21f17---send-item-part}
 ```
+<-S21F17
 {L[8]
   ITEMTYPE
   ITEMID
@@ -9582,6 +9693,7 @@ header only
 
 #### **S21F18 - Send Item Part Acknowledge** {#s21f18---send-item-part-acknowledge}
 ```
+S21F18->
 {L[2]
   ITEMACK
   ITEMERROR
@@ -9591,6 +9703,7 @@ header only
 
 #### **S21F19 - Item Type Feature Support** {#s21f19---item-type-feature-support}
 ```
+<-S21F19
 {L[n]
   ITEMTYPE
 }
@@ -9599,6 +9712,7 @@ header only
 
 #### **S21F20 - Item Type Feature Support Results** {#s21f20---item-type-feature-support-results}
 ```
+S21F20->
 {L[n]
   {L[4]
     ITEMACK
