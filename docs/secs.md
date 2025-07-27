@@ -2,8 +2,9 @@
 
 ## Table of Contents
 1. [Overview](#overview) 
-2. [Quick Link](#quick-link) 
-3. [Script Definitions](#script-stream-definitions)
+2. [Configure](#Configure)
+3. [Quick Link](#quick-link) 
+4. [Script Definitions](#script-stream-definitions)
 
 ## Overview
 
@@ -29,7 +30,7 @@ LogRetentionDay = 30
 LogRotationHour = 1
 MaxRetriesCount = 10
 RetryDelaySec = 3
-ConnectTimeout = 1021F10
+ConnectTimeout = 10
 ```
 
 ## **Quick link** {#quick-link}
@@ -3050,7 +3051,6 @@ ACKC5
 
 #### **S5F6 - List Alarms Response** {#s5f6---list-alarms-response}
 ```
-
 S5F6->
 {L[n]
   ALID_1
@@ -3058,16 +3058,14 @@ S5F6->
   ...
   ALID_n
 }
-
-```
-```
+``` 
 
 **Parameters:**
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | ALID | U1, U2, U4, or A | Alarm ID |
-```
+
 
 #### **S5F7 - List Enabled Alarm Request** {#s5f7---list-enabled-alarm-request}
 ```
@@ -3083,7 +3081,6 @@ S5F6->
 
 #### **S5F8 - List Enabled Alarm Response** {#s5f8---list-enabled-alarm-response}
 ```
-
 S5F8->
 {L[n]
   ALID_1
@@ -3091,8 +3088,6 @@ S5F8->
   ...
   ALID_n
 }
-
-```
 ```
 
 **Parameters:**
@@ -3100,7 +3095,7 @@ S5F8->
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | ALID | U1, U2, U4, or A | Alarm ID - Only enabled alarms |
-```
+
 
 ### Stream 6: Data Collection
 **Purpose**: Process data collection and event reporting
@@ -3187,10 +3182,10 @@ S6F3->
         {L[2]
           DVNAME
           DVVAL
+        }
       }
     }
   }
-}
 }
 ```
 
@@ -3382,8 +3377,8 @@ ACKC6
         {L[2]
           VID
           V
-  }
-}
+        }
+      }
     }
   }
 }
@@ -3429,7 +3424,7 @@ CEID
   DATAID
   CEID
   {L[a]
-{L[2]
+    {L[2]
       RPTID
       {L[b]
         V
@@ -3582,8 +3577,8 @@ RSDA
       {L[2]
         ERRCODE
         ERRTEXT
-  }
-}
+      }
+    }
   }
 }
 ```
@@ -3623,7 +3618,7 @@ ACKC6
   TRID
   {L[n]
     {L[p]
-{L[2]
+      {L[2]
         RPTID
         {L[m]
           V
@@ -3667,16 +3662,16 @@ TRID
 
 #### **S6F30 - Trace Report Data** {#s6f30---trace-report-data}
 ```
-  {L[3]
+{L[3]
   TRID
-  {L[n]
-    {L[2]
-      RPTID
-      {L[m]
-        V
-      }
+    {L[n]
+      {L[2]
+        RPTID
+        {L[m]
+          V
+        }
+    }
   }
-}
   ERRCODE
 }
 ```
@@ -3885,8 +3880,8 @@ S7F10-> or <-S7F10
     PPID
     {L[a]
       MID
+    }
   }
-}
 }
 ```
 
@@ -3938,11 +3933,11 @@ ACKC7
 #### **S7F13 - Material/Process Matrix Delete Entry Send** {#s7f13---material-process-matrix-delete-entry-send}
 ```
 {L[n]
-{L[2]
-  PPID
+  {L[2]
+    PPID
     {L[a]
       MID
-}
+    }
   }
 }
 ```
@@ -4220,8 +4215,8 @@ S7F26->
       ACKC7A
       SEQNUM
       ERRW7
+    }
   }
-}
 }
 ```
 
@@ -6518,13 +6513,13 @@ RMNEWNS
 ```
 S15F6-> or <-S15F6
 {L[2]
-RMACK
-{L[p]
-{L[2]
-ERRCODE
-ERRTEXT
-}
-}
+  RMACK
+  {L[p]
+    {L[2]
+      ERRCODE
+      ERRTEXT
+    }
+  }
 }
 ```
 
@@ -6540,16 +6535,16 @@ OBJSPEC
 ```
 S15F8-> or <-S15F8
 {L[2]
-RMSPACE
-{L[2]
-RMACK
-{L[p]
-{L[2]
-ERRCODE
-ERRTEXT
-}
-}
-}
+  RMSPACE
+  {L[2]
+    RMACK
+    {L[p]
+      {L[2]
+        ERRCODE
+        ERRTEXT
+      }
+    }
+  }
 }
 ```
 
@@ -6565,17 +6560,17 @@ RCPSPEC
 ```
 S15F10-> or <-S15F10
 {L[3]
-RCPSTAT
-RCPVERS
-{L[2]
-RMACK
-{L[p]
-{L[2]
-ERRCODE
-ERRTEXT
-}
-}
-}
+  RCPSTAT
+  RCPVERS
+  {L[2]
+    RMACK
+    {L[p]
+      {L[2]
+        ERRCODE
+        ERRTEXT
+      }
+    }
+  }
 }
 ```
 
@@ -6584,10 +6579,10 @@ ERRTEXT
 ```
 S15F11-> or <-S15F11
 {L[4]
-RMNSSPEC
-RCPCLASS
-RCPNAME
-AGENT
+  RMNSSPEC
+  RCPCLASS
+  RCPNAME
+  AGENT
 }
 ```
 
@@ -8706,10 +8701,8 @@ S18F14->
 <-S18F15
 TARGETID
 ```
-```
 
 **Parameters:**
-
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | TARGETID | A | Target ID |
@@ -8767,6 +8760,7 @@ S18F16->
 | [S19F18](#s19f18---inventory-history-response)  | ← Equipment | Inventory History Response |
 | [S19F19](#s19f19---inventory-audit-request)  | → Equipment | Inventory Audit Request |
 | [S19F20](#s19f20---inventory-audit-response)  | ← Equipment | Inventory Audit Response |
+
 #### **S19F1 - Inventory Request** {#s19f1---inventory-request}
 ```
 <-S19F1
@@ -9075,6 +9069,7 @@ S20F6->
 
 #### **S20F8 - CloseConnectionEvent Acknowledge** {#s20f8---closeconnectionevent-acknowledge}
 ```
+<-S20F8
 {L[2]
   OPEID
   CCEACK
@@ -9084,6 +9079,7 @@ S20F6->
 
 #### **S20F9 - ClearOperation Request** {#s20f9---clearoperation-request}
 ```
+<-S20F9
 {L[4]
   OBJID
   OBJTYPE
@@ -9095,12 +9091,14 @@ S20F6->
 
 #### **S20F10 - ClearOperation Acknowledge** {#s20f10---clearoperation-acknowledge}
 ```
+S20F10->
 COACK
 ```
 
 
 #### **S20F11 - GetRecipeXIDList Request** {#s20f11---getrecipexidlist-request}
 ```
+<-S20F11
 {L[4]
   OBJID
   OBJTYPE
@@ -9112,6 +9110,7 @@ COACK
 
 #### **S20F12 - GetRecipeXIDList Acknowledge** {#s20f12---getrecipexidlist-acknowledge}
 ```
+S20F12->
 {L[2]
 {L[n]
     {L[9]
@@ -9133,6 +9132,7 @@ COACK
 
 #### **S20F13 - DeleteRecipe Request** {#s20f13---deleterecipe-request}
 ```
+<-S20F13
 {L[5]
   OBJID
   OBJTYPE
@@ -9155,12 +9155,14 @@ COACK
 
 #### **S20F14 - DeleteRecipe Acknowledge** {#s20f14---deleterecipe-acknowledge}
 ```
+S20F14->
 DRRACK
 ```
 
 
 #### **S20F15 - WriteRecipe Request** {#s20f15---writerecipe-request}
 ```
+<-S20F15
 {L[5]
   OBJID
   OBJTYPE
@@ -9186,12 +9188,14 @@ DRRACK
 
 #### **S20F16 - WriteRecipe Acknowledge** {#s20f16---writerecipe-acknowledge}
 ```
+S20F16->
 WRACK
 ```
 
 
 #### **S20F17 - ReadRecipe Request** {#s20f17---readrecipe-request}
 ```
+<-S20F17
 {L[5]
   OBJID
   OBJTYPE
@@ -9216,6 +9220,7 @@ WRACK
 
 #### **S20F18 - ReadRecipe Acknowledge** {#s20f18---readrecipe-acknowledge}
 ```
+S20F18->
 {L[2]
   {L[n]
     {L[10]
@@ -9238,6 +9243,7 @@ WRACK
 
 #### **S20F19 - QueryRecipeXIDList Event Send** {#s20f19---queryrecipexidlist-event-send}
 ```
+S20F19->
 {L[4]
   OBJID
   OBJTYPE
@@ -9249,6 +9255,7 @@ WRACK
 
 #### **S20F20 - QueryRecipeXIDList Event Acknowledge** {#s20f20---queryrecipexidlist-event-acknowledge}
 ```
+<-S20F20
 {L[3]
   OPEID
   {L[n]
@@ -9271,6 +9278,7 @@ WRACK
 
 #### **S20F21 - QueryRecipe Event Send** {#s20f21---queryrecipe-event-send}
 ```
+S20F21->
 {L[5]
   OBJID
   OBJTYPE
@@ -9295,12 +9303,14 @@ WRACK
 
 #### **S20F22 - QueryRecipe Event Acknowledge** {#s20f22---queryrecipe-event-acknowledge}
 ```
+<-S20F22
 QREACK
 ```
 
 
 #### **S20F23 - PostRecipe Event Send** {#s20f23---postrecipe-event-send}
 ```
+S20F23->
 {L[5]
   OBJID
   OBJTYPE
@@ -9326,12 +9336,14 @@ QREACK
 
 #### **S20F24 - PostRecipe Event Acknowledge** {#s20f24---postrecipe-event-acknowledge}
 ```
+<-S20F24
 PREACK
 ```
 
 
 #### **S20F25 - SetPRC Attributes Request** {#s20f25---setprc-attributes-request}
 ```
+<-S20F25
 {L[5]
   OBJID
   OBJTYPE
@@ -9346,12 +9358,14 @@ PREACK
 
 #### **S20F26 - SetPRC Attributes Acknowledge** {#s20f26---setprc-attributes-acknowledge}
 ```
+S20F26->
 SPAACK
 ```
 
 
 #### **S20F27 - PreSpecifyRecipe Request** {#s20f27---prespecifyrecipe-request}
 ```
+<-S20F27
 {L[6]
   OBJID
   OBJTYPE
@@ -9587,12 +9601,14 @@ S21F8->
 
 #### **S21F9 - Supported Item Type List Request** {#s21f9---supported-item-type-list-request}
 ```
+<-S21F9
 header only
 ```
 
 
 #### **S21F10 - Supported Item Type List Result** {#s21f10---supported-item-type-list-result}
 ```
+S21F10->
 {L[3]
   ITEMACK
   ITEMERROR
@@ -9605,6 +9621,7 @@ header only
 
 #### **S21F11 - Item Delete** {#s21f11---item-delete}
 ```
+<-S21F11
 {L[2]
   ITEMTYPE
   {L[n]
@@ -9616,6 +9633,7 @@ header only
 
 #### **S21F12 - Item Delete Acknowledge** {#s21f12---item-delete-acknowledge}
 ```
+S21F12->
 {L[3]
   ITEMACK
   ITEMTYPE
@@ -9632,6 +9650,7 @@ header only
 
 #### **S21F13 - Request Permission To Send Item** {#s21f13---request-permission-to-send-item}
 ```
+<-S21F13
 {L[5]
   ITEMTYPE
   ITEMID
@@ -9644,6 +9663,7 @@ header only
 
 #### **S21F14 - Grant Permission To Send Item** {#s21f14---grant-permission-to-send-item}
 ```
+S21F14->
 {L[2]
   ITEMACK
   ITEMERROR
@@ -9653,6 +9673,7 @@ header only
 
 #### **S21F15 - Item Request** {#s21f15---item-request}
 ```
+<-S21F15
 {L[2]
   ITEMTYPE
   ITEMID
