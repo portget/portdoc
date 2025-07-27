@@ -6460,9 +6460,9 @@ S14F28->
 ```
 S15F1-> or <-S15F1
 {L[3]
-DATAID
-RCPSPEC
-RMDATASIZE
+  DATAID
+  RCPSPEC
+  RMDATASIZE
 }
 ```
 
@@ -6470,7 +6470,7 @@ RMDATASIZE
 
 ```
 S15F2-> or <-S15F2
-RMGRNT
+  RMGRNT
 ```
 
 #### **S15F3 - Recipe Namespace Action Req** {#s15f3---recipe-namespace-action-req}
@@ -6478,8 +6478,8 @@ RMGRNT
 ```
 S15F3-> or <-S15F3
 {L[2]
-RMNSSPEC
-RMNSCMD
+  RMNSSPEC
+  RMNSCMD
 }
 ```
 
@@ -6488,13 +6488,13 @@ RMNSCMD
 ```
 S15F4-> or <-S15F4
 {L[2]
-RMACK
-{L[p]
-{L[2]
-ERRCODE
-ERRTEXT
-}
-}
+  RMACK
+  {L[p]
+    {L[2]
+      ERRCODE
+      ERRTEXT
+    }
+  }
 }
 ```
 
@@ -6503,10 +6503,17 @@ ERRTEXT
 ```
 S15F5-> or <-S15F5
 {L[2]
-RMNSSPEC
-RMNEWNS
+  RMNSSPEC
+  RMNEWNS
 }
 ```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| RMNSSPEC | ASCII | Recipe namespace specification |
+| RMNEWNS | ASCII | New namespace name |
 
 #### **S15F6 - Recipe Namespace Rename Ack** {#s15f6---recipe-namespace-rename-ack}
 
@@ -6523,12 +6530,26 @@ S15F6-> or <-S15F6
 }
 ```
 
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| RMACK | U1 | Recipe management acknowledge code |
+| ERRCODE | U1 | Error code |
+| ERRTEXT | ASCII | Error text description |
+
 #### **S15F7 - Recipe Space Req** {#s15f7---recipe-space-req}
 
 ```
 S15F7-> or <-S15F7
 OBJSPEC
 ```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| OBJSPEC | ASCII | Object specification for recipe space |
 
 #### **S15F8 - Recipe Space Data** {#s15f8---recipe-space-data}
 
@@ -6548,12 +6569,27 @@ S15F8-> or <-S15F8
 }
 ```
 
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| RMSPACE | U4 | Recipe space information |
+| RMACK | U1 | Recipe management acknowledge code |
+| ERRCODE | U1 | Error code |
+| ERRTEXT | ASCII | Error text description |
+
 #### **S15F9 - Recipe Status Request** {#s15f9---recipe-status-request}
 
 ```
 S15F9-> or <-S15F9
 RCPSPEC
 ```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| RCPSPEC | ASCII | Recipe specification |
 
 #### **S15F10 - Recipe Status Data** {#s15f10---recipe-status-data}
 
@@ -6574,6 +6610,16 @@ S15F10-> or <-S15F10
 }
 ```
 
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| RCPSTAT | U1 | Recipe status |
+| RCPVERS | ASCII | Recipe version |
+| RMACK | U1 | Recipe management acknowledge code |
+| ERRCODE | U1 | Error code |
+| ERRTEXT | ASCII | Error text description |
+
 #### **S15F11 - Recipe Version Request** {#s15f11---recipe-version-request}
 
 ```
@@ -6586,22 +6632,31 @@ S15F11-> or <-S15F11
 }
 ```
 
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| RMNSSPEC | ASCII | Recipe namespace specification |
+| RCPCLASS | ASCII | Recipe class |
+| RCPNAME | ASCII | Recipe name |
+| AGENT | ASCII | Agent identifier |
+
 #### **S15F12 - Recipe Version Data** {#s15f12---recipe-version-data}
 
 ```
 S15F12-> or <-S15F12
 {L[3]
-AGENT
-RCPVERS
-{L[2]
-RMACK
-{L[p]
-{L[2]
-ERRCODE
-ERRTEXT
-}
-}
-}
+  AGENT
+  RCPVERS
+  {L[2]
+    RMACK
+    {L[p]
+      {L[2]
+      ERRCODE
+      ERRTEXT
+      }
+    }
+  }
 }
 ```
 
@@ -6609,16 +6664,16 @@ ERRTEXT
 
 ```
 {L[5]
-DATAID
-RCPUPDT
-RCPSPEC
-{L[n]
-{L[2]
-RCPATTRID
-RCPATTRDATA
-}
-}
-RCPBODY
+  DATAID
+  RCPUPDT
+  RCPSPEC
+  {L[n]
+    {L[2]
+      RCPATTRID
+      RCPATTRDATA
+    }
+  }
+  RCPBODY
 }
 ```
 
@@ -6692,8 +6747,8 @@ RCPBODY
 
 ```
 {L[2]
-RCPSPEC
-RCPSECCODE
+  RCPSPEC
+  RCPSECCODE
 }
 ```
 
@@ -7513,12 +7568,15 @@ S15F53->
   DATALENGTH
 }
 
-```
-```
+``` 
 
-- DATAID: Data ID (U1, U2, U4, or A)
-- DATALENGTH: Data Length (U1, U2, U4)
-```
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| DATAID | U1/U2/U4/A | Data ID |
+| DATALENGTH | U1/U2/U4 | Data Length |
+ 
  
 
 #### **S16F2 - PJD MBI Grant** {#s16f2---pjd-mbi-grant}
@@ -7527,14 +7585,14 @@ S15F53->
 S16F2->
 GRANT
 
-```
-```
+``` 
 
-- GRANT: Grant Code (B[1])
-  - 0: Granted
-  - 1: Busy, try again
-  - 2: No space
-```
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| GRANT | B[1] | Grant Code (0: Granted, 1: Busy, try again, 2: No space) |
+ 
 
 #### **S16F3 - Process Job Create Req** {#s16f3---process-job-create-req}
 ```
@@ -7559,18 +7617,21 @@ GRANT
   PRPROCESSSTART
 }
 
-```
-```
+``` 
 
-- DATAID: Data ID (U1, U2, U4, or A)
-- MF: Material Format (U1)
-- MID: Material ID (A)
-- PRRECIPEMETHOD: Process Recipe Method (A)
-- RCPSPEC: Recipe Specification (A)
-- RCPPARNM: Recipe Parameter Name (A)
-- RCPPARVAL: Recipe Parameter Value (any format)
-- PRPROCESSSTART: Process Process Start (A)
-```
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| DATAID | U1/U2/U4/A | Data ID |
+| MF | U1 | Material Format |
+| MID | ASCII | Material ID |
+| PRRECIPEMETHOD | ASCII | Process Recipe Method |
+| RCPSPEC | ASCII | Recipe Specification |
+| RCPPARNM | ASCII | Recipe Parameter Name |
+| RCPPARVAL | Any | Recipe Parameter Value |
+| PRPROCESSSTART | ASCII | Process Process Start |
+ 
 
 #### **S16F4 - Process Job Create Ack** {#s16f4---process-job-create-ack}
 ```
@@ -7589,17 +7650,17 @@ S16F4->
   }
 }
 
-```
-```
+``` 
 
-- PRJOBID: Process Job ID (A)
-- ACKA: Acknowledge Code (B[1])
-  - 0: Acknowledged
-  - 1: Error
-- ERRCODE: Error Code (U1, U2, U4, or A)
-- ERRTEXT: Error Text (A)
-```
+**Parameters:**
 
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| PRJOBID | ASCII | Process Job ID |
+| ACKA | B[1] | Acknowledge Code (0: Acknowledged, 1: Error) |
+| ERRCODE | U1/U2/U4/A | Error Code |
+| ERRTEXT | ASCII | Error Text |
+ 
 #### **S16F5 - Process Job Cmd Req** {#s16f5---process-job-cmd-req}
 ```
 
@@ -7616,15 +7677,18 @@ S16F4->
   }
 }
 
-```
-```
+``` 
 
-- DATAID: Data ID (U1, U2, U4, or A)
-- PRJOBID: Process Job ID (A)
-- PRCMDNAME: Process Command Name (A)
-- CPNAME: Command Parameter Name (A)
-- CPVAL: Command Parameter Value (any format)
-```
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| DATAID | U1/U2/U4/A | Data ID |
+| PRJOBID | ASCII | Process Job ID |
+| PRCMDNAME | ASCII | Process Command Name |
+| CPNAME | ASCII | Command Parameter Name |
+| CPVAL | Any | Command Parameter Value |
+ 
 
 #### **S16F6 - Process Job Cmd Ack** {#s16f6---process-job-cmd-ack}
 ```
@@ -7643,16 +7707,17 @@ S16F6->
   }
 }
 
-```
-```
+```  
 
-- PRJOBID: Process Job ID (A)
-- ACKA: Acknowledge Code (B[1])
-  - 0: Acknowledged
-  - 1: Error
-- ERRCODE: Error Code (U1, U2, U4, or A)
-- ERRTEXT: Error Text (A)
-```
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| PRJOBID | ASCII | Process Job ID |
+| ACKA | B[1] | Acknowledge Code (0: Acknowledged, 1: Error) |
+| ERRCODE | U1/U2/U4/A | Error Code |
+| ERRTEXT | ASCII | Error Text |
+ 
 
 #### **S16F7 - Process Job Alert Notify** {#s16f7---process-job-alert-notify}
 ```
@@ -7674,16 +7739,17 @@ S16F7->
 }
 
 ```
-``` 
-- TIMESTAMP: Timestamp (A)
-- PRJOBID: Process Job ID (A)
-- PRJOBMILESTONE: Process Job Milestone (A)
-- ACKA: Acknowledge Code (B[1])
-  - 0: Acknowledged
-  - 1: Error
-- ERRCODE: Error Code (U1, U2, U4, or A)
-- ERRTEXT: Error Text (A)
-```
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TIMESTAMP | ASCII | Timestamp |
+| PRJOBID | ASCII | Process Job ID |
+| PRJOBMILESTONE | ASCII | Process Job Milestone |
+| ACKA | B[1] | Acknowledge Code (0: Acknowledged, 1: Error) |
+| ERRCODE | U1/U2/U4/A | Error Code |
+| ERRTEXT | ASCII | Error Text |
+
 
 #### **S16F8 - Process Job Alert Ack** {#s16f8---process-job-alert-ack}
 ```
@@ -8239,12 +8305,16 @@ S17F6->
   TRID
 }
 
-```
-```
+``` 
 
-- TRID: Trace ID (U4)
-- Comment: Surprisingly, L:0 is not specified as a means to indicate all, but this feature has to be provided because there is no means to discover the existing traces.
-```
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TRID | U4 | Trace ID |
+
+**Note**: Surprisingly, L:0 is not specified as a means to indicate all, but this feature has to be provided because there is no means to discover the existing traces.
+ 
 
 #### **S17F8 - Trace Delete Acknowledgment** {#s17f8---trace-delete-acknowledgment}
 ```
@@ -8261,15 +8331,17 @@ S17F8->
   }
 }
 
-```
-```
+``` 
 
-- ACKA: Acknowledge Code (U4)
-- TRID: Trace ID (U4)
-- ERRCODE: Error Code (U4)
-- ERRTEXT: Error Text (A)
-```
+**Parameters:**
 
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ACKA | U4 | Acknowledge Code |
+| TRID | U4 | Trace ID |
+| ERRCODE | U4 | Error Code |
+| ERRTEXT | ASCII | Error Text |
+ 
 #### **S17F9 - Collection Event Link Request** {#s17f9---collection-event-link-request}
 ```
 
@@ -8283,15 +8355,17 @@ S17F8->
   }
 }
 
-```
-```
+```  
 
-- DATAID: Data ID (U4)
-- EVNTSRC: Event Source (A)
-- CEID: Collection Event ID (U4)
-- RPTID: Report ID (U4)
-```
+**Parameters:**
 
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| DATAID | U4 | Data ID |
+| EVNTSRC | ASCII | Event Source |
+| CEID | U4 | Collection Event ID |
+| RPTID | U4 | Report ID |
+ 
 #### **S17F10 - Collection Event Link Acknowledgment** {#s17f10---collection-event-link-acknowledgment}
 ```
 
@@ -8301,13 +8375,15 @@ S17F8->
   ERRCODE
 }
 
-```
-```
+``` 
+**Parameters:**
 
-- EVNTSRC: Event Source (A)
-- CEID: Collection Event ID (U4)
-- ERRCODE: Error Code (U4)
-```
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| EVNTSRC | ASCII | Event Source |
+| CEID | U4 | Collection Event ID |
+| ERRCODE | U4 | Error Code |
+ 
 
 #### **S17F11 - Collection Event Unlink Request** {#s17f11---collection-event-unlink-request}
 ```
@@ -8318,14 +8394,16 @@ S17F8->
   RPTID
 }
 
-```
-```
+``` 
 
-- EVNTSRC: Event Source (A)
-- CEID: Collection Event ID (U4)
-- RPTID: Report ID (U4)
-```
+**Parameters:**
 
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| EVNTSRC | ASCII | Event Source |
+| CEID | U4 | Collection Event ID |
+| RPTID | U4 | Report ID |
+ 
 #### **S17F12 - Collection Event Unlink Acknowledgment** {#s17f12---collection-event-unlink-acknowledgment}
 ```
 
@@ -8336,15 +8414,17 @@ S17F8->
   ERRCODE
 }
 
-```
-```
+``` 
 
-- EVNTSRC: Event Source (A)
-- CEID: Collection Event ID (U4)
-- RPTID: Report ID (U4)
-- ERRCODE: Error Code (U4)
-```
+**Parameters:**
 
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| EVNTSRC | ASCII | Event Source |
+| CEID | U4 | Collection Event ID |
+| RPTID | U4 | Report ID |
+| ERRCODE | U4 | Error Code |
+ 
 #### **S17F13 - Trace Reset Request** {#s17f13---trace-reset-request}
 ```
 
@@ -8353,11 +8433,13 @@ TRID
 }
 
 ```
-```
+ 
+**Parameters:**
 
-- TRID: Trace ID (U4)
-```
-
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TRID | U4 | Trace ID |
+ 
 #### **S17F14 - Trace Reset Acknowledgment** {#s17f14---trace-reset-acknowledgment}
 ```
 
@@ -8373,13 +8455,16 @@ TRID
 }
 
 ```
-```
+ 
+**Parameters:**
 
-- ACKA: Acknowledge Code (U4)
-- TRID: Trace ID (U4)
-- ERRCODE: Error Code (U4)
-- ERRTEXT: Error Text (A)
-```
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ACKA | U4 | Acknowledge Code |
+| TRID | U4 | Trace ID |
+| ERRCODE | U4 | Error Code |
+| ERRTEXT | ASCII | Error Text |
+ 
 
 ### Stream 18: Subsystem Management
 **Purpose**: Subsystem attribute and data management
@@ -8415,11 +8500,15 @@ TRID
 }
 
 ```
-```
+ 
 
-- TARGETID: Target ID (A)
-- ATTRID: Attribute ID (A)
-```
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TARGETID | ASCII | Target ID |
+| ATTRID | ASCII | Attribute ID |
+ 
 
 #### **S18F2 - Read Attribute Data** {#s18f2---read-attribute-data}
 ```
@@ -8703,10 +8792,11 @@ TARGETID
 ```
 
 **Parameters:**
+
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | TARGETID | A | Target ID |
-```
+
 
 #### **S18F16 - Read 2D Code Condition Data** {#s18f16---read-2d-code-condition-data}
 ```
@@ -8772,6 +8862,12 @@ S18F16->
 }
 ```
 
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| INVTYPE | ASCII | Inventory Type |
+
 #### **S19F2 - Inventory Response** {#s19f2---inventory-response}
 ```
 S19F2->
@@ -8784,6 +8880,14 @@ S19F2->
 }
 ```
 
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| INVTYPE | ASCII | Inventory Type |
+| INVID | ASCII | Inventory ID |
+| INVDATA | Any | Inventory Data |
+
 #### **S19F3 - Inventory Update** {#s19f3---inventory-update}
 ```
 <-S19F3
@@ -8794,6 +8898,14 @@ S19F2->
 }
 ```
 
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| INVTYPE | ASCII | Inventory Type |
+| INVID | ASCII | Inventory ID |
+| INVDATA | Any | Inventory Data |
+
 #### **S19F4 - Inventory Update Response** {#s19f4---inventory-update-response}
 ```
 S19F4->
@@ -8802,6 +8914,13 @@ S19F4->
   ACKC19
 }
 ```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| INVID | ASCII | Inventory ID |
+| ACKC19 | U1 | Acknowledge Code |
 
 #### **S19F5 - Inventory Add Request** {#s19f5---inventory-add-request}
 ```
@@ -8814,6 +8933,15 @@ S19F4->
 }
 ```
 
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| INVTYPE | ASCII | Inventory Type |
+| INVID | ASCII | Inventory ID |
+| INVDATA | Any | Inventory Data |
+| LOCATION | ASCII | Location |
+
 #### **S19F6 - Inventory Add Response** {#s19f6---inventory-add-response}
 ```
 S19F6->
@@ -8822,6 +8950,13 @@ S19F6->
   ACKC19
 }
 ```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| INVID | ASCII | Inventory ID |
+| ACKC19 | U1 | Acknowledge Code |
 
 #### **S19F7 - Inventory Remove Request** {#s19f7---inventory-remove-request}
 ```
@@ -8832,6 +8967,13 @@ S19F6->
 }
 ```
 
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| INVTYPE | ASCII | Inventory Type |
+| INVID | ASCII | Inventory ID |
+
 #### **S19F8 - Inventory Remove Response** {#s19f8---inventory-remove-response}
 ```
 S19F8->
@@ -8841,11 +8983,24 @@ S19F8->
 }
 ```
 
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| INVID | ASCII | Inventory ID |
+| ACKC19 | U1 | Acknowledge Code |
+
 #### **S19F9 - Inventory Status Request** {#s19f9---inventory-status-request}
 ```
 <-S19F9
 INVID
 ```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| INVID | ASCII | Inventory ID |
 
 #### **S19F10 - Inventory Status Response** {#s19f10---inventory-status-response}
 ```
@@ -8858,6 +9013,15 @@ S19F10->
 }
 ```
 
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| INVID | ASCII | Inventory ID |
+| INVSTATUS | U1 | Inventory Status |
+| LOCATION | ASCII | Location |
+| INVDATA | Any | Inventory Data |
+
 #### **S19F11 - Inventory Move Request** {#s19f11---inventory-move-request}
 ```
 <-S19F11
@@ -8868,6 +9032,14 @@ S19F10->
 }
 ```
 
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| INVID | ASCII | Inventory ID |
+| SRCLOCATION | ASCII | Source Location |
+| DESTLOCATION | ASCII | Destination Location |
+
 #### **S19F12 - Inventory Move Response** {#s19f12---inventory-move-response}
 ```
 S19F12->
@@ -8877,6 +9049,13 @@ S19F12->
 }
 ```
 
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| INVID | ASCII | Inventory ID |
+| ACKC19 | U1 | Acknowledge Code |
+
 #### **S19F13 - Inventory Search Request** {#s19f13---inventory-search-request}
 ```
 <-S19F13
@@ -8884,6 +9063,12 @@ S19F12->
   SEARCHCRITERIA
 }
 ```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| SEARCHCRITERIA | ASCII | Search Criteria |
 
 #### **S19F14 - Inventory Search Response** {#s19f14---inventory-search-response}
 ```
@@ -8897,6 +9082,14 @@ S19F14->
 }
 ```
 
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| INVID | ASCII | Inventory ID |
+| LOCATION | ASCII | Location |
+| INVDATA | Any | Inventory Data |
+
 #### **S19F15 - Inventory Lock Request** {#s19f15---inventory-lock-request}
 ```
 <-S19F15
@@ -8905,6 +9098,13 @@ S19F14->
   LOCKTYPE
 }
 ```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| INVID | ASCII | Inventory ID |
+| LOCKTYPE | U1 | Lock Type |
 
 #### **S19F16 - Inventory Lock Response** {#s19f16---inventory-lock-response}
 ```
@@ -8915,6 +9115,13 @@ S19F16->
 }
 ```
 
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| INVID | ASCII | Inventory ID |
+| LOCKSTATUS | U1 | Lock Status |
+
 #### **S19F17 - Inventory History Request** {#s19f17---inventory-history-request}
 ```
 <-S19F17
@@ -8924,6 +9131,14 @@ S19F16->
   ENDTIME
 }
 ```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| INVID | ASCII | Inventory ID |
+| STARTTIME | ASCII | Start Time |
+| ENDTIME | ASCII | End Time |
 
 #### **S19F18 - Inventory History Response** {#s19f18---inventory-history-response}
 ```
@@ -8938,6 +9153,15 @@ S19F18->
 }
 ```
 
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| INVID | ASCII | Inventory ID |
+| TIMESTAMP | ASCII | Timestamp |
+| ACTION | ASCII | Action |
+| DETAILS | ASCII | Details |
+
 #### **S19F19 - Inventory Audit Request** {#s19f19---inventory-audit-request}
 ```
 <-S19F19
@@ -8947,6 +9171,13 @@ S19F18->
 }
 ```
 
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| AUDITTYPE | U1 | Audit Type |
+| AUDITPARAMS | ASCII | Audit Parameters |
+
 #### **S19F20 - Inventory Audit Response** {#s19f20---inventory-audit-response}
 ```
 S19F20->
@@ -8955,6 +9186,13 @@ S19F20->
   AUDITRESULTS
 }
 ```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| AUDITSTATUS | U1 | Audit Status |
+| AUDITRESULTS | ASCII | Audit Results |
 
  
 
@@ -9168,7 +9406,7 @@ DRRACK
   OBJTYPE
   OPETYPE
   OPEID
-{L[n]
+  {L[n]
     {L[10]
       TIMESTAMP
       OPEID
@@ -9240,6 +9478,22 @@ S20F18->
 }
 ```
 
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TIMESTAMP | ASCII | Timestamp |
+| OPEID | ASCII | Operation ID |
+| ASSGNID | ASCII | Assignment ID |
+| COPYID | ASCII | Copy ID |
+| REVID | ASCII | Revision ID |
+| RecID | ASCII | Recipe ID |
+| VERID | ASCII | Version ID |
+| TYPEID | ASCII | Type ID |
+| EQID | ASCII | Equipment ID |
+| RCPBODYA | ASCII | Recipe body data |
+| RRACK_S20 | U1 | Read recipe acknowledge code |
+
 
 #### **S20F19 - QueryRecipeXIDList Event Send** {#s20f19---queryrecipexidlist-event-send}
 ```
@@ -9251,6 +9505,15 @@ S20F19->
   OPEID
 }
 ```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| OBJID | ASCII | Object ID |
+| OBJTYPE | ASCII | Object type |
+| OPETYPE | ASCII | Operation type |
+| OPEID | ASCII | Operation ID |
 
 
 #### **S20F20 - QueryRecipeXIDList Event Acknowledge** {#s20f20---queryrecipexidlist-event-acknowledge}
@@ -9274,6 +9537,21 @@ S20F19->
   QRXLEACK
 }
 ```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| OPEID | ASCII | Operation ID |
+| TIMESTAMP | ASCII | Timestamp |
+| ASSGNID | ASCII | Assignment ID |
+| COPYID | ASCII | Copy ID |
+| REVID | ASCII | Revision ID |
+| RecID | ASCII | Recipe ID |
+| VERID | ASCII | Version ID |
+| TYPEID | ASCII | Type ID |
+| EQID | ASCII | Equipment ID |
+| QRXLEACK | U1 | Query recipe XID list event acknowledge |
 
 
 #### **S20F21 - QueryRecipe Event Send** {#s20f21---queryrecipe-event-send}
@@ -9300,12 +9578,35 @@ S20F21->
 }
 ```
 
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| OBJID | ASCII | Object ID |
+| OBJTYPE | ASCII | Object type |
+| OPETYPE | ASCII | Operation type |
+| OPEID | ASCII | Operation ID |
+| TIMESTAMP | ASCII | Timestamp |
+| ASSGNID | ASCII | Assignment ID |
+| COPYID | ASCII | Copy ID |
+| REVID | ASCII | Revision ID |
+| RecID | ASCII | Recipe ID |
+| VERID | ASCII | Version ID |
+| TYPEID | ASCII | Type ID |
+| EQID | ASCII | Equipment ID |
+
 
 #### **S20F22 - QueryRecipe Event Acknowledge** {#s20f22---queryrecipe-event-acknowledge}
 ```
 <-S20F22
 QREACK
 ```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| QREACK | U1 | Query recipe event acknowledge |
 
 
 #### **S20F23 - PostRecipe Event Send** {#s20f23---postrecipe-event-send}
@@ -9316,22 +9617,20 @@ S20F23->
   OBJTYPE
   OPETYPE
   OPEID
-  {L[n]
-    {L[10]
-      TIMESTAMP
-      OPEID
-      ASSGNID
-      COPYID
-      REVID
-      RecID
-      VERID
-      TYPEID
-      EQID
-      RCPBODYA
-    }
-  }
+  PRJOBID
 }
 ```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| OBJID | ASCII | Object ID |
+| OBJTYPE | ASCII | Object type |
+| OPETYPE | ASCII | Operation type |
+| OPEID | ASCII | Operation ID |
+| PRJOBID | ASCII | Process job ID |
+   
 
 
 #### **S20F24 - PostRecipe Event Acknowledge** {#s20f24---postrecipe-event-acknowledge}
@@ -9340,6 +9639,12 @@ S20F23->
 PREACK
 ```
 
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| PREACK | U1 | Post recipe event acknowledge |
+
 
 #### **S20F25 - SetPRC Attributes Request** {#s20f25---setprc-attributes-request}
 ```
@@ -9347,7 +9652,7 @@ PREACK
 {L[5]
   OBJID
   OBJTYPE
-{L[n]
+  {L[n]
     MAXNUMBER
   }
   MAXTIME
@@ -9355,12 +9660,28 @@ PREACK
 }
 ```
 
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| OBJID | ASCII | Object ID |
+| OBJTYPE | ASCII | Object type |
+| MAXNUMBER | U4 | Maximum number |
+| MAXTIME | U4 | Maximum time |
+| PRCPREEXECHK | U1 | Recipe pre-execution check |
+
 
 #### **S20F26 - SetPRC Attributes Acknowledge** {#s20f26---setprc-attributes-acknowledge}
 ```
 S20F26->
 SPAACK
 ```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| SPAACK | U1 | Set PRC attributes acknowledge |
 
 
 #### **S20F27 - PreSpecifyRecipe Request** {#s20f27---prespecifyrecipe-request}
@@ -9374,7 +9695,7 @@ SPAACK
   PRJOBID
   {L[n]
     {L[9]
-  TIMESTAMP
+      TIMESTAMP
       OPEID
       ASSGNID
       COPYID
@@ -9388,15 +9709,41 @@ SPAACK
 }
 ```
 
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| OBJID | ASCII | Object ID |
+| OBJTYPE | ASCII | Object type |
+| OPETYPE | ASCII | Operation type |
+| OPEID | ASCII | Operation ID |
+| PRJOBID | ASCII | Process job ID |
+| TIMESTAMP | ASCII | Timestamp |
+| ASSGNID | ASCII | Assignment ID |
+| COPYID | ASCII | Copy ID |
+| REVID | ASCII | Revision ID |
+| RecID | ASCII | Recipe ID |
+| VERID | ASCII | Version ID |
+| TYPEID | ASCII | Type ID |
+| EQID | ASCII | Equipment ID | 
+ 
 
 #### **S20F28 - PreSpecifyRecipe Acknowledge** {#s20f28---prespecifyrecipe-acknowledge}
 ```
+S20F28->
 PSRACK
 ```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| PSRACK | U1 | PreSpecifyRecipe acknowledge |
 
 
 #### **S20F29 - QueryPJRecipeXIDList Event Send** {#s20f29---querypjrecipexidlist-event-send}
 ```
+S20F29->
 {L[5]
   OBJID
   OBJTYPE
@@ -9406,9 +9753,20 @@ PSRACK
 }
 ```
 
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| OBJID | ASCII | Object ID |
+| OBJTYPE | ASCII | Object type |
+| OPETYPE | ASCII | Operation type |
+| OPEID | ASCII | Operation ID |
+| PRJOBID | ASCII | Process job ID |
+
 
 #### **S20F30 - QueryPJRecipeXIDList Event Acknowledge** {#s20f30---querypjrecipexidlist-event-acknowledge}
 ```
+<-S20F30
 {L[2]
   {L[n]
     {L[9]
@@ -9427,9 +9785,25 @@ PSRACK
 }
 ```
 
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TIMESTAMP | ASCII | Timestamp |
+| OPEID | ASCII | Operation ID |
+| ASSGNID | ASCII | Assignment ID |
+| COPYID | ASCII | Copy ID |
+| REVID | ASCII | Revision ID |
+| RecID | ASCII | Recipe ID |
+| VERID | ASCII | Version ID |
+| TYPEID | ASCII | Type ID |
+| EQID | ASCII | Equipment ID |
+| QPRKEACK | U1 | Query PJ recipe XID list event acknowledge |
+
 
 #### **S20F31 - Pre-Exe Check Event Send** {#s20f31---pre-exe-check-event-send}
 ```
+S20F31->
 {L[6]
   OBJID
   OBJTYPE
@@ -9440,9 +9814,21 @@ PSRACK
 }
 ```
 
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| OBJID | ASCII | Object ID |
+| OBJTYPE | ASCII | Object type |
+| OPETYPE | ASCII | Operation type |
+| OPEID | ASCII | Operation ID |
+| PRJOBID | ASCII | Process job ID |
+| CHKINFO | ASCII | Check information |
+
 
 #### **S20F32 - Pre-Exe Check Event Acknowledge** {#s20f32---pre-exe-check-event-acknowledge}
 ```
+<-S20F32
 {L[3]
   PECRSLT
   {L[n]
@@ -9463,9 +9849,27 @@ PSRACK
 }
 ```
 
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| PECRSLT | U1 | Pre-execution check result |
+| TIMESTAMP | ASCII | Timestamp |
+| OPEID | ASCII | Operation ID |
+| ASSGNID | ASCII | Assignment ID |
+| COPYID | ASCII | Copy ID |
+| REVID | ASCII | Revision ID |
+| RecID | ASCII | Recipe ID |
+| VERID | ASCII | Version ID |
+| TYPEID | ASCII | Type ID |
+| EQID | ASCII | Equipment ID |
+| RCPBODYA | ASCII | Recipe body data |
+| PECEACK | U1 | Pre-execution check event acknowledge |
+
 
 #### **S20F33 - PreSpecifyRecipe Event Send** {#s20f33---prespecifyrecipe-event-send}
 ```
+S20F33->
 {L[5]
   OBJID
   OBJTYPE
@@ -9475,11 +9879,28 @@ PSRACK
 }
 ```
 
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| OBJID | ASCII | Object ID |
+| OBJTYPE | ASCII | Object type |
+| OPETYPE | ASCII | Operation type |
+| OPEID | ASCII | Operation ID |
+| PRJOBID | ASCII | Process job ID |
+
 
 #### **S20F34 - PreSpecifyRecipe Event Acknowledge** {#s20f34---prespecifyrecipe-event-acknowledge}
 ```
+<-S20F34
 PSREACK
 ```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| PSREACK | U1 | PreSpecifyRecipe event acknowledge |
 
 
 
@@ -9490,6 +9911,24 @@ PSREACK
 |---------|-----------|-------------|
 | [S21F1](#s21f1---material-transfer-plan)   | → Equipment | Material Transfer Plan |
 | [S21F2](#s21f2---material-transfer-plan-response)   | ← Equipment | Material Transfer Plan Response |
+| [S21F3](#s21f3---item-send)   | → Equipment | Item Send |
+| [S21F4](#s21f4---item-send-acknowledge)   | ← Equipment | Item Send Acknowledge |
+| [S21F5](#s21f5---item-request)   | → Equipment | Item Request |
+| [S21F6](#s21f6---item-data)   | ← Equipment | Item Data |
+| [S21F7](#s21f7---item-type-list-request)   | → Equipment | Item Type List Request |
+| [S21F8](#s21f8---item-type-list-results)   | ← Equipment | Item Type List Results |
+| [S21F9](#s21f9---supported-item-type-list-request)   | → Equipment | Supported Item Type List Request |
+| [S21F10](#s21f10---supported-item-type-list-result)   | ← Equipment | Supported Item Type List Result |
+| [S21F11](#s21f11---item-delete)   | → Equipment | Item Delete |
+| [S21F12](#s21f12---item-delete-acknowledge)   | ← Equipment | Item Delete Acknowledge |
+| [S21F13](#s21f13---request-permission-to-send-item)   | → Equipment | Request Permission To Send Item |
+| [S21F14](#s21f14---grant-permission-to-send-item)   | ← Equipment | Grant Permission To Send Item |
+| [S21F15](#s21f15---item-request)   | → Equipment | Item Request |
+| [S21F16](#s21f16---item-request-grant)   | ← Equipment | Item Request Grant |
+| [S21F17](#s21f17---send-item-part)   | → Equipment | Send Item Part |
+| [S21F18](#s21f18---send-item-part-acknowledge)   | ← Equipment | Send Item Part Acknowledge |
+| [S21F19](#s21f19---item-type-feature-support)   | → Equipment | Item Type Feature Support |
+| [S21F20](#s21f20---item-type-feature-support-results)   | ← Equipment | Item Type Feature Support Results |
 
 #### **S21F1 - Material Transfer Plan** {#s21f1---material-transfer-plan}
 ```
@@ -9497,10 +9936,20 @@ PSREACK
 {L[4]
   ITEMTYPE
   ITEMID
-  ITEMLENGTH
-  ITEMVERSION
+  TRANSFERID
+  TRANSFERINFO
 }
 ```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ITEMTYPE | ASCII | Item type |
+| ITEMID | ASCII | Item ID |
+| TRANSFERID | ASCII | Transfer ID |
+| TRANSFERINFO | ASCII | Transfer information |
+  
 
 #### **S21F2 - Material Transfer Plan Response** {#s21f2---material-transfer-plan-response}
 ```
@@ -9511,15 +9960,15 @@ S21F2->
 }
 ```
 
+**Parameters:**
 
-#### **S21F2 - Item Load Grant** {#s21f2---item-load-grant}
-```
-S21F2->
-{L[2]
-  ITEMACK
-  ITEMERROR
-}
-```
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ITEMACK | U1 | Item acknowledge |
+| ITEMERROR | ASCII | Item error |
+
+
+
 
 
 #### **S21F3 - Item Send** {#s21f3---item-send}
@@ -9536,6 +9985,16 @@ S21F2->
 }
 ```
 
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ITEMTYPE | ASCII | Item type |
+| ITEMID | ASCII | Item ID |
+| ITEMLENGTH | U4 | Item length |
+| ITEMVERSION | ASCII | Item version |
+| ITEMPART | Any | Item part |
+
 
 #### **S21F4 - Item Send Acknowledge** {#s21f4---item-send-acknowledge}
 ```
@@ -9546,6 +10005,13 @@ S21F4->
 }
 ```
 
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ITEMACK | U1 | Item acknowledge |
+| ITEMERROR | ASCII | Item error |
+
 
 #### **S21F5 - Item Request** {#s21f5---item-request}
 ```
@@ -9555,6 +10021,13 @@ S21F4->
   ITEMID
 }
 ```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ITEMTYPE | ASCII | Item type |
+| ITEMID | ASCII | Item ID |
 
 
 #### **S21F6 - Item Data** {#s21f6---item-data}
@@ -9573,12 +10046,30 @@ S21F6->
 }
 ```
 
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ITEMACK | U1 | Item acknowledge |
+| ITEMERROR | ASCII | Item error |
+| ITEMTYPE | ASCII | Item type |
+| ITEMID | ASCII | Item ID |
+| ITEMLENGTH | U4 | Item length |
+| ITEMVERSION | ASCII | Item version |
+| ITEMPART | Any | Item part |
+
 
 #### **S21F7 - Item Type List Request** {#s21f7---item-type-list-request}
 ```
 <-S21F7
 ITEMTYPE
 ```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ITEMTYPE | ASCII | Item type |
 
 
 #### **S21F8 - Item Type List Results** {#s21f8---item-type-list-results}
@@ -9588,7 +10079,7 @@ S21F8->
   ITEMACK
   ITEMERROR
   ITEMTYPE
-{L[n]
+  {L[n]
     {L[3]
       ITEMID
       ITEMLENGTH
@@ -9598,12 +10089,29 @@ S21F8->
 }
 ```
 
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ITEMACK | U1 | Item acknowledge |
+| ITEMERROR | ASCII | Item error |
+| ITEMTYPE | ASCII | Item type |
+| ITEMID | ASCII | Item ID |
+| ITEMLENGTH | U4 | Item length |
+| ITEMVERSION | ASCII | Item version |
+
 
 #### **S21F9 - Supported Item Type List Request** {#s21f9---supported-item-type-list-request}
 ```
 <-S21F9
 header only
 ```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| Empty | - | Header only message |
 
 
 #### **S21F10 - Supported Item Type List Result** {#s21f10---supported-item-type-list-result}
@@ -9618,6 +10126,14 @@ S21F10->
 }
 ```
 
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ITEMACK | U1 | Item acknowledge |
+| ITEMERROR | ASCII | Item error |
+| ITEMTYPE | ASCII | Item type |
+
 
 #### **S21F11 - Item Delete** {#s21f11---item-delete}
 ```
@@ -9629,6 +10145,13 @@ S21F10->
   }
 }
 ```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ITEMTYPE | ASCII | Item type |
+| ITEMID | ASCII | Item ID |
 
 
 #### **S21F12 - Item Delete Acknowledge** {#s21f12---item-delete-acknowledge}
@@ -9647,6 +10170,15 @@ S21F12->
 }
 ```
 
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ITEMACK | U1 | Item acknowledge |
+| ITEMTYPE | ASCII | Item type |
+| ITEMID | ASCII | Item ID |
+| ITEMERROR | ASCII | Item error |
+
 
 #### **S21F13 - Request Permission To Send Item** {#s21f13---request-permission-to-send-item}
 ```
@@ -9660,6 +10192,16 @@ S21F12->
 }
 ```
 
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ITEMTYPE | ASCII | Item type |
+| ITEMID | ASCII | Item ID |
+| ITEMLENGTH | U4 | Item length |
+| ITEMVERSION | ASCII | Item version |
+| ITEMPARTCOUNT | U4 | Item part count |
+
 
 #### **S21F14 - Grant Permission To Send Item** {#s21f14---grant-permission-to-send-item}
 ```
@@ -9670,6 +10212,13 @@ S21F14->
 }
 ```
 
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ITEMACK | U1 | Item acknowledge |
+| ITEMERROR | ASCII | Item error |
+
 
 #### **S21F15 - Item Request** {#s21f15---item-request}
 ```
@@ -9679,6 +10228,13 @@ S21F14->
   ITEMID
 }
 ```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ITEMTYPE | ASCII | Item type |
+| ITEMID | ASCII | Item ID |
 
 
 #### **S21F16 - Item Request Grant** {#s21f16---item-request-grant}
@@ -9694,6 +10250,18 @@ S21F16->
   ITEMPARTCOUNT
 }
 ```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ITEMACK | U1 | Item acknowledge |
+| ITEMERROR | ASCII | Item error |
+| ITEMTYPE | ASCII | Item type |
+| ITEMID | ASCII | Item ID |
+| ITEMLENGTH | U4 | Item length |
+| ITEMVERSION | ASCII | Item version |
+| ITEMPARTCOUNT | U4 | Item part count |
 
 
 #### **S21F17 - Send Item Part** {#s21f17---send-item-part}
@@ -9711,6 +10279,19 @@ S21F16->
 }
 ```
 
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ITEMTYPE | ASCII | Item type |
+| ITEMID | ASCII | Item ID |
+| ITEMLENGTH | U4 | Item length |
+| ITEMVERSION | ASCII | Item version |
+| ITEMINDEX | U4 | Item index |
+| ITEMPARTCOUNT | U4 | Item part count |
+| ITEMPARTLENGTH | U4 | Item part length |
+| ITEMPART | Any | Item part |
+
 
 #### **S21F18 - Send Item Part Acknowledge** {#s21f18---send-item-part-acknowledge}
 ```
@@ -9721,6 +10302,13 @@ S21F18->
 }
 ```
 
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ITEMACK | U1 | Item acknowledge |
+| ITEMERROR | ASCII | Item error |
+
 
 #### **S21F19 - Item Type Feature Support** {#s21f19---item-type-feature-support}
 ```
@@ -9729,6 +10317,12 @@ S21F18->
   ITEMTYPE
 }
 ```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ITEMTYPE | ASCII | Item type |
 
 
 #### **S21F20 - Item Type Feature Support Results** {#s21f20---item-type-feature-support-results}
@@ -9743,4 +10337,13 @@ S21F20->
   }
 }
 ```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ITEMACK | U1 | Item acknowledge |
+| ITEMERROR | ASCII | Item error |
+| ITEMTYPE | ASCII | Item type |
+| ITEMTYPESUPPORT | U1 | Item type support |
 
