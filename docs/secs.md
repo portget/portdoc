@@ -2,7 +2,8 @@
 
 ## Table of Contents
 1. [Overview](#overview) 
-2. [Configure](#Configure)
+2. [Configure](#configure)
+3. [Sample Scenario](#sample-scenario-table)
 3. [Quick Link](#quick-link) 
 4. [Script Definitions](#script-stream-definitions)
 
@@ -10,7 +11,9 @@
 
 Port Application provides simulation capabilities using scripts(*.sna). Users can utilize this to proceed with development based on testing before service deployment. 
 
-## Configure (../app/gem/.gem)
+## Configure 
+
+(../app/gem/.gem)
 
 ```
 Mode = active
@@ -32,6 +35,143 @@ MaxRetriesCount = 10
 RetryDelaySec = 3
 ConnectTimeout = 10
 ```
+
+**Download Sample:**
+[Download Sample Project](file/secs.zip)
+
+## Sample Scenario Table
+
+The following table outlines the SECS/GEM communication scenario for material handling, event reporting, and process execution in a semiconductor manufacturing environment.
+
+| Message | Direction | Description | Details |
+|---------|-----------|-------------|---------|
+| S1F13 | H → E | Establish Communication Request | Initiates communication between host and equipment. |
+| S1F14 | E → H  | Acknowledge | Confirms successful communication establishment. |
+| S6F11 | E → H  | Event Report Send | Reports OnlineRemote event (CEID = n). |
+| S6F12 | H → E | Acknowledge | Acknowledges receipt of S6F11 event report. |
+| S2F37 | H → E | Disable Event | Requests disabling of specific event reporting. |
+| S2F38 | E → H  | Acknowledge | Confirms event disabling. |
+| S2F33 | H → E | Delete Reports All | Requests deletion of all defined reports. |
+| S2F34 | E → H  | Acknowledge | Confirms deletion of reports. |
+| S2F33 | H → E | Define Report | Defines new report structure for event reporting. |
+| S2F34 | E → H  | Acknowledge | Confirms report definition. |
+| S2F35 | H → E | Link Event Report | Links events to defined reports. |
+| S2F36 | E → H  | Acknowledge | Confirms event-report linkage. |
+| S2F37 | H → E | Enable Event | Requests enabling of specific event reporting. |
+| S2F38 | E → H  | Acknowledge | Confirms event enabling. |
+| S6F11 | E → H  | Event Report Send | Reports LP_In_Service event (CEID = n). |
+| S6F12 | H → E | Acknowledge | Acknowledges LP_In_Service event. |
+| S3F27 | E → H  | Port Access Mode - Auto | Sets load port to automatic access mode. |
+| S3F28 | H → E | Acknowledge | Confirms port access mode change. |
+| S6F11 | E → H  | Event Report Send | Reports LP_AccessModeChanged event (CEID = n). |
+| S6F12 | H → E | Acknowledge | Acknowledges LP_AccessModeChanged event. |
+| S6F11 | E → H  | Event Report Send | Reports LP_ReadyToLoad event (CEID = n). |
+| S6F12 | H → E | Acknowledge | Acknowledges LP_ReadyToLoad event. |
+| S6F11 | E → H  | Event Report Send | Reports LP_TRReady event (CEID = n). |
+| S6F12 | H → E | Acknowledge | Acknowledges LP_TRReady event. |
+| - | - | Load Port Transfer State | Load port is in Ready To Load state. |
+| - | - | Operator Action | Operator delivers carrier and loads it onto the load port. |
+| S6F11 | E → H  | Event Report Send | Reports Load Complete event (CEID = n). |
+| S6F12 | H → E | Acknowledge | Acknowledges Load Complete event. |
+| S6F11 | E → H  | Event Report Send | Reports LP_TransferBlocked event (CEID = n). |
+| S6F12 | H → E | Acknowledge | Acknowledges LP_TransferBlocked event. |
+| S6F11 | E → H  | Event Report Send | Reports LP_CarrierClamped event (CEID = n). |
+| S6F12 | H → E | Acknowledge | Acknowledges LP_CarrierClamped event. |
+| S6F11 | E → H  | Event Report Send | Reports LP_CarrierID Waiting for Host event (CEID = n). |
+| S6F12 | H → E | Acknowledge | Acknowledges LP_CarrierID Waiting event. |
+| S3F17 | H → E | PROCEEDWITHCARRIER Event | Host verifies the carrier ID. |
+| S3F18 | E → H  | Acknowledge | Confirms carrier ID verification. |
+| S6F11 | E → H  | Event Report Send | Reports LP_CarrierID_VERIFICATION_OK event (CEID = n). |
+| S6F12 | H → E | Acknowledge | Acknowledges LP_CarrierID_VERIFICATION_OK event. |
+| S6F11 | E → H  | Event Report Send | Reports LP_CarrierDocked event (CEID = n). |
+| S6F12 | H → E | Acknowledge | Acknowledges LP_CarrierDocked event. |
+| S6F11 | E → H  | Event Report Send | Reports LP_DoorOpened event (CEID = n). |
+| S6F12 | H → E | Acknowledge | Acknowledges LP_DoorOpened event. |
+| S6F11 | E → H  | Event Report Send | Reports LP_SlotMap Waiting for Host event (CEID = n). |
+| S6F12 | H → E | Acknowledge | Acknowledges LP_SlotMap Waiting event. |
+| S3F17 | H → E | PROCEEDWITHCARRIER Event | Host verifies the slot map. |
+| S3F18 | E → H  | Acknowledge | Confirms slot map verification. |
+| S6F11 | E → H  | Event Report Send | Reports LP_SlotMap_VERIFICATION_OK event (CEID = n). |
+| S16F15 | H → E | ProcessJob Create | Creates process job with recipe, lot ID, and wafer details. |
+| S16F16 | E → H  | Acknowledge | Confirms process job creation. |
+| S6F11 | E → H  | Event Report Send | Reports PrJobStateChanged event (CEID = n, PrJobStatus = Pooled). |
+| S6F12 | H → E | Acknowledge | Acknowledges PrJobStateChanged event. |
+| S14F9 | H → E | ControlJob Start | Initiates control job start. |
+| S14F10 | E → H  | Acknowledge | Confirms control job start. |
+| S6F11 | E → H  | Event Report Send | Reports ControlJobStateChanged event (CEID = n, CrJobStatus = Queued). |
+| S6F12 | H → E | Acknowledge | Acknowledges ControlJobStateChanged event. |
+| S6F11 | E → H  | Event Report Send | Reports ControlJobStateChanged event (CEID = n, CrJobStatus = Selected). |
+| S6F12 | H → E | Acknowledge | Acknowledges ControlJobStateChanged event. |
+| S6F11 | E → H  | Event Report Send | Reports ControlJobStateChanged event (CEID = n, CrJobStatus = Waiting). |
+| S6F12 | H → E | Acknowledge | Acknowledges ControlJobStateChanged event. |
+| S6F11 | E → H  | Event Report Send | Reports ControlJobStateChanged event (CEID = n, CrJobStatus = Executing). |
+| S6F12 | H → E | Acknowledge | Acknowledges ControlJobStateChanged event. |
+| S6F11 | E → H  | Event Report Send | Reports PrJobStateChanged event (CEID = n, PrJobStatus = Setting Up). |
+| S6F12 | H → E | Acknowledge | Acknowledges PrJobStateChanged event. |
+| S6F11 | E → H  | Event Report Send | Reports PrJobStateChanged event (CEID = n, PrJobStatus = Waiting). |
+| S6F12 | H → E | Acknowledge | Acknowledges PrJobStateChanged event. |
+| S6F11 | E → H  | Event Report Send | Reports PrJobStateChanged event (CEID = n, PrJobStatus = Processing). |
+| S6F12 | H → E | Acknowledge | Acknowledges PrJobStateChanged event. |
+| S6F11 | E → H  | Event Report Send | Reports WaferProcessStart event (CEID = n). |
+| S6F12 | H → E | Acknowledge | Acknowledges WaferProcessStart event. |
+| S6F11 | E → H  | Event Report Send | Reports WAFER CASSETTE TO ROBOT UPPER ARM event (CEID = n). |
+| S6F12 | H → E | Acknowledge | Acknowledges WAFER CASSETTE TO ROBOT UPPER ARM event. |
+| S6F11 | E → H  | Event Report Send | Reports WAFER ROBOT UPPER ARM TO ALIGN event (CEID = n). |
+| S6F12 | H → E | Acknowledge | Acknowledges WAFER ROBOT UPPER ARM TO ALIGN event. |
+| S6F11 | E → H  | Event Report Send | Reports Pre Align Start event (CEID = n). |
+| S6F12 | H → E | Acknowledge | Acknowledges Pre Align Start event. |
+| S6F11 | E → H  | Event Report Send | Reports Pre Align End event (CEID = n). |
+| S6F12 | H → E | Acknowledge | Acknowledges Pre Align End event. |
+| S6F11 | E → H  | Event Report Send | Reports WAFER ALIGN TO ROBOT UPPER ARM event (CEID = n). |
+| S6F12 | H → E | Acknowledge | Acknowledges WAFER ALIGN TO ROBOT UPPER ARM event. |
+| S6F11 | E → H  | Event Report Send | Reports WAFER ROBOT UPPER ARM TO stage(A) event (CEID = n). |
+| S6F12 | H → E | Acknowledge | Acknowledges WAFER ROBOT UPPER ARM TO stage(A) event. |
+| S6F11 | E → H  | Event Report Send | Reports Statge(A) Processing Start event (CEID = n). |
+| S6F12 | H → E | Acknowledge | Acknowledges Statge(A) Processing Start event. |
+| S6F11 | E → H  | Event Report Send | Reports Statge(A) Processing End event (CEID = n). |
+| S6F12 | H → E | Acknowledge | Acknowledges Statge(A) Processing End event. |
+| S6F11 | E → H  | Event Report Send | Reports WAFER stage(A) TO ROBOT UPPER ARM event (CEID = n). |
+| S6F12 | H → E | Acknowledge | Acknowledges WAFER stage(A) TO ROBOT UPPER ARM event. |
+| S6F11 | E → H  | Event Report Send | Reports WAFER ROBOT UPPER ARM TO MOIRE event (CEID = n). |
+| S6F12 | H → E | Acknowledge | Acknowledges WAFER ROBOT UPPER ARM TO MOIRE event. |
+| S6F11 | E → H  | Event Report Send | Reports stage(B) Processing Start event (CEID = n). |
+| S6F12 | H → E | Acknowledge | Acknowledges stage(B) Processing Start event. |
+| S6F11 | E → H  | Event Report Send | Reports stage(B) Processing End event (CEID = n). |
+| S6F12 | H → E | Acknowledge | Acknowledges stage(B) Processing End event. |
+| S6F11 | E → H  | Event Report Send | Reports WAFER MOIRE TO ROBOT UPPER ARM event (CEID = n). |
+| S6F12 | H → E | Acknowledge | Acknowledges WAFER MOIRE TO ROBOT UPPER ARM event. |
+| S6F11 | E → H  | Event Report Send | Reports WAFER ROBOT UPPER ARM TO CASSETTE event (CEID = n). |
+| S6F12 | H → E | Acknowledge | Acknowledges WAFER ROBOT UPPER ARM TO CASSETTE event. |
+| S6F11 | E → H  | Event Report Send | Reports WaferProcessEnd event (CEID = n). |
+| S6F12 | H → E | Acknowledge | Acknowledges WaferProcessEnd event. |
+| - | - | Data Upload | Wafer Dcolldata is uploaded to the host. |
+| S6F11 | E → H | Event Report Send | Reports PrJobStateChanged event (CEID = n, PrJobStatus = Completed). |
+| S6F12 | H → E | Acknowledge | Acknowledges PrJobStateChanged event. |
+| S6F11 | E → H | Event Report Send | Reports ControlJobStateChanged event (CEID = n, CrJobStatus = Completed). |
+| S6F12 | H → E | Acknowledge | Acknowledges ControlJobStateChanged event. |
+| S6F11 | E → H | Event Report Send | Reports LP_DoorClosed event (CEID = n). |
+| S6F12 | H → E | Acknowledge | Acknowledges LP_DoorClosed event. |
+| S6F11 | E → H | Event Report Send | Reports LP_CarrierUndocked event (CEID = n). |
+| S6F12 | H → E | Acknowledge | Acknowledges LP_CarrierUndocked event. |
+| S6F11 | E → H | Event Report Send | Reports LP_CarrierUnclamped event (CEID = n). |
+| S6F12 | H → E | Acknowledge | Acknowledges LP_CarrierUnclamped event. |
+| S6F11 | E → H | Event Report Send | Reports LP_ReadyToUnload event (CEID = n). |
+| S6F12 | H → E | Acknowledge | Acknowledges LP_ReadyToUnload event. |
+| S6F11 | E → H | Event Report Send | Reports LP_TRReady event (CEID = n). |
+| S6F12 | H → E | Acknowledge | Acknowledges LP_TRReady event. |
+| S6F11 | E → H | Event Report Send | Reports LP_TransferBlocked event (CEID = n). |
+| S6F12 | H → E | Acknowledge | Acknowledges LP_TransferBlocked event. |
+| S6F11 | E → H | Event Report Send | Reports LP_UnloadComplete event (CEID = n). |
+| S6F12 | H → E | Acknowledge | Acknowledges LP_UnloadComplete event. |
+| S6F11 | E → H | Event Report Send | Reports ControlJobStateChanged event (CEID = n, CrJobStatus = Deleted). |
+| S6F12 | H → E | Acknowledge | Acknowledges ControlJobStateChanged event. |
+| S6F11 | E → H | Event Report Send | Reports LP_ReadyToLoad event (CEID = n). |
+| S6F12 | H → E | Acknowledge | Acknowledges LP_ReadyToLoad event. |
+| S6F11 | E → H | Event Report Send | Reports LP_TRReady event (CEID = n). |
+| S6F12 | H → E | Acknowledge | Acknowledges LP_TRReady event. |
+
+
+
 
 ## **Quick link** {#quick-link}
 | Stream | Function |
@@ -423,7 +563,7 @@ Header only
 
 #### **S1F16 - OFF-LINE Acknowledge** {#s1f16---offline-acknowledge}
 
-**Direction**: Equipment → Host  
+**Direction**: E → H  
 **Description**: Acknowledge offline request
 
 ```
@@ -623,79 +763,77 @@ S1F24->
 
 | Message | Direction | Description |
 |---------|-----------|-------------|
-| [S2F1](#s2f1---equipment-status-request)    | → Equipment | Equipment Status Request |
-| [S2F2](#s2f2---equipment-status-response)    | ← Equipment | Equipment Status Response |
-| [S2F3](#s2f3---status-variable-value-request)    | → Equipment | Status Variable Value Request |
-| [S2F4](#s2f4---status-variable-value-response)    | ← Equipment | Status Variable Value Response |
-| [S2F5](#s2f5---send-equipment-status)    | ← Equipment | Send Equipment Status |
-| [S2F6](#s2f6---send-equipment-status-acknowledge)    | → Equipment | Send Equipment Status Acknowledge |
-| [S2F7](#s2f7---load-port-status-request)    | → Equipment | Load Port Status Request |
-| [S2F8](#s2f8---load-port-status-response)    | ← Equipment | Load Port Status Response |
-| [S2F9](#s2f9---equipment-status-multi-block-inquire)    | → Equipment | Equipment Status Multi-Block Inquire |
-| [S2F10](#s2f10---equipment-status-multi-block-grant)   | ← Equipment | Equipment Status Multi-Block Grant |
-| [S2F11](#s2f11---equipment-status-multi-block)   | ← Equipment | Equipment Status Multi-Block |
-| [S2F12](#s2f12---equipment-status-multi-block-acknowledge)   | → Equipment | Equipment Status Multi-Block Acknowledge |
-| [S2F13](#s2f13---equipment-constant-request)   | → Equipment | Equipment Constant Request |
-| [S2F14](#s2f14---equipment-constant-response)   | ← Equipment | Equipment Constant Response |
-| [S2F15](#s2f15---new-equipment-constant-send)   | → Equipment | New Equipment Constant Send |
-| [S2F16](#s2f16---new-equipment-constant-acknowledge)   | ← Equipment | New Equipment Constant Acknowledge |
-| [S2F17](#s2f17---date-and-time-request)   | → Equipment | Date and Time Request |
-| [S2F18](#s2f18---date-and-time-response)   | ← Equipment | Date and Time Response |
-| [S2F19](#s2f19---recipe-body-request)   | → Equipment | Recipe Body Request |
-| [S2F20](#s2f20---recipe-body-response)   | ← Equipment | Recipe Body Response |
-| [S2F21](#s2f21---recipe-body-send)   | → Equipment | Recipe Body Send |
-| [S2F22](#s2f22---recipe-body-acknowledge)   | ← Equipment | Recipe Body Acknowledge |
-| [S2F23](#s2f23---trace-initialize-send)   | → Equipment | Trace Initialize Send |
-| [S2F24](#s2f24---trace-initialize-acknowledge)   | ← Equipment | Trace Initialize Acknowledge |
-| [S2F25](#s2f25---loopback-diagnostic-request)   | → Equipment | Loopback Diagnostic Request |
-| [S2F26](#s2f26---loopback-diagnostic-response)   | ← Equipment | Loopback Diagnostic Response |
-| [S2F27](#s2f27---initiate-processing-request)   | → Equipment | Initiate Processing Request |
-| [S2F28](#s2f28---initiate-processing-acknowledge)   | ← Equipment | Initiate Processing Acknowledge |
-| [S2F29](#s2f29---equipment-constant-namelist-request)   | → Equipment | Equipment Constant Namelist Request |
-| [S2F30](#s2f30---equipment-constant-namelist-response)   | ← Equipment | Equipment Constant Namelist Response |
-| [S2F31](#s2f31---date-and-time-set-request)   | → Equipment | Date and Time Set Request |
-| [S2F32](#s2f32---date-and-time-set-response)   | ← Equipment | Date and Time Set Response |
-| [S2F33](#s2f33---define-report)   | → Equipment | Define Report |
-| [S2F34](#s2f34---define-report-acknowledge)   | ← Equipment | Define Report Acknowledge |
-| [S2F35](#s2f35---link-event-report)   | → Equipment | Link Event Report |
-| [S2F36](#s2f36---link-event-report-acknowledge)   | ← Equipment | Link Event Report Acknowledge |
-| [S2F37](#s2f37---enabledisable-event-report)   | → Equipment | Enable/Disable Event Report |
-| [S2F38](#s2f38---enabledisable-event-report-acknowledge)   | ← Equipment | Enable/Disable Event Report Acknowledge |
-| [S2F39](#s2f39---status-variable-namelist-request)   | → Equipment | Status Variable Namelist Request |
-| [S2F40](#s2f40---status-variable-namelist-response)   | ← Equipment | Status Variable Namelist Response |
-| [S2F41](#s2f41---host-command-send)   | → Equipment | Host Command Send |
-| [S2F42](#s2f42---host-command-acknowledge)   | ← Equipment | Host Command Acknowledge |
-| [S2F43](#s2f43---reset-spooling-streams-and-functions)   | → Equipment | Reset Spooling Streams and Functions |
-| [S2F44](#s2f44---reset-spooling-acknowledge)   | ← Equipment | Reset Spooling Acknowledge |
-| [S2F45](#s2f45---define-variable-limit-attributes)   | → Equipment | Define Variable Limit Attributes |
-| [S2F46](#s2f46---define-variable-limit-attributes-acknowledge)   | ← Equipment | Define Variable Limit Attributes Acknowledge |
-| [S2F47](#s2f47---variable-limit-attribute-request)   | → Equipment | Variable Limit Attribute Request |
-| [S2F48](#s2f48---variable-limit-attribute-response)   | ← Equipment | Variable Limit Attribute Response |
-| [S2F49](#s2f49---enhanced-remote-command)   | → Equipment | Enhanced Remote Command |
-| [S2F50](#s2f50---enhanced-remote-command-acknowledge)   | ← Equipment | Enhanced Remote Command Acknowledge |
-| [S2F51](#s2f51---request-report-identifiers)   | → Equipment | Request Report Identifiers |
-| [S2F52](#s2f52---return-report-identifiers)   | ← Equipment | Return Report Identifiers |
-| [S2F53](#s2f53---request-report-definitions)   | → Equipment | Request Report Definitions |
-| [S2F54](#s2f54---return-report-definitions)   | ← Equipment | Return Report Definitions |
-| [S2F55](#s2f55---request-event-report-links)   | → Equipment | Request Event Report Links |
-| [S2F56](#s2f56---return-event-report-links)   | ← Equipment | Return Event Report Links |
-| [S2F57](#s2f57---request-enabled-events)   | → Equipment | Request Enabled Events |
-| [S2F58](#s2f58---return-enabled-events)   | ← Equipment | Return Enabled Events |
-| [S2F59](#s2f59---request-spool-streams-and-functions)   | → Equipment | Request Spool Streams and Functions |
-| [S2F60](#s2f60---return-spool-streams-and-functions)   | ← Equipment | Return Spool Streams and Functions |
-| [S2F61](#s2f61---request-trace-identifiers)   | → Equipment | Request Trace Identifiers |
-| [S2F62](#s2f62---return-trace-identifiers)   | ← Equipment | Return Trace Identifiers |
-| [S2F63](#s2f63---request-trace-definitions)   | → Equipment | Request Trace Definitions |
-| [S2F64](#s2f64---return-trace-definitions)   | ← Equipment | Return Trace Definitions |
+| [S2F1](#s2f1---service-program-load-inquire)    | ↔ Equipment | Service Program Load Inquire |
+| [S2F2](#s2f2---service-program-load-grant)    | ↔ Equipment | Service Program Load Grant |
+| [S2F3](#s2f3---service-program-send)    | ↔ Equipment | Service Program Send |
+| [S2F4](#s2f4---service-program-send-acknowledge)    | ↔ Equipment | Service Program Send Acknowledge |
+| [S2F5](#s2f5---service-program-load-request)    | ↔ Equipment | Service Program Load Request |
+| [S2F6](#s2f6---service-program-load-data)    | ↔ Equipment | Service Program Load Data |
+| [S2F7](#s2f7---service-program-run-send)    | ↔ Equipment | Service Program Run Send |
+| [S2F8](#s2f8---service-program-run-acknowledge)    | ↔ Equipment | Service Program Run Acknowledge |
+| [S2F9](#s2f9---service-program-results-request)    | ↔ Equipment | Service Program Results Request |
+| [S2F10](#s2f10---service-program-results-data)    | ↔ Equipment | Service Program Results Data |
+| [S2F11](#s2f11---service-program-directory-request)    | ↔ Equipment | Service Program Directory Request |
+| [S2F12](#s2f12---service-program-directory-data)    | ↔ Equipment | Service Program Directory Data |
+| [S2F13](#s2f13---equipment-constant-request)    | → Equipment | Equipment Constant Request |
+| [S2F14](#s2f14---equipment-constant-data)    | ← Equipment | Equipment Constant Data |
+| [S2F15](#s2f15---new-equipment-constant-send)    | → Equipment | New Equipment Constant Send |
+| [S2F16](#s2f16---new-equipment-constant-ack)    | ← Equipment | New Equipment Constant Ack |
+| [S2F17](#s2f17---date-and-time-request)    | ↔ Equipment | Date and Time Request |
+| [S2F18](#s2f18---date-and-time-data)    | ↔ Equipment | Date and Time Data |
+| [S2F19](#s2f19---resetinitialize-send)    | → Equipment | Reset/Initialize Send |
+| [S2F20](#s2f20---reset-acknowledge)    | ← Equipment | Reset Acknowledge |
+| [S2F21](#s2f21---remote-command-send)    | → Equipment | Remote Command Send |
+| [S2F22](#s2f22---remote-command-acknowledge)    | ← Equipment | Remote Command Acknowledge |
+| [S2F23](#s2f23---trace-initialize-send)    | → Equipment | Trace Initialize Send |
+| [S2F24](#s2f24---trace-initialize-acknowledge)    | ← Equipment | Trace Initialize Acknowledge |
+| [S2F25](#s2f25---loopback-diagnostic-request)    | ↔ Equipment | Loopback Diagnostic Request |
+| [S2F26](#s2f26---loopback-diagnostic-data)    | ↔ Equipment | Loopback Diagnostic Data |
+| [S2F27](#s2f27---initiate-processing-request)    | → Equipment | Initiate Processing Request |
+| [S2F28](#s2f28---initiate-processing-acknowledge)    | ← Equipment | Initiate Processing Acknowledge |
+| [S2F29](#s2f29---equipment-constant-namelist-request)    | → Equipment | Equipment Constant Namelist Request |
+| [S2F30](#s2f30---equipment-constant-namelist)    | ← Equipment | Equipment Constant Namelist |
+| [S2F31](#s2f31---date-and-time-set-request)    | → Equipment | Date and Time Set Request |
+| [S2F32](#s2f32---date-and-time-set-acknowledge)    | ← Equipment | Date and Time Set Acknowledge |
+| [S2F33](#s2f33---define-report)    | → Equipment | Define Report |
+| [S2F34](#s2f34---define-report-acknowledge)    | ← Equipment | Define Report Acknowledge |
+| [S2F35](#s2f35---link-event-report)    | → Equipment | Link Event Report |
+| [S2F36](#s2f36---link-event-report-acknowledge)    | ← Equipment | Link Event Report Acknowledge |
+| [S2F37](#s2f37---enabledisable-event-report)    | → Equipment | Enable/Disable Event Report |
+| [S2F38](#s2f38---enabledisable-event-report-acknowledge)    | ← Equipment | Enable/Disable Event Report Acknowledge |
+| [S2F39](#s2f39---multi-block-inquire)    | → Equipment | Multi-block Inquire |
+| [S2F40](#s2f40---multi-block-grant)    | ← Equipment | Multi-block Grant |
+| [S2F41](#s2f41---host-command-send)    | → Equipment | Host Command Send |
+| [S2F42](#s2f42---host-command-acknowledge)    | ← Equipment | Host Command Acknowledge |
+| [S2F43](#s2f43---configure-spooling)    | → Equipment | Configure Spooling |
+| [S2F44](#s2f44---configure-spooling-acknowledge)    | ← Equipment | Configure Spooling Acknowledge |
+| [S2F45](#s2f45---define-variable-limit-attributes)    | → Equipment | Define Variable Limit Attributes |
+| [S2F46](#s2f46---define-variable-limit-attributes-acknowledge)    | ← Equipment | Define Variable Limit Attributes Acknowledge |
+| [S2F47](#s2f47---variable-limit-attribute-request)    | → Equipment | Variable Limit Attribute Request |
+| [S2F48](#s2f48---variable-limit-attribute-send)    | ← Equipment | Variable Limit Attribute Send |
+| [S2F49](#s2f49---enhanced-remote-command)    | → Equipment | Enhanced Remote Command |
+| [S2F50](#s2f50---enhanced-remote-command-acknowledge)    | ← Equipment | Enhanced Remote Command Acknowledge |
+| [S2F51](#s2f51---request-report-identifiers)    | → Equipment | Request Report Identifiers |
+| [S2F52](#s2f52---return-report-identifiers)    | ← Equipment | Return Report Identifiers |
+| [S2F53](#s2f53---request-report-definitions)    | → Equipment | Request Report Definitions |
+| [S2F54](#s2f54---return-report-definitions)    | ← Equipment | Return Report Definitions |
+| [S2F55](#s2f55---request-event-report-links)    | → Equipment | Request Event Report Links |
+| [S2F56](#s2f56---return-event-report-links)    | ← Equipment | Return Event Report Links |
+| [S2F57](#s2f57---request-enabled-events)    | → Equipment | Request Enabled Events |
+| [S2F58](#s2f58---return-enabled-events)    | ← Equipment | Return Enabled Events |
+| [S2F59](#s2f59---request-spool-streams-and-functions)    | → Equipment | Request Spool Streams and Functions |
+| [S2F60](#s2f60---return-spool-streams-and-functions)    | ← Equipment | Return Spool Streams and Functions |
+| [S2F61](#s2f61---request-trace-identifiers)    | → Equipment | Request Trace Identifiers |
+| [S2F62](#s2f62---return-trace-identifiers)    | ← Equipment | Return Trace Identifiers |
+| [S2F63](#s2f63---request-trace-definitions)    | → Equipment | Request Trace Definitions |
+| [S2F64](#s2f64---return-trace-definitions)    | ← Equipment | Return Trace Definitions |
 
-#### **S2F1 - Equipment Status Request** {#s2f1---equipment-status-request}
+#### **S2F1 - Service Program Load Inquire** {#s2f1---service-program-load-inquire}
 ```
-<-S2F1
-{L[n]
-  SVID_1
-  SVID_2
-  ...
-  SVID_n
+↔S2F1
+{L[2]
+  SPID
+  LENGTH
 }
 ```
 
@@ -703,122 +841,102 @@ S1F24->
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| SVID | U1/U2/U4/A | Status Variable ID |
+| SPID | ASCII | Service Program ID |
+| LENGTH | U4 | Length of service program |
 
-#### **S2F2 - Equipment Status Response** {#s2f2---equipment-status-response}
+#### **S2F2 - Service Program Load Grant** {#s2f2---service-program-load-grant}
 ```
-S2F2->
-{L[n]
-  SV_1
-  SV_2
-  ...
-  SV_n
-}
+↔S2F2
+GRANT
 ```
 
 **Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| GRANT | U1 | Grant code |
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | SV | Various | Status Variable Value (corresponding to SVID in S2F1) |
 
 
-#### **S2F3 - Status Variable Value Request** {#s2f3---status-variable-value-request}
+#### **S2F3 - Service Program Send** {#s2f3---service-program-send}
 ```
-<-S2F3
-{L[n]
-  SVID_1
-  SVID_2
-  ...
-  SVID_n
-}
+↔S2F3
+SPD
 ```
 
 **Parameters:**
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| SVID | U1/U2/U4/A | Status Variable ID |
+| SPD | Binary | Service Program Data |
 
 
-#### **S2F4 - Status Variable Value Response** {#s2f4---status-variable-value-response}
+#### **S2F4 - Service Program Send Acknowledge** {#s2f4---service-program-send-acknowledge}
 ```
-S2F4->
-{L[n]
-  SV_1
-  SV_2
-  ...
-  SV_n
-}
+↔S2F4
+SPAACK
 ```
 
 **Parameters:**
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| SV | Various | Status Variable Value (corresponding to SVID in S2F3) |
+| SPAACK | U1 | Service Program Acknowledge |
 
 
-#### **S2F5 - Send Equipment Status** {#s2f5---send-equipment-status}
+#### **S2F5 - Service Program Load Request** {#s2f5---service-program-load-request}
 ```
-S2F5->
-{L[n]
-  SV_1
-  SV_2
-  ...
-  SV_n
-}
+↔S2F5
+SPID
 ```
 
 **Parameters:**
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| SV | U1/U2/U4/A | Status Variable Value |
+| SPID | ASCII | Service Program ID |
 
 
-#### **S2F6 - Send Equipment Status Acknowledge** {#s2f6---send-equipment-status-acknowledge}
+#### **S2F6 - Service Program Load Data** {#s2f6---service-program-load-data}
 ```
-<-S2F6
-{}
-```
-
-**Parameters:**
-
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| Empty | - | Empty list (acknowledgment) |
-
-
-#### **S2F7 - Load Port Status Request** {#s2f7---load-port-status-request}
-```
-<-S2F7
-{}
+↔S2F6
+SPD
 ```
 
 **Parameters:**
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| Empty | - | Empty list (request for all load port status) |
+| SPD | Binary | Service Program Data |
 
 
-#### **S2F8 - Load Port Status Response** {#s2f8---load-port-status-response}
+#### **S2F7 - Service Program Run Send** {#s2f7---service-program-run-send}
 ```
-S2F8->
-{L[n]
-  {L[2]
-    PORTID
-    PORTSTATUS
-  }
-}
+↔S2F7
+SPID
 ```
 
 **Parameters:**
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| PORTID | U1/U2/U4/A | Port Identifier |
+| SPID | ASCII | Service Program ID |
+
+
+#### **S2F8 - Service Program Run Acknowledge** {#s2f8---service-program-run-acknowledge}
+```
+↔S2F8
+CSAACK
+```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| CSAACK | U1 | Command Service Acknowledge |
 | PORTSTATUS | U1/U2/U4/A | Port Status |
 
 
@@ -983,8 +1101,8 @@ TIME
 #### **S2F19 - Recipe Body Request** {#s2f19---recipe-body-request}
 ```
   {L[2]
-  RCMD
-  RPARM
+    RCMD
+    RPARM
   }
 ```
 
@@ -1040,6 +1158,40 @@ CMDA
 | CMDA | A | Command Acknowledge |
 
 
+# S2F23 (FDC) Overview
+
+Fault Detection and Classification (FDC) is a process in semiconductor manufacturing that collects and analyzes data in real-time to detect and classify equipment anomalies. The S2F23 message defines a scenario where the host requests periodic data collection from the equipment, and the equipment collects and reports the data accordingly.
+
+## 1. Scenario Initiation: Host Request (S2F23 Transmission)
+- The **host** sends an S2F23 message to the equipment to request monitoring of specific Status Variables (SVs). The message includes the following information:
+  - **TRID (Trace ID)**: A unique identifier for the trace request.
+  - **SVID (Status Variable ID)**: Identifier for the status variable to monitor (e.g., temperature, pressure, wafer status).
+  - **DSPER (Data Sampling Period)**: Data sampling interval (e.g., every 1 second).
+  - **TOTSMP (Total Samples)**: Total number of samples to collect.
+  - **REPGSZ (Report Group Size)**: Number of data points included in each report.
+- **Example**: The host requests the equipment to collect temperature data every 1 second for 100 samples, reporting every 10 samples.
+
+## 2. Equipment Response
+- The equipment receives the S2F23 message, validates the requested conditions, and responds with an S2F24 message indicating acceptance or rejection.
+  - **Acceptance**: The equipment starts data collection based on the requested conditions.
+  - **Rejection**: The equipment responds with the reason it cannot process the request (e.g., invalid SVID, insufficient resources).
+
+## 3. Data Collection and Reporting (S6F1 Transmission)
+- The equipment collects data according to the specified DSPER.
+- Upon reaching REPGSZ (e.g., 10 samples collected), the equipment sends the collected data to the host via an **S6F1** message.
+- The S6F1 message includes the TRID and the collected data values.
+- To reduce network traffic, data is aggregated and sent in batches, with each report consisting of SVIDs and their corresponding values.
+- **Example**: Temperature data is sent via S6F1 every time 10 samples are collected.
+
+## 4. Integration with FDC Process
+- The host receives the S6F1 data and analyzes it using FDC software.
+- The FDC system detects anomalies (e.g., temperature spikes, pressure fluctuations) based on the collected data and, if necessary, triggers alarms or instructs the equipment to halt the process.
+- **Example**: If temperature data exceeds a predefined threshold, the host may send a warning message (e.g., S10F3) to the equipment or request an operator notification.
+
+## 5. Scenario Termination
+- Once the equipment reaches TOTSMP (total samples), it terminates data collection and sends the final data via S6F1.
+- The host may send a new S2F23 request to continue monitoring or cancel the existing TRID using S2F25 to stop monitoring.
+
 #### **S2F23 - Trace Initialize Send** {#s2f23---trace-initialize-send}
 ```
 S2F23->
@@ -1050,7 +1202,7 @@ S2F23->
   REPGSZ
   {L[n]
     SVID
-}
+  }
 }
 ```
 
@@ -2048,6 +2200,60 @@ S3F16->
 }
 
 ``` 
+
+# S3F17 (Carrier Action Request) Overview
+
+The S3F17 message is an unsolicited message sent by the equipment to inform the host about the receipt of new material (e.g., wafers, carriers, pods). This message shares material identification and status information, enabling the host to manage process flow and track materials.
+
+## 1. Scenario Initiation: Material Receipt
+- The equipment receives new material, such as:
+  - A FOUP (Front Opening Unified Pod) or carrier placed at a load port.
+  - Wafers or other materials loaded into the equipment.
+- The equipment reads the material’s unique identification information (e.g., carrier ID, lot ID) and verifies its status.
+- This process may involve automated load ports, RFID, or barcode readers.
+
+## 2. S3F17 Message Transmission
+- Upon detecting material receipt, the equipment sends an **S3F17** message to the host to report material information.
+- The S3F17 message includes:
+  - **CARRIERID**: Unique identifier for the material carrier (e.g., FOUP ID).
+  - **LOTID**: Unique identifier for the lot contained in the material (optional, used for lot-based management).
+  - **SLOTMAP**: Material placement information within the carrier (e.g., slot numbers mapped to wafer IDs).
+  - **PORTID**: Identifier for the port where the material was loaded (e.g., load port number).
+  - **TIMESTAMP**: Time of material receipt (optional).
+- **Example**: If the equipment receives a FOUP (carrier ID: F123) at load port 1 with 25 wafers, the S3F17 message reports CARRIERID="F123", PORTID="1", SLOTMAP={1:Wafer1, 2:Wafer2, ...}.
+
+## 3. Host Response
+- The host receives the S3F17 message and verifies the material information.
+- Based on the received data, the host performs the following actions:
+  - **Material Tracking**: Updates the Manufacturing Execution System (MES) with material information to manage process flow.
+  - **Validation**: Ensures CARRIERID, LOTID, and SLOTMAP align with process requirements (e.g., correct lot, expected wafer count).
+  - **Task Instruction**: If the material is correctly received, the host sends a process start command (e.g., S2F41) or schedules subsequent tasks.
+- The host may respond with an S3F18 message to acknowledge S3F17 receipt or provide further instructions.
+- **Example**: The host confirms FOUP details via S3F17 and specifies the process recipe for the lot.
+
+## 4. Error Handling
+- If the S3F17 message contains incorrect information (e.g., unknown CARRIERID), the host detects the error and may request additional information or issue a warning.
+- If the equipment fails to receive material (e.g., FOUP load error), it may report this via other SECS messages (e.g., S10F3, Terminal Display).
+- **Example**: If the host receives an unexpected LOTID in S3F17, it may check equipment status via S2F13 or notify an operator.
+
+## 5. Scenario Termination
+- Once the host successfully processes the material information and prepares for the process, the material receipt scenario concludes.
+- The equipment processes the material per host instructions (e.g., starts wafer processing) or awaits further material receipts.
+- The host may continue tracking material status or request a material sent report (S3F19) after process completion.
+
+## S3F17 Scenario Characteristics
+- **Unsolicited Message**: The equipment proactively reports material receipt without prior host request.
+- **Material Management**: Tracks the location and status of materials (wafers, carriers) in real-time during semiconductor processing.
+- **Standardization**: Complies with SEMI E5 and E30 (GEM) standards, ensuring compatibility across equipment and hosts.
+- **Automation Support**: Enhances process automation through integration with load ports and MES.
+
+## Example Flow
+1. A FOUP (carrier ID: F123) with 25 wafers is placed at load port 1 of the equipment.
+2. The equipment reads FOUP information and sends an S3F17 message (CARRIERID="F123", PORTID="1", SLOTMAP={1:Wafer1, ...}).
+3. The host receives S3F17 and updates material information in the MES.
+4. The host verifies the process recipe and sends an S2F41 command to start processing.
+5. The equipment begins processing, concluding the scenario.
+
 #### **S3F17 - Carrier Action Request (Extended)** {#s3f17---carrier-action-request-extended}
 ```
 <-S3F17
@@ -4607,6 +4813,43 @@ MHEAD
 |-----------|------|-------------|
 | MHEAD | B[10] | Message Header (The complete 10-byte header of the message with unrecognized function type) |
  
+
+
+# S9F7 (Error message) Overview
+
+The S9F7 message is an unsolicited message sent by the equipment to notify the host of an error when it cannot process a received message. This message helps diagnose communication errors and enables the host to correct or respond to the issue.
+
+## 1. Scenario Initiation: Host Message Transmission
+- The **host** sends a SECS-II message (e.g., S1F1, S2F23) to the equipment.
+- The message contains commands or data requests (e.g., status variable requests, data collection setup) that the equipment is expected to process.
+
+## 2. Error Occurrence
+- An error occurs while the equipment processes the received message. Common causes for S9F7 errors include:
+  - **Invalid Data Format**: The message's data structure does not comply with SEMI standards or contains unexpected values (e.g., incorrect SVID, abnormal data length).
+  - **Unknown Stream/Function**: The stream or function sent by the host is not supported by the equipment (e.g., an undefined message like S99F99).
+  - **Invalid Transaction ID**: The transaction ID is invalid or does not match the expected response.
+  - **Equipment State Mismatch**: The requested operation cannot be performed in the equipment's current state (e.g., requesting a setting change during processing).
+  - **Message Length Error**: The message length does not conform to standards or is shorter/longer than expected.
+
+## 3. S9F7 Message Transmission
+- Upon detecting the error, the equipment sends an **S9F7** message to the host.
+- The S9F7 message includes the following information:
+  - **MHEAD**: Header information from the original message (stream/function and transaction ID of the erroneous message).
+  - **ERRCODE**: An error code identifying the cause of the error (e.g., 1 = unknown stream, 3 = invalid data).
+  - **ERRTEXT**: A human-readable description of the error (string format).
+- **Example**: If the host sends an S2F23 message with an invalid SVID, the equipment reports the error via S9F7 with ERRTEXT such as "Invalid SVID."
+
+## 4. Host Response
+- The host receives the S9F7 message and analyzes the ERRCODE and ERRTEXT to identify the error cause.
+- Response actions:
+  - **Message Correction**: Fix invalid data (e.g., SVID, data format) and retransmit the message.
+  - **Equipment State Check**: Verify the equipment’s current state (e.g., via S1F1) to ensure the request is appropriate.
+  - **Log Recording**: Log the error for debugging or further action.
+- **Example**: If S9F7 reports "Invalid SVID," the host verifies the correct SVID and retransmits S2F23.
+
+## 5. Scenario Termination
+- Once the host sends a corrected message or resolves the error, normal communication resumes.
+- If the error persists, the host may perform additional diagnostics (e.g., request equipment logs, check status variables via S2F13) or request operator intervention.
 
 #### **S9F7 - Illegal Data** {#s9f7---illegal-data}
 ```

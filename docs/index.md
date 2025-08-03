@@ -21,7 +21,7 @@ Please see the documentation [lincense](license.md)
 
 Name |VERSION | OS |STABLE | URL 
 ------|------|--------|--------|--------
-binaries for windows|v1.1.57 | Windows x64 | Yes | [v1.1.57-win-installer](file/Setup.zip){:port_win_installer} 
+binaries for windows|v1.1.59 | Windows x64 | Yes | [v1.1.59-win-installer](file/Setup.zip){:port_win_installer} 
 sample source| - | Windows x64 | Yes | [sample](file/sample.zip){:sample} 
 
 
