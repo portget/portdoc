@@ -640,7 +640,7 @@
           <li class="md-nav__item">
   <a href="#message-annotation-detailed" class="md-nav__link">
     <span class="md-ellipsis">
-      Message Annotation
+      Entry Annotation
     </span>
   </a>
   
@@ -1384,7 +1384,7 @@
           <li class="md-nav__item">
   <a href="#message-annotation-detailed" class="md-nav__link">
     <span class="md-ellipsis">
-      Message Annotation
+      Entry Annotation
     </span>
   </a>
   
@@ -1736,7 +1736,7 @@ Visit <a href="http://localhost:5001/api/app/ng/?view=table">http://localhost:50
 <p><img alt="Start Project WPF" src="../img/start%20project%20with%20wpf%20netCore.png" /></p>
 <h2 id="package-development">Package Development<a class="headerlink" href="#package-development" title="Permanent link">&para;</a></h2>
 <h3 id="package-development-overview">Package Development Overview<a class="headerlink" href="#package-development-overview" title="Permanent link">&para;</a></h3>
-<p>The Port package system allows developers to create reusable libraries by inheriting from <code>PortObject</code> and linking them to Messages. This enables straightforward usage through Message calls and promotes modular development.</p>
+<p>The Port package system allows developers to create reusable libraries by inheriting from <code>PortObject</code> and linking them to Entries. This enables straightforward usage through entry calls and promotes modular development.</p>
 <p>Port packages provide a standardized way to:</p>
 <table>
 <thead>
@@ -1819,7 +1819,7 @@ Visit <a href="http://localhost:5001/api/app/ng/?view=table">http://localhost:50
 <td>Defines validation logic with custom error messages</td>
 </tr>
 <tr>
-<td><a href="#message-annotation-detailed">Message</a></td>
+<td><a href="#message-annotation-detailed">Entry</a></td>
 <td>property</td>
 <td><code>string</code>, <code>double</code></td>
 <td><code>-</code></td>
@@ -1836,8 +1836,8 @@ Visit <a href="http://localhost:5001/api/app/ng/?view=table">http://localhost:50
 <td><a href="#property-annotation-detailed">Property</a></td>
 <td>property</td>
 <td><code>IProperty</code></td>
-<td><code>Message name</code></td>
-<td>Maps properties to pre-declared Message Properties</td>
+<td><code>Entry name</code></td>
+<td>Maps properties to pre-declared Entry Properties</td>
 </tr>
 <tr>
 <td><a href="#enumcode-annotation-detailed">EnumCode</a></td>
@@ -1857,7 +1857,7 @@ Visit <a href="http://localhost:5001/api/app/ng/?view=table">http://localhost:50
 </table>
 <h3 id="detailed-annotation-usage">Detailed Annotation Usage<a class="headerlink" href="#detailed-annotation-usage" title="Permanent link">&para;</a></h3>
 <h4 id="valid-annotation-detailed">Valid Annotation<a class="headerlink" href="#valid-annotation-detailed" title="Permanent link">&para;</a></h4>
-<p>The <code>Valid</code> annotation defines validation logic for methods or properties, with custom error messages for validation failures.</p>
+<p>The <code>Valid</code> annotation defines validation logic for methods or properties, with custom error entry for validation failures.</p>
 <div class="language-csharp highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="na">[Valid(&quot;Invalid for connection&quot;)]</span>
 </span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="k">public</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nf">Valid</span><span class="p">()</span>
 </span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="p">{</span>
@@ -1879,7 +1879,7 @@ Visit <a href="http://localhost:5001/api/app/ng/?view=table">http://localhost:50
 </tr>
 <tr>
 <td><strong>Error Handling</strong></td>
-<td>Provides custom error messages for validation failures</td>
+<td>Provides custom error entries for validation failures</td>
 </tr>
 <tr>
 <td><strong>Execution</strong></td>
@@ -1992,14 +1992,14 @@ Visit <a href="http://localhost:5001/api/app/ng/?view=table">http://localhost:50
 </tr>
 </tbody>
 </table>
-<h4 id="message-annotation-detailed">Message Annotation<a class="headerlink" href="#message-annotation-detailed" title="Permanent link">&para;</a></h4>
-<p>Properties declared with <code>Message</code> annotation become API endpoints, accessible via REST API.</p>
+<h4 id="message-annotation-detailed">Entry Annotation<a class="headerlink" href="#message-annotation-detailed" title="Permanent link">&para;</a></h4>
+<p>Properties declared with <code>Entry</code> annotation become API endpoints, accessible via REST API.</p>
 <div class="language-csharp highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">using</span><span class="w"> </span><span class="nn">portpackage</span><span class="p">;</span>
 </span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="k">using</span><span class="w"> </span><span class="nn">portdatatype</span><span class="p">;</span>
 </span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
 </span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="k">private</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="n">Random</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Random</span><span class="p">(</span><span class="m">100</span><span class="p">);</span>
 </span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>
-</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="na">[Message(PortDataType.Num, PropertyFormat.Json, &quot;Unit&quot;)]</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="na">[Entry(PortDataType.Num, PropertyFormat.Json, &quot;Unit&quot;)]</span>
 </span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="k">public</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">Temp</span>
 </span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="p">{</span>
 </span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="w">    </span><span class="k">get</span>
@@ -2090,7 +2090,7 @@ Visit <a href="http://localhost:5001/api/app/ng/?view=table">http://localhost:50
 </table>
 <h4 id="comment-annotation-detailed">Comment Annotation<a class="headerlink" href="#comment-annotation-detailed" title="Permanent link">&para;</a></h4>
 <p>The <code>Comment</code> annotation provides documentation for properties, exposed through the API.</p>
-<div class="language-csharp highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="na">[Message, Comment(&quot;this is a numeric&quot;)]</span>
+<div class="language-csharp highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="na">[Entry, Comment(&quot;this is a numeric&quot;)]</span>
 </span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="k">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">NValue</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="m">3</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
 </span></code></pre></div>
 <p><strong>Usage:</strong></p>
@@ -2141,7 +2141,7 @@ Visit <a href="http://localhost:5001/api/app/ng/?view=table">http://localhost:50
 </span><span id="__span-15-19"><a id="__codelineno-15-19" name="__codelineno-15-19" href="#__codelineno-15-19"></a><span class="w">    </span><span class="p">}</span>
 </span><span id="__span-15-20"><a id="__codelineno-15-20" name="__codelineno-15-20" href="#__codelineno-15-20"></a>
 </span><span id="__span-15-21"><a id="__codelineno-15-21" name="__codelineno-15-21" href="#__codelineno-15-21"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">comport</span><span class="p">;</span>
-</span><span id="__span-15-22"><a id="__codelineno-15-22" name="__codelineno-15-22" href="#__codelineno-15-22"></a><span class="w">    </span><span class="na">[Message(PortDataType.Text)]</span>
+</span><span id="__span-15-22"><a id="__codelineno-15-22" name="__codelineno-15-22" href="#__codelineno-15-22"></a><span class="w">    </span><span class="na">[Entry(PortDataType.Text)]</span>
 </span><span id="__span-15-23"><a id="__codelineno-15-23" name="__codelineno-15-23" href="#__codelineno-15-23"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">Comport</span>
 </span><span id="__span-15-24"><a id="__codelineno-15-24" name="__codelineno-15-24" href="#__codelineno-15-24"></a><span class="w">    </span><span class="p">{</span>
 </span><span id="__span-15-25"><a id="__codelineno-15-25" name="__codelineno-15-25" href="#__codelineno-15-25"></a><span class="w">        </span><span class="k">set</span>
@@ -2170,7 +2170,7 @@ Visit <a href="http://localhost:5001/api/app/ng/?view=table">http://localhost:50
 </span><span id="__span-15-48"><a id="__codelineno-15-48" name="__codelineno-15-48" href="#__codelineno-15-48"></a><span class="w">    </span><span class="p">}</span>
 </span><span id="__span-15-49"><a id="__codelineno-15-49" name="__codelineno-15-49" href="#__codelineno-15-49"></a>
 </span><span id="__span-15-50"><a id="__codelineno-15-50" name="__codelineno-15-50" href="#__codelineno-15-50"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">offon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">string</span><span class="p">.</span><span class="n">Empty</span><span class="p">;</span>
-</span><span id="__span-15-51"><a id="__codelineno-15-51" name="__codelineno-15-51" href="#__codelineno-15-51"></a><span class="w">    </span><span class="na">[Message(PortDataType.Enum, PropertyFormat.Json)]</span>
+</span><span id="__span-15-51"><a id="__codelineno-15-51" name="__codelineno-15-51" href="#__codelineno-15-51"></a><span class="w">    </span><span class="na">[Entry(PortDataType.Enum, PropertyFormat.Json)]</span>
 </span><span id="__span-15-52"><a id="__codelineno-15-52" name="__codelineno-15-52" href="#__codelineno-15-52"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">OffOn</span>
 </span><span id="__span-15-53"><a id="__codelineno-15-53" name="__codelineno-15-53" href="#__codelineno-15-53"></a><span class="w">    </span><span class="p">{</span>
 </span><span id="__span-15-54"><a id="__codelineno-15-54" name="__codelineno-15-54" href="#__codelineno-15-54"></a><span class="w">        </span><span class="k">set</span>
@@ -2208,7 +2208,7 @@ Visit <a href="http://localhost:5001/api/app/ng/?view=table">http://localhost:50
 </span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="w">    </span><span class="na">[Property]</span>
 </span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">IProperty</span><span class="w"> </span><span class="n">Property</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
 </span><span id="__span-16-12"><a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a>
-</span><span id="__span-16-13"><a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a><span class="w">    </span><span class="na">[Message(PortDataType.Text)]</span>
+</span><span id="__span-16-13"><a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a><span class="w">    </span><span class="na">[Entry(PortDataType.Text)]</span>
 </span><span id="__span-16-14"><a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">Power</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
 </span><span id="__span-16-15"><a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a>
 </span><span id="__span-16-16"><a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a><span class="w">    </span><span class="na">[Valid(&quot;Invalid for connection&quot;)]</span>
@@ -2219,7 +2219,7 @@ Visit <a href="http://localhost:5001/api/app/ng/?view=table">http://localhost:50
 </span><span id="__span-16-21"><a id="__codelineno-16-21" name="__codelineno-16-21" href="#__codelineno-16-21"></a>
 </span><span id="__span-16-22"><a id="__codelineno-16-22" name="__codelineno-16-22" href="#__codelineno-16-22"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="n">Random</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Random</span><span class="p">(</span><span class="m">100</span><span class="p">);</span>
 </span><span id="__span-16-23"><a id="__codelineno-16-23" name="__codelineno-16-23" href="#__codelineno-16-23"></a>
-</span><span id="__span-16-24"><a id="__codelineno-16-24" name="__codelineno-16-24" href="#__codelineno-16-24"></a><span class="w">    </span><span class="na">[Message(PortDataType.Num, PropertyFormat.Json, &quot;Unit&quot;)]</span>
+</span><span id="__span-16-24"><a id="__codelineno-16-24" name="__codelineno-16-24" href="#__codelineno-16-24"></a><span class="w">    </span><span class="na">[Entry(PortDataType.Num, PropertyFormat.Json, &quot;Unit&quot;)]</span>
 </span><span id="__span-16-25"><a id="__codelineno-16-25" name="__codelineno-16-25" href="#__codelineno-16-25"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">Temp</span>
 </span><span id="__span-16-26"><a id="__codelineno-16-26" name="__codelineno-16-26" href="#__codelineno-16-26"></a><span class="w">    </span><span class="p">{</span>
 </span><span id="__span-16-27"><a id="__codelineno-16-27" name="__codelineno-16-27" href="#__codelineno-16-27"></a><span class="w">        </span><span class="k">get</span>

@@ -728,7 +728,7 @@
           <li class="md-nav__item">
   <a href="#message-annotation" class="md-nav__link">
     <span class="md-ellipsis">
-      Message Annotation
+      Entry Annotation
     </span>
   </a>
   
@@ -1139,7 +1139,7 @@
 <td>Defines validation logic with custom error messages</td>
 </tr>
 <tr>
-<td><a href="#message-annotation">Message</a></td>
+<td><a href="#message-annotation">Entry</a></td>
 <td>property</td>
 <td><code>string</code>, <code>double</code></td>
 <td><code>-</code></td>
@@ -1156,8 +1156,8 @@
 <td><a href="#property-annotation">Property</a></td>
 <td>property</td>
 <td><code>IProperty</code></td>
-<td><code>Message name</code></td>
-<td>Maps properties to pre-declared Message Properties</td>
+<td><code>-</code></td>
+<td>Maps properties to pre-declared Properties</td>
 </tr>
 <tr>
 <td><a href="#enumcode-annotation">EnumCode</a></td>
@@ -1236,8 +1236,8 @@
 - Applied to <code>IProperty</code> properties
 - Enables access to configuration values
 - Supports key-value property retrieval</p>
-<h3 id="message-annotation">Message Annotation<a class="headerlink" href="#message-annotation" title="Permanent link">&para;</a></h3>
-<p>Properties declared with <code>Message</code> annotation become API endpoints, accessible via REST API.</p>
+<h3 id="message-annotation">Entry Annotation<a class="headerlink" href="#message-annotation" title="Permanent link">&para;</a></h3>
+<p>Properties declared with <code>Entry</code> annotation become API endpoints, accessible via REST API.</p>
 <div class="language-csharp highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">using</span><span class="w"> </span><span class="nn">portpackage</span><span class="p">;</span>
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">using</span><span class="w"> </span><span class="nn">portdatatype</span><span class="p">;</span>
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
@@ -1296,7 +1296,7 @@
 - Enables external systems to query enum information</p>
 <h3 id="comment-annotation">Comment Annotation<a class="headerlink" href="#comment-annotation" title="Permanent link">&para;</a></h3>
 <p>The <code>Comment</code> annotation provides documentation for properties, exposed through the API.</p>
-<div class="language-csharp highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="na">[Message, Comment(&quot;this is a numeric&quot;)]</span>
+<div class="language-csharp highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="na">[Entry, Comment(&quot;this is a numeric&quot;)]</span>
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">NValue</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="m">3</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
 </span></code></pre></div>
 <p><strong>Usage:</strong>
@@ -1552,7 +1552,7 @@
 <p>The packaging process:</p>
 <ol>
 <li><strong>Analysis</strong>: Scans the DLL for Port annotations</li>
-<li><strong>Extraction</strong>: Identifies all Message properties and methods</li>
+<li><strong>Extraction</strong>: Identifies all properties and methods</li>
 <li><strong>Validation</strong>: Ensures package integrity</li>
 <li><strong>Creation</strong>: Generates <code>.pkg</code> file in the Port package directory</li>
 </ol>

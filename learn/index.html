@@ -402,17 +402,17 @@
           <li class="md-nav__item">
   <a href="#group-management" class="md-nav__link">
     <span class="md-ellipsis">
-      Group Management
+      Category Management
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Group Management">
+    <nav class="md-nav" aria-label="Category Management">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#adding-groups" class="md-nav__link">
     <span class="md-ellipsis">
-      Adding Groups
+      Adding Categorys
     </span>
   </a>
   
@@ -438,19 +438,19 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#message-system" class="md-nav__link">
+  <a href="#entry-system" class="md-nav__link">
     <span class="md-ellipsis">
-      Message System
+      Entry System
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Message System">
+    <nav class="md-nav" aria-label="Entry System">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#message-syntax" class="md-nav__link">
     <span class="md-ellipsis">
-      Message Definition Syntax
+      Entry Definition Syntax
     </span>
   </a>
   
@@ -468,7 +468,7 @@
           <li class="md-nav__item">
   <a href="#message-attributes" class="md-nav__link">
     <span class="md-ellipsis">
-      Message Attributes
+      Entry Attributes
     </span>
   </a>
   
@@ -477,7 +477,7 @@
           <li class="md-nav__item">
   <a href="#message-examples" class="md-nav__link">
     <span class="md-ellipsis">
-      Message Examples
+      Entry Examples
     </span>
   </a>
   
@@ -1392,17 +1392,17 @@
           <li class="md-nav__item">
   <a href="#group-management" class="md-nav__link">
     <span class="md-ellipsis">
-      Group Management
+      Category Management
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Group Management">
+    <nav class="md-nav" aria-label="Category Management">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#adding-groups" class="md-nav__link">
     <span class="md-ellipsis">
-      Adding Groups
+      Adding Categorys
     </span>
   </a>
   
@@ -1428,19 +1428,19 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#message-system" class="md-nav__link">
+  <a href="#entry-system" class="md-nav__link">
     <span class="md-ellipsis">
-      Message System
+      Entry System
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Message System">
+    <nav class="md-nav" aria-label="Entry System">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#message-syntax" class="md-nav__link">
     <span class="md-ellipsis">
-      Message Definition Syntax
+      Entry Definition Syntax
     </span>
   </a>
   
@@ -1458,7 +1458,7 @@
           <li class="md-nav__item">
   <a href="#message-attributes" class="md-nav__link">
     <span class="md-ellipsis">
-      Message Attributes
+      Entry Attributes
     </span>
   </a>
   
@@ -1467,7 +1467,7 @@
           <li class="md-nav__item">
   <a href="#message-examples" class="md-nav__link">
     <span class="md-ellipsis">
-      Message Examples
+      Entry Examples
     </span>
   </a>
   
@@ -2002,7 +2002,7 @@
 <ol>
 <li><a href="#overview">Overview</a></li>
 <li><a href="#creating-port-projects">Creating Port Projects</a></li>
-<li><a href="#message-system">Message System</a></li>
+<li><a href="#entry-system">Entry System</a></li>
 <li><a href="#enum-definitions">Enum Definitions</a></li>
 <li><a href="#rule-system">Rule System</a></li>
 <li><a href="#package-management">Package Management</a></li>
@@ -2024,7 +2024,7 @@
 </thead>
 <tbody>
 <tr>
-<td><strong>Message-based Communication</strong></td>
+<td><strong>Entry-based Communication</strong></td>
 <td>Structured data exchange between components</td>
 </tr>
 <tr>
@@ -2061,12 +2061,12 @@
 <td>Contains project configuration and <code>*.enum</code> files</td>
 </tr>
 <tr>
-<td><strong>Group Folders</strong></td>
+<td><strong>Category Folders</strong></td>
 <td>Organize messages by functional areas</td>
 </tr>
 <tr>
-<td><strong>Message Files</strong></td>
-<td>Individual <code>*.msg</code> files defining message properties</td>
+<td><strong>Page Files</strong></td>
+<td>Individual <code>*.page</code> files defining entry</td>
 </tr>
 </tbody>
 </table>
@@ -2075,8 +2075,8 @@
 <ol>
 <li><strong>Create Project Directory</strong>: Start with a dedicated project folder</li>
 <li><strong>Initialize Project</strong>: Use <code>port new [project-name]</code> to generate project files</li>
-<li><strong>Add Groups</strong>: Create sub-folders for message organization</li>
-<li><strong>Define Messages</strong>: Add <code>*.msg</code> files to group folders</li>
+<li><strong>Add Category</strong>: Create sub-folders for message organization</li>
+<li><strong>Define Messages</strong>: Add <code>*.page</code> files to group folders</li>
 <li><strong>Configure Types</strong>: Specify text, num, and enum data types</li>
 <li><strong>Deploy</strong>: Use <code>port push</code> to store project configuration</li>
 </ol>
@@ -2089,11 +2089,11 @@
 <p><strong>Command:</strong>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>port<span class="w"> </span>new<span class="w"> </span><span class="o">[</span>project-name<span class="o">]</span>
 </span></code></pre></div></p>
-<h3 id="group-management">Group Management<a class="headerlink" href="#group-management" title="Permanent link">&para;</a></h3>
-<p>Groups serve as logical containers for related messages. Each group can contain multiple message files, enabling organized and abstracted message management.</p>
-<h4 id="adding-groups">Adding Groups<a class="headerlink" href="#adding-groups" title="Permanent link">&para;</a></h4>
-<p><img alt="Add Group" src="../img/add_group.png" /></p>
-<p><strong>Benefits of Groups:</strong></p>
+<h3 id="group-management">Category Management<a class="headerlink" href="#group-management" title="Permanent link">&para;</a></h3>
+<p>Categorys serve as logical containers for related messages. Each group can contain multiple message files, enabling organized and abstracted message management.</p>
+<h4 id="adding-groups">Adding Categorys<a class="headerlink" href="#adding-groups" title="Permanent link">&para;</a></h4>
+<p><img alt="Add Category" src="../img/add_group.png" /></p>
+<p><strong>Benefits of Categorys:</strong></p>
 <table>
 <thead>
 <tr>
@@ -2124,8 +2124,8 @@
 <p><img alt="Project Structure" src="../img/expl.png" /></p>
 <p><strong>Download Sample:</strong>
 <a href="../file/sample.zip">Download Sample Project</a></p>
-<h2 id="message-system">Message System<a class="headerlink" href="#message-system" title="Permanent link">&para;</a></h2>
-<h3 id="message-syntax">Message Definition Syntax<a class="headerlink" href="#message-syntax" title="Permanent link">&para;</a></h3>
+<h2 id="entry-system">Entry System<a class="headerlink" href="#entry-system" title="Permanent link">&para;</a></h2>
+<h3 id="message-syntax">Entry Definition Syntax<a class="headerlink" href="#message-syntax" title="Permanent link">&para;</a></h3>
 <p>Messages are the core communication units in Port. Each message is defined using a specific syntax:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>[key] [datatype] [option...]
 </span></code></pre></div>
@@ -2180,7 +2180,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="message-attributes">Message Attributes<a class="headerlink" href="#message-attributes" title="Permanent link">&para;</a></h3>
+<h3 id="message-attributes">Entry Attributes<a class="headerlink" href="#message-attributes" title="Permanent link">&para;</a></h3>
 <p>Attributes provide additional functionality and behavior for messages:</p>
 <table>
 <thead>
@@ -2216,7 +2216,7 @@
 <p class="admonition-title">Special Characters</p>
 <p>Message documents should not use special characters in identifiers.</p>
 </div>
-<h3 id="message-examples">Message Examples<a class="headerlink" href="#message-examples" title="Permanent link">&para;</a></h3>
+<h3 id="message-examples">Entry Examples<a class="headerlink" href="#message-examples" title="Permanent link">&para;</a></h3>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>BulbOnOff     enum.OffOn  pkg:Bulb1.OffOn
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>RoomTemp1     num         pkg:Heater1.Temp  property:{&quot;MIN&quot;:0,&quot;MAX&quot;:300,&quot;Arguments&quot;:&quot;C&quot;}
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>RoomTemp2     num         pkg:Heater1.Temp  property:{&quot;MIN&quot;:0,&quot;MAX&quot;:300,&quot;Arguments&quot;:&quot;F&quot;}
