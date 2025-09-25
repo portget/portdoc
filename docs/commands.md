@@ -147,7 +147,7 @@ run --ping-address localhost:9090 --sync ./sync_dir
 - Automatic change detection for multiple file types
 - Changelog generation in `.port.md` file
 - Supports file extensions: `.logger`, `.cctv`, `.pub`, `.js`, `.rule`, `.al`, `.ce`, `.dvv`, `.ecv`, `.sv`, `.gem`, `.msg`
-- Message collector generation
+- Entry collector generation
 - Automatic database updates
 
 **Example**:
@@ -359,7 +359,7 @@ Creates new groups with optional message file specification.
 **Arguments**:
 - `resource_identifier`: Identifier for the resource to retrieve
 
-#### **Message Data Retrieval**
+#### **Entry Data Retrieval**
 - `[group-name] [message-name]`: Get group message value
   - Example: `get Equipment Status` - Gets status from Equipment group
   - Example: `get Alarms Count` - Gets alarm count from Alarms group
@@ -435,7 +435,7 @@ get GEM.doc
 - `key`: Key, message name, or operation type
 - `value`: Value to set or operation parameters
 
-#### **Message Data Operations**
+#### **Entry Data Operations**
 - `[group-name] [message-name] [value]`: Set group message value
   - Example: `set Equipment Status RUNNING` - Sets equipment status to RUNNING
   - Example: `set Alarms Count 0` - Clears alarm count

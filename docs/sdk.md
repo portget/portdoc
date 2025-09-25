@@ -44,20 +44,20 @@ All objects inheriting from the package can invoke messages defined in the class
 
      private SerialPort serial = new SerialPort();
 
-     [Message, Reserved(ReservedAttribute.Type.Address), Regex(RegexAttribute.ComRegex)]
+     [Entry, Reserved(ReservedAttribute.Type.Address), Regex(RegexAttribute.ComRegex)]
      public string Address
      {
          get;
          set;
      }
 
-     [Message]
+     [Entry]
      public int NValue { get => 3; }
 
-     [Message]
+     [Entry]
      public double DValue { get => 2; }
 
-     [Message]
+     [Entry]
      public string StrValue { get => "on"; } 
  }
 ``` 
@@ -73,14 +73,14 @@ ___
 Properties declared with Message Attributes are defined as API Messages and made available to the end-user. They apply only to properties with get and set accessors, and these getters and setters can be accessed and modified via a REST API.
 
 ```
-    [Message]
+    [Entry]
     public int NValue { get => 3; }
 ```
 
 #### Reserved Attributes
 
 ```   
-    [Message, Reserved(ReservedAttribute.Type.Address), Regex(RegexAttribute.ComportRegex)]
+    [Entry, Reserved(ReservedAttribute.Type.Address), Regex(RegexAttribute.ComportRegex)]
     public string Address
     {
         get;
@@ -91,7 +91,7 @@ Properties declared with Message Attributes are defined as API Messages and made
 Properties with Regex Attributes are subjected to a regular expression check when their values are changed. If the value does not pass the validation check, it is not updated, ensuring consistency and validity of the property's value.
 
 ```  
-    [Message, Regex(RegexAttribute.Ip4vRegex)]
+    [Entry, Regex(RegexAttribute.Ip4vRegex)]
     public string Address
     {
         get;
@@ -114,6 +114,6 @@ EnumCode Attributes are declared, the values of the enum can be accessed via an 
 #### Comment Attributes
 When Comment Attributes are declared, the comments associated with the property can be exposed through the API. This allows users or external systems to access descriptive information or documentation about the property via the API, providing context and clarity on the property's purpose or usage.
 ```  
-     [Message,Commnet("this is a numberic")]
+     [Entry,Commnet("this is a numberic")]
      public int NValue { get => 3; }
 ```

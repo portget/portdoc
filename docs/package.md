@@ -46,9 +46,9 @@ Port packages use annotations to define behavior, configuration, and API endpoin
 |------|---------|------|-----------|-------------|
 | [Port](#port-annotation) | class | `-` | `Class Type` | Declares a class as Port-managed for package registration |
 | [Valid](#valid-annotation) | method, property | `bool` | `invalid comment` | Defines validation logic with custom error messages |
-| [Message](#message-annotation) | property | `string`, `double` | `-` | Creates API endpoints for property access |
+| [Entry](#message-annotation) | property | `string`, `double` | `-` | Creates API endpoints for property access |
 | [Logger](#logger-annotation) | property | `ILogger` | `-` | Enables dependency injection for logging services |
-| [Property](#property-annotation) | property | `IProperty` | `Message name` | Maps properties to pre-declared Message Properties |
+| [Property](#property-annotation) | property | `IProperty` | `-` | Maps properties to pre-declared Properties |
 | [EnumCode](#enumcode-annotation) | enum | `-` | `-` | Exposes enum values through API endpoints |
 | [Comment](#comment-annotation) | property | `-` | `comment text` | Provides API documentation for properties |
 
@@ -79,7 +79,7 @@ The `Port` annotation indicates that a class is managed within the Port Package 
 using portpackage;
 using portdatatype;
 
-[Port(typeof(Heater))]
+[References(typeof(Heater))]
 public class Heater
 {
     // Implementation
@@ -134,9 +134,9 @@ if (this.Property.TryToGetValue("Unit", out string value))
 - Enables access to configuration values
 - Supports key-value property retrieval
 
-### Message Annotation {#message-annotation}
+### Entry Annotation {#message-annotation}
 
-Properties declared with `Message` annotation become API endpoints, accessible via REST API.
+Properties declared with `Entry` annotation become API endpoints, accessible via REST API.
 
 ```csharp
 using portpackage;
@@ -144,7 +144,7 @@ using portdatatype;
 
 private static Random r = new Random(100);
 
-[Message(PortDataType.Num, PropertyFormat.Json, "Unit")]
+[Entry(PortDataType.Num, PropertyFormat.Json, "Unit")]
 public double Temp
 {
     get
@@ -207,7 +207,7 @@ public enum TestEnum : ushort
 The `Comment` annotation provides documentation for properties, exposed through the API.
 
 ```csharp
-[Message, Comment("this is a numeric")]
+[Entry, Comment("this is a numeric")]
 public int NValue { get => 3; }
 ```
 
@@ -228,7 +228,7 @@ Port applications organize operations at the package level and functionality at 
 using portpackage;
 using portdatatype;
 
-[Port(typeof(Bulb))]
+[References(typeof(Bulb))]
 public class Bulb
 {
     [Logger]
@@ -246,7 +246,7 @@ public class Bulb
     }
 
     private string comport;
-    [Message(PortDataType.Text)]
+    [Entry(PortDataType.Text)]
     public string Comport
     {
         set
@@ -275,7 +275,7 @@ public class Bulb
     }
 
     private string offon = string.Empty;
-    [Message(PortDataType.Enum, PropertyFormat.Json)]
+    [Entry(PortDataType.Enum, PropertyFormat.Json)]
     public string OffOn
     {
         set
@@ -307,7 +307,7 @@ public class Bulb
 using portpackage;
 using portdatatype;
 
-[Port(typeof(Heater))]
+[References(typeof(Heater))]
 public class Heater
 {
     [Logger]
@@ -316,7 +316,7 @@ public class Heater
     [Property]
     public IProperty Property { get; set; }
     
-    [Message(PortDataType.Text)]
+    [Entry(PortDataType.Text)]
     public string Power { set; get; }
     
     [Valid("Invalid for connection")]
@@ -327,7 +327,7 @@ public class Heater
     
     private static Random r = new Random(100);
     
-    [Message(PortDataType.Num, PropertyFormat.Json, "Unit")]
+    [Entry(PortDataType.Num, PropertyFormat.Json, "Unit")]
     public double Temp
     {
         get
@@ -515,7 +515,7 @@ PS C:\Users\Public\Dev\publish> port pack HeaterLib.dll HeaterLib1
 The packaging process:
 
 1. **Analysis**: Scans the DLL for Port annotations
-2. **Extraction**: Identifies all Message properties and methods
+2. **Extraction**: Identifies all properties and methods
 3. **Validation**: Ensures package integrity
 4. **Creation**: Generates `.pkg` file in the Port package directory
 

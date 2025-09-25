@@ -1,7 +1,7 @@
 # Welcome to Port
 
 ##`"Any document can be a model."` 
-Port was created to enable users to easily develop applications using document files alone, offering an in-memory database that eliminates the need for queries. Designed with the motto `"Documents Made Simple. Applications Built Fast"` port empowers users to implement OPC UA, SECS, MQTT, REST APIs, and script-based flow control through straightforward document creation. Additionally, with Port packages, users can create reusable libraries for multiple programming languages.
+Designed with the motto `"Documents Made Simple. Applications Built Fast"` port empowers users to implement OPC UA, SECS, MQTT, REST APIs, and script-based flow control through straightforward document creation. Additionally, with Port packages, users can create reusable libraries for multiple programming languages.
 
 Please see the documentation [lincense](license.md)
  
@@ -21,7 +21,7 @@ Please see the documentation [lincense](license.md)
 
 Name |VERSION | OS |STABLE | URL 
 ------|------|--------|--------|--------
-binaries for windows|v1.1.59 | Windows x64 | Yes | [v1.1.59-win-installer](file/Setup.zip){:port_win_installer} 
+binaries for windows|v1.1.67 | Windows x64 | Yes | [v1.1.67-win-installer](file/Setup.zip){:port_win_installer} 
 sample source| - | Windows x64 | Yes | [sample](file/sample.zip){:sample} 
 
 

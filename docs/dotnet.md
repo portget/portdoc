@@ -204,7 +204,7 @@ port run [project-name]
 
 ### Package Development Overview {#package-development-overview}
 
-The Port package system allows developers to create reusable libraries by inheriting from `PortObject` and linking them to Messages. This enables straightforward usage through Message calls and promotes modular development.
+The Port package system allows developers to create reusable libraries by inheriting from `PortObject` and linking them to Entries. This enables straightforward usage through entry calls and promotes modular development.
 
 Port packages provide a standardized way to:
 
@@ -231,19 +231,27 @@ Port packages use annotations to define behavior, configuration, and API endpoin
 
 | Name | Targets | Type | Arguments | Description |
 |------|---------|------|-----------|-------------|
-| [Port](#port-annotation-detailed) | class | `-` | `Class Type` | Declares a class as Port-managed for package registration |
-| [Valid](#valid-annotation-detailed) | method, property | `bool` | `invalid comment` | Defines validation logic with custom error messages |
-| [Message](#message-annotation-detailed) | property | `string`, `double` | `-` | Creates API endpoints for property access |
+| [References](#references-annotation-detailed) | class | `-` | `Class Type` | Declares a class as Port-managed for package registration |
+| [Entry](#entry-annotation-detailed) | property | `string`, `double` | `dataType, format, keys` | Creates API endpoints for property access |
+| [Property](#property-annotation-detailed) | property | `IProperty` | `-` | Maps properties to pre-declared Entry Properties |
 | [Logger](#logger-annotation-detailed) | property | `ILogger` | `-` | Enables dependency injection for logging services |
-| [Property](#property-annotation-detailed) | property | `IProperty` | `Message name` | Maps properties to pre-declared Message Properties |
-| [EnumCode](#enumcode-annotation-detailed) | enum | `-` | `-` | Exposes enum values through API endpoints |
+| [Flow](#flow-annotation-detailed) | class | `-` | `Class Type` | Marks a class as a workflow or process flow |
+| [Import](#import-annotation-detailed) | field, property | `-` | `packageName, key` | Marks dependencies requiring specific functions from packages |
+| [Step](#step-annotation-detailed) | method | `-` | `index, relatedEntry` | Marks methods as workflow steps with execution order |
+| [StepTimer](#steptimer-annotation-detailed) | property | `IStepTimer` | `-` | Enables timing and scheduling for workflow steps |
+| [FlowControl](#flowcontrol-annotation-detailed) | property | `IFlowControl` | `-` | Provides flow control and navigation capabilities |
+| [Valid](#valid-annotation-detailed) | method, property | `bool` | `invalid comment` | Defines validation logic with custom error messages |
+| [EnumCode](#enumcode-annotation-detailed) | enum | `-` | `using` | Exposes enum values through API endpoints |
 | [Comment](#comment-annotation-detailed) | property | `-` | `comment text` | Provides API documentation for properties |
+| [Protocol](#protocol-annotation-detailed) | property | `-` | `-` | Marks properties for protocol handling |
+| [Mapping](#mapping-annotation-detailed) | property | `-` | `type` | Maps properties to specific data types |
+| [Model](#model-annotation-detailed) | class | `-` | `-` | Marks classes as data models |
 
 ### Detailed Annotation Usage {#detailed-annotation-usage}
 
 #### Valid Annotation {#valid-annotation-detailed}
 
-The `Valid` annotation defines validation logic for methods or properties, with custom error messages for validation failures.
+The `Valid` annotation defines validation logic for methods or properties, with custom error entry for validation failures.
 
 ```csharp
 [Valid("Invalid for connection")]
@@ -258,21 +266,28 @@ public bool Valid()
 | Aspect | Description |
 |--------|-------------|
 | **Target** | Applied to methods returning `bool` |
-| **Error Handling** | Provides custom error messages for validation failures |
+| **Error Handling** | Provides custom error entries for validation failures |
 | **Execution** | Automatically called during package validation |
 
-#### Port Annotation {#port-annotation-detailed}
+#### References Annotation {#references-annotation-detailed}
 
-The `Port` annotation indicates that a class is managed within the Port Package system.
+The `References` annotation marks a class as a managed package within the Port Dictionary system. Classes decorated with this attribute are automatically instantiated, managed, and made available for interaction within the Port Application ecosystem.
 
 ```csharp
 using portpackage;
 using portdatatype;
 
-[Port(typeof(Heater))]
-public class Heater
+[References(typeof(DataProcessingService))]
+public class DataProcessingService
 {
-    // Implementation
+    [Entry(PortDataType.Text)]
+    public string ProcessData { get; set; }
+    
+    [Step(1, "InputData")]
+    public void ProcessInput()
+    {
+        // Processing logic
+    }
 }
 ```
 
@@ -283,6 +298,191 @@ public class Heater
 | **Target** | Applied to class declarations |
 | **Registration** | Registers the class with the Port system |
 | **Functionality** | Enables package management and API generation |
+| **Lifecycle** | Automatic instantiation and lifecycle management |
+
+#### Flow Annotation {#flow-annotation-detailed}
+
+The `Flow` attribute marks a class as a workflow or process flow within the Port Dictionary system. Classes decorated with this attribute are automatically managed as sequential or parallel execution flows, enabling complex business process automation and step-by-step execution control.
+
+```csharp
+[Flow(typeof(ManufacturingProcess))]
+public class ManufacturingProcess
+{
+    [StepTimer]
+    public IStepTimer Timer { get; set; }
+    
+    [FlowControl]
+    public IFlowControl FlowControl { get; set; }
+    
+    [Step(1, "StartProcess")]
+    public void InitializeProcess()
+    {
+        // Initialization logic
+    }
+    
+    [Step(2, "ProcessData")]
+    public void ProcessData()
+    {
+        // Data processing logic
+        if (errorCondition)
+            FlowControl.JumpStep(5); // Jump to error handling
+    }
+    
+    [Step(5, "HandleError")]
+    public void HandleError()
+    {
+        // Error handling logic
+    }
+}
+```
+
+**Usage:**
+
+| Aspect | Description |
+|--------|-------------|
+| **Target** | Applied to class declarations |
+| **Flow Management** | Automatic step sequencing and execution control |
+| **Integration** | Timer-based operations and scheduling support |
+| **Control** | Conditional flow branching and jumping |
+
+#### Import Annotation {#import-annotation-detailed}
+
+The `Import` attribute marks a class, property, or field as requiring a specific function from a named package. This attribute enables dependency injection and automatic resolution of inter-package dependencies within the port dictionary system.
+
+```csharp
+public class DataProcessor
+{
+    [Import("MathReferences", "Calculator")]
+    private IFunction calculator;
+    
+    [Import("LoggingReferences", "FileLogger")]
+    public IFunction Logger { get; set; }
+    
+    public void ProcessData()
+    {
+        var result = calculator.Binding("ProcessingData");
+        Logger.Binding("LogProcessingResult");
+    }
+}
+```
+
+**Usage:**
+
+| Aspect | Description |
+|--------|-------------|
+| **Target** | Applied to fields and properties |
+| **Dependency Injection** | Automatic function resolution at runtime |
+| **Modular Architecture** | References-based package dependencies |
+| **Documentation** | Compile-time dependency documentation |
+
+#### Step Annotation {#step-annotation-detailed}
+
+The `Step` attribute marks a method as a step in a workflow sequence that will be automatically executed by the Flow system in the order specified by the index parameter. This attribute enables the creation of sequential or conditionally branching workflows with precise execution control.
+
+```csharp
+[Flow(typeof(ManufacturingProcess))]
+public class ManufacturingProcess
+{
+    [Step(1, "InitializeSystem")]
+    public void Initialize()
+    {
+        // Initialization logic
+    }
+    
+    [Step(2, 1001, "ProcessMaterial", "QualityCheck")]
+    public void ProcessMaterial()
+    {
+        // Processing logic with collection event 1001
+    }
+    
+    [Step(10, "FinalizeProcess")]
+    public void Finalize()
+    {
+        // Finalization logic
+    }
+}
+```
+
+**Usage:**
+
+| Aspect | Description |
+|--------|-------------|
+| **Target** | Applied to methods only |
+| **Execution Order** | Index determines execution order (lower indices execute first) |
+| **Integration** | Flow control and timing systems support |
+| **Events** | Collection event integration for advanced monitoring |
+
+#### StepTimer Annotation {#steptimer-annotation-detailed}
+
+The `StepTimer` attribute specifies that a property should be injected with a timing system for workflow steps. This enables precise timing control, delayed execution, and one-time action scheduling within the flow execution context.
+
+```csharp
+[Flow(typeof(TimedProcess))]
+public class TimedProcess
+{
+    [StepTimer]
+    public IStepTimer Timer { get; set; }
+    
+    [Step(1)]
+    public void StartProcess()
+    {
+        // Schedule a timeout action
+        Timer.Reserve("timeout", 5000, () => HandleTimeout());
+        
+        // Execute something once
+        Timer.Once("initialize", () => InitializeResources());
+    }
+    
+    private void HandleTimeout()
+    {
+        Console.WriteLine($"Process timed out after {Timer.TotalSeconds} seconds");
+    }
+}
+```
+
+**Usage:**
+
+| Aspect | Description |
+|--------|-------------|
+| **Target** | Applied to `IStepTimer` properties |
+| **Timing Features** | Precise timing and elapsed time measurement |
+| **Scheduling** | Delayed action execution with millisecond precision |
+| **One-time Actions** | One-time action scheduling with duplicate prevention |
+
+#### FlowControl Annotation {#flowcontrol-annotation-detailed}
+
+The `FlowControl` attribute specifies that a property should be injected with flow control capabilities for workflow navigation. This enables dynamic navigation between steps, conditional logic, error handling, and non-linear execution patterns.
+
+```csharp
+[Flow(typeof(DataProcessingFlow))]
+public class DataProcessingFlow
+{
+    [FlowControl]
+    public IFlowControl FlowControl { get; set; }
+    
+    [Step(1)]
+    public void ValidateData()
+    {
+        if (dataIsInvalid)
+            FlowControl.JumpStep(99); // Jump to error handling step
+    }
+    
+    [Step(99)]
+    public void HandleError()
+    {
+        // Error handling logic
+    }
+}
+```
+
+**Usage:**
+
+| Aspect | Description |
+|--------|-------------|
+| **Target** | Applied to `IFlowControl` properties |
+| **Control Features** | Dynamic step jumping for conditional workflows |
+| **Error Handling** | Error handling and recovery mechanisms |
+| **Branching** | Loop and branching control structures |
 
 #### Logger Annotation {#logger-annotation-detailed}
 
@@ -333,47 +533,25 @@ if (this.Property.TryToGetValue("Unit", out string value))
 | **Access** | Enables access to configuration values |
 | **Retrieval** | Supports key-value property retrieval |
 
-#### Message Annotation {#message-annotation-detailed}
+#### Entry Annotation {#entry-annotation-detailed}
 
-Properties declared with `Message` annotation become API endpoints, accessible via REST API.
+Properties declared with `Entry` annotation become API endpoints, accessible via REST API. This attribute marks a property as a Entry endpoint within the Port Dictionary system, enabling automatic Entry registration and discovery.
 
 ```csharp
 using portpackage;
 using portdatatype;
 
-private static Random r = new Random(100);
-
-[Message(PortDataType.Num, PropertyFormat.Json, "Unit")]
-public double Temp
+[References(typeof(SensorController))]
+public class SensorController
 {
-    get
-    {
-        try
-        {
-            if (this.Property != null)
-            {
-                if (this.Property.TryToGetValue("Unit", out string v1) && (v1 == "F"))
-                {
-                    return (r.NextDouble() * 9 / 5) + 32;
-                }
-                else if (this.Property.TryToGetValue("Unit", out string v2) && (v2 == "C"))
-                {
-                    return (r.NextDouble());
-                }
-                else
-                {
-                    return double.NaN;
-                }
-            }
-            return double.NaN;
-        }
-        catch (Exception e)
-        {
-            if (Logger != null)
-                Logger.Write(e.Message);
-        }
-        return double.NaN;
-    }
+    [Entry(PortDataType.Num)]
+    public double Temperature { get; set; }
+    
+    [Entry(PortDataType.Text, PropertyFormat.Json, "Status", "ErrorCode")]
+    public string SystemStatus { get; set; }
+    
+    [Entry(PortDataType.List, PropertyFormat.Array, 0, 1, 2)]
+    public List<string> SensorReadings { get; set; }
 }
 ```
 
@@ -383,7 +561,80 @@ public double Temp
 |--------|-------------|
 | **Target** | Applied to properties with get/set accessors |
 | **API Generation** | Creates REST API endpoints automatically |
-| **Support** | Supports various data types and formats |
+| **Type Safety** | Type-safe data handling with PortDataType specification |
+| **Format Support** | Flexible format support (JSON, Array, etc.) |
+| **Validation** | Required property validation and schema enforcement |
+
+#### Protocol Annotation {#protocol-annotation-detailed}
+
+The `Protocol` attribute marks properties for protocol handling. This is used for properties that require special protocol-specific processing.
+
+```csharp
+public class ProtocolHandler
+{
+    [Protocol]
+    public string SerialData { get; set; }
+    
+    [Protocol]
+    public byte[] BinaryData { get; set; }
+}
+```
+
+**Usage:**
+
+| Aspect | Description |
+|--------|-------------|
+| **Target** | Applied to properties |
+| **Protocol Handling** | Marks for special protocol processing |
+| **Serial Communication** | Common for serial communication protocols |
+| **Binary Data** | Used for binary data handling |
+
+#### Mapping Annotation {#mapping-annotation-detailed}
+
+The `Mapping` attribute maps properties to specific data types. This enables type conversion and mapping operations.
+
+```csharp
+public class DataMapper
+{
+    [Mapping(typeof(string))]
+    public object StringData { get; set; }
+    
+    [Mapping(typeof(int))]
+    public object IntegerData { get; set; }
+}
+```
+
+**Usage:**
+
+| Aspect | Description |
+|--------|-------------|
+| **Target** | Applied to properties |
+| **Type Mapping** | Maps to specific data types |
+| **Type Conversion** | Enables automatic type conversion |
+| **Data Transformation** | Used for data transformation operations |
+
+#### Model Annotation {#model-annotation-detailed}
+
+The `Model` attribute marks classes as data models. This enables model-based operations and data binding.
+
+```csharp
+[Model]
+public class SensorData
+{
+    public double Temperature { get; set; }
+    public double Humidity { get; set; }
+    public DateTime Timestamp { get; set; }
+}
+```
+
+**Usage:**
+
+| Aspect | Description |
+|--------|-------------|
+| **Target** | Applied to class declarations |
+| **Data Models** | Marks classes as data models |
+| **Data Binding** | Enables model-based data binding |
+| **Serialization** | Supports model serialization |
 
 #### EnumCode Annotation {#enumcode-annotation-detailed}
 
@@ -412,7 +663,7 @@ public enum TestEnum : ushort
 The `Comment` annotation provides documentation for properties, exposed through the API.
 
 ```csharp
-[Message, Comment("this is a numeric")]
+[Entry, Comment("this is a numeric")]
 public int NValue { get => 3; }
 ```
 
@@ -423,6 +674,150 @@ public int NValue { get => 3; }
 | **Application** | Applied alongside other annotations |
 | **Documentation** | Provides API documentation |
 | **Experience** | Enhances developer experience with contextual information |
+
+### Workflow and Flow Control {#workflow-and-flow-control}
+
+The Port system provides comprehensive workflow management through the Flow system, enabling complex business process automation with step-by-step execution control.
+
+#### Flow System Overview {#flow-system-overview}
+
+The Flow system allows developers to create sequential or parallel execution flows using attribute-based configuration. This enables:
+
+| Feature | Description |
+|---------|-------------|
+| **Sequential Execution** | Step-by-step workflow execution with automatic ordering |
+| **Conditional Branching** | Dynamic flow control with conditional logic and error handling |
+| **Timer Integration** | Precise timing control and scheduled operations |
+| **Event Integration** | Collection event support for external system integration |
+| **State Management** | Automatic state tracking and flow control |
+
+#### Flow Control Interfaces {#flow-control-interfaces}
+
+The Flow system provides two key interfaces for workflow management:
+
+##### IFlowControl Interface {#iflowcontrol-interface}
+
+```csharp
+public interface IFlowControl
+{
+    /// <summary>
+    /// Jumps to a specific step in the workflow
+    /// </summary>
+    /// <param name="index">The index of the step to jump to</param>
+    void JumpStep(int index);
+}
+```
+
+**Key Features:**
+- **Dynamic Navigation**: Jump between workflow steps based on conditions
+- **Error Handling**: Redirect flow to error handling steps
+- **Loop Control**: Implement loops and conditional branching
+
+##### IStepTimer Interface {#isteptimer-interface}
+
+```csharp
+public interface IStepTimer
+{
+    DateTime Since { get; }
+    double TotalSeconds { get; }
+    void Reset();
+    string Reserve(string id, int ms, Action func);
+    string Once(string id, Action action);
+}
+```
+
+**Key Features:**
+- **Precise Timing**: Millisecond-precise timing control
+- **Scheduled Actions**: Reserve actions for delayed execution
+- **One-time Operations**: Execute actions exactly once per timer lifetime
+- **Task Management**: Cancel and manage scheduled tasks
+
+#### Flow Execution States {#flow-execution-states}
+
+The Flow system tracks execution states for each step:
+
+| State | Description |
+|-------|-------------|
+| **Idle** | Step has not started execution yet |
+| **Ing** | Step is currently being executed |
+| **Done** | Step has finished execution successfully |
+
+### References and Import System {#references-and-import-system}
+
+The Port system provides a sophisticated package management system through References and Import mechanisms, enabling modular architecture and dependency injection.
+
+#### References System {#references-system}
+
+The References system allows developers to create reusable function collections that can be shared across different packages and applications.
+
+##### IReference Interface {#ireference-interface}
+
+```csharp
+public interface IReference
+{
+    /// <summary>
+    /// Gets a function by its key name
+    /// </summary>
+    /// <param name="key">The unique string identifier of the function</param>
+    /// <returns>The IFunction instance or null if not found</returns>
+    IFunction this[string key] { get; }
+
+    /// <summary>
+    /// Gets the complete collection of functions in this package
+    /// </summary>
+    IEnumerable<IFunction> API { get; }
+}
+```
+
+##### IFunction Interface {#ifunction-interface}
+
+```csharp
+public interface IFunction
+{
+    string Key { get; }
+    Type Type { get; }
+    IFunction Binding(string EntryKey);
+    string Benchmark(string Entrykey, params string[] args);
+}
+```
+
+#### Import System {#import-system}
+
+The Import system enables dependency injection and automatic resolution of inter-package dependencies.
+
+##### Import Attribute Usage {#import-attribute-usage}
+
+```csharp
+public class DataProcessor
+{
+    [Import("MathReferences", "Calculator")]
+    private IFunction calculator;
+    
+    [Import("LoggingReferences", "FileLogger")]
+    public IFunction Logger { get; set; }
+    
+    public void ProcessData()
+    {
+        // Use imported functions
+        var result = calculator.Binding("ProcessingData");
+        Logger.Binding("LogProcessingResult");
+    }
+}
+```
+
+#### Package Helper System {#package-helper-system}
+
+The PackageHelper class provides the implementation for managing function collections and enabling function discovery.
+
+```csharp
+public sealed class PackageHelper : IReference
+{
+    internal APICollection api = new APICollection();
+    
+    public IFunction this[string key] => this.api.FirstOrDefault(f => f.Key == key);
+    IEnumerable<IFunction> IReference.API => api;
+}
+```
 
 ### Creating .NET Packages {#creating-net-packages}
 
@@ -454,7 +849,7 @@ public class Bulb
     }
 
     private string comport;
-    [Message(PortDataType.Text)]
+    [Entry(PortDataType.Text)]
     public string Comport
     {
         set
@@ -483,7 +878,7 @@ public class Bulb
     }
 
     private string offon = string.Empty;
-    [Message(PortDataType.Enum, PropertyFormat.Json)]
+    [Entry(PortDataType.Enum, PropertyFormat.Json)]
     public string OffOn
     {
         set
@@ -524,7 +919,7 @@ public class Heater
     [Property]
     public IProperty Property { get; set; }
     
-    [Message(PortDataType.Text)]
+    [Entry(PortDataType.Text)]
     public string Power { set; get; }
     
     [Valid("Invalid for connection")]
@@ -535,7 +930,7 @@ public class Heater
     
     private static Random r = new Random(100);
     
-    [Message(PortDataType.Num, PropertyFormat.Json, "Unit")]
+    [Entry(PortDataType.Num, PropertyFormat.Json, "Unit")]
     public double Temp
     {
         get
@@ -595,18 +990,46 @@ This .NET Integration Guide provides comprehensive coverage of:
 - **Initialization**: Setting up Port system with .NET applications
 - **Event Handling**: Managing status changes and system events
 - **Package Development**: Creating reusable components with annotations
+- **Workflow Management**: Implementing complex business processes with Flow system
+- **References System**: Building modular architecture with function collections
+- **Import System**: Enabling dependency injection and inter-package dependencies
 - **Project Execution**: Running and monitoring applications
+
+### Annotation System
+The Port system provides a comprehensive annotation system including:
+
+| Category | Annotations | Purpose |
+|----------|-------------|---------|
+| **Package Management** | `[References]`, `[Flow]`, `[Import]` | Class registration and dependency injection |
+| **Workflow Control** | `[Step]`, `[StepTimer]`, `[FlowControl]` | Workflow execution and timing |
+| **API Endpoints** | `[Entry]`, `[GetMapping]`, `[SetMapping]` | REST API generation |
+| **Data Handling** | `[Property]`, `[Mapping]`, `[Model]` | Data management and transformation |
+| **Validation** | `[Valid]`, `[Conditions]` | Data validation and business rules |
+| **Documentation** | `[Comment]`, `[EnumCode]` | API documentation and enum exposure |
+| **Protocol Support** | `[Protocol]`, `[SetPoint]`, `[CheckPoint]` | Industrial protocol integration |
 
 ### Best Practices
 - Use proper annotation patterns for package development
-- Implement comprehensive error handling
-- Follow logging and monitoring guidelines
+- Implement comprehensive error handling with `[Valid]` attributes
+- Follow logging and monitoring guidelines with `[Logger]` attributes
+- Design modular architecture using References and Import systems
+- Implement workflow control with Flow system for complex processes
 - Test packages thoroughly before deployment
+- Use appropriate data types and formats for Entry attributes
+
+### Advanced Features
+- **Flow System**: Sequential and parallel workflow execution
+- **Timer Integration**: Precise timing control and scheduled operations
+- **Dependency Injection**: Automatic resolution of inter-package dependencies
+- **REST API Generation**: Automatic endpoint creation from annotations
+- **Industrial Protocol Support**: SECS, OPC UA, MQTT integration
+- **Real-time Monitoring**: Event-driven architecture with status tracking
 
 ### Next Steps
 - Explore the [React Integration Guide](react.md) for web development
 - Review [Package Management](package.md) for advanced features
 - Check [SECS Protocol](secs.md) for industrial communication
+- Study [Workflow Examples](learn.md) for complex process automation
 
 ---
 

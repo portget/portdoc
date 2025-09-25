@@ -3,7 +3,7 @@
 ## Table of Contents
 1. [Overview](#overview)
 2. [Creating Port Projects](#creating-port-projects)
-3. [Message System](#message-system)
+3. [Entry System](#entry-system)
 4. [Enum Definitions](#enum-definitions)
 5. [Rule System](#rule-system)
 6. [Package Management](#package-management)
@@ -21,7 +21,7 @@ Port provides a comprehensive ecosystem for:
 
 | Feature | Description |
 |---------|-------------|
-| **Message-based Communication** | Structured data exchange between components |
+| **Entry-based Communication** | Structured data exchange between components |
 | **Package Integration** | Modular architecture with reusable components |
 | **Real-time Monitoring** | Live project status and logging capabilities |
 | **Remote Management** | SSH and web-based administration |
@@ -37,8 +37,8 @@ Port projects are organized hierarchically with a clear folder structure:
 | Component | Description |
 |-----------|-------------|
 | **Root Folder** | Contains project configuration and `*.enum` files |
-| **Group Folders** | Organize messages by functional areas |
-| **Message Files** | Individual `*.msg` files defining message properties |
+| **Category Folders** | Organize messages by functional areas |
+| **Page Files** | Individual `*.page` files defining entry |
 
 ### Repository Setup {#repository-setup}
 
@@ -46,8 +46,8 @@ The Port project structure is simple and straightforward. Follow these steps to 
 
 1. **Create Project Directory**: Start with a dedicated project folder
 2. **Initialize Project**: Use `port new [project-name]` to generate project files
-3. **Add Groups**: Create sub-folders for message organization
-4. **Define Messages**: Add `*.msg` files to group folders
+3. **Add Category**: Create sub-folders for message organization
+4. **Define Messages**: Add `*.page` files to group folders
 5. **Configure Types**: Specify text, num, and enum data types
 6. **Deploy**: Use `port push` to store project configuration
 
@@ -63,15 +63,15 @@ The Port project structure is simple and straightforward. Follow these steps to 
 port new [project-name]
 ```
 
-### Group Management {#group-management}
+### Category Management {#group-management}
 
-Groups serve as logical containers for related messages. Each group can contain multiple message files, enabling organized and abstracted message management.
+Categorys serve as logical containers for related messages. Each group can contain multiple message files, enabling organized and abstracted message management.
 
-#### Adding Groups {#adding-groups}
+#### Adding Categorys {#adding-groups}
 
-![Add Group](img/add_group.png)
+![Add Category](img/add_group.png)
 
-**Benefits of Groups:**
+**Benefits of Categorys:**
 
 | Benefit | Description |
 |---------|-------------|
@@ -87,9 +87,9 @@ Groups serve as logical containers for related messages. Each group can contain 
 **Download Sample:**
 [Download Sample Project](file/sample.zip)
 
-## Message System
+## Entry System
 
-### Message Definition Syntax {#message-syntax}
+### Entry Definition Syntax {#message-syntax}
 
 Messages are the core communication units in Port. Each message is defined using a specific syntax:
 
@@ -115,7 +115,7 @@ Port supports three primary data types for message definitions:
 | **num** | `-1.7e+308 ~ +1.7e+308` | Floating-point type supporting wide range of decimal values |
 | **enum** | `0 ~ 65535` | User-defined fixed list from `.enum` files with efficient storage |
 
-### Message Attributes {#message-attributes}
+### Entry Attributes {#message-attributes}
 
 Attributes provide additional functionality and behavior for messages:
 
@@ -130,7 +130,7 @@ Attributes provide additional functionality and behavior for messages:
 !!! warning "Special Characters"
     Message documents should not use special characters in identifiers.
 
-### Message Examples {#message-examples}
+### Entry Examples {#message-examples}
 
 ```
 BulbOnOff     enum.OffOn  pkg:Bulb1.OffOn
