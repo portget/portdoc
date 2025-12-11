@@ -1,0 +1,3517 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://portdic.com/commands/">
+      
+      
+        <link rel="prev" href="../react/">
+      
+      
+        <link rel="next" href="../remote/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../img/logo.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Commands - Port</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../extra_css.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#port-cli-command-reference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Port" class="md-header__button md-logo" aria-label="Port" data-md-component="logo">
+      
+  <img src="../img/logo.ico" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Port
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Commands
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="cyan"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Port" class="md-nav__button md-logo" aria-label="Port" data-md-component="logo">
+      
+  <img src="../img/logo.ico" alt="logo">
+
+    </a>
+    Port
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../learn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Learn
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dotnet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    .Net
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../react/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    React
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Documentation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Commands
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#quick-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Reference
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quick Reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#system-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#project-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#package-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Package Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listing-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Listing Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#script-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Script Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#server-communication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Server Communication
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-command-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detailed Command Reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-commands_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System Commands
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="System Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#version-display-version-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        version - Display Version Information
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#env-environment-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        env - Environment Information
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#help-display-help" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        help - Display Help
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-management-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Management Commands
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Project Management Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#new-create-new-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        new - Create New Project
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-run-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        run - Run Project
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#push-push-project-to-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        push - Push Project to Repository
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pull-pull-project-from-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pull - Pull Project from Repository
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#package-management-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Package Management Commands
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Package Management Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pack-build-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pack - Build Package
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#save-save-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        save - Save Package
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clear-clear-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        clear - Clear Packages
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#listing-commands_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Listing Commands
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Listing Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ls-list-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ls - List Resources
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ls - List Resources">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ls-repo-list-repositories" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ls repo - List Repositories
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ls-pkg-list-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ls pkg - List Packages
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ls-tcp-address-list-tcp-addresses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ls tcp [address] - List TCP Addresses
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ls-com-list-com-ports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ls com - List COM Ports
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ls-user-list-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ls user - List Users
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#script-management-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Script Management Commands
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Script Management Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#script-execute-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        script - Execute Script
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cancel-cancel-script-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        cancel - Cancel Script Execution
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-management-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User Management Commands
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="User Management Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#login-user-login" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        login - User Login
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-add-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        add - Add Resources
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="add - Add Resources">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add-user-username-password-add-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        add --user &lt;username&gt; &lt;password&gt; - Add User
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-enum-enum_definitions-add-enumerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        add --enum &lt;enum_definitions&gt; - Add Enumerations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-group-group_names-message_file-add-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        add --group &lt;group_names&gt; [message_file] - Add Groups
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#server-communication-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Server Communication Commands
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Server Communication Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-get-server-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get - Get Server Data
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="get - Get Server Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#entry-data-retrieval" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entry Data Retrieval
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#work-and-process-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Work and Process Information
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log-and-event-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Log and Event Data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation-and-help" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Documentation and Help
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system-status-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System Status Information
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-set-server-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        set - Set Server Data
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="set - Set Server Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#entry-data-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entry Data Operations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#script-and-function-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Script and Function Execution
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#publication-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Publication Operations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user-management-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User Management Operations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System Operations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advanced Operations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#status-server-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        status - Server Status
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uptime-server-uptime" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        uptime - Server Uptime
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latency-measure-latency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        latency - Measure Latency
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shutdown-server-shutdown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        shutdown - Server Shutdown
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#repository-management-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Repository Management Commands
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Repository Management Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#repo-repository-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        repo - Repository Operations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-utility-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Additional Utility Commands
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Additional Utility Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#date-server-date" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        date - Server Date
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flow-flow-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        flow - Flow Status
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#queue-queue-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        queue - Queue Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stack-stack-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        stack - Stack Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage-storage-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        storage - Storage Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#list-list-server-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        list - List Server Resources
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#request-app-request-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        request-app - Request Application
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sleep-sleepwait" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sleep - Sleep/Wait
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#global-flags-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Global Flags Reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-usage-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Usage Examples
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Usage Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-project-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Project Workflow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#package-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Package Development
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system-administration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System Administration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#script-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Script Execution
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#server-data-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Server Data Operations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Handling
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../remote/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Remote Access
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Protocols
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Protocols
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../opcua/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OPC UA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modbus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modbus
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ethernetip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EtherNet/IP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../secs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SECS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rtsp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RTSP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mqtt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MQTT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#quick-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Reference
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quick Reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#system-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#project-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#package-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Package Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listing-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Listing Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#script-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Script Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#server-communication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Server Communication
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-command-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detailed Command Reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-commands_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System Commands
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="System Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#version-display-version-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        version - Display Version Information
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#env-environment-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        env - Environment Information
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#help-display-help" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        help - Display Help
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-management-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Management Commands
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Project Management Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#new-create-new-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        new - Create New Project
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-run-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        run - Run Project
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#push-push-project-to-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        push - Push Project to Repository
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pull-pull-project-from-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pull - Pull Project from Repository
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#package-management-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Package Management Commands
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Package Management Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pack-build-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pack - Build Package
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#save-save-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        save - Save Package
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clear-clear-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        clear - Clear Packages
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#listing-commands_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Listing Commands
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Listing Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ls-list-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ls - List Resources
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ls - List Resources">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ls-repo-list-repositories" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ls repo - List Repositories
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ls-pkg-list-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ls pkg - List Packages
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ls-tcp-address-list-tcp-addresses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ls tcp [address] - List TCP Addresses
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ls-com-list-com-ports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ls com - List COM Ports
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ls-user-list-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ls user - List Users
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#script-management-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Script Management Commands
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Script Management Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#script-execute-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        script - Execute Script
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cancel-cancel-script-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        cancel - Cancel Script Execution
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-management-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User Management Commands
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="User Management Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#login-user-login" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        login - User Login
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-add-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        add - Add Resources
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="add - Add Resources">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add-user-username-password-add-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        add --user &lt;username&gt; &lt;password&gt; - Add User
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-enum-enum_definitions-add-enumerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        add --enum &lt;enum_definitions&gt; - Add Enumerations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-group-group_names-message_file-add-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        add --group &lt;group_names&gt; [message_file] - Add Groups
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#server-communication-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Server Communication Commands
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Server Communication Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-get-server-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get - Get Server Data
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="get - Get Server Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#entry-data-retrieval" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entry Data Retrieval
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#work-and-process-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Work and Process Information
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log-and-event-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Log and Event Data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation-and-help" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Documentation and Help
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system-status-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System Status Information
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-set-server-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        set - Set Server Data
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="set - Set Server Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#entry-data-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entry Data Operations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#script-and-function-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Script and Function Execution
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#publication-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Publication Operations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user-management-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User Management Operations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System Operations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advanced Operations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#status-server-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        status - Server Status
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uptime-server-uptime" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        uptime - Server Uptime
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latency-measure-latency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        latency - Measure Latency
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shutdown-server-shutdown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        shutdown - Server Shutdown
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#repository-management-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Repository Management Commands
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Repository Management Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#repo-repository-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        repo - Repository Operations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-utility-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Additional Utility Commands
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Additional Utility Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#date-server-date" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        date - Server Date
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flow-flow-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        flow - Flow Status
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#queue-queue-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        queue - Queue Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stack-stack-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        stack - Stack Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage-storage-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        storage - Storage Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#list-list-server-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        list - List Server Resources
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#request-app-request-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        request-app - Request Application
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sleep-sleepwait" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sleep - Sleep/Wait
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#global-flags-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Global Flags Reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-usage-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Usage Examples
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Usage Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-project-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Project Workflow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#package-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Package Development
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system-administration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System Administration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#script-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Script Execution
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#server-data-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Server Data Operations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Handling
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="port-cli-command-reference">PORT CLI Command Reference<a class="headerlink" href="#port-cli-command-reference" title="Permanent link">&para;</a></h1>
+<p>This document provides a comprehensive reference for all available PORT CLI commands.</p>
+<h2 id="quick-reference">Quick Reference<a class="headerlink" href="#quick-reference" title="Permanent link">&para;</a></h2>
+<h3 id="system-commands">System Commands<a class="headerlink" href="#system-commands" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Arguments</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>version</code></td>
+<td>-</td>
+<td>Display version information</td>
+</tr>
+<tr>
+<td><code>env</code></td>
+<td>-</td>
+<td>Display environment variables</td>
+</tr>
+<tr>
+<td><code>help</code></td>
+<td>-</td>
+<td>Display help information</td>
+</tr>
+</tbody>
+</table>
+<h3 id="project-management">Project Management<a class="headerlink" href="#project-management" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Arguments</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>new</code></td>
+<td><code>&lt;project_name&gt;</code></td>
+<td>Create new PORT project</td>
+</tr>
+<tr>
+<td><code>run</code></td>
+<td><code>[project_name] [flags]</code></td>
+<td>Run PORT project</td>
+</tr>
+<tr>
+<td><code>push</code></td>
+<td><code>[project_name]</code></td>
+<td>Push project to repository</td>
+</tr>
+<tr>
+<td><code>pull</code></td>
+<td><code>[project_name]</code></td>
+<td>Pull project from repository</td>
+</tr>
+</tbody>
+</table>
+<h3 id="package-management">Package Management<a class="headerlink" href="#package-management" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Arguments</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pack</code></td>
+<td><code>&lt;dll_file&gt; &lt;output_name&gt; [flags]</code></td>
+<td>Build package from DLL</td>
+</tr>
+<tr>
+<td><code>save</code></td>
+<td><code>&lt;package_name&gt; [flags]</code></td>
+<td>Save package from current directory</td>
+</tr>
+<tr>
+<td><code>clear</code></td>
+<td>-</td>
+<td>Clear all loaded packages</td>
+</tr>
+</tbody>
+</table>
+<h3 id="listing-commands">Listing Commands<a class="headerlink" href="#listing-commands" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Arguments</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ls repo</code></td>
+<td>-</td>
+<td>List repositories</td>
+</tr>
+<tr>
+<td><code>ls pkg</code></td>
+<td>-</td>
+<td>List packages</td>
+</tr>
+<tr>
+<td><code>ls tcp</code></td>
+<td><code>[address]</code></td>
+<td>List TCP addresses</td>
+</tr>
+<tr>
+<td><code>ls com</code></td>
+<td>-</td>
+<td>List COM ports</td>
+</tr>
+<tr>
+<td><code>ls user</code></td>
+<td>-</td>
+<td>List users</td>
+</tr>
+</tbody>
+</table>
+<h3 id="script-management">Script Management<a class="headerlink" href="#script-management" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Arguments</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>script</code></td>
+<td><code>&lt;file&gt; &lt;function&gt; [args]</code></td>
+<td>Execute script</td>
+</tr>
+<tr>
+<td><code>cancel</code></td>
+<td><code>&lt;file&gt; &lt;function&gt;</code></td>
+<td>Cancel script execution</td>
+</tr>
+</tbody>
+</table>
+<h3 id="user-management">User Management<a class="headerlink" href="#user-management" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Arguments</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>login</code></td>
+<td><code>&lt;username&gt; &lt;password&gt;</code></td>
+<td>User login</td>
+</tr>
+<tr>
+<td><code>add</code></td>
+<td><code>[flags]</code></td>
+<td>Add resources (user, enum, group)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="server-communication">Server Communication<a class="headerlink" href="#server-communication" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Arguments</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>get</code></td>
+<td><code>&lt;group&gt; &lt;key&gt;</code></td>
+<td>Get data</td>
+</tr>
+<tr>
+<td><code>set</code></td>
+<td><code>&lt;group&gt; &lt;key&gt; &lt;value&gt;</code></td>
+<td>Set data</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td>-</td>
+<td>Get server status</td>
+</tr>
+<tr>
+<td><code>uptime</code></td>
+<td>-</td>
+<td>Get server uptime</td>
+</tr>
+<tr>
+<td><code>latency</code></td>
+<td>-</td>
+<td>Measure server latency</td>
+</tr>
+<tr>
+<td><code>shutdown</code></td>
+<td><code>&lt;confirmation&gt;</code></td>
+<td>Shutdown server</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="detailed-command-reference">Detailed Command Reference<a class="headerlink" href="#detailed-command-reference" title="Permanent link">&para;</a></h2>
+<h2 id="system-commands_1">System Commands<a class="headerlink" href="#system-commands_1" title="Permanent link">&para;</a></h2>
+<h3 id="version-display-version-information"><code>version</code> - Display Version Information<a class="headerlink" href="#version-display-version-information" title="Permanent link">&para;</a></h3>
+<p><strong>Usage</strong>: <code>version</code></p>
+<p><strong>Description</strong>: Displays the current PORT version and build information.</p>
+<p><strong>Output</strong>: Version string with build details.</p>
+<h3 id="env-environment-information"><code>env</code> - Environment Information<a class="headerlink" href="#env-environment-information" title="Permanent link">&para;</a></h3>
+<p><strong>Usage</strong>: <code>env</code></p>
+<p><strong>Description</strong>: Displays environment variables and system configuration.</p>
+<p><strong>Output</strong>:
+- VERSION: Current PORT version
+- HOMEPATH: Executable directory path
+- Other system environment variables</p>
+<h3 id="help-display-help"><code>help</code> - Display Help<a class="headerlink" href="#help-display-help" title="Permanent link">&para;</a></h3>
+<p><strong>Usage</strong>: <code>help</code></p>
+<p><strong>Description</strong>: Shows comprehensive help information for all available commands.</p>
+<h2 id="project-management-commands">Project Management Commands<a class="headerlink" href="#project-management-commands" title="Permanent link">&para;</a></h2>
+<h3 id="new-create-new-project"><code>new</code> - Create New Project<a class="headerlink" href="#new-create-new-project" title="Permanent link">&para;</a></h3>
+<p><strong>Usage</strong>: <code>new &lt;project_name&gt;</code></p>
+<p><strong>Description</strong>: Creates a new PORT project with initial directory structure and configuration files.</p>
+<p><strong>Arguments</strong>:
+- <code>project_name</code>: Name of the new project to create</p>
+<p><strong>Created Structure</strong>:
+- <code>port/</code> - Main configuration directory
+- <code>port/app/</code> - Application files
+- <code>port/app/ecma5/</code> - ECMAScript 5 files
+- <code>port/app/mqtt/</code> - MQTT configuration
+- <code>port/app/gem/</code> - GEM (Generic Equipment Model) files
+- <code>boot.js</code> - Boot script
+- <code>.enum</code> - Enumeration definitions
+- <code>.rule</code> - Rule definitions
+- Various GEM configuration files (.gem, .sv, .dvv, .al, .ce, .rid, .ecv)</p>
+<p><strong>Example</strong>:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>new<span class="w"> </span>MyProject
+</span></code></pre></div></p>
+<h3 id="run-run-project"><code>run</code> - Run Project<a class="headerlink" href="#run-run-project" title="Permanent link">&para;</a></h3>
+<p><strong>Usage</strong>: <code>run [project_name] [flags]</code></p>
+<p><strong>Description</strong>: Starts and runs a PORT project with specified configuration.</p>
+<p><strong>Arguments</strong>:
+- <code>project_name</code>: Name of project to run (optional, auto-detects from current directory)</p>
+<p><strong>Flags</strong>:
+- <code>--address &lt;address&gt;</code>: Override listen address
+- <code>--port &lt;port&gt;</code>: Override listen port
+- <code>--call-process &lt;name&gt;</code>: Override call application name
+- <code>--ng ignore</code>: Allow NG (Not Good) status
+- <code>--sync &lt;directory&gt;</code>: Set sync directory
+- <code>--ping-address &lt;host:port&gt;</code>: Enable ping-pong with endpoint
+- <code>--in-packages &lt;packages&gt;</code>: Comma-separated package list
+- <code>--new-msg</code>: Enable updated message handling</p>
+<p><strong>Examples</strong>:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>run<span class="w"> </span>MyProject<span class="w"> </span>--port<span class="w"> </span><span class="m">8080</span><span class="w"> </span>--address<span class="w"> </span><span class="m">0</span>.0.0.0
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>run<span class="w"> </span>--ping-address<span class="w"> </span>localhost:9090<span class="w"> </span>--sync<span class="w"> </span>./sync_dir
+</span></code></pre></div></p>
+<h3 id="push-push-project-to-repository"><code>push</code> - Push Project to Repository<a class="headerlink" href="#push-push-project-to-repository" title="Permanent link">&para;</a></h3>
+<p><strong>Usage</strong>: <code>push [project_name]</code></p>
+<p><strong>Description</strong>: Pushes current project changes to the repository with automatic change detection.</p>
+<p><strong>Arguments</strong>:
+- <code>project_name</code>: Name of project to push (optional)</p>
+<p><strong>Features</strong>:
+- Automatic change detection for multiple file types
+- Changelog generation in <code>.port.md</code> file
+- Supports file extensions: <code>.logger</code>, <code>.cctv</code>, <code>.pub</code>, <code>.js</code>, <code>.rule</code>, <code>.al</code>, <code>.ce</code>, <code>.dvv</code>, <code>.ecv</code>, <code>.sv</code>, <code>.gem</code>, <code>.msg</code>
+- Entry collector generation
+- Automatic database updates</p>
+<p><strong>Example</strong>:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>push<span class="w"> </span>MyProject
+</span></code></pre></div></p>
+<h3 id="pull-pull-project-from-repository"><code>pull</code> - Pull Project from Repository<a class="headerlink" href="#pull-pull-project-from-repository" title="Permanent link">&para;</a></h3>
+<p><strong>Usage</strong>: <code>pull [project_name]</code></p>
+<p><strong>Description</strong>: Pulls project files from repository to local directory.</p>
+<p><strong>Arguments</strong>:
+- <code>project_name</code>: Name of project to pull (optional)</p>
+<p><strong>Features</strong>:
+- Pulls all project file types from repository
+- Updates local directory structure
+- Synchronizes configuration files
+- Updates .NET project files</p>
+<p><strong>Example</strong>:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>pull<span class="w"> </span>MyProject
+</span></code></pre></div></p>
+<h2 id="package-management-commands">Package Management Commands<a class="headerlink" href="#package-management-commands" title="Permanent link">&para;</a></h2>
+<h3 id="pack-build-package"><code>pack</code> - Build Package<a class="headerlink" href="#pack-build-package" title="Permanent link">&para;</a></h3>
+<p><strong>Usage</strong>: <code>pack &lt;dll_file&gt; &lt;output_name&gt; [flags]</code></p>
+<p><strong>Description</strong>: Builds a package from a DLL file with full initialization and testing.</p>
+<p><strong>Arguments</strong>:
+- <code>dll_file</code>: Path to DLL file to package
+- <code>output_name</code>: Name for the output package</p>
+<p><strong>Flags</strong>:
+- <code>--args &lt;arguments&gt;</code>: Pass initialization arguments</p>
+<p><strong>Features</strong>:
+- Loads and initializes DLL package
+- Extracts message definitions (GET, SET, MAPPING)
+- Sets memory data allocation
+- Runs initialization with arguments
+- Generates comprehensive build report</p>
+<p><strong>Example</strong>:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>pack<span class="w"> </span>MyLibrary.dll<span class="w"> </span>MyPackage<span class="w"> </span>--args<span class="w"> </span><span class="s2">&quot;config=production&quot;</span>
+</span></code></pre></div></p>
+<h3 id="save-save-package"><code>save</code> - Save Package<a class="headerlink" href="#save-save-package" title="Permanent link">&para;</a></h3>
+<p><strong>Usage</strong>: <code>save &lt;package_name&gt; [flags]</code></p>
+<p><strong>Description</strong>: Creates a package (.pkg) file from DLL files in the current directory.</p>
+<p><strong>Arguments</strong>:
+- <code>package_name</code>: Name for the package</p>
+<p><strong>Flags</strong>:
+- <code>--path &lt;directory&gt;</code>: Specify source directory (default: current directory)</p>
+<p><strong>Features</strong>:
+- Scans directory for .dll files
+- Compresses files into .pkg format
+- Automatic package directory creation</p>
+<p><strong>Example</strong>:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>save<span class="w"> </span>MyPackage<span class="w"> </span>--path<span class="w"> </span>/path/to/dlls
+</span></code></pre></div></p>
+<h3 id="clear-clear-packages"><code>clear</code> - Clear Packages<a class="headerlink" href="#clear-clear-packages" title="Permanent link">&para;</a></h3>
+<p><strong>Usage</strong>: <code>clear</code></p>
+<p><strong>Description</strong>: Clears all loaded packages from memory and terminates active processes.</p>
+<h2 id="listing-commands_1">Listing Commands<a class="headerlink" href="#listing-commands_1" title="Permanent link">&para;</a></h2>
+<h3 id="ls-list-resources"><code>ls</code> - List Resources<a class="headerlink" href="#ls-list-resources" title="Permanent link">&para;</a></h3>
+<p><strong>Usage</strong>: <code>ls &lt;resource_type&gt; [additional_args]</code></p>
+<p><strong>Description</strong>: Lists various system resources based on the specified type.</p>
+<h4 id="ls-repo-list-repositories"><code>ls repo</code> - List Repositories<a class="headerlink" href="#ls-repo-list-repositories" title="Permanent link">&para;</a></h4>
+<p>Lists all available repositories with timestamps.</p>
+<p><strong>Output Format</strong>: <code>repository_name                modification_time</code></p>
+<h4 id="ls-pkg-list-packages"><code>ls pkg</code> - List Packages<a class="headerlink" href="#ls-pkg-list-packages" title="Permanent link">&para;</a></h4>
+<p>Lists all available packages (.pkg files) with timestamps.</p>
+<p><strong>Output Format</strong>: <code>package_name                    modification_time</code></p>
+<h4 id="ls-tcp-address-list-tcp-addresses"><code>ls tcp [address]</code> - List TCP Addresses<a class="headerlink" href="#ls-tcp-address-list-tcp-addresses" title="Permanent link">&para;</a></h4>
+<p>Lists TCP addresses for the specified host (default: 0.0.0.0).
+Performs DNS lookup to resolve host addresses.</p>
+<p><strong>Arguments</strong>:
+- <code>address</code>: Host address to resolve (optional, default: 0.0.0.0)</p>
+<h4 id="ls-com-list-com-ports"><code>ls com</code> - List COM Ports<a class="headerlink" href="#ls-com-list-com-ports" title="Permanent link">&para;</a></h4>
+<p>Lists all available serial communication ports.</p>
+<h4 id="ls-user-list-users"><code>ls user</code> - List Users<a class="headerlink" href="#ls-user-list-users" title="Permanent link">&para;</a></h4>
+<p>Lists all registered usernames in the system.</p>
+<h2 id="script-management-commands">Script Management Commands<a class="headerlink" href="#script-management-commands" title="Permanent link">&para;</a></h2>
+<h3 id="script-execute-script"><code>script</code> - Execute Script<a class="headerlink" href="#script-execute-script" title="Permanent link">&para;</a></h3>
+<p><strong>Usage</strong>: <code>script &lt;script_file&gt; &lt;function_name&gt; [args...]</code></p>
+<p><strong>Description</strong>: Executes JavaScript (.js) or rule (.rule) files with specified functions and arguments.</p>
+<p><strong>Arguments</strong>:
+- <code>script_file</code>: Path to script file (.js or .rule)
+- <code>function_name</code>: Name of function to execute
+- <code>args</code>: Additional arguments to pass to function</p>
+<p><strong>Flags</strong>:
+- <code>--timeout &lt;milliseconds&gt;</code>: Set execution timeout</p>
+<p><strong>Features</strong>:
+- Supports both <code>.js</code> and <code>.rule</code> files
+- Absolute and relative path resolution
+- Timeout support
+- Async execution with cancellation support
+- Boot script support for special <code>boot.js</code> files
+- Context-aware execution with server integration</p>
+<p><strong>Examples</strong>:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>script<span class="w"> </span>./automation.js<span class="w"> </span>initialize
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>script<span class="w"> </span>/path/to/boot.js<span class="w"> </span>startup<span class="w"> </span>--timeout<span class="w"> </span><span class="m">5000</span>
+</span></code></pre></div></p>
+<h3 id="cancel-cancel-script-execution"><code>cancel</code> - Cancel Script Execution<a class="headerlink" href="#cancel-cancel-script-execution" title="Permanent link">&para;</a></h3>
+<p><strong>Usage</strong>: <code>cancel &lt;script_file&gt; &lt;function_name&gt;</code></p>
+<p><strong>Description</strong>: Cancels a running script execution by its unique identifier.</p>
+<p><strong>Arguments</strong>:
+- <code>script_file</code>: Path to script file
+- <code>function_name</code>: Name of function to cancel</p>
+<p><strong>Features</strong>:
+- Cancels async script execution
+- Uses script file and function name as identifier
+- Immediate termination of running scripts</p>
+<h2 id="user-management-commands">User Management Commands<a class="headerlink" href="#user-management-commands" title="Permanent link">&para;</a></h2>
+<h3 id="login-user-login"><code>login</code> - User Login<a class="headerlink" href="#login-user-login" title="Permanent link">&para;</a></h3>
+<p><strong>Usage</strong>: <code>login &lt;username&gt; &lt;password&gt;</code></p>
+<p><strong>Description</strong>: Authenticates user and enters interactive command mode.</p>
+<p><strong>Arguments</strong>:
+- <code>username</code>: Username for authentication
+- <code>password</code>: Password for authentication</p>
+<p><strong>Features</strong>:
+- User authentication
+- Interactive command prompt
+- Session-based command execution</p>
+<h3 id="add-add-resources"><code>add</code> - Add Resources<a class="headerlink" href="#add-add-resources" title="Permanent link">&para;</a></h3>
+<p><strong>Usage</strong>: <code>add [flags]</code></p>
+<p><strong>Description</strong>: Adds various resources to the system based on specified flags.</p>
+<h4 id="add-user-username-password-add-user"><code>add --user &lt;username&gt; &lt;password&gt;</code> - Add User<a class="headerlink" href="#add-user-username-password-add-user" title="Permanent link">&para;</a></h4>
+<p>Adds a new user to the system with specified credentials.</p>
+<p><strong>Arguments</strong>:
+- <code>username</code>: Username for new user
+- <code>password</code>: Password for new user</p>
+<h4 id="add-enum-enum_definitions-add-enumerations"><code>add --enum &lt;enum_definitions&gt;</code> - Add Enumerations<a class="headerlink" href="#add-enum-enum_definitions-add-enumerations" title="Permanent link">&para;</a></h4>
+<p>Adds enumeration definitions to the .enum file.</p>
+<p><strong>Format</strong>: <code>type name:value name:value</code> (comma-separated for multiple)</p>
+<p><strong>Example</strong>: 
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>add<span class="w"> </span>--enum<span class="w"> </span><span class="s2">&quot;Status RUNNING:1 STOPPED:0,Mode AUTO:1 MANUAL:0&quot;</span>
+</span></code></pre></div></p>
+<h4 id="add-group-group_names-message_file-add-groups"><code>add --group &lt;group_names&gt; [message_file]</code> - Add Groups<a class="headerlink" href="#add-group-group_names-message_file-add-groups" title="Permanent link">&para;</a></h4>
+<p>Creates new groups with optional message file specification.</p>
+<p><strong>Arguments</strong>:
+- <code>group_names</code>: Comma-separated list of group names
+- <code>message_file</code>: Optional message file specification</p>
+<p><strong>Features</strong>:
+- Creates group directories
+- Generates .msg files for each group
+- Supports comma-separated group names</p>
+<h2 id="server-communication-commands">Server Communication Commands<a class="headerlink" href="#server-communication-commands" title="Permanent link">&para;</a></h2>
+<h3 id="get-get-server-data"><code>get</code> - Get Server Data<a class="headerlink" href="#get-get-server-data" title="Permanent link">&para;</a></h3>
+<p><strong>Usage</strong>: <code>get &lt;resource_identifier&gt;</code></p>
+<p><strong>Description</strong>: Retrieves specific data from the server including message values, logs, events, and system information.</p>
+<p><strong>Arguments</strong>:
+- <code>resource_identifier</code>: Identifier for the resource to retrieve</p>
+<h4 id="entry-data-retrieval"><strong>Entry Data Retrieval</strong><a class="headerlink" href="#entry-data-retrieval" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>[group-name] [message-name]</code>: Get group message value</li>
+<li>Example: <code>get Equipment Status</code> - Gets status from Equipment group</li>
+<li>
+<p>Example: <code>get Alarms Count</code> - Gets alarm count from Alarms group</p>
+</li>
+<li>
+<p><code>[package-name] [message-name]</code>: Get package message value</p>
+</li>
+<li>Example: <code>get SECS Temperature</code> - Gets temperature from SECS package</li>
+<li>Example: <code>get GEM ProcessState</code> - Gets process state from GEM package</li>
+</ul>
+<h4 id="work-and-process-information"><strong>Work and Process Information</strong><a class="headerlink" href="#work-and-process-information" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>[workid]</code>: Get work ID information and current work status</li>
+<li>Example: <code>get W001</code> - Gets information for work ID W001</li>
+<li>Returns: Work status, progress, timestamps, associated data</li>
+</ul>
+<h4 id="log-and-event-data"><strong>Log and Event Data</strong><a class="headerlink" href="#log-and-event-data" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>[project-name].log</code>: Get project log entries</li>
+<li>Example: <code>get MyProject.log</code> - Gets log entries for MyProject</li>
+<li>
+<p>Returns: Timestamped log entries, error messages, system events</p>
+</li>
+<li>
+<p><code>[package-name].log</code>: Get package-specific log entries</p>
+</li>
+<li>Example: <code>get SECS.log</code> - Gets SECS package log entries</li>
+<li>
+<p>Returns: Package operations, message traffic, error logs</p>
+</li>
+<li>
+<p><code>[package-name].event</code>: Get package events and notifications</p>
+</li>
+<li>Example: <code>get GEM.event</code> - Gets GEM package events</li>
+<li>Returns: Event history, alarms, state changes, notifications</li>
+</ul>
+<h4 id="documentation-and-help"><strong>Documentation and Help</strong><a class="headerlink" href="#documentation-and-help" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>[package-name].doc</code>: Get package documentation</li>
+<li>Example: <code>get SECS.doc</code> - Gets SECS package documentation</li>
+<li>Returns: API documentation, message formats, usage examples</li>
+</ul>
+<h4 id="system-status-information"><strong>System Status Information</strong><a class="headerlink" href="#system-status-information" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>status</code>: Get comprehensive server status</li>
+<li>Returns: Server health, active connections, resource usage, uptime</li>
+<li>
+<p>Example output: Server running, 5 active connections, CPU 15%, Memory 45%</p>
+</li>
+<li>
+<p><code>mls</code>: Get MLS (Multi-Level Security) information</p>
+</li>
+<li>Returns: Security levels, access permissions, user contexts</li>
+<li>Example: Current user level, accessible resources, security policies</li>
+</ul>
+<p><strong>Examples</strong>:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># Get message values</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>get<span class="w"> </span>Equipment<span class="w"> </span>Status
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>get<span class="w"> </span>SECS<span class="w"> </span>Temperature
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>get<span class="w"> </span>GEM<span class="w"> </span>ProcessState
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="c1"># Get work information</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>get<span class="w"> </span>W001
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>get<span class="w"> </span>WORK_12345
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="c1"># Get logs and events</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>get<span class="w"> </span>MyProject.log
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>get<span class="w"> </span>SECS.log
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>get<span class="w"> </span>GEM.event
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="c1"># Get system information</span>
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>get<span class="w"> </span>status
+</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>get<span class="w"> </span>mls
+</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a>
+</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a><span class="c1"># Get documentation</span>
+</span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a>get<span class="w"> </span>SECS.doc
+</span><span id="__span-8-21"><a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a>get<span class="w"> </span>GEM.doc
+</span></code></pre></div></p>
+<h3 id="set-set-server-data"><code>set</code> - Set Server Data<a class="headerlink" href="#set-set-server-data" title="Permanent link">&para;</a></h3>
+<p><strong>Usage</strong>: <code>set &lt;group&gt; &lt;key&gt; &lt;value&gt;</code></p>
+<p><strong>Description</strong>: Sets data on the server including message values, system configurations, and executes various operations.</p>
+<p><strong>Arguments</strong>:
+- <code>group</code>: Group name, package name, or operation context
+- <code>key</code>: Key, message name, or operation type
+- <code>value</code>: Value to set or operation parameters</p>
+<h4 id="entry-data-operations"><strong>Entry Data Operations</strong><a class="headerlink" href="#entry-data-operations" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>[group-name] [message-name] [value]</code>: Set group message value</li>
+<li>Example: <code>set Equipment Status RUNNING</code> - Sets equipment status to RUNNING</li>
+<li>Example: <code>set Alarms Count 0</code> - Clears alarm count</li>
+<li>
+<p>Example: <code>set Process Temperature 150.5</code> - Sets process temperature</p>
+</li>
+<li>
+<p><code>[package-name] [message-name] [value]</code>: Set package message value</p>
+</li>
+<li>Example: <code>set SECS CommState ENABLED</code> - Enables SECS communication</li>
+<li>Example: <code>set GEM ControlState REMOTE</code> - Sets GEM control to remote</li>
+<li>Example: <code>set Recipe ActiveRecipe R001</code> - Sets active recipe</li>
+</ul>
+<h4 id="script-and-function-execution"><strong>Script and Function Execution</strong><a class="headerlink" href="#script-and-function-execution" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>[*.js] [function-name] [arguments]</code>: Execute JavaScript function</li>
+<li>Example: <code>set automation.js startProcess "Recipe1,Lot001"</code> - Executes startProcess function</li>
+<li>Example: <code>set monitor.js checkAlarms ""</code> - Executes checkAlarms function</li>
+<li>Example: <code>set control.js setParameter "temp,200"</code> - Executes setParameter function</li>
+</ul>
+<h4 id="publication-operations"><strong>Publication Operations</strong><a class="headerlink" href="#publication-operations" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>[*.pub]</code>: Publish operation or message</li>
+<li>Example: <code>set alarms.pub</code> - Publishes alarm data</li>
+<li>Example: <code>set events.pub</code> - Publishes event notifications</li>
+<li>Example: <code>set status.pub</code> - Publishes status updates</li>
+</ul>
+<h4 id="user-management-operations"><strong>User Management Operations</strong><a class="headerlink" href="#user-management-operations" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>password [user-name] [old-password] [new-password]</code>: Change user password</li>
+<li>Example: <code>set password admin oldpass newpass123</code> - Changes admin password</li>
+<li>
+<p>Security: Requires current password for verification</p>
+</li>
+<li>
+<p><code>grant [user-name] [user-level]</code>: Grant user permissions</p>
+</li>
+<li>Example: <code>set grant operator 2</code> - Grants level 2 permissions to operator</li>
+<li>Example: <code>set grant engineer 3</code> - Grants level 3 permissions to engineer</li>
+<li>Levels: 1=Read, 2=Write, 3=Admin, 4=System</li>
+</ul>
+<h4 id="system-operations"><strong>System Operations</strong><a class="headerlink" href="#system-operations" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>notify [message]</code>: Send notification message</li>
+<li>Example: <code>set notify "Process completed successfully"</code> - Sends success notification</li>
+<li>Example: <code>set notify "Warning: High temperature detected"</code> - Sends warning</li>
+<li>
+<p>Broadcasts to all connected clients and logged</p>
+</li>
+<li>
+<p><code>init [package-name]</code>: Initialize package</p>
+</li>
+<li>Example: <code>set init SECS</code> - Initializes SECS package</li>
+<li>Example: <code>set init GEM</code> - Initializes GEM package</li>
+<li>Reloads configuration and resets package state</li>
+</ul>
+<h4 id="advanced-operations"><strong>Advanced Operations</strong><a class="headerlink" href="#advanced-operations" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>config [parameter] [value]</code>: Set configuration parameter</li>
+<li>Example: <code>set config timeout 30000</code> - Sets timeout to 30 seconds</li>
+<li>
+<p>Example: <code>set config loglevel DEBUG</code> - Sets log level to DEBUG</p>
+</li>
+<li>
+<p><code>trigger [event-name] [data]</code>: Trigger system event</p>
+</li>
+<li>Example: <code>set trigger alarm_reset ""</code> - Triggers alarm reset event</li>
+<li>Example: <code>set trigger process_start "Recipe1"</code> - Triggers process start</li>
+</ul>
+<p><strong>Examples</strong>:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># Set message values</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nb">set</span><span class="w"> </span>Equipment<span class="w"> </span>Status<span class="w"> </span>RUNNING
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="nb">set</span><span class="w"> </span>SECS<span class="w"> </span>CommState<span class="w"> </span>ENABLED
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="nb">set</span><span class="w"> </span>Process<span class="w"> </span>Temperature<span class="w"> </span><span class="m">150</span>.5
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="c1"># Execute JavaScript functions</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="nb">set</span><span class="w"> </span>automation.js<span class="w"> </span>startProcess<span class="w"> </span><span class="s2">&quot;Recipe1,Lot001&quot;</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="nb">set</span><span class="w"> </span>monitor.js<span class="w"> </span>checkAlarms<span class="w"> </span><span class="s2">&quot;&quot;</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="c1"># User management</span>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="nb">set</span><span class="w"> </span>password<span class="w"> </span>admin<span class="w"> </span>oldpass<span class="w"> </span>newpass123
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="nb">set</span><span class="w"> </span>grant<span class="w"> </span>operator<span class="w"> </span><span class="m">2</span>
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="c1"># System operations</span>
+</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="nb">set</span><span class="w"> </span>notify<span class="w"> </span><span class="s2">&quot;Process completed successfully&quot;</span>
+</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="nb">set</span><span class="w"> </span>init<span class="w"> </span>SECS
+</span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a>
+</span><span id="__span-9-18"><a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a><span class="c1"># Configuration</span>
+</span><span id="__span-9-19"><a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a><span class="nb">set</span><span class="w"> </span>config<span class="w"> </span>timeout<span class="w"> </span><span class="m">30000</span>
+</span><span id="__span-9-20"><a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a><span class="nb">set</span><span class="w"> </span>config<span class="w"> </span>loglevel<span class="w"> </span>DEBUG
+</span><span id="__span-9-21"><a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a>
+</span><span id="__span-9-22"><a id="__codelineno-9-22" name="__codelineno-9-22" href="#__codelineno-9-22"></a><span class="c1"># Publish operations</span>
+</span><span id="__span-9-23"><a id="__codelineno-9-23" name="__codelineno-9-23" href="#__codelineno-9-23"></a><span class="nb">set</span><span class="w"> </span>alarms.pub
+</span><span id="__span-9-24"><a id="__codelineno-9-24" name="__codelineno-9-24" href="#__codelineno-9-24"></a><span class="nb">set</span><span class="w"> </span>events.pub
+</span><span id="__span-9-25"><a id="__codelineno-9-25" name="__codelineno-9-25" href="#__codelineno-9-25"></a>
+</span><span id="__span-9-26"><a id="__codelineno-9-26" name="__codelineno-9-26" href="#__codelineno-9-26"></a><span class="c1"># Trigger events</span>
+</span><span id="__span-9-27"><a id="__codelineno-9-27" name="__codelineno-9-27" href="#__codelineno-9-27"></a><span class="nb">set</span><span class="w"> </span>trigger<span class="w"> </span>alarm_reset<span class="w"> </span><span class="s2">&quot;&quot;</span>
+</span><span id="__span-9-28"><a id="__codelineno-9-28" name="__codelineno-9-28" href="#__codelineno-9-28"></a><span class="nb">set</span><span class="w"> </span>trigger<span class="w"> </span>process_start<span class="w"> </span><span class="s2">&quot;Recipe1&quot;</span>
+</span></code></pre></div></p>
+<p><strong>Return Values</strong>:
+- <strong>Success</strong>: Operation completed successfully
+- <strong>Error</strong>: Error message with details
+- <strong>Data</strong>: Retrieved or set data value
+- <strong>Status</strong>: Current operation status</p>
+<h3 id="status-server-status"><code>status</code> - Server Status<a class="headerlink" href="#status-server-status" title="Permanent link">&para;</a></h3>
+<p><strong>Usage</strong>: <code>status</code></p>
+<p><strong>Description</strong>: Gets comprehensive server status information.</p>
+<h3 id="uptime-server-uptime"><code>uptime</code> - Server Uptime<a class="headerlink" href="#uptime-server-uptime" title="Permanent link">&para;</a></h3>
+<p><strong>Usage</strong>: <code>uptime</code></p>
+<p><strong>Description</strong>: Gets server uptime information.</p>
+<h3 id="latency-measure-latency"><code>latency</code> - Measure Latency<a class="headerlink" href="#latency-measure-latency" title="Permanent link">&para;</a></h3>
+<p><strong>Usage</strong>: <code>latency</code></p>
+<p><strong>Description</strong>: Measures network latency to the server using timestamp-based calculation.</p>
+<h3 id="shutdown-server-shutdown"><code>shutdown</code> - Server Shutdown<a class="headerlink" href="#shutdown-server-shutdown" title="Permanent link">&para;</a></h3>
+<p><strong>Usage</strong>: <code>shutdown &lt;confirmation&gt;</code></p>
+<p><strong>Description</strong>: Initiates server shutdown sequence.</p>
+<p><strong>Arguments</strong>:
+- <code>confirmation</code>: Confirmation code for shutdown</p>
+<h2 id="repository-management-commands">Repository Management Commands<a class="headerlink" href="#repository-management-commands" title="Permanent link">&para;</a></h2>
+<h3 id="repo-repository-operations"><code>repo</code> - Repository Operations<a class="headerlink" href="#repo-repository-operations" title="Permanent link">&para;</a></h3>
+<p><strong>Usage</strong>: <code>repo &lt;file_path&gt; [flags]</code></p>
+<p><strong>Description</strong>: Manages repository operations with upload capabilities.</p>
+<p><strong>Arguments</strong>:
+- <code>file_path</code>: Path to file for repository operations</p>
+<p><strong>Flags</strong>:
+- <code>--upload local</code>: Upload files from local directory to package repository
+- <code>--upload remote</code>: Handle remote repository upload operations</p>
+<h2 id="additional-utility-commands">Additional Utility Commands<a class="headerlink" href="#additional-utility-commands" title="Permanent link">&para;</a></h2>
+<h3 id="date-server-date"><code>date</code> - Server Date<a class="headerlink" href="#date-server-date" title="Permanent link">&para;</a></h3>
+<p><strong>Usage</strong>: <code>date</code></p>
+<p><strong>Description</strong>: Retrieves current server date and time.</p>
+<h3 id="flow-flow-status"><code>flow</code> - Flow Status<a class="headerlink" href="#flow-flow-status" title="Permanent link">&para;</a></h3>
+<p><strong>Usage</strong>: <code>flow</code></p>
+<p><strong>Description</strong>: Retrieves current flow status from the server.</p>
+<h3 id="queue-queue-management"><code>queue</code> - Queue Management<a class="headerlink" href="#queue-queue-management" title="Permanent link">&para;</a></h3>
+<p><strong>Usage</strong>: <code>queue &lt;operation&gt;</code></p>
+<p><strong>Description</strong>: Manages server message queues.</p>
+<h3 id="stack-stack-management"><code>stack</code> - Stack Management<a class="headerlink" href="#stack-stack-management" title="Permanent link">&para;</a></h3>
+<p><strong>Usage</strong>: <code>stack &lt;operation&gt;</code></p>
+<p><strong>Description</strong>: Manages server stack operations.</p>
+<h3 id="storage-storage-management"><code>storage</code> - Storage Management<a class="headerlink" href="#storage-storage-management" title="Permanent link">&para;</a></h3>
+<p><strong>Usage</strong>: <code>storage &lt;operation&gt;</code></p>
+<p><strong>Description</strong>: Manages server storage operations.</p>
+<h3 id="list-list-server-resources"><code>list</code> - List Server Resources<a class="headerlink" href="#list-list-server-resources" title="Permanent link">&para;</a></h3>
+<p><strong>Usage</strong>: <code>list &lt;resource_type&gt;</code></p>
+<p><strong>Description</strong>: Lists various server resources.</p>
+<h3 id="request-app-request-application"><code>request-app</code> - Request Application<a class="headerlink" href="#request-app-request-application" title="Permanent link">&para;</a></h3>
+<p><strong>Usage</strong>: <code>request-app [parameters]</code></p>
+<p><strong>Description</strong>: Sends application request to the server.</p>
+<h3 id="sleep-sleepwait"><code>sleep</code> - Sleep/Wait<a class="headerlink" href="#sleep-sleepwait" title="Permanent link">&para;</a></h3>
+<p><strong>Usage</strong>: <code>sleep</code></p>
+<p><strong>Description</strong>: Pauses execution (utility command for scripting).</p>
+<h2 id="global-flags-reference">Global Flags Reference<a class="headerlink" href="#global-flags-reference" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>--timeout &lt;milliseconds&gt;</code>: Set execution timeout</li>
+<li><code>--address &lt;address&gt;</code>: Override listen address</li>
+<li><code>--port &lt;port&gt;</code>: Override listen port</li>
+<li><code>--path &lt;path&gt;</code>: Specify file path</li>
+<li><code>--args &lt;arguments&gt;</code>: Pass initialization arguments</li>
+<li><code>--ng ignore</code>: Allow NG status</li>
+<li><code>--sync &lt;directory&gt;</code>: Set sync directory</li>
+<li><code>--ping-address &lt;host:port&gt;</code>: Enable ping-pong</li>
+<li><code>--in-packages &lt;packages&gt;</code>: Specify package list</li>
+<li><code>--new-msg</code>: Enable updated message handling</li>
+<li><code>--upload &lt;local|remote&gt;</code>: Upload mode</li>
+<li><code>--user &lt;username&gt; &lt;password&gt;</code>: User operations</li>
+<li><code>--enum &lt;definitions&gt;</code>: Enumeration definitions</li>
+<li><code>--group &lt;names&gt;</code>: Group operations</li>
+</ul>
+<h2 id="common-usage-examples">Common Usage Examples<a class="headerlink" href="#common-usage-examples" title="Permanent link">&para;</a></h2>
+<h3 id="basic-project-workflow">Basic Project Workflow<a class="headerlink" href="#basic-project-workflow" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># Create new project</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>new<span class="w"> </span>MyProject
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="c1"># Run project with custom port</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>run<span class="w"> </span>MyProject<span class="w"> </span>--port<span class="w"> </span><span class="m">8080</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="c1"># Make changes and push to repository</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>push<span class="w"> </span>MyProject
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="c1"># Pull updates from repository</span>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>pull<span class="w"> </span>MyProject
+</span></code></pre></div>
+<h3 id="package-development">Package Development<a class="headerlink" href="#package-development" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># Build package from DLL</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>pack<span class="w"> </span>MyLibrary.dll<span class="w"> </span>MyPackage<span class="w"> </span>--args<span class="w"> </span><span class="s2">&quot;config=test&quot;</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="c1"># Save package from current directory</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>save<span class="w"> </span>MyPackage<span class="w"> </span>--path<span class="w"> </span>./output
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="c1"># Clear all loaded packages</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>clear
+</span></code></pre></div>
+<h3 id="system-administration">System Administration<a class="headerlink" href="#system-administration" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># Add new user</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>add<span class="w"> </span>--user<span class="w"> </span>admin<span class="w"> </span>password123
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="c1"># Check server status</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>status
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="c1"># Measure network latency</span>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>latency
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="c1"># List available repositories</span>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>ls<span class="w"> </span>repo
+</span></code></pre></div>
+<h3 id="script-execution">Script Execution<a class="headerlink" href="#script-execution" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># Execute JavaScript function</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>script<span class="w"> </span>./automation.js<span class="w"> </span>initialize
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="c1"># Execute with timeout</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>script<span class="w"> </span>./boot.js<span class="w"> </span>startup<span class="w"> </span>--timeout<span class="w"> </span><span class="m">5000</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="c1"># Cancel running script</span>
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>cancel<span class="w"> </span>./automation.js<span class="w"> </span>initialize
+</span></code></pre></div>
+<h3 id="server-data-operations">Server Data Operations<a class="headerlink" href="#server-data-operations" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1"># Get server data</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>get<span class="w"> </span>Equipment<span class="w"> </span>Status
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>get<span class="w"> </span>SECS<span class="w"> </span>Temperature
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>get<span class="w"> </span>MyProject.log
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>get<span class="w"> </span>status
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="c1"># Set server data</span>
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="nb">set</span><span class="w"> </span>Equipment<span class="w"> </span>Status<span class="w"> </span>RUNNING
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="nb">set</span><span class="w"> </span>SECS<span class="w"> </span>CommState<span class="w"> </span>ENABLED
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="nb">set</span><span class="w"> </span>Process<span class="w"> </span>Temperature<span class="w"> </span><span class="m">150</span>.5
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>
+</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a><span class="c1"># Execute JavaScript functions</span>
+</span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a><span class="nb">set</span><span class="w"> </span>automation.js<span class="w"> </span>startProcess<span class="w"> </span><span class="s2">&quot;Recipe1,Lot001&quot;</span>
+</span><span id="__span-14-14"><a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a><span class="nb">set</span><span class="w"> </span>monitor.js<span class="w"> </span>checkAlarms<span class="w"> </span><span class="s2">&quot;&quot;</span>
+</span><span id="__span-14-15"><a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>
+</span><span id="__span-14-16"><a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a><span class="c1"># User management</span>
+</span><span id="__span-14-17"><a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a><span class="nb">set</span><span class="w"> </span>password<span class="w"> </span>admin<span class="w"> </span>oldpass<span class="w"> </span>newpass123
+</span><span id="__span-14-18"><a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a><span class="nb">set</span><span class="w"> </span>grant<span class="w"> </span>operator<span class="w"> </span><span class="m">2</span>
+</span><span id="__span-14-19"><a id="__codelineno-14-19" name="__codelineno-14-19" href="#__codelineno-14-19"></a>
+</span><span id="__span-14-20"><a id="__codelineno-14-20" name="__codelineno-14-20" href="#__codelineno-14-20"></a><span class="c1"># System notifications</span>
+</span><span id="__span-14-21"><a id="__codelineno-14-21" name="__codelineno-14-21" href="#__codelineno-14-21"></a><span class="nb">set</span><span class="w"> </span>notify<span class="w"> </span><span class="s2">&quot;Process completed successfully&quot;</span>
+</span><span id="__span-14-22"><a id="__codelineno-14-22" name="__codelineno-14-22" href="#__codelineno-14-22"></a><span class="nb">set</span><span class="w"> </span>init<span class="w"> </span>SECS
+</span><span id="__span-14-23"><a id="__codelineno-14-23" name="__codelineno-14-23" href="#__codelineno-14-23"></a>
+</span><span id="__span-14-24"><a id="__codelineno-14-24" name="__codelineno-14-24" href="#__codelineno-14-24"></a><span class="c1"># Configuration management</span>
+</span><span id="__span-14-25"><a id="__codelineno-14-25" name="__codelineno-14-25" href="#__codelineno-14-25"></a><span class="nb">set</span><span class="w"> </span>config<span class="w"> </span>timeout<span class="w"> </span><span class="m">30000</span>
+</span><span id="__span-14-26"><a id="__codelineno-14-26" name="__codelineno-14-26" href="#__codelineno-14-26"></a><span class="nb">set</span><span class="w"> </span>config<span class="w"> </span>loglevel<span class="w"> </span>DEBUG
+</span></code></pre></div>
+<h2 id="error-handling">Error Handling<a class="headerlink" href="#error-handling" title="Permanent link">&para;</a></h2>
+<p>The PORT CLI provides comprehensive error handling for:
+- Invalid command syntax
+- Missing required arguments
+- File system errors
+- Network communication errors
+- Authentication failures
+- Resource not found errors
+- Permission errors
+- Timeout errors
+- Package loading errors</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../react/" class="md-footer__link md-footer__link--prev" aria-label="Previous: React">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                React
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../remote/" class="md-footer__link md-footer__link--next" aria-label="Next: Remote Access">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Remote Access
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["search.highlight", "search.share", "search.suggest", "content.code.copy", "content.code.select", "content.code.annotate", "content.tabs.link", "content.tooltips", "navigation.footer"], "search": "../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>

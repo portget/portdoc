@@ -1,0 +1,2030 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://portdic.com/learn/">
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../dotnet/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../img/logo.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Learn - Port</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../extra_css.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#port-learning-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Port" class="md-header__button md-logo" aria-label="Port" data-md-component="logo">
+      
+  <img src="../img/logo.ico" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Port
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Learn
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="cyan"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Port" class="md-nav__button md-logo" aria-label="Port" data-md-component="logo">
+      
+  <img src="../img/logo.ico" alt="logo">
+
+    </a>
+    Port
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Learn
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Learn
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-port-projects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating Port Projects
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Creating Port Projects">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#project-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Structure Overview
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#repository-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Repository Setup
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Repository Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-new-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating a New Project
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#group-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Category Management
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Category Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adding-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adding Categorys
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-project-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Project Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entry-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entry System
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Entry System">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#message-syntax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entry Definition Syntax
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#message-attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entry Attributes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#message-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entry Examples
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enum-definitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enum Definitions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Enum Definitions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enum-syntax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enum Syntax
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enum-benefits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enum Benefits
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enum-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enum Examples
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rule-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rule System
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Rule System">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rule-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rule Definition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#settrigger-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SetTrigger Rules
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SetTrigger Rules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#settrigger-syntax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Syntax
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#settrigger-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SetTrigger Examples
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gettrigger-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GetTrigger Rules
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GetTrigger Rules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gettrigger-syntax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Syntax
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gettrigger-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GetTrigger Examples
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rule-benefits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rule Benefits
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dotnet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    .Net
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../react/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    React
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Documentation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../commands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../remote/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Remote Access
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Protocols
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Protocols
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../opcua/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OPC UA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modbus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modbus
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ethernetip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EtherNet/IP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../secs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SECS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rtsp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RTSP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mqtt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MQTT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-port-projects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating Port Projects
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Creating Port Projects">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#project-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Structure Overview
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#repository-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Repository Setup
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Repository Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-new-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating a New Project
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#group-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Category Management
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Category Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adding-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adding Categorys
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-project-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Project Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entry-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entry System
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Entry System">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#message-syntax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entry Definition Syntax
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#message-attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entry Attributes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#message-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entry Examples
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enum-definitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enum Definitions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Enum Definitions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enum-syntax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enum Syntax
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enum-benefits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enum Benefits
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enum-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enum Examples
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rule-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rule System
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Rule System">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rule-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rule Definition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#settrigger-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SetTrigger Rules
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SetTrigger Rules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#settrigger-syntax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Syntax
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#settrigger-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SetTrigger Examples
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gettrigger-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GetTrigger Rules
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GetTrigger Rules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gettrigger-syntax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Syntax
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gettrigger-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GetTrigger Examples
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rule-benefits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rule Benefits
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="port-learning-guide">Port Learning Guide<a class="headerlink" href="#port-learning-guide" title="Permanent link">&para;</a></h1>
+<h2 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link">&para;</a></h2>
+<ol>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#creating-port-projects">Creating Port Projects</a></li>
+<li><a href="#entry-system">Entry System</a></li>
+<li><a href="#enum-definitions">Enum Definitions</a></li>
+<li><a href="#rule-system">Rule System</a></li>
+</ol>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>Port operates by reflecting messages in the most recently updated repository. This quick start guide will help you understand how to create, configure, and manage Port projects effectively.</p>
+<p>Port provides a comprehensive ecosystem for:</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Entry-based Communication</strong></td>
+<td>Structured data exchange between components</td>
+</tr>
+<tr>
+<td><strong>Package Integration</strong></td>
+<td>Modular architecture with reusable components</td>
+</tr>
+<tr>
+<td><strong>Real-time Monitoring</strong></td>
+<td>Live project status and logging capabilities</td>
+</tr>
+<tr>
+<td><strong>Remote Management</strong></td>
+<td>SSH and web-based administration</td>
+</tr>
+<tr>
+<td><strong>IoT Integration</strong></td>
+<td>MQTT protocol support for device communication</td>
+</tr>
+</tbody>
+</table>
+<h2 id="creating-port-projects">Creating Port Projects<a class="headerlink" href="#creating-port-projects" title="Permanent link">&para;</a></h2>
+<h3 id="project-structure">Project Structure Overview<a class="headerlink" href="#project-structure" title="Permanent link">&para;</a></h3>
+<p>Port projects are organized hierarchically with a clear folder structure:</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Root Folder</strong></td>
+<td>Contains project configuration and <code>*.enum</code> files</td>
+</tr>
+<tr>
+<td><strong>Category Folders</strong></td>
+<td>Organize messages by functional areas</td>
+</tr>
+<tr>
+<td><strong>Page Files</strong></td>
+<td>Individual <code>*.page</code> files defining entry</td>
+</tr>
+</tbody>
+</table>
+<h3 id="repository-setup">Repository Setup<a class="headerlink" href="#repository-setup" title="Permanent link">&para;</a></h3>
+<p>The Port project structure is simple and straightforward. Follow these steps to create your first project:</p>
+<ol>
+<li><strong>Create Project Directory</strong>: Start with a dedicated project folder</li>
+<li><strong>Initialize Project</strong>: Use <code>port new [project-name]</code> to generate project files</li>
+<li><strong>Add Category</strong>: Create sub-folders for message organization</li>
+<li><strong>Define Messages</strong>: Add <code>*.page</code> files to group folders</li>
+<li><strong>Configure Types</strong>: Specify text, num, and enum data types</li>
+<li><strong>Deploy</strong>: Use <code>port push</code> to store project configuration</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Repository Naming Rules</p>
+<p>Repository names cannot contain special characters and must follow operating system directory naming conventions.</p>
+</div>
+<h4 id="creating-new-project">Creating a New Project<a class="headerlink" href="#creating-new-project" title="Permanent link">&para;</a></h4>
+<p><img alt="Create Project" src="../img/new_project.png" /></p>
+<p><strong>Command:</strong>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>port<span class="w"> </span>new<span class="w"> </span><span class="o">[</span>project-name<span class="o">]</span>
+</span></code></pre></div></p>
+<h3 id="group-management">Category Management<a class="headerlink" href="#group-management" title="Permanent link">&para;</a></h3>
+<p>Categorys serve as logical containers for related messages. Each group can contain multiple message files, enabling organized and abstracted message management.</p>
+<h4 id="adding-groups">Adding Categorys<a class="headerlink" href="#adding-groups" title="Permanent link">&para;</a></h4>
+<p><img alt="Add Category" src="../img/add_group.png" /></p>
+<p><strong>Benefits of Categorys:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Benefit</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Organization</strong></td>
+<td>Logical separation of message types</td>
+</tr>
+<tr>
+<td><strong>Maintainability</strong></td>
+<td>Easier to locate and edit related messages</td>
+</tr>
+<tr>
+<td><strong>Scalability</strong></td>
+<td>Support for large projects with many messages</td>
+</tr>
+<tr>
+<td><strong>Abstraction</strong></td>
+<td>Simplified management of complex message relationships</td>
+</tr>
+</tbody>
+</table>
+<h4 id="sample-project-structure">Sample Project Structure<a class="headerlink" href="#sample-project-structure" title="Permanent link">&para;</a></h4>
+<p><img alt="Project Structure" src="../img/expl.png" /></p>
+<p><strong>Download Sample:</strong>
+<a href="../file/sample.zip">Download Sample Project</a></p>
+<h2 id="entry-system">Entry System<a class="headerlink" href="#entry-system" title="Permanent link">&para;</a></h2>
+<h3 id="message-syntax">Entry Definition Syntax<a class="headerlink" href="#message-syntax" title="Permanent link">&para;</a></h3>
+<p>Messages are the core communication units in Port. Each message is defined using a specific syntax:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>[key] [datatype] [option...]
+</span></code></pre></div>
+<p><strong>Components:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>[key]</code></strong></td>
+<td>Unique identifier within the message group</td>
+</tr>
+<tr>
+<td><strong><code>[datatype]</code></strong></td>
+<td>Data type specification (text, num, enum)</td>
+</tr>
+<tr>
+<td><strong><code>[option...]</code></strong></td>
+<td>Additional attributes and configurations</td>
+</tr>
+</tbody>
+</table>
+<h3 id="data-types">Data Types<a class="headerlink" href="#data-types" title="Permanent link">&para;</a></h3>
+<p>Port supports three primary data types for message definitions:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>char</strong></td>
+<td><code>0~255</code></td>
+<td>Fixed-length string type with maximum 255 characters for text storage</td>
+</tr>
+<tr>
+<td><strong>num</strong></td>
+<td><code>-1.7e+308 ~ +1.7e+308</code></td>
+<td>Floating-point type supporting wide range of decimal values</td>
+</tr>
+<tr>
+<td><strong>enum</strong></td>
+<td><code>0 ~ 65535</code></td>
+<td>User-defined fixed list from <code>.enum</code> files with efficient storage</td>
+</tr>
+</tbody>
+</table>
+<h3 id="message-attributes">Entry Attributes<a class="headerlink" href="#message-attributes" title="Permanent link">&para;</a></h3>
+<p>Attributes provide additional functionality and behavior for messages:</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>pkg</strong></td>
+<td>Real-time synchronization with external libraries (see package documentation)</td>
+</tr>
+<tr>
+<td><strong>backup</strong></td>
+<td>Automatic database backup with restore on application restart</td>
+</tr>
+<tr>
+<td><strong>property</strong></td>
+<td>Custom property specifications for message configuration</td>
+</tr>
+<tr>
+<td><strong>rule</strong></td>
+<td>Value validation and management rules</td>
+</tr>
+<tr>
+<td><strong>logging</strong></td>
+<td>Automatic logging support for message operations</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Special Characters</p>
+<p>Message documents should not use special characters in identifiers.</p>
+</div>
+<h3 id="message-examples">Entry Examples<a class="headerlink" href="#message-examples" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>BulbOnOff     enum.OffOn  pkg:Bulb1.OffOn
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>RoomTemp1     num         pkg:Heater1.Temp  property:{&quot;MIN&quot;:0,&quot;MAX&quot;:300,&quot;Arguments&quot;:&quot;C&quot;}
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>RoomTemp2     num         pkg:Heater1.Temp  property:{&quot;MIN&quot;:0,&quot;MAX&quot;:300,&quot;Arguments&quot;:&quot;F&quot;}
+</span></code></pre></div>
+<p><strong>Explanation:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>BulbOnOff</strong></td>
+<td>Enum</td>
+<td>Enum-based control linked to Bulb1 package</td>
+</tr>
+<tr>
+<td><strong>RoomTemp1</strong></td>
+<td>Numeric</td>
+<td>Numeric temperature in Celsius with validation range</td>
+</tr>
+<tr>
+<td><strong>RoomTemp2</strong></td>
+<td>Numeric</td>
+<td>Numeric temperature in Fahrenheit with validation range</td>
+</tr>
+</tbody>
+</table>
+<h2 id="enum-definitions">Enum Definitions<a class="headerlink" href="#enum-definitions" title="Permanent link">&para;</a></h2>
+<h3 id="enum-syntax">Enum Syntax<a class="headerlink" href="#enum-syntax" title="Permanent link">&para;</a></h3>
+<p>Enums provide a way to define fixed sets of named values, improving code readability and reducing errors.</p>
+<p><strong>Format:</strong>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>[key] [item-name:number_key] [item-name:number_key] ...
+</span></code></pre></div></p>
+<p><strong>Components:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>[key]</code></strong></td>
+<td>Unique enum identifier</td>
+</tr>
+<tr>
+<td><strong><code>[item-name]</code></strong></td>
+<td>Descriptive name for enum value</td>
+</tr>
+<tr>
+<td><strong><code>[number_key]</code></strong></td>
+<td>Numeric value associated with the item</td>
+</tr>
+</tbody>
+</table>
+<h3 id="enum-benefits">Enum Benefits<a class="headerlink" href="#enum-benefits" title="Permanent link">&para;</a></h3>
+<p>Enums are particularly useful for:</p>
+<table>
+<thead>
+<tr>
+<th>Use Case</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Fixed Value Sets</strong></td>
+<td>Days of the week, months, status codes</td>
+</tr>
+<tr>
+<td><strong>Code Clarity</strong></td>
+<td>Self-documenting code with named constants</td>
+</tr>
+<tr>
+<td><strong>Error Prevention</strong></td>
+<td>Type safety instead of raw numeric values</td>
+</tr>
+<tr>
+<td><strong>Maintenance</strong></td>
+<td>Centralized value management</td>
+</tr>
+</tbody>
+</table>
+<h3 id="enum-examples">Enum Examples<a class="headerlink" href="#enum-examples" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>TFalse      True:0      False:1
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>FTrue       False:0     True:1
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>OffOn       Off:0       On:1
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>OnOff       On:0        Off:1
+</span></code></pre></div>
+<p><strong>Use Cases:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Use Case</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Boolean States</strong></td>
+<td>True/False, On/Off toggles</td>
+</tr>
+<tr>
+<td><strong>Status Indicators</strong></td>
+<td>Active/Inactive, Enabled/Disabled</td>
+</tr>
+<tr>
+<td><strong>Mode Selection</strong></td>
+<td>Manual/Automatic, Local/Remote</td>
+</tr>
+</tbody>
+</table>
+<h2 id="rule-system">Rule System<a class="headerlink" href="#rule-system" title="Permanent link">&para;</a></h2>
+<h3 id="rule-definition">Rule Definition<a class="headerlink" href="#rule-definition" title="Permanent link">&para;</a></h3>
+<p>Rules provide conditional logic for message validation and automatic actions. They are defined in <code>*.rule</code> files within group folders.</p>
+<h3 id="settrigger-rules">SetTrigger Rules<a class="headerlink" href="#settrigger-rules" title="Permanent link">&para;</a></h3>
+<p>SetTrigger rules control user modification permissions through conditional validation.</p>
+<h4 id="settrigger-syntax">Syntax<a class="headerlink" href="#settrigger-syntax" title="Permanent link">&para;</a></h4>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nx">set</span><span class="p">(</span><span class="s2">&quot;&lt;Input Condition&gt;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&lt;Validation Condition&gt;&quot;</span><span class="p">);</span>
+</span></code></pre></div>
+<p><strong>Components:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Input Condition</strong></td>
+<td>Logical expression specifying the input to validate</td>
+</tr>
+<tr>
+<td><strong>Validation Condition</strong></td>
+<td>Expression that must evaluate to true for acceptance</td>
+</tr>
+</tbody>
+</table>
+<h4 id="settrigger-examples">SetTrigger Examples<a class="headerlink" href="#settrigger-examples" title="Permanent link">&para;</a></h4>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nx">set</span><span class="p">(</span><span class="s2">&quot;room1.BulbOnOff==Off&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;(room1.RoomTemp1&gt;=20)&amp;&amp;(room2.RoomTemp2&gt;=20)&quot;</span><span class="p">)</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="nx">set</span><span class="p">(</span><span class="s2">&quot;room1.RoomTemp2&gt;=30&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;room2.RoomTemp2&gt;=5&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+<h3 id="gettrigger-rules">GetTrigger Rules<a class="headerlink" href="#gettrigger-rules" title="Permanent link">&para;</a></h3>
+<p>GetTrigger rules execute automatic actions when specified conditions are met.</p>
+<h4 id="gettrigger-syntax">Syntax<a class="headerlink" href="#gettrigger-syntax" title="Permanent link">&para;</a></h4>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;&lt;Trigger Condition&gt;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&lt;Action Script&gt;&quot;</span><span class="p">);</span>
+</span></code></pre></div>
+<p><strong>Components:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Trigger Condition</strong></td>
+<td>Boolean expression for condition evaluation</td>
+</tr>
+<tr>
+<td><strong>Action Script</strong></td>
+<td>Instructions executed when condition is true</td>
+</tr>
+</tbody>
+</table>
+<h4 id="gettrigger-examples">GetTrigger Examples<a class="headerlink" href="#gettrigger-examples" title="Permanent link">&para;</a></h4>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;(room1.RoomTemp1&gt;=0)&amp;&amp;(room2.RoomTemp2&gt;=0)&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;room1.BulbOnOff=Off;room2.BulbOnOff=Off;&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+<h3 id="rule-benefits">Rule Benefits<a class="headerlink" href="#rule-benefits" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Benefit</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Validation</strong></td>
+<td>Enforce business logic and data integrity</td>
+</tr>
+<tr>
+<td><strong>Automation</strong></td>
+<td>Trigger actions based on system state</td>
+</tr>
+<tr>
+<td><strong>Safety</strong></td>
+<td>Prevent invalid configurations</td>
+</tr>
+<tr>
+<td><strong>Efficiency</strong></td>
+<td>Reduce manual intervention needs</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Previous: Home">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Home
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../dotnet/" class="md-footer__link md-footer__link--next" aria-label="Next: .Net">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                .Net
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["search.highlight", "search.share", "search.suggest", "content.code.copy", "content.code.select", "content.code.annotate", "content.tabs.link", "content.tooltips", "navigation.footer"], "search": "../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>

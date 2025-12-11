@@ -1,0 +1,248 @@
+/* VS Code Dark Theme - Additional Styles */
+
+/* Sidebar styles */
+.bs-sidebar .nav > li > a {
+    color: #d4d4d4;
+}
+
+.bs-sidebar .nav > li > a:hover,
+.bs-sidebar .nav > li > a:focus {
+    background-color: #2d2d30;
+    border-right-color: #007acc;
+    color: #ffffff;
+}
+
+.bs-sidebar .nav > .active > a,
+.bs-sidebar .nav > .active:hover > a,
+.bs-sidebar .nav > .active:focus > a {
+    background-color: #007acc;
+    border-right-color: #007acc;
+    color: #ffffff;
+}
+
+/* Table styles */
+.table {
+    color: #d4d4d4;
+}
+
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+    border-color: #3e3e42;
+}
+
+.table-striped > tbody > tr:nth-child(odd) > td,
+.table-striped > tbody > tr:nth-child(odd) > th {
+    background-color: #252526;
+}
+
+/* Form controls */
+.form-control {
+    background-color: #252526;
+    border: 1px solid #3e3e42;
+    color: #d4d4d4;
+}
+
+.form-control:focus {
+    border-color: #007acc;
+    box-shadow: 0 0 0 0.2rem rgba(0, 122, 204, 0.25);
+}
+
+/* Pagination */
+.pagination > li > a,
+.pagination > li > span {
+    background-color: #252526;
+    border: 1px solid #3e3e42;
+    color: #d4d4d4;
+}
+
+.pagination > li > a:hover,
+.pagination > li > span:hover,
+.pagination > li > a:focus,
+.pagination > li > span:focus {
+    background-color: #007acc;
+    border-color: #007acc;
+    color: #ffffff;
+}
+
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+    background-color: #007acc;
+    border-color: #007acc;
+    color: #ffffff;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+    background-color: #252526;
+    border: 1px solid #3e3e42;
+}
+
+.breadcrumb > li + li:before {
+    color: #969696;
+}
+
+/* Modal */
+.modal-content {
+    background-color: #252526;
+    border: 1px solid #3e3e42;
+}
+
+.modal-header {
+    border-bottom-color: #3e3e42;
+}
+
+.modal-footer {
+    border-top-color: #3e3e42;
+}
+
+/* Alerts */
+.alert {
+    border-color: #3e3e42;
+}
+
+.alert-info {
+    background-color: #1a365d;
+    border-color: #2b6cb0;
+    color: #bee3f8;
+}
+
+.alert-warning {
+    background-color: #744210;
+    border-color: #d69e2e;
+    color: #faf089;
+}
+
+.alert-danger {
+    background-color: #742a2a;
+    border-color: #e53e3e;
+    color: #fed7d7;
+}
+
+.alert-success {
+    background-color: #22543d;
+    border-color: #38a169;
+    color: #c6f6d5;
+}
+
+/* Dropdown menu */
+.dropdown-menu {
+    background-color: #252526;
+    border: 1px solid #3e3e42;
+}
+
+.dropdown-menu > li > a {
+    color: #d4d4d4;
+}
+
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+    background-color: #007acc;
+    color: #ffffff;
+}
+
+/* Code blocks */
+code {
+    color: #d4d4d4;
+    background-color: #1e1e1e;
+    border: 1px solid #3e3e42;
+}
+
+/* Blockquote */
+blockquote {
+    border-left-color: #007acc;
+    color: #d4d4d4;
+}
+
+/* Scroll bar for webkit browsers */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #252526;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #3e3e42;
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #007acc;
+}
+
+/* Hide both navigation and TOC sidebars completely */
+.md-sidebar--primary,
+.md-sidebar--secondary {
+    display: none !important;
+}
+
+/* Expand main content to full width */
+.md-main__inner {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    max-width: none !important;
+}
+
+.md-content {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    max-width: none !important;
+}
+
+/* Ensure grid uses full width */
+.md-grid {
+    max-width: none !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+/* Remove any spacing for sidebars */
+@media screen and (min-width: 60em) {
+    .md-main__inner {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+}
+
+@media screen and (min-width: 76.25em) {
+    .md-main__inner {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    
+    .md-content {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+}
+
+/* Hide mobile navigation drawer toggle if no navigation */
+.md-header__button.md-icon[for="__drawer"] {
+    display: none !important;
+}
+
+/* Ensure smooth transitions */
+.md-main__inner,
+.md-content {
+    transition: all 0.25s ease-in-out;
+}
+
+/* Hide "Made with Material for MkDocs" footer text */
+.md-footer-meta__inner {
+    display: none !important;
+}
+
+/* Alternatively, if you want to hide the entire footer */
+/* .md-footer {
+    display: none !important;
+} */
+

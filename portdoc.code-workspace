@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../../Desktop/Project/ExDemo/SampleArduinoLib/DemoDotNetApp"
+		},
+		{
+			"path": "../../Desktop/Project/ExDemo/SampleArduinoLib/portdic"
+		}
+	],
+	"settings": {}
+}

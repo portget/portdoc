@@ -1,0 +1,133 @@
+/*
+  Cinder Theme for MkDocs | Copyright 2015 Christopher Simpkins | MIT License
+  Modified for VS Code Dark Theme
+*/
+
+body {
+    font-family:"Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family:'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #ffffff;
+}
+h1 small, h2 small, h3 small, h4 small, h5 small, h6 small, .h1 small, .h2 small, .h3 small, .h4 small, .h5 small, .h6 small, h1 .small, h2 .small, h3 .small, h4 .small, h5 .small, h6 .small, .h1 .small, .h2 .small, .h3 .small, .h4 .small, .h5 .small, .h6 .small {
+    color: #969696;
+}
+
+h2 {
+    margin-top: 35px;
+}
+
+h1, h2 {
+    font-weight: 700;
+}
+h4 {
+    font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    margin-top: 20px;
+    font-style: italic;
+}
+h5 {
+    font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    font-variant: small-caps;
+}
+pre, code {
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+    border: 1px solid #3e3e42;
+}
+pre>code {
+    font-size: 13px;
+}
+pre {
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+.lead {
+    font-family:"Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: 0.0312em;
+    color: #969696;
+}
+.navbar-default {
+    background-color: #2d2d30;
+    border-bottom: 8px #252526 solid;
+}
+.bs-sidenav {
+    background-color: #252526;
+    background-image: none;
+    font-family: Inter,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 13px;
+    border: 1px solid #3e3e42;
+}
+.well {
+    background-color: #252526;
+    border: 1px solid #3e3e42;
+}
+.btn-default {
+    background-color: #252526;
+    color: #d4d4d4;
+    border: 1px solid #3e3e42;
+}
+.btn-default:hover {
+    background-color: #007acc;
+    color: #ffffff;
+}
+.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
+    background-color: #252526;
+}
+#mkdocs-search-query:focus {
+    outline: none;
+    -webkit-box-shadow: 0 0 0 2px #007acc;
+    box-shadow: 0 0 0 2px #007acc;
+}
+#mkdocs-search-query {
+    font-family:"Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #d4d4d4;
+    background-color: #252526;
+    border: 1px solid #3e3e42;
+    height: 45px;
+}
+footer > hr {
+    width: 35%;
+    border-color: #3e3e42;
+}
+
+/* Additional VS Code Dark theme styles */
+.nav > li > a {
+    color: #d4d4d4;
+}
+.nav > li > a:hover,
+.nav > li > a:focus {
+    background-color: #2d2d30;
+    color: #ffffff;
+}
+.nav > .active > a,
+.nav > .active:hover > a,
+.nav > .active:focus > a {
+    background-color: #007acc;
+    color: #ffffff;
+}
+.navbar-nav > li > a {
+    color: #d4d4d4;
+}
+.navbar-nav > li > a:hover,
+.navbar-nav > li > a:focus {
+    color: #ffffff;
+    background-color: #007acc;
+}
+.navbar-brand {
+    color: #ffffff !important;
+}
+.navbar-brand:hover,
+.navbar-brand:focus {
+    color: #007acc !important;
+}
