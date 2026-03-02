@@ -953,6 +953,78 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#smart-farm-react-mqtt-project-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Smart Farm React MQTT Project Rules
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Smart Farm React MQTT Project Rules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-tech-stack-prefereces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Tech Stack Prefereces
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-core-architecture-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Core Architecture Rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-sparkplug-b-topic-payload-standards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Sparkplug B Topic &amp; Payload Standards
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-coding-standards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Coding Standards
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-indexeddb-dexie-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. IndexedDB (Dexie) Schema
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1188,6 +1260,78 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#smart-farm-react-mqtt-project-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Smart Farm React MQTT Project Rules
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Smart Farm React MQTT Project Rules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-tech-stack-prefereces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Tech Stack Prefereces
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-core-architecture-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Core Architecture Rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-sparkplug-b-topic-payload-standards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Sparkplug B Topic &amp; Payload Standards
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-coding-standards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Coding Standards
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-indexeddb-dexie-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. IndexedDB (Dexie) Schema
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1204,8 +1348,6 @@
                   
 
 
-
-  <h1>MQTT</h1>
 
 <h2 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link">&para;</a></h2>
 <ol>
@@ -1305,8 +1447,102 @@
 <li><strong>Real-time Communication</strong>: Instant message delivery and updates</li>
 <li><strong>Scalable Architecture</strong>: Support for numerous connected devices</li>
 <li><strong>Reliable Messaging</strong>: QoS levels ensure appropriate delivery guarantees</li>
-<li><strong>Flexible Topics</strong>: Hierarchical topic structure for organized messaging </li>
+<li>
+<p><strong>Flexible Topics</strong>: Hierarchical topic structure for organized messaging </p>
+</li>
+<li>
+<p>React MQTT &amp; Sparkplug B 프로젝트를 위한 Cursor Rules
+Markdown</p>
+</li>
 </ul>
+<h1 id="smart-farm-react-mqtt-project-rules">Smart Farm React MQTT Project Rules<a class="headerlink" href="#smart-farm-react-mqtt-project-rules" title="Permanent link">&para;</a></h1>
+<p>You are an expert React and IIoT developer specializing in MQTT, Sparkplug B, and browser-based data persistence.</p>
+<h2 id="1-tech-stack-prefereces">1. Tech Stack Prefereces<a class="headerlink" href="#1-tech-stack-prefereces" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Framework: React (Vite)</li>
+<li>Language: TypeScript (Strict mode)</li>
+<li>MQTT Library: <code>mqtt</code> (MQTT.js)</li>
+<li>Sparkplug B: <code>sparkplug-payload</code> for decoding/encoding.</li>
+<li>Persistence: <code>dexie</code> (IndexedDB wrapper)</li>
+<li>State Management: React Context API for Singleton MQTT instance and <code>dexie-react-hooks</code> for DB-to-UI binding.</li>
+</ul>
+<h2 id="2-core-architecture-rules">2. Core Architecture Rules<a class="headerlink" href="#2-core-architecture-rules" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Connection Management:</strong> Always maintain a single MQTT connection using a Context Provider (<code>MqttProvider</code>). Prevent multiple connections on re-renders.</li>
+<li><strong>Protocol:</strong> Use <code>wss://</code> for production and <code>ws://</code> for development. Never use <code>mqtt://</code> in browser environments.</li>
+<li><strong>Data Flow:</strong><ol>
+<li>Receive Binary Message (MQTT)</li>
+<li>Decode via <code>sparkplug-payload</code></li>
+<li>Store in IndexedDB (Dexie)</li>
+<li>UI subscribes to Dexie via <code>useLiveQuery</code>.
+<em>Do not store high-frequency raw telemetry in React useState directly to avoid performance bottlenecks.</em></li>
+</ol>
+</li>
+</ul>
+<h2 id="3-sparkplug-b-topic-payload-standards">3. Sparkplug B Topic &amp; Payload Standards<a class="headerlink" href="#3-sparkplug-b-topic-payload-standards" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Topic Structure: <code>spBv1.0/{group_id}/{message_type}/{edge_node_id}/{device_id}</code></li>
+<li>Message Types to handle: <code>NBIRTH</code>, <code>DBIRTH</code>, <code>NDATA</code>, <code>DDATA</code>, <code>NDEATH</code>.</li>
+<li>Payload: Always handle <code>metrics</code> as an array. Map <code>alias</code> to <code>name</code> using a metadata store in Dexie.</li>
+</ul>
+<h2 id="4-coding-standards">4. Coding Standards<a class="headerlink" href="#4-coding-standards" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Use Functional Components and Hooks.</li>
+<li>Create custom hooks for specific logic (e.g., <code>useMqttControl</code> for publishing, <code>useTelemetry</code> for reading DB).</li>
+<li>Error Handling: Use try-catch blocks for <code>JSON.parse</code> and <code>decodePayload</code>.</li>
+<li>Performance: Use <code>React.memo</code> for dashboard widgets to prevent unnecessary re-renders when other sensors update.</li>
+</ul>
+<h2 id="5-indexeddb-dexie-schema">5. IndexedDB (Dexie) Schema<a class="headerlink" href="#5-indexeddb-dexie-schema" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Store telemetry with a TTL (Time-To-Live).</li>
+<li>Indexes: <code>++id</code>, <code>groupId</code>, <code>nodeId</code>, <code>name</code>, <code>timestamp</code>.</li>
+<li>이 가이드를 적용했을 때 Cursor가 생성할 코드 패턴
+위 규칙이 설정되면 Cursor는 다음과 같은 코드를 우선적으로 작성하게 됩니다.</li>
+</ul>
+<p>A. 최적화된 데이터 수신 및 저장 로직
+Cursor에게 <strong>"MQTT 메시지 수신부 작성해줘"</strong>라고 요청하면:</p>
+<p>TypeScript</p>
+<p>// AI가 규칙에 따라 Dexie와 Sparkplug B를 결합한 코드를 생성함
+client.on('message', async (topic: string, payload: Buffer) =&gt; {
+  try {
+    const decoded = decodePayload(payload);
+    const { groupId, nodeId, deviceId } = parseSpBTopic(topic);</p>
+<div class="codehilite"><pre><span></span><code>const entries = decoded.metrics.map(m =&gt; ({
+  groupId,
+  nodeId,
+  deviceId,
+  name: m.name,
+  value: m.value,
+  timestamp: m.timestamp?.toNumber() || Date.now(),
+}));
+
+await db.telemetry.bulkAdd(entries);
+</code></pre></div>
+
+<p>} catch (err) {
+    console.error('SpB Decoding Error:', err);
+  }
+});
+B. 효율적인 UI 연동 (Dexie Hook)
+Cursor에게 <strong>"온도 센서 실시간 차트 컴포넌트 만들어줘"</strong>라고 요청하면:</p>
+<p>TypeScript</p>
+<p>// useState가 아닌 useLiveQuery를 사용하는 최적화된 코드를 생성함
+export const TempChart = () =&gt; {
+  const data = useLiveQuery(() =&gt; 
+    db.telemetry
+      .where('name').equals('Temperature')
+      .reverse()
+      .limit(50)
+      .toArray()
+  );</p>
+<p>return <LineChart data={data} />;
+};
+3. Cursor 활용 팁 (Prompting)
+규칙을 설정한 후, 실제 개발 시 다음과 같이 명령하면 효과적입니다.</p>
+<p>구조 설계 시: "Sparkplug B 표준을 따르는 MqttProvider를 만들어줘. sparkplug-payload로 디코딩하고 결과를 Dexie에 저장하는 로직을 포함해."</p>
+<p>성능 최적화 요청 시: "데이터가 초당 10번 이상 들어올 때 UI 버벅임을 방지하도록 useLiveQuery와 React.memo를 적용해서 컴포넌트를 수정해줘."</p>
+<p>데이터 관리 요청 시: "IndexedDB에 24시간이 지난 데이터를 자동으로 삭제하는 Web Worker 또는 useEffect 스케줄러를 작성해줘."</p>
+<p>이 가이드라인(.cursorrules)을 적용하면 Cursor AI가 사용자의 의도를 훨씬 정확히 파악하여 스마트팜의 복잡한 데이터 스트림을 안정적으로 처리하는 React 앱을 설계해 줄 것입니다.</p>
 
 
 
