@@ -1,9 +1,0 @@
-# PAGE file
-# Generated: 2026-02-23 19:59:22
-
-Chuck_Vac_Sw_Status_i ENUM.OffOn pkg:MMC_CONTROL property:{"MIN":0,"MAX":1,"Arguments":"Off,On"}
-Chuck_Wafer_Detect_Sn_1_i ENUM.OffOn pkg:MMC_CONTROL property:{"MIN":0,"MAX":1,"Arguments":"Off,On"}
-Chuck_Wafer_Detect_Sn_2_i ENUM.OffOn pkg:MMC_CONTROL property:{"MIN":0,"MAX":1,"Arguments":"Off,On"}
-Chuck_Z_Axis_1_Alarm_Status_i ENUM.NonAlarm pkg:MMC_CONTROL property:{"MIN":0,"MAX":1,"Arguments":"None,Alarm"}
-Chuck_Z_Axis_2_Alarm_Status_i ENUM.NonAlarm pkg:MMC_CONTROL property:{"MIN":0,"MAX":1,"Arguments":"None,Alarm"}
-Chuck_Wafer_Vacuum_Sol_o ENUM.OffOn pkg:MMC_CONTROL property:{"MIN":0,"MAX":1,"Arguments":"Off,On"}
