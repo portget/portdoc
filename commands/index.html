@@ -510,6 +510,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#session-audit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Session Audit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#server-communication" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1324,6 +1335,34 @@
     <span class="md-ellipsis">
       
         Server Data Operations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#session-audit-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Session Audit Commands
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Session Audit Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#session-logs-list-ffi-call-audit-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        session logs - List FFI Call Audit Log
       
     </span>
   </a>
@@ -1717,6 +1756,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#session-audit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Session Audit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#server-communication" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2543,6 +2593,34 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#session-audit-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Session Audit Commands
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Session Audit Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#session-logs-list-ffi-call-audit-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        session logs - List FFI Call Audit Log
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#error-handling" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2737,6 +2815,23 @@
 <td><code>add</code></td>
 <td><code>[flags]</code></td>
 <td>Add resources (user, enum, group)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="session-audit">Session Audit<a class="headerlink" href="#session-audit" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Arguments</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>session logs</code></td>
+<td><code>[flags]</code></td>
+<td>List FFI call audit log entries</td>
 </tr>
 </tbody>
 </table>
@@ -3322,6 +3417,162 @@ Performs DNS lookup to resolve host addresses.</p>
 </span><span id="__span-14-25"><a id="__codelineno-14-25" name="__codelineno-14-25" href="#__codelineno-14-25"></a><span class="nb">set</span><span class="w"> </span>config<span class="w"> </span>timeout<span class="w"> </span><span class="m">30000</span>
 </span><span id="__span-14-26"><a id="__codelineno-14-26" name="__codelineno-14-26" href="#__codelineno-14-26"></a><span class="nb">set</span><span class="w"> </span>config<span class="w"> </span>loglevel<span class="w"> </span>DEBUG
 </span></code></pre></div>
+<h2 id="session-audit-commands">Session Audit Commands<a class="headerlink" href="#session-audit-commands" title="Permanent link">&para;</a></h2>
+<h3 id="session-logs-list-ffi-call-audit-log"><code>session logs</code> - List FFI Call Audit Log<a class="headerlink" href="#session-logs-list-ffi-call-audit-log" title="Permanent link">&para;</a></h3>
+<p><strong>Usage</strong>: <code>session logs [flags]</code></p>
+<p><strong>Description</strong>: Reads the FFI call audit log stored in <code>{project}_auth.db</code> and displays a timestamped record of every session-related FFI function call made by the running application. All password arguments are stored AES-256-GCM encrypted and are never shown in plaintext.</p>
+<p><strong>Flags</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-p</code>, <code>--project-name &lt;name&gt;</code></td>
+<td>auto-detect</td>
+<td>Project name (searches for <code>*.port.md</code> if omitted)</td>
+</tr>
+<tr>
+<td><code>-l</code>, <code>--limit &lt;n&gt;</code></td>
+<td><code>50</code></td>
+<td>Maximum number of entries to display (newest first)</td>
+</tr>
+<tr>
+<td><code>-o</code>, <code>--offset &lt;n&gt;</code></td>
+<td><code>0</code></td>
+<td>Skip this many entries from the newest end (paging)</td>
+</tr>
+<tr>
+<td><code>--ffi &lt;name&gt;</code></td>
+<td>all</td>
+<td>Filter by FFI function name (case-insensitive)</td>
+</tr>
+<tr>
+<td><code>-f</code>, <code>--format &lt;fmt&gt;</code></td>
+<td><code>table</code></td>
+<td>Output format: <code>table</code> or <code>json</code></td>
+</tr>
+<tr>
+<td><code>--date &lt;YYYY-MM-DD&gt;</code></td>
+<td>today</td>
+<td>Show entries for a specific date only</td>
+</tr>
+<tr>
+<td><code>--start &lt;YYYY-MM-DD&gt;</code></td>
+<td>—</td>
+<td>Range start date (inclusive). Use with <code>--end</code>.</td>
+</tr>
+<tr>
+<td><code>--end &lt;YYYY-MM-DD&gt;</code></td>
+<td>—</td>
+<td>Range end date (inclusive). Use with <code>--start</code>.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Date flag precedence</strong>: <code>--start</code>/<code>--end</code> takes priority over <code>--date</code>. If neither is given, defaults to today.</p>
+<p><strong>Logged FFI Functions</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>FFI Name</th>
+<th>Recorded Arguments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Login</code></td>
+<td><code>user_id</code>, <code>password</code><em>(encrypted)</em>, <code>success</code></td>
+</tr>
+<tr>
+<td><code>Signup</code></td>
+<td><code>user_id</code>, <code>password</code><em>(encrypted)</em>, <code>name</code>, <code>role_level</code></td>
+</tr>
+<tr>
+<td><code>ChangePassword</code></td>
+<td><code>user_id</code>, <code>current_password</code><em>(encrypted)</em>, <code>new_password</code><em>(encrypted)</em></td>
+</tr>
+<tr>
+<td><code>DeleteUser</code></td>
+<td><code>user_id</code></td>
+</tr>
+<tr>
+<td><code>Logout</code></td>
+<td><code>user_id</code></td>
+</tr>
+<tr>
+<td><code>ReassignControlState</code></td>
+<td><code>user_id</code>, <code>target_state</code>, <code>success</code>, <code>reason</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Password Security</strong>:</p>
+<p>Passwords are encrypted with <strong>AES-256-GCM</strong> using a randomly generated 32-byte key (<code>audit.key</code>) stored alongside the database:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>%LOCALAPPDATA%\port\DB\{project}\{project}_auth.db   ← audit log table
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>%LOCALAPPDATA%\port\DB\{project}\audit.key            ← encryption key
+</span></code></pre></div>
+<p>The encrypted password field appears as a base64-encoded string (nonce + ciphertext). Without the <code>audit.key</code> file the ciphertext cannot be decrypted.</p>
+<p><strong>Table Output Example</strong>:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>Session audit log for project &#39;myproject&#39; [2026-03-31]
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>CALL_DATE             FFI_NAME                ARGS
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>--------------------------------------------------------------------
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>2026-03-31 10:25:42   Login                   {&quot;user_id&quot;:&quot;admin&quot;,&quot;password&quot;:&quot;YWJj...&quot;,&quot;success&quot;:true}
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>2026-03-31 10:24:10   ChangePassword          {&quot;user_id&quot;:&quot;operator&quot;,&quot;current_password&quot;:&quot;eHl6...&quot;,&quot;new_password&quot;:&quot;cGFz...&quot;}
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>2026-03-31 10:23:05   Signup                  {&quot;user_id&quot;:&quot;operator&quot;,&quot;password&quot;:&quot;cGFz...&quot;,&quot;name&quot;:&quot;Op1&quot;,&quot;role_level&quot;:1}
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>2026-03-31 09:55:00   Logout                  {&quot;user_id&quot;:&quot;admin&quot;}
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>4 entry(ies)
+</span></code></pre></div>
+<p><strong>Examples</strong>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="c1"># Show today&#39;s entries (default)</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>port<span class="w"> </span>session<span class="w"> </span>logs
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="c1"># Show today&#39;s entries for a specific project</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>port<span class="w"> </span>session<span class="w"> </span>logs<span class="w"> </span>-p<span class="w"> </span>myproject
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="c1"># Show entries for a specific date</span>
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>port<span class="w"> </span>session<span class="w"> </span>logs<span class="w"> </span>-p<span class="w"> </span>myproject<span class="w"> </span>--date<span class="w"> </span><span class="m">2026</span>-03-28
+</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>
+</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="c1"># Show entries for a date range</span>
+</span><span id="__span-17-11"><a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a>port<span class="w"> </span>session<span class="w"> </span>logs<span class="w"> </span>-p<span class="w"> </span>myproject<span class="w"> </span>--start<span class="w"> </span><span class="m">2026</span>-03-01<span class="w"> </span>--end<span class="w"> </span><span class="m">2026</span>-03-31
+</span><span id="__span-17-12"><a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a>
+</span><span id="__span-17-13"><a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a><span class="c1"># Show last 100 entries for today</span>
+</span><span id="__span-17-14"><a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a>port<span class="w"> </span>session<span class="w"> </span>logs<span class="w"> </span>-p<span class="w"> </span>myproject<span class="w"> </span>--limit<span class="w"> </span><span class="m">100</span>
+</span><span id="__span-17-15"><a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a>
+</span><span id="__span-17-16"><a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a><span class="c1"># Show only Login attempts today</span>
+</span><span id="__span-17-17"><a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a>port<span class="w"> </span>session<span class="w"> </span>logs<span class="w"> </span>-p<span class="w"> </span>myproject<span class="w"> </span>--ffi<span class="w"> </span>Login
+</span><span id="__span-17-18"><a id="__codelineno-17-18" name="__codelineno-17-18" href="#__codelineno-17-18"></a>
+</span><span id="__span-17-19"><a id="__codelineno-17-19" name="__codelineno-17-19" href="#__codelineno-17-19"></a><span class="c1"># Show Login attempts for a specific date range</span>
+</span><span id="__span-17-20"><a id="__codelineno-17-20" name="__codelineno-17-20" href="#__codelineno-17-20"></a>port<span class="w"> </span>session<span class="w"> </span>logs<span class="w"> </span>-p<span class="w"> </span>myproject<span class="w"> </span>--ffi<span class="w"> </span>Login<span class="w"> </span>--start<span class="w"> </span><span class="m">2026</span>-03-25<span class="w"> </span>--end<span class="w"> </span><span class="m">2026</span>-03-31
+</span><span id="__span-17-21"><a id="__codelineno-17-21" name="__codelineno-17-21" href="#__codelineno-17-21"></a>
+</span><span id="__span-17-22"><a id="__codelineno-17-22" name="__codelineno-17-22" href="#__codelineno-17-22"></a><span class="c1"># Paginate: entries 51-100</span>
+</span><span id="__span-17-23"><a id="__codelineno-17-23" name="__codelineno-17-23" href="#__codelineno-17-23"></a>port<span class="w"> </span>session<span class="w"> </span>logs<span class="w"> </span>-p<span class="w"> </span>myproject<span class="w"> </span>--limit<span class="w"> </span><span class="m">50</span><span class="w"> </span>--offset<span class="w"> </span><span class="m">50</span>
+</span><span id="__span-17-24"><a id="__codelineno-17-24" name="__codelineno-17-24" href="#__codelineno-17-24"></a>
+</span><span id="__span-17-25"><a id="__codelineno-17-25" name="__codelineno-17-25" href="#__codelineno-17-25"></a><span class="c1"># Output as JSON</span>
+</span><span id="__span-17-26"><a id="__codelineno-17-26" name="__codelineno-17-26" href="#__codelineno-17-26"></a>port<span class="w"> </span>session<span class="w"> </span>logs<span class="w"> </span>-p<span class="w"> </span>myproject<span class="w"> </span>--format<span class="w"> </span>json
+</span></code></pre></div>
+<p><strong>JSON Output Example</strong>:</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="p">[</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">  </span><span class="p">{</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">    </span><span class="nt">&quot;call_date&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1743416742</span><span class="p">,</span>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="w">    </span><span class="nt">&quot;ffi_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Login&quot;</span><span class="p">,</span>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="w">    </span><span class="nt">&quot;args&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{\&quot;user_id\&quot;:\&quot;admin\&quot;,\&quot;password\&quot;:\&quot;YWJj...\&quot;,\&quot;success\&quot;:true}&quot;</span>
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="w">  </span><span class="p">{</span>
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="w">    </span><span class="nt">&quot;call_date&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1743416050</span><span class="p">,</span>
+</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="w">    </span><span class="nt">&quot;ffi_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Logout&quot;</span><span class="p">,</span>
+</span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a><span class="w">    </span><span class="nt">&quot;args&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;{\&quot;user_id\&quot;:\&quot;admin\&quot;}&quot;</span>
+</span><span id="__span-18-11"><a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-18-12"><a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a><span class="p">]</span>
+</span></code></pre></div>
+<blockquote>
+<p><strong>Note</strong>: The <code>port session logs</code> command queries the port server via gRPC and requires the server to be running (<code>port run &lt;project&gt;</code>). The server owns the audit DB and serves all queries.</p>
+</blockquote>
+<hr />
 <h2 id="error-handling">Error Handling<a class="headerlink" href="#error-handling" title="Permanent link">&para;</a></h2>
 <p>The PORT CLI provides comprehensive error handling for:
 - Invalid command syntax
