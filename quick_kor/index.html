@@ -1,0 +1,1942 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://portdic.com/quick_kor/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../img/logo.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>빠른 시작 (Quick Start) - Port</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../extra_css.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#quick-start" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Port" class="md-header__button md-logo" aria-label="Port" data-md-component="logo">
+      
+  <img src="../img/logo.ico" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Port
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              빠른 시작 (Quick Start)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="cyan"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Port" class="md-nav__button md-logo" aria-label="Port" data-md-component="logo">
+      
+  <img src="../img/logo.ico" alt="logo">
+
+    </a>
+    Port
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quick/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Documentation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../attribute/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Attribute
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../commands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../remote/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Remote Access
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Protocols
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Protocols
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../opcua/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OPC UA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modbus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modbus
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ethernetip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EtherNet/IP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../secs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SECS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rtsp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RTSP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mqtt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MQTT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-document-page" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Document를 Page 단위로 변환하기 및 생성
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Document를 Page 단위로 변환하기 및 생성">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-page" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        a. Page란 무엇인가?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-page" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        b. Page의 구조와 역할
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="b. Page의 구조와 역할">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#page" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        .page 파일 구조
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entry 구조
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entry_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        로컬 Entry 정의 (카테고리 전용)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-page-pullpush" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        c. Page를 Pull/Push 하는 방법
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="c. Page를 Pull/Push 하는 방법">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#push-entry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Push — Entry를 서버에 등록
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pull-db" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pull — DB에서 파일 재구성
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#if-debug" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        전체 초기화 패턴 (#if DEBUG)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-page-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Page를 Model과 맵핑 시키기
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Page를 Model과 맵핑 시키기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        a. Model이란 무엇인가?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-model-page" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        b. Model과 Page의 관계
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-model-page" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        c. Model과 Page를 맵핑하는 방법
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-model-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Model과 Controller에 사용하는 방법
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Model과 Controller에 사용하는 방법">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        a. Controller란 무엇인가?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        b. Flow란 무엇인가?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-flow-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        c. Flow에서 Model 핸들링 하는 방법
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-handler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 다양한 Handler
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 다양한 Handler">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-handler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        a. Handler의 종류
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-handler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        b. Handler의 역할과 사용 방법
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="b. Handler의 역할과 사용 방법">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#iflowhandler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IFlowHandler — 기본 진행 제어
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iflowwithmodelhandlert-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IFlowWithModelHandler\&lt;T> — 이벤트 기반 Model 접근
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#handlernext-vs-handlerdone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        handler.Next() vs handler.Done()
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-handler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        c. Handler 속성 테이블
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="c. Handler 속성 테이블">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#iflowwithmodelhandlert" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IFlowWithModelHandler\&lt;T> 이벤트
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iflowcacdt-4-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IFlowCACD\&lt;T> — 표준 4단계 Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Package 호출하기
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Package 호출하기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        a. Package란 무엇인가?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-package-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        b. Package API 호출 방법
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="b. Package API 호출 방법">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#page-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        .page 파일에서 Package 연결
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#page-package_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [Page] 클래스에서 Package 연결
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#package" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Package 클래스 구현
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#page-push" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [Page] 클래스 Push
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-portset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Port.Set 기능에 대해
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Port.Set 기능에 대해">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        기본 사용법
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-entry-set" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Model에서 Entry 직접 Set
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iflowmodel-set" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IFlowModel에서 Set (@ 바인딩)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-portget" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Port.Get 기능에 대해
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Port.Get 기능에 대해">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        기본 사용법
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-entry-get" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Model에서 Entry 직접 Get
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iflowmodel-get" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IFlowModel에서 Get (@ 바인딩)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-rule-script-port-setget" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Rule Script를 통해 Port Set/Get 동작 제어하기
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Rule Script를 통해 Port Set/Get 동작 제어하기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rule 문법
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rule_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        .rule 파일 예시
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C#에서 Rule 등록
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        전체 흐름 요약
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="quick-start">빠른 시작 (Quick Start)<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h1>
+<p>Port Framework로 .NET 장비 애플리케이션을 구축하는 단계별 가이드입니다.</p>
+<hr />
+<h2 id="1-document-page">1. Document를 Page 단위로 변환하기 및 생성<a class="headerlink" href="#1-document-page" title="Permanent link">&para;</a></h2>
+<h3 id="a-page">a. Page란 무엇인가?<a class="headerlink" href="#a-page" title="Permanent link">&para;</a></h3>
+<p><strong>Page</strong>는 Port 시스템에서 데이터의 정의 단위입니다.<br />
+하나의 <code>.page</code> 파일은 연관된 <strong>Entry(엔트리)</strong> 들의 집합으로 구성되며,<br />
+Port 서버에 Push(등록)되면 메모리 내 데이터 저장소에 해당 항목들이 생성됩니다.</p>
+<blockquote>
+<p>Page = 하나의 기능 단위(예: IO, Sensor, Motor)에 속한 Entry 목록</p>
+</blockquote>
+<p>외부 문서(<code>.docx</code>, <code>.xlsx</code>, <code>.csv</code>)를 가져와 자동으로 Page를 생성하거나,<br />
+C# 코드 내에서 <code>[Page]</code> 어트리뷰트를 통해 직접 정의할 수도 있습니다.</p>
+<hr />
+<h3 id="b-page">b. Page의 구조와 역할<a class="headerlink" href="#b-page" title="Permanent link">&para;</a></h3>
+<h4 id="page"><code>.page</code> 파일 구조<a class="headerlink" href="#page" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>[EntryKey]  [DataType]  [pkg:PackageName]  [property:{...}]
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>필드</th>
+<th>필수</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>EntryKey</code></td>
+<td>✅</td>
+<td>엔트리의 고유 식별자</td>
+</tr>
+<tr>
+<td><code>DataType</code></td>
+<td>✅</td>
+<td>데이터 타입 (<code>f8</code>, <code>Enum.OnOff</code>, <code>char</code> 등)</td>
+</tr>
+<tr>
+<td><code>pkg:</code></td>
+<td>선택</td>
+<td>연결할 Package 이름</td>
+</tr>
+<tr>
+<td><code>property:</code></td>
+<td>선택</td>
+<td>하드웨어 매핑 정보 (JSON)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>예시 (<code>io.page</code>):</strong></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Bulb1OnOff    Enum.OnOff  property:{&quot;IO.No&quot;:&quot;D0.01&quot;,&quot;Model&quot;:&quot;IODevice&quot;}
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Bulb2OnOff    Enum.OnOff  property:{&quot;IO.No&quot;:&quot;D0.02&quot;,&quot;Model&quot;:&quot;IODevice&quot;}
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>Bulb1Temp     f8          property:{&quot;IO.No&quot;:&quot;A0.01&quot;,&quot;Model&quot;:&quot;IODevice&quot;}
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>Bulb2Temp     f8          property:{&quot;IO.No&quot;:&quot;A0.02&quot;,&quot;Model&quot;:&quot;IODevice&quot;}
+</span></code></pre></div>
+<h4 id="entry">Entry 구조<a class="headerlink" href="#entry" title="Permanent link">&para;</a></h4>
+<p><strong>Entry</strong>는 Port 시스템의 최소 데이터 단위입니다.<br />
+각 Entry는 다음을 가집니다:</p>
+<ul>
+<li><strong>Key</strong>: 전체 경로 식별자 (<code>카테고리.엔트리명</code>, 예: <code>Bulb1.OnOff</code>)</li>
+<li><strong>DataType</strong>: 값의 타입 (수치형, 열거형, 문자형 등)</li>
+<li><strong>Value</strong>: 현재 저장된 값 (메모리 내 실시간 상태)</li>
+<li><strong>Property</strong>: 하드웨어 주소, 단위 등 부가 설정 (JSON)</li>
+</ul>
+<p><strong>SECS 호환 데이터 타입:</strong></p>
+<table>
+<thead>
+<tr>
+<th>타입</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>f4</code> / <code>f8</code></td>
+<td>부동소수점 (4 / 8 바이트)</td>
+</tr>
+<tr>
+<td><code>i1</code> ~ <code>i8</code></td>
+<td>부호 있는 정수</td>
+</tr>
+<tr>
+<td><code>u1</code> ~ <code>u8</code></td>
+<td>부호 없는 정수</td>
+</tr>
+<tr>
+<td><code>char</code></td>
+<td>ASCII 문자열</td>
+</tr>
+<tr>
+<td><code>Enum.XXX</code></td>
+<td>열거형 (사전 정의된 enum 참조)</td>
+</tr>
+<tr>
+<td><code>bool</code></td>
+<td>불리언</td>
+</tr>
+</tbody>
+</table>
+<h4 id="entry_1">로컬 Entry 정의 (카테고리 전용)<a class="headerlink" href="#entry_1" title="Permanent link">&para;</a></h4>
+<p>하드웨어 문서와 무관한 논리적 설정값(예: 목표 온도)은<br />
+카테고리 폴더 내에 별도 <code>.page</code> 파일로 정의합니다:</p>
+<p><strong><code>bulb1/.page</code>:</strong></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>TargetTemp  f8
+</span></code></pre></div>
+<hr />
+<h3 id="c-page-pullpush">c. Page를 Pull/Push 하는 방법<a class="headerlink" href="#c-page-pullpush" title="Permanent link">&para;</a></h3>
+<h4 id="push-entry">Push — Entry를 서버에 등록<a class="headerlink" href="#push-entry" title="Permanent link">&para;</a></h4>
+<p><strong>방법 1: <code>[Page]</code> 어트리뷰트 클래스에서 Push</strong></p>
+<div class="language-csharp highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">// [Page] 클래스 인스턴스를 Push</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">Port</span><span class="p">.</span><span class="n">Push</span><span class="p">(</span><span class="s">&quot;sample&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CustomEFEM</span><span class="p">());</span>
+</span></code></pre></div>
+<p><strong>방법 2: 문서(Document)에서 변환한 Page를 Push</strong></p>
+<div class="language-csharp highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kt">var</span><span class="w"> </span><span class="n">ioDoc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Port</span><span class="p">.</span><span class="n">Document</span><span class="o">&lt;</span><span class="n">IOModel</span><span class="o">&gt;</span><span class="p">(</span><span class="s">@&quot;C:\Users\admin\Documents\IO.docx&quot;</span><span class="p">);</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">Port</span><span class="p">.</span><span class="n">Push</span><span class="p">(</span><span class="s">&quot;sample&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ioDoc</span><span class="p">.</span><span class="n">NewPage</span><span class="p">(</span><span class="s">&quot;Device&quot;</span><span class="p">));</span>
+</span></code></pre></div>
+<p><strong>방법 3: 디렉토리 전체를 Push</strong></p>
+<div class="language-csharp highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1">// RepositoryInfo를 통해 폴더 전체를 REST API로 Push</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">Port</span><span class="p">.</span><span class="n">Push</span><span class="p">(</span><span class="n">repo</span><span class="p">);</span>
+</span></code></pre></div>
+<h4 id="pull-db">Pull — DB에서 파일 재구성<a class="headerlink" href="#pull-db" title="Permanent link">&para;</a></h4>
+<p><code>Port.Pull</code>은 CLI(<code>port pull</code>)를 호출하여 DB에 저장된 Entry 정의를<br />
+<code>.page</code>, <code>.enum</code> 파일로 지정된 경로에 재생성합니다.</p>
+<div class="language-csharp highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1">// 문법</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">Port</span><span class="p">.</span><span class="n">Pull</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="n">reponame</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">root</span><span class="p">);</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1">// 예시: D:\sample\Repo\pull\port\ 에 파일 생성</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="n">Port</span><span class="p">.</span><span class="n">Pull</span><span class="p">(</span><span class="s">&quot;sample&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">@&quot;D:\sample\Repo\pull\&quot;</span><span class="p">);</span>
+</span></code></pre></div>
+<h4 id="if-debug">전체 초기화 패턴 (<code>#if DEBUG</code>)<a class="headerlink" href="#if-debug" title="Permanent link">&para;</a></h4>
+<div class="language-csharp highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="cp">#if DEBUG</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="c1">// 1. 프로젝트 루트 생성</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="n">Port</span><span class="p">.</span><span class="n">Repository</span><span class="p">.</span><span class="n">New</span><span class="p">(</span><span class="s">@&quot;D:\sample\Repo\pull\&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;sample&quot;</span><span class="p">);</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="c1">// 2. 외부 문서에서 Page 생성</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="kt">var</span><span class="w"> </span><span class="n">ioDoc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Port</span><span class="p">.</span><span class="n">Document</span><span class="o">&lt;</span><span class="n">IOModel</span><span class="o">&gt;</span><span class="p">(</span><span class="s">@&quot;C:\Users\admin\Documents\IO.docx&quot;</span><span class="p">);</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="n">ioDoc</span><span class="p">.</span><span class="n">Where</span><span class="p">(</span><span class="n">v</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">Key</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s">&quot;OnOff&quot;</span><span class="p">)).</span><span class="n">ToList</span><span class="p">()</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">     </span><span class="p">.</span><span class="n">ForEach</span><span class="p">(</span><span class="n">v</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">DataType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Enum.OnOff&quot;</span><span class="p">);</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="n">ioDoc</span><span class="p">.</span><span class="n">Where</span><span class="p">(</span><span class="n">v</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">Key</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s">&quot;Temp&quot;</span><span class="p">)).</span><span class="n">ToList</span><span class="p">()</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">     </span><span class="p">.</span><span class="n">ForEach</span><span class="p">(</span><span class="n">v</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">DataType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;f8&quot;</span><span class="p">);</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ioDoc</span><span class="p">.</span><span class="n">Count</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="p">{</span>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="w">    </span><span class="n">ioDoc</span><span class="p">.</span><span class="n">New</span><span class="p">(</span><span class="s">@&quot;C:\...\io.page&quot;</span><span class="p">);</span>
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="w">    </span><span class="n">ioDoc</span><span class="p">.</span><span class="n">New</span><span class="p">(</span><span class="s">@&quot;C:\...\io.cs&quot;</span><span class="p">);</span>
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="p">}</span>
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>
+</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a><span class="c1">// 3. 인라인 Entry Push</span>
+</span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a><span class="n">Port</span><span class="p">.</span><span class="n">Push</span><span class="p">(</span><span class="s">&quot;sample&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CustomEFEM</span><span class="p">());</span>
+</span><span id="__span-7-20"><a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a>
+</span><span id="__span-7-21"><a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a><span class="c1">// 4. 문서 기반 Entry Push</span>
+</span><span id="__span-7-22"><a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a><span class="n">Port</span><span class="p">.</span><span class="n">Push</span><span class="p">(</span><span class="s">&quot;sample&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ioDoc</span><span class="p">.</span><span class="n">NewPage</span><span class="p">(</span><span class="s">&quot;Device&quot;</span><span class="p">));</span>
+</span><span id="__span-7-23"><a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a>
+</span><span id="__span-7-24"><a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a><span class="c1">// 5. DB → 파일 재구성</span>
+</span><span id="__span-7-25"><a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a><span class="n">Port</span><span class="p">.</span><span class="n">Pull</span><span class="p">(</span><span class="s">&quot;sample&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">@&quot;D:\sample\Repo\pull\&quot;</span><span class="p">);</span>
+</span><span id="__span-7-26"><a id="__codelineno-7-26" name="__codelineno-7-26" href="#__codelineno-7-26"></a><span class="cp">#endif</span>
+</span></code></pre></div>
+<hr />
+<h2 id="2-page-model">2. Page를 Model과 맵핑 시키기<a class="headerlink" href="#2-page-model" title="Permanent link">&para;</a></h2>
+<h3 id="a-model">a. Model이란 무엇인가?<a class="headerlink" href="#a-model" title="Permanent link">&para;</a></h3>
+<p><strong>Model</strong>은 Port Entry들과 C# 프로퍼티를 연결하는 <strong>데이터 바인딩 계층</strong>입니다.</p>
+<ul>
+<li><code>[Model]</code> 어트리뷰트로 클래스를 선언합니다.</li>
+<li>각 프로퍼티는 <code>[ModelBinding]</code> 어트리뷰트로 특정 Entry에 연결됩니다.</li>
+<li>Controller와 Flow에서 Model을 통해 Entry 값을 읽고 쓸 수 있습니다.</li>
+</ul>
+<hr />
+<h3 id="b-model-page">b. Model과 Page의 관계<a class="headerlink" href="#b-model-page" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>.page 파일 (Entry 정의)
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>    ↓  Push
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>Port 메모리 DB (Entry 값 저장)
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>    ↕  ModelBinding
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>Model (C# 프로퍼티 ↔ Entry 매핑)
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>    ↕
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>Controller / Flow (비즈니스 로직)
+</span></code></pre></div>
+<p>Page는 <strong>데이터 원천(Source of Truth)</strong> 이고,<br />
+Model은 그 데이터를 <strong>코드에서 타입 안전하게 접근</strong>하는 뷰입니다.</p>
+<hr />
+<h3 id="c-model-page">c. Model과 Page를 맵핑하는 방법<a class="headerlink" href="#c-model-page" title="Permanent link">&para;</a></h3>
+<p><code>[ModelBinding(instanceKey, entryKey)]</code> 어트리뷰트를 사용합니다.</p>
+<ul>
+<li><strong>첫 번째 인자</strong>: 컨트롤러 인스턴스 키 (예: <code>"Bulb1"</code>, <code>"LP1"</code>)</li>
+<li><strong>두 번째 인자</strong>: Entry 상수 (자동 생성된 <code>.cs</code> 파일의 상수)</li>
+</ul>
+<div class="language-csharp highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="na">[Model]</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">BulbModel</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="p">{</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span><span class="c1">// &quot;Bulb1&quot;, &quot;Bulb2&quot; 두 인스턴스가 동일한 프로퍼티 구조 공유</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">    </span><span class="na">[ModelBinding(&quot;Bulb1&quot;, Io.Bulb1OnOff)]</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">    </span><span class="na">[ModelBinding(&quot;Bulb2&quot;, Io.Bulb2OnOff)]</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">Entry</span><span class="w"> </span><span class="n">OnOff</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="w">    </span><span class="na">[ModelBinding(&quot;Bulb1&quot;, Io.Bulb1Temp)]</span>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="w">    </span><span class="na">[ModelBinding(&quot;Bulb2&quot;, Io.Bulb2Temp)]</span>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">Entry</span><span class="w"> </span><span class="n">Temp</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="w">    </span><span class="na">[ModelBinding(&quot;Bulb1&quot;, Io.Bulb1TargetTemp)]</span>
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="w">    </span><span class="na">[ModelBinding(&quot;Bulb2&quot;, Io.Bulb2TargetTemp)]</span>
+</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">Entry</span><span class="w"> </span><span class="n">TargetTemp</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="p">}</span>
+</span></code></pre></div>
+<p><code>Io.Bulb1OnOff</code>와 같은 상수는 <code>.page</code> 파일에서 자동 생성된 <code>io.cs</code>에서 옵니다:</p>
+<div class="language-csharp highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1">// Auto-generated by Port. Do not edit manually.</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="k">namespace</span><span class="w"> </span><span class="nn">sample</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="p">{</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">Io</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">Bulb1OnOff</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Bulb1OnOff&quot;</span><span class="p">;</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">Bulb1Temp</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Bulb1Temp&quot;</span><span class="p">;</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">        </span><span class="c1">// ...</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="p">}</span>
+</span></code></pre></div>
+<hr />
+<h2 id="3-model-controller">3. Model과 Controller에 사용하는 방법<a class="headerlink" href="#3-model-controller" title="Permanent link">&para;</a></h2>
+<h3 id="a-controller">a. Controller란 무엇인가?<a class="headerlink" href="#a-controller" title="Permanent link">&para;</a></h3>
+<p><strong>Controller</strong>는 하나 이상의 <strong>Flow</strong>를 포함하는 로직 컨테이너입니다.</p>
+<ul>
+<li><code>[Controller]</code> 어트리뷰트로 선언합니다.</li>
+<li><code>Port.Add&lt;TController, TModel&gt;(instanceKey)</code> 로 등록합니다.</li>
+<li>동일한 Controller를 여러 인스턴스(예: LP1, LP2)로 재사용할 수 있습니다.</li>
+</ul>
+<div class="language-csharp highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1">// Controller 등록</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="n">Port</span><span class="p">.</span><span class="n">Add</span><span class="o">&lt;</span><span class="n">BulbController</span><span class="p">,</span><span class="w"> </span><span class="n">BulbModel</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;Bulb1&quot;</span><span class="p">);</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="n">Port</span><span class="p">.</span><span class="n">Add</span><span class="o">&lt;</span><span class="n">BulbController</span><span class="p">,</span><span class="w"> </span><span class="n">BulbModel</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;Bulb2&quot;</span><span class="p">);</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="n">Port</span><span class="p">.</span><span class="n">Run</span><span class="p">();</span>
+</span></code></pre></div>
+<hr />
+<h3 id="b-flow">b. Flow란 무엇인가?<a class="headerlink" href="#b-flow" title="Permanent link">&para;</a></h3>
+<p><strong>Flow</strong>는 Controller 내부에 정의된 <strong>순차 실행 워크플로우</strong>입니다.</p>
+<ul>
+<li><code>[Flow("FlowName")]</code> 어트리뷰트로 내부 클래스를 선언합니다.</li>
+<li>각 단계는 <code>[FlowStep(순서)]</code> 메서드로 정의합니다.</li>
+<li>외부에서 <code>Port.Set("Bulb1", FlowAction.Executing)</code> 으로 실행을 트리거합니다.</li>
+</ul>
+<hr />
+<h3 id="c-flow-model">c. Flow에서 Model 핸들링 하는 방법<a class="headerlink" href="#c-flow-model" title="Permanent link">&para;</a></h3>
+<p>Flow 메서드의 파라미터로 Model을 직접 받아 Entry 값에 접근합니다:</p>
+<div class="language-csharp highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="na">[Controller]</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">BulbController</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="p">{</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">    </span><span class="na">[Flow(&quot;BulbOn&quot;)]</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">BulbOn</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="w">        </span><span class="na">[FlowHandler]</span>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="n">IFlowHandler</span><span class="w"> </span><span class="n">handler</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">null</span><span class="o">!</span><span class="p">;</span>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="w">        </span><span class="c1">// Step 0: 사전 조건 확인</span>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="w">        </span><span class="na">[FlowStep(0)]</span>
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">CheckInitialState</span><span class="p">(</span><span class="n">BulbModel</span><span class="w"> </span><span class="n">model</span><span class="p">)</span>
+</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-12-14"><a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">model</span><span class="p">.</span><span class="n">Temp</span><span class="p">.</span><span class="n">Value</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">100</span><span class="p">)</span>
+</span><span id="__span-12-15"><a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a><span class="w">                </span><span class="n">handler</span><span class="o">?.</span><span class="n">Next</span><span class="p">();</span><span class="w">   </span><span class="c1">// 다음 단계로 진행</span>
+</span><span id="__span-12-16"><a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-12-17"><a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a>
+</span><span id="__span-12-18"><a id="__codelineno-12-18" name="__codelineno-12-18" href="#__codelineno-12-18"></a><span class="w">        </span><span class="c1">// Step 1: 실행</span>
+</span><span id="__span-12-19"><a id="__codelineno-12-19" name="__codelineno-12-19" href="#__codelineno-12-19"></a><span class="w">        </span><span class="na">[FlowStep(1)]</span>
+</span><span id="__span-12-20"><a id="__codelineno-12-20" name="__codelineno-12-20" href="#__codelineno-12-20"></a><span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">TurnOn</span><span class="p">(</span><span class="n">BulbModel</span><span class="w"> </span><span class="n">model</span><span class="p">)</span>
+</span><span id="__span-12-21"><a id="__codelineno-12-21" name="__codelineno-12-21" href="#__codelineno-12-21"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-12-22"><a id="__codelineno-12-22" name="__codelineno-12-22" href="#__codelineno-12-22"></a><span class="w">            </span><span class="n">model</span><span class="p">.</span><span class="n">OnOff</span><span class="p">.</span><span class="n">Set</span><span class="p">(</span><span class="s">&quot;On&quot;</span><span class="p">);</span>
+</span><span id="__span-12-23"><a id="__codelineno-12-23" name="__codelineno-12-23" href="#__codelineno-12-23"></a><span class="w">            </span><span class="n">handler</span><span class="o">?.</span><span class="n">Next</span><span class="p">();</span>
+</span><span id="__span-12-24"><a id="__codelineno-12-24" name="__codelineno-12-24" href="#__codelineno-12-24"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-12-25"><a id="__codelineno-12-25" name="__codelineno-12-25" href="#__codelineno-12-25"></a>
+</span><span id="__span-12-26"><a id="__codelineno-12-26" name="__codelineno-12-26" href="#__codelineno-12-26"></a><span class="w">        </span><span class="c1">// Step 2: 완료 조건 모니터링</span>
+</span><span id="__span-12-27"><a id="__codelineno-12-27" name="__codelineno-12-27" href="#__codelineno-12-27"></a><span class="w">        </span><span class="na">[FlowStep(2)]</span>
+</span><span id="__span-12-28"><a id="__codelineno-12-28" name="__codelineno-12-28" href="#__codelineno-12-28"></a><span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">MonitorTemperature</span><span class="p">(</span><span class="n">BulbModel</span><span class="w"> </span><span class="n">model</span><span class="p">)</span>
+</span><span id="__span-12-29"><a id="__codelineno-12-29" name="__codelineno-12-29" href="#__codelineno-12-29"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-12-30"><a id="__codelineno-12-30" name="__codelineno-12-30" href="#__codelineno-12-30"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">model</span><span class="p">.</span><span class="n">Temp</span><span class="p">.</span><span class="n">Value</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">model</span><span class="p">.</span><span class="n">TargetTemp</span><span class="p">.</span><span class="n">Value</span><span class="p">)</span>
+</span><span id="__span-12-31"><a id="__codelineno-12-31" name="__codelineno-12-31" href="#__codelineno-12-31"></a><span class="w">            </span><span class="p">{</span>
+</span><span id="__span-12-32"><a id="__codelineno-12-32" name="__codelineno-12-32" href="#__codelineno-12-32"></a><span class="w">                </span><span class="n">model</span><span class="p">.</span><span class="n">OnOff</span><span class="p">.</span><span class="n">Set</span><span class="p">(</span><span class="s">&quot;Off&quot;</span><span class="p">);</span>
+</span><span id="__span-12-33"><a id="__codelineno-12-33" name="__codelineno-12-33" href="#__codelineno-12-33"></a><span class="w">                </span><span class="n">handler</span><span class="o">?.</span><span class="n">Next</span><span class="p">();</span><span class="w">   </span><span class="c1">// Flow 완료</span>
+</span><span id="__span-12-34"><a id="__codelineno-12-34" name="__codelineno-12-34" href="#__codelineno-12-34"></a><span class="w">            </span><span class="p">}</span>
+</span><span id="__span-12-35"><a id="__codelineno-12-35" name="__codelineno-12-35" href="#__codelineno-12-35"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-12-36"><a id="__codelineno-12-36" name="__codelineno-12-36" href="#__codelineno-12-36"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-12-37"><a id="__codelineno-12-37" name="__codelineno-12-37" href="#__codelineno-12-37"></a><span class="p">}</span>
+</span></code></pre></div>
+<p><strong>Flow 실행 / 중단:</strong></p>
+<div class="language-csharp highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">Port</span><span class="p">.</span><span class="n">Set</span><span class="p">(</span><span class="s">&quot;Bulb1&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">FlowAction</span><span class="p">.</span><span class="n">Executing</span><span class="p">);</span><span class="w">   </span><span class="c1">// BulbOn Flow 시작</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="n">Port</span><span class="p">.</span><span class="n">Set</span><span class="p">(</span><span class="s">&quot;Bulb1&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">FlowAction</span><span class="p">.</span><span class="n">Canceled</span><span class="p">);</span><span class="w">    </span><span class="c1">// 중단</span>
+</span></code></pre></div>
+<hr />
+<h2 id="4-handler">4. 다양한 Handler<a class="headerlink" href="#4-handler" title="Permanent link">&para;</a></h2>
+<h3 id="a-handler">a. Handler의 종류<a class="headerlink" href="#a-handler" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Handler 인터페이스</th>
+<th>용도</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IFlowHandler</code></td>
+<td>기본 Flow 진행 제어 (<code>Next()</code>)</td>
+</tr>
+<tr>
+<td><code>IFlowWithModelHandler&lt;T&gt;</code></td>
+<td>Model을 포함한 Flow 이벤트 구독</td>
+</tr>
+<tr>
+<td><code>ISchedulerHandler</code></td>
+<td>이송(Transfer) 완료 스케줄링</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="b-handler">b. Handler의 역할과 사용 방법<a class="headerlink" href="#b-handler" title="Permanent link">&para;</a></h3>
+<h4 id="iflowhandler">IFlowHandler — 기본 진행 제어<a class="headerlink" href="#iflowhandler" title="Permanent link">&para;</a></h4>
+<div class="language-csharp highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="na">[FlowHandler]</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="k">public</span><span class="w"> </span><span class="n">IFlowHandler</span><span class="w"> </span><span class="n">handler</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">null</span><span class="o">!</span><span class="p">;</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="n">handler</span><span class="p">.</span><span class="n">Next</span><span class="p">();</span><span class="w">   </span><span class="c1">// 다음 FlowStep으로 이동</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="n">handler</span><span class="p">.</span><span class="n">Done</span><span class="p">();</span><span class="w">   </span><span class="c1">// Flow를 즉시 Idle 상태로 종료 (동기)</span>
+</span></code></pre></div>
+<h4 id="iflowwithmodelhandlert-model">IFlowWithModelHandler\&lt;T&gt; — 이벤트 기반 Model 접근<a class="headerlink" href="#iflowwithmodelhandlert-model" title="Permanent link">&para;</a></h4>
+<p>Flow 완료 / 단계 전환 / 오류 발생 시 Model을 함께 전달받습니다.<br />
+<code>[Preset]</code> 메서드에서 구독하면 Flow 재실행 시에도 구독이 유지됩니다.</p>
+<div class="language-csharp highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="na">[Controller]</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="k">internal</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">WTRController</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="p">{</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">    </span><span class="na">[Flow(&quot;Pick&quot;)]</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">Pick</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">IFlowCACD</span><span class="o">&lt;</span><span class="n">WTRCommModel</span><span class="o">&gt;</span>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="w">        </span><span class="na">[Handler]</span>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="n">IFlowWithModelHandler</span><span class="o">&lt;</span><span class="n">WTRCommModel</span><span class="o">&gt;</span><span class="w"> </span><span class="n">handler</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">null</span><span class="o">!</span><span class="p">;</span>
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="w">        </span><span class="na">[Handler]</span>
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="n">ISchedulerHandler</span><span class="w"> </span><span class="n">scheduler</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">null</span><span class="o">!</span><span class="p">;</span>
+</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>
+</span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="w">        </span><span class="c1">// Preset: 등록 시 1회 실행, 이벤트 구독은 영속</span>
+</span><span id="__span-15-14"><a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a><span class="w">        </span><span class="na">[Preset]</span>
+</span><span id="__span-15-15"><a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a><span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">Preset</span><span class="p">()</span>
+</span><span id="__span-15-16"><a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-15-17"><a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a><span class="w">            </span><span class="n">handler</span><span class="p">.</span><span class="n">SetLogger</span><span class="p">(</span><span class="s">@&quot;D:\log&quot;</span><span class="p">);</span>
+</span><span id="__span-15-18"><a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a><span class="w">            </span><span class="n">handler</span><span class="p">.</span><span class="n">OnFlowFinished</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span>
+</span><span id="__span-15-19"><a id="__codelineno-15-19" name="__codelineno-15-19" href="#__codelineno-15-19"></a><span class="w">                </span><span class="n">scheduler</span><span class="p">.</span><span class="n">TransferCompleted</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">Model</span><span class="p">.</span><span class="n">SelectedArm</span><span class="p">);</span>
+</span><span id="__span-15-20"><a id="__codelineno-15-20" name="__codelineno-15-20" href="#__codelineno-15-20"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-15-21"><a id="__codelineno-15-21" name="__codelineno-15-21" href="#__codelineno-15-21"></a>
+</span><span id="__span-15-22"><a id="__codelineno-15-22" name="__codelineno-15-22" href="#__codelineno-15-22"></a><span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">CheckStatus</span><span class="p">(</span><span class="n">WTRCommModel</span><span class="w"> </span><span class="n">m</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Task</span><span class="p">.</span><span class="n">Delay</span><span class="p">(</span><span class="mi">300</span><span class="p">).</span><span class="n">Wait</span><span class="p">();</span><span class="w"> </span><span class="n">handler</span><span class="p">.</span><span class="n">Next</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-15-23"><a id="__codelineno-15-23" name="__codelineno-15-23" href="#__codelineno-15-23"></a><span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">Action</span><span class="p">(</span><span class="n">WTRCommModel</span><span class="w"> </span><span class="n">m</span><span class="p">)</span><span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="n">handler</span><span class="p">.</span><span class="n">Next</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-15-24"><a id="__codelineno-15-24" name="__codelineno-15-24" href="#__codelineno-15-24"></a><span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">CheckAction</span><span class="p">(</span><span class="n">WTRCommModel</span><span class="w"> </span><span class="n">m</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">handler</span><span class="p">.</span><span class="n">Next</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-15-25"><a id="__codelineno-15-25" name="__codelineno-15-25" href="#__codelineno-15-25"></a><span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">Done</span><span class="p">(</span><span class="n">WTRCommModel</span><span class="w"> </span><span class="n">m</span><span class="p">)</span><span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="n">handler</span><span class="p">.</span><span class="n">Done</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-15-26"><a id="__codelineno-15-26" name="__codelineno-15-26" href="#__codelineno-15-26"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-15-27"><a id="__codelineno-15-27" name="__codelineno-15-27" href="#__codelineno-15-27"></a><span class="p">}</span>
+</span></code></pre></div>
+<h4 id="handlernext-vs-handlerdone">handler.Next() vs handler.Done()<a class="headerlink" href="#handlernext-vs-handlerdone" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>메서드</th>
+<th>동작</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>handler.Next()</code></td>
+<td>상태 머신을 통해 다음 단계로 비동기 전환</td>
+</tr>
+<tr>
+<td><code>handler.Done()</code></td>
+<td>Flow를 <strong>동기적</strong>으로 즉시 <code>Idle</code>로 전환 후 <code>OnFlowFinished</code> 발생</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><code>OnFlowFinished</code> 콜백 내부에서 새 Flow를 시작해야 할 때는 반드시 <code>handler.Done()</code>을 사용하세요.<br />
+<code>handler.Next()</code>를 쓰면 Flow가 아직 Idle 상태가 아니어서 <code>AlreadyExecutingFlowException</code>이 발생합니다.</p>
+</blockquote>
+<hr />
+<h3 id="c-handler">c. Handler 속성 테이블<a class="headerlink" href="#c-handler" title="Permanent link">&para;</a></h3>
+<h4 id="iflowwithmodelhandlert">IFlowWithModelHandler\&lt;T&gt; 이벤트<a class="headerlink" href="#iflowwithmodelhandlert" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>이벤트</th>
+<th>발생 시점</th>
+<th>전달 인자</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>OnFlowFinished</code></td>
+<td>Flow가 Done 단계까지 완료</td>
+<td><code>FlowFinishedWithModelArgs&lt;T&gt;</code> — Model, 타이밍, 단계 기록</td>
+</tr>
+<tr>
+<td><code>OnFlowOccured</code></td>
+<td>각 단계 전환 시</td>
+<td><code>PortFlowOccuredWithModelArgs&lt;T&gt;</code> — Model, 단계 상태</td>
+</tr>
+<tr>
+<td><code>OnFlowIssue</code></td>
+<td>알람으로 Flow 중단 시</td>
+<td><code>PortFlowIssueWithModelArgs&lt;T&gt;</code> — Model, 알람 코드</td>
+</tr>
+</tbody>
+</table>
+<p>모든 이벤트 인자의 <code>Model</code> 프로퍼티는 해당 Flow 키에 바인딩된<br />
+싱글턴 Model 인스턴스를 가리키므로, <code>e.Model.Target.Value</code>는 항상 현재 공유 메모리 값을 반영합니다.</p>
+<h4 id="iflowcacdt-4-flow">IFlowCACD\&lt;T&gt; — 표준 4단계 Flow<a class="headerlink" href="#iflowcacdt-4-flow" title="Permanent link">&para;</a></h4>
+<p>장비 이송 Flow의 권장 인터페이스로, 메서드 순서가 고정됩니다:</p>
+<table>
+<thead>
+<tr>
+<th>단계</th>
+<th>메서드</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>CheckStatus</code></td>
+<td>실행 전 사전 조건 확인</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>Action</code></td>
+<td>물리적 동작 실행</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>CheckAction</code></td>
+<td>동작 완료 여부 확인</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>Done</code></td>
+<td>완료 처리 — <code>handler.Done()</code> 호출로 Flow 종료</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5-package">5. Package 호출하기<a class="headerlink" href="#5-package" title="Permanent link">&para;</a></h2>
+<h3 id="a-package">a. Package란 무엇인가?<a class="headerlink" href="#a-package" title="Permanent link">&para;</a></h3>
+<p><strong>Package</strong>는 물리 장치(Bulb, Heater, IO 카드 등)와 Port Entry를 연결하는<br />
+<strong>재사용 가능한 디바이스 드라이버 모듈</strong>입니다.</p>
+<ul>
+<li><code>.page</code> 파일에서 <code>pkg:PackageName.PropertyName</code> 구문으로 연결합니다.</li>
+<li><code>[Package]</code> 어트리뷰트로 C# 클래스를 선언합니다.</li>
+<li>Entry 값이 변경되면 패키지의 해당 프로퍼티 setter가 자동 호출됩니다.</li>
+</ul>
+<hr />
+<h3 id="b-package-api">b. Package API 호출 방법<a class="headerlink" href="#b-package-api" title="Permanent link">&para;</a></h3>
+<h4 id="page-package">.page 파일에서 Package 연결<a class="headerlink" href="#page-package" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>Bulb1OnOff  Enum.OnOff  pkg:Bulb.OffOn  property:{&quot;IO.No&quot;:&quot;D0.01&quot;}
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>Bulb1Temp   f8          pkg:Bulb.Temp   property:{&quot;IO.No&quot;:&quot;A0.01&quot;}
+</span></code></pre></div>
+<h4 id="page-package_1">[Page] 클래스에서 Package 연결<a class="headerlink" href="#page-package_1" title="Permanent link">&para;</a></h4>
+<p><code>[PageEntry]</code> 어트리뷰트의 <code>Package</code> 파라미터를 사용합니다:</p>
+<div class="language-csharp highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="na">[Page(&quot;EFEM&quot;)]</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="k">public</span><span class="w"> </span><span class="k">partial</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">CustomEFEM</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="p">{</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="w">    </span><span class="c1">// pkg:Bulb1.OffOn 으로 Package에 연결</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="w">    </span><span class="na">[PageEntry(PortDataType.Enum, EnumName = &quot;OffOn&quot;,</span>
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="na">        Package  = &quot;Bulb1.OffOn&quot;,</span>
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="na">        Property = &quot;{\&quot;MIN\&quot;:0,\&quot;MAX\&quot;:1}&quot;)]</span>
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">LP1_BulbOnOff_o</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;EFEM.LP1_BulbOnOff_o&quot;</span><span class="p">;</span>
+</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="p">}</span>
+</span></code></pre></div>
+<h4 id="package">Package 클래스 구현<a class="headerlink" href="#package" title="Permanent link">&para;</a></h4>
+<div class="language-csharp highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="na">[Package]</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">Bulb</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="p">{</span>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="w">    </span><span class="na">[Logger]</span>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">ILogger</span><span class="w"> </span><span class="n">Logger</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="w">    </span><span class="na">[Property]</span>
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">IProperty</span><span class="w"> </span><span class="n">Property</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>
+</span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a><span class="w">    </span><span class="na">[Valid(&quot;Device not connected&quot;)]</span>
+</span><span id="__span-18-11"><a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nf">Valid</span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">serialPort</span><span class="p">.</span><span class="n">IsOpen</span><span class="p">;</span>
+</span><span id="__span-18-12"><a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a>
+</span><span id="__span-18-13"><a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a><span class="w">    </span><span class="c1">// Entry 값 변경 시 자동 호출되는 setter</span>
+</span><span id="__span-18-14"><a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a><span class="w">    </span><span class="na">[API(EntryDataType.Enum)]</span>
+</span><span id="__span-18-15"><a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">OffOn</span>
+</span><span id="__span-18-16"><a id="__codelineno-18-16" name="__codelineno-18-16" href="#__codelineno-18-16"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-18-17"><a id="__codelineno-18-17" name="__codelineno-18-17" href="#__codelineno-18-17"></a><span class="w">        </span><span class="k">set</span>
+</span><span id="__span-18-18"><a id="__codelineno-18-18" name="__codelineno-18-18" href="#__codelineno-18-18"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-18-19"><a id="__codelineno-18-19" name="__codelineno-18-19" href="#__codelineno-18-19"></a><span class="w">            </span><span class="c1">// 실제 하드웨어 제어 코드</span>
+</span><span id="__span-18-20"><a id="__codelineno-18-20" name="__codelineno-18-20" href="#__codelineno-18-20"></a><span class="w">            </span><span class="n">Logger</span><span class="p">.</span><span class="n">Write</span><span class="p">(</span><span class="s">$&quot;[INFO] Bulb OffOn → {value}&quot;</span><span class="p">);</span>
+</span><span id="__span-18-21"><a id="__codelineno-18-21" name="__codelineno-18-21" href="#__codelineno-18-21"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-18-22"><a id="__codelineno-18-22" name="__codelineno-18-22" href="#__codelineno-18-22"></a><span class="w">        </span><span class="k">get</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">_offOn</span><span class="p">;</span>
+</span><span id="__span-18-23"><a id="__codelineno-18-23" name="__codelineno-18-23" href="#__codelineno-18-23"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-18-24"><a id="__codelineno-18-24" name="__codelineno-18-24" href="#__codelineno-18-24"></a>
+</span><span id="__span-18-25"><a id="__codelineno-18-25" name="__codelineno-18-25" href="#__codelineno-18-25"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">_offOn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Off&quot;</span><span class="p">;</span>
+</span><span id="__span-18-26"><a id="__codelineno-18-26" name="__codelineno-18-26" href="#__codelineno-18-26"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="n">SerialPort</span><span class="w"> </span><span class="n">serialPort</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SerialPort</span><span class="p">();</span>
+</span><span id="__span-18-27"><a id="__codelineno-18-27" name="__codelineno-18-27" href="#__codelineno-18-27"></a><span class="p">}</span>
+</span></code></pre></div>
+<h4 id="page-push">[Page] 클래스 Push<a class="headerlink" href="#page-push" title="Permanent link">&para;</a></h4>
+<div class="language-csharp highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="c1">// Port 서버 시작 전에 Push</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="n">Port</span><span class="p">.</span><span class="n">Push</span><span class="p">(</span><span class="s">&quot;sample&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CustomEFEM</span><span class="p">());</span>
+</span></code></pre></div>
+<hr />
+<h2 id="6-portset">6. Port.Set 기능에 대해<a class="headerlink" href="#6-portset" title="Permanent link">&para;</a></h2>
+<p><code>Port.Set</code>은 지정한 Entry의 값을 메모리 DB에 즉시 기록합니다.<br />
+연결된 Package가 있으면 setter가 호출되어 실제 하드웨어 동작으로 이어집니다.</p>
+<h3 id="_1">기본 사용법<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<div class="language-csharp highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c1">// Entry 값 설정</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="n">Port</span><span class="p">.</span><span class="n">Set</span><span class="p">(</span><span class="s">&quot;Bulb1.OnOff&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;On&quot;</span><span class="p">);</span>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="n">Port</span><span class="p">.</span><span class="n">Set</span><span class="p">(</span><span class="s">&quot;Bulb1.TargetTemp&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;85.0&quot;</span><span class="p">);</span>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="c1">// Flow 실행 / 중단</span>
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="n">Port</span><span class="p">.</span><span class="n">Set</span><span class="p">(</span><span class="s">&quot;Bulb1&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">FlowAction</span><span class="p">.</span><span class="n">Executing</span><span class="p">);</span>
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="n">Port</span><span class="p">.</span><span class="n">Set</span><span class="p">(</span><span class="s">&quot;Bulb1&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">FlowAction</span><span class="p">.</span><span class="n">Canceled</span><span class="p">);</span>
+</span></code></pre></div>
+<h3 id="model-entry-set">Model에서 Entry 직접 Set<a class="headerlink" href="#model-entry-set" title="Permanent link">&para;</a></h3>
+<div class="language-csharp highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="c1">// Flow 내부에서 model 파라미터로 직접 Set</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="n">model</span><span class="p">.</span><span class="n">OnOff</span><span class="p">.</span><span class="n">Set</span><span class="p">(</span><span class="s">&quot;On&quot;</span><span class="p">);</span>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="n">model</span><span class="p">.</span><span class="n">TargetTemp</span><span class="p">.</span><span class="n">Set</span><span class="p">(</span><span class="s">&quot;80.0&quot;</span><span class="p">);</span>
+</span></code></pre></div>
+<h3 id="iflowmodel-set">IFlowModel에서 Set (@ 바인딩)<a class="headerlink" href="#iflowmodel-set" title="Permanent link">&para;</a></h3>
+<div class="language-csharp highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="na">[FlowModel]</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="k">public</span><span class="w"> </span><span class="n">IFlowModel</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">get</span><span class="p">;</span><span class="w"> </span><span class="k">set</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="n">model</span><span class="p">.</span><span class="n">Set</span><span class="p">(</span><span class="s">&quot;@OnOff&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;On&quot;</span><span class="p">);</span><span class="w">   </span><span class="c1">// @ 접두사 = ModelBinding 키 참조</span>
+</span></code></pre></div>
+<hr />
+<h2 id="7-portget">7. Port.Get 기능에 대해<a class="headerlink" href="#7-portget" title="Permanent link">&para;</a></h2>
+<p><code>Port.Get</code>은 지정한 Entry의 현재 값을 메모리 DB에서 읽습니다.<br />
+항상 최신 값을 반환하며, 고성능 인메모리 접근을 지원합니다.</p>
+<h3 id="_2">기본 사용법<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<div class="language-csharp highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="c1">// Entry 값 읽기</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="kt">string</span><span class="w"> </span><span class="n">onOff</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Port</span><span class="p">.</span><span class="n">Get</span><span class="p">(</span><span class="s">&quot;Bulb1.OnOff&quot;</span><span class="p">);</span><span class="w">   </span><span class="c1">// → &quot;On&quot; or &quot;Off&quot;</span>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Port</span><span class="p">.</span><span class="n">Get</span><span class="p">(</span><span class="s">&quot;Bulb1.OnOff&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;On&quot;</span><span class="p">)</span>
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="p">{</span>
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a><span class="w">    </span><span class="n">Port</span><span class="p">.</span><span class="n">Set</span><span class="p">(</span><span class="s">&quot;Bulb1.OnOff&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Off&quot;</span><span class="p">);</span>
+</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a><span class="p">}</span>
+</span></code></pre></div>
+<h3 id="model-entry-get">Model에서 Entry 직접 Get<a class="headerlink" href="#model-entry-get" title="Permanent link">&para;</a></h3>
+<div class="language-csharp highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="c1">// Entry.Value 프로퍼티로 현재 값 접근</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="kt">double</span><span class="w"> </span><span class="n">temp</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="n">model</span><span class="p">.</span><span class="n">Temp</span><span class="p">.</span><span class="n">Value</span><span class="p">;</span>
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="kt">string</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="p">)</span><span class="n">model</span><span class="p">.</span><span class="n">OnOff</span><span class="p">.</span><span class="n">Value</span><span class="p">;</span>
+</span></code></pre></div>
+<h3 id="iflowmodel-get">IFlowModel에서 Get (@ 바인딩)<a class="headerlink" href="#iflowmodel-get" title="Permanent link">&para;</a></h3>
+<div class="language-csharp highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="kt">var</span><span class="w"> </span><span class="k">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">model</span><span class="p">.</span><span class="n">Get</span><span class="p">(</span><span class="s">&quot;@Temp&quot;</span><span class="p">);</span><span class="w">   </span><span class="c1">// ModelBinding 된 Entry 값 조회</span>
+</span></code></pre></div>
+<hr />
+<h2 id="8-rule-script-port-setget">8. Rule Script를 통해 Port Set/Get 동작 제어하기<a class="headerlink" href="#8-rule-script-port-setget" title="Permanent link">&para;</a></h2>
+<p><strong>Rule Script</strong>는 Entry 값의 조건을 감시하여 자동으로 다른 Entry를 제어하는<br />
+<strong>이벤트 기반 자동화 규칙 엔진</strong>입니다. <code>.rule</code> 파일에 정의하거나 C# 코드에서 직접 등록합니다.</p>
+<h3 id="rule">Rule 문법<a class="headerlink" href="#rule" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>set(&quot;조건 Entry == 값&quot;, &quot;실행 Entry &gt;= 임계값&quot;)
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>구성 요소</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>첫 번째 인자</td>
+<td>트리거 조건 (<code>Entry 경로 연산자 값</code>)</td>
+</tr>
+<tr>
+<td>두 번째 인자</td>
+<td>실행 조건 또는 Set 동작</td>
+</tr>
+</tbody>
+</table>
+<p><strong>지원 연산자:</strong> <code>==</code>, <code>!=</code>, <code>&gt;=</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&lt;</code></p>
+<h3 id="rule_1">.rule 파일 예시<a class="headerlink" href="#rule_1" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>// Bulb1.OnOff 가 &quot;On&quot;이 되고, Bulb1.Temp 가 80 이상이면 자동으로 Off
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>set(&quot;Bulb1.OnOff == On&quot;, &quot;Bulb1.Temp &gt;= 80&quot;)
+</span></code></pre></div>
+<h3 id="c-rule">C#에서 Rule 등록<a class="headerlink" href="#c-rule" title="Permanent link">&para;</a></h3>
+<div class="language-csharp highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="c1">// Port.Set을 통해 Rule 조건을 수동으로 트리거</span>
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="n">Port</span><span class="p">.</span><span class="n">Set</span><span class="p">(</span><span class="s">&quot;Bulb1.OnOff&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;On&quot;</span><span class="p">);</span>
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>
+</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="c1">// Flow 내에서 조건 확인 후 Set</span>
+</span><span id="__span-28-5"><a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="na">[FlowStep(2)]</span>
+</span><span id="__span-28-6"><a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a><span class="k">public</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">MonitorTemperature</span><span class="p">(</span><span class="n">BulbModel</span><span class="w"> </span><span class="n">model</span><span class="p">)</span>
+</span><span id="__span-28-7"><a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a><span class="p">{</span>
+</span><span id="__span-28-8"><a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">model</span><span class="p">.</span><span class="n">Temp</span><span class="p">.</span><span class="n">Value</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">model</span><span class="p">.</span><span class="n">TargetTemp</span><span class="p">.</span><span class="n">Value</span><span class="p">)</span>
+</span><span id="__span-28-9"><a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-28-10"><a id="__codelineno-28-10" name="__codelineno-28-10" href="#__codelineno-28-10"></a><span class="w">        </span><span class="n">model</span><span class="p">.</span><span class="n">OnOff</span><span class="p">.</span><span class="n">Set</span><span class="p">(</span><span class="s">&quot;Off&quot;</span><span class="p">);</span>
+</span><span id="__span-28-11"><a id="__codelineno-28-11" name="__codelineno-28-11" href="#__codelineno-28-11"></a><span class="w">        </span><span class="n">handler</span><span class="o">?.</span><span class="n">Next</span><span class="p">();</span>
+</span><span id="__span-28-12"><a id="__codelineno-28-12" name="__codelineno-28-12" href="#__codelineno-28-12"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-28-13"><a id="__codelineno-28-13" name="__codelineno-28-13" href="#__codelineno-28-13"></a><span class="p">}</span>
+</span></code></pre></div>
+<h3 id="_3">전체 흐름 요약<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>Entry 값 변경 (Port.Set)
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>    ↓
+</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>Rule Engine 조건 평가
+</span><span id="__span-29-4"><a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a>    ↓ 조건 일치
+</span><span id="__span-29-5"><a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a>자동 Port.Set 실행 → 연결된 Package setter 호출 → 하드웨어 동작
+</span><span id="__span-29-6"><a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a>    ↓
+</span><span id="__span-29-7"><a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a>Flow Step 전환 조건 재평가
+</span></code></pre></div>
+<blockquote>
+<p>Rule Script는 Flow와 독립적으로 동작하며, 여러 Entry 간의 복잡한 연동 조건을<br />
+코드 수정 없이 <code>.rule</code> 파일만 편집하여 변경할 수 있습니다.</p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["search.highlight", "search.share", "search.suggest", "content.code.copy", "content.code.select", "content.code.annotate", "content.tabs.link", "content.tooltips", "navigation.footer"], "search": "../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>
