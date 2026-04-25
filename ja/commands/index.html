@@ -1,0 +1,872 @@
+<!doctype html><html lang=ja dir=ltr class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-commands" data-has-hydrated=false><head><meta charset=UTF-8><meta name=generator content="Docusaurus v3.10.0"><title data-rh=true>PORT CLI Command Reference | Port</title><meta data-rh=true name=viewport content="width=device-width, initial-scale=1.0"/><meta data-rh=true name=twitter:card content=summary_large_image /><meta data-rh=true property=og:url content=https://portdic.com/ja/commands /><meta data-rh=true property=og:locale content=ja /><meta data-rh=true property=og:locale:alternate content=en /><meta data-rh=true property=og:locale:alternate content=zh /><meta data-rh=true property=og:locale:alternate content=ko /><meta data-rh=true name=docusaurus_locale content=ja /><meta data-rh=true name=docsearch:language content=ja /><meta data-rh=true name=docusaurus_version content=current /><meta data-rh=true name=docusaurus_tag content=docs-default-current /><meta data-rh=true name=docsearch:version content=current /><meta data-rh=true name=docsearch:docusaurus_tag content=docs-default-current /><meta data-rh=true property=og:title content="PORT CLI Command Reference | Port"/><meta data-rh=true name=description content="This document provides a comprehensive reference for all available PORT CLI commands."/><meta data-rh=true property=og:description content="This document provides a comprehensive reference for all available PORT CLI commands."/><link data-rh=true rel=icon href=/ja/img/logo.ico /><link data-rh=true rel=canonical href=https://portdic.com/ja/commands /><link data-rh=true rel=alternate href=https://portdic.com/commands hreflang=en /><link data-rh=true rel=alternate href=https://portdic.com/zh/commands hreflang=zh /><link data-rh=true rel=alternate href=https://portdic.com/ja/commands hreflang=ja /><link data-rh=true rel=alternate href=https://portdic.com/ko/commands hreflang=ko /><link data-rh=true rel=alternate href=https://portdic.com/commands hreflang=x-default /><script data-rh=true type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://portdic.com/ja/commands","name":"PORT CLI Command Reference","position":1}]}</script><link rel=stylesheet href=/ja/assets/css/styles.fca31d3b.css /><script src=/ja/assets/js/runtime~main.942c4fe5.js defer></script><script src=/ja/assets/js/main.ccbb08d3.js defer></script></head><body><svg style="display: none;"><defs>
+<symbol id=theme-svg-external-link viewBox="0 0 24 24"><path fill=currentColor d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme-c5b")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{for(var[t,e]of new URLSearchParams(window.location.search).entries())if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id=__docusaurus><div role=region aria-label=メインコンテンツまでスキップ><a class=skipToContent_fXgn href=#__docusaurus_skipToContent_fallback>メインコンテンツまでスキップ</a></div><nav aria-label=ナビゲーション class="theme-layout-navbar navbar navbar--fixed-top"><div class=navbar__inner><div class="theme-layout-navbar-left navbar__items"><button aria-label=ナビゲーションバーを開く aria-expanded=false class="navbar__toggle clean-btn" type=button><svg width=30 height=30 viewBox="0 0 30 30" aria-hidden=true><path stroke=currentColor stroke-linecap=round stroke-miterlimit=10 stroke-width=2 d="M4 7h22M4 15h22M4 23h22"/></svg></button><a class=navbar__brand href=/ja/><div class=navbar__logo><img src=/ja/img/logo.ico alt="Port ロゴ" class="themedComponent_mlkZ themedComponent--light_NVdE"/><img src=/ja/img/logo.ico alt="Port ロゴ" class="themedComponent_mlkZ themedComponent--dark_xIcU"/></div><b class="navbar__title text--truncate">Port</b></a><a aria-current=page class="navbar__item navbar__link navbar__link--active" href=/ja/>ドキュメント</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a href="https://marketplace.visualstudio.com/items?itemName=portroconn.portdic" target=_blank rel="noopener noreferrer" class="navbar__item navbar__link">VSCode 拡張機能<svg width=13.5 height=13.5 aria-label="(opens in new tab)" class=iconExternalLink_nPIU><use href=#theme-svg-external-link /></svg></a><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href=# aria-haspopup=true aria-expanded=false role=button class=navbar__link><svg viewBox="0 0 24 24" width=20 height=20 aria-hidden=true class=iconLanguage_nlXk><path fill=currentColor d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"/></svg>日本語</a><ul class=dropdown__menu><li><a href=/commands target=_self rel="noopener noreferrer" class=dropdown__link lang=en>English</a><li><a href=/zh/commands target=_self rel="noopener noreferrer" class=dropdown__link lang=zh>中文</a><li><a href=/ja/commands target=_self rel="noopener noreferrer" class="dropdown__link dropdown__link--active" lang=ja>日本語</a><li><a href=/ko/commands target=_self rel="noopener noreferrer" class=dropdown__link lang=ko>한국어</a></ul></div><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type=button disabled title=システムモード aria-label=ダークモードを切り替える(現在はシステムモード)><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill=currentColor d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"/></svg><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill=currentColor d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"/></svg><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill=currentColor d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"/></svg></button></div><div class=navbarSearchContainer_Bca1></div></div></div><div role=presentation class=navbar-sidebar__backdrop></div></nav><div id=__docusaurus_skipToContent_fallback class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class=docsWrapper_hBAB><button aria-label=先頭へ戻る class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type=button></button><div class=docRoot_UBD9><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class=sidebarViewport_aRkj><div class=sidebar_njMd><nav aria-label=ドキュメントのサイドバー class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class=menu__link href=/ja/><span title="Welcome to Port" class=linkLabel_WmDU>Welcome to Port</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class=menu__link href=/ja/quick><span title="Quick Start" class=linkLabel_WmDU>Quick Start</span></a><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role=button aria-expanded=true href=/ja/attribute><span title=ドキュメント class=categoryLinkLabel_W154>ドキュメント</span></a></div><ul class=menu__list><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class=menu__link tabindex=0 href=/ja/attribute><span title="Attribute Reference" class=linkLabel_WmDU>Attribute Reference</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current=page tabindex=0 href=/ja/commands><span title="PORT CLI Command Reference" class=linkLabel_WmDU>PORT CLI Command Reference</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class=menu__link tabindex=0 href=/ja/remote><span title="Remote Access" class=linkLabel_WmDU>Remote Access</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class=menu__link tabindex=0 href=/ja/dotnet><span title=".NET Integration Guide" class=linkLabel_WmDU>.NET Integration Guide</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class=menu__link tabindex=0 href=/ja/react><span title="React Integration" class=linkLabel_WmDU>React Integration</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class=menu__link tabindex=0 href=/ja/sdk><span title="What's PortSDK?" class=linkLabel_WmDU>What's PortSDK?</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class=menu__link tabindex=0 href=/ja/package><span title="Port Package Documentation" class=linkLabel_WmDU>Port Package Documentation</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class=menu__link tabindex=0 href=/ja/portdic><span title="What's PortDic" class=linkLabel_WmDU>What's PortDic</span></a></ul><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=true href=/ja/secs><span title=プロトコル class=categoryLinkLabel_W154>プロトコル</span></a></div><ul class=menu__list><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class=menu__link tabindex=0 href=/ja/secs><span title=SECS class=linkLabel_WmDU>SECS</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class=menu__link tabindex=0 href=/ja/rtsp><span title=RTSP class=linkLabel_WmDU>RTSP</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class=menu__link tabindex=0 href=/ja/mqtt><span title=MQTT class=linkLabel_WmDU>MQTT</span></a></ul><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false href=/ja/learn><span title=その他 class=categoryLinkLabel_W154>その他</span></a></div></ul></nav></div></div></aside><main class=docMainContainer_TBSr><div class="container padding-top--md padding-bottom--lg"><div class=row><div class="col docItemCol_VOVn"><div class=docItemContainer_Djhp><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label=パンくずリストのナビゲーション><ul class=breadcrumbs><li class=breadcrumbs__item><a aria-label=ホームページ class=breadcrumbs__link href=/ja/><svg viewBox="0 0 24 24" class=breadcrumbHomeIcon_YNFT><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill=currentColor /></svg></a><li class=breadcrumbs__item><span class=breadcrumbs__link>ドキュメント</span><li class="breadcrumbs__item breadcrumbs__item--active"><span class=breadcrumbs__link>PORT CLI Command Reference</span></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type=button class="clean-btn tocCollapsibleButton_TO0P">このページの見出し</button></div><div class="theme-doc-markdown markdown"><header><h1>PORT CLI Command Reference</h1></header>
+<p>This document provides a comprehensive reference for all available PORT CLI commands.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=quick-reference>Quick Reference<a href=#quick-reference class=hash-link aria-label="Quick Reference への直接リンク" title="Quick Reference への直接リンク" translate=no>​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=system-commands>System Commands<a href=#system-commands class=hash-link aria-label="System Commands への直接リンク" title="System Commands への直接リンク" translate=no>​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Command<th>Arguments<th>Description<tbody><tr><td><code>version</code><td>-<td>Display version information<tr><td><code>env</code><td>-<td>Display environment variables<tr><td><code>help</code><td>-<td>Display help information</table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=project-management>Project Management<a href=#project-management class=hash-link aria-label="Project Management への直接リンク" title="Project Management への直接リンク" translate=no>​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Command<th>Arguments<th>Description<tbody><tr><td><code>new</code><td><code>&lt;project_name></code><td>Create new PORT project<tr><td><code>run</code><td><code>[project_name] [flags]</code><td>Run PORT project<tr><td><code>push</code><td><code>[project_name]</code><td>Push project to repository<tr><td><code>pull</code><td><code>[project_name]</code><td>Pull project from repository</table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=package-management>Package Management<a href=#package-management class=hash-link aria-label="Package Management への直接リンク" title="Package Management への直接リンク" translate=no>​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Command<th>Arguments<th>Description<tbody><tr><td><code>pack</code><td><code>&lt;dll_file> &lt;output_name> [flags]</code><td>Build package from DLL<tr><td><code>save</code><td><code>&lt;package_name> [flags]</code><td>Save package from current directory<tr><td><code>clear</code><td>-<td>Clear all loaded packages</table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=listing-commands>Listing Commands<a href=#listing-commands class=hash-link aria-label="Listing Commands への直接リンク" title="Listing Commands への直接リンク" translate=no>​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Command<th>Arguments<th>Description<tbody><tr><td><code>ls repo</code><td>-<td>List repositories<tr><td><code>ls pkg</code><td>-<td>List packages<tr><td><code>ls tcp</code><td><code>[address]</code><td>List TCP addresses<tr><td><code>ls com</code><td>-<td>List COM ports<tr><td><code>ls user</code><td>-<td>List users</table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=script-management>Script Management<a href=#script-management class=hash-link aria-label="Script Management への直接リンク" title="Script Management への直接リンク" translate=no>​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Command<th>Arguments<th>Description<tbody><tr><td><code>script</code><td><code>&lt;file> &lt;function> [args]</code><td>Execute script<tr><td><code>cancel</code><td><code>&lt;file> &lt;function></code><td>Cancel script execution</table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=user-management>User Management<a href=#user-management class=hash-link aria-label="User Management への直接リンク" title="User Management への直接リンク" translate=no>​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Command<th>Arguments<th>Description<tbody><tr><td><code>login</code><td><code>&lt;username> &lt;password></code><td>User login<tr><td><code>add</code><td><code>[flags]</code><td>Add resources (user, enum, group)</table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=session-audit>Session Audit<a href=#session-audit class=hash-link aria-label="Session Audit への直接リンク" title="Session Audit への直接リンク" translate=no>​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Command<th>Arguments<th>Description<tbody><tr><td><code>session logs</code><td><code>[flags]</code><td>List FFI call audit log entries</table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=server-communication>Server Communication<a href=#server-communication class=hash-link aria-label="Server Communication への直接リンク" title="Server Communication への直接リンク" translate=no>​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Command<th>Arguments<th>Description<tbody><tr><td><code>get</code><td><code>&lt;group> &lt;key></code><td>Get data<tr><td><code>set</code><td><code>&lt;group> &lt;key> &lt;value></code><td>Set data<tr><td><code>status</code><td>-<td>Get server status<tr><td><code>uptime</code><td>-<td>Get server uptime<tr><td><code>latency</code><td>-<td>Measure server latency<tr><td><code>shutdown</code><td><code>&lt;confirmation></code><td>Shutdown server</table>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=detailed-command-reference>Detailed Command Reference<a href=#detailed-command-reference class=hash-link aria-label="Detailed Command Reference への直接リンク" title="Detailed Command Reference への直接リンク" translate=no>​</a></h2>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=system-commands-1>System Commands<a href=#system-commands-1 class=hash-link aria-label="System Commands への直接リンク" title="System Commands への直接リンク" translate=no>​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=version---display-version-information><code>version</code> - Display Version Information<a href=#version---display-version-information class=hash-link aria-label="version---display-version-information への直接リンク" title="version---display-version-information への直接リンク" translate=no>​</a></h3>
+<p><strong>Usage</strong>: <code>version</code></p>
+<p><strong>Description</strong>: Displays the current PORT version and build information.</p>
+<p><strong>Output</strong>: Version string with build details.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=env---environment-information><code>env</code> - Environment Information<a href=#env---environment-information class=hash-link aria-label="env---environment-information への直接リンク" title="env---environment-information への直接リンク" translate=no>​</a></h3>
+<p><strong>Usage</strong>: <code>env</code></p>
+<p><strong>Description</strong>: Displays environment variables and system configuration.</p>
+<p><strong>Output</strong>:</p>
+<ul>
+<li class="">VERSION: Current PORT version</li>
+<li class="">HOMEPATH: Executable directory path</li>
+<li class="">Other system environment variables</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=help---display-help><code>help</code> - Display Help<a href=#help---display-help class=hash-link aria-label="help---display-help への直接リンク" title="help---display-help への直接リンク" translate=no>​</a></h3>
+<p><strong>Usage</strong>: <code>help</code></p>
+<p><strong>Description</strong>: Shows comprehensive help information for all available commands.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=project-management-commands>Project Management Commands<a href=#project-management-commands class=hash-link aria-label="Project Management Commands への直接リンク" title="Project Management Commands への直接リンク" translate=no>​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=new---create-new-project><code>new</code> - Create New Project<a href=#new---create-new-project class=hash-link aria-label="new---create-new-project への直接リンク" title="new---create-new-project への直接リンク" translate=no>​</a></h3>
+<p><strong>Usage</strong>: <code>new &lt;project_name></code></p>
+<p><strong>Description</strong>: Creates a new PORT project with initial directory structure and configuration files.</p>
+<p><strong>Arguments</strong>:</p>
+<ul>
+<li class=""><code>project_name</code>: Name of the new project to create</li>
+</ul>
+<p><strong>Created Structure</strong>:</p>
+<ul>
+<li class=""><code>port/</code> - Main configuration directory</li>
+<li class=""><code>port/app/</code> - Application files</li>
+<li class=""><code>port/app/ecma5/</code> - ECMAScript 5 files</li>
+<li class=""><code>port/app/mqtt/</code> - MQTT configuration</li>
+<li class=""><code>port/app/gem/</code> - GEM (Generic Equipment Model) files</li>
+<li class=""><code>boot.js</code> - Boot script</li>
+<li class=""><code>.enum</code> - Enumeration definitions</li>
+<li class=""><code>.rule</code> - Rule definitions</li>
+<li class="">Various GEM configuration files (.gem, .sv, .dvv, .al, .ce, .rid, .ecv)</li>
+</ul>
+<p><strong>Example</strong>:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#F8F8F2;--prism-background-color:#282A36><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style=color:#F8F8F2;background-color:#282A36><code class=codeBlockLines_e6Vv><div class=token-line style=color:#F8F8F2><span class="token plain">new MyProject</span><br/></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=run---run-project><code>run</code> - Run Project<a href=#run---run-project class=hash-link aria-label="run---run-project への直接リンク" title="run---run-project への直接リンク" translate=no>​</a></h3>
+<p><strong>Usage</strong>: <code>run [project_name] [flags]</code></p>
+<p><strong>Description</strong>: Starts and runs a PORT project with specified configuration.</p>
+<p><strong>Arguments</strong>:</p>
+<ul>
+<li class=""><code>project_name</code>: Name of project to run (optional, auto-detects from current directory)</li>
+</ul>
+<p><strong>Flags</strong>:</p>
+<ul>
+<li class=""><code>--address &lt;address></code>: Override listen address</li>
+<li class=""><code>--port &lt;port></code>: Override listen port</li>
+<li class=""><code>--call-process &lt;name></code>: Override call application name</li>
+<li class=""><code>--ng ignore</code>: Allow NG (Not Good) status</li>
+<li class=""><code>--sync &lt;directory></code>: Set sync directory</li>
+<li class=""><code>--ping-address &lt;host:port></code>: Enable ping-pong with endpoint</li>
+<li class=""><code>--in-packages &lt;packages></code>: Comma-separated package list</li>
+<li class=""><code>--new-msg</code>: Enable updated message handling</li>
+</ul>
+<p><strong>Examples</strong>:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#F8F8F2;--prism-background-color:#282A36><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style=color:#F8F8F2;background-color:#282A36><code class=codeBlockLines_e6Vv><div class=token-line style=color:#F8F8F2><span class="token plain">run MyProject </span><span class="token parameter variable" style="color:rgb(189, 147, 249);font-style:italic">--port</span><span class="token plain"> </span><span class="token number">8080</span><span class="token plain"> </span><span class="token parameter variable" style="color:rgb(189, 147, 249);font-style:italic">--address</span><span class="token plain"> </span><span class="token number">0.0</span><span class="token plain">.0.0</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">run --ping-address localhost:9090 </span><span class="token parameter variable" style="color:rgb(189, 147, 249);font-style:italic">--sync</span><span class="token plain"> ./sync_dir</span><br/></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=push---push-project-to-repository><code>push</code> - Push Project to Repository<a href=#push---push-project-to-repository class=hash-link aria-label="push---push-project-to-repository への直接リンク" title="push---push-project-to-repository への直接リンク" translate=no>​</a></h3>
+<p><strong>Usage</strong>: <code>push [project_name]</code></p>
+<p><strong>Description</strong>: Pushes current project changes to the repository with automatic change detection.</p>
+<p><strong>Arguments</strong>:</p>
+<ul>
+<li class=""><code>project_name</code>: Name of project to push (optional)</li>
+</ul>
+<p><strong>Features</strong>:</p>
+<ul>
+<li class="">Automatic change detection for multiple file types</li>
+<li class="">Changelog generation in <code>.port.md</code> file</li>
+<li class="">Supports file extensions: <code>.logger</code>, <code>.cctv</code>, <code>.pub</code>, <code>.js</code>, <code>.rule</code>, <code>.al</code>, <code>.ce</code>, <code>.dvv</code>, <code>.ecv</code>, <code>.sv</code>, <code>.gem</code>, <code>.msg</code></li>
+<li class="">Entry collector generation</li>
+<li class="">Automatic database updates</li>
+</ul>
+<p><strong>Example</strong>:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#F8F8F2;--prism-background-color:#282A36><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style=color:#F8F8F2;background-color:#282A36><code class=codeBlockLines_e6Vv><div class=token-line style=color:#F8F8F2><span class="token plain">push MyProject</span><br/></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=pull---pull-project-from-repository><code>pull</code> - Pull Project from Repository<a href=#pull---pull-project-from-repository class=hash-link aria-label="pull---pull-project-from-repository への直接リンク" title="pull---pull-project-from-repository への直接リンク" translate=no>​</a></h3>
+<p><strong>Usage</strong>: <code>pull [project_name]</code></p>
+<p><strong>Description</strong>: Pulls project files from repository to local directory.</p>
+<p><strong>Arguments</strong>:</p>
+<ul>
+<li class=""><code>project_name</code>: Name of project to pull (optional)</li>
+</ul>
+<p><strong>Features</strong>:</p>
+<ul>
+<li class="">Pulls all project file types from repository</li>
+<li class="">Updates local directory structure</li>
+<li class="">Synchronizes configuration files</li>
+<li class="">Updates .NET project files</li>
+</ul>
+<p><strong>Example</strong>:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#F8F8F2;--prism-background-color:#282A36><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style=color:#F8F8F2;background-color:#282A36><code class=codeBlockLines_e6Vv><div class=token-line style=color:#F8F8F2><span class="token plain">pull MyProject</span><br/></div></code></pre></div></div>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=package-management-commands>Package Management Commands<a href=#package-management-commands class=hash-link aria-label="Package Management Commands への直接リンク" title="Package Management Commands への直接リンク" translate=no>​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=pack---build-package><code>pack</code> - Build Package<a href=#pack---build-package class=hash-link aria-label="pack---build-package への直接リンク" title="pack---build-package への直接リンク" translate=no>​</a></h3>
+<p><strong>Usage</strong>: <code>pack &lt;dll_file> &lt;output_name> [flags]</code></p>
+<p><strong>Description</strong>: Builds a package from a DLL file with full initialization and testing.</p>
+<p><strong>Arguments</strong>:</p>
+<ul>
+<li class=""><code>dll_file</code>: Path to DLL file to package</li>
+<li class=""><code>output_name</code>: Name for the output package</li>
+</ul>
+<p><strong>Flags</strong>:</p>
+<ul>
+<li class=""><code>--args &lt;arguments></code>: Pass initialization arguments</li>
+</ul>
+<p><strong>Features</strong>:</p>
+<ul>
+<li class="">Loads and initializes DLL package</li>
+<li class="">Extracts message definitions (GET, SET, MAPPING)</li>
+<li class="">Sets memory data allocation</li>
+<li class="">Runs initialization with arguments</li>
+<li class="">Generates comprehensive build report</li>
+</ul>
+<p><strong>Example</strong>:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#F8F8F2;--prism-background-color:#282A36><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style=color:#F8F8F2;background-color:#282A36><code class=codeBlockLines_e6Vv><div class=token-line style=color:#F8F8F2><span class="token plain">pack MyLibrary.dll MyPackage </span><span class="token parameter variable" style="color:rgb(189, 147, 249);font-style:italic">--args</span><span class="token plain"> </span><span class="token string" style="color:rgb(255, 121, 198)">"config=production"</span><br/></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=save---save-package><code>save</code> - Save Package<a href=#save---save-package class=hash-link aria-label="save---save-package への直接リンク" title="save---save-package への直接リンク" translate=no>​</a></h3>
+<p><strong>Usage</strong>: <code>save &lt;package_name> [flags]</code></p>
+<p><strong>Description</strong>: Creates a package (.pkg) file from DLL files in the current directory.</p>
+<p><strong>Arguments</strong>:</p>
+<ul>
+<li class=""><code>package_name</code>: Name for the package</li>
+</ul>
+<p><strong>Flags</strong>:</p>
+<ul>
+<li class=""><code>--path &lt;directory></code>: Specify source directory (default: current directory)</li>
+</ul>
+<p><strong>Features</strong>:</p>
+<ul>
+<li class="">Scans directory for .dll files</li>
+<li class="">Compresses files into .pkg format</li>
+<li class="">Automatic package directory creation</li>
+</ul>
+<p><strong>Example</strong>:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#F8F8F2;--prism-background-color:#282A36><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style=color:#F8F8F2;background-color:#282A36><code class=codeBlockLines_e6Vv><div class=token-line style=color:#F8F8F2><span class="token plain">save MyPackage </span><span class="token parameter variable" style="color:rgb(189, 147, 249);font-style:italic">--path</span><span class="token plain"> /path/to/dlls</span><br/></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=clear---clear-packages><code>clear</code> - Clear Packages<a href=#clear---clear-packages class=hash-link aria-label="clear---clear-packages への直接リンク" title="clear---clear-packages への直接リンク" translate=no>​</a></h3>
+<p><strong>Usage</strong>: <code>clear</code></p>
+<p><strong>Description</strong>: Clears all loaded packages from memory and terminates active processes.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=listing-commands-1>Listing Commands<a href=#listing-commands-1 class=hash-link aria-label="Listing Commands への直接リンク" title="Listing Commands への直接リンク" translate=no>​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=ls---list-resources><code>ls</code> - List Resources<a href=#ls---list-resources class=hash-link aria-label="ls---list-resources への直接リンク" title="ls---list-resources への直接リンク" translate=no>​</a></h3>
+<p><strong>Usage</strong>: <code>ls &lt;resource_type> [additional_args]</code></p>
+<p><strong>Description</strong>: Lists various system resources based on the specified type.</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=ls-repo---list-repositories><code>ls repo</code> - List Repositories<a href=#ls-repo---list-repositories class=hash-link aria-label="ls-repo---list-repositories への直接リンク" title="ls-repo---list-repositories への直接リンク" translate=no>​</a></h4>
+<p>Lists all available repositories with timestamps.</p>
+<p><strong>Output Format</strong>: <code>repository_name                modification_time</code></p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=ls-pkg---list-packages><code>ls pkg</code> - List Packages<a href=#ls-pkg---list-packages class=hash-link aria-label="ls-pkg---list-packages への直接リンク" title="ls-pkg---list-packages への直接リンク" translate=no>​</a></h4>
+<p>Lists all available packages (.pkg files) with timestamps.</p>
+<p><strong>Output Format</strong>: <code>package_name                    modification_time</code></p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=ls-tcp-address---list-tcp-addresses><code>ls tcp [address]</code> - List TCP Addresses<a href=#ls-tcp-address---list-tcp-addresses class=hash-link aria-label="ls-tcp-address---list-tcp-addresses への直接リンク" title="ls-tcp-address---list-tcp-addresses への直接リンク" translate=no>​</a></h4>
+<p>Lists TCP addresses for the specified host (default: 0.0.0.0).
+Performs DNS lookup to resolve host addresses.</p>
+<p><strong>Arguments</strong>:</p>
+<ul>
+<li class=""><code>address</code>: Host address to resolve (optional, default: 0.0.0.0)</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=ls-com---list-com-ports><code>ls com</code> - List COM Ports<a href=#ls-com---list-com-ports class=hash-link aria-label="ls-com---list-com-ports への直接リンク" title="ls-com---list-com-ports への直接リンク" translate=no>​</a></h4>
+<p>Lists all available serial communication ports.</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=ls-user---list-users><code>ls user</code> - List Users<a href=#ls-user---list-users class=hash-link aria-label="ls-user---list-users への直接リンク" title="ls-user---list-users への直接リンク" translate=no>​</a></h4>
+<p>Lists all registered usernames in the system.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=script-management-commands>Script Management Commands<a href=#script-management-commands class=hash-link aria-label="Script Management Commands への直接リンク" title="Script Management Commands への直接リンク" translate=no>​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=script---execute-script><code>script</code> - Execute Script<a href=#script---execute-script class=hash-link aria-label="script---execute-script への直接リンク" title="script---execute-script への直接リンク" translate=no>​</a></h3>
+<p><strong>Usage</strong>: <code>script &lt;script_file> &lt;function_name> [args...]</code></p>
+<p><strong>Description</strong>: Executes JavaScript (.js) or rule (.rule) files with specified functions and arguments.</p>
+<p><strong>Arguments</strong>:</p>
+<ul>
+<li class=""><code>script_file</code>: Path to script file (.js or .rule)</li>
+<li class=""><code>function_name</code>: Name of function to execute</li>
+<li class=""><code>args</code>: Additional arguments to pass to function</li>
+</ul>
+<p><strong>Flags</strong>:</p>
+<ul>
+<li class=""><code>--timeout &lt;milliseconds></code>: Set execution timeout</li>
+</ul>
+<p><strong>Features</strong>:</p>
+<ul>
+<li class="">Supports both <code>.js</code> and <code>.rule</code> files</li>
+<li class="">Absolute and relative path resolution</li>
+<li class="">Timeout support</li>
+<li class="">Async execution with cancellation support</li>
+<li class="">Boot script support for special <code>boot.js</code> files</li>
+<li class="">Context-aware execution with server integration</li>
+</ul>
+<p><strong>Examples</strong>:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#F8F8F2;--prism-background-color:#282A36><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style=color:#F8F8F2;background-color:#282A36><code class=codeBlockLines_e6Vv><div class=token-line style=color:#F8F8F2><span class="token plain">script ./automation.js initialize</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">script /path/to/boot.js startup </span><span class="token parameter variable" style="color:rgb(189, 147, 249);font-style:italic">--timeout</span><span class="token plain"> </span><span class="token number">5000</span><br/></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=cancel---cancel-script-execution><code>cancel</code> - Cancel Script Execution<a href=#cancel---cancel-script-execution class=hash-link aria-label="cancel---cancel-script-execution への直接リンク" title="cancel---cancel-script-execution への直接リンク" translate=no>​</a></h3>
+<p><strong>Usage</strong>: <code>cancel &lt;script_file> &lt;function_name></code></p>
+<p><strong>Description</strong>: Cancels a running script execution by its unique identifier.</p>
+<p><strong>Arguments</strong>:</p>
+<ul>
+<li class=""><code>script_file</code>: Path to script file</li>
+<li class=""><code>function_name</code>: Name of function to cancel</li>
+</ul>
+<p><strong>Features</strong>:</p>
+<ul>
+<li class="">Cancels async script execution</li>
+<li class="">Uses script file and function name as identifier</li>
+<li class="">Immediate termination of running scripts</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=user-management-commands>User Management Commands<a href=#user-management-commands class=hash-link aria-label="User Management Commands への直接リンク" title="User Management Commands への直接リンク" translate=no>​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=login---user-login><code>login</code> - User Login<a href=#login---user-login class=hash-link aria-label="login---user-login への直接リンク" title="login---user-login への直接リンク" translate=no>​</a></h3>
+<p><strong>Usage</strong>: <code>login &lt;username> &lt;password></code></p>
+<p><strong>Description</strong>: Authenticates user and enters interactive command mode.</p>
+<p><strong>Arguments</strong>:</p>
+<ul>
+<li class=""><code>username</code>: Username for authentication</li>
+<li class=""><code>password</code>: Password for authentication</li>
+</ul>
+<p><strong>Features</strong>:</p>
+<ul>
+<li class="">User authentication</li>
+<li class="">Interactive command prompt</li>
+<li class="">Session-based command execution</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=add---add-resources><code>add</code> - Add Resources<a href=#add---add-resources class=hash-link aria-label="add---add-resources への直接リンク" title="add---add-resources への直接リンク" translate=no>​</a></h3>
+<p><strong>Usage</strong>: <code>add [flags]</code></p>
+<p><strong>Description</strong>: Adds various resources to the system based on specified flags.</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=add---user-username-password---add-user><code>add --user &lt;username> &lt;password></code> - Add User<a href=#add---user-username-password---add-user class=hash-link aria-label="add---user-username-password---add-user への直接リンク" title="add---user-username-password---add-user への直接リンク" translate=no>​</a></h4>
+<p>Adds a new user to the system with specified credentials.</p>
+<p><strong>Arguments</strong>:</p>
+<ul>
+<li class=""><code>username</code>: Username for new user</li>
+<li class=""><code>password</code>: Password for new user</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=add---enum-enum_definitions---add-enumerations><code>add --enum &lt;enum_definitions></code> - Add Enumerations<a href=#add---enum-enum_definitions---add-enumerations class=hash-link aria-label="add---enum-enum_definitions---add-enumerations への直接リンク" title="add---enum-enum_definitions---add-enumerations への直接リンク" translate=no>​</a></h4>
+<p>Adds enumeration definitions to the .enum file.</p>
+<p><strong>Format</strong>: <code>type name:value name:value</code> (comma-separated for multiple)</p>
+<p><strong>Example</strong>:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#F8F8F2;--prism-background-color:#282A36><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style=color:#F8F8F2;background-color:#282A36><code class=codeBlockLines_e6Vv><div class=token-line style=color:#F8F8F2><span class="token function" style="color:rgb(80, 250, 123)">add</span><span class="token plain"> </span><span class="token parameter variable" style="color:rgb(189, 147, 249);font-style:italic">--enum</span><span class="token plain"> </span><span class="token string" style="color:rgb(255, 121, 198)">"Status RUNNING:1 STOPPED:0,Mode AUTO:1 MANUAL:0"</span><br/></div></code></pre></div></div>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=add---group-group_names-message_file---add-groups><code>add --group &lt;group_names> [message_file]</code> - Add Groups<a href=#add---group-group_names-message_file---add-groups class=hash-link aria-label="add---group-group_names-message_file---add-groups への直接リンク" title="add---group-group_names-message_file---add-groups への直接リンク" translate=no>​</a></h4>
+<p>Creates new groups with optional message file specification.</p>
+<p><strong>Arguments</strong>:</p>
+<ul>
+<li class=""><code>group_names</code>: Comma-separated list of group names</li>
+<li class=""><code>message_file</code>: Optional message file specification</li>
+</ul>
+<p><strong>Features</strong>:</p>
+<ul>
+<li class="">Creates group directories</li>
+<li class="">Generates .msg files for each group</li>
+<li class="">Supports comma-separated group names</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=server-communication-commands>Server Communication Commands<a href=#server-communication-commands class=hash-link aria-label="Server Communication Commands への直接リンク" title="Server Communication Commands への直接リンク" translate=no>​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=get---get-server-data><code>get</code> - Get Server Data<a href=#get---get-server-data class=hash-link aria-label="get---get-server-data への直接リンク" title="get---get-server-data への直接リンク" translate=no>​</a></h3>
+<p><strong>Usage</strong>: <code>get &lt;resource_identifier></code></p>
+<p><strong>Description</strong>: Retrieves specific data from the server including message values, logs, events, and system information.</p>
+<p><strong>Arguments</strong>:</p>
+<ul>
+<li class=""><code>resource_identifier</code>: Identifier for the resource to retrieve</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=entry-data-retrieval><strong>Entry Data Retrieval</strong><a href=#entry-data-retrieval class=hash-link aria-label="entry-data-retrieval への直接リンク" title="entry-data-retrieval への直接リンク" translate=no>​</a></h4>
+<ul>
+<li class="">
+<p><code>[group-name] [message-name]</code>: Get group message value</p>
+<ul>
+<li class="">Example: <code>get Equipment Status</code> - Gets status from Equipment group</li>
+<li class="">Example: <code>get Alarms Count</code> - Gets alarm count from Alarms group</li>
+</ul>
+</li>
+<li class="">
+<p><code>[package-name] [message-name]</code>: Get package message value</p>
+<ul>
+<li class="">Example: <code>get SECS Temperature</code> - Gets temperature from SECS package</li>
+<li class="">Example: <code>get GEM ProcessState</code> - Gets process state from GEM package</li>
+</ul>
+</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=work-and-process-information><strong>Work and Process Information</strong><a href=#work-and-process-information class=hash-link aria-label="work-and-process-information への直接リンク" title="work-and-process-information への直接リンク" translate=no>​</a></h4>
+<ul>
+<li class=""><code>[workid]</code>: Get work ID information and current work status
+<ul>
+<li class="">Example: <code>get W001</code> - Gets information for work ID W001</li>
+<li class="">Returns: Work status, progress, timestamps, associated data</li>
+</ul>
+</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=log-and-event-data><strong>Log and Event Data</strong><a href=#log-and-event-data class=hash-link aria-label="log-and-event-data への直接リンク" title="log-and-event-data への直接リンク" translate=no>​</a></h4>
+<ul>
+<li class="">
+<p><code>[project-name].log</code>: Get project log entries</p>
+<ul>
+<li class="">Example: <code>get MyProject.log</code> - Gets log entries for MyProject</li>
+<li class="">Returns: Timestamped log entries, error messages, system events</li>
+</ul>
+</li>
+<li class="">
+<p><code>[package-name].log</code>: Get package-specific log entries</p>
+<ul>
+<li class="">Example: <code>get SECS.log</code> - Gets SECS package log entries</li>
+<li class="">Returns: Package operations, message traffic, error logs</li>
+</ul>
+</li>
+<li class="">
+<p><code>[package-name].event</code>: Get package events and notifications</p>
+<ul>
+<li class="">Example: <code>get GEM.event</code> - Gets GEM package events</li>
+<li class="">Returns: Event history, alarms, state changes, notifications</li>
+</ul>
+</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=documentation-and-help><strong>Documentation and Help</strong><a href=#documentation-and-help class=hash-link aria-label="documentation-and-help への直接リンク" title="documentation-and-help への直接リンク" translate=no>​</a></h4>
+<ul>
+<li class=""><code>[package-name].doc</code>: Get package documentation
+<ul>
+<li class="">Example: <code>get SECS.doc</code> - Gets SECS package documentation</li>
+<li class="">Returns: API documentation, message formats, usage examples</li>
+</ul>
+</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=system-status-information><strong>System Status Information</strong><a href=#system-status-information class=hash-link aria-label="system-status-information への直接リンク" title="system-status-information への直接リンク" translate=no>​</a></h4>
+<ul>
+<li class="">
+<p><code>status</code>: Get comprehensive server status</p>
+<ul>
+<li class="">Returns: Server health, active connections, resource usage, uptime</li>
+<li class="">Example output: Server running, 5 active connections, CPU 15%, Memory 45%</li>
+</ul>
+</li>
+<li class="">
+<p><code>mls</code>: Get MLS (Multi-Level Security) information</p>
+<ul>
+<li class="">Returns: Security levels, access permissions, user contexts</li>
+<li class="">Example: Current user level, accessible resources, security policies</li>
+</ul>
+</li>
+</ul>
+<p><strong>Examples</strong>:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#F8F8F2;--prism-background-color:#282A36><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style=color:#F8F8F2;background-color:#282A36><code class=codeBlockLines_e6Vv><div class=token-line style=color:#F8F8F2><span class="token comment" style="color:rgb(98, 114, 164)"># Get message values</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">get Equipment Status</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">get SECS Temperature</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">get GEM ProcessState</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token comment" style="color:rgb(98, 114, 164)"># Get work information</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">get W001</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">get WORK_12345</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token comment" style="color:rgb(98, 114, 164)"># Get logs and events</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">get MyProject.log</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">get SECS.log</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">get GEM.event</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token comment" style="color:rgb(98, 114, 164)"># Get system information</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">get status</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">get mls</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token comment" style="color:rgb(98, 114, 164)"># Get documentation</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">get SECS.doc</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">get GEM.doc</span><br/></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=set---set-server-data><code>set</code> - Set Server Data<a href=#set---set-server-data class=hash-link aria-label="set---set-server-data への直接リンク" title="set---set-server-data への直接リンク" translate=no>​</a></h3>
+<p><strong>Usage</strong>: <code>set &lt;group> &lt;key> &lt;value></code></p>
+<p><strong>Description</strong>: Sets data on the server including message values, system configurations, and executes various operations.</p>
+<p><strong>Arguments</strong>:</p>
+<ul>
+<li class=""><code>group</code>: Group name, package name, or operation context</li>
+<li class=""><code>key</code>: Key, message name, or operation type</li>
+<li class=""><code>value</code>: Value to set or operation parameters</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=entry-data-operations><strong>Entry Data Operations</strong><a href=#entry-data-operations class=hash-link aria-label="entry-data-operations への直接リンク" title="entry-data-operations への直接リンク" translate=no>​</a></h4>
+<ul>
+<li class="">
+<p><code>[group-name] [message-name] [value]</code>: Set group message value</p>
+<ul>
+<li class="">Example: <code>set Equipment Status RUNNING</code> - Sets equipment status to RUNNING</li>
+<li class="">Example: <code>set Alarms Count 0</code> - Clears alarm count</li>
+<li class="">Example: <code>set Process Temperature 150.5</code> - Sets process temperature</li>
+</ul>
+</li>
+<li class="">
+<p><code>[package-name] [message-name] [value]</code>: Set package message value</p>
+<ul>
+<li class="">Example: <code>set SECS CommState ENABLED</code> - Enables SECS communication</li>
+<li class="">Example: <code>set GEM ControlState REMOTE</code> - Sets GEM control to remote</li>
+<li class="">Example: <code>set Recipe ActiveRecipe R001</code> - Sets active recipe</li>
+</ul>
+</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=script-and-function-execution><strong>Script and Function Execution</strong><a href=#script-and-function-execution class=hash-link aria-label="script-and-function-execution への直接リンク" title="script-and-function-execution への直接リンク" translate=no>​</a></h4>
+<ul>
+<li class=""><code>[*.js] [function-name] [arguments]</code>: Execute JavaScript function
+<ul>
+<li class="">Example: <code>set automation.js startProcess "Recipe1,Lot001"</code> - Executes startProcess function</li>
+<li class="">Example: <code>set monitor.js checkAlarms ""</code> - Executes checkAlarms function</li>
+<li class="">Example: <code>set control.js setParameter "temp,200"</code> - Executes setParameter function</li>
+</ul>
+</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=publication-operations><strong>Publication Operations</strong><a href=#publication-operations class=hash-link aria-label="publication-operations への直接リンク" title="publication-operations への直接リンク" translate=no>​</a></h4>
+<ul>
+<li class=""><code>[*.pub]</code>: Publish operation or message
+<ul>
+<li class="">Example: <code>set alarms.pub</code> - Publishes alarm data</li>
+<li class="">Example: <code>set events.pub</code> - Publishes event notifications</li>
+<li class="">Example: <code>set status.pub</code> - Publishes status updates</li>
+</ul>
+</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=user-management-operations><strong>User Management Operations</strong><a href=#user-management-operations class=hash-link aria-label="user-management-operations への直接リンク" title="user-management-operations への直接リンク" translate=no>​</a></h4>
+<ul>
+<li class="">
+<p><code>password [user-name] [old-password] [new-password]</code>: Change user password</p>
+<ul>
+<li class="">Example: <code>set password admin oldpass newpass123</code> - Changes admin password</li>
+<li class="">Security: Requires current password for verification</li>
+</ul>
+</li>
+<li class="">
+<p><code>grant [user-name] [user-level]</code>: Grant user permissions</p>
+<ul>
+<li class="">Example: <code>set grant operator 2</code> - Grants level 2 permissions to operator</li>
+<li class="">Example: <code>set grant engineer 3</code> - Grants level 3 permissions to engineer</li>
+<li class="">Levels: 1=Read, 2=Write, 3=Admin, 4=System</li>
+</ul>
+</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=system-operations><strong>System Operations</strong><a href=#system-operations class=hash-link aria-label="system-operations への直接リンク" title="system-operations への直接リンク" translate=no>​</a></h4>
+<ul>
+<li class="">
+<p><code>notify [message]</code>: Send notification message</p>
+<ul>
+<li class="">Example: <code>set notify "Process completed successfully"</code> - Sends success notification</li>
+<li class="">Example: <code>set notify "Warning: High temperature detected"</code> - Sends warning</li>
+<li class="">Broadcasts to all connected clients and logged</li>
+</ul>
+</li>
+<li class="">
+<p><code>init [package-name]</code>: Initialize package</p>
+<ul>
+<li class="">Example: <code>set init SECS</code> - Initializes SECS package</li>
+<li class="">Example: <code>set init GEM</code> - Initializes GEM package</li>
+<li class="">Reloads configuration and resets package state</li>
+</ul>
+</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id=advanced-operations><strong>Advanced Operations</strong><a href=#advanced-operations class=hash-link aria-label="advanced-operations への直接リンク" title="advanced-operations への直接リンク" translate=no>​</a></h4>
+<ul>
+<li class="">
+<p><code>config [parameter] [value]</code>: Set configuration parameter</p>
+<ul>
+<li class="">Example: <code>set config timeout 30000</code> - Sets timeout to 30 seconds</li>
+<li class="">Example: <code>set config loglevel DEBUG</code> - Sets log level to DEBUG</li>
+</ul>
+</li>
+<li class="">
+<p><code>trigger [event-name] [data]</code>: Trigger system event</p>
+<ul>
+<li class="">Example: <code>set trigger alarm_reset ""</code> - Triggers alarm reset event</li>
+<li class="">Example: <code>set trigger process_start "Recipe1"</code> - Triggers process start</li>
+</ul>
+</li>
+</ul>
+<p><strong>Examples</strong>:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#F8F8F2;--prism-background-color:#282A36><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style=color:#F8F8F2;background-color:#282A36><code class=codeBlockLines_e6Vv><div class=token-line style=color:#F8F8F2><span class="token comment" style="color:rgb(98, 114, 164)"># Set message values</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token builtin class-name" style="color:rgb(189, 147, 249)">set</span><span class="token plain"> Equipment Status RUNNING</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token builtin class-name" style="color:rgb(189, 147, 249)">set</span><span class="token plain"> SECS CommState ENABLED</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token builtin class-name" style="color:rgb(189, 147, 249)">set</span><span class="token plain"> Process Temperature </span><span class="token number">150.5</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token comment" style="color:rgb(98, 114, 164)"># Execute JavaScript functions</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token builtin class-name" style="color:rgb(189, 147, 249)">set</span><span class="token plain"> automation.js startProcess </span><span class="token string" style="color:rgb(255, 121, 198)">"Recipe1,Lot001"</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token builtin class-name" style="color:rgb(189, 147, 249)">set</span><span class="token plain"> monitor.js checkAlarms </span><span class="token string" style="color:rgb(255, 121, 198)">""</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token comment" style="color:rgb(98, 114, 164)"># User management</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token builtin class-name" style="color:rgb(189, 147, 249)">set</span><span class="token plain"> password admin oldpass newpass123</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token builtin class-name" style="color:rgb(189, 147, 249)">set</span><span class="token plain"> grant operator </span><span class="token number">2</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token comment" style="color:rgb(98, 114, 164)"># System operations</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token builtin class-name" style="color:rgb(189, 147, 249)">set</span><span class="token plain"> notify </span><span class="token string" style="color:rgb(255, 121, 198)">"Process completed successfully"</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token builtin class-name" style="color:rgb(189, 147, 249)">set</span><span class="token plain"> init SECS</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token comment" style="color:rgb(98, 114, 164)"># Configuration</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token builtin class-name" style="color:rgb(189, 147, 249)">set</span><span class="token plain"> config </span><span class="token function" style="color:rgb(80, 250, 123)">timeout</span><span class="token plain"> </span><span class="token number">30000</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token builtin class-name" style="color:rgb(189, 147, 249)">set</span><span class="token plain"> config loglevel DEBUG</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token comment" style="color:rgb(98, 114, 164)"># Publish operations</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token builtin class-name" style="color:rgb(189, 147, 249)">set</span><span class="token plain"> alarms.pub</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token builtin class-name" style="color:rgb(189, 147, 249)">set</span><span class="token plain"> events.pub</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token comment" style="color:rgb(98, 114, 164)"># Trigger events</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token builtin class-name" style="color:rgb(189, 147, 249)">set</span><span class="token plain"> trigger alarm_reset </span><span class="token string" style="color:rgb(255, 121, 198)">""</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token builtin class-name" style="color:rgb(189, 147, 249)">set</span><span class="token plain"> trigger process_start </span><span class="token string" style="color:rgb(255, 121, 198)">"Recipe1"</span><br/></div></code></pre></div></div>
+<p><strong>Return Values</strong>:</p>
+<ul>
+<li class=""><strong>Success</strong>: Operation completed successfully</li>
+<li class=""><strong>Error</strong>: Error message with details</li>
+<li class=""><strong>Data</strong>: Retrieved or set data value</li>
+<li class=""><strong>Status</strong>: Current operation status</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=status---server-status><code>status</code> - Server Status<a href=#status---server-status class=hash-link aria-label="status---server-status への直接リンク" title="status---server-status への直接リンク" translate=no>​</a></h3>
+<p><strong>Usage</strong>: <code>status</code></p>
+<p><strong>Description</strong>: Gets comprehensive server status information.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=uptime---server-uptime><code>uptime</code> - Server Uptime<a href=#uptime---server-uptime class=hash-link aria-label="uptime---server-uptime への直接リンク" title="uptime---server-uptime への直接リンク" translate=no>​</a></h3>
+<p><strong>Usage</strong>: <code>uptime</code></p>
+<p><strong>Description</strong>: Gets server uptime information.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=latency---measure-latency><code>latency</code> - Measure Latency<a href=#latency---measure-latency class=hash-link aria-label="latency---measure-latency への直接リンク" title="latency---measure-latency への直接リンク" translate=no>​</a></h3>
+<p><strong>Usage</strong>: <code>latency</code></p>
+<p><strong>Description</strong>: Measures network latency to the server using timestamp-based calculation.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=shutdown---server-shutdown><code>shutdown</code> - Server Shutdown<a href=#shutdown---server-shutdown class=hash-link aria-label="shutdown---server-shutdown への直接リンク" title="shutdown---server-shutdown への直接リンク" translate=no>​</a></h3>
+<p><strong>Usage</strong>: <code>shutdown &lt;confirmation></code></p>
+<p><strong>Description</strong>: Initiates server shutdown sequence.</p>
+<p><strong>Arguments</strong>:</p>
+<ul>
+<li class=""><code>confirmation</code>: Confirmation code for shutdown</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=repository-management-commands>Repository Management Commands<a href=#repository-management-commands class=hash-link aria-label="Repository Management Commands への直接リンク" title="Repository Management Commands への直接リンク" translate=no>​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=repo---repository-operations><code>repo</code> - Repository Operations<a href=#repo---repository-operations class=hash-link aria-label="repo---repository-operations への直接リンク" title="repo---repository-operations への直接リンク" translate=no>​</a></h3>
+<p><strong>Usage</strong>: <code>repo &lt;file_path> [flags]</code></p>
+<p><strong>Description</strong>: Manages repository operations with upload capabilities.</p>
+<p><strong>Arguments</strong>:</p>
+<ul>
+<li class=""><code>file_path</code>: Path to file for repository operations</li>
+</ul>
+<p><strong>Flags</strong>:</p>
+<ul>
+<li class=""><code>--upload local</code>: Upload files from local directory to package repository</li>
+<li class=""><code>--upload remote</code>: Handle remote repository upload operations</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=additional-utility-commands>Additional Utility Commands<a href=#additional-utility-commands class=hash-link aria-label="Additional Utility Commands への直接リンク" title="Additional Utility Commands への直接リンク" translate=no>​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=date---server-date><code>date</code> - Server Date<a href=#date---server-date class=hash-link aria-label="date---server-date への直接リ��ンク" title="date---server-date への直接リンク" translate=no>​</a></h3>
+<p><strong>Usage</strong>: <code>date</code></p>
+<p><strong>Description</strong>: Retrieves current server date and time.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=flow---flow-status><code>flow</code> - Flow Status<a href=#flow---flow-status class=hash-link aria-label="flow---flow-status への直接リンク" title="flow---flow-status への直接リンク" translate=no>​</a></h3>
+<p><strong>Usage</strong>: <code>flow</code></p>
+<p><strong>Description</strong>: Retrieves current flow status from the server.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=queue---queue-management><code>queue</code> - Queue Management<a href=#queue---queue-management class=hash-link aria-label="queue---queue-management への直接リンク" title="queue---queue-management への直接リンク" translate=no>​</a></h3>
+<p><strong>Usage</strong>: <code>queue &lt;operation></code></p>
+<p><strong>Description</strong>: Manages server message queues.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=stack---stack-management><code>stack</code> - Stack Management<a href=#stack---stack-management class=hash-link aria-label="stack---stack-management への直接リンク" title="stack---stack-management への直接リンク" translate=no>​</a></h3>
+<p><strong>Usage</strong>: <code>stack &lt;operation></code></p>
+<p><strong>Description</strong>: Manages server stack operations.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=storage---storage-management><code>storage</code> - Storage Management<a href=#storage---storage-management class=hash-link aria-label="storage---storage-management への直接リンク" title="storage---storage-management への直接リンク" translate=no>​</a></h3>
+<p><strong>Usage</strong>: <code>storage &lt;operation></code></p>
+<p><strong>Description</strong>: Manages server storage operations.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=list---list-server-resources><code>list</code> - List Server Resources<a href=#list---list-server-resources class=hash-link aria-label="list---list-server-resources への直接リンク" title="list---list-server-resources への直接リンク" translate=no>​</a></h3>
+<p><strong>Usage</strong>: <code>list &lt;resource_type></code></p>
+<p><strong>Description</strong>: Lists various server resources.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=request-app---request-application><code>request-app</code> - Request Application<a href=#request-app---request-application class=hash-link aria-label="request-app---request-application への直接リンク" title="request-app---request-application への直接リンク" translate=no>​</a></h3>
+<p><strong>Usage</strong>: <code>request-app [parameters]</code></p>
+<p><strong>Description</strong>: Sends application request to the server.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=sleep---sleepwait><code>sleep</code> - Sleep/Wait<a href=#sleep---sleepwait class=hash-link aria-label="sleep---sleepwait への直接リンク" title="sleep---sleepwait への直接リンク" translate=no>​</a></h3>
+<p><strong>Usage</strong>: <code>sleep</code></p>
+<p><strong>Description</strong>: Pauses execution (utility command for scripting).</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=global-flags-reference>Global Flags Reference<a href=#global-flags-reference class=hash-link aria-label="Global Flags Reference への直接リンク" title="Global Flags Reference への直接リンク" translate=no>​</a></h2>
+<ul>
+<li class=""><code>--timeout &lt;milliseconds></code>: Set execution timeout</li>
+<li class=""><code>--address &lt;address></code>: Override listen address</li>
+<li class=""><code>--port &lt;port></code>: Override listen port</li>
+<li class=""><code>--path &lt;path></code>: Specify file path</li>
+<li class=""><code>--args &lt;arguments></code>: Pass initialization arguments</li>
+<li class=""><code>--ng ignore</code>: Allow NG status</li>
+<li class=""><code>--sync &lt;directory></code>: Set sync directory</li>
+<li class=""><code>--ping-address &lt;host:port></code>: Enable ping-pong</li>
+<li class=""><code>--in-packages &lt;packages></code>: Specify package list</li>
+<li class=""><code>--new-msg</code>: Enable updated message handling</li>
+<li class=""><code>--upload &lt;local|remote></code>: Upload mode</li>
+<li class=""><code>--user &lt;username> &lt;password></code>: User operations</li>
+<li class=""><code>--enum &lt;definitions></code>: Enumeration definitions</li>
+<li class=""><code>--group &lt;names></code>: Group operations</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=common-usage-examples>Common Usage Examples<a href=#common-usage-examples class=hash-link aria-label="Common Usage Examples への直接リンク" title="Common Usage Examples への直接リンク" translate=no>​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=basic-project-workflow>Basic Project Workflow<a href=#basic-project-workflow class=hash-link aria-label="Basic Project Workflow への直接リンク" title="Basic Project Workflow への直接リンク" translate=no>​</a></h3>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#F8F8F2;--prism-background-color:#282A36><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style=color:#F8F8F2;background-color:#282A36><code class=codeBlockLines_e6Vv><div class=token-line style=color:#F8F8F2><span class="token comment" style="color:rgb(98, 114, 164)"># Create new project</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">new MyProject</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token comment" style="color:rgb(98, 114, 164)"># Run project with custom port</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">run MyProject </span><span class="token parameter variable" style="color:rgb(189, 147, 249);font-style:italic">--port</span><span class="token plain"> </span><span class="token number">8080</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token comment" style="color:rgb(98, 114, 164)"># Make changes and push to repository</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">push MyProject</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token comment" style="color:rgb(98, 114, 164)"># Pull updates from repository</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">pull MyProject</span><br/></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=package-development>Package Development<a href=#package-development class=hash-link aria-label="Package Development への直接リンク" title="Package Development への直接リンク" translate=no>​</a></h3>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#F8F8F2;--prism-background-color:#282A36><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style=color:#F8F8F2;background-color:#282A36><code class=codeBlockLines_e6Vv><div class=token-line style=color:#F8F8F2><span class="token comment" style="color:rgb(98, 114, 164)"># Build package from DLL</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">pack MyLibrary.dll MyPackage </span><span class="token parameter variable" style="color:rgb(189, 147, 249);font-style:italic">--args</span><span class="token plain"> </span><span class="token string" style="color:rgb(255, 121, 198)">"config=test"</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token comment" style="color:rgb(98, 114, 164)"># Save package from current directory</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">save MyPackage </span><span class="token parameter variable" style="color:rgb(189, 147, 249);font-style:italic">--path</span><span class="token plain"> ./output</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token comment" style="color:rgb(98, 114, 164)"># Clear all loaded packages</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token function" style="color:rgb(80, 250, 123)">clear</span><br/></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=system-administration>System Administration<a href=#system-administration class=hash-link aria-label="System Administration への直接リンク" title="System Administration への直接リンク" translate=no>​</a></h3>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#F8F8F2;--prism-background-color:#282A36><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style=color:#F8F8F2;background-color:#282A36><code class=codeBlockLines_e6Vv><div class=token-line style=color:#F8F8F2><span class="token comment" style="color:rgb(98, 114, 164)"># Add new user</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token function" style="color:rgb(80, 250, 123)">add</span><span class="token plain"> </span><span class="token parameter variable" style="color:rgb(189, 147, 249);font-style:italic">--user</span><span class="token plain"> admin password123</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token comment" style="color:rgb(98, 114, 164)"># Check server status</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">status</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token comment" style="color:rgb(98, 114, 164)"># Measure network latency</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">latency</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token comment" style="color:rgb(98, 114, 164)"># List available repositories</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token function" style="color:rgb(80, 250, 123)">ls</span><span class="token plain"> repo</span><br/></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=script-execution>Script Execution<a href=#script-execution class=hash-link aria-label="Script Execution への直接リンク" title="Script Execution への直接リンク" translate=no>​</a></h3>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#F8F8F2;--prism-background-color:#282A36><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style=color:#F8F8F2;background-color:#282A36><code class=codeBlockLines_e6Vv><div class=token-line style=color:#F8F8F2><span class="token comment" style="color:rgb(98, 114, 164)"># Execute JavaScript function</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">script ./automation.js initialize</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token comment" style="color:rgb(98, 114, 164)"># Execute with timeout</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">script ./boot.js startup </span><span class="token parameter variable" style="color:rgb(189, 147, 249);font-style:italic">--timeout</span><span class="token plain"> </span><span class="token number">5000</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token comment" style="color:rgb(98, 114, 164)"># Cancel running script</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">cancel ./automation.js initialize</span><br/></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=server-data-operations>Server Data Operations<a href=#server-data-operations class=hash-link aria-label="Server Data Operations への直接リンク" title="Server Data Operations への直接リンク" translate=no>​</a></h3>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#F8F8F2;--prism-background-color:#282A36><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style=color:#F8F8F2;background-color:#282A36><code class=codeBlockLines_e6Vv><div class=token-line style=color:#F8F8F2><span class="token comment" style="color:rgb(98, 114, 164)"># Get server data</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">get Equipment Status</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">get SECS Temperature</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">get MyProject.log</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">get status</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token comment" style="color:rgb(98, 114, 164)"># Set server data</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token builtin class-name" style="color:rgb(189, 147, 249)">set</span><span class="token plain"> Equipment Status RUNNING</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token builtin class-name" style="color:rgb(189, 147, 249)">set</span><span class="token plain"> SECS CommState ENABLED</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token builtin class-name" style="color:rgb(189, 147, 249)">set</span><span class="token plain"> Process Temperature </span><span class="token number">150.5</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token comment" style="color:rgb(98, 114, 164)"># Execute JavaScript functions</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token builtin class-name" style="color:rgb(189, 147, 249)">set</span><span class="token plain"> automation.js startProcess </span><span class="token string" style="color:rgb(255, 121, 198)">"Recipe1,Lot001"</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token builtin class-name" style="color:rgb(189, 147, 249)">set</span><span class="token plain"> monitor.js checkAlarms </span><span class="token string" style="color:rgb(255, 121, 198)">""</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token comment" style="color:rgb(98, 114, 164)"># User management</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token builtin class-name" style="color:rgb(189, 147, 249)">set</span><span class="token plain"> password admin oldpass newpass123</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token builtin class-name" style="color:rgb(189, 147, 249)">set</span><span class="token plain"> grant operator </span><span class="token number">2</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token comment" style="color:rgb(98, 114, 164)"># System notifications</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token builtin class-name" style="color:rgb(189, 147, 249)">set</span><span class="token plain"> notify </span><span class="token string" style="color:rgb(255, 121, 198)">"Process completed successfully"</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token builtin class-name" style="color:rgb(189, 147, 249)">set</span><span class="token plain"> init SECS</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token comment" style="color:rgb(98, 114, 164)"># Configuration management</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token builtin class-name" style="color:rgb(189, 147, 249)">set</span><span class="token plain"> config </span><span class="token function" style="color:rgb(80, 250, 123)">timeout</span><span class="token plain"> </span><span class="token number">30000</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token builtin class-name" style="color:rgb(189, 147, 249)">set</span><span class="token plain"> config loglevel DEBUG</span><br/></div></code></pre></div></div>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=session-audit-commands>Session Audit Commands<a href=#session-audit-commands class=hash-link aria-label="Session Audit Commands への直接リンク" title="Session Audit Commands への直接リンク" translate=no>​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=session-logs---list-ffi-call-audit-log><code>session logs</code> - List FFI Call Audit Log<a href=#session-logs---list-ffi-call-audit-log class=hash-link aria-label="session-logs---list-ffi-call-audit-log への直接リンク" title="session-logs---list-ffi-call-audit-log への直接リンク" translate=no>​</a></h3>
+<p><strong>Usage</strong>: <code>session logs [flags]</code></p>
+<p><strong>Description</strong>: Reads the FFI call audit log stored in <code>{project}_auth.db</code> and displays a timestamped record of every session-related FFI function call made by the running application. All password arguments are stored AES-256-GCM encrypted and are never shown in plaintext.</p>
+<p><strong>Flags</strong>:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Flag<th>Default<th>Description<tbody><tr><td><code>-p</code>, <code>--project-name &lt;name></code><td>auto-detect<td>Project name (searches for <code>*.port.md</code> if omitted)<tr><td><code>-l</code>, <code>--limit &lt;n></code><td><code>50</code><td>Maximum number of entries to display (newest first)<tr><td><code>-o</code>, <code>--offset &lt;n></code><td><code>0</code><td>Skip this many entries from the newest end (paging)<tr><td><code>--ffi &lt;name></code><td>all<td>Filter by FFI function name (case-insensitive)<tr><td><code>-f</code>, <code>--format &lt;fmt></code><td><code>table</code><td>Output format: <code>table</code> or <code>json</code><tr><td><code>--date &lt;YYYY-MM-DD></code><td>today<td>Show entries for a specific date only<tr><td><code>--start &lt;YYYY-MM-DD></code><td>—<td>Range start date (inclusive). Use with <code>--end</code>.<tr><td><code>--end &lt;YYYY-MM-DD></code><td>—<td>Range end date (inclusive). Use with <code>--start</code>.</table>
+<p><strong>Date flag precedence</strong>: <code>--start</code>/<code>--end</code> takes priority over <code>--date</code>. If neither is given, defaults to today.</p>
+<p><strong>Logged FFI Functions</strong>:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>FFI Name<th>Recorded Arguments<tbody><tr><td><code>Login</code><td><code>user_id</code>, <code>password</code><em>(encrypted)</em>, <code>success</code><tr><td><code>Signup</code><td><code>user_id</code>, <code>password</code><em>(encrypted)</em>, <code>name</code>, <code>role_level</code><tr><td><code>ChangePassword</code><td><code>user_id</code>, <code>current_password</code><em>(encrypted)</em>, <code>new_password</code><em>(encrypted)</em><tr><td><code>DeleteUser</code><td><code>user_id</code><tr><td><code>Logout</code><td><code>user_id</code><tr><td><code>ReassignControlState</code><td><code>user_id</code>, <code>target_state</code>, <code>success</code>, <code>reason</code></table>
+<p><strong>Password Security</strong>:</p>
+<p>Passwords are encrypted with <strong>AES-256-GCM</strong> using a randomly generated 32-byte key (<code>audit.key</code>) stored alongside the database:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#F8F8F2;--prism-background-color:#282A36><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#F8F8F2;background-color:#282A36><code class=codeBlockLines_e6Vv><div class=token-line style=color:#F8F8F2><span class="token plain">%LOCALAPPDATA%\port\DB\{project}\{project}_auth.db   ← audit log table</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">%LOCALAPPDATA%\port\DB\{project}\audit.key            ← encryption key</span><br/></div></code></pre></div></div>
+<p>The encrypted password field appears as a base64-encoded string (nonce + ciphertext). Without the <code>audit.key</code> file the ciphertext cannot be decrypted.</p>
+<p><strong>Table Output Example</strong>:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#F8F8F2;--prism-background-color:#282A36><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#F8F8F2;background-color:#282A36><code class=codeBlockLines_e6Vv><div class=token-line style=color:#F8F8F2><span class="token plain">Session audit log for project 'myproject' [2026-03-31]</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">CALL_DATE             FFI_NAME                ARGS</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">--------------------------------------------------------------------</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">2026-03-31 10:25:42   Login                   {"user_id":"admin","password":"YWJj...","success":true}</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">2026-03-31 10:24:10   ChangePassword          {"user_id":"operator","current_password":"eHl6...","new_password":"cGFz..."}</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">2026-03-31 10:23:05   Signup                  {"user_id":"operator","password":"cGFz...","name":"Op1","role_level":1}</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">2026-03-31 09:55:00   Logout                  {"user_id":"admin"}</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">4 entry(ies)</span><br/></div></code></pre></div></div>
+<p><strong>Examples</strong>:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#F8F8F2;--prism-background-color:#282A36><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style=color:#F8F8F2;background-color:#282A36><code class=codeBlockLines_e6Vv><div class=token-line style=color:#F8F8F2><span class="token comment" style="color:rgb(98, 114, 164)"># Show today's entries (default)</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">port session logs</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token comment" style="color:rgb(98, 114, 164)"># Show today's entries for a specific project</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">port session logs </span><span class="token parameter variable" style="color:rgb(189, 147, 249);font-style:italic">-p</span><span class="token plain"> myproject</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token comment" style="color:rgb(98, 114, 164)"># Show entries for a specific date</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">port session logs </span><span class="token parameter variable" style="color:rgb(189, 147, 249);font-style:italic">-p</span><span class="token plain"> myproject </span><span class="token parameter variable" style="color:rgb(189, 147, 249);font-style:italic">--date</span><span class="token plain"> </span><span class="token number">2026</span><span class="token plain">-03-28</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token comment" style="color:rgb(98, 114, 164)"># Show entries for a date range</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">port session logs </span><span class="token parameter variable" style="color:rgb(189, 147, 249);font-style:italic">-p</span><span class="token plain"> myproject </span><span class="token parameter variable" style="color:rgb(189, 147, 249);font-style:italic">--start</span><span class="token plain"> </span><span class="token number">2026</span><span class="token plain">-03-01 </span><span class="token parameter variable" style="color:rgb(189, 147, 249);font-style:italic">--end</span><span class="token plain"> </span><span class="token number">2026</span><span class="token plain">-03-31</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token comment" style="color:rgb(98, 114, 164)"># Show last 100 entries for today</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">port session logs </span><span class="token parameter variable" style="color:rgb(189, 147, 249);font-style:italic">-p</span><span class="token plain"> myproject </span><span class="token parameter variable" style="color:rgb(189, 147, 249);font-style:italic">--limit</span><span class="token plain"> </span><span class="token number">100</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token comment" style="color:rgb(98, 114, 164)"># Show only Login attempts today</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">port session logs </span><span class="token parameter variable" style="color:rgb(189, 147, 249);font-style:italic">-p</span><span class="token plain"> myproject </span><span class="token parameter variable" style="color:rgb(189, 147, 249);font-style:italic">--ffi</span><span class="token plain"> Login</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token comment" style="color:rgb(98, 114, 164)"># Show Login attempts for a specific date range</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">port session logs </span><span class="token parameter variable" style="color:rgb(189, 147, 249);font-style:italic">-p</span><span class="token plain"> myproject </span><span class="token parameter variable" style="color:rgb(189, 147, 249);font-style:italic">--ffi</span><span class="token plain"> Login </span><span class="token parameter variable" style="color:rgb(189, 147, 249);font-style:italic">--start</span><span class="token plain"> </span><span class="token number">2026</span><span class="token plain">-03-25 </span><span class="token parameter variable" style="color:rgb(189, 147, 249);font-style:italic">--end</span><span class="token plain"> </span><span class="token number">2026</span><span class="token plain">-03-31</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token comment" style="color:rgb(98, 114, 164)"># Paginate: entries 51-100</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">port session logs </span><span class="token parameter variable" style="color:rgb(189, 147, 249);font-style:italic">-p</span><span class="token plain"> myproject </span><span class="token parameter variable" style="color:rgb(189, 147, 249);font-style:italic">--limit</span><span class="token plain"> </span><span class="token number">50</span><span class="token plain"> </span><span class="token parameter variable" style="color:rgb(189, 147, 249);font-style:italic">--offset</span><span class="token plain"> </span><span class="token number">50</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token comment" style="color:rgb(98, 114, 164)"># Output as JSON</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">port session logs </span><span class="token parameter variable" style="color:rgb(189, 147, 249);font-style:italic">-p</span><span class="token plain"> myproject </span><span class="token parameter variable" style="color:rgb(189, 147, 249);font-style:italic">--format</span><span class="token plain"> json</span><br/></div></code></pre></div></div>
+<p><strong>JSON Output Example</strong>:</p>
+<div class="language-json codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#F8F8F2;--prism-background-color:#282A36><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-json codeBlock_bY9V thin-scrollbar" style=color:#F8F8F2;background-color:#282A36><code class=codeBlockLines_e6Vv><div class=token-line style=color:#F8F8F2><span class="token punctuation" style="color:rgb(248, 248, 242)">[</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">  </span><span class="token punctuation" style="color:rgb(248, 248, 242)">{</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">    </span><span class="token property">"call_date"</span><span class="token operator">:</span><span class="token plain"> </span><span class="token number">1743416742</span><span class="token punctuation" style="color:rgb(248, 248, 242)">,</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">    </span><span class="token property">"ffi_name"</span><span class="token operator">:</span><span class="token plain"> </span><span class="token string" style="color:rgb(255, 121, 198)">"Login"</span><span class="token punctuation" style="color:rgb(248, 248, 242)">,</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">    </span><span class="token property">"args"</span><span class="token operator">:</span><span class="token plain"> </span><span class="token string" style="color:rgb(255, 121, 198)">"{\"user_id\":\"admin\",\"password\":\"YWJj...\",\"success\":true}"</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">  </span><span class="token punctuation" style="color:rgb(248, 248, 242)">}</span><span class="token punctuation" style="color:rgb(248, 248, 242)">,</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">  </span><span class="token punctuation" style="color:rgb(248, 248, 242)">{</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">    </span><span class="token property">"call_date"</span><span class="token operator">:</span><span class="token plain"> </span><span class="token number">1743416050</span><span class="token punctuation" style="color:rgb(248, 248, 242)">,</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">    </span><span class="token property">"ffi_name"</span><span class="token operator">:</span><span class="token plain"> </span><span class="token string" style="color:rgb(255, 121, 198)">"Logout"</span><span class="token punctuation" style="color:rgb(248, 248, 242)">,</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">    </span><span class="token property">"args"</span><span class="token operator">:</span><span class="token plain"> </span><span class="token string" style="color:rgb(255, 121, 198)">"{\"user_id\":\"admin\"}"</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">  </span><span class="token punctuation" style="color:rgb(248, 248, 242)">}</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token punctuation" style="color:rgb(248, 248, 242)">]</span><br/></div></code></pre></div></div>
+<blockquote>
+<p><strong>Note</strong>: The <code>port session logs</code> command queries the port server via gRPC and requires the server to be running (<code>port run &lt;project></code>). The server owns the audit DB and serves all queries.</p>
+</blockquote>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=error-handling>Error Handling<a href=#error-handling class=hash-link aria-label="Error Handling への直接リンク" title="Error Handling への直接リンク" translate=no>​</a></h2>
+<p>The PORT CLI provides comprehensive error handling for:</p>
+<ul>
+<li class="">Invalid command syntax</li>
+<li class="">Missing required arguments</li>
+<li class="">File system errors</li>
+<li class="">Network communication errors</li>
+<li class="">Authentication failures</li>
+<li class="">Resource not found errors</li>
+<li class="">Permission errors</li>
+<li class="">Timeout errors</li>
+<li class="">Package loading errors</li>
+</ul></div></article><nav class="docusaurus-mt-lg pagination-nav" aria-label=ドキュメントページ><a class="pagination-nav__link pagination-nav__link--prev" href=/ja/attribute><div class=pagination-nav__sublabel>前へ</div><div class=pagination-nav__label>Attribute Reference</div></a><a class="pagination-nav__link pagination-nav__link--next" href=/ja/remote><div class=pagination-nav__sublabel>次へ</div><div class=pagination-nav__label>Remote Access</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href=#quick-reference class="table-of-contents__link toc-highlight">Quick Reference</a><ul><li><a href=#system-commands class="table-of-contents__link toc-highlight">System Commands</a><li><a href=#project-management class="table-of-contents__link toc-highlight">Project Management</a><li><a href=#package-management class="table-of-contents__link toc-highlight">Package Management</a><li><a href=#listing-commands class="table-of-contents__link toc-highlight">Listing Commands</a><li><a href=#script-management class="table-of-contents__link toc-highlight">Script Management</a><li><a href=#user-management class="table-of-contents__link toc-highlight">User Management</a><li><a href=#session-audit class="table-of-contents__link toc-highlight">Session Audit</a><li><a href=#server-communication class="table-of-contents__link toc-highlight">Server Communication</a></ul><li><a href=#detailed-command-reference class="table-of-contents__link toc-highlight">Detailed Command Reference</a><li><a href=#system-commands-1 class="table-of-contents__link toc-highlight">System Commands</a><ul><li><a href=#version---display-version-information class="table-of-contents__link toc-highlight"><code>version</code> - Display Version Information</a><li><a href=#env---environment-information class="table-of-contents__link toc-highlight"><code>env</code> - Environment Information</a><li><a href=#help---display-help class="table-of-contents__link toc-highlight"><code>help</code> - Display Help</a></ul><li><a href=#project-management-commands class="table-of-contents__link toc-highlight">Project Management Commands</a><ul><li><a href=#new---create-new-project class="table-of-contents__link toc-highlight"><code>new</code> - Create New Project</a><li><a href=#run---run-project class="table-of-contents__link toc-highlight"><code>run</code> - Run Project</a><li><a href=#push---push-project-to-repository class="table-of-contents__link toc-highlight"><code>push</code> - Push Project to Repository</a><li><a href=#pull---pull-project-from-repository class="table-of-contents__link toc-highlight"><code>pull</code> - Pull Project from Repository</a></ul><li><a href=#package-management-commands class="table-of-contents__link toc-highlight">Package Management Commands</a><ul><li><a href=#pack---build-package class="table-of-contents__link toc-highlight"><code>pack</code> - Build Package</a><li><a href=#save---save-package class="table-of-contents__link toc-highlight"><code>save</code> - Save Package</a><li><a href=#clear---clear-packages class="table-of-contents__link toc-highlight"><code>clear</code> - Clear Packages</a></ul><li><a href=#listing-commands-1 class="table-of-contents__link toc-highlight">Listing Commands</a><ul><li><a href=#ls---list-resources class="table-of-contents__link toc-highlight"><code>ls</code> - List Resources</a></ul><li><a href=#script-management-commands class="table-of-contents__link toc-highlight">Script Management Commands</a><ul><li><a href=#script---execute-script class="table-of-contents__link toc-highlight"><code>script</code> - Execute Script</a><li><a href=#cancel---cancel-script-execution class="table-of-contents__link toc-highlight"><code>cancel</code> - Cancel Script Execution</a></ul><li><a href=#user-management-commands class="table-of-contents__link toc-highlight">User Management Commands</a><ul><li><a href=#login---user-login class="table-of-contents__link toc-highlight"><code>login</code> - User Login</a><li><a href=#add---add-resources class="table-of-contents__link toc-highlight"><code>add</code> - Add Resources</a></ul><li><a href=#server-communication-commands class="table-of-contents__link toc-highlight">Server Communication Commands</a><ul><li><a href=#get---get-server-data class="table-of-contents__link toc-highlight"><code>get</code> - Get Server Data</a><li><a href=#set---set-server-data class="table-of-contents__link toc-highlight"><code>set</code> - Set Server Data</a><li><a href=#status---server-status class="table-of-contents__link toc-highlight"><code>status</code> - Server Status</a><li><a href=#uptime---server-uptime class="table-of-contents__link toc-highlight"><code>uptime</code> - Server Uptime</a><li><a href=#latency---measure-latency class="table-of-contents__link toc-highlight"><code>latency</code> - Measure Latency</a><li><a href=#shutdown---server-shutdown class="table-of-contents__link toc-highlight"><code>shutdown</code> - Server Shutdown</a></ul><li><a href=#repository-management-commands class="table-of-contents__link toc-highlight">Repository Management Commands</a><ul><li><a href=#repo---repository-operations class="table-of-contents__link toc-highlight"><code>repo</code> - Repository Operations</a></ul><li><a href=#additional-utility-commands class="table-of-contents__link toc-highlight">Additional Utility Commands</a><ul><li><a href=#date---server-date class="table-of-contents__link toc-highlight"><code>date</code> - Server Date</a><li><a href=#flow---flow-status class="table-of-contents__link toc-highlight"><code>flow</code> - Flow Status</a><li><a href=#queue---queue-management class="table-of-contents__link toc-highlight"><code>queue</code> - Queue Management</a><li><a href=#stack---stack-management class="table-of-contents__link toc-highlight"><code>stack</code> - Stack Management</a><li><a href=#storage---storage-management class="table-of-contents__link toc-highlight"><code>storage</code> - Storage Management</a><li><a href=#list---list-server-resources class="table-of-contents__link toc-highlight"><code>list</code> - List Server Resources</a><li><a href=#request-app---request-application class="table-of-contents__link toc-highlight"><code>request-app</code> - Request Application</a><li><a href=#sleep---sleepwait class="table-of-contents__link toc-highlight"><code>sleep</code> - Sleep/Wait</a></ul><li><a href=#global-flags-reference class="table-of-contents__link toc-highlight">Global Flags Reference</a><li><a href=#common-usage-examples class="table-of-contents__link toc-highlight">Common Usage Examples</a><ul><li><a href=#basic-project-workflow class="table-of-contents__link toc-highlight">Basic Project Workflow</a><li><a href=#package-development class="table-of-contents__link toc-highlight">Package Development</a><li><a href=#system-administration class="table-of-contents__link toc-highlight">System Administration</a><li><a href=#script-execution class="table-of-contents__link toc-highlight">Script Execution</a><li><a href=#server-data-operations class="table-of-contents__link toc-highlight">Server Data Operations</a></ul><li><a href=#session-audit-commands class="table-of-contents__link toc-highlight">Session Audit Commands</a><ul><li><a href=#session-logs---list-ffi-call-audit-log class="table-of-contents__link toc-highlight"><code>session logs</code> - List FFI Call Audit Log</a></ul><li><a href=#error-handling class="table-of-contents__link toc-highlight">Error Handling</a></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"></div></footer></div></body>
