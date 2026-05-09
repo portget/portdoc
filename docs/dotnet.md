@@ -695,6 +695,26 @@ public int NValue { get => 3; }
 | **Documentation** | Provides API documentation |
 | **Experience** | Enhances developer experience with contextual information |
 
+#### Command Annotation {#command-annotation-detailed}
+
+The `Command` annotation marks methods as command endpoints, making them accessible via the Port command API.
+
+```csharp
+[Command("start")]
+public void StartProcess(string key)
+{
+    // Command implementation
+}
+```
+
+**Usage:**
+
+| Aspect | Description |
+|--------|-------------|
+| **Target** | Applied to methods |
+| **Parameter** | Command key identifier (optional) |
+| **Purpose** | Exposes methods as remote command endpoints |
+
 ### Workflow and Flow Control {#workflow-and-flow-control}
 
 The Port system provides comprehensive workflow management through the Flow system, enabling complex business process automation with step-by-step execution control.

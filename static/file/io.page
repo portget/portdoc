@@ -1,0 +1,4 @@
+Bulb1OnOff                      Enum.OnOff  property:{"IO.No":"D0.01","Model":"IODevice"}
+Bulb2OnOff                      Enum.OnOff  property:{"IO.No":"D0.02","Model":"IODevice"}
+Bulb1Temp                       f8          property:{"IO.No":"A0.01","Model":"IODevice"}
+Bulb2Temp                       f8          property:{"IO.No":"A0.02","Model":"IODevice"}

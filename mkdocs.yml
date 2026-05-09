@@ -2,11 +2,9 @@ site_name: Port
 site_url: https://portdic.com
 nav:
   - Home: index.md
-  - Getting Started:
-    - Learn: learn.md
-    - .Net: dotnet.md
-    - React: react.md
+  - Getting Started: quick.md
   - Documentation:
+    - Attribute: attribute.md
     - Commands: commands.md
     - Remote Access: remote.md
   - Protocols: 

@@ -1,0 +1,12 @@
+# Docusaurus
+node_modules/
+.docusaurus/
+build/
+
+# MkDocs
+site/
+
+# Python
+__pycache__/
+*.pyc
+.venv/

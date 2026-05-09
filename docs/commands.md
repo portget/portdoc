@@ -47,6 +47,11 @@ This document provides a comprehensive reference for all available PORT CLI comm
 | `login` | `<username> <password>` | User login |
 | `add` | `[flags]` | Add resources (user, enum, group) |
 
+### Session Audit
+| Command | Arguments | Description |
+|---------|-----------|-------------|
+| `session logs` | `[flags]` | List FFI call audit log entries |
+
 ### Server Communication
 | Command | Arguments | Description |
 |---------|-----------|-------------|
@@ -707,6 +712,118 @@ set init SECS
 set config timeout 30000
 set config loglevel DEBUG
 ```
+
+## Session Audit Commands
+
+### `session logs` - List FFI Call Audit Log
+
+**Usage**: `session logs [flags]`
+
+**Description**: Reads the FFI call audit log stored in `{project}_auth.db` and displays a timestamped record of every session-related FFI function call made by the running application. All password arguments are stored AES-256-GCM encrypted and are never shown in plaintext.
+
+**Flags**:
+
+| Flag | Default | Description |
+|------|---------|-------------|
+| `-p`, `--project-name <name>` | auto-detect | Project name (searches for `*.port.md` if omitted) |
+| `-l`, `--limit <n>` | `50` | Maximum number of entries to display (newest first) |
+| `-o`, `--offset <n>` | `0` | Skip this many entries from the newest end (paging) |
+| `--ffi <name>` | all | Filter by FFI function name (case-insensitive) |
+| `-f`, `--format <fmt>` | `table` | Output format: `table` or `json` |
+| `--date <YYYY-MM-DD>` | today | Show entries for a specific date only |
+| `--start <YYYY-MM-DD>` | — | Range start date (inclusive). Use with `--end`. |
+| `--end <YYYY-MM-DD>` | — | Range end date (inclusive). Use with `--start`. |
+
+**Date flag precedence**: `--start`/`--end` takes priority over `--date`. If neither is given, defaults to today.
+
+**Logged FFI Functions**:
+
+| FFI Name | Recorded Arguments |
+|----------|--------------------|
+| `Login` | `user_id`, `password`*(encrypted)*, `success` |
+| `Signup` | `user_id`, `password`*(encrypted)*, `name`, `role_level` |
+| `ChangePassword` | `user_id`, `current_password`*(encrypted)*, `new_password`*(encrypted)* |
+| `DeleteUser` | `user_id` |
+| `Logout` | `user_id` |
+| `ReassignControlState` | `user_id`, `target_state`, `success`, `reason` |
+
+**Password Security**:
+
+Passwords are encrypted with **AES-256-GCM** using a randomly generated 32-byte key (`audit.key`) stored alongside the database:
+
+```
+%LOCALAPPDATA%\port\DB\{project}\{project}_auth.db   ← audit log table
+%LOCALAPPDATA%\port\DB\{project}\audit.key            ← encryption key
+```
+
+The encrypted password field appears as a base64-encoded string (nonce + ciphertext). Without the `audit.key` file the ciphertext cannot be decrypted.
+
+**Table Output Example**:
+
+```
+Session audit log for project 'myproject' [2026-03-31]
+
+CALL_DATE             FFI_NAME                ARGS
+--------------------------------------------------------------------
+2026-03-31 10:25:42   Login                   {"user_id":"admin","password":"YWJj...","success":true}
+2026-03-31 10:24:10   ChangePassword          {"user_id":"operator","current_password":"eHl6...","new_password":"cGFz..."}
+2026-03-31 10:23:05   Signup                  {"user_id":"operator","password":"cGFz...","name":"Op1","role_level":1}
+2026-03-31 09:55:00   Logout                  {"user_id":"admin"}
+
+4 entry(ies)
+```
+
+**Examples**:
+
+```bash
+# Show today's entries (default)
+port session logs
+
+# Show today's entries for a specific project
+port session logs -p myproject
+
+# Show entries for a specific date
+port session logs -p myproject --date 2026-03-28
+
+# Show entries for a date range
+port session logs -p myproject --start 2026-03-01 --end 2026-03-31
+
+# Show last 100 entries for today
+port session logs -p myproject --limit 100
+
+# Show only Login attempts today
+port session logs -p myproject --ffi Login
+
+# Show Login attempts for a specific date range
+port session logs -p myproject --ffi Login --start 2026-03-25 --end 2026-03-31
+
+# Paginate: entries 51-100
+port session logs -p myproject --limit 50 --offset 50
+
+# Output as JSON
+port session logs -p myproject --format json
+```
+
+**JSON Output Example**:
+
+```json
+[
+  {
+    "call_date": 1743416742,
+    "ffi_name": "Login",
+    "args": "{\"user_id\":\"admin\",\"password\":\"YWJj...\",\"success\":true}"
+  },
+  {
+    "call_date": 1743416050,
+    "ffi_name": "Logout",
+    "args": "{\"user_id\":\"admin\"}"
+  }
+]
+```
+
+> **Note**: The `port session logs` command queries the port server via gRPC and requires the server to be running (`port run <project>`). The server owns the audit DB and serves all queries.
+
+---
 
 ## Error Handling
 

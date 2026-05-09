@@ -2,11 +2,10 @@
 
 ## Table of Contents
 1. [Overview](#overview)
-2. [Quick Link](#quick-link)
-3. [React Integration with Vite](#react-integration-vite)
-4. [Sample Project Setup](#react-sample-setup)
-5. [React Implementation](#react-implementation)
-6. [React Integration Demo](#react-integration-demo)
+2. [React Integration with Vite](#react-integration-vite)
+3. [Sample Project Setup](#react-sample-setup)
+4. [React Implementation](#react-implementation)
+5. [React Integration Demo](#react-integration-demo)
 
 ## Overview
 
