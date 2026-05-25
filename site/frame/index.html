@@ -744,15 +744,15 @@
 <hr />
 <h4 id="create-a-message-document">Create a Message Document<a class="headerlink" href="#create-a-message-document" title="Permanent link">&para;</a></h4>
 <p>[../AZone/sample1.msg]
-<div class="language-TEXT highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>    DevAPowerStatus    enum.DeviceAStatus   api:DeviceA.GetStatus       frame:HTS1.PowerStatus 
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>    DevAPowerStatus    enum.DeviceAStatus   api:DeviceA.GetStatus       frame:HTS1.PowerStatus 
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>...
 </span></code></pre></div></p>
 <p>[../BZone/sample1.msg]
-<div class="language-TEXT highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>    DevAPowerStatus    enum.DeviceAStatus   api:DeviceA.GetStatus       frame:HTS2.PowerStatus
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>    DevAPowerStatus    enum.DeviceAStatus   api:DeviceA.GetStatus       frame:HTS2.PowerStatus
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>...
 </span></code></pre></div></p>
 <h4 id="create-a-relationobject">Create a RelationObject<a class="headerlink" href="#create-a-relationobject" title="Permanent link">&para;</a></h4>
-<div class="language-C# highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">HeatingScenario</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ScenarioRelationService</span>
+<div class="language-csharp highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">HeatingScenario</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ScenarioRelationService</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w"> </span><span class="p">{</span><span class="w">   </span>
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="p">...</span>
 </span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
@@ -774,8 +774,8 @@
 </span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="w"> </span><span class="p">}</span>
 </span></code></pre></div>
 <h4 id="command">Command<a class="headerlink" href="#command" title="Permanent link">&para;</a></h4>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>port add --scenario heating1 /HeatingLib/HeatingLib.dll
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>port add --scenario heating2 /HeatingLib/HeatingLib.dll
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>port<span class="w"> </span>add<span class="w"> </span>--scenario<span class="w"> </span>heating1<span class="w"> </span>/HeatingLib/HeatingLib.dll
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>port<span class="w"> </span>add<span class="w"> </span>--scenario<span class="w"> </span>heating2<span class="w"> </span>/HeatingLib/HeatingLib.dll
 </span></code></pre></div>
 
 

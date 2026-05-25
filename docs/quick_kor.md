@@ -60,7 +60,7 @@ Bulb2Temp     f8          property:{"IO.No":"A0.02","Model":"IODevice"}
 | `f4` / `f8` | 부동소수점 (4 / 8 바이트) |
 | `i1` ~ `i8` | 부호 있는 정수 |
 | `u1` ~ `u8` | 부호 없는 정수 |
-| `char` | ASCII 문자열 |
+| `A(n)` | ASCII n개 문자열 |
 | `Enum.XXX` | 열거형 (사전 정의된 enum 참조) |
 | `bool` | 불리언 |
 
@@ -162,7 +162,7 @@ Port.Pull("sample", @"D:\sample\Repo\pull\");
 
 ### b. Model과 Page의 관계
 
-```
+```text
 .page 파일 (Entry 정의)
     ↓  Push
 Port 메모리 DB (Entry 값 저장)
@@ -260,7 +260,7 @@ public class BulbController
     [Flow("BulbOn")]
     public class BulbOn
     {
-        [FlowHandler]
+        [Handler]
         public IFlowHandler handler { get; set; } = null!;
 
         // Step 0: 사전 조건 확인
@@ -310,7 +310,7 @@ Port.Set("Bulb1", FlowAction.Canceled);    // 중단
 |---|---|
 | `IFlowHandler` | 기본 Flow 진행 제어 (`Next()`) |
 | `IFlowWithModelHandler<T>` | Model을 포함한 Flow 이벤트 구독 |
-| `ISchedulerHandler` | 이송(Transfer) 완료 스케줄링 |
+| `ISchedulerHandler<T>` | 이송(Transfer) 완료 스케줄링 |
 
 ---
 
@@ -319,7 +319,7 @@ Port.Set("Bulb1", FlowAction.Canceled);    // 중단
 #### IFlowHandler — 기본 진행 제어
 
 ```csharp
-[FlowHandler]
+[Handler]
 public IFlowHandler handler { get; set; } = null!;
 
 handler.Next();   // 다음 FlowStep으로 이동
@@ -342,7 +342,7 @@ internal class WTRController
         public IFlowWithModelHandler<WTRCommModel> handler { set; get; } = null!;
 
         [Handler]
-        public ISchedulerHandler scheduler { set; get; } = null!;
+        public ISchedulerHandler<DualArmActionArgs> scheduler { set; get; } = null!;
 
         // Preset: 등록 시 1회 실행, 이벤트 구독은 영속
         [Preset]
@@ -380,7 +380,7 @@ internal class WTRController
 | 이벤트 | 발생 시점 | 전달 인자 |
 |---|---|---|
 | `OnFlowFinished` | Flow가 Done 단계까지 완료 | `FlowFinishedWithModelArgs<T>` — Model, 타이밍, 단계 기록 |
-| `OnFlowOccured` | 각 단계 전환 시 | `PortFlowOccuredWithModelArgs<T>` — Model, 단계 상태 |
+| `OnFlowOccurred` | 각 단계 전환 시 | `PortFlowOccurredWithModelArgs<T>` — Model, 단계 상태 |
 | `OnFlowIssue` | 알람으로 Flow 중단 시 | `PortFlowIssueWithModelArgs<T>` — Model, 알람 코드 |
 
 모든 이벤트 인자의 `Model` 프로퍼티는 해당 Flow 키에 바인딩된  
@@ -554,7 +554,7 @@ var value = model.Get("@Temp");   // ModelBinding 된 Entry 값 조회
 
 ### Rule 문법
 
-```
+```text
 set("조건 Entry == 값", "실행 Entry >= 임계값")
 ```
 
@@ -567,7 +567,7 @@ set("조건 Entry == 값", "실행 Entry >= 임계값")
 
 ### .rule 파일 예시
 
-```
+```text
 // Bulb1.OnOff 가 "On"이 되고, Bulb1.Temp 가 80 이상이면 자동으로 Off
 set("Bulb1.OnOff == On", "Bulb1.Temp >= 80")
 ```
@@ -592,7 +592,7 @@ public void MonitorTemperature(BulbModel model)
 
 ### 전체 흐름 요약
 
-```
+```text
 Entry 값 변경 (Port.Set)
     ↓
 Rule Engine 조건 평가

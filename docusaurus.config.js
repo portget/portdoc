@@ -3,14 +3,14 @@ import { themes as prismThemes } from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Port',
+  title: 'PortDIC',
   tagline: 'Documents Made Simple. Applications Built Fast',
   favicon: 'img/logo.ico',
 
   url: 'https://portdic.com',
   baseUrl: '/',
 
-  organizationName: 'port',
+  organizationName: 'portget',
   projectName: 'portdoc',
 
   onBrokenLinks: 'warn',
@@ -29,8 +29,27 @@ const config = {
 
   i18n: {
     defaultLocale: 'en',
-    locales: ['en'],
+    locales: ['en', 'zh', 'ja', 'ko'],
+    localeConfigs: {
+      en: { label: 'English', direction: 'ltr' },
+      zh: { label: '中文', direction: 'ltr' },
+      ja: { label: '日本語', direction: 'ltr' },
+      ko: { label: '한국어', direction: 'ltr' },
+    },
   },
+
+  plugins: [
+    [
+      require.resolve('@easyops-cn/docusaurus-search-local'),
+      {
+        hashed: true,
+        language: ['en', 'zh', 'ja'],
+        indexDocs: true,
+        indexBlog: false,
+        docsRouteBasePath: '/',
+      },
+    ],
+  ],
 
   presets: [
     [
@@ -53,9 +72,9 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'Port',
+        title: 'PortDIC',
         logo: {
-          alt: 'Port Logo',
+          alt: 'PortDIC Logo',
           src: 'img/logo.ico',
         },
         items: [
@@ -66,8 +85,18 @@ const config = {
             label: 'Docs',
           },
           {
+            type: 'doc',
+            docId: 'download',
+            position: 'left',
+            label: 'Download',
+          },
+          {
             href: 'https://marketplace.visualstudio.com/items?itemName=portroconn.portdic',
             label: 'VSCode Extension',
+            position: 'right',
+          },
+          {
+            type: 'localeDropdown',
             position: 'right',
           },
         ],

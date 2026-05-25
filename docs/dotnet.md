@@ -284,7 +284,6 @@ Port packages use annotations to define behavior, configuration, and API endpoin
 | [Comment](#comment-annotation-detailed) | property | `-` | `comment text` | Provides API documentation for properties |
 | [Mapping](#mapping-annotation-detailed) | property | `-` | `type` | Maps properties to specific data types |
 | [ModelProperty](#modelproperty-annotation-detailed) | field, property | `-` | `portKey` | Marks fields/properties as data model properties |
-| [Command](#command-annotation-detailed) | method | `-` | `key` | Marks methods as command endpoints |
 
 ### Detailed Annotation Usage {#detailed-annotation-usage}
 
@@ -1281,7 +1280,6 @@ The Port system provides a comprehensive annotation system including:
 | **Data Handling** | `[Property]`, `[Mapping]`, `[ModelProperty]` | Data management and transformation |
 | **Validation** | `[Valid]` | Data validation and business rules |
 | **Documentation** | `[Comment]`, `[EnumCode]` | API documentation and enum exposure |
-| **Control Operations** |  `[Command]` | Control and command operations |
 
 ### Best Practices
 - Use proper annotation patterns for package development

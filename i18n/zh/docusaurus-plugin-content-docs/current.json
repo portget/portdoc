@@ -1,0 +1,18 @@
+{
+  "version.label": {
+    "message": "最新",
+    "description": "The label for version current"
+  },
+  "sidebar.mainSidebar.category.Documentation": {
+    "message": "文档",
+    "description": "The label for category 'Documentation' in sidebar 'mainSidebar'"
+  },
+  "sidebar.mainSidebar.category.Protocols": {
+    "message": "协议",
+    "description": "The label for category 'Protocols' in sidebar 'mainSidebar'"
+  },
+  "sidebar.mainSidebar.category.More": {
+    "message": "更多",
+    "description": "The label for category 'More' in sidebar 'mainSidebar'"
+  }
+}

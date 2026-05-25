@@ -1,0 +1,22 @@
+{
+  "title": {
+    "message": "PortDIC",
+    "description": "The title in the navbar"
+  },
+  "logo.alt": {
+    "message": "PortDIC ロゴ",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.Docs": {
+    "message": "ドキュメント",
+    "description": "Navbar item with label Docs"
+  },
+  "item.label.Download": {
+    "message": "ダウンロード",
+    "description": "Navbar item with label Download"
+  },
+  "item.label.VSCode Extension": {
+    "message": "VSCode 拡張機能",
+    "description": "Navbar item with label VSCode Extension"
+  }
+}

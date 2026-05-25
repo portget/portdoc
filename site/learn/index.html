@@ -1182,7 +1182,7 @@
 </tbody>
 </table>
 <h3 id="data-types">Data Types<a class="headerlink" href="#data-types" title="Permanent link">&para;</a></h3>
-<p>Port supports three primary data types for message definitions:</p>
+<p>Port supports four primary data types for message definitions:</p>
 <table>
 <thead>
 <tr>
@@ -1195,7 +1195,12 @@
 <tr>
 <td><strong>char</strong></td>
 <td><code>0~255</code></td>
-<td>Fixed-length string type with maximum 255 characters for text storage</td>
+<td>Fixed-length ASCII string type with maximum 255 characters</td>
+</tr>
+<tr>
+<td><strong>string</strong></td>
+<td>up to 255 bytes</td>
+<td>Variable-length UTF-8 string</td>
 </tr>
 <tr>
 <td><strong>num</strong></td>

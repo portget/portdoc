@@ -1,201 +1,273 @@
+# MQTT
 
-## Table of Contents
+## Overview
 
-1. [MQTT Architecture](#mqtt-architecture)
-2. [MQTT Communication Flow](#mqtt-flow)
-3. [MQTT Configuration](#mqtt-configuration)
-4. [MQTT Explorer Setup](#mqtt-explorer-setup)
-5. [MQTT Integration Benefits](#mqtt-benefits)
+PortDIC supports MQTT through the handler pattern.
+Each `[MQTTHandler]` class gets its own independent MQTT connection, and the operating mode
+(`Client` or `Broker`) is selected by calling `SetMode` in the `[Preset]` method.
 
-## Overview {#mqtt-overview}
+| Mode | Description |
+|------|-------------|
+| `MqttMode.Client` | Connect to an external MQTT broker (default) |
+| `MqttMode.Broker` | Start an embedded MQTT broker inside the process |
 
-MQTT (Message Queuing Telemetry Transport) is a lightweight communication protocol designed for IoT devices and efficient message transmission in bandwidth-constrained environments.
+---
 
-### MQTT Architecture {#mqtt-architecture}
+## Quick Start
 
-#### Core Components {#mqtt-components}
+### Client Mode (connect to a broker)
 
-**1. Clients**
-- **Publishers**: Send messages to specific topics
-- **Subscribers**: Receive messages from subscribed topics
-- **Dual Role**: Clients can both publish and subscribe
+```csharp
+using Portdic;
+using Portdic.MQTT;
 
-**2. Broker**
-- **Message Distribution**: Central server managing message routing
-- **Topic Management**: Handles topic subscriptions and publications
-- **Client Coordination**: Manages connections and message delivery
+[MQTTHandler]
+public class SensorClient
+{
+    [MQTTHandlerProp]
+    public IMQTTHandler handler { get; set; } = null!;
 
-**3. Topics**
-- **Message Categories**: String-based channels for message organization
-- **Hierarchical Structure**: Support for complex topic hierarchies (e.g., `home/livingroom/temperature`)
-- **Subscription Management**: Clients subscribe to topics of interest
+    [Preset]
+    private void Preset()
+    {
+        handler.SetMode(MqttMode.Client);
+        handler.SetHost("192.168.1.50");
+        handler.SetPort(1883);
+        handler.SetClientId("sensor-client-01");
+        handler.SetUsername("user");
+        handler.SetPassword("pass");
 
-### MQTT Communication Flow {#mqtt-flow}
+        handler.OnMessageReceived += OnMessage;
+        handler.OnEvent += OnEvent;
+    }
 
-#### Connection Process {#mqtt-connection-process}
+    private void OnMessage(string name, string topic, string payload, int qos)
+        => Console.WriteLine($"[{name}] {topic}: {payload} (QoS {qos})");
 
-1. **Client Connection**: Connect to MQTT broker with IP address and port
-2. **Authentication**: Provide credentials if required
-3. **Topic Subscription**: Subscribe to relevant topics
-4. **Message Publishing**: Publish messages to topics
-5. **Message Distribution**: Broker delivers messages to subscribers
-6. **Quality of Service**: Message delivery guarantees based on QoS level
+    private void OnEvent(string name, string eventType, string description)
+    {
+        Console.WriteLine($"[{name}] {eventType}: {description}");
+        if (eventType == "CONNECTED")
+        {
+            handler.Subscribe("sensor/temperature/#");
+            handler.Subscribe("sensor/humidity", qos: 1);
+        }
+    }
+}
+```
 
-#### Quality of Service Levels {#mqtt-qos}
+```csharp
+Port.Add<SensorClient>("mqtt_sensor");
+Port.Run();
+```
 
-| QoS Level | Guarantee | Description |
-|-----------|-----------|-------------|
-| **QoS 0** | At most once | No delivery guarantee, possible message loss |
-| **QoS 1** | At least once | Guaranteed delivery, possible duplication |
+### Broker Mode (embedded broker)
+
+```csharp
+[MQTTHandler]
+public class EmbeddedBroker
+{
+    [MQTTHandlerProp]
+    public IMQTTHandler handler { get; set; } = null!;
+
+    [Preset]
+    private void Preset()
+    {
+        handler.SetMode(MqttMode.Broker);
+        handler.SetBrokerAddress("0.0.0.0:1883");
+        handler.SetUsers("[{\"name\":\"admin\",\"password\":\"admin\"}]");
+        handler.SetAllowRemotes("192.168.1.0/24", "10.0.0.100");
+        handler.SetUseMqttProtocol(true);   // true = native MQTT/TCP, false = WebSocket
+
+        handler.OnEvent += OnEvent;
+    }
+
+    private void OnEvent(string name, string eventType, string description)
+        => Console.WriteLine($"[{name}] {eventType}: {description}");
+}
+```
+
+```csharp
+Port.Add<EmbeddedBroker>("mqtt_broker");
+Port.Run();
+```
+
+---
+
+## Multiple Connections
+
+Each registration creates its own independent MQTT handler:
+
+```csharp
+Port.Add<LocalBrokerClient>("mqtt_local");
+Port.Add<CloudBrokerClient>("mqtt_cloud");
+Port.Run();
+```
+
+---
+
+## Publish and Subscribe
+
+```csharp
+// Subscribe to a topic
+handler.Subscribe("equipment/status");
+handler.Subscribe("sensor/#", qos: 1);     // wildcard, QoS 1
+
+// Publish a message
+handler.Publish("equipment/status", "online");
+handler.Publish("sensor/temp", "25.3", qos: 1, retain: true);
+
+// Unsubscribe
+handler.Unsubscribe("sensor/#");
+
+// Disconnect
+handler.Close();
+```
+
+---
+
+## QoS Levels
+
+| Level | Guarantee | Description |
+|-------|-----------|-------------|
+| **QoS 0** | At most once | No delivery guarantee; possible message loss |
+| **QoS 1** | At least once | Guaranteed delivery; possible duplication |
 | **QoS 2** | Exactly once | Guaranteed delivery without duplication |
 
-### MQTT Configuration {#mqtt-configuration}
+---
 
-#### Connection Settings {#mqtt-connection-settings}
+## API Reference
 
-**Broker Details:**
-- **Host**: `127.0.0.1`
-- **Port**: `8080`
-- **Username**: `admin`
-- **Password**: `admin`
+### Attributes
 
-!!! note "Connection Credentials"
-    Use the default credentials for local MQTT broker access.
+| Attribute | Target | Description |
+|-----------|--------|-------------|
+| `[MQTTHandler]` | Class | Marks the class as an MQTT handler container |
+| `[MQTTHandlerProp]` | Property | Injects the `IMQTTHandler` instance |
+| `[Preset]` | Method | Called before `Open()` to configure the handler |
 
-### MQTT Explorer Setup {#mqtt-explorer-setup}
+### Mode
 
-#### Publication Configuration {#mqtt-publication-config}
+| Method | Description |
+|--------|-------------|
+| `SetMode(MqttMode mode)` | Select `Client` (default) or `Broker` mode |
 
-Create publication files in your project directory:
+### Client Configuration
 
-**File Path:** `../sample/app/mqtt/room1.pub`
-**Relative Path:** `app/mqtt/room1.pub`
+| Method | Default | Description |
+|--------|---------|-------------|
+| `SetHost(string host)` | `"127.0.0.1"` | Broker address |
+| `SetPort(int port)` | `1883` | Broker port |
+| `SetClientId(string clientId)` | registration key | MQTT client ID |
+| `SetUsername(string username)` | — | Broker authentication username |
+| `SetPassword(string password)` | — | Broker authentication password |
+| `SetKeepAlive(int seconds)` | `60` | Keep-alive interval in seconds |
+| `SetCleanSession(bool)` | `true` | Discard previous session state on connect |
 
-**File Content:**
+### Broker Configuration
+
+| Method | Default | Description |
+|--------|---------|-------------|
+| `SetBrokerAddress(string address)` | `"127.0.0.1:1883"` | Listen address in `host:port` format |
+| `SetUsers(string usersJson)` | admin/admin | Authorized users as JSON array |
+| `SetAllowRemotes(params string[] remotes)` | `["127.0.0.1"]` | Allowed IPs, hostnames, or CIDR ranges |
+| `SetUseMqttProtocol(bool)` | `true` | `true` = native MQTT/TCP; `false` = WebSocket |
+
+#### `SetUsers` JSON Format
+
+```json
+[{"name":"admin","password":"admin123"},{"name":"sensor01","password":"pass"}]
 ```
-room1 RoomTemp1  // [group-name] [message-name]
-room2 RoomTemp1
-```
 
-#### MQTT Explorer Installation {#mqtt-explorer-installation}
+#### Transport Modes
 
-!!! tip "Download MQTT Explorer"
-    [MQTT Explorer Download](https://mqtt-explorer.com/)
+| `SetUseMqttProtocol` | Transport | Typical Port | Use Case |
+|----------------------|-----------|--------------|----------|
+| `true` | Native MQTT over TCP | 1883 / 8883 | MQTT clients, edge devices |
+| `false` | MQTT over WebSocket | 8080 | Browser-based clients, dashboards |
 
-#### Explorer Configuration {#mqtt-explorer-configuration}
+### Connection
 
-![MQTT Explorer Login](img/mosquitto_login.png)
+| Method | Returns | Description |
+|--------|---------|-------------|
+| `Open()` | `ERROR_CODE` | Connect to the broker or start the embedded broker |
+| `Close()` | `ERROR_CODE` | Disconnect or stop the embedded broker |
+| `IsConnected` | `bool` | `true` if currently connected (Client mode) |
 
-Configure the MQTT Explorer with your broker settings for real-time message monitoring.
+### Publish / Subscribe
 
-#### Live Monitoring {#mqtt-live-monitoring}
+| Method | Returns | Description |
+|--------|---------|-------------|
+| `Publish(topic, payload, qos, retain)` | `int` | Publish a message. Returns `0` on success |
+| `Subscribe(topic, qos)` | `int` | Subscribe to a topic filter. Returns `0` on success |
+| `Unsubscribe(topic)` | `int` | Unsubscribe from a topic. Returns `0` on success |
 
-![MQTT Live View](img/mqtt_view.gif)
+### Logging
 
-Monitor real-time MQTT message flow and topic activity through the graphical interface.
+| Method | Description |
+|--------|-------------|
+| `SetLogger(string rootPath)` | Enable hourly-rotated log files. Format: `mqtt_{name}_{date}_{hour}.log` |
+| `WriteLog(string message)` | Write a custom entry to the log file |
 
-### MQTT Integration Benefits {#mqtt-benefits}
+---
 
-- **Lightweight Protocol**: Minimal bandwidth usage for IoT applications
-- **Real-time Communication**: Instant message delivery and updates
-- **Scalable Architecture**: Support for numerous connected devices
-- **Reliable Messaging**: QoS levels ensure appropriate delivery guarantees
-- **Flexible Topics**: Hierarchical topic structure for organized messaging 
+## Events
 
+### `OnMessageReceived`
 
+Fired when a message arrives on a subscribed topic (Client mode).
 
-
-1. React MQTT & Sparkplug B 프로젝트를 위한 Cursor Rules
-Markdown
-
-# Smart Farm React MQTT Project Rules
-
-You are an expert React and IIoT developer specializing in MQTT, Sparkplug B, and browser-based data persistence.
-
-## 1. Tech Stack Prefereces
-- Framework: React (Vite)
-- Language: TypeScript (Strict mode)
-- MQTT Library: `mqtt` (MQTT.js)
-- Sparkplug B: `sparkplug-payload` for decoding/encoding.
-- Persistence: `dexie` (IndexedDB wrapper)
-- State Management: React Context API for Singleton MQTT instance and `dexie-react-hooks` for DB-to-UI binding.
-
-## 2. Core Architecture Rules
-- **Connection Management:** Always maintain a single MQTT connection using a Context Provider (`MqttProvider`). Prevent multiple connections on re-renders.
-- **Protocol:** Use `wss://` for production and `ws://` for development. Never use `mqtt://` in browser environments.
-- **Data Flow:**
-    1. Receive Binary Message (MQTT)
-    2. Decode via `sparkplug-payload`
-    3. Store in IndexedDB (Dexie)
-    4. UI subscribes to Dexie via `useLiveQuery`.
-    *Do not store high-frequency raw telemetry in React useState directly to avoid performance bottlenecks.*
-
-## 3. Sparkplug B Topic & Payload Standards
-- Topic Structure: `spBv1.0/{group_id}/{message_type}/{edge_node_id}/{device_id}`
-- Message Types to handle: `NBIRTH`, `DBIRTH`, `NDATA`, `DDATA`, `NDEATH`.
-- Payload: Always handle `metrics` as an array. Map `alias` to `name` using a metadata store in Dexie.
-
-## 4. Coding Standards
-- Use Functional Components and Hooks.
-- Create custom hooks for specific logic (e.g., `useMqttControl` for publishing, `useTelemetry` for reading DB).
-- Error Handling: Use try-catch blocks for `JSON.parse` and `decodePayload`.
-- Performance: Use `React.memo` for dashboard widgets to prevent unnecessary re-renders when other sensors update.
-
-## 5. IndexedDB (Dexie) Schema
-- Store telemetry with a TTL (Time-To-Live).
-- Indexes: `++id`, `groupId`, `nodeId`, `name`, `timestamp`.
-2. 이 가이드를 적용했을 때 Cursor가 생성할 코드 패턴
-위 규칙이 설정되면 Cursor는 다음과 같은 코드를 우선적으로 작성하게 됩니다.
-
-A. 최적화된 데이터 수신 및 저장 로직
-Cursor에게 **"MQTT 메시지 수신부 작성해줘"**라고 요청하면:
-
-TypeScript
-
-// AI가 규칙에 따라 Dexie와 Sparkplug B를 결합한 코드를 생성함
-client.on('message', async (topic: string, payload: Buffer) => {
-  try {
-    const decoded = decodePayload(payload);
-    const { groupId, nodeId, deviceId } = parseSpBTopic(topic);
-
-    const entries = decoded.metrics.map(m => ({
-      groupId,
-      nodeId,
-      deviceId,
-      name: m.name,
-      value: m.value,
-      timestamp: m.timestamp?.toNumber() || Date.now(),
-    }));
-
-    await db.telemetry.bulkAdd(entries);
-  } catch (err) {
-    console.error('SpB Decoding Error:', err);
-  }
-});
-B. 효율적인 UI 연동 (Dexie Hook)
-Cursor에게 **"온도 센서 실시간 차트 컴포넌트 만들어줘"**라고 요청하면:
-
-TypeScript
-
-// useState가 아닌 useLiveQuery를 사용하는 최적화된 코드를 생성함
-export const TempChart = () => {
-  const data = useLiveQuery(() => 
-    db.telemetry
-      .where('name').equals('Temperature')
-      .reverse()
-      .limit(50)
-      .toArray()
-  );
-
-  return <LineChart data={data} />;
+```csharp
+handler.OnMessageReceived += (string name, string topic, string payload, int qos) =>
+{
+    Console.WriteLine($"[{name}] {topic}: {payload}");
 };
-3. Cursor 활용 팁 (Prompting)
-규칙을 설정한 후, 실제 개발 시 다음과 같이 명령하면 효과적입니다.
+```
 
-구조 설계 시: "Sparkplug B 표준을 따르는 MqttProvider를 만들어줘. sparkplug-payload로 디코딩하고 결과를 Dexie에 저장하는 로직을 포함해."
+| Parameter | Description |
+|-----------|-------------|
+| `name` | Client registration key |
+| `topic` | Topic the message was published on |
+| `payload` | Message payload as a UTF-8 string |
+| `qos` | QoS level (0, 1, or 2) |
 
-성능 최적화 요청 시: "데이터가 초당 10번 이상 들어올 때 UI 버벅임을 방지하도록 useLiveQuery와 React.memo를 적용해서 컴포넌트를 수정해줘."
+### `OnEvent`
 
-데이터 관리 요청 시: "IndexedDB에 24시간이 지난 데이터를 자동으로 삭제하는 Web Worker 또는 useEffect 스케줄러를 작성해줘."
+Fired on connection state changes and errors.
 
-이 가이드라인(.cursorrules)을 적용하면 Cursor AI가 사용자의 의도를 훨씬 정확히 파악하여 스마트팜의 복잡한 데이터 스트림을 안정적으로 처리하는 React 앱을 설계해 줄 것입니다.
+```csharp
+handler.OnEvent += (string name, string eventType, string description) =>
+{
+    Console.WriteLine($"[{name}] {eventType}: {description}");
+};
+```
+
+| `eventType` | Triggered When |
+|-------------|----------------|
+| `CONNECTED` | Connected to the broker / broker started |
+| `DISCONNECTED` | Disconnected / broker stopped |
+| `SUBSCRIBED` | Topic subscription confirmed |
+| `UNSUBSCRIBED` | Topic unsubscription confirmed |
+| `PUBLISHED` | Message published successfully |
+| `ERROR` | Error occurred (`description` contains detail) |
+
+---
+
+## Error Codes
+
+| Code | Value | Meaning |
+|------|-------|---------|
+| `ERR_CODE_NO_ERROR` | `1` | Success |
+| `ERR_CODE_OPEN` | `-1` | Open/connect failed |
+| `ERR_CODE_DLL_NOT_LOADED` | `-2` | `portmqttclient.dll` / `portmqtt.dll` not loaded |
+| `ERR_CODE_PORTNAME_EMPTY` | `-3` | Name not set |
+| `ERR_CODE_DLL_FUNC_NOT_CONFIRM` | `-4` | Required DLL function unavailable |
+| `ERR_CODE_CONNECT_FAILED` | `-5` | Connection attempt failed |
+
+---
+
+## Related
+
+- [RTSP](rtsp) — Real-time video streaming
+- [SECS/GEM](secs) — Semiconductor equipment protocol
+- [TCP](tcp) — Raw TCP client/server communication

@@ -1,0 +1,18 @@
+{
+  "version.label": {
+    "message": "최신",
+    "description": "The label for version current"
+  },
+  "sidebar.mainSidebar.category.Documentation": {
+    "message": "문서",
+    "description": "The label for category 'Documentation' in sidebar 'mainSidebar'"
+  },
+  "sidebar.mainSidebar.category.Protocols": {
+    "message": "프로토콜",
+    "description": "The label for category 'Protocols' in sidebar 'mainSidebar'"
+  },
+  "sidebar.mainSidebar.category.More": {
+    "message": "더 보기",
+    "description": "The label for category 'More' in sidebar 'mainSidebar'"
+  }
+}

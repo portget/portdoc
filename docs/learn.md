@@ -77,17 +77,14 @@ Categorys serve as logical containers for related messages. Each group can conta
 #### Sample Project Structure {#sample-project-structure}
 
 ![Project Structure](img/expl.png)
-
-**Download Sample:**
-[Download Sample Project](file/sample.zip)
-
+ 
 ## Entry System
 
 ### Entry Definition Syntax {#message-syntax}
 
 Messages are the core communication units in Port. Each message is defined using a specific syntax:
 
-```
+```text
 [key] [datatype] [option...]
 ```
 
@@ -101,11 +98,12 @@ Messages are the core communication units in Port. Each message is defined using
 
 ### Data Types {#data-types}
 
-Port supports three primary data types for message definitions:
+Port supports four primary data types for message definitions:
 
 | Name | Range | Description |
 |------|-------|-------------|
-| **char** | `0~255` | Fixed-length string type with maximum 255 characters for text storage |
+| **char** | `0~255` | Fixed-length ASCII string type with maximum 255 characters |
+| **string** | up to 255 bytes | Variable-length UTF-8 string |
 | **num** | `-1.7e+308 ~ +1.7e+308` | Floating-point type supporting wide range of decimal values |
 | **enum** | `0 ~ 65535` | User-defined fixed list from `.enum` files with efficient storage |
 
@@ -126,7 +124,7 @@ Attributes provide additional functionality and behavior for messages:
 
 ### Entry Examples {#message-examples}
 
-```
+```text
 BulbOnOff     enum.OffOn  pkg:Bulb1.OffOn
 RoomTemp1     num         pkg:Heater1.Temp  property:{"MIN":0,"MAX":300,"Arguments":"C"}
 RoomTemp2     num         pkg:Heater1.Temp  property:{"MIN":0,"MAX":300,"Arguments":"F"}
@@ -147,7 +145,7 @@ RoomTemp2     num         pkg:Heater1.Temp  property:{"MIN":0,"MAX":300,"Argumen
 Enums provide a way to define fixed sets of named values, improving code readability and reducing errors.
 
 **Format:**
-```
+```text
 [key] [item-name:number_key] [item-name:number_key] ...
 ```
 
@@ -172,7 +170,7 @@ Enums are particularly useful for:
 
 ### Enum Examples {#enum-examples}
 
-```
+```text
 TFalse      True:0      False:1
 FTrue       False:0     True:1
 OffOn       Off:0       On:1

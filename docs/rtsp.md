@@ -1,186 +1,253 @@
-# RTSP Protocol
-
-## Table of Contents
-1. [Overview](#overview)
-2. [Quick Link](#quick-link)
-3. [Key Features](#key-features)
-4. [Communication Model](#communication-model)
-5. [RTSP Methods](#rtsp-methods)
-6. [Transport Protocols](#transport-protocols)
-7. [Media Types](#media-types)
-8. [Session States](#session-states)
-9. [Response Codes](#response-codes)
-10. [Header Fields](#header-fields)
-11. [Common Use Cases](#common-use-cases)
+# RTSP
 
 ## Overview
 
-RTSP (Real Time Streaming Protocol) is a network protocol designed for controlling and delivering real-time multimedia content. It is used for establishing and controlling media sessions between endpoints, commonly used in video streaming applications, IP cameras, and live broadcasting systems.
+PortDIC supports RTSP (Real Time Streaming Protocol) through the handler pattern.
+Each `[RTSP]` class gets its own independent RTSP connection, and the operating mode
+(`Client` or `Server`) is selected by calling `SetMode` in the `[Preset]` method.
 
-## **Quick link** {#quick-link}
+| Mode | Description |
+|------|-------------|
+| `RtspMode.Client` | Connect to a remote RTSP source (default) |
+| `RtspMode.Server` | Start an RTSP relay server that re-streams to downstream clients |
 
-**Related Protocols:** [SECS/GEM](secs.md) | [Modbus](modbus.md) | [EtherNet/IP](ethernetip.md) | [OPC UA](opcua.md)
+---
 
-### Key Features
+## Quick Start
 
-- **Real-time Control**: Provides real-time control over media streams
-- **Session Management**: Establishes and manages streaming sessions
-- **Transport Independence**: Works over various transport protocols (TCP, UDP)
-- **Media Control**: Supports play, pause, stop, and seek operations
-- **Scalability**: Supports multiple concurrent sessions
-- **Interoperability**: Standard protocol supported by various vendors
+### Client Mode (connect to a camera)
 
-### Communication Model
+```csharp
+using Portdic;
+using Portdic.RTSP;
 
-| Model | Description | Use Case |
-|-------|-------------|----------|
-| **Client-Server** | Traditional request-response model | Media streaming control |
-| **Session-based** | Maintains session state | Continuous media control |
-| **Stateless** | Each request is independent | Simple control operations |
+[RTSP]
+public class CameraStream
+{
+    [RTSPHandler]
+    public IRTSPHandler handler { get; set; } = null!;
 
-### RTSP Methods
+    [Preset]
+    private void Preset()
+    {
+        handler.SetMode(RtspMode.Client);
+        handler.SetUrl("rtsp://192.168.1.100:554/stream1");
+        handler.SetOnDemand(true);
+        handler.SetAudio(true);
 
-| Method | Description | Purpose |
-|--------|-------------|---------|
-| **DESCRIBE** | Get media description | Retrieve stream information |
-| **ANNOUNCE** | Announce media description | Server announces available streams |
-| **GET_PARAMETER** | Get parameter values | Retrieve session parameters |
-| **OPTIONS** | Get supported methods | Discover server capabilities |
-| **PAUSE** | Pause media stream | Temporarily stop playback |
-| **PLAY** | Start media stream | Begin media playback |
-| **RECORD** | Start recording | Begin media recording |
-| **REDIRECT** | Redirect to another server | Load balancing, failover |
-| **SETUP** | Establish media session | Prepare for streaming |
-| **SET_PARAMETER** | Set parameter values | Configure session parameters |
-| **TEARDOWN** | End media session | Terminate streaming session |
+        handler.OnEvent += OnEvent;
+    }
 
-### Transport Protocols
+    private void OnEvent(string name, string eventType, string description)
+        => Console.WriteLine($"[{name}] {eventType}: {description}");
+}
+```
 
-| Protocol | Description | Characteristics |
-|----------|-------------|----------------|
-| **RTP** | Real-time Transport Protocol | Media data delivery |
-| **RTCP** | RTP Control Protocol | Quality feedback |
-| **TCP** | Transmission Control Protocol | Reliable control channel |
-| **UDP** | User Datagram Protocol | Fast data delivery |
+```csharp
+Port.Add<CameraStream>("camera_01");
+Port.Run();
+```
 
-### Media Types
+### Server Mode (relay / re-streaming)
 
-| Type | Description | Format |
-|------|-------------|--------|
-| **Video** | Moving images | H.264, H.265, MPEG-4 |
-| **Audio** | Sound data | AAC, MP3, PCM |
-| **Text** | Subtitle data | SRT, VTT |
-| **Metadata** | Stream information | XML, JSON |
+```csharp
+[RTSP]
+public class RtspRelay
+{
+    [RTSPHandler]
+    public IRTSPHandler handler { get; set; } = null!;
 
-### Session States
+    [Preset]
+    private void Preset()
+    {
+        handler.SetMode(RtspMode.Server);
+        handler.SetHost("0.0.0.0");   // bind all interfaces
+        handler.SetPort(8554);        // listen on this port
+        handler.SetOnDemand(true);
+        handler.SetAudio(true);
 
-| State | Description | Actions |
-|-------|-------------|---------|
-| **INIT** | Initial state | Session creation |
-| **READY** | Ready to stream | Setup complete |
-| **PLAYING** | Active streaming | Media delivery |
-| **PAUSED** | Temporarily stopped | Stream paused |
-| **RECORDING** | Active recording | Media capture |
-| **TEARDOWN** | Session ending | Cleanup |
+        handler.OnEvent += OnEvent;
+    }
 
-### Response Codes
+    private void OnEvent(string name, string eventType, string description)
+        => Console.WriteLine($"[{name}] {eventType}: {description}");
+}
+```
 
-| Code | Description | Category |
-|------|-------------|----------|
-| **100** | Continue | Informational |
-| **200** | OK | Success |
-| **201** | Created | Success |
-| **250** | Low on Storage Space | Success |
-| **300** | Multiple Choices | Redirection |
-| **301** | Moved Permanently | Redirection |
-| **302** | Moved Temporarily | Redirection |
-| **303** | See Other | Redirection |
-| **305** | Use Proxy | Redirection |
-| **400** | Bad Request | Client Error |
-| **401** | Unauthorized | Client Error |
-| **402** | Payment Required | Client Error |
-| **403** | Forbidden | Client Error |
-| **404** | Not Found | Client Error |
-| **405** | Method Not Allowed | Client Error |
-| **406** | Not Acceptable | Client Error |
-| **407** | Proxy Authentication Required | Client Error |
-| **408** | Request Timeout | Client Error |
-| **410** | Gone | Client Error |
-| **411** | Length Required | Client Error |
-| **412** | Precondition Failed | Client Error |
-| **413** | Request Entity Too Large | Client Error |
-| **414** | Request-URI Too Large | Client Error |
-| **415** | Unsupported Media Type | Client Error |
-| **451** | Parameter Not Understood | Client Error |
-| **452** | Conference Not Found | Client Error |
-| **453** | Not Enough Bandwidth | Client Error |
-| **454** | Session Not Found | Client Error |
-| **455** | Method Not Valid in This State | Client Error |
-| **456** | Header Field Not Valid for Resource | Client Error |
-| **457** | Invalid Range | Client Error |
-| **458** | Parameter Is Read-Only | Client Error |
-| **459** | Aggregate Operation Not Allowed | Client Error |
-| **460** | Only Aggregate Operation Allowed | Client Error |
-| **461** | Unsupported Transport | Client Error |
-| **462** | Destination Unreachable | Client Error |
-| **463** | Key Management Failure | Client Error |
-| **500** | Internal Server Error | Server Error |
-| **501** | Not Implemented | Server Error |
-| **502** | Bad Gateway | Server Error |
-| **503** | Service Unavailable | Server Error |
-| **504** | Gateway Timeout | Server Error |
-| **505** | RTSP Version Not Supported | Server Error |
-| **551** | Option Not Supported | Server Error |
+```csharp
+Port.Add<RtspRelay>("relay_01");
+Port.Run();
+```
 
-### Header Fields
+---
 
-| Header | Description | Usage |
-|--------|-------------|-------|
-| **Accept** | Acceptable media types | Client preferences |
-| **Accept-Encoding** | Acceptable encodings | Compression support |
-| **Accept-Language** | Acceptable languages | Localization |
-| **Authorization** | Authentication credentials | Security |
-| **Bandwidth** | Available bandwidth | QoS control |
-| **Blocksize** | Maximum block size | Data transfer |
-| **Cache-Control** | Caching directives | Performance |
-| **Conference** | Conference identifier | Multi-party sessions |
-| **Connection** | Connection management | Transport control |
-| **Content-Base** | Base URI for content | Resource location |
-| **Content-Encoding** | Content encoding | Compression |
-| **Content-Language** | Content language | Localization |
-| **Content-Length** | Content length | Data size |
-| **Content-Location** | Content location | Resource location |
-| **Content-Type** | Content type | Media format |
-| **CSeq** | Command sequence | Message ordering |
-| **Date** | Message date | Timestamp |
-| **Expires** | Expiration time | Caching |
-| **From** | Request originator | Identification |
-| **If-Modified-Since** | Conditional request | Caching |
-| **Last-Modified** | Last modification | Caching |
-| **Proxy-Authenticate** | Proxy authentication | Security |
-| **Proxy-Require** | Proxy requirements | Features |
-| **Public** | Supported methods | Capabilities |
-| **Range** | Byte range | Partial content |
-| **Referer** | Referrer URI | Navigation |
-| **Require** | Required features | Capabilities |
-| **Retry-After** | Retry delay | Error handling |
-| **RTP-Info** | RTP information | Media control |
-| **Scale** | Playback speed | Media control |
-| **Session** | Session identifier | Session management |
-| **Speed** | Playback speed | Media control |
-| **Transport** | Transport parameters | Media delivery |
-| **Unsupported** | Unsupported features | Error reporting |
-| **User-Agent** | Client identifier | Identification |
-| **Via** | Proxy chain | Routing |
-| **WWW-Authenticate** | Authentication challenge | Security |
+## Multiple Streams
 
-### Common Use Cases
+Each registration creates its own independent RTSP handler:
 
-| Use Case | Description | Implementation |
-|----------|-------------|----------------|
-| **Live Streaming** | Real-time video broadcast | RTSP + RTP |
-| **Video on Demand** | Pre-recorded content delivery | RTSP + RTP |
-| **IP Camera** | Security camera streaming | RTSP + RTP |
-| **Video Conferencing** | Multi-party communication | RTSP + RTP |
-| **Media Server** | Centralized content delivery | RTSP + RTP |
-| **Mobile Streaming** | Mobile device streaming | RTSP + RTP |
+```csharp
+Port.Add<CameraEntrance>("cam_entrance");
+Port.Add<CameraWarehouse>("cam_warehouse");
+Port.Run();
+```
+
+```csharp
+[RTSP]
+public class CameraEntrance
+{
+    [RTSPHandler]
+    public IRTSPHandler handler { get; set; } = null!;
+
+    [Preset]
+    private void Preset()
+    {
+        handler.SetMode(RtspMode.Client);
+        handler.SetUrl("rtsp://10.0.0.10:554/ch0");
+        handler.SetOnDemand(false);
+        handler.OnEvent += OnEvent;
+    }
+
+    private void OnEvent(string name, string eventType, string description)
+        => Console.WriteLine($"[Entrance] {eventType}: {description}");
+}
+
+[RTSP]
+public class CameraWarehouse
+{
+    [RTSPHandler]
+    public IRTSPHandler handler { get; set; } = null!;
+
+    [Preset]
+    private void Preset()
+    {
+        handler.SetMode(RtspMode.Client);
+        handler.SetUrl("rtsp://10.0.0.11:554/ch0");
+        handler.SetOnDemand(false);
+        handler.SetAudio(false);
+        handler.OnEvent += OnEvent;
+    }
+
+    private void OnEvent(string name, string eventType, string description)
+        => Console.WriteLine($"[Warehouse] {eventType}: {description}");
+}
+```
+
+---
+
+## Explicit Open / Close
+
+```csharp
+// Open the stream (or start the server)
+ERROR_CODE code = handler.Open();
+if (code != ERROR_CODE.ERR_CODE_NO_ERROR)
+    Console.WriteLine($"RTSP open failed: {code}");
+
+// Check connection / server state
+Console.WriteLine(handler.IsConnected);   // true / false
+
+// Close
+handler.Close();
+```
+
+---
+
+## API Reference
+
+### Attributes
+
+| Attribute | Target | Description |
+|-----------|--------|-------------|
+| `[RTSP]` | Class | Marks the class as an RTSP handler container |
+| `[RTSPHandler]` | Property | Injects the `IRTSPHandler` instance |
+| `[Preset]` | Method | Called before `Open()` to configure the handler |
+
+### Mode
+
+| Method | Description |
+|--------|-------------|
+| `SetMode(RtspMode mode)` | Select `Client` (default) or `Server` mode |
+
+### Client Configuration
+
+| Method | Description |
+|--------|-------------|
+| `SetUrl(string url)` | RTSP stream URL (e.g., `rtsp://192.168.1.100:554/stream`) |
+| `SetOnDemand(bool)` | Stream only on demand (`true`) or continuously (`false`) |
+| `SetAudio(bool)` | Include audio track. Default: `true` |
+| `SetDebug(bool)` | Enable verbose RTSP debug output. Default: `false` |
+
+### Server Configuration
+
+| Method | Default | Description |
+|--------|---------|-------------|
+| `SetHost(string host)` | `"0.0.0.0"` | Bind address for server mode |
+| `SetPort(int port)` | `8554` | Listen port for server mode |
+| `SetStreamName(string name)` | — | Logical stream name for logging |
+
+### Connection
+
+| Method | Returns | Description |
+|--------|---------|-------------|
+| `Open()` | `ERROR_CODE` | Connect to source or start the relay server |
+| `Close()` | `ERROR_CODE` | Disconnect or stop the relay server |
+| `IsConnected` | `bool` | `true` if connected / server is running |
+
+### Logging
+
+| Method | Description |
+|--------|-------------|
+| `SetLogger(string rootPath)` | Enable hourly-rotated log files. Format: `rtsp_{name}_{date}_{hour}.log` |
+| `WriteLog(string message)` | Write a custom entry to the log file |
+
+---
+
+## Events
+
+### `OnEvent`
+
+Fired on connection state changes and errors.
+
+```csharp
+handler.OnEvent += (string name, string eventType, string description) =>
+{
+    Console.WriteLine($"[{name}] {eventType}: {description}");
+};
+```
+
+| `eventType` | Triggered When |
+|-------------|----------------|
+| `CONNECTED` | Client connected / server started |
+| `DISCONNECTED` | Client disconnected / server stopped |
+| `ERROR` | Error occurred (`description` contains detail) |
+
+---
+
+## RTSP URL Formats
+
+| Scenario | URL Example |
+|----------|-------------|
+| Anonymous access | `rtsp://192.168.1.100:554/stream` |
+| Username + password | `rtsp://admin:password@192.168.1.50:554/h264` |
+| Custom path | `rtsp://camera.company.com:554/live/main` |
+| Default RTSP port (554) | `rtsp://10.0.0.5/channel1` |
+
+---
+
+## Error Codes
+
+| Code | Value | Meaning |
+|------|-------|---------|
+| `ERR_CODE_NO_ERROR` | `1` | Success |
+| `ERR_CODE_OPEN` | `-1` | Open failed |
+| `ERR_CODE_DLL_NOT_LOADED` | `-2` | `portrtsp.dll` not loaded |
+| `ERR_CODE_PORTNAME_EMPTY` | `-3` | Stream name not set |
+| `ERR_CODE_DLL_FUNC_NOT_CONFIRM` | `-4` | Required DLL function unavailable |
+| `ERR_CODE_CONNECT_FAILED` | `-5` | Connection attempt failed |
+
+---
+
+## Related
+
+- [MQTT](mqtt) — Lightweight pub/sub messaging for IoT
+- [SECS/GEM](secs) — Semiconductor equipment protocol
+- [TCP](tcp) — Raw TCP client/server communication

@@ -14,20 +14,20 @@ _________________
 #### Create a Message Document  
  
 [../AZone/sample1.msg]
-```TEXT 
+```text
     DevAPowerStatus    enum.DeviceAStatus   api:DeviceA.GetStatus       frame:HTS1.PowerStatus 
 ...
 ``` 
 
 
 [../BZone/sample1.msg]
-```TEXT
+```text
     DevAPowerStatus    enum.DeviceAStatus   api:DeviceA.GetStatus       frame:HTS2.PowerStatus
 ...
 ``` 
 
 #### Create a RelationObject   
-```C#
+```csharp
  public class HeatingScenario : ScenarioRelationService
  {   
     ...
@@ -51,7 +51,7 @@ _________________
 ```
 
 #### Command 
-```
+```bash
 port add --scenario heating1 /HeatingLib/HeatingLib.dll
 port add --scenario heating2 /HeatingLib/HeatingLib.dll
 ```

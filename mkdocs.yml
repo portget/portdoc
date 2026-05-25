@@ -4,6 +4,8 @@ nav:
   - Home: index.md
   - Getting Started: quick.md
   - Documentation:
+    # - What's PortSDK?: sdk.md
+    # - What's PortDic: portdic.md
     - Attribute: attribute.md
     - Commands: commands.md
     - Remote Access: remote.md

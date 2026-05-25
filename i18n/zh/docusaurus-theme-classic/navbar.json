@@ -1,0 +1,22 @@
+{
+  "title": {
+    "message": "PortDIC",
+    "description": "The title in the navbar"
+  },
+  "logo.alt": {
+    "message": "PortDIC 标志",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.Docs": {
+    "message": "文档",
+    "description": "Navbar item with label Docs"
+  },
+  "item.label.Download": {
+    "message": "下载",
+    "description": "Navbar item with label Download"
+  },
+  "item.label.VSCode Extension": {
+    "message": "VSCode 扩展",
+    "description": "Navbar item with label VSCode Extension"
+  }
+}

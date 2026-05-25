@@ -31,16 +31,16 @@ or defined directly in C# using the `[Page]` attribute.
 |-------|----------|-------------|
 | `EntryKey` | ✅ | Unique identifier for the entry |
 | `DataType` | ✅ | Data type (`f8`, `Enum.OnOff`, `char`, etc.) |
-| `pkg:` | optional | Package to bind to |
-| `property:` | optional | Hardware mapping info (JSON) |
+| `pkg` | optional | Package API to bind |
+| `property` | optional | Per-entry user property (JSON) |
 
 **Example (`io.page`):**
 
 ```text
-Bulb1OnOff    Enum.OnOff  property:{"IO.No":"D0.01","Model":"IODevice"}
-Bulb2OnOff    Enum.OnOff  property:{"IO.No":"D0.02","Model":"IODevice"}
-Bulb1Temp     f8          property:{"IO.No":"A0.01","Model":"IODevice"}
-Bulb2Temp     f8          property:{"IO.No":"A0.02","Model":"IODevice"}
+Bulb1OnOff  Enum.OnOff pkg:IODevice.DI property:{"IO.No":"D0.01","Model":"IODevice"}
+Bulb2OnOff  Enum.OnOff pkg:IODevice.DI property:{"IO.No":"D0.02","Model":"IODevice"}
+Bulb1Temp   f8         pkg:IODevice.AI property:{"IO.No":"A0.01","Model":"IODevice"}
+Bulb2Temp   f8         pkg:IODevice.AI property:{"IO.No":"A0.02","Model":"IODevice"}
 ```
 
 #### Entry Structure
@@ -59,7 +59,8 @@ An **Entry** is the smallest data unit in the Port system. Each entry has:
 | `f4` / `f8` | Floating point (4 / 8 bytes) |
 | `i1` ~ `i8` | Signed integer |
 | `u1` ~ `u8` | Unsigned integer |
-| `char` | ASCII string |
+| `A(n)` | ASCII n characters |
+| `string` | Variable-length UTF-8 string (max 255 bytes) |
 | `Enum.XXX` | Enumeration referencing a pre-defined enum |
 | `bool` | Boolean |
 
@@ -140,7 +141,7 @@ namespace sample
 
 ---
 
-### 1.4 Inline Entry Definitions with `[Page]`
+### 1.4 Inline Entry Definitions with Page
 
 For entries that don't come from an external document (e.g. EFEM I/O signals),
 define them directly in a C# class decorated with `[Page]`.
@@ -321,7 +322,7 @@ A **Model** is the **data-binding layer** that connects Port Entries to C# prope
 
 ### 2.2 Relationship Between Model and Page
 
-```
+```text
 .page file (Entry definitions)
     ↓  Push
 Port in-memory DB (Entry values)
@@ -421,7 +422,7 @@ public class BulbController
     [Flow("BulbOn")]
     public class BulbOn
     {
-        [FlowHandler]
+        [Handler]
         public IFlowHandler handler { get; set; } = null!;
 
         [FlowStep(0)] // Validation Step
@@ -466,20 +467,55 @@ Port.Set("Bulb1", FlowAction.Canceled);    // Cancel
 initialization style. Decorate your application class with `[Port]` to declare the
 repository name and pull path, then call `Port.App<T>()` before any other Port API.
 
-```csharp
-[Port("sample")]
-public class SampleApp { }
-
-// In startup (e.g. constructor or Program.cs) — must be called first
-Port.App<SampleApp>();
-```
-
 `Port.App<T>()` reads the `[Port]` attribute on `T`, creates the repository via
 `Port.Repository.New(pullPath, reponame)`, and starts the `PortDic` instance.
 All subsequent `Port.Push`, `Port.Pull`, and `Port.Repository.Load` calls depend on
 this initialization being completed.
 
-#### Full Startup Example
+#### Overloads
+
+| Signature | Description |
+|-----------|-------------|
+| `Port.App<T>()` | Initializes the Port. Subscribe to `Port.OnReady` separately to run code when ready. |
+| `Port.App<T>(Action onReady)` | Initializes the Port **and** registers `onReady` to fire automatically when the port reaches the `Synchronized` state. No manual `Port.OnReady +=` needed. |
+
+#### Compact Form — `Port.App<T>(Action onReady)`
+
+Pass the UI initialization callback directly to `Port.App<T>()`.
+The callback is invoked automatically on `Synchronized`, so there is no need to subscribe to `Port.OnReady` separately.
+
+```csharp
+[Port("sample")]
+public partial class MainWindow : Window
+{
+    public MainWindow()
+    {
+        InitializeComponent();
+        try
+        {
+            Port.App<MainWindow>(() => Dispatcher.Invoke(() =>
+            {
+                // Runs automatically when Port reaches Synchronized state
+                vm.StartPolling();
+                RefreshDisplay();
+            }));
+
+            Port.Add<LoadportController, LoadportModel>("LP1");
+            Port.Add<LoadportController, LoadportModel>("LP2");
+
+            Port.Run();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"{ex.Message}");
+        }
+    }
+}
+```
+
+#### Traditional Form — `Port.App<T>()` + manual `Port.OnReady`
+
+Use this form when you need to store the handler reference (e.g. to unsubscribe on close).
 
 ```csharp
 [Port("sample")]
@@ -523,6 +559,15 @@ public partial class MainWindow : Window
                 $"{ex.Message}\n\nInner: {ex.InnerException?.Message}\n\nStack: {ex.StackTrace}");
         }
     }
+
+    private void Port_OnReady(object? sender, EventArgs e)
+    {
+        Dispatcher.Invoke(() =>
+        {
+            vm.StartPolling();
+            RefreshDisplay();
+        });
+    }
 }
 ```
 
@@ -536,7 +581,7 @@ public partial class MainWindow : Window
 |-----------|---------|
 | `IFlowHandler` | Basic Flow progression control (`Next()`) |
 | `IFlowWithModelHandler<T>` | Flow event subscriptions that carry the Model |
-| `ISchedulerHandler` | Transfer-completion scheduling |
+| `ISchedulerHandler<T>` | Transfer-completion scheduling |
 
 ---
 
@@ -545,7 +590,7 @@ public partial class MainWindow : Window
 #### IFlowHandler — Basic Progression Control
 
 ```csharp
-[FlowHandler]
+[Handler]
 public IFlowHandler handler { get; set; } = null!;
 
 handler.Next();   // Advance to the next FlowStep
@@ -570,7 +615,7 @@ internal class WTRController
         public IFlowWithModelHandler<WTRCommModel> handler { set; get; } = null!;
 
         [Handler]
-        public ISchedulerHandler scheduler { set; get; } = null!;
+        public ISchedulerHandler<DualArmActionArgs> scheduler { set; get; } = null!;
 
         // Preset() runs once at registration time.
         // Event subscriptions made here are preserved for every subsequent execution.
@@ -622,7 +667,7 @@ The recommended interface for equipment transfer flows. Step order is fixed:
 | Event | When Fired | Args |
 |-------|-----------|------|
 | `OnFlowFinished` | Flow reached the Done step and completed | `FlowFinishedWithModelArgs<T>` — Model, timing, step records |
-| `OnFlowOccured` | A step transition occurred | `PortFlowOccuredWithModelArgs<T>` — Model, step status |
+| `OnFlowOccurred` | A step transition occurred | `PortFlowOccurredWithModelArgs<T>` — Model, step status |
 | `OnFlowIssue` | Flow stopped due to an alarm | `PortFlowIssueWithModelArgs<T>` — Model, alarm code |
 
 All event args expose a `Model` property that is the singleton model instance bound to
@@ -793,7 +838,7 @@ write is **blocked** and an error is returned.
 
 #### Syntax
 
-```
+```text
 set("write condition", "allow condition")
 ```
 
@@ -825,7 +870,7 @@ until the condition first goes `false` and then becomes `true` again.
 
 #### Syntax
 
-```
+```text
 get("condition", "key1=value1; key2=value2; ...")
 ```
 
@@ -918,7 +963,7 @@ public void MonitorTemperature(BulbModel model)
 
 ### 8.6 Data Flow
 
-```
+```text
 Port.Set("Bulb1.OnOff", "Off") called
     ↓
 set rule evaluated (write guard)
