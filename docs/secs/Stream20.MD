@@ -1,7 +1,7 @@
 S20F1R	SetSRO Attributes Request	Sent by Host Only
 
 
-Comment: E170 SRO intitialization, enums are inverted booleans so Hume has renamed them
+Comment: E170 SRO intitialization, enums are inverted booleans so  has renamed them
 Format:
 
 

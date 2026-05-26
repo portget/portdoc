@@ -5662,7 +5662,7 @@ S12F16->
 | ACKC13 | B[1] | Acknowledge Code |
 | | | 0: Acknowledged |
 | | | 1: Error |
-| Comment | - | The standards have had an erroneous structure for years - the L[2] has been missing. Unfortunately some implementations have not realized it was an error. The latest Hume versions automagically create the L[2] wrapper when it is missing. |
+| Comment | - | The standards have had an erroneous structure for years - the L[2] has been missing. Unfortunately some implementations have not realized it was an error. 
 
 #### S13F3 - Open Data Set Request {#s13f3---open-data-set-request}
 ```text

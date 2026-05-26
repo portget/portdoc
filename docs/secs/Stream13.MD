@@ -14,7 +14,7 @@ C# Parse Message    C++ Parse Message    Java Parse Message    Python Parse Mess
 S13F2	Send Data Set Ack	Sent by Host and Equipment
 
 
-Comment: The standards have had an erroneous structure for years - the L:2 has been missing. Unfortunately some implementations have not realized it was an error. The latest Hume versions automagically create the L:2 wrapper when it is missing.
+Comment: The standards have had an erroneous structure for years - the L:2 has been missing. Unfortunately some implementations have not realized it was an error. The latest  versions automagically create the L:2 wrapper when it is missing.
 Format:
 
 
