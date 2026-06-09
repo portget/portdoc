@@ -8,9 +8,11 @@ toc_max_heading_level: 4
 ## Table of Contents
 1. [Overview](#overview)
 2. [Configure](#configure)
-3. [Sample Scenario](#sample-scenario-table)
-4. [Quick Link](#quick-link)
-5. [Script Definitions](#script-stream-definitions)
+3. [Variable Declaration](#variable-declaration)
+4. [Events](#events)
+5. [Sample Scenario](#sample-scenario-table)
+6. [Quick Link](#quick-link)
+7. [Script Definitions](#script-stream-definitions)
 
 ## Overview
 
@@ -71,13 +73,7 @@ public class MyGemHelper
         handler.SetDataDictionary(DataDictionaryKey.ECID,   SecsDataType.U2);
         handler.SetDataDictionary(DataDictionaryKey.PTN,    SecsDataType.B);
 
-        // ── Events ───────────────────────────────────────────────
-        handler.OnEvent         += Handler_OnEvent;
-        handler.OnStatusChanged += Handler_OnStatusChanged;
     }
-
-    private void Handler_OnEvent(DateTime time, string eventtext) { }
-    private void Handler_OnStatusChanged(DateTime time, string status) { }
 }
 ```
 
@@ -125,6 +121,418 @@ public class MyGemHelper
 
 **Download Sample:**
 [Download Sample Project](file/secs.zip)
+
+## Variable Declaration
+
+GEM variables — status variables, data variables, equipment constants, collection events, and alarms — are declared in `.page` files inside the PORT project directory.
+The PORT runtime reads these files on `port run` and automatically registers each variable with the GEM service layer, so no hand-written registration code is required.
+
+### File Location
+
+```
+port/
+├── GEM/
+│   └── ceid.page       # Collection events and alarms
+└── <module>/
+    └── <name>.page     # SVIDs, DVIDs, ECIDs for that module
+```
+
+The folder name under `port/` becomes the variable's *group* at runtime (e.g., `LP1/`, `GEM/`).
+
+### Declaration Syntax
+
+Each non-empty, non-comment line in a `.page` file declares one variable.
+The first token is the **field name** (append `[N]` for array elements), the second is the **type**
+(a SECS-II data type or `ENUM.<name>`), and the trailing tokens are **annotations** that assign IDs and metadata.
+Annotations are space-separated key:value pairs and may appear in any order.
+
+```
+# Status Variable (SVID)
+Gate_Close_o  ENUM.ONOFF  svid:1000  min:0 max:1 arguments:"Off,On"
+
+# Data Variable (DVID) — type alone is sufficient when no range metadata is needed
+CarrierID     A           dvid:2000
+
+# Equipment Constant (ECID)
+ProcessTemp   F4          ecid:3000  min:0.0 max:500.0
+
+# Array — append [N] to the field name; each index is an independent variable
+SlotMap[1]    ENUM.ONOFF  min:0 max:1 arguments:"Off,On"
+SlotMap[2]    ENUM.ONOFF  min:0 max:1 arguments:"Off,On"
+
+# Collection Event (CEID) — no type token; ceid: annotation only
+OnlineRemote              ceid:50000
+LP_InService              ceid:50001
+LP_AccessModeChanged      ceid:50002
+
+# Alarm (ALID) — alid: gives the alarm ID; message: sets the alarm text
+AlarmDoorNotClosed        alid:1000  message:"Door is not closed"
+```
+
+### Annotation Reference
+
+| Annotation | Applies to | Description |
+|---|---|---|
+| `svid:N` | Status Variable | Assigns SVID numeric ID `N` |
+| `dvid:N` | Data Variable | Assigns DVID numeric ID `N` |
+| `ecid:N` | Equipment Constant | Assigns ECID numeric ID `N` |
+| `ceid:N` | Collection Event | Assigns CEID numeric ID `N` |
+| `alid:N` | Alarm | Assigns ALID numeric ID `N` |
+| `message:"text"` | Alarm | Sets alarm description text |
+| `min:N` | SVID / ECID | Minimum allowed value |
+| `max:N` | SVID / ECID | Maximum allowed value |
+| `arguments:"v1,v2"` | ENUM variable | Comma-separated list of valid enum value names |
+
+### Data Types
+
+| Keyword | SECS Type | C# Equivalent |
+|---|---|---|
+| `A` | ASCII string | `string` |
+| `B` | Binary byte array | `byte[]` |
+| `BOOL` | Boolean | `bool` |
+| `F4` | 32-bit float | `float` |
+| `F8` | 64-bit float | `double` |
+| `I1`–`I8` | Signed integer (1–8 bytes) | `sbyte` … `long` |
+| `U1`–`U8` | Unsigned integer (1–8 bytes) | `byte` … `ulong` |
+| `ENUM.<name>` | Named enumeration | Enum string values |
+
+### Example: LP1 Module Page
+
+```
+# port/LP1/LP.page
+
+Gate_Close_o    ENUM.ONOFF  svid:1000  min:0 max:1 arguments:"Off,On"
+Gate_Open_o     ENUM.ONOFF  svid:1001  min:0 max:1 arguments:"Off,On"
+SlotCount       U1          svid:1002
+CarrierID       A           svid:1003
+ProcessTemp     F4          ecid:3000  min:0.0 max:500.0
+
+# Array: each slot is declared as an indexed element
+SlotMap[1]      ENUM.ONOFF  min:0 max:1 arguments:"Off,On"
+SlotMap[2]      ENUM.ONOFF  min:0 max:1 arguments:"Off,On"
+```
+
+### Example: GEM Events Page
+
+```
+# port/GEM/ceid.page
+
+OnlineRemote              ceid:50000
+LP_InService              ceid:50001
+LP_AccessModeChanged      ceid:50002
+PrJob_Pooled              ceid:60001
+
+AlarmDoorNotClosed        alid:1000  message:"Door is not closed"
+AlarmOverTemp             alid:1001  message:"Process temperature exceeded limit"
+```
+
+---
+
+## Events
+
+Subscribe to events in `[Preset]` (or anywhere before `port.Run()`) to react to connection lifecycle, GEM state transitions, and diagnostic output.
+
+```csharp
+[GEM]
+public class MyGemHelper
+{
+    [GemHandler]
+    public IGemHandler handler { get; set; } = null!;
+
+    [Preset]
+    private void Preset()
+    {
+        handler.OnGemRegistrationComplete += Handler_OnGemRegistrationComplete;
+        handler.OnConnectionStateChanged  += Handler_OnConnectionStateChanged;
+        handler.OnCommunicationEnabled    += Handler_OnCommunicationEnabled;
+        handler.OnCommunicationEstablished += Handler_OnCommunicationEstablished;
+        handler.OnCommunicationDisabled   += Handler_OnCommunicationDisabled;
+        handler.OnControlStateChanged     += Handler_OnControlStateChanged;
+        handler.OnEvent                   += Handler_OnEvent;
+        handler.OnNotExistsID             += Handler_OnNotExistsID;
+        handler.OnMessage                 += Handler_OnMessage;
+        handler.OnError                   += Handler_OnError;
+        handler.OnLog                     += Handler_OnLog;
+        handler.OnStatusChanged           += Handler_OnStatusChanged;
+    }
+
+    private void Handler_OnGemRegistrationComplete(int sv, int dv, int ec, int al) { }
+    private void Handler_OnConnectionStateChanged(DateTime t, GemConnectionState state) { }
+    private void Handler_OnCommunicationEnabled(DateTime t, GemCommunicationEnabledState state) { }
+    private void Handler_OnCommunicationEstablished(DateTime t, GemStatus status) { }
+    private void Handler_OnCommunicationDisabled(DateTime t, GemCommunicationDisabledState state) { }
+    private void Handler_OnControlStateChanged(DateTime t, eSecsControlState state) { }
+    private void Handler_OnEvent(DateTime time, string eventtext) { }
+    private void Handler_OnNotExistsID(string idType, string id) { }
+    private void Handler_OnMessage(GemMessageDirection dir, SecsMessage msg) { }
+    private void Handler_OnError(DateTime time, string errorMessage) { }
+    private void Handler_OnLog(DateTime time, string logLine) { }
+    private void Handler_OnStatusChanged(DateTime time, GemStatus status) { }
+}
+```
+
+| Event | Delegate Signature | Description |
+|-------|--------------------|-------------|
+| `OnGemRegistrationComplete` | `(int svid, int dvid, int ecvid, int alid)` | Fired once after all variables are registered in FFI storage |
+| `OnConnectionStateChanged` | `(DateTime time, GemConnectionState state)` | TCP/HSMS physical connection state changed |
+| `OnCommunicationEnabled` | `(DateTime time, GemCommunicationEnabledState state)` | HSMS session entered protocol-active state |
+| `OnCommunicationEstablished` | `(DateTime time, GemStatus status)` | HSMS fully online — bidirectional SECS communication ready |
+| `OnCommunicationDisabled` | `(DateTime time, GemCommunicationDisabledState state)` | HSMS session dropped |
+| `OnControlStateChanged` | `(DateTime time, eSecsControlState state)` | GEM control state changed |
+| `OnEvent` | `(DateTime time, string eventtext)` | GEM event text (alarm fired, collection event triggered, state transition) |
+| `OnNotExistsID` | `(string idType, string id)` | Host referenced an unknown SVID, CEID, RPTID, RCMD, or ALID |
+| `OnMessage` | `(GemMessageDirection dir, SecsMessage msg)` | Every SECS/GEM message sent or received on the HSMS link |
+| `OnStatusChanged` | `(DateTime time, GemStatus status)` | General-purpose status change for UI status displays |
+| `OnError` | `(DateTime time, string errorMessage)` | Error raised on send failure, connection error, or startup error |
+| `OnLog` | `(DateTime time, string logLine)` | Raw log line emitted by the GEM service layer |
+| `OnCustomMessage` | `(IGemReplier replier, SecsMessage msg)` | Non-standard S/F message registered via `CreateCustomMessage` |
+
+### OnGemRegistrationComplete
+
+Fired once after `port.Run()` registers all SVID / DVID / ECVID variables in the FFI storage layer.
+This is the earliest safe point to call `GetSVCollection()`, `GetDVCollection()`, `GetECVCollection()`,
+`GetAlarmCollection()`, or `GetCEIDCollection()`.
+
+```csharp
+handler.OnGemRegistrationComplete += (svidCount, dvidCount, ecvidCount, alidCount) =>
+{
+    Trace.WriteLine($"Registered: {svidCount} SVIDs, {dvidCount} DVIDs, " +
+                    $"{ecvidCount} ECIDs, {alidCount} ALIDs");
+    foreach (var sv in handler.GetSVCollection())
+        Trace.WriteLine($"  SV  id={sv.ID,6}  type={sv.Description,-8}  key={sv.Key}");
+    foreach (var dv in handler.GetDVCollection())
+        Trace.WriteLine($"  DV  id={dv.ID,6}  type={dv.Description,-8}  key={dv.Key}");
+    foreach (var ecv in handler.GetECVCollection())
+        Trace.WriteLine($"  ECV id={ecv.ID,6}  type={ecv.Description,-8}  key={ecv.Key}");
+    foreach (var alarm in handler.GetAlarmCollection())
+        Trace.WriteLine($"  AL  id={alarm.ID,6}  alcd={alarm.CODE}  key={alarm.Key}  Text={alarm.TEXT}");
+    foreach (var ceid in handler.GetCEIDCollection())
+        Trace.WriteLine($"  CE  id={ceid.ID,6}  enabled={ceid.Enabled,-5}  name={ceid.Name}");
+};
+```
+
+---
+
+### OnConnectionStateChanged
+
+Fires when the underlying TCP connection is established or lost, independent of the HSMS handshake.
+Delivers a `GemConnectionState` enum value.
+
+#### GemConnectionState
+
+| Value | Meaning |
+|---|---|
+| `GemConnectionState.Connected` | TCP session established; HSMS Select procedure starting |
+| `GemConnectionState.NotConnected` | TCP connection lost or not yet established |
+
+```csharp
+handler.OnConnectionStateChanged += (time, state) =>
+    Console.WriteLine($"[{time:HH:mm:ss}] TCP: {state}");
+```
+
+---
+
+### OnCommunicationEnabled
+
+Fires when the HSMS session becomes protocol-active.
+Delivers a `GemCommunicationEnabledState` enum value.
+
+#### GemCommunicationEnabledState
+
+| Value | Meaning |
+|---|---|
+| `GemCommunicationEnabledState.Unselected` | TCP transport up; HSMS Select handshake pending |
+| `GemCommunicationEnabledState.Selected` | HSMS Select complete; SECS-II data messages can flow |
+
+```csharp
+handler.OnCommunicationEnabled += (time, state) =>
+    Console.WriteLine($"[{time:HH:mm:ss}] HSMS: {state}");
+```
+
+---
+
+### OnCommunicationEstablished
+
+Fires when the full S1F13/S1F14 exchange succeeds and SECS-II communication is operational.
+Delivers `GemStatus.Online`.
+
+```csharp
+handler.OnCommunicationEstablished += (time, status) =>
+{
+    Console.WriteLine($"[{time:HH:mm:ss}] Communication {status} — GEM ready");
+    handler.SendEvent(GemCEID.OnlineRemote);
+};
+```
+
+---
+
+### OnCommunicationDisabled
+
+Fires when the HSMS session drops to a non-communicating state.
+Delivers a `GemCommunicationDisabledState` enum value.
+
+#### GemCommunicationDisabledState
+
+| Value | Meaning |
+|---|---|
+| `GemCommunicationDisabledState.Disconnected` | TCP connection was lost (remote close, network error, or T5/T8 timeout) |
+| `GemCommunicationDisabledState.Offline` | Session was explicitly taken offline (S1F15 or local request) |
+| `GemCommunicationDisabledState.AbortTransaction` | Transaction aborted due to a T3/T6 timeout or protocol error |
+
+```csharp
+handler.OnCommunicationDisabled += (time, state) =>
+    Console.WriteLine($"[{time:HH:mm:ss}] Communication lost: {state}");
+```
+
+---
+
+### OnControlStateChanged
+
+Fires on every GEM control-state transition. Both `S1F15` / `S1F17` outcomes and internal state changes are delivered through this event.
+Delivers an `eSecsControlState` enum value.
+
+#### eSecsControlState
+
+| Value | GEM State | Description |
+|---|---|---|
+| `eSecsControlState.EQ_OFFLINE` | Equipment Offline | Equipment powered on; communication not yet attempted |
+| `eSecsControlState.EQUIPMENT_OFFLINE` | Equipment Offline | Equipment went offline via the SEMI E30 offline procedure |
+| `eSecsControlState.ATTEMPT_ONLINE` | Attempt Online | Equipment is transitioning toward an online state |
+| `eSecsControlState.HOST_OFFLINE` | Host Offline | Session connected but the host is not responding |
+| `eSecsControlState.ONLINE_LOCAL` | Online Local | Online; operator controls equipment locally |
+| `eSecsControlState.ONLINE_REMOTE` | Online Remote | Online; host controls equipment remotely |
+
+```csharp
+handler.OnControlStateChanged += (time, state) =>
+{
+    Console.WriteLine($"[{time:HH:mm:ss}] Control state → {state}");
+    if (state == eSecsControlState.ONLINE_REMOTE)
+        Console.WriteLine("Equipment is now under host remote control.");
+};
+```
+
+---
+
+### OnEvent
+
+Delivers a human-readable text description each time a GEM event is raised internally — alarm activated/cleared, collection event sent, or state change logged.
+
+```csharp
+handler.OnEvent += (time, eventtext) =>
+    Console.WriteLine($"[{time:HH:mm:ss}] GEM Event: {eventtext}");
+```
+
+> **Tip:** Use `OnEvent` for lightweight diagnostic logging. To act on a specific CEID, subscribe to `OnS6F11_EventReportSend` instead.
+
+---
+
+### OnNotExistsID
+
+Fired when the host references an ID (SVID, CEID, RPTID, RCMD, ALID) not registered in the equipment definition. Useful for diagnosing missing configuration or host-side setup errors.
+
+| `idType` value | Meaning |
+|---|---|
+| `"SVID"` | Unregistered Status Variable ID |
+| `"DVID"` | Unregistered Data Variable ID |
+| `"ECID"` | Unregistered Equipment Constant ID |
+| `"CEID"` | Unregistered Collection Event ID |
+| `"RPTID"` | Unregistered Report ID |
+| `"RCMD"` | Unregistered Remote Command |
+| `"ALID"` | Unregistered Alarm ID |
+
+```csharp
+handler.OnNotExistsID += (idType, id) =>
+    Console.WriteLine($"[WARN] Host referenced unknown {idType} = {id}");
+```
+
+---
+
+### OnMessage
+
+Fires for every SECS/GEM message sent or received on the HSMS link. Use this to centralise terminal logging instead of repeating it in each individual S/F handler.
+
+| `GemMessageDirection` | Meaning |
+|---|---|
+| `ToPassive` | Message sent from equipment to host |
+| `ToActive` | Message received from host to equipment |
+
+```csharp
+handler.OnMessage += (direction, msg) =>
+{
+    string arrow = direction == GemMessageDirection.ToPassive ? "E→H" : "H→E";
+    Console.WriteLine($"{arrow} {msg.AsString()}");
+};
+```
+
+---
+
+### OnStatusChanged
+
+General-purpose status change event covering connection, communication, and control state. Suitable for updating a status label in a UI.
+
+```csharp
+handler.OnStatusChanged += (time, status) =>
+    statusLabel.Text = $"[{time:HH:mm:ss}] {status}";
+```
+
+---
+
+### OnError / OnLog
+
+`OnError` — raised on send failure, connection error, or service startup error.  
+`OnLog` — surfaces every raw log line (debug / info / warn / error levels).
+
+```csharp
+handler.OnError += (time, msg) =>
+    Console.WriteLine($"[ERROR {time:HH:mm:ss}] {msg}");
+
+handler.OnLog += (time, line) =>
+    Debug.WriteLine($"[DLL {time:HH:mm:ss}] {line}");
+```
+
+> **Tip:** Subscribe to `OnLog` during development only. In production, the file logger configured via `SetLogger` is sufficient.
+
+---
+
+### CreateCustomMessage / OnCustomMessage
+
+Use `CreateCustomMessage` to register a non-standard S/F pair with the GEM service layer.
+Once registered, any incoming message with that stream and function bypasses the built-in handler and is routed to `OnCustomMessage` instead.
+
+#### CreateCustomMessage
+
+```csharp
+void CreateCustomMessage(int stream, int function, string name, ISecsData message);
+```
+
+| Parameter | Description |
+|-----------|-------------|
+| `stream` | SECS-II stream number (0–127) |
+| `function` | SECS-II function number (0–255) |
+| `name` | Human-readable name shown in log entries |
+| `message` | Optional structure descriptor; pass `null` when not needed |
+
+#### OnCustomMessage
+
+Raised whenever a message registered via `CreateCustomMessage` is received.
+Call `replier.Reply(data)` inside the handler to send a reply.
+If no reply is provided within the timeout, a default `0x00` ack byte is sent automatically.
+
+```csharp
+// Register a custom S99F1 message
+handler.CreateCustomMessage(99, 1, "MyCustomRequest", null);
+
+// Handle and reply
+handler.OnCustomMessage += (replier, msg) =>
+{
+    Console.WriteLine($"Custom message received: {msg.AsString()}");
+    var ack = SecsData.Binary(new byte[] { 0x00 });
+    replier.Reply(msg.SystemBytes, ack);
+};
+```
+
+> `OnCustomMessage` shares the `PortGemRequestHandler` delegate with all standard S/F events.
+> Use `msg.Stream` and `msg.Function` inside the handler to distinguish between multiple registered custom messages.
 
 ## Sample Scenario Table
 
@@ -5644,7 +6052,6 @@ S12F16->
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | DSNAME | ASCII | Data Set Name |
-| Comment | - | S13F1 seems to have the L: wrapper that S13F2 is missing. Be prepared to receive DSNAME without the L: |
 
 #### S13F2 - Send Data Set Ack {#s13f2---send-data-set-ack}
 ```text
@@ -5662,7 +6069,6 @@ S12F16->
 | ACKC13 | B[1] | Acknowledge Code |
 | | | 0: Acknowledged |
 | | | 1: Error |
-| Comment | - | The standards have had an erroneous structure for years - the L[2] has been missing. Unfortunately some implementations have not realized it was an error. 
 
 #### S13F3 - Open Data Set Request {#s13f3---open-data-set-request}
 ```text
@@ -5680,7 +6086,6 @@ S12F16->
 | HANDLE | ASCII | Handle |
 | DSNAME | ASCII | Data Set Name |
 | CKPNT | ASCII | Checkpoint |
-| Comment | - | Sent by the receiver to open a data set for reading |
 
 #### S13F4 - Open Data Set Data {#s13f4---open-data-set-data}
 ```text
@@ -5865,7 +6270,6 @@ GRANT
 | ATTRDATA | Various | Attribute Data (any format) |
 | COLHDR | ASCII | Column Header |
 | TBLELT | Various | Table Element (any format) |
-| Comment | - | The first element of every row is a primary key value which identifies the row. The row items correspond in sequence to the column headers. E58 uses attributes NumCols, NumRows, and DataLength |
 
 #### S13F14 - Table Data Ack {#s13f14---table-data-ack}
 ```text
@@ -5916,7 +6320,6 @@ GRANT
 | TBLCMD | ASCII | Table Command |
 | COLHDR | ASCII | Column Header |
 | TBLELT | Various | Table Element (any format) |
-| Comment | - | Either p or q or both are 0. |
 
 #### S13F16 - Table Data {#s13f16---table-data}
 ```text
@@ -6030,7 +6433,6 @@ GRANT
 | ATTRID | ASCII | Attribute ID |
 | ATTRDATA | Various | Attribute Data (any format) |
 | ATTRRELN | ASCII | Attribute Relation |
-| Comment | - | List lengths can be 0, and OBJSPEC can be zero-length. |
 
 #### S14F2 - Attribute Data {#s14f2---attribute-data}
 ```text
@@ -6148,7 +6550,6 @@ OBJSPEC
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | OBJSPEC | ASCII | Object Specification |
-| Comment | - | Asks for the types of objects owned by the type of specified object |
 
 #### S14F6 - Type Data {#s14f6---type-data}
 ```text
@@ -6577,7 +6978,6 @@ S14F20->
 | SPVAL | any format | Service Parameter Value |
 | ERRCODE | U1, U2, U4, or A | Error Code |
 | ERRTEXT | A | Error Text |
-| | | Comment: It is not a mistake that SVCACK is included twice |
 
 #### S14F21 - Generic Service Completion {#s14f21---generic-service-completion}
 ```text
@@ -6644,7 +7044,6 @@ DATAACK
 |-----------|------|-------------|
 | DATAID | U1, U2, U4, or A | Data ID |
 | DATALENGTH | U1, U2, U4 | Data Length |
-| | | Comment: You are advised not to implement this message |
 
 #### S14F24 - Multi-block Generic Service Grant {#s14f24---multi-block-generic-service-grant}
 ```text
@@ -6827,7 +7226,6 @@ S14F28->
 | [S15F54](#s15f54---recipe-verification-ack)   | → Host | Recipe Verification Ack |
 
 #### S15F1 - Recipe Management Multi-Block Inquire {#s15f1---recipe-management-multi-block-inquire}
-**Comment**: E5 fails to mention the message type is optional for HSMS
 
 
 ```text
@@ -7065,7 +7463,6 @@ S15F12-> or <-S15F12
 ```
 
 #### S15F15 - Recipe Store Req {#s15f15---recipe-store-req}
-**Comment**: L[2]* can be L[2] or L:0; E5 documentation is inadequate for L[n] other than L[3]
 
 
 ```text
@@ -8907,7 +9304,6 @@ S18F2->
 | SSACK | U4 | Subsystem Acknowledge |
 | ATTRDATA | any format | Attribute Data |
 | STATUS | A | Status |
-| | | Comment: E5 differs from OEM tools |
 
 #### S18F3 - Write Attribute Request {#s18f3---write-attribute-request}
 ```text
@@ -8952,7 +9348,6 @@ S18F4->
 | TARGETID | A | Target ID |
 | SSACK | U4 | Subsystem Acknowledge |
 | STATUS | A | Status |
-| | | Comment: Fixed E5 mistake |
 
 #### S18F5 - Read Request {#s18f5---read-request}
 ```text
