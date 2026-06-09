@@ -9,7 +9,7 @@ sidebar_position: 99
 
 | Name | Version | OS | Stable | Link |
 |------|---------|----|--------|------|
-| Binaries for Windows | v1.1.98 | Windows x64 | Yes | [v1.1.98-win-installer](pathname:///file/Setup.zip) |
+| Binaries for Windows | v1.1.98 | Windows x64 | Yes | [v1.1.98-win-installer](https://github.com/portget/portdoc/releases/download/v1.1.98/Setup.zip) |
 
 ---
 
