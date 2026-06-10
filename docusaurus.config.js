@@ -91,6 +91,11 @@ const config = {
             label: 'Download',
           },
           {
+            href: 'https://github.com/portget/portdoc/issues',
+            label: 'Q&A',
+            position: 'left',
+          },
+          {
             href: 'https://marketplace.visualstudio.com/items?itemName=portroconn.portdic',
             label: 'VSCode Extension',
             position: 'right',
