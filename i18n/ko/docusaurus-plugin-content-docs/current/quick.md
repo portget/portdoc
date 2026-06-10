@@ -24,23 +24,30 @@ C#에서 `[Page]` 어트리뷰트를 사용해 직접 정의할 수 있습니다
 #### `.page` 파일 문법
 
 ```text
-[EntryKey]  [DataType]  [pkg:PackageName]  [property:{...}]
+[EntryKey]       [DataType]      [pkg:PackageName]  [property:{...}]
+[EntryKey]       [DataType[N]]   [pkg:PackageName]  [property:{...}]
 ```
+
+`DataType[N]` 형식으로 선언하면 `EntryKey[1]` … `EntryKey[N]` 의 N개 엔트리로 자동 확장됩니다.
 
 | 필드 | 필수 | 설명 |
 |------|------|------|
 | `EntryKey` | ✅ | 엔트리의 고유 식별자 |
 | `DataType` | ✅ | 데이터 타입 (`f8`, `Enum.OnOff`, `char` 등) |
+| `DataType[N]` | — | 배열 형식: `EntryKey[1]`…`EntryKey[N]` 의 N개 엔트리로 확장 |
 | `pkg` | 선택 | 바인딩할 패키지 API |
 | `property` | 선택 | 개별 엔트리 사용자 속성 (JSON) |
 
 **예시 (`io.page`):**
 
 ```text
-Bulb1OnOff  Enum.OnOff pkg:IODevice.DI property:{"IO.No":"D0.01","Model":"IODevice"}
-Bulb2OnOff  Enum.OnOff pkg:IODevice.DI property:{"IO.No":"D0.02","Model":"IODevice"}
-Bulb1Temp   f8         pkg:IODevice.AI property:{"IO.No":"A0.01","Model":"IODevice"}
-Bulb2Temp   f8         pkg:IODevice.AI property:{"IO.No":"A0.02","Model":"IODevice"}
+Bulb1OnOff    Enum.OnOff   pkg:IODevice.DI  property:{"IO.No":"D0.01","Model":"IODevice"}
+Bulb2OnOff    Enum.OnOff   pkg:IODevice.DI  property:{"IO.No":"D0.02","Model":"IODevice"}
+Bulb1Temp     f8           pkg:IODevice.AI  property:{"IO.No":"A0.01","Model":"IODevice"}
+Bulb2Temp     f8           pkg:IODevice.AI  property:{"IO.No":"A0.02","Model":"IODevice"}
+
+# 배열: SlotMap[1] … SlotMap[25] 가 별도 엔트리로 생성됨
+SlotMap       Enum.OnOff[25]
 ```
 
 #### 엔트리 구조
@@ -52,17 +59,22 @@ Bulb2Temp   f8         pkg:IODevice.AI property:{"IO.No":"A0.02","Model":"IODevi
 - **Value** — 메모리에 저장된 현재 값 (실시간 상태)
 - **Property** — 하드웨어 주소, 단위 등의 보조 설정 (JSON)
 
-**SECS 호환 데이터 타입:**
+**데이터 타입:**
 
 | 타입 | 설명 |
 |------|------|
 | `f4` / `f8` | 부동소수점 (4 / 8 바이트) |
-| `i1` ~ `i8` | 부호 있는 정수 |
-| `u1` ~ `u8` | 부호 없는 정수 |
-| `A(n)` | ASCII n개 문자열 |
-| `string` | 가변 길이 UTF-8 문자열 (최대 255 바이트) |
-| `Enum.XXX` | 미리 정의된 enum 참조 열거형 |
+| `i1` ~ `i8` | 부호 있는 정수 (1 – 8 바이트) |
+| `u1` ~ `u8` | 부호 없는 정수 (1 – 8 바이트) |
+| `A` / `A(n)` | ASCII 문자열 (기본 1 바이트; `A(n)` 으로 최대 길이 지정) |
+| `B` | 바이너리 바이트 |
 | `bool` | 불리언 |
+| `L` | 리스트 — 메타데이터 전용, 메모리 할당 없음 |
+| `Num` | 범용 숫자 (8 바이트) |
+| `Char(n)` | 고정 길이 문자 버퍼 (n 바이트, 기본 255) |
+| `string` / `str(n)` | 가변 길이 UTF-8 문자열 (기본 최대 255 바이트) |
+| `Enum.XXX` | 미리 정의된 enum 참조 열거형 |
+| `DEF` | 메타데이터 전용 선언 (CEID / ALID; 메모리 할당 없음) |
 
 #### 로컬 엔트리 정의 (카테고리 범위)
 
