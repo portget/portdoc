@@ -24,23 +24,30 @@ or defined directly in C# using the `[Page]` attribute.
 #### `.page` File Syntax
 
 ```text
-[EntryKey]  [DataType]  [pkg:PackageName]  [property:{...}]
+[EntryKey]       [DataType]      [pkg:PackageName]  [property:{...}]
+[EntryKey]       [DataType[N]]   [pkg:PackageName]  [property:{...}]
 ```
+
+Appending `[N]` to the DataType expands into N indexed entries (`EntryKey[1]` … `EntryKey[N]`).
 
 | Field | Required | Description |
 |-------|----------|-------------|
 | `EntryKey` | ✅ | Unique identifier for the entry |
 | `DataType` | ✅ | Data type (`f8`, `Enum.OnOff`, `char`, etc.) |
+| `DataType[N]` | — | Array form: expands to N entries named `EntryKey[1]`…`EntryKey[N]` |
 | `pkg` | optional | Package API to bind |
 | `property` | optional | Per-entry user property (JSON) |
 
 **Example (`io.page`):**
 
 ```text
-Bulb1OnOff  Enum.OnOff pkg:IODevice.DI property:{"IO.No":"D0.01","Model":"IODevice"}
-Bulb2OnOff  Enum.OnOff pkg:IODevice.DI property:{"IO.No":"D0.02","Model":"IODevice"}
-Bulb1Temp   f8         pkg:IODevice.AI property:{"IO.No":"A0.01","Model":"IODevice"}
-Bulb2Temp   f8         pkg:IODevice.AI property:{"IO.No":"A0.02","Model":"IODevice"}
+Bulb1OnOff    Enum.OnOff   pkg:IODevice.DI  property:{"IO.No":"D0.01","Model":"IODevice"}
+Bulb2OnOff    Enum.OnOff   pkg:IODevice.DI  property:{"IO.No":"D0.02","Model":"IODevice"}
+Bulb1Temp     f8           pkg:IODevice.AI  property:{"IO.No":"A0.01","Model":"IODevice"}
+Bulb2Temp     f8           pkg:IODevice.AI  property:{"IO.No":"A0.02","Model":"IODevice"}
+
+# Array: SlotMap[1] … SlotMap[25] are created as separate entries
+SlotMap       Enum.OnOff[25]
 ```
 
 #### Entry Structure
@@ -52,17 +59,22 @@ An **Entry** is the smallest data unit in the Port system. Each entry has:
 - **Value** — current value held in memory (real-time state)
 - **Property** — supplementary config such as hardware address or unit (JSON)
 
-**SECS-compatible data types:**
+**Data Types:**
 
 | Type | Description |
 |------|-------------|
 | `f4` / `f8` | Floating point (4 / 8 bytes) |
-| `i1` ~ `i8` | Signed integer |
-| `u1` ~ `u8` | Unsigned integer |
-| `A(n)` | ASCII n characters |
-| `string` | Variable-length UTF-8 string (max 255 bytes) |
-| `Enum.XXX` | Enumeration referencing a pre-defined enum |
+| `i1` ~ `i8` | Signed integer (1 – 8 bytes) |
+| `u1` ~ `u8` | Unsigned integer (1 – 8 bytes) |
+| `A` / `A(n)` | ASCII string (default 1 byte; `A(n)` sets max length to n) |
+| `B` | Binary byte |
 | `bool` | Boolean |
+| `L` | List — metadata-only; no memory allocation |
+| `Num` | Generic numeric (8 bytes) |
+| `Char(n)` | Fixed-length character buffer (n bytes, default 255) |
+| `string` / `str(n)` | Variable-length UTF-8 string (default max 255 bytes) |
+| `Enum.XXX` | Enumeration referencing a pre-defined enum |
+| `DEF` | Metadata-only declaration (CEID / ALID; no memory allocation) |
 
 #### Local Entry Definitions (category-scoped)
 
