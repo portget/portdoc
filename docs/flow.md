@@ -536,6 +536,32 @@ public void Process(MyModel m)
 
 ---
 
+## Project Timeline Tracking
+
+Every flow run is reported to the port server automatically and rendered on the
+web frontend's **Project Timeline** (Gantt) view — no user code required.
+
+- Each run gets a unique `TaskID`; the timeline groups all steps of a run under it.
+- Each step produces an `Occurred` event when it starts executing and a `Finished`
+  event when the flow advances past it (`Next()`, `MoveToStep`, `Done()`), so every
+  step appears as one bar with its real start/end times.
+- If a flow stops abnormally (Stopped / Canceled / Failed), the interrupted step
+  stays open and the timeline marks it with a missing-Finished warning.
+- The timeline shows one **fixed row per registered flow** and one bar per run with
+  its recorded start/end. Events are stored per day in the server database, so any
+  past date can be reviewed with the day navigation. View resolution ranges from
+  1 hour down to **1 second**, and clicking a run bar opens a detail panel with
+  per-step start/end times and durations.
+
+Reporting is enabled by default. To turn it off (e.g. for high-frequency test
+loops):
+
+```csharp
+FlowTracker.Enabled = false;
+```
+
+---
+
 ## Related
 
 - [attribute](attribute) — Full attribute reference (`[Package]`, `[ModelBinding]`, `[Binding]`, etc.)
