@@ -2,7 +2,14 @@
 const sidebars = {
   mainSidebar: [
     'index',
-    'quick',
+    {
+      type: 'category',
+      label: 'Quick Start',
+      collapsed: false,
+      items: [
+        'quick',
+      ],
+    },
     {
       type: 'category',
       label: 'Documentation',
@@ -14,6 +21,7 @@ const sidebars = {
         'scheduler',
         'session',
         'entity',
+        'tdb',
       ],
     },
     {
@@ -30,12 +38,14 @@ const sidebars = {
         'rtsp',
       ],
     },
+    'library',
     {
       type: 'category',
       label: 'More',
       items: [
         'commands',
         'remote',
+        'timesync',
         'license',
       ],
     },
