@@ -38,7 +38,7 @@ public class LoadPortController
     public class LoadFlow
     {
         [Handler]
-        public IFlowWithModelHandler<LoadPortModel> Handler { get; set; }
+        public IModelFlowHandler<LoadPortModel> Handler { get; set; }
 
         [FlowStep(0)]
         [FlowWatcherCompare("lp1.MainAir", ">=", 0)]
@@ -175,7 +175,28 @@ public void Complete(LoadPortModel m)
 | API | Direction | Description |
 |-----|-----------|-------------|
 | `m.Prop.Value` | Read | Current entry value as `object`; cast to `double`, `string`, etc. |
+| `m.Prop.Get()` | Read | Current entry value as `EntryValue` (comparable with `string`/`double`) |
 | `m.Prop.Set(v)` | Write | Writes `v` to the in-memory DB and triggers any bound `pkg:` callback |
+| `m.Prop == "text"` / `!=` | Read | Shorthand for `m.Prop.Get() == "text"` — reads the live value and compares it as a string |
+
+:::note Parameterless steps
+A step's model parameter is optional. When the `[Handler]` property is a typed handler
+(`IModelFlowHandler<T>`, `IModuleFlowHandler<...>`, or `ITransferFlowHandler<...>`), a step
+can be declared **without** the `m` parameter and read the model from the handler instead —
+`Handler.Model` (or `Handler.GetModel()` on the 3-type handlers). The instance is identical to
+the one passed as a parameter, so `void CheckStatus()` with `var m = Handler.Model;` and
+`void CheckStatus(MyModel m)` are equivalent.
+
+```csharp
+[FlowStep(0)]
+public void CheckStatus()
+{
+    MyModel m = Handler.Model;   // same singleton the parameter would receive
+    m.Status.Set("Loading");
+    Handler.Next();
+}
+```
+:::
 
 ### 4. Multi-instance Registration
 
@@ -362,7 +383,7 @@ public void StatusCheck(LoadPortModel m) { Handler.Next(); }
 public class PickFlow : IFlowCACD<RobotModel>
 {
     [Handler]
-    public IFlowWithModelHandler<RobotModel> Handler { get; set; }
+    public IModelFlowHandler<RobotModel> Handler { get; set; }
 
     public void CheckStatus(RobotModel m) { Handler.Next(); }   // Step 0
     public void Action(RobotModel m)      { Handler.Next(); }   // Step 1 (after CheckStatus)
@@ -422,7 +443,7 @@ public class ProcessFlow
 | `[Controller]` | Class | Marks as a flow controller; registered via `Port.Add<T, M>(name)` |
 | `[Flow("key")]` | Nested class | Declares a named workflow inside a controller |
 | `[FlowStep(…)]` | Method | Declares a step; see overloads above |
-| `[Handler]` | Property | Injects `IFlowHandler` or `IFlowWithModelHandler<T>` |
+| `[Handler]` | Property | Injects `IFlowHandler`, `IModelFlowHandler<T>` (shorthand: `IFlowHandler<T>`), `IModuleFlowHandler<TModule,TSubstrate,TModel>`, or `ITransferFlowHandler<TTransfer,TSubstrate,TModel>`. `[FlowHandler]` is an interchangeable alias |
 | `[FlowControl]` | Property | Injects `IFlowControl` for `JumpStep()` access |
 | `[AppHandler]` | Property | Injects the global `IAppHandler` (for `OnFlowFinished`) |
 | `[Preset]` | Method | Called once after injection; use for event subscription |
@@ -442,8 +463,12 @@ public class ProcessFlow
 | `SetLogger(rootPath)` | Enable hourly-rotated log files under `rootPath` |
 | `WriteLog(message)` | Write a log entry (requires `SetLogger` first) |
 | `WriteLog(message, rule)` | Write with `WriteRule` flags (console, trace, dedup) |
+| `Stopwatch` | Built-in per-flow stopwatch for timing step phases: `Start()`/`Restart()` begin timing from zero, `TotalMilliseconds` reads the elapsed time on later step invocations |
 
-### `IFlowWithModelHandler<T>` (extends `IFlowHandler`)
+### `IModelFlowHandler<T>` (extends `IFlowHandler`)
+
+`IFlowHandler<T>` is an identical shorthand — declare the `[Handler]` property as either
+type to receive the same injected instance.
 
 | Member | Description |
 |--------|-------------|
@@ -451,6 +476,47 @@ public class ProcessFlow
 | `OnFlowOccurred` | Fired when the flow starts executing |
 | `OnFlowFinished` | Fired when the flow completes successfully |
 | `OnFlowIssue` | Fired when the flow is stopped, canceled, or encounters an error |
+
+### `IModuleFlowHandler<TModule, TSubstrate, TModel>` (extends `IFlowHandler`)
+
+Resolves the runtime objects bound to the flow before execution, so steps can access the
+module, substrate, and model without `Port.Entity` lookups. Type constraints:
+`TModule : ModuleEntity`, `TSubstrate : SubstrateEntity`, `TModel : ModelEntity`.
+
+```csharp
+[FlowHandler]
+public IModuleFlowHandler<ModuleEntity, SubstrateEntity, StageModel> Handler { get; set; }
+```
+
+| Method | Description |
+|--------|-------------|
+| `GetModule()` | Module entity registered for the flow's location (e.g. the `ProcessModuleEntity` for `"Stage1"`); `null` when the location has no registered module or it is not a `TModule` |
+| `GetSubstrate()` | Substrate currently present at the flow's location; `null` when the location is empty |
+| `GetModel()` | Typed model singleton bound to the flow — the same instance passed to `[FlowStep]` methods as a parameter |
+
+### `ITransferFlowHandler<TTransfer, TSubstrate, TModel>` (extends `IFlowHandler`)
+
+For transfer-module (robot) Pick/Place flows. The scheduler assigns the transfer context
+**before** each Pick/Place flow is requested, so every step can read which locations and
+substrate the current action involves. Type constraints: `TTransfer : TransferEntity`,
+`TSubstrate : SubstrateEntity`, `TModel : ModelEntity`.
+
+```csharp
+[Handler]
+public ITransferFlowHandler<TransferEntity, SubstrateEntity, RobotModel> Handler { get; set; }
+```
+
+| Method | Description |
+|--------|-------------|
+| `GetTransfer()` | Active `TransferEntity` — `Source` (pick origin) and `Target` (location of the current action) as `Location` values, plus `SubstrateID` |
+| `GetSubstrate()` | Substrate involved in the active transfer, resolved by its substrate key |
+| `GetModel()` | Typed model singleton bound to the flow — the same instance passed to `[FlowStep]` methods as a parameter |
+| `GetTargetName()` | Location name the robot is acting on (shorthand for `GetTransfer().Target.Key`) |
+| `GetSourceName()` | Location name the substrate was picked from (shorthand for `GetTransfer().Source.Key`) |
+
+During a Pick (Get), `Source` equals `Target` — the location the substrate is picked from.
+During a Place (Put), `Source` is the arm's recorded pick origin and `Target` is the
+destination, so a Place step can tell where the substrate came from.
 
 ### `FlowAction` enum
 
