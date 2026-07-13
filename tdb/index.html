@@ -1,0 +1,525 @@
+<!doctype html><html lang=en dir=ltr class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-tdb" data-has-hydrated=false><head><meta charset=UTF-8><meta name=generator content="Docusaurus v3.10.0"><title data-rh=true>TDB — Time-Series Database | PortDIC</title><meta data-rh=true name=viewport content="width=device-width, initial-scale=1.0"/><meta data-rh=true name=twitter:card content=summary_large_image /><meta data-rh=true property=og:url content=https://portdic.com/tdb /><meta data-rh=true property=og:locale content=en /><meta data-rh=true property=og:locale:alternate content=zh /><meta data-rh=true property=og:locale:alternate content=ja /><meta data-rh=true property=og:locale:alternate content=ko /><meta data-rh=true name=docusaurus_locale content=en /><meta data-rh=true name=docsearch:language content=en /><meta data-rh=true name=docusaurus_version content=current /><meta data-rh=true name=docusaurus_tag content=docs-default-current /><meta data-rh=true name=docsearch:version content=current /><meta data-rh=true name=docsearch:docusaurus_tag content=docs-default-current /><meta data-rh=true property=og:title content="TDB — Time-Series Database | PortDIC"/><meta data-rh=true name=description content=Overview /><meta data-rh=true property=og:description content=Overview /><link data-rh=true rel=icon href=/img/logo.ico /><link data-rh=true rel=canonical href=https://portdic.com/tdb /><link data-rh=true rel=alternate href=https://portdic.com/tdb hreflang=en /><link data-rh=true rel=alternate href=https://portdic.com/zh/tdb hreflang=zh /><link data-rh=true rel=alternate href=https://portdic.com/ja/tdb hreflang=ja /><link data-rh=true rel=alternate href=https://portdic.com/ko/tdb hreflang=ko /><link data-rh=true rel=alternate href=https://portdic.com/tdb hreflang=x-default /><script data-rh=true type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://portdic.com/tdb","name":"TDB — Time-Series Database","position":1}]}</script><link rel=stylesheet href=/assets/css/styles.267e0c32.css /><script src=/assets/js/runtime~main.46c0f6f7.js defer></script><script src=/assets/js/main.3f7a1521.js defer></script></head><body><svg style="display: none;"><defs>
+<symbol id=theme-svg-external-link viewBox="0 0 24 24"><path fill=currentColor d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme-54c")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{for(var[t,e]of new URLSearchParams(window.location.search).entries())if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id=__docusaurus><div role=region aria-label="Skip to main content"><a class=skipToContent_fXgn href=#__docusaurus_skipToContent_fallback>Skip to main content</a></div><nav aria-label=Main class="theme-layout-navbar navbar navbar--fixed-top"><div class=navbar__inner><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded=false class="navbar__toggle clean-btn" type=button><svg width=30 height=30 viewBox="0 0 30 30" aria-hidden=true><path stroke=currentColor stroke-linecap=round stroke-miterlimit=10 stroke-width=2 d="M4 7h22M4 15h22M4 23h22"/></svg></button><a class=navbar__brand href=/><div class=navbar__logo><img src=/img/logo.ico alt="PortDIC Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"/><img src=/img/logo.ico alt="PortDIC Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"/></div><b class="navbar__title text--truncate">PortDIC</b></a><a aria-current=page class="navbar__item navbar__link navbar__link--active" href=/>Docs</a><a class="navbar__item navbar__link" href=/download>Download</a><a href=https://github.com/portget/portdoc/issues target=_blank rel="noopener noreferrer" class="navbar__item navbar__link">Q&A<svg width=13.5 height=13.5 aria-label="(opens in new tab)" class=iconExternalLink_nPIU><use href=#theme-svg-external-link /></svg></a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a href="https://marketplace.visualstudio.com/items?itemName=portroconn.portdic" target=_blank rel="noopener noreferrer" class="navbar__item navbar__link">VSCode Extension<svg width=13.5 height=13.5 aria-label="(opens in new tab)" class=iconExternalLink_nPIU><use href=#theme-svg-external-link /></svg></a><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href=# aria-haspopup=true aria-expanded=false role=button class=navbar__link><svg viewBox="0 0 24 24" width=20 height=20 aria-hidden=true class=iconLanguage_nlXk><path fill=currentColor d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"/></svg>English</a><ul class=dropdown__menu><li><a href=/tdb target=_self rel="noopener noreferrer" class="dropdown__link dropdown__link--active" lang=en>English</a><li><a href=/zh/tdb target=_self rel="noopener noreferrer" class=dropdown__link lang=zh>中文</a><li><a href=/ja/tdb target=_self rel="noopener noreferrer" class=dropdown__link lang=ja>日本語</a><li><a href=/ko/tdb target=_self rel="noopener noreferrer" class=dropdown__link lang=ko>한국어</a></ul></div><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type=button disabled title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill=currentColor d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"/></svg><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill=currentColor d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"/></svg><svg viewBox="0 0 24 24" width=24 height=24 aria-hidden=true class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill=currentColor d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"/></svg></button></div><div class=navbarSearchContainer_Bca1><div class="navbar__search searchBarContainer_NW3z" dir=ltr><input placeholder=Search aria-label=Search class="navbar__search-input searchInput_YFbd" value="" /><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role=presentation class=navbar-sidebar__backdrop></div></nav><div id=__docusaurus_skipToContent_fallback class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class=docsWrapper_hBAB><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type=button></button><div class=docRoot_UBD9><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class=sidebarViewport_aRkj><div class=sidebar_njMd><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class=menu__link href=/><span title="Welcome to PortDIC" class=linkLabel_WmDU>Welcome to PortDIC</span></a><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=true href=/quick><span title="Quick Start" class=categoryLinkLabel_W154>Quick Start</span></a></div><ul class=menu__list><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class=menu__link tabindex=0 href=/quick><span title="Quick Start" class=linkLabel_WmDU>Quick Start</span></a></ul><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role=button aria-expanded=true href=/attribute><span title=Documentation class=categoryLinkLabel_W154>Documentation</span></a></div><ul class=menu__list><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class=menu__link tabindex=0 href=/attribute><span title=Attribute class=linkLabel_WmDU>Attribute</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class=menu__link tabindex=0 href=/package><span title=Package class=linkLabel_WmDU>Package</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class=menu__link tabindex=0 href=/flow><span title=Flow class=linkLabel_WmDU>Flow</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class=menu__link tabindex=0 href=/scheduler><span title=Scheduler class=linkLabel_WmDU>Scheduler</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class=menu__link tabindex=0 href=/session><span title=Session class=linkLabel_WmDU>Session</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class=menu__link tabindex=0 href=/entity><span title="Entity Objects" class=linkLabel_WmDU>Entity Objects</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current=page tabindex=0 href=/tdb><span title="TDB — Time-Series Database" class=linkLabel_WmDU>TDB — Time-Series Database</span></a></ul><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=true href=/tcp><span title=Protocols class=categoryLinkLabel_W154>Protocols</span></a></div><ul class=menu__list><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class=menu__link tabindex=0 href=/tcp><span title=TCP class=linkLabel_WmDU>TCP</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class=menu__link tabindex=0 href=/serial><span title=SERIAL class=linkLabel_WmDU>SERIAL</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class=menu__link tabindex=0 href=/ftp><span title=FTP class=linkLabel_WmDU>FTP</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class=menu__link tabindex=0 href=/filesender><span title=FileSender class=linkLabel_WmDU>FileSender</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class=menu__link tabindex=0 href=/secs><span title=SECS class=linkLabel_WmDU>SECS</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class=menu__link tabindex=0 href=/mqtt><span title=MQTT class=linkLabel_WmDU>MQTT</span></a><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class=menu__link tabindex=0 href=/rtsp><span title=RTSP class=linkLabel_WmDU>RTSP</span></a></ul><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class=menu__link href=/library><span title="Library Reference" class=linkLabel_WmDU>Library Reference</span></a><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class=menu__list-item-collapsible><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role=button aria-expanded=false href=/commands><span title=More class=categoryLinkLabel_W154>More</span></a></div></ul></nav></div></div></aside><main class=docMainContainer_TBSr><div class="container padding-top--md padding-bottom--lg"><div class=row><div class="col docItemCol_VOVn"><div class=docItemContainer_Djhp><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label=Breadcrumbs><ul class=breadcrumbs><li class=breadcrumbs__item><a aria-label="Home page" class=breadcrumbs__link href=/><svg viewBox="0 0 24 24" class=breadcrumbHomeIcon_YNFT><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill=currentColor /></svg></a><li class=breadcrumbs__item><span class=breadcrumbs__link>Documentation</span><li class="breadcrumbs__item breadcrumbs__item--active"><span class=breadcrumbs__link>TDB — Time-Series Database</span></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type=button class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>TDB — Time-Series Database</h1></header>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=overview>Overview<a href=#overview class=hash-link aria-label="Direct link to Overview" title="Direct link to Overview" translate=no>​</a></h2>
+<p>TDB is Port Server's built-in time-series database, designed for high-frequency industrial sensor data.
+It automatically records <strong>numeric Entry values</strong> from the in-memory data store on every flush cycle,
+using binary compression to achieve 90%+ space savings.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#F8F8F2;--prism-background-color:#282A36><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#F8F8F2;background-color:#282A36><code class=codeBlockLines_e6Vv><div class=token-line style=color:#F8F8F2><span class="token plain">Memory Regions (MemoryManager)</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">        ↓  record_regions()</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">    MemTable  ←── lock-free concurrent writes</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">        ↓  flush (when full or on interval)</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">  StorageEngine  ─── binary compression → .tdb files</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">        ↓  metadata</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">  PortDatabase (redb)  ─── chunk index, min/max stats</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">        ↓  query</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">  QueryExecutor ←── SQL Planner</span><br/></div></code></pre></div></div>
+<p>TDB is enabled by default. No code changes are required — every numeric Entry in your project
+is recorded automatically once the Port Server starts.</p>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=which-entries>Which Entries Are Recorded<a href=#which-entries class=hash-link aria-label="Direct link to Which Entries Are Recorded" title="Direct link to Which Entries Are Recorded" translate=no>​</a></h2>
+<p>TDB records any <strong>numeric Entry</strong> that is registered in a flow watcher. Non-numeric and uninitialized
+values are excluded.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=recorded-types>Recorded types<a href=#recorded-types class=hash-link aria-label="Direct link to Recorded types" title="Direct link to Recorded types" translate=no>​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>DataType<th>Rust type<th>Notes<tbody><tr><td><code>f4</code><td>f32<td>Converted to f64 for compression<tr><td><code>f8</code><td>f64<td>Native storage precision<tr><td><code>i1</code> – <code>i8</code><td>i8 – i64<td>Sign-extended to f64<tr><td><code>u1</code> – <code>u8</code><td>u8 – u64<td>Zero-extended to f64</table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=not-recorded>Not recorded<a href=#not-recorded class=hash-link aria-label="Direct link to Not recorded" title="Direct link to Not recorded" translate=no>​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Type<th>Reason<tbody><tr><td><code>A</code>, <code>A(n)</code>, <code>string</code><td>Non-numeric — no meaningful XOR compression<tr><td><code>B</code> (binary blob)<td>Excluded<tr><td><code>bool</code><td>Excluded<tr><td><code>L</code>, <code>DEF</code><td>Metadata-only; no memory allocation<tr><td>All-zero bytes<td>Stored as <code>0.0</code> (uninitialized region)</table>
+<p>:::info Enum Entries
+<code>Enum.XXX</code> entries are stored as their underlying integer value (<code>u2</code>). They are recorded and
+queryable as numeric data.
+:::</p>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=write-pipeline>How Entry Values Flow Into TDB<a href=#write-pipeline class=hash-link aria-label="Direct link to How Entry Values Flow Into TDB" title="Direct link to How Entry Values Flow Into TDB" translate=no>​</a></h2>
+<p>The data path from a live Entry update to a compressed <code>.tdb</code> file has three stages:</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=stage-1--watcher-scan-every-tdb_flush_interval_sec>Stage 1 — Watcher scan (every <code>TDB_FLUSH_INTERVAL_SEC</code>)<a href=#stage-1--watcher-scan-every-tdb_flush_interval_sec class=hash-link aria-label="Direct link to stage-1--watcher-scan-every-tdb_flush_interval_sec" title="Direct link to stage-1--watcher-scan-every-tdb_flush_interval_sec" translate=no>​</a></h3>
+<p>Port Server runs a background task that wakes on each flush interval. It reads the <strong>WatcherConfig</strong>
+— the list of numeric Entry keys and their DataTypes collected from all registered flows — and calls
+<code>TdbIntegration::record_regions()</code>.</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#F8F8F2;--prism-background-color:#282A36><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#F8F8F2;background-color:#282A36><code class=codeBlockLines_e6Vv><div class=token-line style=color:#F8F8F2><span class="token plain">tick (1 s default)</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">    ↓</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">scan all flow watchers → collect Entry keys + DataTypes</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">    ↓</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">read bytes from MemoryManager for each key</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">    ↓</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">convert_bytes_to_f64(bytes, datatype)</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">    ↓</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">TdbBridge::insert(timestamp_ms, Vec&lt;f64>)</span><br/></div></code></pre></div></div>
+<p><code>WatcherConfig</code> keeps variable names and their DataType codes in lock-step (enforced by a length
+assertion). This guarantees column alignment across restarts and project updates.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=stage-2--memtable-in-memory-buffer>Stage 2 — MemTable (in-memory buffer)<a href=#stage-2--memtable-in-memory-buffer class=hash-link aria-label="Direct link to Stage 2 — MemTable (in-memory buffer)" title="Direct link to Stage 2 — MemTable (in-memory buffer)" translate=no>​</a></h3>
+<p>Each inserted row lands in a <strong>lock-free MemTable</strong> (crossbeam-skiplist <code>SkipMap</code>). The main
+application thread is never blocked by disk I/O.</p>
+<p>When the MemTable reaches <code>TDB_MAX_MEMTABLE_SIZE</code> (default 10 MB) <strong>or</strong> the flush interval
+fires, a background thread atomically swaps the full table for an empty one and begins compression
+on the old data.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=stage-3--compression-and-persistence>Stage 3 — Compression and persistence<a href=#stage-3--compression-and-persistence class=hash-link aria-label="Direct link to Stage 3 — Compression and persistence" title="Direct link to Stage 3 — Compression and persistence" translate=no>​</a></h3>
+<p>The background flush thread:</p>
+<ol>
+<li class="">Encodes timestamps with <strong>delta-of-delta</strong> (variable-length bits; 0 bits for unchanged delta)</li>
+<li class="">Encodes each variable with XOR encoding (reuses leading/trailing zero patterns across consecutive values)</li>
+<li class="">Appends the compressed chunk to the current <code>.tdb</code> file</li>
+<li class="">Writes a <code>TdbChunkMetadata</code> entry to PortDatabase (redb) with file offset, time range, and per-column min/max stats</li>
+<li class="">Appends a CSV row to the WAL (<code>{table}.wal</code>) for crash recovery</li>
+</ol>
+<p>If compression fails, the raw rows are kept in <code>failed_data</code> and retried on the next cycle.</p>
+<p>:::tip Zero-blocking writes
+Writes always go to the MemTable. Disk I/O happens in a separate thread. Your application code
+experiences constant-time write latency regardless of storage speed.
+:::</p>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=configuration>Configuration<a href=#configuration class=hash-link aria-label="Direct link to Configuration" title="Direct link to Configuration" translate=no>​</a></h2>
+<p>TDB settings are read once at server startup from:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#F8F8F2;--prism-background-color:#282A36><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#F8F8F2;background-color:#282A36><code class=codeBlockLines_e6Vv><div class=token-line style=color:#F8F8F2><span class="token plain">%LOCALAPPDATA%\port\env\{project_name}\tdb.env</span><br/></div></code></pre></div></div>
+<p>The file is created with defaults on first run. Storage location is fixed to
+<code>%LOCALAPPDATA%\port\tdb\{project_name}</code> and is not configurable.</p>
+<div class="language-ini codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#F8F8F2;--prism-background-color:#282A36><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-ini codeBlock_bY9V thin-scrollbar" style=color:#F8F8F2;background-color:#282A36><code class=codeBlockLines_e6Vv><div class=token-line style=color:#F8F8F2><span class="token plain">TDB_ENABLED=true</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">TDB_MAX_MEMTABLE_SIZE=1073741824  # 1 GB — flush threshold</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">TDB_FLUSH_INTERVAL_SEC=1          # background flush + watcher recording interval</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">TDB_AUTO_FLUSH=true</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">TDB_RETENTION_DAYS=0              # 0 = keep forever</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">TDB_COMPACTION_ENABLED=false</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">TDB_COMPACTION_INTERVAL_SEC=300</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">TDB_RECORD_STORE_DAY=0            # 0 = keep files forever</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">TDB_ALARM_BACKUP_DURATION_SEC=300 # alarm backup window in seconds</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">EVENT_RETENTION_DAYS=7</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">TDB_TIMESTAMP_FORMAT=%Y-%m-%d %H:%M:%S%.3f</span><br/></div></code></pre></div></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Key<th>Default<th>Description<tbody><tr><td><code>TDB_ENABLED</code><td><code>true</code><td>Enable/disable the entire TDB subsystem<tr><td><code>TDB_MAX_MEMTABLE_SIZE</code><td><code>1073741824</code> (1 GB)<td>Flush when in-memory buffer exceeds this size<tr><td><code>TDB_FLUSH_INTERVAL_SEC</code><td><code>1</code><td>Periodic flush + watcher recording interval in seconds<tr><td><code>TDB_AUTO_FLUSH</code><td><code>true</code><td>Flush on interval in addition to size threshold<tr><td><code>TDB_RETENTION_DAYS</code><td><code>0</code><td>Delete chunks older than N days (<code>0</code> = keep forever)<tr><td><code>TDB_COMPACTION_ENABLED</code><td><code>false</code><td>Merge multiple L0 files into fewer, larger files<tr><td><code>TDB_COMPACTION_INTERVAL_SEC</code><td><code>300</code><td>Compaction run interval<tr><td><code>TDB_RECORD_STORE_DAY</code><td><code>0</code><td>Delete <code>.tdb</code> files older than N days by creation time<tr><td><code>TDB_ALARM_BACKUP_DURATION_SEC</code><td><code>300</code><td>History window (seconds) preserved on alarm fire<tr><td><code>EVENT_RETENTION_DAYS</code><td><code>7</code><td>Days to keep event data partitions<tr><td><code>TDB_TIMESTAMP_FORMAT</code><td><code>%Y-%m-%d %H:%M:%S%.3f</code><td>Timestamp display format for <code>temp.csv</code> (chrono strftime)</table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=timestamp-format>Timestamp format<a href=#timestamp-format class=hash-link aria-label="Direct link to Timestamp format" title="Direct link to Timestamp format" translate=no>​</a></h3>
+<p><code>TDB_TIMESTAMP_FORMAT</code> controls how the human-readable timestamp column in <code>temp.csv</code>
+is rendered. It uses <a href=https://docs.rs/chrono/latest/chrono/format/strftime/ target=_blank rel="noopener noreferrer" class="">chrono strftime</a>
+syntax on the server side:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>chrono token<th>Meaning<th>Example<tbody><tr><td><code>%Y</code><td>4-digit year<td><code>2026</code><tr><td><code>%m</code><td>Month (01–12)<td><code>07</code><tr><td><code>%d</code><td>Day (01–31)<td><code>07</code><tr><td><code>%H</code><td>Hour, 24h (00–23)<td><code>14</code><tr><td><code>%M</code><td>Minute (00–59)<td><code>30</code><tr><td><code>%S</code><td>Second (00–59)<td><code>15</code><tr><td><code>%3f</code><td>Milliseconds, no dot<td><code>123</code><tr><td><code>%.3f</code><td>Milliseconds with dot<td><code>.123</code></table>
+<div class="language-ini codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#F8F8F2;--prism-background-color:#282A36><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-ini codeBlock_bY9V thin-scrollbar" style=color:#F8F8F2;background-color:#282A36><code class=codeBlockLines_e6Vv><div class=token-line style=color:#F8F8F2><span class="token plain"># 2026_07_07 14:30:15:123</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">TDB_TIMESTAMP_FORMAT=%Y_%m_%d %H:%M:%S:%3f</span><br/></div></code></pre></div></div>
+<p>Query results from SQL and the REST/Trend APIs always use raw Unix-millisecond
+timestamps regardless of this setting — the format applies to the CSV mirror only.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=tdb-configure-csharp>Configuring from C# (<code>Port.Set(TDBConfigure)</code>)<a href=#tdb-configure-csharp class=hash-link aria-label="Direct link to tdb-configure-csharp" title="Direct link to tdb-configure-csharp" translate=no>​</a></h3>
+<p>Applications using the Portdic .NET library can write the whole <code>tdb.env</code> file
+programmatically instead of editing it by hand. Call it <strong>before</strong> <code>Port.Run()</code> —
+the server reads the file once at startup:</p>
+<div class="language-csharp codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#F8F8F2;--prism-background-color:#282A36><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-csharp codeBlock_bY9V thin-scrollbar" style=color:#F8F8F2;background-color:#282A36><code class=codeBlockLines_e6Vv><div class=token-line style=color:#F8F8F2><span class="token plain">Port</span><span class="token punctuation" style="color:rgb(248, 248, 242)">.</span><span class="token function" style="color:rgb(80, 250, 123)">Create</span><span class="token punctuation" style="color:rgb(248, 248, 242)">(</span><span class="token string" style="color:rgb(255, 121, 198)">"MyRepo"</span><span class="token punctuation" style="color:rgb(248, 248, 242)">)</span><span class="token punctuation" style="color:rgb(248, 248, 242)">;</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">Port</span><span class="token punctuation" style="color:rgb(248, 248, 242)">.</span><span class="token function" style="color:rgb(80, 250, 123)">Set</span><span class="token punctuation" style="color:rgb(248, 248, 242)">(</span><span class="token keyword" style="color:rgb(189, 147, 249);font-style:italic">new</span><span class="token plain"> </span><span class="token constructor-invocation class-name">TDBConfigure</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token punctuation" style="color:rgb(248, 248, 242)">{</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">    Enabled </span><span class="token operator">=</span><span class="token plain"> </span><span class="token boolean">true</span><span class="token punctuation" style="color:rgb(248, 248, 242)">,</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">    FlushIntervalSec </span><span class="token operator">=</span><span class="token plain"> </span><span class="token number">5</span><span class="token punctuation" style="color:rgb(248, 248, 242)">,</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">    RecordStoreDay </span><span class="token operator">=</span><span class="token plain"> </span><span class="token number">30</span><span class="token punctuation" style="color:rgb(248, 248, 242)">,</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">    AlarmBackupDurationSec </span><span class="token operator">=</span><span class="token plain"> </span><span class="token number">600</span><span class="token punctuation" style="color:rgb(248, 248, 242)">,</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">    TimestampFormat </span><span class="token operator">=</span><span class="token plain"> </span><span class="token string" style="color:rgb(255, 121, 198)">"yyyy_MM_dd HH:mm:ss:zzz"</span><span class="token punctuation" style="color:rgb(248, 248, 242)">,</span><span class="token plain">   </span><span class="token comment" style="color:rgb(98, 114, 164)">// .NET-style tokens</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token punctuation" style="color:rgb(248, 248, 242)">}</span><span class="token punctuation" style="color:rgb(248, 248, 242)">)</span><span class="token punctuation" style="color:rgb(248, 248, 242)">;</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">Port</span><span class="token punctuation" style="color:rgb(248, 248, 242)">.</span><span class="token function" style="color:rgb(80, 250, 123)">Run</span><span class="token punctuation" style="color:rgb(248, 248, 242)">(</span><span class="token punctuation" style="color:rgb(248, 248, 242)">)</span><span class="token punctuation" style="color:rgb(248, 248, 242)">;</span><br/></div></code></pre></div></div>
+<p><code>TDBConfigure.TimestampFormat</code> accepts <strong>.NET-style tokens</strong> and converts them to
+chrono syntax automatically (<code>yyyy_MM_dd HH:mm:ss:zzz</code> → <code>%Y_%m_%d %H:%M:%S:%3f</code>):</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>.NET token<th>chrono<th>Notes<tbody><tr><td><code>yyyy</code><td><code>%Y</code><td>4-digit year<tr><td><code>MM</code> / leading <code>mm</code><td><code>%m</code><td>Month — lowercase <code>mm</code> before the day token is treated as month<tr><td><code>dd</code><td><code>%d</code><td>Day<tr><td><code>HH</code> / <code>hh</code><td><code>%H</code><td>Hour (always 24-hour)<tr><td><code>mm</code> (after hour)<td><code>%M</code><td>Minute<tr><td><code>ss</code><td><code>%S</code><td>Second<tr><td><code>fff</code> / <code>zzz</code><td><code>%3f</code><td>Milliseconds (<code>zzz</code> is treated as milliseconds, not a timezone offset)<tr><td><code>ffffff</code><td><code>%6f</code><td>Microseconds</table>
+<p>A value that already contains <code>%</code> is passed through to <code>tdb.env</code> unchanged, so you
+can also supply raw chrono syntax directly.</p>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=query>Querying TDB Data<a href=#query class=hash-link aria-label="Direct link to Querying TDB Data" title="Direct link to Querying TDB Data" translate=no>​</a></h2>
+<p>TDB supports SQL queries over its compressed chunks. The <code>SqlPlanner</code> translates a SQL string
+into a <code>LogicalPlan</code>; the <code>QueryExecutor</code> scans only the chunks whose time range and min/max
+statistics satisfy the predicates.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=basic-time-range-query>Basic time-range query<a href=#basic-time-range-query class=hash-link aria-label="Direct link to Basic time-range query" title="Direct link to Basic time-range query" translate=no>​</a></h3>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#F8F8F2;--prism-background-color:#282A36><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style=color:#F8F8F2;background-color:#282A36><code class=codeBlockLines_e6Vv><div class=token-line style=color:#F8F8F2><span class="token keyword" style="color:rgb(189, 147, 249);font-style:italic">SELECT</span><span class="token plain"> temperature</span><span class="token punctuation" style="color:rgb(248, 248, 242)">,</span><span class="token plain"> pressure</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token keyword" style="color:rgb(189, 147, 249);font-style:italic">FROM</span><span class="token plain">   metrics</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token keyword" style="color:rgb(189, 147, 249);font-style:italic">WHERE</span><span class="token plain">  </span><span class="token keyword" style="color:rgb(189, 147, 249);font-style:italic">timestamp</span><span class="token plain"> </span><span class="token operator">>=</span><span class="token plain"> </span><span class="token number">1</span><span class="token plain">_700_000_000_000</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">  </span><span class="token operator">AND</span><span class="token plain">  </span><span class="token keyword" style="color:rgb(189, 147, 249);font-style:italic">timestamp</span><span class="token plain"> </span><span class="token operator">&lt;=</span><span class="token plain"> </span><span class="token number">1</span><span class="token plain">_700_003_600_000</span><span class="token punctuation" style="color:rgb(248, 248, 242)">;</span><br/></div></code></pre></div></div>
+<p><code>timestamp</code> values are Unix milliseconds (ms since epoch).</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=relative-time>Relative time expressions (<code>Now()</code>)<a href=#relative-time class=hash-link aria-label="Direct link to relative-time" title="Direct link to relative-time" translate=no>​</a></h3>
+<p>Instead of raw millisecond literals, <code>Now()</code> and <code>Now() - &lt;n>&lt;unit></code> can be used
+anywhere a timestamp is expected. They are rewritten to millisecond literals before
+parsing, so they work in every query interface (Web, REST, CLI, gRPC):</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#F8F8F2;--prism-background-color:#282A36><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style=color:#F8F8F2;background-color:#282A36><code class=codeBlockLines_e6Vv><div class=token-line style=color:#F8F8F2><span class="token comment" style="color:rgb(98, 114, 164)">-- Explicit bounds with Now()</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token keyword" style="color:rgb(189, 147, 249);font-style:italic">SELECT</span><span class="token plain"> </span><span class="token operator">*</span><span class="token plain"> </span><span class="token keyword" style="color:rgb(189, 147, 249);font-style:italic">FROM</span><span class="token plain"> metrics</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token keyword" style="color:rgb(189, 147, 249);font-style:italic">WHERE</span><span class="token plain">  </span><span class="token keyword" style="color:rgb(189, 147, 249);font-style:italic">timestamp</span><span class="token plain"> </span><span class="token operator">>=</span><span class="token plain"> </span><span class="token function" style="color:rgb(80, 250, 123)">Now</span><span class="token punctuation" style="color:rgb(248, 248, 242)">(</span><span class="token punctuation" style="color:rgb(248, 248, 242)">)</span><span class="token plain"> </span><span class="token operator">-</span><span class="token plain"> </span><span class="token number">1</span><span class="token plain">hour</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">  </span><span class="token operator">AND</span><span class="token plain">  </span><span class="token keyword" style="color:rgb(189, 147, 249);font-style:italic">timestamp</span><span class="token plain"> </span><span class="token operator">&lt;=</span><span class="token plain"> </span><span class="token function" style="color:rgb(80, 250, 123)">Now</span><span class="token punctuation" style="color:rgb(248, 248, 242)">(</span><span class="token punctuation" style="color:rgb(248, 248, 242)">)</span><span class="token punctuation" style="color:rgb(248, 248, 242)">;</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain" style=display:inline-block></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token comment" style="color:rgb(98, 114, 164)">-- Chained offsets</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token keyword" style="color:rgb(189, 147, 249);font-style:italic">SELECT</span><span class="token plain"> </span><span class="token operator">*</span><span class="token plain"> </span><span class="token keyword" style="color:rgb(189, 147, 249);font-style:italic">FROM</span><span class="token plain"> metrics</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token keyword" style="color:rgb(189, 147, 249);font-style:italic">WHERE</span><span class="token plain">  </span><span class="token keyword" style="color:rgb(189, 147, 249);font-style:italic">timestamp</span><span class="token plain"> </span><span class="token operator">>=</span><span class="token plain"> </span><span class="token function" style="color:rgb(80, 250, 123)">Now</span><span class="token punctuation" style="color:rgb(248, 248, 242)">(</span><span class="token punctuation" style="color:rgb(248, 248, 242)">)</span><span class="token plain"> </span><span class="token operator">-</span><span class="token plain"> </span><span class="token number">1</span><span class="token plain">day </span><span class="token operator">-</span><span class="token plain"> </span><span class="token number">30</span><span class="token plain">min</span><span class="token punctuation" style="color:rgb(248, 248, 242)">;</span><br/></div></code></pre></div></div>
+<p><strong>Shorthand</strong>: a <code>WHERE</code> clause consisting of just a <code>Now()</code> offset expands to a
+<code>timestamp >=</code> lower bound — "everything in the last N":</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#F8F8F2;--prism-background-color:#282A36><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style=color:#F8F8F2;background-color:#282A36><code class=codeBlockLines_e6Vv><div class=token-line style=color:#F8F8F2><span class="token keyword" style="color:rgb(189, 147, 249);font-style:italic">SELECT</span><span class="token plain"> </span><span class="token operator">*</span><span class="token plain"> </span><span class="token keyword" style="color:rgb(189, 147, 249);font-style:italic">FROM</span><span class="token plain"> metrics </span><span class="token keyword" style="color:rgb(189, 147, 249);font-style:italic">WHERE</span><span class="token plain"> </span><span class="token function" style="color:rgb(80, 250, 123)">Now</span><span class="token punctuation" style="color:rgb(248, 248, 242)">(</span><span class="token punctuation" style="color:rgb(248, 248, 242)">)</span><span class="token plain"> </span><span class="token operator">-</span><span class="token plain"> </span><span class="token number">1</span><span class="token plain">hour</span><span class="token punctuation" style="color:rgb(248, 248, 242)">;</span><span class="token plain">          </span><span class="token comment" style="color:rgb(98, 114, 164)">-- last 1 hour</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token keyword" style="color:rgb(189, 147, 249);font-style:italic">SELECT</span><span class="token plain"> </span><span class="token operator">*</span><span class="token plain"> </span><span class="token keyword" style="color:rgb(189, 147, 249);font-style:italic">FROM</span><span class="token plain"> metrics </span><span class="token keyword" style="color:rgb(189, 147, 249);font-style:italic">WHERE</span><span class="token plain"> </span><span class="token function" style="color:rgb(80, 250, 123)">Now</span><span class="token punctuation" style="color:rgb(248, 248, 242)">(</span><span class="token punctuation" style="color:rgb(248, 248, 242)">)</span><span class="token plain"> </span><span class="token operator">-</span><span class="token plain"> </span><span class="token number">1</span><span class="token plain">day </span><span class="token keyword" style="color:rgb(189, 147, 249);font-style:italic">LIMIT</span><span class="token plain"> </span><span class="token number">500</span><span class="token punctuation" style="color:rgb(248, 248, 242)">;</span><span class="token plain"> </span><span class="token comment" style="color:rgb(98, 114, 164)">-- last 1 day, capped at 500 rows</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token keyword" style="color:rgb(189, 147, 249);font-style:italic">SELECT</span><span class="token plain"> </span><span class="token operator">*</span><span class="token plain"> </span><span class="token keyword" style="color:rgb(189, 147, 249);font-style:italic">FROM</span><span class="token plain"> metrics </span><span class="token keyword" style="color:rgb(189, 147, 249);font-style:italic">WHERE</span><span class="token plain"> </span><span class="token function" style="color:rgb(80, 250, 123)">Now</span><span class="token punctuation" style="color:rgb(248, 248, 242)">(</span><span class="token punctuation" style="color:rgb(248, 248, 242)">)</span><span class="token plain"> </span><span class="token operator">-</span><span class="token plain"> </span><span class="token number">30</span><span class="token plain">sec</span><span class="token punctuation" style="color:rgb(248, 248, 242)">;</span><span class="token plain">          </span><span class="token comment" style="color:rgb(98, 114, 164)">-- last 30 seconds</span><br/></div></code></pre></div></div>
+<p>Supported units (case-insensitive, singular or plural):</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Unit<th>Aliases<tbody><tr><td>seconds<td><code>sec</code>, <code>second</code>, <code>s</code><tr><td>minutes<td><code>min</code>, <code>minute</code>, <code>m</code><tr><td>hours<td><code>hour</code>, <code>hr</code>, <code>h</code><tr><td>days<td><code>day</code>, <code>d</code><tr><td>weeks<td><code>week</code>, <code>w</code></table>
+<p>An unrecognized unit (e.g. <code>- 5fortnights</code>) is left untouched and surfaces as a
+normal SQL parsing error.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=value-filter>Value filter<a href=#value-filter class=hash-link aria-label="Direct link to Value filter" title="Direct link to Value filter" translate=no>​</a></h3>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#F8F8F2;--prism-background-color:#282A36><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style=color:#F8F8F2;background-color:#282A36><code class=codeBlockLines_e6Vv><div class=token-line style=color:#F8F8F2><span class="token keyword" style="color:rgb(189, 147, 249);font-style:italic">SELECT</span><span class="token plain"> motor_rpm</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token keyword" style="color:rgb(189, 147, 249);font-style:italic">FROM</span><span class="token plain">   equipment</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token keyword" style="color:rgb(189, 147, 249);font-style:italic">WHERE</span><span class="token plain">  </span><span class="token keyword" style="color:rgb(189, 147, 249);font-style:italic">timestamp</span><span class="token plain"> </span><span class="token operator">>=</span><span class="token plain"> </span><span class="token number">1</span><span class="token plain">_700_000_000_000</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">  </span><span class="token operator">AND</span><span class="token plain">  motor_rpm </span><span class="token operator">></span><span class="token plain"> </span><span class="token number">3000.0</span><span class="token punctuation" style="color:rgb(248, 248, 242)">;</span><br/></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=aggregation-with-time-bucketing>Aggregation with time bucketing<a href=#aggregation-with-time-bucketing class=hash-link aria-label="Direct link to Aggregation with time bucketing" title="Direct link to Aggregation with time bucketing" translate=no>​</a></h3>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#F8F8F2;--prism-background-color:#282A36><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style=color:#F8F8F2;background-color:#282A36><code class=codeBlockLines_e6Vv><div class=token-line style=color:#F8F8F2><span class="token keyword" style="color:rgb(189, 147, 249);font-style:italic">SELECT</span><span class="token plain"> time_bucket</span><span class="token punctuation" style="color:rgb(248, 248, 242)">(</span><span class="token string" style="color:rgb(255, 121, 198)">'5m'</span><span class="token punctuation" style="color:rgb(248, 248, 242)">,</span><span class="token plain"> </span><span class="token keyword" style="color:rgb(189, 147, 249);font-style:italic">timestamp</span><span class="token punctuation" style="color:rgb(248, 248, 242)">)</span><span class="token plain"> </span><span class="token keyword" style="color:rgb(189, 147, 249);font-style:italic">AS</span><span class="token plain"> bucket</span><span class="token punctuation" style="color:rgb(248, 248, 242)">,</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">       </span><span class="token function" style="color:rgb(80, 250, 123)">avg</span><span class="token punctuation" style="color:rgb(248, 248, 242)">(</span><span class="token plain">temperature</span><span class="token punctuation" style="color:rgb(248, 248, 242)">)</span><span class="token plain">             </span><span class="token keyword" style="color:rgb(189, 147, 249);font-style:italic">AS</span><span class="token plain"> avg_temp</span><span class="token punctuation" style="color:rgb(248, 248, 242)">,</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">       </span><span class="token function" style="color:rgb(80, 250, 123)">max</span><span class="token punctuation" style="color:rgb(248, 248, 242)">(</span><span class="token plain">pressure</span><span class="token punctuation" style="color:rgb(248, 248, 242)">)</span><span class="token plain">                </span><span class="token keyword" style="color:rgb(189, 147, 249);font-style:italic">AS</span><span class="token plain"> peak_pressure</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token keyword" style="color:rgb(189, 147, 249);font-style:italic">FROM</span><span class="token plain">   sensors</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token keyword" style="color:rgb(189, 147, 249);font-style:italic">WHERE</span><span class="token plain">  </span><span class="token keyword" style="color:rgb(189, 147, 249);font-style:italic">timestamp</span><span class="token plain"> </span><span class="token operator">>=</span><span class="token plain"> </span><span class="token number">1</span><span class="token plain">_700_000_000_000</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token keyword" style="color:rgb(189, 147, 249);font-style:italic">GROUP</span><span class="token plain">  </span><span class="token keyword" style="color:rgb(189, 147, 249);font-style:italic">BY</span><span class="token plain"> bucket</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token keyword" style="color:rgb(189, 147, 249);font-style:italic">ORDER</span><span class="token plain">  </span><span class="token keyword" style="color:rgb(189, 147, 249);font-style:italic">BY</span><span class="token plain"> bucket</span><span class="token punctuation" style="color:rgb(248, 248, 242)">;</span><br/></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=supported-statements>Supported statements<a href=#supported-statements class=hash-link aria-label="Direct link to Supported statements" title="Direct link to Supported statements" translate=no>​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Statement<th>Description<tbody><tr><td><code>SELECT … FROM … WHERE …</code><td>Time-range scan with optional column projection and value filter<tr><td><code>SELECT … GROUP BY time_bucket(…)</code><td>Aggregation with time bucketing<tr><td><code>SHOW TABLES</code><td>List all tables with recorded data<tr><td><code>DELETE FROM … WHERE timestamp &lt; …</code><td>Remove data older than a threshold<tr><td><code>DROP TABLE …</code><td>Delete all data for a table</table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=supported-aggregation-functions>Supported aggregation functions<a href=#supported-aggregation-functions class=hash-link aria-label="Direct link to Supported aggregation functions" title="Direct link to Supported aggregation functions" translate=no>​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Function<th>Description<tbody><tr><td><code>avg(col)</code><td>Arithmetic mean<tr><td><code>sum(col)</code><td>Sum of values<tr><td><code>count(col)</code><td>Number of rows<tr><td><code>min(col)</code><td>Minimum value<tr><td><code>max(col)</code><td>Maximum value</table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=time_bucket-intervals><code>time_bucket</code> intervals<a href=#time_bucket-intervals class=hash-link aria-label="Direct link to time_bucket-intervals" title="Direct link to time_bucket-intervals" translate=no>​</a></h3>
+<p><code>s</code> (seconds), <code>m</code> (minutes), <code>h</code> (hours), <code>d</code> (days)</p>
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#F8F8F2;--prism-background-color:#282A36><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style=color:#F8F8F2;background-color:#282A36><code class=codeBlockLines_e6Vv><div class=token-line style=color:#F8F8F2><span class="token plain">time_bucket</span><span class="token punctuation" style="color:rgb(248, 248, 242)">(</span><span class="token string" style="color:rgb(255, 121, 198)">'15m'</span><span class="token punctuation" style="color:rgb(248, 248, 242)">,</span><span class="token plain"> </span><span class="token keyword" style="color:rgb(189, 147, 249);font-style:italic">timestamp</span><span class="token punctuation" style="color:rgb(248, 248, 242)">)</span><span class="token plain">   </span><span class="token comment" style="color:rgb(98, 114, 164)">-- 15-minute buckets</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">time_bucket</span><span class="token punctuation" style="color:rgb(248, 248, 242)">(</span><span class="token string" style="color:rgb(255, 121, 198)">'1h'</span><span class="token punctuation" style="color:rgb(248, 248, 242)">,</span><span class="token plain">  </span><span class="token keyword" style="color:rgb(189, 147, 249);font-style:italic">timestamp</span><span class="token punctuation" style="color:rgb(248, 248, 242)">)</span><span class="token plain">   </span><span class="token comment" style="color:rgb(98, 114, 164)">-- 1-hour buckets</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">time_bucket</span><span class="token punctuation" style="color:rgb(248, 248, 242)">(</span><span class="token string" style="color:rgb(255, 121, 198)">'1d'</span><span class="token punctuation" style="color:rgb(248, 248, 242)">,</span><span class="token plain">  </span><span class="token keyword" style="color:rgb(189, 147, 249);font-style:italic">timestamp</span><span class="token punctuation" style="color:rgb(248, 248, 242)">)</span><span class="token plain">   </span><span class="token comment" style="color:rgb(98, 114, 164)">-- 1-day buckets</span><br/></div></code></pre></div></div>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=query-interfaces>Query Interfaces<a href=#query-interfaces class=hash-link aria-label="Direct link to Query Interfaces" title="Direct link to Query Interfaces" translate=no>​</a></h2>
+<p>TDB data can be queried through four interfaces. All of them go through the same
+<code>SqlPlanner</code> → <code>QueryExecutor</code> pipeline, so the SQL syntax above applies everywhere.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Interface<th>Access<th>Statements<tbody><tr><td><strong>Web Query page</strong><td>Port web UI (<code>http://localhost:8000</code>) → <strong>TDB Query</strong> menu<td><code>SELECT</code>, <code>SHOW TABLES</code> (read-only)<tr><td><strong>REST API</strong><td><code>POST /api/v1/tdb/sql</code><td><code>SELECT</code>, <code>SHOW TABLES</code> (read-only)<tr><td><strong>CLI</strong><td><code>port query "&lt;SQL>"</code><td>All statements including <code>DELETE</code> / <code>DROP</code><tr><td><strong>gRPC</strong><td><code>ExecuteSqlQuery</code> (localhost:50051)<td>All statements including <code>DELETE</code> / <code>DROP</code></table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=web-query-page>Web Query page<a href=#web-query-page class=hash-link aria-label="Direct link to Web Query page" title="Direct link to Web Query page" translate=no>​</a></h3>
+<p>The <strong>TDB Query</strong> menu in the Port web UI (left icon bar, database icon) provides an
+interactive SQL console:</p>
+<ol>
+<li class="">Type a query in the SQL editor — or pick one from <strong>Examples</strong> (list tables, latest rows,
+<code>Now() - 1hour</code> relative-range templates) or <strong>History</strong> (your last 10 successful queries).</li>
+<li class="">Press <strong>Run</strong> or <code>Ctrl+Enter</code>.</li>
+<li class="">A <strong>time-series chart</strong> of the result is drawn above the grid (up to 8 series, one line
+per column, hover for per-point values). Toggle it with the <strong>Chart</strong> button in the
+result bar.</li>
+<li class="">Results appear in a data grid: a <code>Time</code> column (formatted from the Unix-ms timestamp)
+plus one column per selected key. <code>SHOW TABLES</code> renders as a table list.</li>
+</ol>
+<p>The result bar shows the row count, elapsed time, and whether the result was truncated
+by the row cap (default 10,000 rows).</p>
+<p>:::warning Web Query page is read-only
+<code>DELETE</code> and <code>DROP</code> are rejected on the Web Query page and REST API. Run destructive
+statements from the CLI (<code>port query</code>) instead.</p>
+<p>Aggregate functions (<code>avg</code>, <code>sum</code>, <code>count</code>, <code>min</code>, <code>max</code>, <code>time_bucket</code>) are parsed but not
+yet executed server-side — the web interface rejects them with an explanatory message.
+Query raw rows and aggregate client-side until executor support lands.
+:::</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=rest-api>REST API<a href=#rest-api class=hash-link aria-label="Direct link to REST API" title="Direct link to REST API" translate=no>​</a></h3>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#F8F8F2;--prism-background-color:#282A36><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style=color:#F8F8F2;background-color:#282A36><code class=codeBlockLines_e6Vv><div class=token-line style=color:#F8F8F2><span class="token function" style="color:rgb(80, 250, 123)">curl</span><span class="token plain"> </span><span class="token parameter variable" style="color:rgb(189, 147, 249);font-style:italic">-X</span><span class="token plain"> POST http://localhost:8000/api/v1/tdb/sql </span><span class="token punctuation" style="color:rgb(248, 248, 242)">\</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">  </span><span class="token parameter variable" style="color:rgb(189, 147, 249);font-style:italic">-H</span><span class="token plain"> </span><span class="token string" style="color:rgb(255, 121, 198)">"Content-Type: application/json"</span><span class="token plain"> </span><span class="token punctuation" style="color:rgb(248, 248, 242)">\</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">  </span><span class="token parameter variable" style="color:rgb(189, 147, 249);font-style:italic">-d</span><span class="token plain"> </span><span class="token string" style="color:rgb(255, 121, 198)">'{"sql": "SELECT * FROM metrics LIMIT 100;", "max_rows": 1000}'</span><br/></div></code></pre></div></div>
+<p>Response (column order in <code>columns</code>, one entry per row in <code>rows</code>):</p>
+<div class="language-json codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#F8F8F2;--prism-background-color:#282A36><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-json codeBlock_bY9V thin-scrollbar" style=color:#F8F8F2;background-color:#282A36><code class=codeBlockLines_e6Vv><div class=token-line style=color:#F8F8F2><span class="token punctuation" style="color:rgb(248, 248, 242)">{</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">  </span><span class="token property">"success"</span><span class="token operator">:</span><span class="token plain"> </span><span class="token boolean">true</span><span class="token punctuation" style="color:rgb(248, 248, 242)">,</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">  </span><span class="token property">"message"</span><span class="token operator">:</span><span class="token plain"> </span><span class="token string" style="color:rgb(255, 121, 198)">"Returned 100 row(s) in 12 ms"</span><span class="token punctuation" style="color:rgb(248, 248, 242)">,</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">  </span><span class="token property">"kind"</span><span class="token operator">:</span><span class="token plain"> </span><span class="token string" style="color:rgb(255, 121, 198)">"rows"</span><span class="token punctuation" style="color:rgb(248, 248, 242)">,</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">  </span><span class="token property">"columns"</span><span class="token operator">:</span><span class="token plain"> </span><span class="token punctuation" style="color:rgb(248, 248, 242)">[</span><span class="token string" style="color:rgb(255, 121, 198)">"room1/custom.Done_i"</span><span class="token punctuation" style="color:rgb(248, 248, 242)">]</span><span class="token punctuation" style="color:rgb(248, 248, 242)">,</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">  </span><span class="token property">"rows"</span><span class="token operator">:</span><span class="token plain"> </span><span class="token punctuation" style="color:rgb(248, 248, 242)">[</span><span class="token plain"> </span><span class="token punctuation" style="color:rgb(248, 248, 242)">{</span><span class="token plain"> </span><span class="token property">"ts"</span><span class="token operator">:</span><span class="token plain"> </span><span class="token number">1767600000000</span><span class="token punctuation" style="color:rgb(248, 248, 242)">,</span><span class="token plain"> </span><span class="token property">"values"</span><span class="token operator">:</span><span class="token plain"> </span><span class="token punctuation" style="color:rgb(248, 248, 242)">{</span><span class="token plain"> </span><span class="token property">"room1/custom.Done_i"</span><span class="token operator">:</span><span class="token plain"> </span><span class="token number">1.0</span><span class="token plain"> </span><span class="token punctuation" style="color:rgb(248, 248, 242)">}</span><span class="token plain"> </span><span class="token punctuation" style="color:rgb(248, 248, 242)">}</span><span class="token plain"> </span><span class="token punctuation" style="color:rgb(248, 248, 242)">]</span><span class="token punctuation" style="color:rgb(248, 248, 242)">,</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">  </span><span class="token property">"count"</span><span class="token operator">:</span><span class="token plain"> </span><span class="token number">100</span><span class="token punctuation" style="color:rgb(248, 248, 242)">,</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">  </span><span class="token property">"truncated"</span><span class="token operator">:</span><span class="token plain"> </span><span class="token boolean">false</span><span class="token punctuation" style="color:rgb(248, 248, 242)">,</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">  </span><span class="token property">"elapsed_ms"</span><span class="token operator">:</span><span class="token plain"> </span><span class="token number">12</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain"></span><span class="token punctuation" style="color:rgb(248, 248, 242)">}</span><br/></div></code></pre></div></div>
+<p>Related endpoints used by the <strong>TDB Trend</strong> menu (chart + data grid):</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Endpoint<th>Purpose<tbody><tr><td><code>GET /api/v1/tdb/variables</code><td>List every recorded variable with its time coverage<tr><td><code>GET /api/v1/tdb/data?start_ts=&end_ts=&keys=</code><td>Column-oriented decoded values for charting</table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=cli>CLI<a href=#cli class=hash-link aria-label="Direct link to CLI" title="Direct link to CLI" translate=no>​</a></h3>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#F8F8F2;--prism-background-color:#282A36><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style=color:#F8F8F2;background-color:#282A36><code class=codeBlockLines_e6Vv><div class=token-line style=color:#F8F8F2><span class="token plain">port query </span><span class="token string" style="color:rgb(255, 121, 198)">"SHOW TABLES;"</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">port query </span><span class="token string" style="color:rgb(255, 121, 198)">"SELECT * FROM metrics WHERE timestamp >= 1767600000000 LIMIT 100;"</span><span class="token plain"></span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">port query </span><span class="token string" style="color:rgb(255, 121, 198)">"DELETE FROM metrics WHERE timestamp &lt; 1767000000000;"</span><span class="token plain">   </span><span class="token comment" style="color:rgb(98, 114, 164)"># destructive — CLI only</span><br/></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id=tdb-trend-page-no-sql-required>TDB Trend page (no SQL required)<a href=#tdb-trend-page-no-sql-required class=hash-link aria-label="Direct link to TDB Trend page (no SQL required)" title="Direct link to TDB Trend page (no SQL required)" translate=no>​</a></h3>
+<p>For visual exploration without writing SQL, use the <strong>TDB Trend</strong> menu instead:
+select up to 8 variables, watch them stream in <strong>Live</strong> mode (1-second moving window),
+or switch to <strong>History</strong> mode for a fixed date/time range with drag-to-zoom.
+The grid below the chart shows the same rows as a Time × key table.</p>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=alarm-backup>Alarm Backup<a href=#alarm-backup class=hash-link aria-label="Direct link to Alarm Backup" title="Direct link to Alarm Backup" translate=no>​</a></h2>
+<p><code>TdbBackupManager</code> automatically saves a snapshot of sensor history whenever an alarm fires.
+The snapshot covers the window defined by <code>TDB_ALARM_BACKUP_DURATION_SECONDS</code> (default 600 s = 10 minutes)
+before the alarm timestamp. This allows post-incident analysis without requiring full-history retention.</p>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=file-layout>File Layout<a href=#file-layout class=hash-link aria-label="Direct link to File Layout" title="Direct link to File Layout" translate=no>​</a></h2>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style=--prism-color:#F8F8F2;--prism-background-color:#282A36><div class=codeBlockContent_QJqH><pre tabindex=0 class="prism-code language-text codeBlock_bY9V thin-scrollbar" style=color:#F8F8F2;background-color:#282A36><code class=codeBlockLines_e6Vv><div class=token-line style=color:#F8F8F2><span class="token plain">{TDB_STORAGE_PATH}/</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">├── {table}.tdb          # primary data file (append-only)</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">├── {table}_2.tdb        # rotation file (after 1 GB)</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">├── {table}_3.tdb</span><br/></div><div class=token-line style=color:#F8F8F2><span class="token plain">└── {table}.wal          # write-ahead log (CSV, for crash recovery)</span><br/></div></code></pre></div></div>
+<p>Files auto-rotate at 1 GB. Rotation appends a numeric suffix; the base name corresponds to the
+table name used in SQL queries.</p>
+<hr/>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id=related>Related<a href=#related class=hash-link aria-label="Direct link to Related" title="Direct link to Related" translate=no>​</a></h2>
+<ul>
+<li class=""><a class="" href=/flow>Flow</a> — <code>[FlowWatcherCompare]</code> entries are the source of watcher keys fed into TDB</li>
+<li class=""><a class="" href=/commands>Commands</a> — <code>port run</code> starts the Port Server that drives TDB recording</li>
+<li class=""><a class="" href=/quick>Quick Start</a> — Entry definition syntax and data types</li>
+</ul></div></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href=/entity><div class=pagination-nav__sublabel>Previous</div><div class=pagination-nav__label>Entity Objects</div></a><a class="pagination-nav__link pagination-nav__link--next" href=/tcp><div class=pagination-nav__sublabel>Next</div><div class=pagination-nav__label>TCP</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href=#overview class="table-of-contents__link toc-highlight">Overview</a><li><a href=#which-entries class="table-of-contents__link toc-highlight">Which Entries Are Recorded</a><ul><li><a href=#recorded-types class="table-of-contents__link toc-highlight">Recorded types</a><li><a href=#not-recorded class="table-of-contents__link toc-highlight">Not recorded</a></ul><li><a href=#write-pipeline class="table-of-contents__link toc-highlight">How Entry Values Flow Into TDB</a><ul><li><a href=#stage-1--watcher-scan-every-tdb_flush_interval_sec class="table-of-contents__link toc-highlight">Stage 1 — Watcher scan (every <code>TDB_FLUSH_INTERVAL_SEC</code>)</a><li><a href=#stage-2--memtable-in-memory-buffer class="table-of-contents__link toc-highlight">Stage 2 — MemTable (in-memory buffer)</a><li><a href=#stage-3--compression-and-persistence class="table-of-contents__link toc-highlight">Stage 3 — Compression and persistence</a></ul><li><a href=#configuration class="table-of-contents__link toc-highlight">Configuration</a><ul><li><a href=#timestamp-format class="table-of-contents__link toc-highlight">Timestamp format</a><li><a href=#tdb-configure-csharp class="table-of-contents__link toc-highlight">Configuring from C# (<code>Port.Set(TDBConfigure)</code>)</a></ul><li><a href=#query class="table-of-contents__link toc-highlight">Querying TDB Data</a><ul><li><a href=#basic-time-range-query class="table-of-contents__link toc-highlight">Basic time-range query</a><li><a href=#relative-time class="table-of-contents__link toc-highlight">Relative time expressions (<code>Now()</code>)</a><li><a href=#value-filter class="table-of-contents__link toc-highlight">Value filter</a><li><a href=#aggregation-with-time-bucketing class="table-of-contents__link toc-highlight">Aggregation with time bucketing</a><li><a href=#supported-statements class="table-of-contents__link toc-highlight">Supported statements</a><li><a href=#supported-aggregation-functions class="table-of-contents__link toc-highlight">Supported aggregation functions</a><li><a href=#time_bucket-intervals class="table-of-contents__link toc-highlight"><code>time_bucket</code> intervals</a></ul><li><a href=#query-interfaces class="table-of-contents__link toc-highlight">Query Interfaces</a><ul><li><a href=#web-query-page class="table-of-contents__link toc-highlight">Web Query page</a><li><a href=#rest-api class="table-of-contents__link toc-highlight">REST API</a><li><a href=#cli class="table-of-contents__link toc-highlight">CLI</a><li><a href=#tdb-trend-page-no-sql-required class="table-of-contents__link toc-highlight">TDB Trend page (no SQL required)</a></ul><li><a href=#alarm-backup class="table-of-contents__link toc-highlight">Alarm Backup</a><li><a href=#file-layout class="table-of-contents__link toc-highlight">File Layout</a><li><a href=#related class="table-of-contents__link toc-highlight">Related</a></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"></div></footer></div></body>
