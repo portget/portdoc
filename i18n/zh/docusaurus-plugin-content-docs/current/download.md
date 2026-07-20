@@ -9,7 +9,7 @@ sidebar_position: 99
 
 | 名称 | 版本 | 操作系统 | 稳定版 | 链接 |
 |------|------|----|--------|------|
-| Windows 二进制文件 | v1.2.2 | Windows x64 | Yes | [v1.2.2-win-installer](pathname:///file/Setup.zip) |
+| Windows 二进制文件 | v1.2.3 | Windows x64 | Yes | [v1.2.3-win-installer](pathname:///file/Setup.zip) |
 
 ---
 
