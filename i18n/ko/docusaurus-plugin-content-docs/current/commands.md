@@ -18,6 +18,7 @@ This document provides a comprehensive reference for all available PORT CLI comm
 | `run` | `[project_name] [flags]` | Run PORT project |
 | `push` | `[project_name]` | Push project to repository |
 | `pull` | `[project_name]` | Pull project from repository |
+| `output` | `<output_dir> [-p project]` | Generate `entry.cs` from the page DB |
 
 ### Package Management
 | Command | Arguments | Description |
@@ -56,7 +57,7 @@ This document provides a comprehensive reference for all available PORT CLI comm
 | Command | Arguments | Description |
 |---------|-----------|-------------|
 | `get` | `<group> <key>` | Get data |
-| `set` | `<group> <key> <value>` | Set data |
+| `set` | `<group> <key> <value> [--repo <repo>]` | Set data (server, or local DB with `--repo`) |
 | `status` | - | Get server status |
 | `uptime` | - | Get server uptime |
 | `latency` | - | Measure server latency |
@@ -177,6 +178,32 @@ push MyProject
 **Example**:
 ```bash
 pull MyProject
+```
+
+### `output` - Generate entry.cs from Page Database
+**Usage**: `output <output_dir> [-p/--project-name <project_name>]`
+
+**Description**: Generates an `entry.cs` C# source file from the project's page database into the
+specified directory. Produces the same output as the C# `Port.Output()` API.
+
+**Arguments**:
+- `output_dir`: Target directory for `entry.cs` (created when missing; an existing `entry.cs` is overwritten)
+- `-p, --project-name`: Project name (optional; resolved from `*.port.md` in the current directory when omitted)
+
+**Features**:
+- One `[PageDocument]` class per page category
+- Constants carry `[PageEntry]` metadata (data type, enum name, package, property JSON, GEM IDs)
+- Includes the `Category`, `Defined` (enums), and GEM ID helper classes
+- Generated classes can be passed back to `Port.Push()` to rebuild the page DB
+
+**Notes**:
+- Requires a page database created by `push` — run `push <project_name>` first.
+- While the port server is running, the page database is locked and generation may fail;
+  run this command before `run` or stop the server first.
+
+**Example**:
+```bash
+output D:\MyApp\Entry -p MyProject
 ```
 
 ## Package Management Commands
@@ -431,7 +458,7 @@ get GEM.doc
 ```
 
 ### `set` - Set Server Data
-**Usage**: `set <group> <key> <value>`
+**Usage**: `set <group> <key> <value> [--repo <repository>]`
 
 **Description**: Sets data on the server including message values, system configurations, and executes various operations.
 
@@ -439,6 +466,13 @@ get GEM.doc
 - `group`: Group name, package name, or operation context
 - `key`: Key, message name, or operation type
 - `value`: Value to set or operation parameters
+
+**Flags**:
+- `--repo <repository>`: Set the value directly in the repository's local DB
+  (`%LOCALAPPDATA%\port\DB\{repository}`) instead of the running server. Use this before
+  starting the server; the next `port run` starts with the value. Prints an error and
+  exits when the repository has no local DB (run `port push` first).
+  - Example: `port set --repo myproject room1 Temp1 42.5`
 
 #### **Entry Data Operations**
 - `[group-name] [message-name] [value]`: Set group message value
@@ -499,6 +533,10 @@ get GEM.doc
 set Equipment Status RUNNING
 set SECS CommState ENABLED
 set Process Temperature 150.5
+
+# Set a value directly in a repository's local DB (offline, before the server runs)
+port set --repo myproject room1 Temp1 42.5
+port set --repo myproject room1 BulbState ON
 
 # Execute JavaScript functions
 set automation.js startProcess "Recipe1,Lot001"
