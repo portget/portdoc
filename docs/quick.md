@@ -327,7 +327,7 @@ Port.Pull("sample", @"D:\sample\Repo\pull\");
 A **Model** is the **data-binding layer** that connects Port Entries to C# properties.
 
 - Declare the class with the `[Model]` attribute.
-- Each property is linked to a specific Entry via `[ModelBinding]`.
+- Each property is linked to a specific Entry via `[EntryBinding]`.
 - Controllers and Flows read and write Entry values through the Model.
 
 ---
@@ -338,7 +338,7 @@ A **Model** is the **data-binding layer** that connects Port Entries to C# prope
 .page file (Entry definitions)
     ↓  Push
 Port in-memory DB (Entry values)
-    ↕  ModelBinding
+    ↕  EntryBinding
 Model (C# property ↔ Entry mapping)
     ↕
 Controller / Flow (business logic)
@@ -351,7 +351,7 @@ the Model is a **type-safe view** of that data in code.
 
 ### 2.3 How to Map a Model to a Page
 
-Use the `[ModelBinding(instanceKey, entryKey)]` attribute.
+Use the `[EntryBinding(instanceKey, entryKey)]` attribute.
 
 - **First argument** — controller instance key (e.g. `"Bulb1"`, `"LP1"`)
 - **Second argument** — Entry constant from the auto-generated `.cs` file
@@ -361,21 +361,21 @@ Use the `[ModelBinding(instanceKey, entryKey)]` attribute.
 public class BulbModel
 {
     // Both "Bulb1" and "Bulb2" instances share the same property structure
-    [ModelBinding("Bulb1", Io.Bulb1OnOff)]
-    [ModelBinding("Bulb2", Io.Bulb2OnOff)]
+    [EntryBinding("Bulb1", Io.Bulb1OnOff)]
+    [EntryBinding("Bulb2", Io.Bulb2OnOff)]
     public Entry OnOff { get; set; }
 
-    [ModelBinding("Bulb1", Io.Bulb1Temp)]
-    [ModelBinding("Bulb2", Io.Bulb2Temp)]
+    [EntryBinding("Bulb1", Io.Bulb1Temp)]
+    [EntryBinding("Bulb2", Io.Bulb2Temp)]
     public Entry Temp { get; set; }
 
-    [ModelBinding("Bulb1", Io.Bulb1TargetTemp)]
-    [ModelBinding("Bulb2", Io.Bulb2TargetTemp)]
+    [EntryBinding("Bulb1", Io.Bulb1TargetTemp)]
+    [EntryBinding("Bulb2", Io.Bulb2TargetTemp)]
     public Entry TargetTemp { get; set; }
 }
 ```
 
-`[ModelBinding]` attributes can freely mix entries from the auto-generated class and
+`[EntryBinding]` attributes can freely mix entries from the auto-generated class and
 a user-defined `[Page]` class:
 
 ```csharp
@@ -383,12 +383,12 @@ a user-defined `[Page]` class:
 public class LoadportModel
 {
     // Entry added via CustomEFEM
-    [ModelBinding("LP1", CustomEFEM.LP1_Cont1_o)]
+    [EntryBinding("LP1", CustomEFEM.LP1_Cont1_o)]
     // Entry from the auto-generated EFEM class
-    [ModelBinding("LP2", EFEM.LP2_Cont_o)]
+    [EntryBinding("LP2", EFEM.LP2_Cont_o)]
     public Entry LP_Cont_o { get; set; }
 
-    [ModelBinding("LP1", CustomEFEM.LP1_OffOn_o)]
+    [EntryBinding("LP1", CustomEFEM.LP1_OffOn_o)]
     public Entry LP_OffOn_o { get; set; }
 }
 ```
@@ -592,7 +592,9 @@ public partial class MainWindow : Window
 | Interface | Purpose |
 |-----------|---------|
 | `IFlowHandler` | Basic Flow progression control (`Next()`) |
-| `IFlowWithModelHandler<T>` | Flow event subscriptions that carry the Model |
+| `IModelFlowHandler<T>` | Flow event subscriptions that carry the Model (`IFlowHandler<T>` is an identical shorthand) |
+| `IModuleFlowHandler<TModule, TSubstrate, TModel>` | `GetModule()` / `GetSubstrate()` / `GetModel()` — typed access to the module, its substrate, and the model |
+| `ITransferFlowHandler<TTransfer, TSubstrate, TModel>` | Robot Pick/Place flows: `GetTransfer()` / `GetSubstrate()` / `GetModel()` + `GetTargetName()` / `GetSourceName()` |
 | `ISchedulerHandler<T>` | Transfer-completion scheduling |
 
 ---
@@ -609,10 +611,10 @@ handler.Next();   // Advance to the next FlowStep
 handler.Done();   // Synchronously force the Flow to Idle
 ```
 
-#### IFlowWithModelHandler\<T\> — Event-Driven Model Access
+#### IModelFlowHandler\<T\> — Event-Driven Model Access
 
 `IFlowCACD<T>` is the recommended interface for equipment transfer flows.
-Declare the handler as `IFlowWithModelHandler<T>` to gain access to flow lifecycle
+Declare the handler as `IModelFlowHandler<T>` to gain access to flow lifecycle
 events that carry the model. Subscribe in `[Preset]` — subscriptions survive across
 all executions of the same flow key.
 
@@ -624,7 +626,7 @@ internal class WTRController
     public class Pick : IFlowCACD<WTRCommModel>
     {
         [Handler]
-        public IFlowWithModelHandler<WTRCommModel> handler { set; get; } = null!;
+        public IModelFlowHandler<WTRCommModel> handler { set; get; } = null!;
 
         [Handler]
         public ISchedulerHandler<DualArmActionArgs> scheduler { set; get; } = null!;
@@ -646,6 +648,11 @@ internal class WTRController
     }
 }
 ```
+
+> **Note** — a flow registered under the reserved robot keys
+> `Reserved.ArmRobot.FLOW_KEY_PICK` (`"Pick"`) / `FLOW_KEY_PLACE` (`"Place"`) on a
+> transfer-module controller signals `TransferCompleted` automatically when it
+> finishes, so the manual `OnFlowFinished` subscription above is optional there.
 
 #### handler.Next() vs handler.Done()
 
@@ -674,7 +681,7 @@ The recommended interface for equipment transfer flows. Step order is fixed:
 | 2 | `CheckAction` | Confirm the operation completed correctly |
 | 3 | `Done` | Finalize — call `handler.Done()` to close the flow |
 
-#### IFlowWithModelHandler\<T\> Lifecycle Events
+#### IModelFlowHandler\<T\> Lifecycle Events
 
 | Event | When Fired | Args |
 |-------|-----------|------|
@@ -796,7 +803,7 @@ model.TargetTemp.Set("80.0");
 [FlowModel]
 public IFlowModel model { get; set; }
 
-model.Set("@OnOff", "On");   // @ prefix references a ModelBinding key
+model.Set("@OnOff", "On");   // @ prefix references a EntryBinding key
 ```
 
 ---
@@ -829,7 +836,7 @@ string status = (string)model.OnOff.Value;
 ### Get via IFlowModel (`@` Binding)
 
 ```csharp
-var value = model.Get("@Temp");   // Reads the Entry bound to the ModelBinding key
+var value = model.Get("@Temp");   // Reads the Entry bound to the EntryBinding key
 ```
 
 ---
@@ -992,3 +999,134 @@ get rule condition evaluated
 > Rule Scripts operate independently of Flows.
 > Conditions can be modified at any time by editing the `.rule` file —
 > no code recompilation required.
+
+---
+
+## 9. Triggers
+
+**Triggers** let you subscribe to value-change events from C# without writing a rule file.
+Unlike Rule Scripts (which run inside the port server process), Triggers fire as C# events
+directly in your application process.
+
+Two trigger types are available:
+
+| Type | When it fires |
+|------|---------------|
+| `SetTrigger` | Whenever a registered key is written — from **any** source (C# `Port.Set`, port CLI, gRPC) |
+| `GetTrigger` | Whenever a registered key is written **and** the new value satisfies a condition; also fires periodically while the condition remains true (polling path) |
+
+---
+
+### 9.1 SetTrigger — React to Any Write
+
+Register a key with `Port.Add<SetTrigger>(key)`, then subscribe to `Port.OnSetTrigger`.
+
+```csharp
+// Register the key to monitor
+Port.Add<SetTrigger>("LP1.LP_Status");
+
+// Subscribe — handler parameters are named clearly
+Port.OnSetTrigger += (key, newValue) =>
+    AppLog.Write($"[SetTrigger] {key} = {newValue}");
+
+Port.Run();
+```
+
+> The key must be in dot-notation: `"group.entryName"` (e.g. `"LP1.LP_Status"`).
+
+#### Handler Signature
+
+```csharp
+// Delegate definition
+public delegate void SetTriggerHandler(string key, string newValue);
+
+Port.OnSetTrigger += OnLpStatusSet;
+
+private void OnLpStatusSet(string key, string newValue)
+{
+    // key      — dot-notation key that was written, e.g. "LP1.LP_Status"
+    // newValue — the new string value
+}
+```
+
+---
+
+### 9.2 GetTrigger — React When a Condition Is Met
+
+Register a condition with `Port.Add<GetTrigger>(key, op, compareValue)`,
+then subscribe to `Port.OnGetTrigger`.
+
+```csharp
+// Register the condition: fire when LP1.Gate_Status_i == "On"
+Port.Add<GetTrigger>("LP1.Gate_Status_i", "==", "On");
+
+Port.OnGetTrigger += (key, currentValue) =>
+    AppLog.Write($"[GetTrigger] {key} == {currentValue}");
+
+Port.Run();
+```
+
+#### Handler Signature
+
+```csharp
+public delegate void GetTriggerHandler(string key, string currentValue);
+
+Port.OnGetTrigger += OnGateStatusConditionMet;
+
+private void OnGateStatusConditionMet(string key, string currentValue)
+{
+    // key          — dot-notation key whose condition was satisfied
+    // currentValue — the value that satisfied the condition
+}
+```
+
+#### Supported Operators
+
+| Operator | Description |
+|----------|-------------|
+| `==` | Equal (numeric or string) |
+| `!=` | Not equal |
+| `>` | Greater than |
+| `<` | Less than |
+| `>=` | Greater than or equal |
+| `<=` | Less than or equal |
+
+Numeric comparison is attempted first; string comparison is used as fallback.
+
+---
+
+### 9.3 Registration and Lifecycle
+
+Triggers must be registered **before** `Port.Run()`, alongside other `Port.Add<T>` calls.
+Unsubscribe from events when the window or component closes to avoid memory leaks.
+
+```csharp
+// ── Registration (before Port.Run) ───────────────────────────────────
+Port.Add<SetTrigger>("LP1.LP_Status");
+Port.Add<GetTrigger>("LP1.Gate_Status_i", "==", "On");
+
+Port.OnSetTrigger += Port_OnSetTrigger;
+Port.OnGetTrigger += Port_OnGetTrigger;
+
+Port.Run();
+
+// ── Cleanup (on window / component close) ────────────────────────────
+Port.OnSetTrigger -= Port_OnSetTrigger;
+Port.OnGetTrigger -= Port_OnGetTrigger;
+```
+
+---
+
+### 9.4 Triggers vs. Rule Scripts
+
+| | Trigger | Rule Script |
+|---|---------|------------|
+| **Scope** | C# application process | Port server process |
+| **SetTrigger / `set` rule** | Fires an event; does **not** block the write | Blocks the write if the allow condition is false |
+| **GetTrigger / `get` rule** | Fires a C# event for custom handling | Executes fixed key=value assignments |
+| **Configuration** | Code (`Port.Add<T>`) | `.rule` file (no recompile needed) |
+| **Sources detected** | All sources (C#, CLI, gRPC) | All sources |
+
+Use **Triggers** when you need custom C# logic in response to a value change.
+Use **Rule Scripts** when you need server-side write guards or automatic assignments that
+must work even when no C# client is connected.

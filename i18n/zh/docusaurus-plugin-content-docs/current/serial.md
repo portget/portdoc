@@ -57,6 +57,56 @@ Port.Run();
 
 ---
 
+## 声明式连接规格
+
+波特率等连接设置可以直接声明在 `[Serial]` 特性上，而无需 `[Preset]` 方法。
+**COM 端口在注册时**通过 `Port.Add<T>(key, comPort)` 传入，因此同一处理器类可在
+多个端口上复用。规格与 COM 端口会在 `[Preset]` 运行**之前**应用到处理器，
+因此 `[Preset]` 仍可覆盖单个设置。
+
+```csharp
+[Serial(BaudRate = 9600, DataBits = 8,
+        Parity = SerialParity.None, StopBits = SerialStopBits.One, TimeoutMs = 1000)]
+public class MySerialHandler
+{
+    [SerialHandler]
+    public ISerialHandler handler { get; set; } = null!;
+}
+
+// COM 端口按注册逐个传入:
+Port.Add<MySerialHandler>("serial_com3", "COM3");
+Port.Add<MySerialHandler>("serial_com4", "COM4");
+Port.Run();
+```
+
+还提供仅指定波特率的便捷构造函数:
+
+```csharp
+[Serial(115200)]   // BaudRate
+public class MySerialHandler
+{
+    [SerialHandler]
+    public ISerialHandler handler { get; set; } = null!;
+}
+```
+
+属性使用文档化的默认值(`BaudRate` 9600、`DataBits` 8、`Parity` None、
+`StopBits` One、`TimeoutMs` 1000)。当没有 `[Preset]` 方法时，端口将使用已应用的
+规格和 COM 端口自动打开。
+
+| `[Serial]` 属性 | 类型 | 默认值 | 对应方法 |
+|---------------------|------|---------|-------------------|
+| `BaudRate` | `int` | `9600` | `SetBaudRate` |
+| `DataBits` | `int` | `8` | `SetDataBits` |
+| `Parity` | `SerialParity` | `None` | `SetParity` |
+| `StopBits` | `SerialStopBits` | `One` | `SetStopBits` |
+| `TimeoutMs` | `int` | `1000` | `SetTimeout` |
+
+> COM 端口**不是** `[Serial]` 属性 — 请将其作为 `Port.Add<T>(key, comPort)` 的
+> 第二个参数传入。
+
+---
+
 ## Multiple COM Ports
 
 Each `[Serial]` class registration creates its own independent port instance:

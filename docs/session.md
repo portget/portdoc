@@ -103,6 +103,11 @@ int role   = Session.GetCurrentSessionRole();
 string uid = Session.GetCurrentSessionUserID();
 string name = Session.GetCurrentSessionUserName();
 DateTime loginTime = Session.GetCurrentSessionLoginTime();
+
+// Change a user's role level (e.g. promote an operator to engineer).
+// If the target user is currently logged in, CurrentRoleLevel updates
+// immediately and OnSessionChanged is raised — no re-login required.
+Session.SetRoleLevel("operator", 2);
 ```
 
 
@@ -133,6 +138,7 @@ DateTime loginTime = Session.GetCurrentSessionLoginTime();
 | `Login(userId, password)` | `bool` | Authenticate a user |
 | `Logout()` | — | Log out the current user |
 | `SetPassword(userId, currentPassword, newPassword)` | `bool` | Change a user's password (verifies current password) |
+| `SetRoleLevel(userId, roleLevel)` | `bool` | Change a user's role level; updates the live session and raises `OnSessionChanged` if the user is logged in |
 | `GetUsers()` | `List<string>` | Return all registered user IDs |
 
 ### Session query methods

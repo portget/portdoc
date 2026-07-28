@@ -126,6 +126,35 @@ new Substrate("W3",
 
 ---
 
+## Transfer Modes
+
+Each `CarrierJob` carries its own transfer strategy via `CarrierJob.TransferMode`. `Port.Job.Execute(jobId, repeatCount)` applies the mode to the pipeline dual-arm scheduler immediately before the job starts, so each job runs with the strategy it was queued with. `CarrierJob.DestLocation` (optional) names the load port substrates return to — when set, the final non-processing step of each slot route is redirected there, so substrates finish at the destination port instead of the source port.
+
+| Mode | Behavior |
+|------|----------|
+| `PreferSingle` | Never exchanges (swap). The robot moves one substrate at a time — a substrate is picked only when its next destination is already empty, and occupied stages are flushed most-advanced first. Use for stations that cannot accept a Get + Put in a single visit. |
+| `PreferSwapAble` | Forces swap logistics whenever swap conditions are met: the robot exchanges (Get + Put in one visit) with whatever substrate occupies the destination. Maximizes throughput. |
+| `PreferSwapFirstModule` | Swap preferring the first-placed substrate (FIFO): an exchange is held off until the destination holds the earliest-placed substrate among all ready stages. Default. |
+
+```csharp
+var job = new CarrierJob("CARRIER01")
+{
+    SourceLocation = new Location("LP1"),
+    DestLocation = new Location("LP2"),         // substrates finish at LP2
+    TransferMode = TransferMode.PreferSingle,   // one substrate at a time, no swap
+};
+job[1] = new List<RoutePoint>
+{
+    new SingleSlotRoute("LP1"),
+    new ProcessRoute("Stage1", "Recipe_A"),
+    new SingleSlotRoute("LP1"),
+};
+Port.Job.Queued(job);
+Port.Job.Execute(job.ID);
+```
+
+---
+
 ## Transfer Completion
 
 After the physical robot completes an action, call `TransferCompleted` to unblock the scheduler:
@@ -298,5 +327,5 @@ Log files are created and rotated by the Rust backend. Entries include TXID, act
 ## Related
 
 - [Flow Handler](flow) — Step-based workflow engine used to implement individual transfer actions
-- [attribute](attribute) — Full attribute reference (`[Controller]`, `[Preset]`, `[ModelBinding]`, etc.)
+- [attribute](attribute) — Full attribute reference (`[Controller]`, `[Preset]`, `[EntryBinding]`, etc.)
 - [SECS/GEM](secs) — SEMI E90 substrate state integration

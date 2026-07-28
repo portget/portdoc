@@ -88,7 +88,7 @@ Flows receive equipment data through a **typed Model** — a C# class that maps 
 .page file  (Entry definitions)
     ↓  Port.Push
 Port in-memory DB  (live Entry values)
-    ↕  [ModelBinding]
+    ↕  [EntryBinding]
 Model  (C# property ↔ Entry key)
     ↕  method parameter `m`
 Flow step  (business logic)
@@ -118,30 +118,30 @@ Port.Push("sample", new LpPage());          // from a [Page]-decorated class
 
 ### 2. Define a Model
 
-Decorate a class with `[Model]` and link each property to its Entry via `[ModelBinding]`:
+Decorate a class with `[Model]` and link each property to its Entry via `[EntryBinding]`:
 
 ```csharp
 [Model]
 public class LoadPortModel
 {
-    [ModelBinding("LP1", Io.LP1_MainAir)]
-    [ModelBinding("LP2", Io.LP2_MainAir)]
+    [EntryBinding("LP1", Io.LP1_MainAir)]
+    [EntryBinding("LP2", Io.LP2_MainAir)]
     public Entry MainAir { get; set; }
 
-    [ModelBinding("LP1", Io.LP1_Status)]
-    [ModelBinding("LP2", Io.LP2_Status)]
+    [EntryBinding("LP1", Io.LP1_Status)]
+    [EntryBinding("LP2", Io.LP2_Status)]
     public Entry Status { get; set; }
 }
 ```
 
-`[ModelBinding(instanceKey, entryKey)]`:
+`[EntryBinding(instanceKey, entryKey)]`:
 
 | Argument | Role |
 |----------|------|
 | `instanceKey` | Matches the key passed to `Port.Add<T, M>(key)` — e.g. `"LP1"` |
 | `entryKey` | Fully-qualified Entry key string — e.g. `Io.LP1_MainAir` = `"lp.LP1_MainAir"` |
 
-Stacking multiple `[ModelBinding]` on the same property lets one Model class serve multiple instances (LP1, LP2, …). The framework selects the binding that matches the active instance key at runtime.
+Stacking multiple `[EntryBinding]` on the same property lets one Model class serve multiple instances (LP1, LP2, …). The framework selects the binding that matches the active instance key at runtime.
 
 ### 3. Read and Write Inside Steps
 
@@ -191,7 +191,7 @@ Port.Add<LoadPortController, LoadPortModel>("LP2");
 Port.Run();
 ```
 
-Each instance runs an independent flow execution. `[ModelBinding]` resolves the correct Entry per instance key automatically. Triggering one instance has no effect on the other:
+Each instance runs an independent flow execution. `[EntryBinding]` resolves the correct Entry per instance key automatically. Triggering one instance has no effect on the other:
 
 ```csharp
 Port.Set("LP1.Load", FlowAction.Executing);   // LP1 runs Load independently
@@ -386,7 +386,7 @@ type to receive the same injected instance.
 
 | Member | Description |
 |--------|-------------|
-| `Model` | Typed model instance; entries are auto-bound via `[ModelBinding]` |
+| `Model` | Typed model instance; entries are auto-bound via `[EntryBinding]` |
 | `OnFlowOccurred` | Fired when the flow starts executing |
 | `OnFlowFinished` | Fired when the flow completes successfully |
 | `OnFlowIssue` | Fired when the flow is stopped, canceled, or encounters an error |
@@ -518,6 +518,6 @@ public void Process(MyModel m)
 
 ## Related
 
-- [attribute](attribute) — Full attribute reference (`[Package]`, `[ModelBinding]`, `[Binding]`, etc.)
+- [attribute](attribute) — Full attribute reference (`[Package]`, `[EntryBinding]`, `[Binding]`, etc.)
 - [SchedulerHandler](scheduler) — Substrate transfer scheduler built on top of flows
 - [SECS/GEM](secs) — Collection Event integration (`[FlowStep(index, ceid)]`)

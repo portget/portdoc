@@ -58,9 +58,9 @@ public partial class MainWindow : Window
             Port.Add<AuthHelper>("Auth");
             Port.Add<GemHelper>("GEM");
 
-            // 설비 이름 등록
+            // Equipment는 TransferModuleEntity 서브클래스 — TM 모듈 키와 로봇 컨트롤러를 함께 바인딩
             // ── Equipment ────────────────────────────────────────────────
-            Port.Add<Equipment>("EqFiveStage");
+            Port.Add<Equipment>("TM1", Cat.Robot);
 
             // Port 실행 — Synchronized 상태가 되면 위의 onReady가 자동 호출됨
             Port.Run();
@@ -73,6 +73,25 @@ public partial class MainWindow : Window
     }
 }
 ```
+
+> **Equipment 클래스 선언**
+>
+> Equipment 클래스는 제네릭 모듈 베이스 `TransferModuleEntity<P, C>`를 상속하고 모듈 키를 받는
+> public 생성자를 선언해야 한다. 모든 커스텀 모듈은 사용자 정의 파라미터 타입(`IParameter`)과
+> 설정 타입(`IConfigure`)을 반드시 지정해야 한다.
+> (기존 `[Equipment("TM1")]` 어트리뷰트 + `Port.Add<TransferModuleEntity>(...)` 이중 등록 방식은
+> 단일 등록으로 통합되었으며 `EquipmentAttribute`는 제거되었다.)
+>
+> ```csharp
+> public class EquipmentParameter : IParameter { }
+> public class EquipmentConfigure : IConfigure { }
+>
+> public class Equipment : TransferModuleEntity<EquipmentParameter, EquipmentConfigure>
+> {
+>     public Equipment(string location) : base(location) { }
+>     // [TransferScore] / [TMC] / [Preset] ...
+> }
+> ```
 
 > **`Port.App<T>()` vs `Port.App<T>(Action onReady)`**
 >

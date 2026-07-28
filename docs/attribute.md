@@ -17,19 +17,20 @@ A summary table of all Port attributes.
 | | [`[API]`](#api) | property, field | Generates a REST API endpoint |
 | | [`[Valid]`](#valid) | method | Validation gate |
 | | [`[Comment]`](#comment) | property | API documentation |
-| **[Equipment](#equipment-attributes)** | [`[Equipment]`](#equipment) | class | Transfer-scheduler hub — owns TMC, PMC, LMC, and score methods |
-| | [`[TMC]`](#tmc--lmc--pmc) | property | Injects `ITransferModule<T>` into `[Equipment]` or `[Flow]` |
+| **[Equipment](#equipment-attributes)** | [`TransferModuleEntity`](#equipment) | base class | Transfer-scheduler hub — subclass and register with `Port.Add<T>(moduleKey, controllerKey)` |
+| | [`[TMC]`](#tmc--lmc--pmc) | property | Injects `ITransferModule<T>` into an Equipment class or `[Flow]` |
 | | [`[LMC]`](#tmc--lmc--pmc) | property | Injects `ILoadModule` (load port) |
 | | [`[PMC]`](#tmc--lmc--pmc) | property | Injects `IProcessModule` (process chamber) |
 | | [`[TransferScore]`](#transferscore) | method | Define pick/place priority score for the transfer scheduler |
 | **[Controller](#controller-attributes)** | [`[Controller]`](#controller--flow) | class | Flow controller |
 | | [`[Flow]`](#controller--flow) | class | Workflow definition |
 | | [`[FlowStep]`](#flowstep) | method | Workflow step |
-| | [`[Handler]`](#handler-1) | property | Injects `IFlowHandler` (basic step control) |
-| | [`[Handler]`](#handler-1) | property | Injects `IFlowWithModelHandler<T>` (lifecycle events with model) |
+| | [`[Handler]`](#handler-1) | property | Injects `ControllerHandler<M, D>` (standard: step control + model + device list) |
+| | [`[Handler]`](#handler-1) | property | Injects `IControllerHandler<M>` / `IFlowHandler<M>` (model-bound step control + lifecycle events) |
+| | [`[Handler]`](#handler-1) | property | Injects `IModuleFlowHandler<TModule,TSubstrate,TModel>` / `ITransferFlowHandler<TTransfer,TSubstrate,TModel>` (typed entity access) |
 | | [`[Handler]`](#handler-1) | property | Injects `ISchedulerHandler<T>` (transfer scheduling) |
 | | [`[Model]`](#model) | class | Define flow model class |
-| | [`[ModelBinding]`](#model) | property | Bind model property to a Port entry |
+| | [`[EntryBinding]`](#model) | property | Bind model property to a Port entry |
 | | [`[FlowWatcherCompare]`](#flowwatchercompare) | method | Step condition watcher |
 | | [`[FlowWatcherAction]`](#flowwatcheraction) | method | Step completion action |
 | | [`[Timeout]`](#timeout) | method | Step timeout |
@@ -321,14 +322,15 @@ public double Temperature { get; set; }
 
 ## Equipment Attributes
 
-Attributes used for the `[Equipment]` transfer-scheduler hub class. These attributes are parsed by the dedicated `[Equipment]` path in the framework and apply to flat (non-nested) scheduler classes registered via `Port.Add<T>()`.
+Attributes used for the Equipment transfer-scheduler hub class — a flat (non-nested) subclass of
+`TransferModuleEntity` registered via `Port.Add<T>(moduleKey, controllerKey)`. The framework
+detects the subclass and parses these attributes through the dedicated Equipment path.
 
 | Attribute | Target | Injected Type | Arguments | Description |
 |-----------|--------|---------------|-----------|-------------|
-| [`[Equipment]`](#equipment) | class | — | `tmcName` | Marks the class as the scheduler hub for the named TM |
-| [`[TMC]`](#tmc--lmc--pmc) | property | `ITransferModule<T>` | `capacity` | Injects the scheduler singleton |
-| [`[LMC]`](#tmc--lmc--pmc) | property | `ILoadModule` | `capacity` | Marks location as load port; injects `ILoadModule` instance |
-| [`[PMC]`](#tmc--lmc--pmc) | property | `IProcessModule` | `capacity` | Marks location as process module; injects `IProcessModule` instance |
+| [`[TMC]`](#tmc--lmc--pmc) | property | `ITransferModule<T>` | — | Injects the scheduler singleton |
+| [`[LMC]`](#tmc--lmc--pmc) | property | `ILoadModule` | — | Marks location as load port; injects `ILoadModule` instance |
+| [`[PMC]`](#tmc--lmc--pmc) | property | `IProcessModule` | `key` (optional) | Marks location as process module; injects `IProcessModule` instance |
 | [`[TransferScore]`](#transferscore) | method | — | `location`, `direction` | Returns int score for scheduler pick/place decisions |
 | [`[Preset]`](#handler-1) | method | — | — | Invoked after all DI is complete; wire scheduler events here |
 
@@ -343,14 +345,16 @@ Attributes used for defining and controlling workflows (process flows) inside `[
 | [`[Controller]`](#controller--flow) | class | — | — | Defines a controller containing flows |
 | [`[Flow]`](#controller--flow) | class | — | `key` | Defines a workflow class (inner class of Controller) |
 | [`[FlowStep]`](#flowstep) | method | — | `index`, `relatedEntry` | Defines a workflow step |
-| [`[Handler]`](#handler-1) | property | `IFlowHandler` | — | Injects basic flow step control into a Flow class |
-| [`[Handler]`](#handler-1) | property | `IFlowWithModelHandler<T>` | — | Injects model-bound handler with lifecycle events |
+| [`[Handler]`](#handler-1) | property | `ControllerHandler<M, D>` | — | **Standard** controller flow handler: step control + model `M` + device list `D` |
+| [`[Handler]`](#handler-1) | property | `IControllerHandler<M>` | — | Model-bound step control + lifecycle events (no device list) |
+| [`[Handler]`](#handler-1) | property | `IFlowHandler<M>` | — | Model-bound step control + lifecycle events (equivalent to `IControllerHandler<M>`) |
+| [`[Handler]`](#handler-1) | property | `IModuleFlowHandler<...>` / `ITransferFlowHandler<...>` | — | Injects typed handler with module/substrate/transfer accessors |
 | [`[Handler]`](#handler-1) | property | `ISchedulerHandler<T>` | — | Injects transfer scheduler handler |
-| [`[Model]`](#model) | class | — | — | Defines a flow model class; properties use `[ModelBinding]` |
-| [`[ModelBinding]`](#model) | property | `Entry` | `controllerName`, `entryKey` | Binds a model property to a Port entry |
+| [`[Model]`](#model) | class | — | — | Defines a flow model class; properties use `[EntryBinding]` |
+| [`[EntryBinding]`](#model) | property | `Entry` | `controllerName`, `entryKey` | Binds a model property to a Port entry |
 | [`[TMC]`](#tmc--lmc--pmc) | property | `ITransferModule<T>` | — | Injects transfer module controller into a `[Flow]` class |
-| [`[LMC]`](#tmc--lmc--pmc) | property | `ILoadModule` | `capacity` | Injects load port module into a `[Flow]` class |
-| [`[PMC]`](#tmc--lmc--pmc) | property | `IProcessModule` | `capacity` | Injects process chamber module into a `[Flow]` class |
+| [`[LMC]`](#tmc--lmc--pmc) | property | `ILoadModule` | — | Injects load port module into a `[Flow]` class |
+| [`[PMC]`](#tmc--lmc--pmc) | property | `IProcessModule` | `key` (optional) | Injects process chamber module into a `[Flow]` class |
 | [`[TransferScore]`](#transferscore) | method | — | `location`, `direction` | Returns int score for scheduler pick/place decisions |
 | [`[FlowWatcherCompare]`](#flowwatchercompare) | method | — | `entry`, `op`, `value` | Defines step execution condition |
 | [`[FlowWatcherAction]`](#flowwatcheraction) | method | — | `entry`, `value` | Defines action on step completion |
@@ -380,12 +384,12 @@ Flow(string key)
 [Model]
 public class LoadportModel
 {
-    [ModelBinding(Controller.LP1, EFEM.LP1_Command)]
-    [ModelBinding(Controller.LP2, EFEM.LP2_Command)]
+    [EntryBinding(Controller.LP1, EFEM.LP1_Command)]
+    [EntryBinding(Controller.LP2, EFEM.LP2_Command)]
     public Entry LP_Command { get; set; }
 
-    [ModelBinding(Controller.LP1, EFEM.LP1_Main_Air_i)]
-    [ModelBinding(Controller.LP2, EFEM.LP2_Main_Air_i)]
+    [EntryBinding(Controller.LP1, EFEM.LP1_Main_Air_i)]
+    [EntryBinding(Controller.LP2, EFEM.LP2_Main_Air_i)]
     public Entry LP_Main_Air_i { get; set; }
 }
 
@@ -397,11 +401,12 @@ public class LoadportController
     public class FoupLoadFlow
     {
         [Handler]
-        public IFlowHandler Handler { get; set; } = null!;
+        public IControllerHandler<LoadportModel> Handler { get; set; } = null!;
 
         [FlowStep(0)]
-        public void StatusCheck(LoadportModel m)
+        public void StatusCheck()
         {
+            LoadportModel m = Handler.Model;
             Handler.ClearAlarm(-1);
             Debug.WriteLine(m.LP_Main_Air_i.Name + " : " + m.LP_Main_Air_i.Value.String());
             Handler.Next();
@@ -428,11 +433,17 @@ Injects a handler interface into a `[Flow]` class. The injected type is determin
 
 | Property type | Purpose |
 |---------------|---------|
-| `IFlowHandler` | Basic step control (`Next()`, `Done()`, logging) |
-| `IFlowWithModelHandler<T>` | Lifecycle events that carry the bound model |
+| `ControllerHandler<M, D>` | **Standard** controller flow handler: step control (`Next()`, `Done()`, `Move()`), typed `Model` of type `M`, lifecycle events, plus the controller's `DeviceList` of type `D` |
+| `IControllerHandler<M>` | Step control + typed `Model` + lifecycle events, with no device list. A standalone interface (it does **not** inherit `IFlowHandler<M>`) |
+| `IFlowHandler<M>` | Identical capability to `IControllerHandler<M>` (step control + typed `Model` + lifecycle events). The non-generic `IFlowHandler` no longer exists — a model type is always required |
+| `IModuleFlowHandler<TModule, TSubstrate, TModel>` | Adds `GetModule()` / `GetSubstrate()` / `GetModel()` — resolves the module entity, its current substrate, and the model bound to the flow |
+| `ITransferFlowHandler<TTransfer, TSubstrate, TModel>` | For robot Pick/Place flows: `GetTransfer()` / `GetSubstrate()` / `GetModel()` plus `GetTargetName()` / `GetSourceName()` |
 | `ISchedulerHandler<T>` | Transfer scheduling for robot arm coordination |
 
-FlowStep methods always receive the model as a **method parameter** — they do not inject it as a property.
+A FlowStep method may receive the model as a **method parameter**, or — when the `[Handler]`
+property is one of the typed handlers above — omit the parameter and read the model from the
+handler (`Handler.Model`, or `Handler.GetModel()` on the 3-type handlers). Both forms resolve to
+the same model singleton.
 
 **Constructor:** No parameters — applies to `[Handler]` and `[Preset]`.
 
@@ -478,7 +489,7 @@ public class FoupLoadFlow
 public class Place
 {
     [Handler]
-    public IFlowWithModelHandler<WTRCommModel> handler { get; set; } = null!;
+    public IModelFlowHandler<WTRCommModel> handler { get; set; } = null!;
 
     [Handler]
     public ISchedulerHandler<DualArmActionArgs> scheduler { get; set; } = null!;
@@ -521,7 +532,17 @@ public class Place
 }
 ```
 
-**`IFlowHandler` members:**
+::::note Reserved Pick/Place flows complete transfers automatically
+A flow registered under `Reserved.ArmRobot.FLOW_KEY_PICK` (`"Pick"`) or
+`FLOW_KEY_PLACE` (`"Place"`) on a controller bound to a transfer module via
+`Port.Add<ITransferModuleEntity>(moduleKey, controllerKey)` signals
+`TransferCompleted` to the scheduler automatically when it finishes. The manual
+`OnFlowFinished` → `TransferCompleted(...)` subscription shown above is only
+required for flows registered under other names; on a reserved flow a redundant
+manual call is a harmless no-op.
+::::
+
+**Common handler members** (shared by `ControllerHandler<M, D>`, `IControllerHandler<M>`, and `IFlowHandler<M>`):
 
 | Member | Description |
 |--------|-------------|
@@ -534,6 +555,7 @@ public class Place
 | `SetLogger(rootPath)` | Enable file logging under `rootPath/flowName/` |
 | `WriteLog(message)` | Write a log entry |
 | `WriteLog(message, rule)` | Write a log entry with `WriteRule` flags |
+| `Stopwatch` | Built-in per-flow stopwatch: `Start()`/`Restart()` begin timing from zero, `TotalMilliseconds` reads elapsed ms — no need for a `Stopwatch` field in the flow class |
 
 **`WriteRule` flags:**
 
@@ -545,17 +567,41 @@ public class Place
 | `WithConsole` | Also write to `Console.WriteLine` |
 | `WithTrace` | Also write to `Trace.WriteLine` |
 
-**`IFlowWithModelHandler<T>` additional members:**
+**`IControllerHandler<M>` / `IFlowHandler<M>` additional members:**
 
 | Member | Description |
 |--------|-------------|
-| `T Model` | The model instance bound to this flow |
+| `M Model` | The model instance bound to this flow |
 | `OnFlowOccurred` | Fired when the flow starts |
 | `OnFlowFinished` | Fired when the flow completes; `e.Model` carries the bound model |
 
+**`ControllerHandler<M, D>` additional members** (on top of `IControllerHandler<M>`):
+
+| Member | Description |
+|--------|-------------|
+| `D DeviceList` | The controller's device list (the `IDeviceList` type declared as the controller's `F` device-list argument) |
+
+**`IModuleFlowHandler<TModule, TSubstrate, TModel>` additional members:**
+
+| Member | Description |
+|--------|-------------|
+| `TModule GetModule()` | Module entity registered for the flow's location (e.g. the `ProcessModuleEntity` for `"Stage1"`) |
+| `TSubstrate GetSubstrate()` | Substrate currently present at the flow's location, or `null` |
+| `TModel GetModel()` | The model singleton bound to this flow |
+
+**`ITransferFlowHandler<TTransfer, TSubstrate, TModel>` additional members** (robot Pick/Place flows):
+
+| Member | Description |
+|--------|-------------|
+| `TTransfer GetTransfer()` | Active transfer (`Source`/`Target` locations + `SubstrateID`), assigned by the scheduler before the flow runs |
+| `TSubstrate GetSubstrate()` | Substrate involved in the active transfer |
+| `TModel GetModel()` | The model singleton bound to this flow |
+| `GetTargetName()` | Location the robot is acting on (`GetTransfer().Target.Key`) |
+| `GetSourceName()` | Location the substrate was picked from (`GetTransfer().Source.Key`) |
+
 ### FlowStep
 
-Registers a method as a workflow step. Steps are ordered by index number. The bound model is received as a method parameter — omit it if no model is needed.
+Registers a method as a workflow step. Steps are ordered by index number. The bound model may be received as a method parameter, or read from a typed `[Handler]` (`Handler.Model` / `Handler.GetModel()`) when the parameter is omitted.
 
 **Constructors:**
 
@@ -663,9 +709,9 @@ public void Step1()
 
 ### Model
 
-`[Model]` marks a **class** as a flow model. Properties are of type `Entry` and decorated with `[ModelBinding]` to bind to Port entries. The platform instantiates the model and passes it as a **method parameter** to each `[FlowStep]`.
+`[Model]` marks a **class** as a flow model. Properties are of type `Entry` and decorated with `[EntryBinding]` to bind to Port entries. The platform instantiates the model and passes it as a **method parameter** to each `[FlowStep]`.
 
-Multiple `[ModelBinding]` attributes on one property let the same model class serve different controllers — the binding that matches the running controller's name is applied.
+Multiple `[EntryBinding]` attributes on one property let the same model class serve different controllers — the binding that matches the running controller's name is applied.
 
 **Constructors:**
 
@@ -674,18 +720,18 @@ Multiple `[ModelBinding]` attributes on one property let the same model class se
 Model()
 Model(string controllerName)
 
-// [ModelBinding]
-ModelBinding(string controller_name, string key)
-ModelBinding(string key)
+// [EntryBinding]
+EntryBinding(string controller_name, string key)
+EntryBinding(string key)
 ```
 
 | Attribute | Parameter | Type | Description |
 |-----------|-----------|------|-------------|
 | `[Model]` | — | — | No parameters; marks the class as a Port flow model |
 | `[Model]` | `controllerName` | `string` | Restrict this model to a specific controller name |
-| `[ModelBinding]` | `controller_name` | `string` | Controller instance name this binding applies to (e.g. `"LP1"`) |
-| `[ModelBinding]` | `key` | `string` | Port entry key to bind the property to |
-| `[ModelBinding]` (1-arg) | `key` | `string` | Bind to this entry for all controllers (no controller filter) |
+| `[EntryBinding]` | `controller_name` | `string` | Controller instance name this binding applies to (e.g. `"LP1"`) |
+| `[EntryBinding]` | `key` | `string` | Port entry key to bind the property to |
+| `[EntryBinding]` (1-arg) | `key` | `string` | Bind to this entry for all controllers (no controller filter) |
 
 ```csharp
 // Define the model class — outside the controller
@@ -693,16 +739,16 @@ ModelBinding(string key)
 public class LoadportModel
 {
     // Bound to LP1_Command when run under "LP1", LP2_Command under "LP2"
-    [ModelBinding(Controller.LP1, EFEM.LP1_Command)]
-    [ModelBinding(Controller.LP2, EFEM.LP2_Command)]
+    [EntryBinding(Controller.LP1, EFEM.LP1_Command)]
+    [EntryBinding(Controller.LP2, EFEM.LP2_Command)]
     public Entry LP_Command { get; set; }
 
-    [ModelBinding(Controller.LP1, EFEM.LP1_Configure_Value_i)]
-    [ModelBinding(Controller.LP2, EFEM.LP2_Configure_Value_i)]
+    [EntryBinding(Controller.LP1, EFEM.LP1_Configure_Value_i)]
+    [EntryBinding(Controller.LP2, EFEM.LP2_Configure_Value_i)]
     public Entry LP_Configure_Value_i { get; set; }
 
-    [ModelBinding(Controller.LP1, EFEM.LP1_Main_Air_i)]
-    [ModelBinding(Controller.LP2, EFEM.LP2_Main_Air_i)]
+    [EntryBinding(Controller.LP1, EFEM.LP1_Main_Air_i)]
+    [EntryBinding(Controller.LP2, EFEM.LP2_Main_Air_i)]
     public Entry LP_Main_Air_i { get; set; }
 }
 
@@ -765,16 +811,28 @@ public void Step1()
 | Attribute | Injected Type | Argument | Description |
 |-----------|--------------|----------|-------------|
 | `[TMC]` | `ITransferModule<T>` | — | Transfer robot arm; `T` is the arm action type (e.g. `DualArmAction`) |
-| `[LMC(n)]` | `ILoadModule` | `capacity` (int) | Load port; `capacity` = number of wafer slots (e.g. `25` for a FOUP) |
-| `[PMC(n)]` | `IProcessModule` | `capacity` (int) | Process chamber; `capacity` = number of substrate slots |
+| `[LMC]` | `ILoadModule` | — | Load port |
+| `[PMC]` | `IProcessModule` | `key` (string, optional) | Process chamber; `key` = recipe key |
 
 **Constructors:**
 
 ```csharp
 TMC()
-LMC(int capacity)
-PMC(int capacity)
+LMC()
+PMC()
+PMC(string key)
 ```
+
+> **Slot capacity is no longer declared on these attributes.** Register it with the
+> slot-count `Port.Add<T>` overload instead, which seeds the per-location
+> `LocationEntity` singleton — the single source of truth for slot counts:
+>
+> ```csharp
+> Port.Add<ILoadModuleEntity>("LP1", 25, "LP1Controller");     // 25-slot FOUP
+> Port.Add<IProcessModuleEntity>("Stage1", 1, "Stage1Controller"); // single-wafer stage
+> ```
+>
+> Read it back with `Port.Entity.Location("LP1").SlotCount`.
 
 ```csharp
 [Flow("Queued")]
@@ -782,12 +840,12 @@ public class Queued
 {
     [TMC] public ITransferModule<DualArmAction> TM1 { set; get; } = null!;
 
-    [LMC(25)] public ILoadModule LP1 { get; set; } = null!;
-    [LMC(25)] public ILoadModule LP2 { get; set; } = null!;
+    [LMC] public ILoadModule LP1 { get; set; } = null!;
+    [LMC] public ILoadModule LP2 { get; set; } = null!;
 
-    [PMC(1)] public IProcessModule Stage1 { set; get; } = null!;
-    [PMC(1)] public IProcessModule Stage2 { set; get; } = null!;
-    [PMC(1)] public IProcessModule Aligner { set; get; } = null!;
+    [PMC] public IProcessModule Stage1 { set; get; } = null!;
+    [PMC] public IProcessModule Stage2 { set; get; } = null!;
+    [PMC] public IProcessModule Aligner { set; get; } = null!;
 
     [Preset]
     public void Preset()
@@ -848,25 +906,55 @@ public class Queued
 
 ### Equipment
 
-`[Equipment("tmcName")]` registers a **flat** class as the transfer-scheduler hub for the named Transfer Module. Unlike `[Controller]` — which contains nested `[Flow]` inner classes — an `[Equipment]` class has no sub-flows. Instead, it owns the scheduler, declares all location scores and module properties at the top level, and triggers flows in separate `[Controller]` classes by setting `FlowAction.Executing`.
+An Equipment class is a **flat** subclass of `TransferModuleEntity` that acts as the
+transfer-scheduler hub for its Transfer Module. Unlike `[Controller]` — which contains nested
+`[Flow]` inner classes — an Equipment class has no sub-flows. Instead, it owns the scheduler,
+declares all location scores and module properties at the top level, and triggers flows in
+separate `[Controller]` classes by setting `FlowAction.Executing`.
 
-**Constructor:**
+> The former `[Equipment("TM1")]` class attribute plus separate
+> `Port.Add<TransferModuleEntity>("TM1", ...)` registration has been **merged into a single
+> registration**: subclass `TransferModuleEntity` and pass the module key to `Port.Add<T>`.
+> The `EquipmentAttribute` no longer exists.
+
+**Declaration** — every custom module must declare a **parameter type** (`IParameter`) and a
+**configuration type** (`IConfigure`); the generic module bases
+(`TransferModuleEntity<P, C>`, `ProcessModuleEntity<P, C>`, `LoadModuleEntity<P, C>`) enforce
+this at compile time. The subclass must also expose a public constructor taking the module key:
 
 ```csharp
-Equipment(string TMC)
+// User-defined parameter / configuration types for this module.
+public class EquipmentParameter : IParameter { }
+public class EquipmentConfigure : IConfigure { }
+
+public class Equipment : TransferModuleEntity<EquipmentParameter, EquipmentConfigure>
+{
+    public Equipment(string location) : base(location) { }
+    // ...
+}
 ```
 
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `TMC` | `string` | Name of the Transfer Module Controller this hub is bound to (e.g. `"TM1"`) |
+> The module classes are generic (`TransferModuleEntity<P, C>` etc.); there is no non-generic
+> version. When you don't need a custom type, register the engine default by its interface —
+> `Port.Add<IProcessModuleEntity>(key, …)` / `Port.Add<ILoadModuleEntity>(key, …)` — which the
+> engine closes over the built-in `EmptyParameter`/`EmptyConfigure` types. The `Port.Entity.*`
+> accessors return the parameter-agnostic interfaces (`IProcessModuleEntity`, `ILoadModuleEntity`,
+> `ITransferModuleEntity`), so callers read module state without knowing `<P, C>`.
 
-**Registration** — single-generic, no model:
+**Registration** — one call binds the TM module key, its slot capacity (number of robot
+arms), and its robot controller:
 
 ```csharp
-Port.Add<Equipment>();   // key is taken from [Equipment("TM1")] automatically
-// or
-Port.Add<Equipment>("TM1");
+Port.Add<Equipment>(ModuleKey.TM1, 2, CtrlKey.Robot);   // 2 = dual arm
 ```
+
+The second argument seeds the `LocationEntity` singleton for `"TM1"`
+(`Port.Entity.Location("TM1").SlotCount == 2`). The older overload without the slot
+count still works and defaults the transfer module to a single slot.
+
+The instance created here is also seeded as the per-location entity singleton, so
+`Port.Entity.TransferModule("TM1")` returns the same object — entity state
+(`SetState`, `GetStateText`) and equipment logic live on one instance.
 
 **What the framework injects automatically:**
 
@@ -874,25 +962,26 @@ Port.Add<Equipment>("TM1");
 |------|--------|
 | `[TMC]` property | Injects `ITransferModule<T>` (the scheduler singleton) |
 | `[PMC]` property | Marks location as ProcessModule + injects `IProcessModule` instance |
-| `[LMC]` property | Marks location as LoadModule + injects `ILoadModule` instance + registers slot count |
+| `[LMC]` property | Marks location as LoadModule + injects `ILoadModule` instance |
 | `[TransferScore]` methods | Registers scoring lambdas with the scheduler |
 | `[Preset]` method | Invoked after all DI is complete — wire event handlers here |
-| `JobEntity` lifecycle | Bridges `JobEntity.Processing` → `OnRequestQueued` / `OnRequestLotProcessing` automatically |
+| Active-job mirror | Registers `{tm}.ActiveJobId` / `{tm}.ActiveJobSource` entries; `Port.Job.Execute` fires `OnRequestLotQueued` / `OnRequestLotProcessing` |
 
 **Comparison with `[Controller]`:**
 
-| Aspect | `[Controller]` | `[Equipment]` |
+| Aspect | `[Controller]` | Equipment (`TransferModuleEntity` subclass) |
 |--------|---------------|----------------|
 | Structure | Has nested `[Flow]` inner classes | Flat — no inner classes |
 | Flow execution | Runs steps internally | Triggers flows in other controllers |
 | Scheduler ownership | May share the singleton | Always owns the singleton |
-| `JobEntity` bridge | Manual | Automatic |
-| Registration | `Port.Add<T, M>(key)` | `Port.Add<T>()` |
+| Registration | `Port.Add<T, M>(key)` | `Port.Add<T>(moduleKey, controllerKey)` |
 
 ```csharp
-[Equipment("TM1")]
-public class Equipment
+// EquipmentParameter / EquipmentConfigure defined above (IParameter / IConfigure).
+public class Equipment : TransferModuleEntity<EquipmentParameter, EquipmentConfigure>
 {
+    public Equipment(string location) : base(location) { }
+
     // ── Module declarations ───────────────────────────────────────────────
     [TMC(2)] public ITransferModule<DualArmAction> TM1 { get; set; } = null!;
 
@@ -945,11 +1034,15 @@ public class Equipment
     private static bool isSkip(DualArmAction args)
         => Port.IsTransferBlocked("TM1", args.Target.Name);
 
-    // ── Transfer-completed handler — triggers process flows ───────────────
+    // ── Transfer-completed handler — app-specific bookkeeping only ────────
+    // Substrate presence (SetPresent) and process-flow start are automatic for
+    // every registered process-module location (see note below); use this
+    // handler only for app-side work such as simulated device signals.
     private static void OnTransferCompleted(DualArmAction args)
     {
-        if (args.Target.Name.StartsWith("Stage"))
-            Port.Set(args.Target.Name, Flows.Stage_Process, FlowAction.Executing);
+        if (Port.IsProcessModule(args.Target.Name))
+            Port.SimulationSet($"{args.Target.Name}.WaferPresent_i",
+                args.ActionType is ArmActionType.UpperPut or ArmActionType.LowerPut ? "On" : "Off");
     }
 
     private static bool GateOpen(string loc) =>
@@ -960,11 +1053,26 @@ public class Equipment
 }
 ```
 
+::::note Automatic per-transfer bookkeeping for process modules
+For every location registered via `Port.Add<IProcessModuleEntity>(moduleKey, controllerKey)`,
+the scheduler itself performs the following when a transfer step completes — **before**
+`OnTransferCompleted` fires:
+
+- **Put** → `SetPresent(true)` on the location's `ProcessModuleEntity`, then the
+  controller's primary `[Flow]` is auto-started (duplicate requests are skipped while the
+  flow is already Executing).
+- **Get** → `SetPresent(false)` on the location's `ProcessModuleEntity`.
+
+Do not call `SetPresent(...)` or start the process flow manually from an
+`OnTransferCompleted` handler — both are redundant. Use `Port.IsProcessModule(moduleKey)`
+to branch on the registered module type instead of matching location-name prefixes.
+::::
+
 ---
 
 ### TransferScore
 
-`[TransferScore]` decorates methods that return an `int` priority score. The scheduler calls all score methods on each tick and uses the scores to select the best pick/place pair. Methods can be declared directly in an `[Equipment]` class **or** inside a `[Flow]` class within a `[Controller]`, and must return `int`.
+`[TransferScore]` decorates methods that return an `int` priority score. The scheduler calls all score methods on each tick and uses the scores to select the best pick/place pair. Methods can be declared directly in an Equipment class (a `TransferModuleEntity` subclass) **or** inside a `[Flow]` class within a `[Controller]`, and must return `int`.
 
 **Constructor:**
 

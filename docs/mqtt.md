@@ -18,8 +18,8 @@ Each `[MQTTHandler]` class gets its own independent MQTT connection, and the ope
 ### Client Mode (connect to a broker)
 
 ```csharp
-using Portdic;
-using Portdic.MQTT;
+using Portdic;                 // [MQTTHandler], [MQTTHandlerProp], [Preset]
+using Portdic.Protocol.MQTT;   // IMQTTHandler, MqttMode
 
 [MQTTHandler]
 public class SensorClient
@@ -133,6 +133,64 @@ handler.Close();
 | **QoS 0** | At most once | No delivery guarantee; possible message loss |
 | **QoS 1** | At least once | Guaranteed delivery; possible duplication |
 | **QoS 2** | Exactly once | Guaranteed delivery without duplication |
+
+---
+
+## Usage Patterns
+
+### Retained state topics
+
+Publish a topic's *current value* with `retain: true`. The broker keeps the last
+retained message and delivers it immediately to any client that subscribes later —
+so a dashboard that reconnects or refreshes sees the latest state at once, without
+waiting for the next update.
+
+```csharp
+// Current state — new subscribers get this immediately on subscribe.
+handler.Publish("equipment/lp1/state", "RUNNING", qos: 1, retain: true);
+
+// Streaming telemetry — no need to retain every sample.
+handler.Publish("equipment/lp1/temp", "25.3", qos: 0, retain: false);
+```
+
+Use retained topics for status/config; use non-retained for high-frequency streams.
+
+### Broker + client in the same process
+
+Broker mode runs an embedded broker; `Publish`/`Subscribe` are **client** operations.
+To publish from the same application, register a broker **and** a client that connects
+to it:
+
+```csharp
+Port.Add<EmbeddedBroker>("mqtt_broker");   // MqttMode.Broker on 0.0.0.0:1883
+Port.Add<LocalPublisher>("mqtt_pub");      // MqttMode.Client → 127.0.0.1:1883
+Port.Run();
+
+// From the client handler:
+publisher.Publish("equipment/lp1/state", "IDLE", qos: 1, retain: true);
+```
+
+### Feeding the Port web dashboard
+
+The Port web frontend consumes MQTT and stores each topic's latest value, so any
+application state you publish can be visualized without a custom API.
+
+1. Run (or connect to) a broker the browser can reach. Browsers speak **MQTT over
+   WebSocket**, so the broker must expose a WebSocket listener
+   (`SetUseMqttProtocol(false)`); native device clients use TCP (`true`).
+2. Publish application state under a stable topic prefix, using `retain: true` for
+   values that should appear immediately on page load.
+3. The dashboard subscribes with a wildcard (e.g. `port/#`) and renders the topics.
+
+```csharp
+// Example: publish transfer/equipment state the dashboard subscribes to.
+handler.Publish("port/lp1/status",
+    "{\"state\":\"RUNNING\",\"lot\":\"L2401\"}", qos: 0, retain: true);
+```
+
+> Publish only display data. Never place passwords, tokens, or authorization
+> decisions in MQTT payloads — browser storage is readable by the user, and the
+> server must not trust client-side values.
 
 ---
 

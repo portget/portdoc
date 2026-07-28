@@ -57,6 +57,56 @@ Port.Run();
 
 ---
 
+## 宣言的な接続スペック
+
+ボーレートなどの接続設定は、`[Preset]` メソッドの代わりに `[Serial]` 属性へ直接
+宣言できます。**COM ポートは登録時**に `Port.Add<T>(key, comPort)` で渡すため、同じ
+ハンドラークラスを複数のポートに再利用できます。スペックと COM ポートは `[Preset]`
+の実行**前**にハンドラーへ適用されるため、`[Preset]` で個別設定を上書きできます。
+
+```csharp
+[Serial(BaudRate = 9600, DataBits = 8,
+        Parity = SerialParity.None, StopBits = SerialStopBits.One, TimeoutMs = 1000)]
+public class MySerialHandler
+{
+    [SerialHandler]
+    public ISerialHandler handler { get; set; } = null!;
+}
+
+// COM ポートは登録ごとに渡します:
+Port.Add<MySerialHandler>("serial_com3", "COM3");
+Port.Add<MySerialHandler>("serial_com4", "COM4");
+Port.Run();
+```
+
+ボーレートのみを指定する簡易コンストラクターも用意されています:
+
+```csharp
+[Serial(115200)]   // BaudRate
+public class MySerialHandler
+{
+    [SerialHandler]
+    public ISerialHandler handler { get; set; } = null!;
+}
+```
+
+プロパティは文書化された既定値(`BaudRate` 9600、`DataBits` 8、`Parity` None、
+`StopBits` One、`TimeoutMs` 1000)を使用します。`[Preset]` メソッドがない場合、
+適用されたスペックと COM ポートでポートが自動的に開かれます。
+
+| `[Serial]` プロパティ | 型 | 既定値 | 対応メソッド |
+|---------------------|------|---------|-------------------|
+| `BaudRate` | `int` | `9600` | `SetBaudRate` |
+| `DataBits` | `int` | `8` | `SetDataBits` |
+| `Parity` | `SerialParity` | `None` | `SetParity` |
+| `StopBits` | `SerialStopBits` | `One` | `SetStopBits` |
+| `TimeoutMs` | `int` | `1000` | `SetTimeout` |
+
+> COM ポートは `[Serial]` プロパティ**ではありません** — `Port.Add<T>(key, comPort)`
+> の第 2 引数として渡してください。
+
+---
+
 ## Multiple COM Ports
 
 Each `[Serial]` class registration creates its own independent port instance:

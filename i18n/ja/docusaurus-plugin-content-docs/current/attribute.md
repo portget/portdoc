@@ -20,11 +20,11 @@ Summary table of all Port attributes.
 | **[Controller](#flow-attributes)** | [`[Controller]`](#controller--flow) | class | Flow controller |
 | | [`[Flow]`](#controller--flow) | class | Workflow definition |
 | | [`[FlowStep]`](#flowstep) | method | Workflow step |
-| | [`[Handler]`](#handler-1) | property | Inject `IFlowHandler` (basic step control) |
-| | [`[Handler]`](#handler-1) | property | Inject `IFlowWithModelHandler<T>` (lifecycle events with model) |
+| | [`[Handler]`](#handler-1) | property | Inject `ControllerHandler<M, D>` (standard: step control + model + device list) |
+| | [`[Handler]`](#handler-1) | property | Inject `IControllerHandler<M>` / `IFlowHandler<M>` (model-bound step control + lifecycle events) |
 | | [`[Handler]`](#handler-1) | property | Inject `ISchedulerHandler<T>` (transfer scheduling) |
 | | [`[Model]`](#model) | class | Define flow model class |
-| | [`[ModelBinding]`](#model) | property | Bind model property to a Port entry |
+| | [`[EntryBinding]`](#model) | property | Bind model property to a Port entry |
 | | [`[FlowWatcherCompare]`](#flowwatchercompare) | method | Step condition watcher |
 | | [`[FlowWatcherAction]`](#flowwatcheraction) | method | Step completion action |
 | | [`[Timeout]`](#timeout) | method | Step timeout |
@@ -318,11 +318,12 @@ Attributes used for defining and controlling workflows (process flows).
 | [`[Controller]`](#controller) | class | — | — | Defines a controller containing flows |
 | [`[Flow]`](#controller) | class | — | `key` | Defines a workflow class (inner class of Controller) |
 | [`[FlowStep]`](#flowstep) | method | — | `index`, `relatedEntry` | Defines a workflow step |
-| [`[Handler]`](#handler-1) | property | `IFlowHandler` | — | Injects basic flow step control into a Flow class |
-| [`[Handler]`](#handler-1) | property | `IFlowWithModelHandler<T>` | — | Injects model-bound handler with lifecycle events |
+| [`[Handler]`](#handler-1) | property | `ControllerHandler<M, D>` | — | **Standard** controller flow handler: step control + model `M` + device list `D` |
+| [`[Handler]`](#handler-1) | property | `IControllerHandler<M>` | — | Model-bound step control + lifecycle events (no device list) |
+| [`[Handler]`](#handler-1) | property | `IFlowHandler<M>` | — | Model-bound step control + lifecycle events (equivalent to `IControllerHandler<M>`) |
 | [`[Handler]`](#handler-1) | property | `ISchedulerHandler<T>` | — | Injects transfer scheduler handler |
-| [`[Model]`](#model) | class | — | — | Defines a flow model class; properties use `[ModelBinding]` |
-| [`[ModelBinding]`](#model) | property | `Entry` | `controllerName`, `entryKey` | Binds a model property to a Port entry |
+| [`[Model]`](#model) | class | — | — | Defines a flow model class; properties use `[EntryBinding]` |
+| [`[EntryBinding]`](#model) | property | `Entry` | `controllerName`, `entryKey` | Binds a model property to a Port entry |
 | [`[FlowWatcherCompare]`](#flowwatchercompare) | method | — | `entry`, `op`, `value` | Defines step execution condition |
 | [`[FlowWatcherAction]`](#flowwatcheraction) | method | — | `entry`, `value` | Defines action on step completion |
 | [`[Timeout]`](#timeout) | method | — | `ms`, `controller`, `alarmid` | Sets step timeout and alarm |
@@ -348,12 +349,12 @@ Flow(string key)
 [Model]
 public class LoadportModel
 {
-    [ModelBinding(Controller.LP1, EFEM.LP1_Command)]
-    [ModelBinding(Controller.LP2, EFEM.LP2_Command)]
+    [EntryBinding(Controller.LP1, EFEM.LP1_Command)]
+    [EntryBinding(Controller.LP2, EFEM.LP2_Command)]
     public Entry LP_Command { get; set; }
 
-    [ModelBinding(Controller.LP1, EFEM.LP1_Main_Air_i)]
-    [ModelBinding(Controller.LP2, EFEM.LP2_Main_Air_i)]
+    [EntryBinding(Controller.LP1, EFEM.LP1_Main_Air_i)]
+    [EntryBinding(Controller.LP2, EFEM.LP2_Main_Air_i)]
     public Entry LP_Main_Air_i { get; set; }
 }
 
@@ -396,11 +397,16 @@ Injects a handler interface into a `[Flow]` class. The injected type is determin
 
 | Property type | Purpose |
 |---------------|---------|
-| `IFlowHandler` | Basic step control (`Next()`, `Done()`, logging) |
-| `IFlowWithModelHandler<T>` | Lifecycle events that carry the bound model |
+| `ControllerHandler<M, D>` | **Standard** controller flow handler: step control + typed `Model` `M` + lifecycle events + controller `DeviceList` `D` |
+| `IControllerHandler<M>` | Step control + typed `Model` + lifecycle events (no device list); standalone (does not inherit `IFlowHandler<M>`) |
+| `IFlowHandler<M>` | Identical to `IControllerHandler<M>`; the non-generic `IFlowHandler` no longer exists (a model type is always required) |
 | `ISchedulerHandler<T>` | Transfer scheduling for robot arm coordination |
+| `IModuleFlowHandler<TModule, TSubstrate, TModel>` | `GetModule()` / `GetSubstrate()` / `GetModel()` でモジュール・基板・Model に型付きアクセス |
+| `ITransferFlowHandler<TTransfer, TSubstrate, TModel>` | ロボット Pick/Place フロー用: `GetTransfer()` / `GetSubstrate()` / `GetModel()` + `GetTargetName()` / `GetSourceName()` |
 
 FlowStep methods always receive the model as a **method parameter** — they do not inject it as a property.
+
+> 注: このパラメータは任意です。`[Handler]` が型付きハンドラーの場合、ステップは `m` パラメータを省略し、`Handler.Model`（3 型ハンドラーでは `Handler.GetModel()`）からモデルを読み取れます。どちらも同じモデルシングルトンに解決されます。
 
 **Constructor:** No parameters — applies to `[Handler]` and `[Preset]`.
 
@@ -446,7 +452,7 @@ public class FoupLoadFlow
 public class Place
 {
     [Handler]
-    public IFlowWithModelHandler<WTRCommModel> handler { get; set; } = null!;
+    public IModelFlowHandler<WTRCommModel> handler { get; set; } = null!;
 
     [Handler]
     public ISchedulerHandler<DualArmActionArgs> scheduler { get; set; } = null!;
@@ -489,7 +495,7 @@ public class Place
 }
 ```
 
-**`IFlowHandler` members:**
+**Common handler members** (shared by `ControllerHandler<M, D>`, `IControllerHandler<M>`, and `IFlowHandler<M>`):
 
 | Member | Description |
 |--------|-------------|
@@ -513,7 +519,7 @@ public class Place
 | `WithConsole` | Also write to `Console.WriteLine` |
 | `WithTrace` | Also write to `Trace.WriteLine` |
 
-**`IFlowWithModelHandler<T>` additional members:**
+**`IControllerHandler<M>` / `IFlowHandler<M>` additional members** (`ControllerHandler<M, D>` also adds `D DeviceList`):
 
 | Member | Description |
 |--------|-------------|
@@ -631,9 +637,9 @@ public void Step1()
 
 ### Model
 
-`[Model]` marks a **class** as a flow model. Properties are of type `Entry` and decorated with `[ModelBinding]` to bind to Port entries. The platform instantiates the model and passes it as a **method parameter** to each `[FlowStep]`.
+`[Model]` marks a **class** as a flow model. Properties are of type `Entry` and decorated with `[EntryBinding]` to bind to Port entries. The platform instantiates the model and passes it as a **method parameter** to each `[FlowStep]`.
 
-Multiple `[ModelBinding]` attributes on one property let the same model class serve different controllers — the binding that matches the running controller's name is applied.
+Multiple `[EntryBinding]` attributes on one property let the same model class serve different controllers — the binding that matches the running controller's name is applied.
 
 **Constructors:**
 
@@ -642,18 +648,18 @@ Multiple `[ModelBinding]` attributes on one property let the same model class se
 Model()
 Model(string controllerName)
 
-// [ModelBinding]
-ModelBinding(string controller_name, string key)
-ModelBinding(string key)
+// [EntryBinding]
+EntryBinding(string controller_name, string key)
+EntryBinding(string key)
 ```
 
 | Attribute | Parameter | Type | Description |
 |-----------|-----------|------|-------------|
 | `[Model]` | — | — | No parameters; marks the class as a Port flow model |
 | `[Model]` | `controllerName` | `string` | Restrict this model to a specific controller name |
-| `[ModelBinding]` | `controller_name` | `string` | Controller instance name this binding applies to (e.g. `"LP1"`) |
-| `[ModelBinding]` | `key` | `string` | Port entry key to bind the property to |
-| `[ModelBinding]` (1-arg) | `key` | `string` | Bind to this entry for all controllers (no controller filter) |
+| `[EntryBinding]` | `controller_name` | `string` | Controller instance name this binding applies to (e.g. `"LP1"`) |
+| `[EntryBinding]` | `key` | `string` | Port entry key to bind the property to |
+| `[EntryBinding]` (1-arg) | `key` | `string` | Bind to this entry for all controllers (no controller filter) |
 
 ```csharp
 // Define the model class — outside the controller
@@ -661,16 +667,16 @@ ModelBinding(string key)
 public class LoadportModel
 {
     // Bound to LP1_Command when run under "LP1", LP2_Command under "LP2"
-    [ModelBinding(Controller.LP1, EFEM.LP1_Command)]
-    [ModelBinding(Controller.LP2, EFEM.LP2_Command)]
+    [EntryBinding(Controller.LP1, EFEM.LP1_Command)]
+    [EntryBinding(Controller.LP2, EFEM.LP2_Command)]
     public Entry LP_Command { get; set; }
 
-    [ModelBinding(Controller.LP1, EFEM.LP1_Configure_Value_i)]
-    [ModelBinding(Controller.LP2, EFEM.LP2_Configure_Value_i)]
+    [EntryBinding(Controller.LP1, EFEM.LP1_Configure_Value_i)]
+    [EntryBinding(Controller.LP2, EFEM.LP2_Configure_Value_i)]
     public Entry LP_Configure_Value_i { get; set; }
 
-    [ModelBinding(Controller.LP1, EFEM.LP1_Main_Air_i)]
-    [ModelBinding(Controller.LP2, EFEM.LP2_Main_Air_i)]
+    [EntryBinding(Controller.LP1, EFEM.LP1_Main_Air_i)]
+    [EntryBinding(Controller.LP2, EFEM.LP2_Main_Air_i)]
     public Entry LP_Main_Air_i { get; set; }
 }
 

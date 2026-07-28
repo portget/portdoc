@@ -319,7 +319,7 @@ Port.Pull("sample", @"D:\sample\Repo\pull\");
 **모델(Model)** 은 Port 엔트리와 C# 속성을 연결하는 **데이터 바인딩 계층**입니다.
 
 - `[Model]` 어트리뷰트로 클래스를 선언합니다.
-- 각 속성은 `[ModelBinding]`으로 특정 엔트리에 연결됩니다.
+- 각 속성은 `[EntryBinding]`으로 특정 엔트리에 연결됩니다.
 - 컨트롤러와 플로우는 모델을 통해 엔트리 값을 읽고 씁니다.
 
 ---
@@ -330,7 +330,7 @@ Port.Pull("sample", @"D:\sample\Repo\pull\");
 .page 파일 (엔트리 정의)
     ↓  Push
 Port 인메모리 DB (엔트리 값)
-    ↕  ModelBinding
+    ↕  EntryBinding
 모델 (C# 속성 ↔ 엔트리 매핑)
     ↕
 컨트롤러 / 플로우 (비즈니스 로직)
@@ -343,7 +343,7 @@ Port 인메모리 DB (엔트리 값)
 
 ### 2.3 모델을 페이지에 매핑하는 방법
 
-`[ModelBinding(instanceKey, entryKey)]` 어트리뷰트를 사용합니다.
+`[EntryBinding(instanceKey, entryKey)]` 어트리뷰트를 사용합니다.
 
 - **첫 번째 인수** — 컨트롤러 인스턴스 키 (예: `"Bulb1"`, `"LP1"`)
 - **두 번째 인수** — 자동 생성된 `.cs` 파일의 엔트리 상수
@@ -352,16 +352,16 @@ Port 인메모리 DB (엔트리 값)
 [Model]
 public class BulbModel
 {
-    [ModelBinding("Bulb1", Io.Bulb1OnOff)]
-    [ModelBinding("Bulb2", Io.Bulb2OnOff)]
+    [EntryBinding("Bulb1", Io.Bulb1OnOff)]
+    [EntryBinding("Bulb2", Io.Bulb2OnOff)]
     public Entry OnOff { get; set; }
 
-    [ModelBinding("Bulb1", Io.Bulb1Temp)]
-    [ModelBinding("Bulb2", Io.Bulb2Temp)]
+    [EntryBinding("Bulb1", Io.Bulb1Temp)]
+    [EntryBinding("Bulb2", Io.Bulb2Temp)]
     public Entry Temp { get; set; }
 
-    [ModelBinding("Bulb1", Io.Bulb1TargetTemp)]
-    [ModelBinding("Bulb2", Io.Bulb2TargetTemp)]
+    [EntryBinding("Bulb1", Io.Bulb1TargetTemp)]
+    [EntryBinding("Bulb2", Io.Bulb2TargetTemp)]
     public Entry TargetTemp { get; set; }
 }
 ```
@@ -399,6 +399,8 @@ Port.Run();
 ### 3.3 플로우 안에서 모델 처리하기
 
 메서드 파라미터로 모델을 직접 받아 엔트리 값에 접근합니다:
+
+> **참고**: `model` 파라미터는 선택 사항입니다. `[Handler]`가 타입 지정 핸들러일 경우, 스텝은 파라미터를 생략하고 `Handler.Model`(3-타입 핸들러에서는 `Handler.GetModel()`)을 통해 핸들러에서 모델을 읽을 수 있습니다. 둘 다 동일한 모델 싱글턴을 가리킵니다.
 
 ```csharp
 [Controller]
@@ -514,8 +516,10 @@ public partial class MainWindow : Window
 | 인터페이스 | 목적 |
 |-----------|------|
 | `IFlowHandler` | 기본 플로우 진행 제어 (`Next()`) |
-| `IFlowWithModelHandler<T>` | 모델을 전달하는 플로우 이벤트 구독 |
+| `IModelFlowHandler<T>` | 모델을 전달하는 플로우 이벤트 구독 |
 | `ISchedulerHandler<T>` | 이송 완료 스케줄링 |
+| `IModuleFlowHandler<TModule, TSubstrate, TModel>` | `GetModule()` / `GetSubstrate()` / `GetModel()` 로 모듈·기판·Model에 타입 지정 접근 |
+| `ITransferFlowHandler<TTransfer, TSubstrate, TModel>` | 로봇 Pick/Place Flow용: `GetTransfer()` / `GetSubstrate()` / `GetModel()` + `GetTargetName()` / `GetSourceName()` |
 
 ---
 
@@ -531,7 +535,7 @@ handler.Next();   // 다음 FlowStep으로 진행
 handler.Done();   // 플로우를 동기적으로 Idle 강제 전환
 ```
 
-#### IFlowWithModelHandler\<T\> — 이벤트 기반 모델 접근
+#### IModelFlowHandler\<T\> — 이벤트 기반 모델 접근
 
 ```csharp
 [Controller]
@@ -541,7 +545,7 @@ internal class WTRController
     public class Pick : IFlowCACD<WTRCommModel>
     {
         [Handler]
-        public IFlowWithModelHandler<WTRCommModel> handler { set; get; } = null!;
+        public IModelFlowHandler<WTRCommModel> handler { set; get; } = null!;
 
         [Handler]
         public ISchedulerHandler<DualArmActionArgs> scheduler { set; get; } = null!;
@@ -582,7 +586,7 @@ internal class WTRController
 | 2 | `CheckAction` | 동작 완료 확인 |
 | 3 | `Done` | 완료 처리 — `handler.Done()` 호출로 플로우 종료 |
 
-#### IFlowWithModelHandler\<T\> 생명주기 이벤트
+#### IModelFlowHandler\<T\> 생명주기 이벤트
 
 | 이벤트 | 발생 시점 | 인수 |
 |--------|-----------|------|

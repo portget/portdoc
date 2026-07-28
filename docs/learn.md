@@ -115,6 +115,7 @@ Attributes provide additional functionality and behavior for messages:
 |-----------|-------------|
 | **pkg** | Real-time synchronization with external libraries (see package documentation) |
 | **backup** | Automatic database backup with restore on application restart |
+| **default** | Initial value seeded into the entry when the database is initialized or newly created (see [Default Values](#default-values)) |
 | **property** | Custom property specifications for message configuration |
 | **rule** | Value validation and management rules |
 | **logging** | Automatic logging support for message operations |
@@ -137,6 +138,42 @@ RoomTemp2     num         pkg:Heater1.Temp  property:{"MIN":0,"MAX":300,"Argumen
 | **BulbOnOff** | Enum | Enum-based control linked to Bulb1 package |
 | **RoomTemp1** | Numeric | Numeric temperature in Celsius with validation range |
 | **RoomTemp2** | Numeric | Numeric temperature in Fahrenheit with validation range |
+
+### Default Values {#default-values}
+
+Add a `default:<value>` annotation to an entry to seed it with an initial value.
+The value is written into the entry's memory region when the database is **initialized
+or newly created** — that is, on `port run` for a fresh project or any run where the
+entry has no previously persisted value.
+
+**Format:**
+```text
+[key] [datatype] default:<value> [other attributes...]
+```
+
+**Examples:**
+```text
+RoomTemp1     num          default:0
+BulbOnOff     enum.OffOn   default:Off
+Mode          enum.OnOff   default:1
+Recipe        string       default:"sample recipe"
+Threshold     F4           default:36.5   min:0  max:100
+```
+
+**Rules:**
+
+| Rule | Description |
+|------|-------------|
+| **Numbers** | Write the number directly: `default:0`, `default:36.5`. |
+| **Strings with spaces** | Wrap in double quotes: `default:"sample recipe"`. The quotes are stripped before the value is stored. |
+| **Enums** | Use either the enum member name (`default:Off`) or its numeric key (`default:1`). |
+| **Value type** | The value must be valid for the entry's data type, otherwise the default is skipped with a warning in the log and the entry keeps its zero-initialized value. |
+
+!!! note "Interaction with `backup`"
+    The `default` value only applies when there is **no persisted value** for the entry.
+    If an entry is also marked `backup`, a value saved from a previous run always takes
+    precedence over its `default` — the default is used only on the very first run
+    (new creation), and the persisted value is restored on every run afterwards.
 
 ## Enum Definitions
 

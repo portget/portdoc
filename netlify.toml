@@ -4,3 +4,31 @@
 
 [build.environment]
   NODE_VERSION = "20"
+
+# ─────────────────────────────────────────────
+# 보안 헤더 — 전체 페이지
+# ─────────────────────────────────────────────
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # 클릭재킹 방지
+    X-Frame-Options = "SAMEORIGIN"
+    # MIME 스니핑 방지
+    X-Content-Type-Options = "nosniff"
+    # 레퍼러 정보 최소화
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    # 불필요한 브라우저 기능 비활성화
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=()"
+    # 검색 엔진 색인 허용 (기본)
+    X-Robots-Tag = "index, follow"
+
+# ─────────────────────────────────────────────
+# 파일 다운로드 디렉터리 — 색인 차단
+# ─────────────────────────────────────────────
+[[headers]]
+  for = "/file/*"
+  [headers.values]
+    # 검색 엔진 및 AI 봇 색인 차단
+    X-Robots-Tag = "noindex, nofollow, noarchive"
+    # 파일을 인라인 표시 대신 다운로드 강제
+    Content-Disposition = "attachment"

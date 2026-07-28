@@ -7,9 +7,11 @@
 - [Entity Classes](#entity-classes)
   - [LoadModuleEntity — Load Port (E87)](#loadmoduleentity)
   - [ProcessModuleEntity — Process Module (E39)](#processmoduleentity)
+  - [TransferModuleEntity — Transfer Module & Robot Position](#transfermoduleentity)
+  - [LocationEntity — Location & Slot Capacity](#locationentity)
   - [CarrierEntity — Carrier & Slot Map](#carrierentity)
   - [SubstrateEntity — Substrate State](#substrateentity)
-  - [JobEntity — Active Job](#jobentity)
+  - [CarrierJob — Job Definition & Active Job](#carrierjob)
   - [FlowEntity — Flow Execution](#flowentity)
   - [CEIDEntity](#ceidentity)
 - [Supporting Types](#supporting-types)
@@ -33,11 +35,47 @@ Entities are **per-location singletons**: the first call to `Port.GetEntity<T>("
 |---|---|---|
 | `LoadModuleEntity` | E87 | Load-port transfer and carrier lifecycle state |
 | `ProcessModuleEntity` | E39 | Process-module execution state and timer |
+| `TransferModuleEntity` | — | Transfer (robot) state and current/target position |
+| `LocationEntity` | — | Registered location and its slot capacity |
 | `CarrierEntity` | E87 | Carrier identity and per-slot occupancy |
 | `SubstrateEntity` | E90 | Substrate identity, reservation, and route |
-| `JobEntity` | — | The currently active job and its route progress |
 | `FlowEntity` | — | Flow execution state of a named controller |
 | `CEIDEntity` | E30 | Collection Event ID holder |
+
+> **Module classes are generic `<P, C, T>`.** The module classes are `LoadModuleEntity<P, C, T>`,
+> `ProcessModuleEntity<P, C, T>`, and `TransferModuleEntity<P, C, T>` — every module declares a
+> user-defined parameter type `P` (`IParameter`), configuration type `C` (`IConfigure`), and a
+> controller type `T` (`IController`) that owns the module's flows. When you **author your own
+> module** you derive from the matching generic class, e.g.
+> `class MyPmc : ProcessModuleEntity<MyParameter, MyConfigure, MyController>`.
+>
+> A custom module supplies its transfer scores by overriding **`GetSubstrateInScore(Location)`**
+> (gates a robot Get from this location) and **`GetSubstrateOutScore(Location)`** (gates a robot
+> Put to it). Return `≥1` = ready, `0` = not ready, `<0` = blocked. These replace the former
+> `[TransferScore]` location methods; the transfer module now keeps only its own arm scores.
+>
+> Register a custom module **instance** with `Port.Equipment.Add(new MyPmc(...))`. There are two
+> ways the module's flows are supplied:
+>
+> - **T owns the flows (recommended, DepoPMC-style).** Leave `ControllerKey` empty. The module's
+>   `T` controller declares the `[Flow]` classes directly, and they are reflected into the engine
+>   **under the module key** (e.g. flow `"Stage1.Process"`). Model bindings in the `[Model]` class
+>   are keyed by the **module key** (`[EntryBinding("Stage1", …)]`). Per-instance subclasses
+>   follow the `class Stage1Module : StageModule` (⊂ `DepoPMC1 : DepoPMC`) pattern, and there is
+>   **no** separate `Port.Add<Controller>` registration.
+> - **Separate controller (ControllerKey).** Set `ControllerKey` to the key of a `[Controller]`
+>   registered separately via `Port.Add<MyController>(ctrlKey, model)`. `Port.Equipment.Add` then
+>   wires the slot count, the controller↔module mapping, and process/load auto-start — the same
+>   wiring the legacy `Port.Add<IProcessModuleEntity>(key, slot, ctrlKey)` overload performed. The
+>   module's `T` flows are **not** re-reflected in this mode (they come from the separate controller).
+>
+> The `Port.Entity.*` accessors return the parameter-type-agnostic interfaces
+> `ILoadModuleEntity` / `IProcessModuleEntity` / `ITransferModuleEntity` (all deriving from
+> `IModuleEntity`), so you can read a module's state without knowing its `<P, C, T>` arguments —
+> e.g. `Port.Entity.ProcessModule("Stage1").SetState(...)`. The engine's own default modules
+> (registered via `Port.Add<IProcessModuleEntity>(key, …)`) are closed over the built-in
+> `EmptyParameter`/`EmptyConfigure`/`IController` types. See
+> [the attribute reference](attribute.md) for the custom-module authoring convention.
 
 ---
 
@@ -47,22 +85,54 @@ Use `Port.GetEntity<T>` to obtain an entity singleton. Pass the **location name*
 
 ```csharp
 // Load port entities (location = LMC name)
-LoadModuleEntity lp1     = Port.GetEntity<LoadModuleEntity>("LP1");
+ILoadModuleEntity lp1    = Port.GetEntity<ILoadModuleEntity>("LP1");
 CarrierEntity    carrier = Port.GetEntity<CarrierEntity>("LP1");
 
 // Process module entities (location = PMC name)
-ProcessModuleEntity stage1 = Port.GetEntity<ProcessModuleEntity>("Stage1");
+IProcessModuleEntity stage1 = Port.GetEntity<IProcessModuleEntity>("Stage1");
 SubstrateEntity     sub1   = Port.GetEntity<SubstrateEntity>("Stage1");
-
-// Active job singleton (location = Equipment/TM name)
-JobEntity job = Port.GetEntity<JobEntity>("TM1");
 
 // Flow state per controller
 FlowEntity flow = Port.GetEntity<FlowEntity>("Scheduler");
 ```
 
+> The active job is **not** an entity — query it with `Port.Job.GetActiveJob("TM1")`. See [CarrierJob](#carrierjob).
+
+```csharp
+CarrierJob active = Port.Job.GetActiveJob("TM1");
+```
+
 :::tip Per-location Singleton
-Calling `Port.GetEntity<LoadModuleEntity>("LP1")` multiple times always returns the exact same C# object. You can safely cache the reference or call `Port.GetEntity` on every access — both patterns have the same cost after the first call.
+Calling `Port.GetEntity<ILoadModuleEntity>("LP1")` multiple times always returns the exact same C# object. You can safely cache the reference or call `Port.GetEntity` on every access — both patterns have the same cost after the first call.
+:::
+
+---
+
+## Entity → Port Server Mirror {#entity-report-mirror}
+
+Entity singletons are the source of truth for their state, but every state change is also
+**mirrored to the port server** as report-only shared-memory entries, so the web UI's
+register view displays live entity state without any `.page` declaration. Mirror entries
+are registered at runtime when the service reaches the Synchronized state and re-registered
+automatically after a server restart.
+
+| Entity state | Mirrored entry | Written by |
+|---|---|---|
+| `LocationEntity.SlotCount` | `{loc}.SlotCount` | `Port.Add<T>(key, slotMaxCount, ...)` registration |
+| Module state text (PMC/LMC/TMC) | `{loc}.ModuleState` | `SetState(...)` on the module entity |
+| `TransferModuleEntity.CurrentLocation` | `{tm}.CurrentLocation` | `SetCurrentLocation(...)` |
+| `TransferModuleEntity.TargetLocation` | `{tm}.TargetLocation` | `SetTargetLocation(...)` |
+| `LoadModuleEntity.E87` (all six state machines) | `{lp}.E87TransferState`, `{lp}.E87InServiceState`, `{lp}.E87CarrierState`, `{lp}.E87CarrierIdStatus`, `{lp}.E87SlotMapStatus`, `{lp}.E87Phase` | every `E87` setter |
+| `ProcessModuleEntity` recipe | `{pm}.RecipeName` | `SetRecipeName(...)` |
+| Active `CarrierJob` | `{tm}.ActiveJobId`, `{tm}.ActiveJobSource` | `Port.Job.Execute(...)` / `Port.Job.ClearActiveJob(...)` |
+
+Substrate presence, carrier slot contents, and transfer scores reach the web Module Layout
+through the separate `PushModuleScore` channel. `ProcessValue`/`ProcessMax` are intentionally
+**not** mirrored (per-tick update frequency); declare page entries for process progress as before.
+
+:::warning Report-only
+Never read or write mirror entries from application logic — they are display mirrors,
+overwritten by the entity on every change. Read the entity instead.
 :::
 
 ---
@@ -74,7 +144,7 @@ Calling `Port.GetEntity<LoadModuleEntity>("LP1")` multiple times always returns 
 Holds the five independent SEMI E87 state machines for a single load-port location.
 
 ```csharp
-LoadModuleEntity lp1 = Port.GetEntity<LoadModuleEntity>("LP1");
+ILoadModuleEntity lp1 = Port.GetEntity<ILoadModuleEntity>("LP1");
 ```
 
 #### Properties
@@ -98,7 +168,7 @@ LoadModuleEntity lp1 = Port.GetEntity<LoadModuleEntity>("LP1");
 #### Example
 
 ```csharp
-var lp1 = Port.GetEntity<LoadModuleEntity>("LP1");
+var lp1 = Port.GetEntity<ILoadModuleEntity>("LP1");
 Console.WriteLine(lp1.GetStateText());        // "ReadyToLoad"
 Console.WriteLine(lp1.GetCarrierStateText()); // "NotAccessed"
 Console.WriteLine(lp1.TransferState);         // LoadPortTransferState.InService
@@ -111,7 +181,7 @@ Console.WriteLine(lp1.TransferState);         // LoadPortTransferState.InService
 Tracks the SEMI E39 process state and recipe-timer data for a single equipment module.
 
 ```csharp
-ProcessModuleEntity stage1 = Port.GetEntity<ProcessModuleEntity>("Stage1");
+IProcessModuleEntity stage1 = Port.GetEntity<IProcessModuleEntity>("Stage1");
 ```
 
 #### Properties
@@ -136,6 +206,18 @@ ProcessModuleEntity stage1 = Port.GetEntity<ProcessModuleEntity>("Stage1");
 | `GetProcessValue()` | `double` | Alias for `ProcessValue` property |
 | `GetProcessMax()` | `double` | Alias for `ProcessMax` property |
 | `GetRecipeName()` | `string` | Returns the recipe name set via `SetRecipeName` |
+| `SetPresent(bool)` | `void` | Places or removes the substrate at this location in `SubstrateTracker` (inherited from `ModuleEntity`) |
+| `GetExists()` | `bool` | Returns `true` when a substrate is present at this location (inherited from `ModuleEntity`) |
+| `TryGetSubstrate(out SubstrateEntity)` | `bool` | Returns the `SubstrateEntity` currently at this location (inherited from `ModuleEntity`) |
+| `Process()` | `void` | Starts this module's registered primary `[Flow]` (the controller bound via `Port.Add<IProcessModuleEntity>(moduleKey, controllerKey)`) |
+
+::::note Presence and process start are automatic during scheduled transfers
+When the transfer scheduler completes a Put or Get at a location registered via
+`Port.Add<IProcessModuleEntity>(moduleKey, controllerKey)`, it calls `SetPresent(true)` /
+`SetPresent(false)` on that location's entity and auto-starts the process flow after a Put.
+Call `SetPresent`/`Process()` manually only for substrates that move outside the scheduler
+(e.g. manual load scenarios).
+::::
 
 #### ModuleProcessState Values
 
@@ -151,7 +233,7 @@ ProcessModuleEntity stage1 = Port.GetEntity<ProcessModuleEntity>("Stage1");
 #### Example
 
 ```csharp
-ProcessModuleEntity stage = Port.GetEntity<ProcessModuleEntity>("Stage1");
+IProcessModuleEntity stage = Port.GetEntity<IProcessModuleEntity>("Stage1");
 
 // Start processing
 stage.SetState(portdic.GEM.E39.ModuleProcessState.Executing)
@@ -174,6 +256,76 @@ stage.SetState("Complete");
 :::info Event on State Change
 `SetState` automatically calls `Port.RaiseModuleStateChanged`, which fires `Port.ModuleStateChanged`. Subscribe to this event to get notified whenever any module state changes.
 :::
+
+---
+
+### TransferModuleEntity — Transfer Module & Robot Position {#transfermoduleentity}
+
+Holds the transfer (robot) state and current/target position for a transfer-module location.
+Equipment classes subclass it and are registered via
+`Port.Add<T>(moduleKey, slotMaxCount, controllerKey)` — the registered instance **is** the
+entity singleton, so `Port.Entity.TransferModule("TM1")` returns the same object.
+
+```csharp
+ITransferModuleEntity tm1 = Port.Entity.TransferModule("TM1");
+```
+
+| Member | Type | Description |
+|---|---|---|
+| `State` | `TransferModuleState` | Current transfer state (`Idle`, `Moving`, `Picking`, `Placing`, ...) |
+| `SetState(state)` | fluent | Atomically sets `State` and reports it to the module-state pipeline |
+| `GetStateText()` | `string` | String form of `State` |
+| `CurrentLocation` | `string` | Location the robot arm is currently at (empty until the first move) |
+| `TargetLocation` | `string` | Location the robot arm is heading to for the pending Pick/Place |
+| `SetCurrentLocation(loc)` | fluent | Atomically sets `CurrentLocation`; `null` clears it |
+| `SetTargetLocation(loc)` | fluent | Atomically sets `TargetLocation`; `null` clears it |
+
+```csharp
+// Transfer request handler: record the destination before starting the robot flow
+tm1.SetTargetLocation(args.Target.Name);
+
+// Robot flow: mark arrival
+tm1.SetCurrentLocation(tm1.TargetLocation);
+```
+
+:::info Replaces entry-based robot position
+`CurrentLocation`/`TargetLocation` replace the app-level `"Robot.CurrentLocation"` /
+`"Robot.TargetLocation"` page entries. The entity is the source of truth; every setter
+call is also mirrored to the port server as the report-only entries
+`{moduleKey}.CurrentLocation` / `{moduleKey}.TargetLocation` (e.g. `TM1.CurrentLocation`),
+so the web UI keeps displaying the robot position. Never write these entries directly —
+they are display mirrors.
+:::
+
+---
+
+### LocationEntity — Location & Slot Capacity {#locationentity}
+
+Describes a registered equipment location and its slot capacity. Seeded by the slot-count
+`Port.Add` overload; the single source of truth for slot counts (the `CarrierEntity`
+factory reads it to size the slot map).
+
+```csharp
+Port.Add<ILoadModuleEntity>("LP1", 25, "LP1Controller");
+
+LocationEntity loc = Port.Entity.Location("LP1");
+Console.WriteLine($"{loc.LocationKey}: {loc.SlotCount} slots");   // LP1: 25 slots
+```
+
+| Member | Type | Description |
+|---|---|---|
+| `LocationKey` | `string` | Location name (e.g. `"LP1"`, `"Stage1"`, `"TM1"`) |
+| `SlotCount` | `int` | Slot capacity declared at registration |
+| `ID` | `string` | Singleton cache key; equals `LocationKey` |
+
+Both properties are immutable after construction, so reads are thread-safe.
+Locations registered through overloads without a slot count default to 25 for load
+ports and 1 for process/transfer modules.
+
+The slot count is also mirrored to the port server as the report-only entry
+`{locationKey}.SlotCount` (e.g. `LP1.SlotCount` = 25), so the web UI's register view
+keeps displaying it. The mirror is registered at runtime when the service reaches the
+Synchronized state — no `.page` declaration is needed.
 
 ---
 
@@ -281,80 +433,93 @@ sub.SetReserved(false);
 SubstrateRoute route = sub.GetRoute();
 foreach (RouteInfo info in route.GetAll())
 {
-    Console.WriteLine($"Key: {info.Key}, LastCompleted: {info.LastCompletedStep}");
+    Console.WriteLine($"Key: {info.Key}, Progress: {info.Progress}");
 }
 ```
 
 ---
 
-### JobEntity — Active Job {#jobentity}
+### CarrierJob — Job Definition & Active Job {#carrierjob}
 
-Holds the identity and slot assignments of the currently active job, and exposes live route-tracking data. Retrieved per Equipment/TM location — there is one `JobEntity` singleton per location.
+A **`CarrierJob`** is the single job currency for the scheduler. It is **not** an `IEntity` — it is a plain, mutable definition you build yourself and hand to the engine. It inherits `ConcurrentDictionary<int, List<RoutePoint>>`, so each 1-based slot number maps (via the indexer) to the ordered `RoutePoint` sequence its substrate travels (source LP → process stations → return LP).
+
+:::info Replaces JobEntity
+The former `JobEntity` singleton was removed. Job definitions are now `CarrierJob` objects; the active job per transfer module is tracked internally and read back with `Port.Job.GetActiveJob("TM1")`. Applications that persist job definitions keep their own DTO and convert it to a `CarrierJob` at execution time.
+:::
+
+#### Building a job
 
 ```csharp
-JobEntity job = Port.GetEntity<JobEntity>("TM1");
+var job = new CarrierJob("CARRIER01")      // ID is set once at construction (read-only)
+{
+    Location = new Location("LP1"),        // source load port
+    Name     = "TestJob",                  // informational only
+    RepeatCount = 0,                       // 0 = run once
+};
+
+job[1] = new List<RoutePoint>
+{
+    new SingleSlotRoute("LP1"),            // pick from source LP
+    new ProcessRoute("Stage1", "Recipe_A"),// process at Stage1
+    new SingleSlotRoute("LP1"),            // return to LP
+};
 ```
 
-#### Properties
+#### Key members
 
-| Property | Type | Description |
+| Member | Type | Description |
 |---|---|---|
-| `ID` | `string` | Unique job identifier (empty when no job is active) |
-| `Name` | `string` | Human-readable job name |
-| `SourceLp` | `string` | Source load-port name (e.g. `"LP1"`) |
-| `SlotAssignments` | `List<SlotAssignment>` | Per-slot route assignments |
-| `CycleCount` | `int` | Number of times the job repeats after completion (`0` = run once) |
-| `CreatedAt` | `DateTime` | Timestamp when the job was created |
-| `IsActive` | `bool` | `true` when `ID` is non-empty |
-| `LotCompletedCount` | `int` | Number of job cycles completed so far |
+| `ID` | `readonly string` | Unique job identifier — set once via the constructor. Queue-registry key, and the substrate-key prefix (`"{ID}.{slot}"`) on the pipeline path |
+| `Location` | `Location` | Source load port; `Port.Job.Execute` resolves the target LMC from `Location.ID` |
+| `Name` | `string` | Human-readable job name (informational; shown in the active-job display) |
+| `RepeatCount` | `int` | Cycles the full sequence repeats (`0` = run once) |
+| `CompletedCycles` | `int` | Cycles completed so far for the active run (reset on activation) |
+| `LotID` | `string` | Legacy per-slot `Scheduler` path only — substrate-key prefix and `ExecuteLotID` key |
+| `Mode` | `TransferMode` | Reserved; not read by current execution paths (the scheduler rule is set via `SetRule`) |
+| `this[int slot]` | `List<RoutePoint>` | Indexer — the route for a slot |
 
-#### Methods
+#### Running & querying via `Port.Job`
 
 | Method | Returns | Description |
 |---|---|---|
-| `Queued(JobEntity source)` | `ResultCode` | Copies job data from `source` and marks it as queued — call when a job enters the queue |
-| `Processing(JobEntity source)` | `ResultCode` | Copies job data from `source` and marks it as actively processing |
-| `Clear()` | `void` | Resets all fields — marks the job as inactive |
-| `GetAllRoute()` | `IEnumerable<RouteInfo>` | Snapshot of every registered substrate route and step progress |
+| `Port.Job.Queued(CarrierJob job)` | `bool` | Registers the job in the queue under its `ID` (does not start it) |
+| `Port.Job.Execute(string jobID, int repeatCount = 0)` | `bool` | Starts a queued job; resolves the load port from `Location`, converts slot routes to scheduler recipes, and begins execution. `repeatCount` overrides `RepeatCount` when > 0 |
+| `Port.Job.Execute(CarrierJob job)` | `bool` | One-call register + start when the carrier `ID` is already docked |
+| `Port.Job.GetActiveJob(string moduleKey)` | `CarrierJob` | The active job on that transfer module, or `null` |
+| `Port.Job.ClearActiveJob(string moduleKey)` | `void` | Clears the active job (e.g. after a manual cancel) |
+| `Port.Job.GetAllRoutes()` | `IEnumerable<RouteInfo>` | Snapshot of every substrate route and its step progress |
 
 #### Example
 
 ```csharp
-JobEntity job = Port.GetEntity<JobEntity>("TM1");
+// Queue and start (run the sequence twice)
+Port.Job.Queued(job);
+Port.Job.Execute(job.ID, 2);
 
-// Check if a job is active
-if (!job.IsActive)
+// Read the active job on TM1
+CarrierJob active = Port.Job.GetActiveJob("TM1");
+if (active == null)
 {
     Console.WriteLine("No active job.");
     return;
 }
 
-Console.WriteLine($"Job: {job.Name} (ID: {job.ID})");
-Console.WriteLine($"Source: {job.SourceLp}");
-Console.WriteLine($"Slots: {job.SlotAssignments.Count}");
-Console.WriteLine($"Completed cycles: {job.LotCompletedCount}");
+Console.WriteLine($"Job: {active.Name} (ID: {active.ID})");
+Console.WriteLine($"Source: {active.Location?.ID}");
+Console.WriteLine($"Slots: {active.Count}");
+Console.WriteLine($"Completed cycles: {active.CompletedCycles} / {active.RepeatCount}");
 
-// Print route progress for all substrates
-foreach (RouteInfo info in job.GetAllRoute())
-{
-    Console.WriteLine($"  [{info.Key}] last step: {info.LastCompletedStep}");
-}
+// Print route progress for all substrates (no active-job reference needed)
+foreach (RouteInfo info in Port.Job.GetAllRoutes())
+    Console.WriteLine($"  [{info.Key}] progress: {info.Progress}");
 
-// Queue a new job built from persistent storage
-var newJob = new JobEntity(
-    id:              "A1B2C3D4",
-    name:            "TestJob",
-    sourceLp:        "LP1",
-    slotAssignments: assignments,
-    cycleCount:      0,
-    createdAt:       DateTime.Now);
-
-job.Queued(newJob);      // job entered the queue
-job.Processing(newJob);  // job started executing
-
-// Clear when the job finishes
-job.Clear();
+// Clear when done / cancelled
+Port.Job.ClearActiveJob("TM1");
 ```
+
+:::tip Refresh on progress, don't poll
+Subscribe to `Port.OnSubstrateUpdated` to refresh route displays only when progress actually advances, instead of calling `Port.Job.GetAllRoutes()` every tick.
+:::
 
 ---
 
@@ -457,21 +622,15 @@ sub.SetState(SubstrateState.Skipped);     // excluded slot
 
 ### SlotAssignment {#slotassignment}
 
-Associates a load-port slot number with a saved route name.
-
-| Property | Type | Description |
-|---|---|---|
-| `SlotIndex` | `int` | 1-based slot index within the load-port carrier |
-| `RouteName` | `string` | Name of the route assigned to this slot |
+:::warning Application-level type
+`SlotAssignment` (slot number → saved route **name**) is no longer defined by the library. A `CarrierJob` maps slots directly to resolved `RoutePoint` lists through its indexer, so persistence formats that store route *names* per slot are an application concern. Build the runtime job by assigning route lists to slots:
 
 ```csharp
-var assignments = new List<SlotAssignment>
-{
-    new SlotAssignment { SlotIndex = 1, RouteName = "RouteA" },
-    new SlotAssignment { SlotIndex = 2, RouteName = "RouteB" },
-    new SlotAssignment { SlotIndex = 3, RouteName = "RouteA" },
-};
+var job = new CarrierJob("JOB01") { Location = new Location("LP1") };
+job[1] = new List<RoutePoint> { new SingleSlotRoute("LP1"), new ProcessRoute("Stage1", "Recipe_A"), new SingleSlotRoute("LP1") };
+job[2] = new List<RoutePoint> { new SingleSlotRoute("LP1"), new ProcessRoute("Stage2", "Recipe_B"), new SingleSlotRoute("LP1") };
 ```
+:::
 
 ---
 
@@ -518,7 +677,7 @@ SubstrateRoute route = Port.GetEntity<SubstrateEntity>("Stage1").GetRoute();
 foreach (RouteInfo info in route.GetAll())
 {
     Console.WriteLine($"Route key: {info.Key}");
-    Console.WriteLine($"Last completed step: {info.LastCompletedStep}");
+    Console.WriteLine($"Last completed step: {info.Progress}");
     foreach (var step in info.Steps)
         Console.WriteLine($"  Step: {step.Name}");
 }
@@ -542,7 +701,7 @@ You can safely read and write entity properties from multiple threads simultaneo
 // Safe to call from background threads, timer callbacks, or async handlers
 Task.Run(() =>
 {
-    Port.GetEntity<ProcessModuleEntity>("Stage1")
+    Port.GetEntity<IProcessModuleEntity>("Stage1")
         .SetProcessSeconds(elapsed)
         .SetState(ModuleProcessState.Executing);
 });
@@ -561,7 +720,7 @@ add your own synchronization around the iteration.
 ### Conditional State Update
 
 ```csharp
-var lp = Port.GetEntity<LoadModuleEntity>("LP1");
+var lp = Port.GetEntity<ILoadModuleEntity>("LP1");
 
 if (lp.TransferState == LoadPortTransferState.InService
     && lp.InServiceState == LoadPortInServiceState.ReadyToLoad)
@@ -573,21 +732,21 @@ if (lp.TransferState == LoadPortTransferState.InService
 ### Monitoring Job Progress
 
 ```csharp
-JobEntity job = Port.GetEntity<JobEntity>("TM1");
+CarrierJob job = Port.Job.GetActiveJob("TM1");
 
-if (job.IsActive)
+if (job != null)
 {
-    int total     = job.SlotAssignments.Count;
+    int total     = job.Count;
     int completed = 0;
 
-    foreach (RouteInfo info in job.GetAllRoute())
+    foreach (RouteInfo info in Port.Job.GetAllRoutes())
     {
-        if (info.LastCompletedStep >= info.Steps.Length - 1)
+        if (info.Progress >= info.Steps.Length - 1)
             completed++;
     }
 
     Console.WriteLine($"Job {job.Name}: {completed}/{total} substrates complete");
-    Console.WriteLine($"Completed cycles: {job.LotCompletedCount}");
+    Console.WriteLine($"Completed cycles: {job.CompletedCycles} / {job.RepeatCount}");
 }
 ```
 

@@ -155,7 +155,7 @@ Port.Pull("sample", @"D:\sample\Repo\pull\");
 **Model**은 Port Entry들과 C# 프로퍼티를 연결하는 **데이터 바인딩 계층**입니다.
 
 - `[Model]` 어트리뷰트로 클래스를 선언합니다.
-- 각 프로퍼티는 `[ModelBinding]` 어트리뷰트로 특정 Entry에 연결됩니다.
+- 각 프로퍼티는 `[EntryBinding]` 어트리뷰트로 특정 Entry에 연결됩니다.
 - Controller와 Flow에서 Model을 통해 Entry 값을 읽고 쓸 수 있습니다.
 
 ---
@@ -166,7 +166,7 @@ Port.Pull("sample", @"D:\sample\Repo\pull\");
 .page 파일 (Entry 정의)
     ↓  Push
 Port 메모리 DB (Entry 값 저장)
-    ↕  ModelBinding
+    ↕  EntryBinding
 Model (C# 프로퍼티 ↔ Entry 매핑)
     ↕
 Controller / Flow (비즈니스 로직)
@@ -179,7 +179,7 @@ Model은 그 데이터를 **코드에서 타입 안전하게 접근**하는 뷰�
 
 ### c. Model과 Page를 맵핑하는 방법
 
-`[ModelBinding(instanceKey, entryKey)]` 어트리뷰트를 사용합니다.
+`[EntryBinding(instanceKey, entryKey)]` 어트리뷰트를 사용합니다.
 
 - **첫 번째 인자**: 컨트롤러 인스턴스 키 (예: `"Bulb1"`, `"LP1"`)
 - **두 번째 인자**: Entry 상수 (자동 생성된 `.cs` 파일의 상수)
@@ -189,16 +189,16 @@ Model은 그 데이터를 **코드에서 타입 안전하게 접근**하는 뷰�
 public class BulbModel
 {
     // "Bulb1", "Bulb2" 두 인스턴스가 동일한 프로퍼티 구조 공유
-    [ModelBinding("Bulb1", Io.Bulb1OnOff)]
-    [ModelBinding("Bulb2", Io.Bulb2OnOff)]
+    [EntryBinding("Bulb1", Io.Bulb1OnOff)]
+    [EntryBinding("Bulb2", Io.Bulb2OnOff)]
     public Entry OnOff { get; set; }
 
-    [ModelBinding("Bulb1", Io.Bulb1Temp)]
-    [ModelBinding("Bulb2", Io.Bulb2Temp)]
+    [EntryBinding("Bulb1", Io.Bulb1Temp)]
+    [EntryBinding("Bulb2", Io.Bulb2Temp)]
     public Entry Temp { get; set; }
 
-    [ModelBinding("Bulb1", Io.Bulb1TargetTemp)]
-    [ModelBinding("Bulb2", Io.Bulb2TargetTemp)]
+    [EntryBinding("Bulb1", Io.Bulb1TargetTemp)]
+    [EntryBinding("Bulb2", Io.Bulb2TargetTemp)]
     public Entry TargetTemp { get; set; }
 }
 ```
@@ -309,7 +309,9 @@ Port.Set("Bulb1", FlowAction.Canceled);    // 중단
 | Handler 인터페이스 | 용도 |
 |---|---|
 | `IFlowHandler` | 기본 Flow 진행 제어 (`Next()`) |
-| `IFlowWithModelHandler<T>` | Model을 포함한 Flow 이벤트 구독 |
+| `IModelFlowHandler<T>` | Model을 포함한 Flow 이벤트 구독 (`IFlowHandler<T>`는 동일한 축약형) |
+| `IModuleFlowHandler<TModule, TSubstrate, TModel>` | `GetModule()` / `GetSubstrate()` / `GetModel()` — 모듈, 그 기판, 바인딩된 Model에 타입 지정 접근 |
+| `ITransferFlowHandler<TTransfer, TSubstrate, TModel>` | 로봇 Pick/Place Flow: `GetTransfer()` / `GetSubstrate()` / `GetModel()` + `GetTargetName()` / `GetSourceName()` |
 | `ISchedulerHandler<T>` | 이송(Transfer) 완료 스케줄링 |
 
 ---
@@ -326,7 +328,7 @@ handler.Next();   // 다음 FlowStep으로 이동
 handler.Done();   // Flow를 즉시 Idle 상태로 종료 (동기)
 ```
 
-#### IFlowWithModelHandler\<T\> — 이벤트 기반 Model 접근
+#### IModelFlowHandler\<T\> — 이벤트 기반 Model 접근
 
 Flow 완료 / 단계 전환 / 오류 발생 시 Model을 함께 전달받습니다.  
 `[Preset]` 메서드에서 구독하면 Flow 재실행 시에도 구독이 유지됩니다.
@@ -339,7 +341,7 @@ internal class WTRController
     public class Pick : IFlowCACD<WTRCommModel>
     {
         [Handler]
-        public IFlowWithModelHandler<WTRCommModel> handler { set; get; } = null!;
+        public IModelFlowHandler<WTRCommModel> handler { set; get; } = null!;
 
         [Handler]
         public ISchedulerHandler<DualArmActionArgs> scheduler { set; get; } = null!;
@@ -375,7 +377,7 @@ internal class WTRController
 
 ### c. Handler 속성 테이블
 
-#### IFlowWithModelHandler\<T\> 이벤트
+#### IModelFlowHandler\<T\> 이벤트
 
 | 이벤트 | 발생 시점 | 전달 인자 |
 |---|---|---|
@@ -509,7 +511,7 @@ model.TargetTemp.Set("80.0");
 [FlowModel]
 public IFlowModel model { get; set; }
 
-model.Set("@OnOff", "On");   // @ 접두사 = ModelBinding 키 참조
+model.Set("@OnOff", "On");   // @ 접두사 = EntryBinding 키 참조
 ```
 
 ---
@@ -542,7 +544,7 @@ string status = (string)model.OnOff.Value;
 ### IFlowModel에서 Get (@ 바인딩)
 
 ```csharp
-var value = model.Get("@Temp");   // ModelBinding 된 Entry 값 조회
+var value = model.Get("@Temp");   // EntryBinding 된 Entry 값 조회
 ```
 
 ---

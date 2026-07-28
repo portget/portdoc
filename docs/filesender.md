@@ -8,7 +8,7 @@ PortDIC provides a QUIC-based file transfer handler (`IFileSenderHandler`) backe
 - QUIC over UDP — lower latency than TCP for large files
 - TLS with Certificate Pinning — MITM-resistant without a CA
 - Parallel multi-stream transfer for multiple files simultaneously
-- Chunked streaming I/O (`tokio::fs`) — efficient for files > 100 MB
+- Chunked streaming I/O (`tokio::fs`) — every transfer streams from disk, so memory use stays flat regardless of file size
 - 30-second idle timeout to prevent resource exhaustion
 
 Each `[FileSender]` class registers its own independent QUIC endpoint.
@@ -125,10 +125,10 @@ handler.Open();                               // uses Certificate Pinning
 ## Sending Files
 
 ```csharp
-// Single file (loads into memory)
+// Single file (chunked streaming from disk, auto-resume + integrity check)
 handler.SendFile(@"C:\reports\daily.csv");
 
-// Large file (chunked streaming — recommended for files > 100 MB)
+// Equivalent to SendFile; retained for backward compatibility
 handler.SendFileMmap(@"C:\archive\backup.tar.gz");
 
 // Multiple files in parallel (one QUIC stream per file)
@@ -139,6 +139,43 @@ handler.SendFilesParallel(new[]
     @"C:\data\file3.csv",
 });
 ```
+
+### Transfer behavior
+
+The receiver enforces the following rules to protect the destination directory:
+
+- **No overwrite (default).** If a file with the same name already exists in the
+  save directory, the transfer is rejected instead of overwriting it. Remove or
+  rename the existing file first.
+- **Atomic writes.** Incoming data is written to a hidden temporary file and only
+  renamed to its final name after the full, verified content is on disk. A failed
+  or interrupted transfer never leaves a partial file under the final name.
+- **Declared-size enforcement.** The receiver reads exactly the number of bytes the
+  sender declared and rejects transfers whose body is short, over-long, or larger
+  than the 100 GiB ceiling.
+- **Acknowledged completion.** `SendFile` / `SendFileMmap` / `SendFilesParallel`
+  succeed only after the receiver acknowledges the exact byte count. If the server
+  rejects the file (e.g. name collision) or the sizes disagree, the send call
+  fails (`-1` / throws) rather than reporting a false success.
+- **End-to-end integrity.** The sender computes a SHA-256 of the file and the
+  receiver verifies it before finalizing. A corrupted or mid-transfer-modified
+  file is rejected instead of being saved.
+
+### Resumable transfer & automatic retry
+
+Transfers survive transient network interruptions without user intervention:
+
+- **Resume from last verified offset.** Interrupted data is preserved in a hidden
+  partial file (keyed by a per-file id derived from name + size + modified-time).
+  A subsequent send of the same file continues from where it stopped instead of
+  restarting — even across a **server restart**, since the partial is on disk.
+- **Automatic retry with backoff.** `SendFile` / `SendFileMmap` reconnect and
+  resume on transient failures (connection drop, timeout) with exponential
+  backoff, up to a few attempts. Each retry raises a `RETRY` event.
+- **No retry on permanent errors.** Server rejection, hash mismatch, or a
+  missing/shrinking source file fail immediately without retrying.
+- **Idempotent replay.** Re-sending a file that was already received (identical
+  content) is acknowledged as success without creating a duplicate.
 
 ---
 
@@ -179,11 +216,11 @@ handler.SendFilesParallel(new[]
 
 | Method | Returns | Description |
 |--------|---------|-------------|
-| `SendFile(string filePath)` | `int` | Send a single file (loads into memory) |
-| `SendFileMmap(string filePath)` | `int` | Send a large file using chunked streaming |
+| `SendFile(string filePath)` | `int` | Send a single file (chunked streaming, resume + integrity check) |
+| `SendFileMmap(string filePath)` | `int` | Equivalent to `SendFile`; kept for backward compatibility |
 | `SendFilesParallel(string[] filePaths)` | `int` | Send multiple files using parallel QUIC streams |
 
-Returns `0` on success, `-1` on error.
+Returns `0` on success; throws `IOException` on failure.
 
 ### Security methods
 
@@ -244,6 +281,7 @@ handler.OnEvent += (string name, string eventType, string description) =>
 | `CONNECTED` | Both | Connection established |
 | `FILE_SENDING` | Client | File transfer started |
 | `FILE_SENT` | Client | File transfer completed |
+| `RETRY` | Client | A transient failure occurred; reconnecting and resuming |
 | `FILE_INCOMING` | Server | Incoming file transfer detected |
 | `FILE_RECEIVED` | Server | File fully received and saved |
 | `BATCH_COMPLETE` | Client | All parallel files transferred |

@@ -57,6 +57,57 @@ Port.Run();
 
 ---
 
+## Declarative connection spec
+
+The baud rate and other connection settings can be declared directly on the `[Serial]`
+attribute instead of a `[Preset]` method. The **COM port is passed at registration** via
+`Port.Add<T>(key, comPort)`, so the same handler class can be reused on multiple ports.
+The spec and the COM port are applied to the handler **before** `[Preset]` runs, so a
+`[Preset]` can still override individual settings.
+
+```csharp
+[Serial(BaudRate = 9600, DataBits = 8,
+        Parity = SerialParity.None, StopBits = SerialStopBits.One, TimeoutMs = 1000)]
+public class MySerialHandler
+{
+    [SerialHandler]
+    public ISerialHandler handler { get; set; } = null!;
+}
+
+// The COM port is supplied per registration:
+Port.Add<MySerialHandler>("serial_com3", "COM3");
+Port.Add<MySerialHandler>("serial_com4", "COM4");
+Port.Run();
+```
+
+A convenience constructor sets just the baud rate:
+
+```csharp
+[Serial(115200)]   // BaudRate
+public class MySerialHandler
+{
+    [SerialHandler]
+    public ISerialHandler handler { get; set; } = null!;
+}
+```
+
+The properties default to the documented handler defaults (`BaudRate` 9600, `DataBits` 8,
+`Parity` None, `StopBits` One, `TimeoutMs` 1000). When no `[Preset]` method is present,
+the port is opened automatically using the applied spec and COM port.
+
+| `[Serial]` property | Type | Default | Setter equivalent |
+|---------------------|------|---------|-------------------|
+| `BaudRate` | `int` | `9600` | `SetBaudRate` |
+| `DataBits` | `int` | `8` | `SetDataBits` |
+| `Parity` | `SerialParity` | `None` | `SetParity` |
+| `StopBits` | `SerialStopBits` | `One` | `SetStopBits` |
+| `TimeoutMs` | `int` | `1000` | `SetTimeout` |
+
+> The COM port is **not** a `[Serial]` property — pass it as the second argument to
+> `Port.Add<T>(key, comPort)`.
+
+---
+
 ## Multiple COM Ports
 
 Each `[Serial]` class registration creates its own independent port instance:
@@ -128,7 +179,7 @@ public class SerialHelper_COM4
 
 | Attribute | Target | Description |
 |-----------|--------|-------------|
-| `[Serial]` | Class | Marks the class as a serial handler container |
+| `[Serial]` | Class | Marks the class as a serial handler container; can also carry the connection spec (see [Declarative connection spec](#declarative-connection-spec)) |
 | `[SerialHandler]` | Property | Injects the `ISerialHandler` instance |
 | `[Preset]` | Method | Called before `Open()` to configure the handler |
 

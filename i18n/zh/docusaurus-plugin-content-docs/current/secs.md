@@ -264,25 +264,25 @@ The following table outlines the SECS/GEM communication scenario for material ha
 | Stream | Function |
 |---|---|
 | S1 | [F1](#s1f1---are-you-there-request) [F2](#s1f2---are-you-there-response) [F3](#s1f3r---selected-equipment-status-request) [F4](#s1f4---selected-equipment-status-data) [F5](#s1f5r---formatted-status-request) [F6](#s1f6---formatted-status-data) [F7](#s1f7---fixed-form-request) [F8](#s1f8---fixed-form-data) [F9](#s1f9r---material-transfer-status-request) [F10](#s1f10---material-transfer-status-data) [F11](#s1f11r---status-variable-namelist-request) [F12](#s1f12---status-variable-namelist-reply) [F13](#s1f13r---establish-communications-request) [F14](#s1f14---establish-communications-request-acknowledge) [F15](#s1f15r---request-offline) [F16](#s1f16---offline-acknowledge) [F17](#s1f17r---request-online) [F18](#s1f18---online-acknowledge) [F19](#s1f19r---get-attribute) [F20](#s1f20---attribute-data) [F21](#s1f21r---data-variable-namelist-request) [F22](#s1f22---data-variable-namelist-reply) [F23](#s1f23r---collection-event-namelist-request) [F24](#s1f24---collection-event-namelist-reply) |
-| S2 | [F1](#s2f1---service-program-load-inquire) [F2](#s2f2---service-program-load-grant) [F3](#s2f3---service-program-send) [F4](#s2f4---service-program-send-acknowledge) [F5](#s2f5---service-program-load-request) [F6](#s2f6---service-program-load-data) [F7](#s2f7---service-program-run-send) [F8](#s2f8---service-program-run-acknowledge) [F9](#s2f9---equipment-status-multi-block-inquire) [F10](#s2f10---equipment-status-multi-block-grant) [F11](#s2f11---equipment-status-multi-block) [F12](#s2f12---equipment-status-multi-block-acknowledge) [F13](#s2f13---equipment-constant-request) [F14](#s2f14---equipment-constant-response) [F15](#s2f15---new-equipment-constant-send) [F16](#s2f16---new-equipment-constant-acknowledge) [F17](#s2f17---date-and-time-request) [F18](#s2f18---date-and-time-response) [F19](#s2f19---recipe-body-request) [F20](#s2f20---recipe-body-response) [F21](#s2f21---recipe-body-send) [F22](#s2f22---recipe-body-acknowledge) [F23](#s2f23---trace-initialize-send) [F24](#s2f24---trace-initialize-acknowledge) [F25](#s2f25---loopback-diagnostic-request) [F26](#s2f26---loopback-diagnostic-response) [F27](#s2f27---initiate-processing-request) [F28](#s2f28---initiate-processing-acknowledge) [F29](#s2f29---equipment-constant-namelist-request) [F30](#s2f30---equipment-constant-namelist-response) [F31](#s2f31---date-and-time-set-request) [F32](#s2f32---date-and-time-set-response) [F33](#s2f33---define-report) [F34](#s2f34---define-report-acknowledge) [F35](#s2f35---link-event-report) [F36](#s2f36---link-event-report-acknowledge) [F37](#s2f37---enabledisable-event-report) [F38](#s2f38---enabledisable-event-report-acknowledge) [F39](#s2f39---status-variable-namelist-request) [F40](#s2f40---status-variable-namelist-response) [F41](#s2f41---host-command-send) [F42](#s2f42---host-command-acknowledge) [F43](#s2f43---reset-spooling-streams-and-functions) [F44](#s2f44---reset-spooling-acknowledge) [F45](#s2f45---define-variable-limit-attributes) [F46](#s2f46---define-variable-limit-attributes-acknowledge) [F47](#s2f47---variable-limit-attribute-request) [F48](#s2f48---variable-limit-attribute-response) [F49](#s2f49---enhanced-remote-command) [F50](#s2f50---enhanced-remote-command-acknowledge) [F51](#s2f51---request-report-identifiers) [F52](#s2f52---return-report-identifiers) [F53](#s2f53---request-report-definitions) [F54](#s2f54---return-report-definitions) [F55](#s2f55---request-event-report-links) [F56](#s2f56---return-event-report-links) [F57](#s2f57---request-enabled-events) [F58](#s2f58---return-enabled-events) [F59](#s2f59---request-spool-streams-and-functions) [F60](#s2f60---return-spool-streams-and-functions) [F61](#s2f61---request-trace-identifiers) [F62](#s2f62---return-trace-identifiers) [F63](#s2f63---request-trace-definitions) [F64](#s2f64---return-trace-definitions) |
-| S3 | [F1](#s3f1---material-status-request) [F2](#s3f2---material-status-data) [F3](#s3f3---time-to-completion-data) [F4](#s3f4---time-to-completion-data) [F5](#s3f5---material-found-send) [F6](#s3f6---material-found-acknowledge) [F7](#s3f7---material-lost-send) [F8](#s3f8---material-lost-ack) [F9](#s3f9---matl-id-equate-send) [F10](#s3f10---port-status-acknowledge) [F11](#s3f11---matl-id-request) [F12](#s3f12---matl-id-request-ack) [F13](#s3f13---matl-id-send) [F14](#s3f14---matl-id-ack) [F15](#s3f15---matls-multi-block-inquire) [F16](#s3f16---matls-multi-block-grant) [F17](#s3f17---carrier-action-request-extended) [F18](#s3f18---carrier-action-response-extended) [F19](#s3f19---port-action-request) [F20](#s3f20---cancel-all-carrier-out-ack) [F21](#s3f21---port-group-defn) [F22](#s3f22---port-group-defn-ack) [F23](#s3f23---port-group-action-req) [F24](#s3f24---port-group-action-ack) [F25](#s3f25---port-action-req) [F26](#s3f26---port-action-ack) [F27](#s3f27---change-access) [F28](#s3f28---change-access-ack) [F29](#s3f29---carrier-tag-read-req) [F30](#s3f30---carrier-tag-read-data) [F31](#s3f31---carrier-tag-write-data) [F32](#s3f32---carrier-tag-write-ack) [F33](#s3f33---cancel-all-pod-out-req) [F34](#s3f34---cancel-all-pod-out-ack) [F35](#s3f35---reticle-transfer-job-req) [F36](#s3f36---reticle-transfer-job-ack) |
+| S2 | [F1](#s2f1---service-program-load-inquire) [F2](#s2f2---service-program-load-grant) [F3](#s2f3---service-program-send) [F4](#s2f4---service-program-send-acknowledge) [F5](#s2f5---service-program-load-request) [F6](#s2f6---service-program-load-data) [F7](#s2f7---service-program-run-send) [F8](#s2f8---service-program-run-acknowledge) [F9](#s2f9---service-program-results-request) [F10](#s2f10---service-program-results-data) [F11](#s2f11---service-program-directory-request) [F12](#s2f12---service-program-directory-data) [F13](#s2f13---equipment-constant-request) [F14](#s2f14---equipment-constant-response) [F15](#s2f15---new-equipment-constant-send) [F16](#s2f16---new-equipment-constant-acknowledge) [F17](#s2f17---date-and-time-request) [F18](#s2f18---date-and-time-response) [F19](#s2f19---resetinitialize-send) [F20](#s2f20---reset-acknowledge) [F21](#s2f21---remote-command-send) [F22](#s2f22---remote-command-acknowledge) [F23](#s2f23---trace-initialize-send) [F24](#s2f24---trace-initialize-acknowledge) [F25](#s2f25---loopback-diagnostic-request) [F26](#s2f26---loopback-diagnostic-response) [F27](#s2f27---initiate-processing-request) [F28](#s2f28---initiate-processing-acknowledge) [F29](#s2f29---equipment-constant-namelist-request) [F30](#s2f30---equipment-constant-namelist-response) [F31](#s2f31---date-and-time-set-request) [F32](#s2f32---date-and-time-set-response) [F33](#s2f33---define-report) [F34](#s2f34---define-report-acknowledge) [F35](#s2f35---link-event-report) [F36](#s2f36---link-event-report-acknowledge) [F37](#s2f37---enabledisable-event-report) [F38](#s2f38---enabledisable-event-report-acknowledge) [F39](#s2f39---multi-block-inquire) [F40](#s2f40---multi-block-grant) [F41](#s2f41---host-command-send) [F42](#s2f42---host-command-acknowledge) [F43](#s2f43---reset-spooling-streams-and-functions) [F44](#s2f44---reset-spooling-acknowledge) [F45](#s2f45---define-variable-limit-attributes) [F46](#s2f46---define-variable-limit-attributes-acknowledge) [F47](#s2f47---variable-limit-attribute-request) [F48](#s2f48---variable-limit-attribute-response) [F49](#s2f49---enhanced-remote-command) [F50](#s2f50---enhanced-remote-command-acknowledge) [F51](#s2f51---request-report-identifiers) [F52](#s2f52---return-report-identifiers) [F53](#s2f53---request-report-definitions) [F54](#s2f54---return-report-definitions) [F55](#s2f55---request-event-report-links) [F56](#s2f56---return-event-report-links) [F57](#s2f57---request-enabled-events) [F58](#s2f58---return-enabled-events) [F59](#s2f59---request-spool-streams-and-functions) [F60](#s2f60---return-spool-streams-and-functions) [F61](#s2f61---request-trace-identifiers) [F62](#s2f62---return-trace-identifiers) [F63](#s2f63---request-trace-definitions) [F64](#s2f64---return-trace-definitions) |
+| S3 | [F1](#s3f1---material-status-request) [F2](#s3f2---material-status-data) [F3](#s3f3---time-to-completion-data) [F4](#s3f4---time-to-completion-data) [F5](#s3f5---material-found-send) [F6](#s3f6---material-found-acknowledge) [F7](#s3f7---material-lost-send) [F8](#s3f8---material-lost-ack) [F9](#s3f9---matl-id-equate-send) [F10](#s3f10---matl-id-equate-ack) [F11](#s3f11---matl-id-request) [F12](#s3f12---matl-id-request-ack) [F13](#s3f13---matl-id-send) [F14](#s3f14---matl-id-ack) [F15](#s3f15---matls-multi-block-inquire) [F16](#s3f16---matls-multi-block-grant) [F17](#s3f17---carrier-action-request-extended) [F18](#s3f18---carrier-action-response-extended) [F19](#s3f19---cancel-all-carrier-out-req) [F20](#s3f20---cancel-all-carrier-out-ack) [F21](#s3f21---port-group-defn) [F22](#s3f22---port-group-defn-ack) [F23](#s3f23---port-group-action-req) [F24](#s3f24---port-group-action-ack) [F25](#s3f25---port-action-req) [F26](#s3f26---port-action-ack) [F27](#s3f27---change-access) [F28](#s3f28---change-access-ack) [F29](#s3f29---carrier-tag-read-req) [F30](#s3f30---carrier-tag-read-data) [F31](#s3f31---carrier-tag-write-data) [F32](#s3f32---carrier-tag-write-ack) [F33](#s3f33---cancel-all-pod-out-req) [F34](#s3f34---cancel-all-pod-out-ack) [F35](#s3f35---reticle-transfer-job-req) [F36](#s3f36---reticle-transfer-job-ack) |
 | S4 | [F1](#s4f1---ready-to-send-materials) [F2](#s4f2---ready-to-send-acknowledge) [F3](#s4f3---send-material) [F5](#s4f5---handshake-complete) [F7](#s4f7---not-ready-to-send) [F9](#s4f9---stuck-in-sender) [F11](#s4f11---stuck-in-receiver) [F13](#s4f13---send-incomplete-timeout) [F15](#s4f15---material-received) [F17](#s4f17---request-to-receive) [F18](#s4f18---request-to-receive-acknowledge) [F19](#s4f19---transfer-job-create) [F20](#s4f20---transfer-job-acknowledge) [F21](#s4f21---transfer-job-command) |
-| S5 | [F1](#s5f1---alarm-report-send) [F2](#s5f2---alarm-report-acknowledge) [F3](#s5f3---enabledisable-alarm-send) [F4](#s5f4---enabledisable-alarm-acknowledge) [F5](#s5f5---list-alarms-request) [F6](#s5f6---list-alarms-response) [F7](#s5f7---list-enabled-alarm-request) [F8](#s5f8---list-enabled-alarm-response) |
+| S5 | [F1](#s5f1---alarm-report-send) [F2](#s5f2---alarm-report-acknowledge) [F3](#s5f3---enabledisable-alarm-send) [F4](#s5f4---enabledisable-alarm-acknowledge) [F5](#s5f5---list-alarms-request) [F6](#s5f6---list-alarms-response) [F7](#s5f7---list-enabled-alarm-request) [F8](#s5f8---list-enabled-alarm-response) [F9](#s5f9---exception-post-notify) [F10](#s5f10---exception-post-confirm) [F11](#s5f11---exception-clear-notify) [F12](#s5f12---exception-clear-confirm) [F13](#s5f13---exception-recover-request) [F14](#s5f14---exception-recover-acknowledge) [F15](#s5f15---exception-recovery-complete-notify) [F16](#s5f16---exception-recovery-complete-confirm) [F17](#s5f17---exception-recovery-abort-request) [F18](#s5f18---exception-recovery-abort-ack) |
 | S6 | [F1](#s6f1---trace-data-send) [F2](#s6f2---trace-data-acknowledge) [F3](#s6f3---discrete-variable-data-send) [F4](#s6f4---discrete-variable-data-acknowledge) [F5](#s6f5---multi-block-data-send-inquire) [F6](#s6f6---multi-block-grant) [F7](#s6f7---data-transfer-request) [F8](#s6f8---data-transfer-data) [F9](#s6f9---formatted-variable-send) [F10](#s6f10---formatted-variable-acknowledge) [F11](#s6f11---event-report-send) [F12](#s6f12---event-report-acknowledge) [F13](#s6f13---annotated-event-report-send) [F14](#s6f14---annotated-event-report-acknowledge) [F15](#s6f15---event-report-request) [F16](#s6f16---event-report-data) [F17](#s6f17---annotated-event-report-request) [F18](#s6f18---annotated-event-report-data) [F19](#s6f19---individual-report-request) [F20](#s6f20---individual-report-data) [F21](#s6f21---annotated-individual-report-request) [F22](#s6f22---annotated-individual-report-data) [F23](#s6f23---request-or-purge-spooled-data) [F24](#s6f24---request-or-purge-spooled-data-acknowledge) [F25](#s6f25---notification-report-send) [F26](#s6f26---notification-report-acknowledge) [F27](#s6f27---trace-report-send) [F28](#s6f28---trace-report-acknowledge) [F29](#s6f29---trace-report-request) [F30](#s6f30---trace-report-data) |
 | S7 | [F1](#s7f1---process-program-load-inquire) [F2](#s7f2---process-program-load-grant) [F3](#s7f3---process-program-send) [F4](#s7f4---process-program-send-acknowledge) [F5](#s7f5---process-program-request) [F6](#s7f6---process-program-data) [F7](#s7f7---process-program-id-request) [F8](#s7f8---process-program-id-data) [F9](#s7f9---material-process-matrix-request) [F10](#s7f10---material-process-matrix-data) [F11](#s7f11---material-process-matrix-update-send) [F12](#s7f12---material-process-matrix-update-acknowledge) [F13](#s7f13---material-process-matrix-delete-entry-send) [F14](#s7f14---delete-material-process-matrix-entry-acknowledge) [F15](#s7f15---matrix-mode-select-send) [F16](#s7f16---matrix-mode-select-acknowledge) [F17](#s7f17---delete-process-program-send) [F18](#s7f18---delete-process-program-acknowledge) [F19](#s7f19---current-process-program-directory-request) [F20](#s7f20---current-process-program-data) [F21](#s7f21---process-capabilities-request) [F22](#s7f22---process-capabilities-data) [F23](#s7f23---formatted-process-program-send) [F24](#s7f24---formatted-process-program-acknowledge) [F25](#s7f25---formatted-process-program-request) [F26](#s7f26---formatted-process-program-data) [F27](#s7f27---process-program-verification-send) [F28](#s7f28---process-program-verification-acknowledge) [F29](#s7f29---process-program-verification-inquire) [F30](#s7f30---process-program-verification-grant) [F31](#s7f31---verification-request-send) [F32](#s7f32---verification-request-acknowledge) [F33](#s7f33---process-program-available-request) [F34](#s7f34---process-program-availability-data) [F35](#s7f35---process-program-for-mid-request) [F36](#s7f36---process-program-for-mid-data) [F37](#s7f37---large-process-program-send) [F38](#s7f38---large-process-program-send-acknowledge) [F39](#s7f39---large-formatted-process-program-send) [F40](#s7f40---large-formatted-process-program-acknowledge) [F41](#s7f41---large-process-program-request) [F42](#s7f42---large-process-program-request-acknowledge) [F43](#s7f43---large-formatted-process-program-request) [F44](#s7f44---large-formatted-process-program-request-acknowledge) |
 | S8 | [F1](#s8f1---boot-program-request) [F2](#s8f2---boot-program-data) [F3](#s8f3---executive-program-request) [F4](#s8f4---executive-program-data) |
 | S9 | [F1](#s9f1---unrecognized-device-id) [F3](#s9f3---unrecognized-stream-type) [F5](#s9f5---unrecognized-function-type) [F7](#s9f7---illegal-data) [F9](#s9f9---transaction-timer-timeout) [F11](#s9f11---data-too-long) [F13](#s9f13---conversation-timeout) |
-| S10 | [F1](#s10f1---terminal-request) [F2](#s10f2---terminal-response) [F3](#s10f3---terminal-display-single) [F5](#s10f5---terminal-display-multi-block) [F7](#s10f7---multi-block-not-allowed) [F9](#s10f9---broadcast-display-request) [F10](#s10f10---broadcast-display-acknowledge) |
+| S10 | [F1](#s10f1---terminal-request) [F2](#s10f2---terminal-request-acknowledge) [F3](#s10f3---terminal-display-single) [F4](#s10f4---terminal-display-single-acknowledge) [F5](#s10f5---terminal-display-multi-block) [F6](#s10f6---terminal-display-multi-block-acknowledge) [F7](#s10f7---multi-block-not-allowed) [F9](#s10f9---broadcast-display-request) [F10](#s10f10---broadcast-display-acknowledge) |
 | S12 | [F1](#s12f1---map-setup-data-send) [F2](#s12f2---map-setup-data-acknowledge) [F3](#s12f3---map-setup-data-request) [F4](#s12f4---map-setup-data-response) [F5](#s12f5---map-transmit-inquire) [F6](#s12f6---map-transmit-grant) [F7](#s12f7---map-data-send-type-1) [F8](#s12f8---map-data-ack-type-1) [F9](#s12f9---map-data-send-type-2) [F10](#s12f10---map-data-ack-type-2) [F11](#s12f11---map-data-send-type-3) [F12](#s12f12---map-data-ack-type-3) [F13](#s12f13---map-data-request-type-1) [F14](#s12f14---map-data-type-1) [F15](#s12f15---map-data-request-type-2) [F16](#s12f16---map-data-type-2) [F17](#s12f17---map-data-request-type-3) [F18](#s12f18---map-data-type-3) [F19](#s12f19---map-error-report-send) |
 | S13 | [F1](#s13f1---send-data-set-send) [F2](#s13f2---send-data-set-ack) [F3](#s13f3---open-data-set-request) [F4](#s13f4---open-data-set-data) [F5](#s13f5---read-data-set-request) [F6](#s13f6---read-data-set-data) [F7](#s13f7---close-data-set-send) [F8](#s13f8---close-data-set-ack) [F9](#s13f9---reset-data-set-send) [F10](#s13f10---reset-data-set-ack) [F11](#s13f11---data-set-obj-multi-block-inquire) [F12](#s13f12---data-set-obj-multi-block-grant) [F13](#s13f13---table-data-send) [F14](#s13f14---table-data-ack) [F15](#s13f15---table-data-request) [F16](#s13f16---table-data) |
 | S14 | [F1](#s14f1---get-attributes-request) [F2](#s14f2---attribute-data) [F3](#s14f3---set-attributes) [F4](#s14f4---set-attributes-reply) [F5](#s14f5---get-type-data) [F6](#s14f6---type-data) [F7](#s14f7---get-attribute-names) [F8](#s14f8---attribute-names) [F9](#s14f9---create-obj-request) [F10](#s14f10---create-obj-ack) [F11](#s14f11---delete-obj-request) [F12](#s14f12---delete-obj-ack) [F13](#s14f13---object-attach-request) [F14](#s14f14---object-attach-ack) [F15](#s14f15---attached-obj-action-req) [F16](#s14f16---attached-obj-action-ack) [F17](#s14f17---supervised-obj-action-req) [F18](#s14f18---supervised-obj-action-ack) [F19](#s14f19---generic-service-req) [F20](#s14f20---generic-service-ack) [F21](#s14f21---generic-service-completion) [F22](#s14f22---generic-service-comp-ack) [F23](#s14f23---multi-block-generic-service-inquire) [F24](#s14f24---multi-block-generic-service-grant) [F25](#s14f25---service-name-request) [F26](#s14f26---service-name-data) [F27](#s14f27---service-parameter-name-req) [F28](#s14f28---service-parameter-name-data) |
 | S15 | [F1](#s15f1---recipe-management-multi-block-inquire) [F2](#s15f2---recipe-management-multi-block-grant) [F3](#s15f3---recipe-namespace-action-req) [F4](#s15f4---recipe-namespace-action) [F5](#s15f5---recipe-namespace-rename-req) [F6](#s15f6---recipe-namespace-rename-ack) [F7](#s15f7---recipe-space-req) [F8](#s15f8---recipe-space-data) [F9](#s15f9---recipe-status-request) [F10](#s15f10---recipe-status-data) [F11](#s15f11---recipe-version-request) [F12](#s15f12---recipe-version-data) [F13](#s15f13---recipe-create-req) [F14](#s15f14---recipe-create-ack) [F15](#s15f15---recipe-store-req) [F16](#s15f16---recipe-store-ack) [F17](#s15f17---recipe-retrieve-req) [F18](#s15f18---recipe-retrieve-data) [F19](#s15f19---recipe-rename-req) [F20](#s15f20---recipe-rename-ack) [F21](#s15f21---recipe-action-req) [F22](#s15f22---recipe-action-ack) [F23](#s15f23---recipe-descriptor-req) [F24](#s15f24---recipe-descriptor-data) [F25](#s15f25---recipe-parameter-update-req) [F26](#s15f26---recipe-parameter-update-ack) [F27](#s15f27---recipe-download-req) [F28](#s15f28---recipe-download-ack) [F29](#s15f29---recipe-verify-req) [F30](#s15f30---recipe-verify-ack) [F31](#s15f31---recipe-unload-req) [F32](#s15f32---recipe-unload-data) [F33](#s15f33---recipe-select-req) [F34](#s15f34---recipe-select-ack) [F35](#s15f35---recipe-delete-req) [F36](#s15f36---recipe-delete-ack) [F37](#s15f37---drns-segment-approve-action-req) [F38](#s15f38---drns-segment-approve-action-ack) [F39](#s15f39---drns-recorder-seg-req) [F40](#s15f40---drns-recorder-seg-ack) [F41](#s15f41---drns-recorder-mod-req) [F42](#s15f42---drns-recorder-mod-ack) [F43](#s15f43---drns-get-change-req) [F44](#s15f44---drns-get-change-ack) [F45](#s15f45---drns-mgr-seg-aprvl-req) [F46](#s15f46---drns-mgr-seg-aprvl-ack) [F47](#s15f47---drns-mgr-rebuild-req) [F48](#s15f48---drns-mgr-rebuild-ack) [F49](#s15f49---large-recipe-download-req) [F50](#s15f50---large-recipe-download-ack) [F51](#s15f51---large-recipe-upload-req) [F52](#s15f52---large-recipe-upload-ack) [F53](#s15f53---recipe-verification-send) [F54](#s15f54---recipe-verification-ack) |
-| S16 | [F1](#s16f1---process-job-data-mbi) [F2](#s16f2---pjd-mbi-grant) [F3](#s16f3---process-job-create-req) [F4](#s16f4---process-job-create-ack) [F5](#s16f5---process-job-cmd-req) [F6](#s16f6---process-job-cmd-ack) [F7](#s16f7---process-job-alert-notify) [F8](#s16f8---process-job-alert-ack) [F9](#s16f9---process-job-event-notify) [F10](#s16f10---process-job-event-ack) [F11](#s16f11---recipe-upload-send) [F12](#s16f12---recipe-upload-acknowledge) [F15](#s16f15---recipe-download-send) [F16](#s16f16---recipe-download-acknowledge) [F17](#s16f17---recipe-validate-request) [F18](#s16f18---recipe-validate-response) [F19](#s16f19---recipe-validate-send) [F20](#s16f20---recipe-validate-acknowledge) [F21](#s16f21---recipe-compress-request) [F22](#s16f22---recipe-compress-response) [F23](#s16f23---recipe-compress-send) [F24](#s16f24---recipe-compress-acknowledge) [F25](#s16f25---recipe-encrypt-request) [F26](#s16f26---recipe-encrypt-response) [F27](#s16f27---recipe-encrypt-send) [F28](#s16f28---recipe-encrypt-acknowledge) [F29](#s16f29---prsetmtrlorder) [F30](#s16f30---prsetmtrlorder-ack) |
+| S16 | [F1](#s16f1---process-job-data-mbi) [F2](#s16f2---pjd-mbi-grant) [F3](#s16f3---process-job-create-req) [F4](#s16f4---process-job-create-ack) [F5](#s16f5---process-job-cmd-req) [F6](#s16f6---process-job-cmd-ack) [F7](#s16f7---process-job-alert-notify) [F8](#s16f8---process-job-alert-ack) [F9](#s16f9---process-job-event-notify) [F10](#s16f10---process-job-event-ack) [F11](#s16f11---prjobcreateenh) [F12](#s16f12---prjobcreateenh-ack) [F15](#s16f15---prjobmulticreate) [F16](#s16f16---prjobmulticreate-ack) [F17](#s16f17---prjobdequeue) [F18](#s16f18---prjobdequeue-ack) [F19](#s16f19---prjob-list-req) [F20](#s16f20---prjob-list-data) [F21](#s16f21---prjob-create-limit-req) [F22](#s16f22---prjob-create-limit-data) [F23](#s16f23---prjob-recipe-variable-set) [F24](#s16f24---prjob-recipe-variable-ack) [F25](#s16f25---prjob-start-method-set) [F26](#s16f26---prjob-start-method-ack) [F27](#s16f27---control-job-command) [F28](#s16f28---control-job-command-ack) [F29](#s16f29---prsetmtrlorder) [F30](#s16f30---prsetmtrlorder-ack) |
 | S17 | [F1](#s17f1---data-report-create-request) [F2](#s17f2---data-report-create-acknowledgment) [F3](#s17f3---data-report-delete-request) [F4](#s17f4---data-report-delete-acknowledgment) [F5](#s17f5---trace-create-request) [F6](#s17f6---trace-create-acknowledgment) [F7](#s17f7---trace-delete-request) [F8](#s17f8---trace-delete-acknowledgment) [F9](#s17f9---collection-event-link-request) [F10](#s17f10---collection-event-link-acknowledgment) [F11](#s17f11---collection-event-unlink-request) [F12](#s17f12---collection-event-unlink-acknowledgment) [F13](#s17f13---trace-reset-request) [F14](#s17f14---trace-reset-acknowledgment) |
 | S18 | [F1](#s18f1---read-attribute-request) [F2](#s18f2---read-attribute-data) [F3](#s18f3---write-attribute-request) [F4](#s18f4---write-attribute-acknowledgment) [F5](#s18f5---read-request) [F6](#s18f6---read-data) [F7](#s18f7---write-data-request) [F8](#s18f8---write-data-acknowledgment) [F9](#s18f9---read-id-request) [F10](#s18f10---read-id-data) [F11](#s18f11---write-id-request) [F12](#s18f12---write-id-acknowledgment) [F13](#s18f13---subsystem-command) [F14](#s18f14---subsystem-command-acknowledgment) [F15](#s18f15---read-2d-code-condition-request) [F16](#s18f16---read-2d-code-condition-data) |
-| S19 | [F1](#s19f1---inventory-request) [F2](#s19f2---inventory-response) [F3](#s19f3---inventory-update) [F4](#s19f4---inventory-update-response) [F5](#s19f5---inventory-add-request) [F6](#s19f6---inventory-add-response) [F7](#s19f7---inventory-remove-request) [F8](#s19f8---inventory-remove-response) [F9](#s19f9---inventory-status-request) [F10](#s19f10---inventory-status-response) [F11](#s19f11---inventory-move-request) [F12](#s19f12---inventory-move-response) [F13](#s19f13---inventory-search-request) [F14](#s19f14---inventory-search-response) [F15](#s19f15---inventory-lock-request) [F16](#s19f16---inventory-lock-response) [F17](#s19f17---inventory-history-request) [F18](#s19f18---inventory-history-response) [F19](#s19f19---inventory-audit-request) [F20](#s19f20---inventory-audit-response) |ce-data-list-response) [F7](#s19f7---trace-data-list-send) [F8](#s19f8---trace-data-list-acknowledge) [F9](#s19f9---trace-data-upload-request) [F10](#s19f10---trace-data-upload-response) [F11](#s19f11---trace-data-upload-send) [F12](#s19f12---trace-data-upload-acknowledge) [F13](#s19f13---trace-data-download-request) [F14](#s19f14---trace-data-download-response) [F15](#s19f15---trace-data-download-send) [F16](#s19f16---trace-data-download-acknowledge) [F17](#s19f17---trace-data-validate-request) [F18](#s19f18---trace-data-validate-response) [F19](#s19f19---trace-data-validate-send) [F20](#s19f20---trace-data-validate-acknowledge) [F21](#s19f21---trace-data-compress-request) [F22](#s19f22---trace-data-compress-response) [F23](#s19f23---trace-data-compress-send) [F24](#s19f24---trace-data-compress-acknowledge) [F25](#s19f25---trace-data-encrypt-request) [F26](#s19f26---trace-data-encrypt-response) [F27](#s19f27---trace-data-encrypt-send) [F28](#s19f28---trace-data-encrypt-acknowledge) [F29](#s19f29---trace-data-decrypt-request) [F30](#s19f30---trace-data-decrypt-response) [F31](#s19f31---trace-data-decrypt-send) [F32](#s19f32---trace-data-decrypt-acknowledge) [F33](#s19f33---trace-data-backup-request) [F34](#s19f34---trace-data-backup-response) [F35](#s19f35---trace-data-restore-request) [F36](#s19f36---trace-data-restore-response) [F37](#s19f37---trace-data-archive-request) [F38](#s19f38---trace-data-archive-response) [F39](#s19f39---trace-data-unarchive-request) [F40](#s19f40---trace-data-unarchive-response) |
+| S19 | [F1](#s19f1---request-pde-directory) [F2](#s19f2---pde-directory-data) [F3](#s19f3---pde-delete-request) [F4](#s19f4---pde-delete-acknowledge) [F5](#s19f5---pde-header-data-request) [F6](#s19f6---pde-header-data-reply) [F7](#s19f7---pde-transfer-request) [F8](#s19f8---pde-transfer-reply) [F9](#s19f9---request-to-send-pde) [F10](#s19f10---initiate-pde-transfer-reply) [F11](#s19f11---send-pde) [F12](#s19f12---send-pde-acknowledge) [F13](#s19f13---transfercontainer-report) [F14](#s19f14---transfercontainer-report-ack) [F15](#s19f15---request-pde-resolution) [F16](#s19f16---pde-resolution-data) [F17](#s19f17---verify-pde-request) [F18](#s19f18---pde-verification-result) [F19](#s19f19---s19-multi-block-inquire) [F20](#s19f20---s19-multi-block-grant) |
 | S20 | [F1](#s20f1---setsro-attributes-request) [F2](#s20f2---setsro-attributes-acknowledge) [F3](#s20f3---getoperationidlist-request) [F4](#s20f4---getoperationidlist-acknowledge) [F5](#s20f5---openconnectionevent-send) [F6](#s20f6---openconnectionevent-acknowledge) [F7](#s20f7---closeconnectionevent-send) [F8](#s20f8---closeconnectionevent-acknowledge) [F9](#s20f9---clearoperation-request) [F10](#s20f10---clearoperation-acknowledge) [F11](#s20f11---getrecipexidlist-request) [F12](#s20f12---getrecipexidlist-acknowledge) [F13](#s20f13---deleterecipe-request) [F14](#s20f14---deleterecipe-acknowledge) [F15](#s20f15---writerecipe-request) [F16](#s20f16---writerecipe-acknowledge) [F17](#s20f17---readrecipe-request) [F18](#s20f18---readrecipe-acknowledge) [F19](#s20f19---queryrecipexidlist-event-send) [F20](#s20f20---queryrecipexidlist-event-acknowledge) [F21](#s20f21---queryrecipe-event-send) [F22](#s20f22---queryrecipe-event-acknowledge) [F23](#s20f23---postrecipe-event-send) [F24](#s20f24---postrecipe-event-acknowledge) [F25](#s20f25---setprc-attributes-request) [F26](#s20f26---setprc-attributes-acknowledge) [F27](#s20f27---prespecifyrecipe-request) [F28](#s20f28---prespecifyrecipe-acknowledge) [F29](#s20f29---querypjrecipexidlist-event-send) [F30](#s20f30---querypjrecipexidlist-event-acknowledge) [F31](#s20f31---pre-exe-check-event-send) [F32](#s20f32---pre-exe-check-event-acknowledge) [F33](#s20f33---prespecifyrecipe-event-send) [F34](#s20f34---prespecifyrecipe-event-acknowledge) |
-| S21 | [F1](#s21f1---material-transfer-plan) [F2](#s21f2---material-transfer-plan-response) [F3](#s21f3---item-send) [F4](#s21f4---item-send-acknowledge) [F5](#s21f5---item-request) [F6](#s21f6---item-data) [F7](#s21f7---item-type-list-request) [F8](#s21f8---item-type-list-results) [F9](#s21f9---supported-item-type-list-request) [F10](#s21f10---supported-item-type-list-result) [F11](#s21f11---item-delete) [F12](#s21f12---item-delete-acknowledge) [F13](#s21f13---request-permission-to-send-item) [F14](#s21f14---grant-permission-to-send-item) [F15](#s21f15---item-request) [F16](#s21f16---item-request-grant) [F17](#s21f17---send-item-part) [F18](#s21f18---send-item-part-acknowledge) [F19](#s21f19---item-type-feature-support) [F20](#s21f20---item-type-feature-support-results) |
+| S21 | [F1](#s21f1---item-load-inquire) [F2](#s21f2---item-load-grant) [F3](#s21f3---item-send) [F4](#s21f4---item-send-acknowledge) [F5](#s21f5---item-request) [F6](#s21f6---item-data) [F7](#s21f7---item-type-list-request) [F8](#s21f8---item-type-list-results) [F9](#s21f9---supported-item-type-list-request) [F10](#s21f10---supported-item-type-list-result) [F11](#s21f11---item-delete) [F12](#s21f12---item-delete-acknowledge) [F13](#s21f13---request-permission-to-send-item) [F14](#s21f14---grant-permission-to-send-item) [F15](#s21f15---item-request) [F16](#s21f16---item-request-grant) [F17](#s21f17---send-item-part) [F18](#s21f18---send-item-part-acknowledge) [F19](#s21f19---item-type-feature-support) [F20](#s21f20---item-type-feature-support-results) |
 
 
 
@@ -300,6 +300,56 @@ The following table outlines the SECS/GEM communication scenario for material ha
  
 - **L[n]**: List containing n items
  
+
+#### Body (PORT SML) {#body-secs-ii-json}
+
+**场景编辑器**（SECS → SCENARIO）将每条消息的正文以紧凑的 JSON 值表示在
+**Body (PORT SML)** 字段中。该 JSON 与运行场景测试时 port 服务器通过 gRPC 与
+Go HSMS 库交换的值完全相同，因此在编辑器中输入的内容即为实际发送到链路上的字节。
+
+空正文（如 S1F1 这类仅有报头的消息）可留空或写作 `[]`。
+
+**自动类型映射** — 纯 JSON 值按值编码为 SECS-II 项:
+
+| JSON 值 | SECS-II 类型 | 说明 |
+|---------|-------------|------|
+| `[ ... ]`（数组） | `L`（List） | 嵌套数组成为嵌套列表 |
+| `"text"`（字符串） | `A`（ASCII） | |
+| `true` / `false` | `BOOLEAN` | |
+| 整数 `0 … 255` | `U1` | 可容纳的最小无符号类型 |
+| 整数 `256 … 65535` | `U2` | |
+| 整数 `65536 … 4294967295` | `U4` | |
+| 整数 `≥ 4294967296` | `U8` | |
+| 负整数 | `I1`/`I2`/`I4`/`I8` | 可容纳的最小有符号类型 |
+| 非整数 | `F8` | 8 字节浮点数 |
+
+**显式类型指定** — 当自动映射不符合需要时（例如二进制 ACK 代码、将本可用 `U1`
+的值强制为 `U4`、或使用 `F4`），使用结构化的 `{ "Type": ..., "Value": ... }`
+形式。`Type` 为 SECS-II 类型标记（`A`、`B`、`BOOL`、`U1`–`U8`、`I1`–`I8`、
+`F4`、`F8`、`L`）:
+
+```json
+{ "Type": "B", "Value": 0 }            // ACKC — 二进制 0
+{ "Type": "U4", "Value": 1000 }        // 强制 U4 而非 U2
+{ "Type": "L", "Value": [ { "Type": "A", "Value": "START" } ] }
+```
+
+**示例** — 左侧为 PSML 结构，右侧为等价的 Body (PORT SML):
+
+| 消息 | PSML 结构 | Body (PORT SML) |
+|------|----------|---------------------|
+| S1F1 (Are You There) | `{}` | *(空)* |
+| S1F13 (Establish Comm Request) | `{L[0]}` | `[]` |
+| S1F2 (On Line Data) | `{L[2] MDLN SOFTREV}` | `["MODEL-A", "1.0.0"]` |
+| S2F37 (Enable/Disable Event) | `{L[2] CEED {L[n] CEID}}` | `[true, [1, 2]]` |
+| S2F41 (Host Command Send) | `{L[2] RCMD {L[n] ...}}` | `["START", []]` |
+| S5F1 (Alarm Report Send) | `{L[3] ALCD ALID ALTX}` | `[{"Type":"B","Value":128}, 100, "Over-temp"]` |
+| S6F11 (Event Report Send) | `{L[3] DATAID CEID {L[n] ...}}` | `[0, 1001, []]` |
+
+> 上述 Body (PORT SML) 值即场景编辑器通过
+> `POST /api/v1/secs/scenario/send` 发送到 Passive 模式设备的值，设备的响应也以
+> 相同的 JSON 形式返回。逐字段结构请参见下方每条消息的 **Parameters** 表。
+
 
 ## **Stream Definitions** {#script-stream-definitions}
 
@@ -322,8 +372,8 @@ The following table outlines the SECS/GEM communication scenario for material ha
 | [Stream 16](#stream-16-process-job-management) | Process Job Management |
 | [Stream 17](#stream-17-data-report-management) | Data Report Management |
 | [Stream 18](#stream-18-subsystem-management) | Subsystem Management |
-| [Stream 19](#stream-19-inventory-management) | Inventory Management |
-| [Stream 20](#stream-20-substrate-transfer-semi-e157) | Substrate Transfer (SEMI-E157) |
+| [Stream 19](#stream-19-process-definition-element-pde-directory) | Process Definition Element (PDE) Directory |
+| [Stream 20](#stream-20-recipe-and-operation-management-semi-e170) | Recipe and Operation Management (SEMI E170) |
 | [Stream 21](#stream-21-material-transfer-management) | Material Transfer Management |
 
 ### Stream 1: Equipment Status
@@ -871,20 +921,20 @@ S1F24->
 | [S2F6](#s2f6---service-program-load-data)    | ↔ Equipment | Service Program Load Data |
 | [S2F7](#s2f7---service-program-run-send)    | ↔ Equipment | Service Program Run Send |
 | [S2F8](#s2f8---service-program-run-acknowledge)    | ↔ Equipment | Service Program Run Acknowledge |
-| [S2F9](#s2f9---equipment-status-multi-block-inquire)    | ↔ Equipment | Service Program Results Request |
-| [S2F10](#s2f10---equipment-status-multi-block-grant)    | ↔ Equipment | Service Program Results Data |
-| [S2F11](#s2f11---equipment-status-multi-block)    | ↔ Equipment | Service Program Directory Request |
-| [S2F12](#s2f12---equipment-status-multi-block-acknowledge)    | ↔ Equipment | Service Program Directory Data |
+| [S2F9](#s2f9---service-program-results-request)    | ↔ Equipment | Service Program Results Request |
+| [S2F10](#s2f10---service-program-results-data)    | ↔ Equipment | Service Program Results Data |
+| [S2F11](#s2f11---service-program-directory-request)    | ↔ Equipment | Service Program Directory Request |
+| [S2F12](#s2f12---service-program-directory-data)    | ↔ Equipment | Service Program Directory Data |
 | [S2F13](#s2f13---equipment-constant-request)    | → Equipment | Equipment Constant Request |
 | [S2F14](#s2f14---equipment-constant-response)    | ← Equipment | Equipment Constant Data |
 | [S2F15](#s2f15---new-equipment-constant-send)    | → Equipment | New Equipment Constant Send |
 | [S2F16](#s2f16---new-equipment-constant-acknowledge)    | ← Equipment | New Equipment Constant Ack |
 | [S2F17](#s2f17---date-and-time-request)    | ↔ Equipment | Date and Time Request |
 | [S2F18](#s2f18---date-and-time-response)    | ↔ Equipment | Date and Time Data |
-| [S2F19](#s2f19---recipe-body-request)    | → Equipment | Reset/Initialize Send |
-| [S2F20](#s2f20---recipe-body-response)    | ← Equipment | Reset Acknowledge |
-| [S2F21](#s2f21---recipe-body-send)    | → Equipment | Remote Command Send |
-| [S2F22](#s2f22---recipe-body-acknowledge)    | ← Equipment | Remote Command Acknowledge |
+| [S2F19](#s2f19---resetinitialize-send)    | → Equipment | Reset/Initialize Send |
+| [S2F20](#s2f20---reset-acknowledge)    | ← Equipment | Reset Acknowledge |
+| [S2F21](#s2f21---remote-command-send)    | → Equipment | Remote Command Send |
+| [S2F22](#s2f22---remote-command-acknowledge)    | ← Equipment | Remote Command Acknowledge |
 | [S2F23](#s2f23---trace-initialize-send)    | → Equipment | Trace Initialize Send |
 | [S2F24](#s2f24---trace-initialize-acknowledge)    | ← Equipment | Trace Initialize Acknowledge |
 | [S2F25](#s2f25---loopback-diagnostic-request)    | ↔ Equipment | Loopback Diagnostic Request |
@@ -901,8 +951,8 @@ S1F24->
 | [S2F36](#s2f36---link-event-report-acknowledge)    | ← Equipment | Link Event Report Acknowledge |
 | [S2F37](#s2f37---enabledisable-event-report)    | → Equipment | Enable/Disable Event Report |
 | [S2F38](#s2f38---enabledisable-event-report-acknowledge)    | ← Equipment | Enable/Disable Event Report Acknowledge |
-| [S2F39](#s2f39---status-variable-namelist-request)    | → Equipment | Multi-block Inquire |
-| [S2F40](#s2f40---status-variable-namelist-response)    | ← Equipment | Multi-block Grant |
+| [S2F39](#s2f39---multi-block-inquire)    | → Equipment | Multi-block Inquire |
+| [S2F40](#s2f40---multi-block-grant)    | ← Equipment | Multi-block Grant |
 | [S2F41](#s2f41---host-command-send)    | → Equipment | Host Command Send |
 | [S2F42](#s2f42---host-command-acknowledge)    | ← Equipment | Host Command Acknowledge |
 | [S2F43](#s2f43---reset-spooling-streams-and-functions)    | → Equipment | Configure Spooling |
@@ -955,10 +1005,6 @@ GRANT
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | GRANT | U1 | Grant code |
-
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| SV | Various | Status Variable Value (corresponding to SVID in S2F1) |
 
 
 #### S2F3 - Service Program Send {#s2f3---service-program-send}
@@ -1037,59 +1083,33 @@ CSAACK
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | CSAACK | U1 | Command Service Acknowledge |
-| PORTSTATUS | U1/U2/U4/A | Port Status |
 
 
-#### S2F9 - Equipment Status Multi-Block Inquire {#s2f9---equipment-status-multi-block-inquire}
+#### S2F9 - Service Program Results Request {#s2f9---service-program-results-request}
 ```text
-<-S2F9
-{L[n]
-  SVID_1
-  SVID_2
-  ...
-  SVID_n
-}
+SPID
 ```
 
 **Parameters:**
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| SVID | U1/U2/U4/A | Status Variable ID |
+| SPID | A | Service Program ID |
 
 
-#### S2F10 - Equipment Status Multi-Block Grant {#s2f10---equipment-status-multi-block-grant}
+#### S2F10 - Service Program Results Data {#s2f10---service-program-results-data}
 ```text
-S2F10->
-GRANT
+SPR
 ```
 
 **Parameters:**
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| GRANT | U1/U2/U4/A | Grant permission for multi-block transfer |
+| SPR | any format | Service Program Results |
 
 
-#### S2F11 - Equipment Status Multi-Block {#s2f11---equipment-status-multi-block}
-```text
-S2F11->
-{L[n]
-  SV_1
-  SV_2
-          ...
-  SV_n
-}
-```
-
-**Parameters:**
-
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| SV | Various | Status Variable Value (corresponding to SVID in S2F9) |
-
-
-#### S2F12 - Equipment Status Multi-Block Acknowledge {#s2f12---equipment-status-multi-block-acknowledge}
+#### S2F11 - Service Program Directory Request {#s2f11---service-program-directory-request}
 ```text
 {}
 ```
@@ -1098,7 +1118,21 @@ S2F11->
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| Empty | - | Empty list (acknowledgment) |
+| - | - | Header only, no parameters required |
+
+
+#### S2F12 - Service Program Directory Data {#s2f12---service-program-directory-data}
+```text
+{L[n]
+  SPID
+}
+```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| SPID | A | Service Program ID |
 
 
 #### S2F13 - Equipment Constant Request {#s2f13---equipment-constant-request}
@@ -1198,55 +1232,45 @@ TIME
 | TIME | A | Date and Time value |
 
 
-#### S2F19 - Recipe Body Request {#s2f19---recipe-body-request}
+#### S2F19 - Reset/Initialize Send {#s2f19---resetinitialize-send}
 ```text
-  {L[2]
-    RCMD
-    RPARM
-  }
+RIC
 ```
 
 **Parameters:**
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| RCMD | A | Recipe Command |
-| RPARM | A | Recipe Parameter |
+| RIC | U1 | Reset Code |
 
 
-#### S2F20 - Recipe Body Response {#s2f20---recipe-body-response}
+#### S2F20 - Reset Acknowledge {#s2f20---reset-acknowledge}
 ```text
-{L[2]
-  RCMD
-  RPARM
-}
+RAC
 ```
 
 **Parameters:**
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| RCMD | A | Recipe Command |
-| RPARM | A | Recipe Parameter |
+| RAC | B[1] | Reset Acknowledge Code |
 
 
-#### S2F21 - Recipe Body Send {#s2f21---recipe-body-send}
+#### S2F21 - Remote Command Send {#s2f21---remote-command-send}
 ```text
-{L[2]
-  RCMD
-  RPARM
-}
+RCMD
 ```
+
+**Comment:** Compare to S2F41. Arguments can be passed as on a command line.
 
 **Parameters:**
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| RCMD | A | Recipe Command |
-| RPARM | A | Recipe Parameter |
+| RCMD | A | Remote Command |
 
 
-#### S2F22 - Recipe Body Acknowledge {#s2f22---recipe-body-acknowledge}
+#### S2F22 - Remote Command Acknowledge {#s2f22---remote-command-acknowledge}
 ```text
 CMDA
 ```
@@ -1255,7 +1279,7 @@ CMDA
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| CMDA | A | Command Acknowledge |
+| CMDA | B[1]/U1 | Command Acknowledge |
 
 
 #### S2F23 (FDC) Overview
@@ -1579,7 +1603,7 @@ ERACK
 | | | 1: Error |
 
 
-#### S2F39 - Status Variable Namelist Request {#s2f39---status-variable-namelist-request}
+#### S2F39 - Multi-block Inquire {#s2f39---multi-block-inquire}
 ```text
 <-S2F39
 {L[2]
@@ -1596,7 +1620,7 @@ ERACK
 | DATALENGTH | U1/U2/U4 | Data Length |
 
 
-#### S2F40 - Status Variable Namelist Response {#s2f40---status-variable-namelist-response}
+#### S2F40 - Multi-block Grant {#s2f40---multi-block-grant}
 ```text
 S2F40->
 GRANT
@@ -1836,23 +1860,27 @@ S2F48->
 ```text
 <-S2F49
 {L[4]
+  DATAID
+  OBJSPEC
   RCMD
+  {L[m]
+    {L[2]
       CPNAME
-  CEPVAL
-      CPACK
+      CEPVAL
     }
+  }
+}
 ```
 
 **Parameters:**
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
+| DATAID | U4 | Data ID |
+| OBJSPEC | A | Object Specifier |
 | RCMD | A | Remote Command |
 | CPNAME | A | Command Parameter Name |
-| CEPVAL | A | Command Parameter Value |
-| CPACK | B[1] | Command Parameter Acknowledge |
-| | | 0: Acknowledged |
-| | | 1: Error |
+| CEPVAL | any format | Command Parameter Value (may be a list) |
 
 
 #### S2F50 - Enhanced Remote Command Acknowledge {#s2f50---enhanced-remote-command-acknowledge}
@@ -2115,36 +2143,36 @@ S2F64->
 | [S3F4](#s3f4---time-to-completion-data)    | ← Equipment | Time to Completion Data |
 | [S3F5](#s3f5---material-found-send)    | ← Equipment | Material Found Send |
 | [S3F6](#s3f6---material-found-acknowledge)    | → Equipment | Material Found Acknowledge |
-| [S3F7](#s3f7---material-lost-send)    | → Equipment | Material Lost Send |
-| [S3F8](#s3f8---material-lost-ack)    | ← Equipment | Material Lost Ack |
+| [S3F7](#s3f7---material-lost-send)    | ← Equipment | Material Lost Send |
+| [S3F8](#s3f8---material-lost-ack)    | → Equipment | Material Lost Ack |
 | [S3F9](#s3f9---matl-id-equate-send)    | ← Equipment | Matl ID Equate Send |
-| [S3F10](#s3f10---port-status-acknowledge)   | → Equipment | Port Status Acknowledge |
-| [S3F11](#s3f11---matl-id-request)   | → Equipment | Matl ID Request |
-| [S3F12](#s3f12---matl-id-request-ack)   | ← Equipment | Matl ID Request Ack |
-| [S3F13](#s3f13---matl-id-send)   | ← Equipment | Matl ID Send |
-| [S3F14](#s3f14---matl-id-ack)   | → Equipment | Matl ID Ack |
+| [S3F10](#s3f10---matl-id-equate-ack)   | → Equipment | Matl ID Equate Ack |
+| [S3F11](#s3f11---matl-id-request)   | ← Equipment | Matl ID Request |
+| [S3F12](#s3f12---matl-id-request-ack)   | → Equipment | Matl ID Request Ack |
+| [S3F13](#s3f13---matl-id-send)   | → Equipment | Matl ID Send |
+| [S3F14](#s3f14---matl-id-ack)   | ← Equipment | Matl ID Ack |
 | [S3F15](#s3f15---matls-multi-block-inquire)   | → Equipment | SECS-I Matls Multi-block Inquire |
 | [S3F16](#s3f16---matls-multi-block-grant)   | ← Equipment | Matls Multi-block Grant |
 | [S3F17](#s3f17---carrier-action-request-extended)   | → Equipment | Carrier Action Request |
 | [S3F18](#s3f18---carrier-action-response-extended)   | ← Equipment | Carrier Action Ack |
-| [S3F19](#s3f19---port-action-request)   | → Equipment | Cancel All Carrier Out Req |
+| [S3F19](#s3f19---cancel-all-carrier-out-req)   | → Equipment | Cancel All Carrier Out Req |
 | [S3F20](#s3f20---cancel-all-carrier-out-ack)   | ← Equipment | Cancel All Carrier Out Ack |
 | [S3F21](#s3f21---port-group-defn)   | → Equipment | Port Group Defn |
 | [S3F22](#s3f22---port-group-defn-ack)   | ← Equipment | Port Group Defn Ack |
 | [S3F23](#s3f23---port-group-action-req)   | → Equipment | Port Group Action Req |
-| [S3F24](#s3f24---port-group-action-ack)   | ← Equipment | Port Group Action Req |
-| [S3F25](#s3f25---port-action-req)   | → Equipment | Carrier ID Request |
-| [S3F26](#s3f26---port-action-ack)   | ← Equipment | Carrier ID Response |
-| [S3F27](#s3f27---change-access)   | → Equipment | Carrier ID Send |
-| [S3F28](#s3f28---change-access-ack)   | ← Equipment | Carrier ID Acknowledge |
-| [S3F29](#s3f29---carrier-tag-read-req)   | → Equipment | Substrate Location Request |
-| [S3F30](#s3f30---carrier-tag-read-data)   | ← Equipment | Substrate Location Response |
-| [S3F31](#s3f31---carrier-tag-write-data)   | ← Equipment | Substrate Location Send |
-| [S3F32](#s3f32---carrier-tag-write-ack)   | → Equipment | Substrate Location Acknowledge |
-| [S3F33](#s3f33---cancel-all-pod-out-req)   | → Equipment | Load Lock Status Request |
-| [S3F34](#s3f34---cancel-all-pod-out-ack)   | ← Equipment | Load Lock Status Response |
-| [S3F35](#s3f35---reticle-transfer-job-req)   | ← Equipment | Load Lock Status Send |
-| [S3F36](#s3f36---reticle-transfer-job-ack)   | → Equipment | Load Lock Status Acknowledge |
+| [S3F24](#s3f24---port-group-action-ack)   | ← Equipment | Port Group Action Ack |
+| [S3F25](#s3f25---port-action-req)   | → Equipment | Port Action Req |
+| [S3F26](#s3f26---port-action-ack)   | ← Equipment | Port Action Ack |
+| [S3F27](#s3f27---change-access)   | → Equipment | Change Access |
+| [S3F28](#s3f28---change-access-ack)   | ← Equipment | Change Access Ack |
+| [S3F29](#s3f29---carrier-tag-read-req)   | → Equipment | Carrier Tag Read Req |
+| [S3F30](#s3f30---carrier-tag-read-data)   | ← Equipment | Carrier Tag Read Data |
+| [S3F31](#s3f31---carrier-tag-write-data)   | → Equipment | Carrier Tag Write Data |
+| [S3F32](#s3f32---carrier-tag-write-ack)   | ← Equipment | Carrier Tag Write Ack |
+| [S3F33](#s3f33---cancel-all-pod-out-req)   | ↔ Host/Equipment | Cancel All Pod Out Req |
+| [S3F34](#s3f34---cancel-all-pod-out-ack)   | ↔ Host/Equipment | Cancel All Pod Out Ack |
+| [S3F35](#s3f35---reticle-transfer-job-req)   | ↔ Host/Equipment | Reticle Transfer Job Req |
+| [S3F36](#s3f36---reticle-transfer-job-ack)   | ↔ Host/Equipment | Reticle Transfer Job Ack |
 
 #### S3F1 - Material Status Request {#s3f1---material-status-request}
 ```text
@@ -2238,7 +2266,7 @@ S3F7->
 
 #### S3F8 - Material Lost Ack {#s3f8---material-lost-ack}
 ```text
-S3F8->
+<-S3F8
 ACKC3
 ```
 
@@ -2262,7 +2290,7 @@ S3F9->
 
 ``` 
 
-#### S3F10 - Port Status Acknowledge {#s3f10---port-status-acknowledge}
+#### S3F10 - Matl ID Equate Ack {#s3f10---matl-id-equate-ack}
 ```text
 <-S3F10
 ACKC3
@@ -2278,7 +2306,7 @@ ACKC3
 
 #### S3F11 - Matl ID Request {#s3f11---matl-id-request}
 ```text
-<-S3F11
+S3F11->
 {
   PTN
 }
@@ -2286,7 +2314,7 @@ ACKC3
 
 #### S3F12 - Matl ID Request Ack {#s3f12---matl-id-request-ack}
 ```text
-S3F12->
+<-S3F12
 {L[3]
   PTN
   MIDRA
@@ -2297,7 +2325,7 @@ S3F12->
 
 #### S3F13 - Matl ID Send {#s3f13---matl-id-send}
 ```text
-S3F13->
+<-S3F13
 {L[2]
   PTN
   MID
@@ -2306,7 +2334,7 @@ S3F13->
 
 #### S3F14 - Matl ID Ack {#s3f14---matl-id-ack}
 ```text
-<-S3F14
+S3F14->
 {
   MIDAC
 }
@@ -2416,32 +2444,11 @@ The S3F17 message is an unsolicited message sent by the equipment to inform the 
 ```text
 S3F18->
 {L[2]
-  DATAID
   CAACK
-}
-```
-
-**Parameters:**
-
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| DATAID | - | Data ID (matching request) |
-| CAACK | U1 | Carrier Action Acknowledge |
-| | | 0: Acknowledged |
-| | | 1: Denied, Invalid Command |
-| | | 2: Denied, Cannot Perform Now |
-
-#### S3F19 - Port Action Request {#s3f19---port-action-request}
-```text
-<-S3F19
-{L[4]
-  DATAID
-  PORTACTION
-  PTN
   {L[n]
     {L[2]
-      PATTRID
-      PATTRDATA
+      ERRCODE
+      ERRTEXT
     }
   }
 }
@@ -2451,15 +2458,24 @@ S3F18->
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| DATAID | U1/U2/U4/A | Data ID |
-| PORTACTION | U1 | Port Action |
-| | | 1: Open |
-| | | 2: Close |
-| | | 3: Lock |
-| | | 4: Unlock |
-| PTN | U1 | Port Number |
-| PATTRID | U1/U2/U4/A | Port Attribute ID |
-| PATTRDATA | any format | Port Attribute Data |
+| CAACK | U1 | Carrier Action Acknowledge |
+| | | 0: Acknowledged |
+| | | 1: Denied, Invalid Command |
+| | | 2: Denied, Cannot Perform Now |
+| ERRCODE | U1/U2/U4/A | Error Code |
+| ERRTEXT | ASCII | Error Text |
+
+#### S3F19 - Cancel All Carrier Out Req {#s3f19---cancel-all-carrier-out-req}
+```text
+<-S3F19
+{}
+```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| - | - | Header only, no parameters required |
 
 #### S3F20 - Cancel All Carrier Out Ack {#s3f20---cancel-all-carrier-out-ack}
 ```text
@@ -2719,32 +2735,34 @@ S3F36->
 
 | Message | Direction | Description |
 |---------|-----------|-------------|
-| [S4F1](#s4f1---ready-to-send-materials)    | → Equipment | Ready to Send Materials |
-| [S4F2](#s4f2---ready-to-send-acknowledge)    | ← Equipment | Ready to Send Acknowledge |
-| [S4F3](#s4f3---send-material)    | → Equipment | Send Material |
-| [S4F4](#s4f3---send-material)    | ← Equipment | Transfer Job Cancel Acknowledge |
-| [S4F5](#s4f5---handshake-complete)    | → Equipment | Transfer Job Start |
-| [S4F6](#s4f5---handshake-complete)    | ← Equipment | Transfer Job Start Acknowledge |
-| [S4F7](#s4f7---not-ready-to-send)    | → Equipment | Transfer Job Pause |
-| [S4F8](#s4f7---not-ready-to-send)    | ← Equipment | Transfer Job Pause Acknowledge |
-| [S4F9](#s4f9---stuck-in-sender)    | → Equipment | Transfer Job Stop |
-| [S4F10](#s4f9---stuck-in-sender)   | ← Equipment | Transfer Job Stop Acknowledge |
-| [S4F11](#s4f11---stuck-in-receiver)   | → Equipment | Transfer Job Abort |
-| [S4F12](#s4f11---stuck-in-receiver)   | ← Equipment | Transfer Job Abort Acknowledge |
-| [S4F13](#s4f13---send-incomplete-timeout)   | → Equipment | Transfer Job Resume |
-| [S4F14](#s4f13---send-incomplete-timeout)   | ← Equipment | Transfer Job Resume Acknowledge |
-| [S4F15](#s4f15---material-received)   | → Equipment | Transfer Job Status Request |
-| [S4F16](#s4f15---material-received)   | ← Equipment | Transfer Job Status Response |
-| [S4F17](#s4f17---request-to-receive)   | → Equipment | Transfer Job Priority Update |
-| [S4F18](#s4f18---request-to-receive-acknowledge)   | ← Equipment | Transfer Job Priority Acknowledge |
-| [S4F19](#s4f19---transfer-job-create)   | → Equipment | Transfer Command |
-| [S4F20](#s4f20---transfer-job-acknowledge)   | ← Equipment | Transfer Command Acknowledge |
-| [S4F21](#s4f21---transfer-job-command)   | → Equipment | Enhanced Transfer Command |
-| [S4F22](#s4f22---transfer-job-command-acknowledge)   | ← Equipment | Enhanced Transfer Acknowledge |
-| [S4F23](#s4f23---transfer-command-alert)   | ← Equipment | Transfer Status Send |
-| [S4F24](#s4f24---transfer-alert-acknowledge)   | → Equipment | Transfer Status Acknowledge |
-| [S4F25](#s4f25---multi-block-inquire)   | → Equipment | Material Status Request |
-| [S4F26](#s4f26---multi-block-grant)   | ← Equipment | Material Status Response |
+| [S4F1](#s4f1---ready-to-send-materials)    | ↔ Host/Equipment | Ready to Send Materials |
+| [S4F2](#s4f2---ready-to-send-acknowledge)    | ↔ Host/Equipment | Ready to Send Acknowledge |
+| [S4F3](#s4f3---send-material)    | ↔ Host/Equipment | Send Material |
+| [S4F5](#s4f5---handshake-complete)    | ↔ Host/Equipment | Handshake Complete |
+| [S4F7](#s4f7---not-ready-to-send)    | ↔ Host/Equipment | Not Ready to Send |
+| [S4F9](#s4f9---stuck-in-sender)    | ↔ Host/Equipment | Stuck in Sender |
+| [S4F11](#s4f11---stuck-in-receiver)   | ↔ Host/Equipment | Stuck in Receiver |
+| [S4F13](#s4f13---send-incomplete-timeout)   | ↔ Host/Equipment | Send Incomplete Timeout |
+| [S4F15](#s4f15---material-received)   | ↔ Host/Equipment | Material Received |
+| [S4F17](#s4f17---request-to-receive)   | ↔ Host/Equipment | Request to Receive |
+| [S4F18](#s4f18---request-to-receive-acknowledge)   | ↔ Host/Equipment | Request to Receive Acknowledge |
+| [S4F19](#s4f19---transfer-job-create)   | → Equipment | Transfer Job Create |
+| [S4F20](#s4f20---transfer-job-acknowledge)   | ← Equipment | Transfer Job Acknowledge |
+| [S4F21](#s4f21---transfer-job-command)   | → Equipment | Transfer Job Command |
+| [S4F22](#s4f22---transfer-job-command-acknowledge)   | ← Equipment | Transfer Job Command Acknowledge |
+| [S4F23](#s4f23---transfer-command-alert)   | ← Equipment | Transfer Command Alert |
+| [S4F24](#s4f24---transfer-alert-acknowledge)   | → Equipment | Transfer Alert Acknowledge |
+| [S4F25](#s4f25---multi-block-inquire)   | → Equipment | Multi-block Inquire |
+| [S4F26](#s4f26---multi-block-grant)   | ← Equipment | Multi-block Grant |
+| [S4F27](#s4f27---handoff-ready)   | ↔ Host/Equipment | Handoff Ready |
+| [S4F29](#s4f29---handoff-command)   | ↔ Host/Equipment | Handoff Command |
+| [S4F31](#s4f31---handoff-command-complete)   | ↔ Host/Equipment | Handoff Command Complete |
+| [S4F33](#s4f33---handoff-verified)   | ↔ Host/Equipment | Handoff Verified |
+| [S4F35](#s4f35---handoff-cancel-ready)   | ↔ Host/Equipment | Handoff Cancel Ready |
+| [S4F37](#s4f37---handoff-cancel-ready-acknowledge)   | ↔ Host/Equipment | Handoff Cancel Ready Acknowledge |
+| [S4F39](#s4f39---handoff-halt)   | ↔ Host/Equipment | Handoff Halt |
+| [S4F41](#s4f41---handoff-halt-acknowledge)   | ↔ Host/Equipment | Handoff Halt Acknowledge |
+
 #### S4F1 - Ready to Send Materials {#s4f1---ready-to-send-materials}
 ```text
 <-S4F1
@@ -3293,6 +3311,16 @@ TRLINK
 | [S5F6](#s5f6---list-alarms-response)    | ← Equipment | List Alarms Response |
 | [S5F7](#s5f7---list-enabled-alarm-request)    | → Equipment | List Enabled Alarm Request |
 | [S5F8](#s5f8---list-enabled-alarm-response)    | ← Equipment | List Enabled Alarm Response |
+| [S5F9](#s5f9---exception-post-notify)    | ← Equipment | Exception Post Notify |
+| [S5F10](#s5f10---exception-post-confirm)   | → Equipment | Exception Post Confirm |
+| [S5F11](#s5f11---exception-clear-notify)   | ← Equipment | Exception Clear Notify |
+| [S5F12](#s5f12---exception-clear-confirm)   | → Equipment | Exception Clear Confirm |
+| [S5F13](#s5f13---exception-recover-request)   | → Equipment | Exception Recover Request |
+| [S5F14](#s5f14---exception-recover-acknowledge)   | ← Equipment | Exception Recover Acknowledge |
+| [S5F15](#s5f15---exception-recovery-complete-notify)   | ← Equipment | Exception Recovery Complete Notify |
+| [S5F16](#s5f16---exception-recovery-complete-confirm)   | → Equipment | Exception Recovery Complete Confirm |
+| [S5F17](#s5f17---exception-recovery-abort-request)   | → Equipment | Exception Recovery Abort Request |
+| [S5F18](#s5f18---exception-recovery-abort-ack)   | ← Equipment | Exception Recovery Abort Ack |
 
 #### S5F1 - Alarm Report Send {#s5f1---alarm-report-send}
 ```text
@@ -3343,7 +3371,6 @@ ACKC5
 }
 
 ```
-```text
 
 **Parameters:**
 
@@ -3353,7 +3380,6 @@ ACKC5
 | | | 128 (0x80): Enable |
 | | | 0: Disable |
 | ALID | U1, U2, U4, or A | Alarm ID |
-```
 
 #### S5F4 - Enable/Disable Alarm Acknowledge {#s5f4---enabledisable-alarm-acknowledge}
 ```text
@@ -3362,7 +3388,6 @@ S5F4->
 ACKC5
 
 ```
-```text
 
 **Parameters:**
 
@@ -3371,37 +3396,40 @@ ACKC5
 | ACKC5 | B[1] | Acknowledge Code |
 | | | 0: Acknowledged |
 | | | 1: Error |
-```
 
 #### S5F5 - List Alarms Request {#s5f5---list-alarms-request}
 ```text
 <-S5F5
-{}
+ALIDVECTOR
 ```
+
+**Comment:** Host sends a zero-length item to request all alarms, otherwise an ALID vector.
 
 **Parameters:**
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| Empty | - | Empty list (header only message) |
+| ALIDVECTOR | U1/U2/U4 | Alarm ID vector (zero-length = all) |
 
 #### S5F6 - List Alarms Response {#s5f6---list-alarms-response}
 ```text
 S5F6->
 {L[n]
-  ALID_1
-  ALID_2
-  ...
-  ALID_n
+  {L[3]
+    ALCD
+    ALID
+    ALTX
+  }
 }
-``` 
+```
 
 **Parameters:**
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| ALID | U1, U2, U4, or A | Alarm ID |
-
+| ALCD | B[1] | Alarm Code |
+| ALID | U1/U2/U4/A | Alarm ID |
+| ALTX | A[120] | Alarm Text |
 
 #### S5F7 - List Enabled Alarm Request {#s5f7---list-enabled-alarm-request}
 ```text
@@ -3419,10 +3447,11 @@ S5F6->
 ```text
 S5F8->
 {L[n]
-  ALID_1
-  ALID_2
-  ...
-  ALID_n
+  {L[3]
+    ALCD
+    ALID
+    ALTX
+  }
 }
 ```
 
@@ -3430,8 +3459,205 @@ S5F8->
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| ALID | U1, U2, U4, or A | Alarm ID - Only enabled alarms |
+| ALCD | B[1] | Alarm Code |
+| ALID | U1/U2/U4/A | Alarm ID (only enabled alarms) |
+| ALTX | A[120] | Alarm Text |
 
+#### S5F9 - Exception Post Notify {#s5f9---exception-post-notify}
+```text
+S5F9->
+{L[5]
+  TIMESTAMP
+  EXID
+  EXTYPE
+  EXMESSAGE
+  {L[n]
+    EXRECVRA
+  }
+}
+```
+
+**Comment:** See SEMI E41.
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TIMESTAMP | A | Timestamp |
+| EXID | A | Exception ID |
+| EXTYPE | A | Exception Type |
+| EXMESSAGE | A | Exception Message |
+| EXRECVRA | A | Exception Recovery Action |
+
+#### S5F10 - Exception Post Confirm {#s5f10---exception-post-confirm}
+```text
+<-S5F10
+{}
+```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| - | - | Header only, no parameters required |
+
+#### S5F11 - Exception Clear Notify {#s5f11---exception-clear-notify}
+```text
+S5F11->
+{L[4]
+  TIMESTAMP
+  EXID
+  EXTYPE
+  EXMESSAGE
+}
+```
+
+**Comment:** See SEMI E41.
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TIMESTAMP | A | Timestamp |
+| EXID | A | Exception ID |
+| EXTYPE | A | Exception Type |
+| EXMESSAGE | A | Exception Message |
+
+#### S5F12 - Exception Clear Confirm {#s5f12---exception-clear-confirm}
+```text
+<-S5F12
+{}
+```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| - | - | Header only, no parameters required |
+
+#### S5F13 - Exception Recover Request {#s5f13---exception-recover-request}
+```text
+<-S5F13
+{L[2]
+  EXID
+  EXRECVRA
+}
+```
+
+**Comment:** See SEMI E41.
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| EXID | A | Exception ID |
+| EXRECVRA | A | Exception Recovery Action |
+
+#### S5F14 - Exception Recover Acknowledge {#s5f14---exception-recover-acknowledge}
+```text
+S5F14->
+{L[2]
+  EXID
+  {L[2]
+    ACKA
+    {L[2]
+      ERRCODE
+      ERRTEXT
+    }
+  }
+}
+```
+
+**Comment:** The inner L[2] error list can be L[2] or L[0].
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| EXID | A | Exception ID |
+| ACKA | BOOL | Acknowledge (true = success) |
+| ERRCODE | U1/U2/U4/A | Error Code |
+| ERRTEXT | ASCII | Error Text |
+
+#### S5F15 - Exception Recovery Complete Notify {#s5f15---exception-recovery-complete-notify}
+```text
+S5F15->
+{L[3]
+  TIMESTAMP
+  EXID
+  {L[2]
+    ACKA
+    {L[2]
+      ERRCODE
+      ERRTEXT
+    }
+  }
+}
+```
+
+**Comment:** The inner L[2] error list can be L[2] or L[0]. See SEMI E41.
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TIMESTAMP | A | Timestamp |
+| EXID | A | Exception ID |
+| ACKA | BOOL | Acknowledge (true = success) |
+| ERRCODE | U1/U2/U4/A | Error Code |
+| ERRTEXT | ASCII | Error Text |
+
+#### S5F16 - Exception Recovery Complete Confirm {#s5f16---exception-recovery-complete-confirm}
+```text
+<-S5F16
+{}
+```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| - | - | Header only, no parameters required |
+
+#### S5F17 - Exception Recovery Abort Request {#s5f17---exception-recovery-abort-request}
+```text
+<-S5F17
+EXID
+```
+
+**Comment:** See SEMI E41.
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| EXID | A | Exception ID |
+
+#### S5F18 - Exception Recovery Abort Ack {#s5f18---exception-recovery-abort-ack}
+```text
+S5F18->
+{L[2]
+  EXID
+  {L[2]
+    ACKA
+    {L[2]
+      ERRCODE
+      ERRTEXT
+    }
+  }
+}
+```
+
+**Comment:** The inner L[2] error list can be L[2] or L[0].
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| EXID | A | Exception ID |
+| ACKA | BOOL | Acknowledge (true = success) |
+| ERRCODE | U1/U2/U4/A | Error Code |
+| ERRTEXT | ASCII | Error Text |
 
 ### Stream 6: Data Collection
 **Purpose**: Process data collection and event reporting
@@ -4035,30 +4261,30 @@ TRID
 | [S7F5](#s7f5---process-program-request)    | ↔ Host/Equipment | Process Program Request |
 | [S7F6](#s7f6---process-program-data)    | ↔ Host/Equipment | Process Program Data |
 | [S7F7](#s7f7---process-program-id-request)    | ← Equipment | Process Program ID Request |
-| [S7F8](#s7f8---process-program-id-data)    | → Host | Process Program ID Data |
+| [S7F8](#s7f8---process-program-id-data)    | → Equipment | Process Program ID Data |
 | [S7F9](#s7f9---material-process-matrix-request)    | ↔ Host/Equipment | Material/Process Matrix Request |
 | [S7F10](#s7f10---material-process-matrix-data)    | ↔ Host/Equipment | Material/Process Matrix Data |
-| [S7F11](#s7f11---material-process-matrix-update-send)    | → Host | Material/Process Matrix Update Send |
+| [S7F11](#s7f11---material-process-matrix-update-send)    | → Equipment | Material/Process Matrix Update Send |
 | [S7F12](#s7f12---material-process-matrix-update-acknowledge)    | ← Equipment | Material/Process Matrix Update Acknowledge |
-| [S7F13](#s7f13---material-process-matrix-delete-entry-send)    | → Host | Material/Process Matrix Delete Entry Send |
+| [S7F13](#s7f13---material-process-matrix-delete-entry-send)    | → Equipment | Material/Process Matrix Delete Entry Send |
 | [S7F14](#s7f14---delete-material-process-matrix-entry-acknowledge)    | ← Equipment | Delete Material/Process Matrix Entry Acknowledge |
-| [S7F15](#s7f15---matrix-mode-select-send)    | → Host | Matrix Mode Select Send |
+| [S7F15](#s7f15---matrix-mode-select-send)    | → Equipment | Matrix Mode Select Send |
 | [S7F16](#s7f16---matrix-mode-select-acknowledge)    | ← Equipment | Matrix Mode Select Acknowledge |
-| [S7F17](#s7f17---delete-process-program-send)    | → Host | Delete Process Program Send |
+| [S7F17](#s7f17---delete-process-program-send)    | → Equipment | Delete Process Program Send |
 | [S7F18](#s7f18---delete-process-program-acknowledge)    | ← Equipment | Delete Process Program Acknowledge |
-| [S7F19](#s7f19---current-process-program-directory-request)    | → Host | Current Process Program Directory Request |
+| [S7F19](#s7f19---current-process-program-directory-request)    | → Equipment | Current Process Program Directory Request |
 | [S7F20](#s7f20---current-process-program-data)    | ← Equipment | Current Process Program Data |
-| [S7F21](#s7f21---process-capabilities-request)    | → Host | Process Capabilities Request |
+| [S7F21](#s7f21---process-capabilities-request)    | → Equipment | Process Capabilities Request |
 | [S7F22](#s7f22---process-capabilities-data)    | ← Equipment | Process Capabilities Data |
 | [S7F23](#s7f23---formatted-process-program-send)    | ↔ Host/Equipment | Formatted Process Program Send |
 | [S7F24](#s7f24---formatted-process-program-acknowledge)    | ↔ Host/Equipment | Formatted Process Program Acknowledge |
 | [S7F25](#s7f25---formatted-process-program-request)    | ↔ Host/Equipment | Formatted Process Program Request |
 | [S7F26](#s7f26---formatted-process-program-data)    | ↔ Host/Equipment | Formatted Process Program Data |
 | [S7F27](#s7f27---process-program-verification-send)    | ← Equipment | Process Program Verification Send |
-| [S7F28](#s7f28---process-program-verification-acknowledge)    | → Host | Process Program Verification Acknowledge |
+| [S7F28](#s7f28---process-program-verification-acknowledge)    | → Equipment | Process Program Verification Acknowledge |
 | [S7F29](#s7f29---process-program-verification-inquire)    | ← Equipment | Process Program Verification Inquire |
-| [S7F30](#s7f30---process-program-verification-grant)    | → Host | Process Program Verification Grant |
-| [S7F31](#s7f31---verification-request-send)    | → Host | Verification Request Send |
+| [S7F30](#s7f30---process-program-verification-grant)    | → Equipment | Process Program Verification Grant |
+| [S7F31](#s7f31---verification-request-send)    | → Equipment | Verification Request Send |
 | [S7F32](#s7f32---verification-request-acknowledge)    | ← Equipment | Verification Request Acknowledge |
 | [S7F33](#s7f33---process-program-available-request)    | ↔ Host/Equipment | Process Program Available Request |
 | [S7F34](#s7f34---process-program-availability-data)    | ↔ Host/Equipment | Process Program Availability Data |
@@ -4830,10 +5056,10 @@ ACKC7
 
 | Message | Direction | Description |
 |---------|-----------|-------------|
-| [S8F1](#s8f1---boot-program-request)    | → Equipment | Boot Program Request |
-| [S8F2](#s8f2---boot-program-data)    | ← Equipment | Boot Program Data |
-| [S8F3](#s8f3---executive-program-request)    | → Equipment | Executive Program Request |
-| [S8F4](#s8f4---executive-program-data)    | ← Equipment | Executive Program Data |
+| [S8F1](#s8f1---boot-program-request)    | ↔ Host/Equipment | Boot Program Request |
+| [S8F2](#s8f2---boot-program-data)    | ↔ Host/Equipment | Boot Program Data |
+| [S8F3](#s8f3---executive-program-request)    | ↔ Host/Equipment | Executive Program Request |
+| [S8F4](#s8f4---executive-program-data)    | ↔ Host/Equipment | Executive Program Data |
 
 #### S8F1 - Boot Program Request {#s8f1---boot-program-request}
 ```text
@@ -4963,19 +5189,19 @@ The S9F7 message is an unsolicited message sent by the equipment to notify the h
 
 ##### 3. S9F7 Message Transmission
 - Upon detecting the error, the equipment sends an **S9F7** message to the host.
-- The S9F7 message includes the following information:
-  - **MHEAD**: Header information from the original message (stream/function and transaction ID of the erroneous message).
-  - **ERRCODE**: An error code identifying the cause of the error (e.g., 1 = unknown stream, 3 = invalid data).
-  - **ERRTEXT**: A human-readable description of the error (string format).
-- **Example**: If the host sends an S2F23 message with an invalid SVID, the equipment reports the error via S9F7 with ERRTEXT such as "Invalid SVID."
+- The S9F7 message body contains a single item:
+  - **MHEAD**: The complete 10-byte header of the message that contained illegal data
+    (identifying the stream/function and transaction of the erroneous message).
+- **Example**: If the host sends an S2F23 message with an invalid SVID, the equipment reports
+  the error via S9F7 carrying the header of that S2F23 message.
 
 ##### 4. Host Response
-- The host receives the S9F7 message and analyzes the ERRCODE and ERRTEXT to identify the error cause.
+- The host receives the S9F7 message and uses the returned MHEAD to identify which message was rejected.
 - Response actions:
   - **Message Correction**: Fix invalid data (e.g., SVID, data format) and retransmit the message.
   - **Equipment State Check**: Verify the equipment’s current state (e.g., via S1F1) to ensure the request is appropriate.
   - **Log Recording**: Log the error for debugging or further action.
-- **Example**: If S9F7 reports "Invalid SVID," the host verifies the correct SVID and retransmits S2F23.
+- **Example**: If S9F7 identifies the failing S2F23, the host verifies the message content (e.g., the SVID list) and retransmits it.
 
 ##### 5. Scenario Termination
 - Once the host sends a corrected message or resolves the error, normal communication resumes.
@@ -4999,14 +5225,14 @@ MHEAD
 ```text
 
 S9F9->
-MHEAD
+SHEAD
 
 ```
 **Parameters:**
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| MHEAD | B[10] | Message Header (The complete 10-byte header of the message that timed out) |
+| SHEAD | B[10] | Stored Header (The complete 10-byte header of the transaction that timed out) |
  
 #### S9F11 - Data Too Long {#s9f11---data-too-long}
 ```text
@@ -5047,10 +5273,12 @@ S9F13->
 
 | Message | Direction | Description |
 |---------|-----------|-------------|
-| [S10F1](#s10f1---terminal-request)   | → Equipment | Terminal Request |
-| [S10F2](#s10f2---terminal-response)   | ← Equipment | Terminal Response |
+| [S10F1](#s10f1---terminal-request)   | ← Equipment | Terminal Request |
+| [S10F2](#s10f2---terminal-request-acknowledge)   | → Equipment | Terminal Request Acknowledge |
 | [S10F3](#s10f3---terminal-display-single)   | → Equipment | Terminal Display, Single |
+| [S10F4](#s10f4---terminal-display-single-acknowledge)   | ← Equipment | Terminal Display, Single Acknowledge |
 | [S10F5](#s10f5---terminal-display-multi-block)   | → Equipment | Terminal Display, Multi-Block |
+| [S10F6](#s10f6---terminal-display-multi-block-acknowledge)   | ← Equipment | Terminal Display, Multi-Block Acknowledge |
 | [S10F7](#s10f7---multi-block-not-allowed)   | ← Equipment | Multi-block Not Allowed |
 | [S10F9](#s10f9---broadcast-display-request)   | → Equipment | Broadcast Display Request |
 | [S10F10](#s10f10---broadcast-display-acknowledge)  | ← Equipment | Broadcast Display Acknowledge |
@@ -5058,7 +5286,7 @@ S9F13->
 #### S10F1 - Terminal Request {#s10f1---terminal-request}
 ```text
 
-<-S10F1
+S10F1->
 {L[2]
   TID
   TEXT
@@ -5073,28 +5301,24 @@ S9F13->
 | TEXT | ASCII | Text Message |
  
 
-#### S10F2 - Terminal Response {#s10f2---terminal-response}
+#### S10F2 - Terminal Request Acknowledge {#s10f2---terminal-request-acknowledge}
 ```text
-S10F2->
-{L[2]
-  TID
-  ACKC10
-}
+<-S10F2
+ACKC10
 ```
 **Parameters:**
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| TID | U1 | Terminal ID |
 | ACKC10 | B[1] | Acknowledge Code |
-| | | 0: Acknowledged |
-| | | 1: Error |
+| | | 0: Accepted for display |
+| | | 1: Message will not be displayed |
 | | | 2: Terminal not available |
 
 
 #### S10F3 - Terminal Display, Single {#s10f3---terminal-display-single}
 ```text
-S10F3->
+<-S10F3
 {L[2]
   TID
   TEXT
@@ -5108,28 +5332,54 @@ S10F3->
 | TID | U1 | Terminal ID |
 | TEXT | A | Text Message |
 
+#### S10F4 - Terminal Display, Single Acknowledge {#s10f4---terminal-display-single-acknowledge}
+```text
+S10F4->
+ACKC10
+```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ACKC10 | B[1] | Acknowledge Code |
+| | | 0: Accepted for display |
+| | | 1: Message will not be displayed |
+| | | 2: Terminal not available |
+
 
 #### S10F5 - Terminal Display, Multi-Block {#s10f5---terminal-display-multi-block}
 ```text
-S10F5->
-{L[3]
+<-S10F5
+{L[2]
   TID
   {L[n]
-    TEXT_1
-    TEXT_2
-    ...
-    TEXT_n
+    TEXT
   }
-  MHEAD
 }
 ```
- **Parameters:**
+
+**Parameters:**
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | TID | U1 | Terminal ID |
 | TEXT | ASCII | Text Message |
-| MHEAD | B[10] | Message Header |
+
+#### S10F6 - Terminal Display, Multi-Block Acknowledge {#s10f6---terminal-display-multi-block-acknowledge}
+```text
+S10F6->
+ACKC10
+```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ACKC10 | B[1] | Acknowledge Code |
+| | | 0: Accepted for display |
+| | | 1: Message will not be displayed |
+| | | 2: Terminal not available |
 
 
 #### S10F7 - Multi-block Not Allowed {#s10f7---multi-block-not-allowed}
@@ -5142,7 +5392,7 @@ TID
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| TID | U1/U2/U4/A | Transaction ID |
+| TID | U1/U2/U4/A | Terminal ID |
 
 #### S10F9 - Broadcast Display Request {#s10f9---broadcast-display-request}
 ```text
@@ -5178,24 +5428,24 @@ ACKC10
 
 | Message | Direction | Description |
 |---------|-----------|-------------|
-| [S12F1](#s12f1---map-setup-data-send)   | → Equipment | Map Setup Data Send |
-| [S12F2](#s12f2---map-setup-data-acknowledge)   | ← Equipment | Map Setup Data Acknowledge |
-| [S12F3](#s12f3---map-setup-data-request)   | → Equipment | Map Setup Data Request |
-| [S12F4](#s12f4---map-setup-data-response)   | ← Equipment | Map Setup Data Response |
-| [S12F5](#s12f5---map-transmit-inquire)   | → Equipment | Map Transmit Inquire |
-| [S12F6](#s12f6---map-transmit-grant)   | ← Equipment | Map Transmit Grant |
-| [S12F7](#s12f7---map-data-send-type-1)   | → Equipment | Map Data Send Type 1 |
-| [S12F8](#s12f8---map-data-ack-type-1)   | ← Equipment | Map Data Ack Type 1 |
-| [S12F9](#s12f9---map-data-send-type-2)   | → Equipment | Map Data Send Type 2 |
-| [S12F10](#s12f10---map-data-ack-type-2)  | ← Equipment | Map Data Ack Type 2 |
-| [S12F11](#s12f11---map-data-send-type-3)  | → Equipment | Map Data Send Type 3 |
-| [S12F12](#s12f12---map-data-ack-type-3)  | ← Equipment | Map Data Ack Type 3 |
-| [S12F13](#s12f13---map-data-request-type-1)  | → Equipment | Map Data Request Type 1 |
-| [S12F14](#s12f14---map-data-type-1)  | ← Equipment | Map Data Type 1 |
-| [S12F15](#s12f15---map-data-request-type-2)  | → Equipment | Map Data Request Type 2 |
-| [S12F16](#s12f16---map-data-type-2)  | ← Equipment | Map Data Type 2 |
-| [S12F17](#s12f17---map-data-request-type-3)  | → Equipment | Map Data Request Type 3 |
-| [S12F18](#s12f18---map-data-type-3)  | ← Equipment | Map Data Type 3 |
+| [S12F1](#s12f1---map-setup-data-send)   | ← Equipment | Map Setup Data Send |
+| [S12F2](#s12f2---map-setup-data-acknowledge)   | → Equipment | Map Setup Data Acknowledge |
+| [S12F3](#s12f3---map-setup-data-request)   | ← Equipment | Map Setup Data Request |
+| [S12F4](#s12f4---map-setup-data-response)   | → Equipment | Map Setup Data Response |
+| [S12F5](#s12f5---map-transmit-inquire)   | ← Equipment | Map Transmit Inquire |
+| [S12F6](#s12f6---map-transmit-grant)   | → Equipment | Map Transmit Grant |
+| [S12F7](#s12f7---map-data-send-type-1)   | ← Equipment | Map Data Send Type 1 |
+| [S12F8](#s12f8---map-data-ack-type-1)   | → Equipment | Map Data Ack Type 1 |
+| [S12F9](#s12f9---map-data-send-type-2)   | ← Equipment | Map Data Send Type 2 |
+| [S12F10](#s12f10---map-data-ack-type-2)  | → Equipment | Map Data Ack Type 2 |
+| [S12F11](#s12f11---map-data-send-type-3)  | ← Equipment | Map Data Send Type 3 |
+| [S12F12](#s12f12---map-data-ack-type-3)  | → Equipment | Map Data Ack Type 3 |
+| [S12F13](#s12f13---map-data-request-type-1)  | ← Equipment | Map Data Request Type 1 |
+| [S12F14](#s12f14---map-data-type-1)  | → Equipment | Map Data Type 1 |
+| [S12F15](#s12f15---map-data-request-type-2)  | ← Equipment | Map Data Request Type 2 |
+| [S12F16](#s12f16---map-data-type-2)  | → Equipment | Map Data Type 2 |
+| [S12F17](#s12f17---map-data-request-type-3)  | ← Equipment | Map Data Request Type 3 |
+| [S12F18](#s12f18---map-data-type-3)  | → Equipment | Map Data Type 3 |
 | [S12F19](#s12f19---map-error-report-send)  | ↔ Host/Equipment | Map Error Report Send |
 
 #### S12F1 - Map Setup Data Send {#s12f1---map-setup-data-send}
@@ -5969,34 +6219,34 @@ GRANT
 
 | Message | Direction | Description |
 |---------|-----------|-------------|
-| [S14F1](#s14f1---get-attributes-request)   | → Equipment | Get Attributes Request |
-| [S14F2](#s14f2---attribute-data)   | ← Equipment | Attribute Data |
-| [S14F3](#s14f3---set-attributes)   | → Equipment | Set Attributes |
-| [S14F4](#s14f4---set-attributes-reply)   | ← Equipment | Set Attributes Reply |
-| [S14F5](#s14f5---get-type-data)   | → Equipment | Get Type Data |
-| [S14F6](#s14f6---type-data)   | ← Equipment | Type Data |
-| [S14F7](#s14f7---get-attribute-names)   | → Equipment | Get Attribute Names |
-| [S14F8](#s14f8---attribute-names)   | ← Equipment | Attribute Names |
-| [S14F9](#s14f9---create-obj-request)   | → Equipment | Create Object Request |
-| [S14F10](#s14f10---create-obj-ack)   | ← Equipment | Create Object Acknowledge |
-| [S14F11](#s14f11---delete-obj-request)   | → Equipment | Delete Object Request |
-| [S14F12](#s14f12---delete-obj-ack)   | ← Equipment | Delete Object Acknowledge |
-| [S14F13](#s14f13---object-attach-request)   | → Equipment | Object Attach Request |
-| [S14F14](#s14f14---object-attach-ack)   | ← Equipment | Object Attach Acknowledge |
-| [S14F15](#s14f15---attached-obj-action-req)   | → Equipment | Attached Object Action Request |
-| [S14F16](#s14f16---attached-obj-action-ack)   | ← Equipment | Attached Object Action Acknowledge |
-| [S14F17](#s14f17---supervised-obj-action-req)   | → Equipment | Supervised Object Action Request |
-| [S14F18](#s14f18---supervised-obj-action-ack)   | ← Equipment | Supervised Object Action Acknowledge |
+| [S14F1](#s14f1---get-attributes-request)   | ↔ Host/Equipment | Get Attributes Request |
+| [S14F2](#s14f2---attribute-data)   | ↔ Host/Equipment | Attribute Data |
+| [S14F3](#s14f3---set-attributes)   | ↔ Host/Equipment | Set Attributes |
+| [S14F4](#s14f4---set-attributes-reply)   | ↔ Host/Equipment | Set Attributes Reply |
+| [S14F5](#s14f5---get-type-data)   | ↔ Host/Equipment | Get Type Data |
+| [S14F6](#s14f6---type-data)   | ↔ Host/Equipment | Type Data |
+| [S14F7](#s14f7---get-attribute-names)   | ↔ Host/Equipment | Get Attribute Names |
+| [S14F8](#s14f8---attribute-names)   | ↔ Host/Equipment | Attribute Names |
+| [S14F9](#s14f9---create-obj-request)   | ↔ Host/Equipment | Create Object Request |
+| [S14F10](#s14f10---create-obj-ack)   | ↔ Host/Equipment | Create Object Acknowledge |
+| [S14F11](#s14f11---delete-obj-request)   | ↔ Host/Equipment | Delete Object Request |
+| [S14F12](#s14f12---delete-obj-ack)   | ↔ Host/Equipment | Delete Object Acknowledge |
+| [S14F13](#s14f13---object-attach-request)   | ↔ Host/Equipment | Object Attach Request |
+| [S14F14](#s14f14---object-attach-ack)   | ↔ Host/Equipment | Object Attach Acknowledge |
+| [S14F15](#s14f15---attached-obj-action-req)   | ↔ Host/Equipment | Attached Object Action Request |
+| [S14F16](#s14f16---attached-obj-action-ack)   | ↔ Host/Equipment | Attached Object Action Acknowledge |
+| [S14F17](#s14f17---supervised-obj-action-req)   | ↔ Host/Equipment | Supervised Object Action Request |
+| [S14F18](#s14f18---supervised-obj-action-ack)   | ↔ Host/Equipment | Supervised Object Action Acknowledge |
 | [S14F19](#s14f19---generic-service-req)   | → Equipment | Generic Service Request |
-| [S14F20](#s14f20---generic-service-ack)   | ← Equipment | Generic Service Acknowledge |
-| [S14F21](#s14f21---generic-service-completion)   | → Equipment | Generic Service Completion |
-| [S14F22](#s14f22---generic-service-comp-ack)   | ← Equipment | Generic Service Completion Acknowledge |
-| [S14F23](#s14f23---multi-block-generic-service-inquire)   | → Equipment | Multi-block Generic Service Inquire |
-| [S14F24](#s14f24---multi-block-generic-service-grant)   | ← Equipment | Multi-block Generic Service Grant |
-| [S14F25](#s14f25---service-name-request)   | → Equipment | Service Name Request |
-| [S14F26](#s14f26---service-name-data)   | ← Equipment | Service Name Data |
-| [S14F27](#s14f27---service-parameter-name-req)   | → Equipment | Service Parameter Name Request |
-| [S14F28](#s14f28---service-parameter-name-data)   | ← Equipment | Service Parameter Name Data |
+| [S14F20](#s14f20---generic-service-ack)   | ↔ Host/Equipment | Generic Service Acknowledge |
+| [S14F21](#s14f21---generic-service-completion)   | ↔ Host/Equipment | Generic Service Completion |
+| [S14F22](#s14f22---generic-service-comp-ack)   | ↔ Host/Equipment | Generic Service Completion Acknowledge |
+| [S14F23](#s14f23---multi-block-generic-service-inquire)   | ↔ Host/Equipment | Multi-block Generic Service Inquire |
+| [S14F24](#s14f24---multi-block-generic-service-grant)   | ↔ Host/Equipment | Multi-block Generic Service Grant |
+| [S14F25](#s14f25---service-name-request)   | ↔ Host/Equipment | Service Name Request |
+| [S14F26](#s14f26---service-name-data)   | ↔ Host/Equipment | Service Name Data |
+| [S14F27](#s14f27---service-parameter-name-req)   | ↔ Host/Equipment | Service Parameter Name Request |
+| [S14F28](#s14f28---service-parameter-name-data)   | ↔ Host/Equipment | Service Parameter Name Data |
 
 #### S14F1 - Get Attributes Request {#s14f1---get-attributes-request}
 ```text
@@ -6797,15 +7047,15 @@ S14F28->
 | [S15F24](#s15f24---recipe-descriptor-data)   | ↔ Host/Equipment | Recipe Descriptor Data |
 | [S15F25](#s15f25---recipe-parameter-update-req)   | ↔ Host/Equipment | Recipe Parameter Update Req |
 | [S15F26](#s15f26---recipe-parameter-update-ack)   | ↔ Host/Equipment | Recipe Parameter Update Ack |
-| [S15F27](#s15f27---recipe-download-req)   | → Host | Recipe Download Req |
+| [S15F27](#s15f27---recipe-download-req)   | → Equipment | Recipe Download Req |
 | [S15F28](#s15f28---recipe-download-ack)   | ← Equipment | Recipe Download Ack |
-| [S15F29](#s15f29---recipe-verify-req)   | → Host | Recipe Verify Req |
+| [S15F29](#s15f29---recipe-verify-req)   | → Equipment | Recipe Verify Req |
 | [S15F30](#s15f30---recipe-verify-ack)   | ← Equipment | Recipe Verify Ack |
-| [S15F31](#s15f31---recipe-unload-req)   | → Host | Recipe Unload Req |
+| [S15F31](#s15f31---recipe-unload-req)   | → Equipment | Recipe Unload Req |
 | [S15F32](#s15f32---recipe-unload-data)   | ← Equipment | Recipe Unload Data |
-| [S15F33](#s15f33---recipe-select-req)   | → Host | Recipe Select Req |
+| [S15F33](#s15f33---recipe-select-req)   | → Equipment | Recipe Select Req |
 | [S15F34](#s15f34---recipe-select-ack)   | ← Equipment | Recipe Select Ack |
-| [S15F35](#s15f35---recipe-delete-req)   | → Host | Recipe Delete Req |
+| [S15F35](#s15f35---recipe-delete-req)   | → Equipment | Recipe Delete Req |
 | [S15F36](#s15f36---recipe-delete-ack)   | ← Equipment | Recipe Delete Ack |
 | [S15F37](#s15f37---drns-segment-approve-action-req)   | ↔ Host/Equipment | DRNS Segment Approve Action Req |
 | [S15F38](#s15f38---drns-segment-approve-action-ack)   | ↔ Host/Equipment | DRNS Segment Approve Action Ack |
@@ -6819,12 +7069,12 @@ S14F28->
 | [S15F46](#s15f46---drns-mgr-seg-aprvl-ack)   | ↔ Host/Equipment | DRNS Mgr Seg Aprvl Ack |
 | [S15F47](#s15f47---drns-mgr-rebuild-req)   | ↔ Host/Equipment | DRNS Mgr Rebuild Req |
 | [S15F48](#s15f48---drns-mgr-rebuild-ack)   | ↔ Host/Equipment | DRNS Mgr Rebuild Ack |
-| [S15F49](#s15f49---large-recipe-download-req)   | → Host | Large Recipe Download Req |
+| [S15F49](#s15f49---large-recipe-download-req)   | → Equipment | Large Recipe Download Req |
 | [S15F50](#s15f50---large-recipe-download-ack)   | ← Equipment | Large Recipe Download Ack |
-| [S15F51](#s15f51---large-recipe-upload-req)   | → Host | Large Recipe Upload Req |
+| [S15F51](#s15f51---large-recipe-upload-req)   | → Equipment | Large Recipe Upload Req |
 | [S15F52](#s15f52---large-recipe-upload-ack)   | ← Equipment | Large Recipe Upload Ack |
 | [S15F53](#s15f53---recipe-verification-send)   | ← Equipment | Recipe Verification Send |
-| [S15F54](#s15f54---recipe-verification-ack)   | → Host | Recipe Verification Ack |
+| [S15F54](#s15f54---recipe-verification-ack)   | → Equipment | Recipe Verification Ack |
 
 #### S15F1 - Recipe Management Multi-Block Inquire {#s15f1---recipe-management-multi-block-inquire}
 **Comment**: E5 fails to mention the message type is optional for HSMS
@@ -7913,22 +8163,22 @@ S15F53->
 | [S16F8](#s16f8---process-job-alert-ack)   | → Equipment | Process Job Alert Ack |
 | [S16F9](#s16f9---process-job-event-notify)   | ← Equipment | Process Job Event Notify |
 | [S16F10](#s16f10---process-job-event-ack)  | → Equipment | Process Job Event Ack |
-| [S16F11](#s16f11---recipe-upload-send)  | → Equipment | PRJobCreateEnh |
-| [S16F12](#s16f12---recipe-upload-acknowledge)  | ← Equipment | PRJobCreateEnh Ack |
-| [S16F15](#s16f15---recipe-download-send)  | → Equipment | PRJobMultiCreate |
-| [S16F16](#s16f16---recipe-download-acknowledge)  | ← Equipment | PRJobMultiCreate Ack |
-| [S16F17](#s16f17---recipe-validate-request)  | → Equipment | PRJobDequeue |
-| [S16F18](#s16f18---recipe-validate-response)  | ← Equipment | PRJobDequeue Ack |
-| [S16F19](#s16f19---recipe-validate-send)  | → Equipment | PRJob List Req |
-| [S16F20](#s16f20---recipe-validate-acknowledge)  | ← Equipment | PRJob List Data |
-| [S16F21](#s16f21---recipe-compress-request)  | → Equipment | PRJob Create Limit Req |
-| [S16F22](#s16f22---recipe-compress-response)  | ← Equipment | PRJob Create Limit Data |
-| [S16F23](#s16f23---recipe-compress-send)  | → Equipment | PRJob Recipe Variable Set |
-| [S16F24](#s16f24---recipe-compress-acknowledge)  | ← Equipment | PRJob Recipe Variable Ack |
-| [S16F25](#s16f25---recipe-encrypt-request)  | → Equipment | PRJob Start Method Set |
-| [S16F26](#s16f26---recipe-encrypt-response)  | ← Equipment | PRJob Start Method Ack |
-| [S16F27](#s16f27---recipe-encrypt-send)  | → Equipment | Control Job Command |
-| [S16F28](#s16f28---recipe-encrypt-acknowledge)  | ← Equipment | Control Job Command Ack |
+| [S16F11](#s16f11---prjobcreateenh)  | → Equipment | PRJobCreateEnh |
+| [S16F12](#s16f12---prjobcreateenh-ack)  | ← Equipment | PRJobCreateEnh Ack |
+| [S16F15](#s16f15---prjobmulticreate)  | → Equipment | PRJobMultiCreate |
+| [S16F16](#s16f16---prjobmulticreate-ack)  | ← Equipment | PRJobMultiCreate Ack |
+| [S16F17](#s16f17---prjobdequeue)  | → Equipment | PRJobDequeue |
+| [S16F18](#s16f18---prjobdequeue-ack)  | ← Equipment | PRJobDequeue Ack |
+| [S16F19](#s16f19---prjob-list-req)  | → Equipment | PRJob List Req |
+| [S16F20](#s16f20---prjob-list-data)  | ← Equipment | PRJob List Data |
+| [S16F21](#s16f21---prjob-create-limit-req)  | → Equipment | PRJob Create Limit Req |
+| [S16F22](#s16f22---prjob-create-limit-data)  | ← Equipment | PRJob Create Limit Data |
+| [S16F23](#s16f23---prjob-recipe-variable-set)  | → Equipment | PRJob Recipe Variable Set |
+| [S16F24](#s16f24---prjob-recipe-variable-ack)  | ← Equipment | PRJob Recipe Variable Ack |
+| [S16F25](#s16f25---prjob-start-method-set)  | → Equipment | PRJob Start Method Set |
+| [S16F26](#s16f26---prjob-start-method-ack)  | ← Equipment | PRJob Start Method Ack |
+| [S16F27](#s16f27---control-job-command)  | → Equipment | Control Job Command |
+| [S16F28](#s16f28---control-job-command-ack)  | ← Equipment | Control Job Command Ack |
 | [S16F29](#s16f29---prsetmtrlorder)  | → Equipment | PRSetMtrlOrder |
 | [S16F30](#s16f30---prsetmtrlorder-ack)  | ← Equipment | PRSetMtrlOrder Ack | 
 
@@ -8169,137 +8419,67 @@ S16F7->
 |-----------|------|-------------|
 | - | - | No parameters required |
 
-#### S16F11 - Recipe Upload Send {#s16f11---recipe-upload-send}
+#### S16F11 - PRJobCreateEnh {#s16f11---prjobcreateenh}
 ```text
-{L[3]
-  EQUIPMENTID
-  RECIPETYPE
-  RECIPEDATA
-}
-```
-
-**Parameters:**
-
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| EQUIPMENTID | A | Equipment ID |
-| RECIPETYPE | U1 | Recipe Type |
-| RECIPEDATA | any format | Recipe Data |
-
-#### S16F12 - Recipe Upload Acknowledge {#s16f12---recipe-upload-acknowledge}
-```text
-{L[2]
-  EQUIPMENTID
-  ACKC16
-}
-```
-
-**Parameters:**
-
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| EQUIPMENTID | A | Equipment ID |
-| ACKC16 | B[1] | Acknowledge Code |
-| | | 0: Acknowledged |
-| | | 1: Error |
-| | | 2: Invalid recipe type |
-| | | 3: Equipment not found |
-
-#### S16F13 - Recipe Download Request {#s16f13---recipe-download-request}
-```text
-{L[2]
-  EQUIPMENTID
-  RECIPETYPE
-}
-```
-
-**Parameters:**
-
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| EQUIPMENTID | A | Equipment ID |
-| RECIPETYPE | U1 | Recipe Type |
-
-#### S16F14 - Recipe Download Response {#s16f14---recipe-download-response}
-```text
-{L[3]
-  EQUIPMENTID
-  RECIPETYPE
-  RECIPEDATA
-}
-```
-
-**Parameters:**
-
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| EQUIPMENTID | A | Equipment ID |
-| RECIPETYPE | U1 | Recipe Type |
-| RECIPEDATA | any format | Recipe Data |
-
-#### S16F15 - Recipe Download Send {#s16f15---recipe-download-send}
-```text
-{L[3]
-  EQUIPMENTID
-  RECIPETYPE
-  RECIPEDATA
-}
-```
-
-**Parameters:**
-
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| EQUIPMENTID | A | Equipment ID |
-| RECIPETYPE | U1 | Recipe Type |
-| RECIPEDATA | any format | Recipe Data |
-
-#### S16F16 - Recipe Download Acknowledge {#s16f16---recipe-download-acknowledge}
-```text
-{L[2]
-  EQUIPMENTID
-  ACKC16
-}
-```
-
-**Parameters:**
-
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| EQUIPMENTID | A | Equipment ID |
-| ACKC16 | B[1] | Acknowledge Code |
-| | | 0: Acknowledged |
-| | | 1: Error |
-| | | 2: Invalid recipe type |
-| | | 3: Equipment not found |
-
-#### S16F17 - Recipe Validate Request {#s16f17---recipe-validate-request}
-```text
-{L[3]
-  EQUIPMENTID
-  RECIPETYPE
-  RECIPEDATA
-}
-```
-
-**Parameters:**
-
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| EQUIPMENTID | A | Equipment ID |
-| RECIPETYPE | U1 | Recipe Type |
-| RECIPEDATA | any format | Recipe Data |
-
-#### S16F18 - Recipe Validate Response {#s16f18---recipe-validate-response}
-```text
-{L[3]
-  EQUIPMENTID
-  VALRESULT
+{L[7]
+  DATAID
+  PRJOBID
+  MF
   {L[n]
-    ERROR_1
-    ERROR_2
-    ...
-    ERROR_n
+    {L[2]
+      CARRIERID
+      {L[j]
+        SLOTID
+      }
+    }
+  }
+  {L[3]
+    PRRECIPEMETHOD
+    RCPSPEC
+    {L[m]
+      {L[2]
+        RCPPARNM
+        RCPPARVAL
+      }
+    }
+  }
+  PRPROCESSSTART
+  {L[p]
+    PRPAUSEEVENTID
+  }
+}
+```
+
+**Comment:** The L[n] material list can be {L[n] MID} depending on MF; {L[j] SLOTID} might be an array instead.
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| DATAID | U4 | Data ID |
+| PRJOBID | A | Process Job ID |
+| MF | B[1] | Material Format |
+| CARRIERID | A | Carrier ID |
+| SLOTID | U1 | Slot ID |
+| PRRECIPEMETHOD | U1 | Recipe Specification Method |
+| RCPSPEC | A | Recipe Specification |
+| RCPPARNM | A | Recipe Parameter Name |
+| RCPPARVAL | any format | Recipe Parameter Value |
+| PRPROCESSSTART | BOOL | Process Start Method |
+| PRPAUSEEVENTID | U4 | Pause Event ID |
+
+#### S16F12 - PRJobCreateEnh Ack {#s16f12---prjobcreateenh-ack}
+```text
+{L[2]
+  PRJOBID
+  {L[2]
+    ACKA
+    {L[n]
+      {L[2]
+        ERRCODE
+        ERRTEXT
+      }
+    }
   }
 }
 ```
@@ -8308,104 +8488,79 @@ S16F7->
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| EQUIPMENTID | A | Equipment ID |
-| VALRESULT | B[1] | Validation Result |
-| | | 0: Valid |
-| | | 1: Invalid |
-| ERROR | A | Validation Error |
+| PRJOBID | A | Process Job ID |
+| ACKA | BOOL | Acknowledge (true = success) |
+| ERRCODE | U1/U2/U4/A | Error Code |
+| ERRTEXT | ASCII | Error Text |
 
-#### S16F19 - Recipe Validate Send {#s16f19---recipe-validate-send}
-```text
-{L[3]
-  EQUIPMENTID
-  RECIPETYPE
-  RECIPEDATA
-}
-```
-
-**Parameters:**
-
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| EQUIPMENTID | A | Equipment ID |
-| RECIPETYPE | U1 | Recipe Type |
-| RECIPEDATA | any format | Recipe Data |
-
-#### S16F20 - Recipe Validate Acknowledge {#s16f20---recipe-validate-acknowledge}
+#### S16F15 - PRJobMultiCreate {#s16f15---prjobmulticreate}
 ```text
 {L[2]
-  EQUIPMENTID
-  ACKC16
+  DATAID
+  {L[p]
+    {L[6]
+      PRJOBID
+      MF
+      {L[n]
+        {L[2]
+          CARRIERID
+          {L[j]
+            SLOTID
+          }
+        }
+      }
+      {L[3]
+        PRRECIPEMETHOD
+        RCPSPEC
+        {L[m]
+          {L[2]
+            RCPPARNM
+            RCPPARVAL
+          }
+        }
+      }
+      PRPROCESSSTART
+      {L[k]
+        PRPAUSEEVENTID
+      }
+    }
+  }
 }
 ```
+
+**Comment:** The L[n] material list can be {L[n] MID} depending on MF; {L[j] SLOTID} might be an array instead.
 
 **Parameters:**
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| EQUIPMENTID | A | Equipment ID |
-| ACKC16 | B[1] | Acknowledge Code |
-| | | 0: Acknowledged |
-| | | 1: Error |
-| | | 2: Invalid recipe type |
-| | | 3: Equipment not found |
+| DATAID | U4 | Data ID |
+| PRJOBID | A | Process Job ID |
+| MF | B[1] | Material Format |
+| CARRIERID | A | Carrier ID |
+| SLOTID | U1 | Slot ID |
+| PRRECIPEMETHOD | U1 | Recipe Specification Method |
+| RCPSPEC | A | Recipe Specification |
+| RCPPARNM | A | Recipe Parameter Name |
+| RCPPARVAL | any format | Recipe Parameter Value |
+| PRPROCESSSTART | BOOL | Process Start Method |
+| PRPAUSEEVENTID | U4 | Pause Event ID |
 
-#### S16F21 - Recipe Compress Request {#s16f21---recipe-compress-request}
-```text
-{L[3]
-  EQUIPMENTID
-  RECIPETYPE
-  RECIPEDATA
-}
-```
-
-**Parameters:**
-
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| EQUIPMENTID | A | Equipment ID |
-| RECIPETYPE | U1 | Recipe Type |
-| RECIPEDATA | any format | Recipe Data |
-
-#### S16F22 - Recipe Compress Response {#s16f22---recipe-compress-response}
-```text
-{L[3]
-  EQUIPMENTID
-  RECIPETYPE
-  COMPRESSEDDATA
-}
-```
-
-**Parameters:**
-
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| EQUIPMENTID | A | Equipment ID |
-| RECIPETYPE | U1 | Recipe Type |
-| COMPRESSEDDATA | B | Compressed Data |
-
-#### S16F23 - Recipe Compress Send {#s16f23---recipe-compress-send}
-```text
-{L[3]
-  EQUIPMENTID
-  RECIPETYPE
-  COMPRESSEDDATA
-}
-```
-
-**Parameters:**
-
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| EQUIPMENTID | A | Equipment ID |
-| RECIPETYPE | U1 | Recipe Type |
-| COMPRESSEDDATA | B | Compressed Data |
-
-#### S16F24 - Recipe Compress Acknowledge {#s16f24---recipe-compress-acknowledge}
+#### S16F16 - PRJobMultiCreate Ack {#s16f16---prjobmulticreate-ack}
 ```text
 {L[2]
-  EQUIPMENTID
-  ACKC16
+  {L[m]
+    PRJOBID
+  }
+  {L[2]
+    ACKA
+    {L[n]
+      {L[2]
+        ERRCODE
+        ERRTEXT
+      }
+    }
+  }
 }
 ```
 
@@ -8413,69 +8568,41 @@ S16F7->
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| EQUIPMENTID | A | Equipment ID |
-| ACKC16 | B[1] | Acknowledge Code |
-| | | 0: Acknowledged |
-| | | 1: Error |
-| | | 2: Invalid recipe type |
-| | | 3: Equipment not found |
+| PRJOBID | A | Process Job ID |
+| ACKA | BOOL | Acknowledge (true = success) |
+| ERRCODE | U1/U2/U4/A | Error Code |
+| ERRTEXT | ASCII | Error Text |
 
-#### S16F25 - Recipe Encrypt Request {#s16f25---recipe-encrypt-request}
+#### S16F17 - PRJobDequeue {#s16f17---prjobdequeue}
 ```text
-{L[3]
-  EQUIPMENTID
-  RECIPETYPE
-  RECIPEDATA
+{L[m]
+  PRJOBID
 }
 ```
+
+**Comment:** If m = 0, the request applies to all jobs that have not begun processing.
 
 **Parameters:**
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| EQUIPMENTID | A | Equipment ID |
-| RECIPETYPE | U1 | Recipe Type |
-| RECIPEDATA | any format | Recipe Data |
+| PRJOBID | A | Process Job ID |
 
-#### S16F26 - Recipe Encrypt Response {#s16f26---recipe-encrypt-response}
-```text
-{L[3]
-  EQUIPMENTID
-  RECIPETYPE
-  ENCRYPTEDDATA
-}
-```
-
-**Parameters:**
-
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| EQUIPMENTID | A | Equipment ID |
-| RECIPETYPE | U1 | Recipe Type |
-| ENCRYPTEDDATA | B | Encrypted Data |
-
-#### S16F27 - Recipe Encrypt Send {#s16f27---recipe-encrypt-send}
-```text
-{L[3]
-  EQUIPMENTID
-  RECIPETYPE
-  ENCRYPTEDDATA
-}
-```
-
-**Parameters:**
-
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| EQUIPMENTID | A | Equipment ID |
-| RECIPETYPE | U1 | Recipe Type |
-| ENCRYPTEDDATA | B | Encrypted Data |
-
-#### S16F28 - Recipe Encrypt Acknowledge {#s16f28---recipe-encrypt-acknowledge}
+#### S16F18 - PRJobDequeue Ack {#s16f18---prjobdequeue-ack}
 ```text
 {L[2]
-  EQUIPMENTID
-  ACKC16
+  {L[m]
+    PRJOBID
+  }
+  {L[2]
+    ACKA
+    {L[n]
+      {L[2]
+        ERRCODE
+        ERRTEXT
+      }
+    }
+  }
 }
 ```
 
@@ -8483,12 +8610,188 @@ S16F7->
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| EQUIPMENTID | A | Equipment ID |
-| ACKC16 | B[1] | Acknowledge Code |
-| | | 0: Acknowledged |
-| | | 1: Error |
-| | | 2: Invalid recipe type |
-| | | 3: Equipment not found |
+| PRJOBID | A | Process Job ID |
+| ACKA | BOOL | Acknowledge (true = success) |
+| ERRCODE | U1/U2/U4/A | Error Code |
+| ERRTEXT | ASCII | Error Text |
+
+#### S16F19 - PRJob List Req {#s16f19---prjob-list-req}
+```text
+{}
+```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| - | - | Header only, no parameters required |
+
+#### S16F20 - PRJob List Data {#s16f20---prjob-list-data}
+```text
+{L[m]
+  {L[2]
+    PRJOBID
+    PRSTATE
+  }
+}
+```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| PRJOBID | A | Process Job ID |
+| PRSTATE | U1 | Process Job State |
+
+#### S16F21 - PRJob Create Limit Req {#s16f21---prjob-create-limit-req}
+```text
+{}
+```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| - | - | Header only, no parameters required |
+
+#### S16F22 - PRJob Create Limit Data {#s16f22---prjob-create-limit-data}
+```text
+PRJOBSPACE
+```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| PRJOBSPACE | U4 | Number of process jobs that can currently be created |
+
+#### S16F23 - PRJob Recipe Variable Set {#s16f23---prjob-recipe-variable-set}
+```text
+{L[2]
+  PRJOBID
+  {L[m]
+    {L[2]
+      RCPPARNM
+      RCPPARVAL
+    }
+  }
+}
+```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| PRJOBID | A | Process Job ID |
+| RCPPARNM | A | Recipe Parameter Name |
+| RCPPARVAL | any format | Recipe Parameter Value |
+
+#### S16F24 - PRJob Recipe Variable Ack {#s16f24---prjob-recipe-variable-ack}
+```text
+{L[2]
+  ACKA
+  {L[n]
+    {L[2]
+      ERRCODE
+      ERRTEXT
+    }
+  }
+}
+```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ACKA | BOOL | Acknowledge (true = success) |
+| ERRCODE | U1/U2/U4/A | Error Code |
+| ERRTEXT | ASCII | Error Text |
+
+#### S16F25 - PRJob Start Method Set {#s16f25---prjob-start-method-set}
+```text
+{L[2]
+  {L[m]
+    PRJOBID
+  }
+  PRPROCESSSTART
+}
+```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| PRJOBID | A | Process Job ID |
+| PRPROCESSSTART | BOOL | Process Start Method |
+
+#### S16F26 - PRJob Start Method Ack {#s16f26---prjob-start-method-ack}
+```text
+{L[2]
+  {L[m]
+    PRJOBID
+  }
+  {L[2]
+    ACKA
+    {L[n]
+      {L[2]
+        ERRCODE
+        ERRTEXT
+      }
+    }
+  }
+}
+```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| PRJOBID | A | Process Job ID |
+| ACKA | BOOL | Acknowledge (true = success) |
+| ERRCODE | U1/U2/U4/A | Error Code |
+| ERRTEXT | ASCII | Error Text |
+
+#### S16F27 - Control Job Command {#s16f27---control-job-command}
+```text
+{L[3]
+  CTLJOBID
+  CTLJOBCMD
+  {L[2]
+    CPNAME
+    CPVAL
+  }
+}
+```
+
+**Comment:** Defined by SEMI E94; used in place of S16F5 when Control Jobs are used.
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| CTLJOBID | A | Control Job ID |
+| CTLJOBCMD | U1 | Control Job Command |
+| CPNAME | A | Command Parameter Name |
+| CPVAL | any format | Command Parameter Value |
+
+#### S16F28 - Control Job Command Ack {#s16f28---control-job-command-ack}
+```text
+{L[2]
+  ACKA
+  {L[2]
+    ERRCODE
+    ERRTEXT
+  }
+}
+```
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| ACKA | BOOL | Acknowledge (true = success) |
+| ERRCODE | U1/U2/U4/A | Error Code |
+| ERRTEXT | ASCII | Error Text |
 
 #### S16F29 - PRSetMtrlOrder {#s16f29---prsetmtrlorder}
 ```text
@@ -9198,57 +9501,113 @@ S18F16->
 | CONDITION | A | Condition |
  
  
-### Stream 19: Inventory Management
-**Purpose**: Equipment and material inventory tracking
+### Stream 19: Process Definition Element (PDE) Directory
+**Purpose**: PDE directory management, transfer, resolution, and verification (SEMI E139)
 
 | Message | Direction | Description |
 |---------|-----------|-------------|
-| [S19F1](#s19f1---inventory-request)   | → Equipment | Inventory Request |
-| [S19F2](#s19f2---inventory-response)   | ← Equipment | Inventory Response |
-| [S19F3](#s19f3---inventory-update)   | → Equipment | Inventory Update |
-| [S19F4](#s19f4---inventory-update-response)   | ← Equipment | Inventory Update Response |
-| [S19F5](#s19f5---inventory-add-request)   | → Equipment | Inventory Add Request |
-| [S19F6](#s19f6---inventory-add-response)   | ← Equipment | Inventory Add Response |
-| [S19F7](#s19f7---inventory-remove-request)   | → Equipment | Inventory Remove Request |
-| [S19F8](#s19f8---inventory-remove-response)   | ← Equipment | Inventory Remove Response |
-| [S19F9](#s19f9---inventory-status-request)   | → Equipment | Inventory Status Request |
-| [S19F10](#s19f10---inventory-status-response)  | ← Equipment | Inventory Status Response |
-| [S19F11](#s19f11---inventory-move-request)  | → Equipment | Inventory Move Request |
-| [S19F12](#s19f12---inventory-move-response)  | ← Equipment | Inventory Move Response |
-| [S19F13](#s19f13---inventory-search-request)  | → Equipment | Inventory Search Request |
-| [S19F14](#s19f14---inventory-search-response)  | ← Equipment | Inventory Search Response |
-| [S19F15](#s19f15---inventory-lock-request)  | → Equipment | Inventory Lock Request |
-| [S19F16](#s19f16---inventory-lock-response)  | ← Equipment | Inventory Lock Response |
-| [S19F17](#s19f17---inventory-history-request)  | → Equipment | Inventory History Request |
-| [S19F18](#s19f18---inventory-history-response)  | ← Equipment | Inventory History Response |
-| [S19F19](#s19f19---inventory-audit-request)  | → Equipment | Inventory Audit Request |
-| [S19F20](#s19f20---inventory-audit-response)  | ← Equipment | Inventory Audit Response |
+| [S19F1](#s19f1---request-pde-directory)   | ↔ Host/Equipment | Request PDE Directory |
+| [S19F2](#s19f2---pde-directory-data)   | ↔ Host/Equipment | PDE Directory Data |
+| [S19F3](#s19f3---pde-delete-request)   | → Equipment | PDE Delete Request |
+| [S19F4](#s19f4---pde-delete-acknowledge)   | ← Equipment | PDE Delete Acknowledge |
+| [S19F5](#s19f5---pde-header-data-request)   | ↔ Host/Equipment | PDE Header Data Request |
+| [S19F6](#s19f6---pde-header-data-reply)   | ↔ Host/Equipment | PDE Header Data Reply |
+| [S19F7](#s19f7---pde-transfer-request)   | ↔ Host/Equipment | Request PDE Transfer via Stream 13 |
+| [S19F8](#s19f8---pde-transfer-reply)   | ↔ Host/Equipment | PDE Transfer Reply |
+| [S19F9](#s19f9---request-to-send-pde)   | ↔ Host/Equipment | Request to Send PDE |
+| [S19F10](#s19f10---initiate-pde-transfer-reply)  | ↔ Host/Equipment | Initiate PDE Transfer Reply |
+| [S19F11](#s19f11---send-pde)  | ↔ Host/Equipment | Send PDE |
+| [S19F12](#s19f12---send-pde-acknowledge)  | ↔ Host/Equipment | Send PDE Acknowledge |
+| [S19F13](#s19f13---transfercontainer-report)  | ↔ Host/Equipment | TransferContainer Report |
+| [S19F14](#s19f14---transfercontainer-report-ack)  | ↔ Host/Equipment | TransferContainer Report Ack |
+| [S19F15](#s19f15---request-pde-resolution)  | → Equipment | Request PDE Resolution |
+| [S19F16](#s19f16---pde-resolution-data)  | ← Equipment | PDE Resolution Data |
+| [S19F17](#s19f17---verify-pde-request)  | → Equipment | Verify PDE Request |
+| [S19F18](#s19f18---pde-verification-result)  | ← Equipment | PDE Verification Result |
+| [S19F19](#s19f19---s19-multi-block-inquire)  | ↔ Host/Equipment | S19 Multi-block Inquire |
+| [S19F20](#s19f20---s19-multi-block-grant)  | ↔ Host/Equipment | S19 Multi-block Grant |
 
-#### S19F1 - Inventory Request {#s19f1---inventory-request}
+#### S19F1 - Request PDE Directory {#s19f1---request-pde-directory}
 ```text
-<-S19F1
-{L[n]
-  INVTYPE_1
-  INVTYPE_2
-  ...
-  INVTYPE_n
+{L[2]
+  {L[m]
+    {L[3]
+      PDEATTRIBUTENAME
+      COMPARISONOPERATOR
+      PDEATTRIBUTEVALUE
+    }
+  }
+  {L[n]
+    PDEATTRIBUTE
+  }
 }
 ```
+
+**Comment:** See SEMI E139. If m = 0, all PDEs are returned. If n = 0, no additional attributes
+are returned. Selection conditions are ANDed together.
 
 **Parameters:**
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| INVTYPE | ASCII | Inventory Type |
+| PDEATTRIBUTENAME | A | PDE Attribute Name |
+| COMPARISONOPERATOR | U1 | Comparison Operator |
+| PDEATTRIBUTEVALUE | A | PDE Attribute Value |
+| PDEATTRIBUTE | A | PDE Attribute to return |
 
-#### S19F2 - Inventory Response {#s19f2---inventory-response}
+#### S19F2 - PDE Directory Data {#s19f2---pde-directory-data}
 ```text
-S19F2->
+{L[3]
+  DIRRSPSTAT
+  STATUSTXT
+  {L[m]
+    {L[2]
+      UID
+      {L[n]
+        {L[2]
+          PDEATTRIBUTE
+          PDEATTRIBUTEVALUE
+        }
+      }
+    }
+  }
+}
+```
+
+**Comment:** The list of PDEs and their attributes matching the request.
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| DIRRSPSTAT | U1 | Directory Response Status |
+| STATUSTXT | A | Status Text |
+| UID | A | PDE Unique ID |
+| PDEATTRIBUTE | A | PDE Attribute |
+| PDEATTRIBUTEVALUE | A | PDE Attribute Value |
+
+#### S19F3 - PDE Delete Request {#s19f3---pde-delete-request}
+```text
+{L[n]
+  UID
+}
+```
+
+**Comment:** L[0] is not allowed. Sent by host only.
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| UID | A | PDE Unique ID |
+
+#### S19F4 - PDE Delete Acknowledge {#s19f4---pde-delete-acknowledge}
+```text
 {L[n]
   {L[3]
-    INVTYPE
-    INVID
-    INVDATA
+    UID
+    DELRSPSTAT
+    STATUSTXT
   }
 }
 ```
@@ -9257,251 +9616,114 @@ S19F2->
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| INVTYPE | ASCII | Inventory Type |
-| INVID | ASCII | Inventory ID |
-| INVDATA | Any | Inventory Data |
+| UID | A | PDE Unique ID |
+| DELRSPSTAT | U1 | Delete Response Status |
+| STATUSTXT | A | Status Text |
 
-#### S19F3 - Inventory Update {#s19f3---inventory-update}
+#### S19F5 - PDE Header Data Request {#s19f5---pde-header-data-request}
 ```text
-<-S19F3
-{L[3]
-  INVTYPE
-  INVID
-  INVDATA
-}
-```
-
-**Parameters:**
-
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| INVTYPE | ASCII | Inventory Type |
-| INVID | ASCII | Inventory ID |
-| INVDATA | Any | Inventory Data |
-
-#### S19F4 - Inventory Update Response {#s19f4---inventory-update-response}
-```text
-S19F4->
-{L[2]
-  INVID
-  ACKC19
-}
-```
-
-**Parameters:**
-
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| INVID | ASCII | Inventory ID |
-| ACKC19 | U1 | Acknowledge Code |
-
-#### S19F5 - Inventory Add Request {#s19f5---inventory-add-request}
-```text
-<-S19F5
-{L[4]
-  INVTYPE
-  INVID
-  INVDATA
-  LOCATION
-}
-```
-
-**Parameters:**
-
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| INVTYPE | ASCII | Inventory Type |
-| INVID | ASCII | Inventory ID |
-| INVDATA | Any | Inventory Data |
-| LOCATION | ASCII | Location |
-
-#### S19F6 - Inventory Add Response {#s19f6---inventory-add-response}
-```text
-S19F6->
-{L[2]
-  INVID
-  ACKC19
-}
-```
-
-**Parameters:**
-
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| INVID | ASCII | Inventory ID |
-| ACKC19 | U1 | Acknowledge Code |
-
-#### S19F7 - Inventory Remove Request {#s19f7---inventory-remove-request}
-```text
-<-S19F7
-{L[2]
-  INVTYPE
-  INVID
-}
-```
-
-**Parameters:**
-
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| INVTYPE | ASCII | Inventory Type |
-| INVID | ASCII | Inventory ID |
-
-#### S19F8 - Inventory Remove Response {#s19f8---inventory-remove-response}
-```text
-S19F8->
-{L[2]
-  INVID
-  ACKC19
-}
-```
-
-**Parameters:**
-
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| INVID | ASCII | Inventory ID |
-| ACKC19 | U1 | Acknowledge Code |
-
-#### S19F9 - Inventory Status Request {#s19f9---inventory-status-request}
-```text
-<-S19F9
-INVID
-```
-
-**Parameters:**
-
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| INVID | ASCII | Inventory ID |
-
-#### S19F10 - Inventory Status Response {#s19f10---inventory-status-response}
-```text
-S19F10->
-{L[4]
-  INVID
-  INVSTATUS
-  LOCATION
-  INVDATA
-}
-```
-
-**Parameters:**
-
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| INVID | ASCII | Inventory ID |
-| INVSTATUS | U1 | Inventory Status |
-| LOCATION | ASCII | Location |
-| INVDATA | Any | Inventory Data |
-
-#### S19F11 - Inventory Move Request {#s19f11---inventory-move-request}
-```text
-<-S19F11
-{L[3]
-  INVID
-  SRCLOCATION
-  DESTLOCATION
-}
-```
-
-**Parameters:**
-
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| INVID | ASCII | Inventory ID |
-| SRCLOCATION | ASCII | Source Location |
-| DESTLOCATION | ASCII | Destination Location |
-
-#### S19F12 - Inventory Move Response {#s19f12---inventory-move-response}
-```text
-S19F12->
-{L[2]
-  INVID
-  ACKC19
-}
-```
-
-**Parameters:**
-
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| INVID | ASCII | Inventory ID |
-| ACKC19 | U1 | Acknowledge Code |
-
-#### S19F13 - Inventory Search Request {#s19f13---inventory-search-request}
-```text
-<-S19F13
 {L[n]
-  SEARCHCRITERIA
+  UID
 }
 ```
+
+**Comment:** n = 0 is not allowed.
 
 **Parameters:**
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| SEARCHCRITERIA | ASCII | Search Criteria |
+| UID | A | PDE Unique ID |
 
-#### S19F14 - Inventory Search Response {#s19f14---inventory-search-response}
+#### S19F6 - PDE Header Data Reply {#s19f6---pde-header-data-reply}
 ```text
-S19F14->
-{L[n]
-  {L[3]
-    INVID
-    LOCATION
-    INVDATA
+{L[2]
+  TCID
+  {L[n]
+    {L[3]
+      UID
+      GETRSPSTAT
+      STATUSTXT
+    }
   }
 }
 ```
 
+**Comment:** A zero-length TCID is sent if there are no status-code-0 PDEs.
+
 **Parameters:**
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| INVID | ASCII | Inventory ID |
-| LOCATION | ASCII | Location |
-| INVDATA | Any | Inventory Data |
+| TCID | A | TransferContainer ID |
+| UID | A | PDE Unique ID |
+| GETRSPSTAT | U1 | Get Response Status |
+| STATUSTXT | A | Status Text |
 
-#### S19F15 - Inventory Lock Request {#s19f15---inventory-lock-request}
+#### S19F7 - Request PDE Transfer via Stream 13 {#s19f7---pde-transfer-request}
 ```text
-<-S19F15
-{L[2]
-  INVID
-  LOCKTYPE
+{L[n]
+  UID
 }
 ```
 
+**Comment:** n = 0 is not allowed.
+
 **Parameters:**
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| INVID | ASCII | Inventory ID |
-| LOCKTYPE | U1 | Lock Type |
+| UID | A | PDE Unique ID |
 
-#### S19F16 - Inventory Lock Response {#s19f16---inventory-lock-response}
+#### S19F8 - PDE Transfer Reply {#s19f8---pde-transfer-reply}
 ```text
-S19F16->
 {L[2]
-  INVID
-  LOCKSTATUS
+  TCID
+  {L[n]
+    {L[3]
+      UID
+      GETRSPSTAT
+      STATUSTXT
+    }
+  }
 }
 ```
 
+**Comment:** Each PDE data set with GETRSPSTAT = 0 is sent in a Stream 13 TransferContainer.
+A zero-length TCID is sent if there are no status-code-0 PDEs.
+
 **Parameters:**
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| INVID | ASCII | Inventory ID |
-| LOCKSTATUS | U1 | Lock Status |
+| TCID | A | TransferContainer ID |
+| UID | A | PDE Unique ID |
+| GETRSPSTAT | U1 | Get Response Status |
+| STATUSTXT | A | Status Text |
 
-#### S19F17 - Inventory History Request {#s19f17---inventory-history-request}
+#### S19F9 - Request to Send PDE {#s19f9---request-to-send-pde}
 ```text
-<-S19F17
+{L[2]
+  TCID
+  TRANSFERSIZE
+}
+```
+
+**Comment:** Requests permission to initiate a PDE transfer using S19F11.
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TCID | A | TransferContainer ID |
+| TRANSFERSIZE | U4/U8 | Transfer Size in bytes |
+
+#### S19F10 - Initiate PDE Transfer Reply {#s19f10---initiate-pde-transfer-reply}
+```text
 {L[3]
-  INVID
-  STARTTIME
-  ENDTIME
+  TCID
+  RTSRSPSTAT
+  STATUSTXT
 }
 ```
 
@@ -9509,19 +9731,166 @@ S19F16->
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| INVID | ASCII | Inventory ID |
-| STARTTIME | ASCII | Start Time |
-| ENDTIME | ASCII | End Time |
+| TCID | A | TransferContainer ID |
+| RTSRSPSTAT | U1 | Request-to-Send Response Status |
+| STATUSTXT | A | Status Text |
 
-#### S19F18 - Inventory History Response {#s19f18---inventory-history-response}
+#### S19F11 - Send PDE {#s19f11---send-pde}
 ```text
-S19F18->
+TCID
+```
+
+**Comment:** Tells the receiver to initiate a Stream 13 transfer with DSNAME = TCID.
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TCID | A | TransferContainer ID |
+
+#### S19F12 - Send PDE Acknowledge {#s19f12---send-pde-acknowledge}
+```text
+{}
+```
+
+**Comment:** Header only. The transfer result status is sent in S19F13.
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| - | - | Header only, no parameters required |
+
+#### S19F13 - TransferContainer Report {#s19f13---transfercontainer-report}
+```text
 {L[n]
   {L[4]
-    INVID
-    TIMESTAMP
-    ACTION
-    DETAILS
+    UID
+    SENDRSPSTAT
+    VERIFYRSPSTAT
+    STATUSTXT
+  }
+}
+```
+
+**Comment:** Acknowledges receipt of a TransferContainer sent via Stream 13. Verification of
+transferred PDEs is required when received by equipment.
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| UID | A | PDE Unique ID |
+| SENDRSPSTAT | U1 | Send Response Status |
+| VERIFYRSPSTAT | U1 | Verify Response Status |
+| STATUSTXT | A | Status Text |
+
+#### S19F14 - TransferContainer Report Ack {#s19f14---transfercontainer-report-ack}
+```text
+{}
+```
+
+**Comment:** Header only. Acknowledges receipt of S19F13.
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| - | - | Header only, no parameters required |
+
+#### S19F15 - Request PDE Resolution {#s19f15---request-pde-resolution}
+```text
+{L[2]
+  TARGETPDE
+  {L[n]
+    {L[2]
+      PDEREF
+      RESOLUTION
+    }
+  }
+}
+```
+
+**Comment:** Requests the equipment to resolve PDEs in the target. n can be 0 when there is
+no InputMap.
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TARGETPDE | A | Target PDE UID |
+| PDEREF | A | PDE Reference |
+| RESOLUTION | A | Resolution (PDE UID) |
+
+#### S19F16 - PDE Resolution Data {#s19f16---pde-resolution-data}
+```text
+{L[2]
+  {L[m]
+    {L[2]
+      PDEREF
+      RESOLUTION
+    }
+  }
+  {L[n]
+    {L[3]
+      UID
+      RESPDESTAT
+      STATUSTXT
+    }
+  }
+}
+```
+
+**Comment:** The output map of the recipe structure. L[m] contains resolved PDEREFs.
+n can be 0; n >= m.
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| PDEREF | A | PDE Reference |
+| RESOLUTION | A | Resolution (PDE UID) |
+| UID | A | PDE Unique ID |
+| RESPDESTAT | U1 | Resolution Response Status |
+| STATUSTXT | A | Status Text |
+
+#### S19F17 - Verify PDE Request {#s19f17---verify-pde-request}
+```text
+{L[4]
+  TARGETPDE
+  {L[n]
+    {L[2]
+      PDEREF
+      RESOLUTION
+    }
+  }
+  VERIFYTYPE
+  VERIFYDEPTH
+}
+```
+
+**Comment:** n can be 0 when there is no InputMap.
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| TARGETPDE | A | Target PDE UID |
+| PDEREF | A | PDE Reference |
+| RESOLUTION | A | Resolution (PDE UID) |
+| VERIFYTYPE | U1 | Verification Type |
+| VERIFYDEPTH | U1 | Verification Depth |
+
+#### S19F18 - PDE Verification Result {#s19f18---pde-verification-result}
+```text
+{L[2]
+  VERIFYSUCCESS
+  {L[n]
+    {L[3]
+      UID
+      VERIFYRSPSTAT
+      STATUSTXT
+    }
   }
 }
 ```
@@ -9530,72 +9899,75 @@ S19F18->
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| INVID | ASCII | Inventory ID |
-| TIMESTAMP | ASCII | Timestamp |
-| ACTION | ASCII | Action |
-| DETAILS | ASCII | Details |
+| VERIFYSUCCESS | BOOL | Overall Verification Success |
+| UID | A | PDE Unique ID |
+| VERIFYRSPSTAT | U1 | Verify Response Status |
+| STATUSTXT | A | Status Text |
 
-#### S19F19 - Inventory Audit Request {#s19f19---inventory-audit-request}
+#### S19F19 - S19 Multi-block Inquire {#s19f19---s19-multi-block-inquire}
 ```text
-<-S19F19
-{L[2]
-  AUDITTYPE
-  AUDITPARAMS
-}
+DATALENGTH
+```
+
+**Comment:** SECS-I permission request to send multi-block S19F1/3/5/6/13/15/17.
+Not required for HSMS.
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| DATALENGTH | U4 | Total message length in bytes |
+
+#### S19F20 - S19 Multi-block Grant {#s19f20---s19-multi-block-grant}
+```text
+GRANT
 ```
 
 **Parameters:**
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| AUDITTYPE | U1 | Audit Type |
-| AUDITPARAMS | ASCII | Audit Parameters |
+| GRANT | B[1] | Grant Code |
 
-#### S19F20 - Inventory Audit Response {#s19f20---inventory-audit-response}
-```text
-S19F20->
-{L[2]
-  AUDITSTATUS
-  AUDITRESULTS
-}
-```
-
-**Parameters:**
-
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| AUDITSTATUS | U1 | Audit Status |
-| AUDITRESULTS | ASCII | Audit Results |
-
- 
-
-
-
-### Stream 20: Substrate Transfer (SEMI-E157)
-**Purpose**: Advanced substrate transfer operations
+### Stream 20: Recipe and Operation Management (SEMI E170)
+**Purpose**: RMS recipe and subsystem operation management (SEMI E170)
 
 | Message | Direction | Description |
 |---------|-----------|-------------|
-| [S20F1](#s20f1---setsro-attributes-request)   | → Equipment | Transfer Request |
-| [S20F2](#s20f2---setsro-attributes-acknowledge)   | ← Equipment | Transfer Response |
-| [S20F3](#s20f3---getoperationidlist-request)   | → Equipment | Transfer Pause |
-| [S20F4](#s20f4---getoperationidlist-acknowledge)   | ← Equipment | Transfer Pause Response |
-| [S20F5](#s20f5---openconnectionevent-send)   | → Equipment | Transfer Resume |
-| [S20F6](#s20f6---openconnectionevent-acknowledge)   | ← Equipment | Transfer Resume Response |
-| [S20F7](#s20f7---closeconnectionevent-send)   | → Equipment | Transfer Abort |
-| [S20F8](#s20f8---closeconnectionevent-acknowledge)   | ← Equipment | Transfer Abort Response |
-| [S20F9](#s20f9---clearoperation-request)   | → Equipment | Transfer Status |
-| [S20F10](#s20f10---clearoperation-acknowledge)  | ← Equipment | Transfer Resume Response |
-| [S20F11](#s20f11---getrecipexidlist-request)  | → Equipment | Transfer Queue Request |
-| [S20F12](#s20f12---getrecipexidlist-acknowledge)  | ← Equipment | Transfer Queue Response |
-| [S20F13](#s20f13---deleterecipe-request)  | → Equipment | Transfer Priority Request |
-| [S20F14](#s20f14---deleterecipe-acknowledge)  | ← Equipment | Transfer Priority Response |
-| [S20F15](#s20f15---writerecipe-request)  | → Equipment | Transfer Route Request |
-| [S20F16](#s20f16---writerecipe-acknowledge)  | ← Equipment | Transfer Route Response |
-| [S20F17](#s20f17---readrecipe-request)  | → Equipment | Transfer Schedule Request |
-| [S20F18](#s20f18---readrecipe-acknowledge)  | ← Equipment | Transfer Schedule Response |
-| [S20F19](#s20f19---queryrecipexidlist-event-send)  | → Equipment | Transfer Log Request |
-
+| [S20F1](#s20f1---setsro-attributes-request)   | → Equipment | SetSRO Attributes Request |
+| [S20F2](#s20f2---setsro-attributes-acknowledge)   | ← Equipment | SetSRO Attributes Acknowledge |
+| [S20F3](#s20f3---getoperationidlist-request)   | → Equipment | GetOperationIDList Request |
+| [S20F4](#s20f4---getoperationidlist-acknowledge)   | ← Equipment | GetOperationIDList Acknowledge |
+| [S20F5](#s20f5---openconnectionevent-send)   | ← Equipment | OpenConnectionEvent Send |
+| [S20F6](#s20f6---openconnectionevent-acknowledge)   | → Equipment | OpenConnectionEvent Acknowledge |
+| [S20F7](#s20f7---closeconnectionevent-send)   | ← Equipment | CloseConnectionEvent Send |
+| [S20F8](#s20f8---closeconnectionevent-acknowledge)   | → Equipment | CloseConnectionEvent Acknowledge |
+| [S20F9](#s20f9---clearoperation-request)   | → Equipment | ClearOperation Request |
+| [S20F10](#s20f10---clearoperation-acknowledge)  | ← Equipment | ClearOperation Acknowledge |
+| [S20F11](#s20f11---getrecipexidlist-request)  | → Equipment | GetRecipeXIDList Request |
+| [S20F12](#s20f12---getrecipexidlist-acknowledge)  | ← Equipment | GetRecipeXIDList Acknowledge |
+| [S20F13](#s20f13---deleterecipe-request)  | → Equipment | DeleteRecipe Request |
+| [S20F14](#s20f14---deleterecipe-acknowledge)  | ← Equipment | DeleteRecipe Acknowledge |
+| [S20F15](#s20f15---writerecipe-request)  | → Equipment | WriteRecipe Request |
+| [S20F16](#s20f16---writerecipe-acknowledge)  | ← Equipment | WriteRecipe Acknowledge |
+| [S20F17](#s20f17---readrecipe-request)  | → Equipment | ReadRecipe Request |
+| [S20F18](#s20f18---readrecipe-acknowledge)  | ← Equipment | ReadRecipe Acknowledge |
+| [S20F19](#s20f19---queryrecipexidlist-event-send)  | ← Equipment | QueryRecipeXIDList Event Send |
+| [S20F20](#s20f20---queryrecipexidlist-event-acknowledge)  | → Equipment | QueryRecipeXIDList Event Acknowledge |
+| [S20F21](#s20f21---queryrecipe-event-send)  | ← Equipment | QueryRecipe Event Send |
+| [S20F22](#s20f22---queryrecipe-event-acknowledge)  | → Equipment | QueryRecipe Event Acknowledge |
+| [S20F23](#s20f23---postrecipe-event-send)  | ← Equipment | PostRecipe Event Send |
+| [S20F24](#s20f24---postrecipe-event-acknowledge)  | → Equipment | PostRecipe Event Acknowledge |
+| [S20F25](#s20f25---setprc-attributes-request)  | → Equipment | SetPRC Attributes Request |
+| [S20F26](#s20f26---setprc-attributes-acknowledge)  | ← Equipment | SetPRC Attributes Acknowledge |
+| [S20F27](#s20f27---prespecifyrecipe-request)  | → Equipment | PreSpecifyRecipe Request |
+| [S20F28](#s20f28---prespecifyrecipe-acknowledge)  | ← Equipment | PreSpecifyRecipe Acknowledge |
+| [S20F29](#s20f29---querypjrecipexidlist-event-send)  | ← Equipment | QueryPJRecipeXIDList Event Send |
+| [S20F30](#s20f30---querypjrecipexidlist-event-acknowledge)  | → Equipment | QueryPJRecipeXIDList Event Acknowledge |
+| [S20F31](#s20f31---pre-exe-check-event-send)  | ← Equipment | Pre-Exe Check Event Send |
+| [S20F32](#s20f32---pre-exe-check-event-acknowledge)  | → Equipment | Pre-Exe Check Event Acknowledge |
+| [S20F33](#s20f33---prespecifyrecipe-event-send)  | ← Equipment | PreSpecifyRecipe Event Send |
+| [S20F34](#s20f34---prespecifyrecipe-event-acknowledge)  | → Equipment | PreSpecifyRecipe Event Acknowledge |
 
 #### S20F1 - SetSRO Attributes Request {#s20f1---setsro-attributes-request}
 ```text
@@ -9643,7 +10015,7 @@ S20F4->
 
 #### S20F5 - OpenConnectionEvent Send {#s20f5---openconnectionevent-send}
 ```text
-<-S20F5
+S20F5->
 {L[7]
   OBJID
   OBJTYPE
@@ -9658,7 +10030,7 @@ S20F4->
 
 #### S20F6 - OpenConnectionEvent Acknowledge {#s20f6---openconnectionevent-acknowledge}
 ```text
-S20F6->
+<-S20F6
 {L[2]
   OPEID
   OCEACK
@@ -9668,7 +10040,7 @@ S20F6->
 
 #### S20F7 - CloseConnectionEvent Send {#s20f7---closeconnectionevent-send}
 ```text
-<-S20F7
+S20F7->
 {L[4]
   OBJID
   OBJTYPE
@@ -9990,7 +10362,20 @@ S20F23->
   OBJTYPE
   OPETYPE
   OPEID
-  PRJOBID
+  {L[n]
+    {L[10]
+      TIMESTAMP
+      OPEID
+      ASSGNID
+      COPYID
+      REVID
+      RecID
+      VERID
+      TYPEID
+      EQID
+      RCPBODYA
+    }
+  }
 }
 ```
 
@@ -10002,7 +10387,15 @@ S20F23->
 | OBJTYPE | ASCII | Object type |
 | OPETYPE | ASCII | Operation type |
 | OPEID | ASCII | Operation ID |
-| PRJOBID | ASCII | Process job ID |
+| TIMESTAMP | ASCII | Timestamp |
+| ASSGNID | ASCII | Assign ID |
+| COPYID | ASCII | Copy ID |
+| REVID | ASCII | Revision ID |
+| RecID | ASCII | Recipe ID |
+| VERID | ASCII | Version ID |
+| TYPEID | ASCII | Type ID |
+| EQID | ASCII | Equipment ID |
+| RCPBODYA | B | Recipe Body |
    
 
 
@@ -10282,8 +10675,8 @@ PSREACK
 
 | Message | Direction | Description |
 |---------|-----------|-------------|
-| [S21F1](#s21f1---material-transfer-plan)   | → Equipment | Material Transfer Plan |
-| [S21F2](#s21f2---material-transfer-plan-response)   | ← Equipment | Material Transfer Plan Response |
+| [S21F1](#s21f1---item-load-inquire)   | → Equipment | Item Load Inquire |
+| [S21F2](#s21f2---item-load-grant)   | ← Equipment | Item Load Grant |
 | [S21F3](#s21f3---item-send)   | → Equipment | Item Send |
 | [S21F4](#s21f4---item-send-acknowledge)   | ← Equipment | Item Send Acknowledge |
 | [S21F5](#s21f5---item-request)   | → Equipment | Item Request |
@@ -10303,14 +10696,14 @@ PSREACK
 | [S21F19](#s21f19---item-type-feature-support)   | → Equipment | Item Type Feature Support |
 | [S21F20](#s21f20---item-type-feature-support-results)   | ← Equipment | Item Type Feature Support Results |
 
-#### S21F1 - Material Transfer Plan {#s21f1---material-transfer-plan}
+#### S21F1 - Item Load Inquire {#s21f1---item-load-inquire}
 ```text
 <-S21F1
 {L[4]
   ITEMTYPE
   ITEMID
-  TRANSFERID
-  TRANSFERINFO
+  ITEMLENGTH
+  ITEMVERSION
 }
 ```
 
@@ -10320,11 +10713,11 @@ PSREACK
 |-----------|------|-------------|
 | ITEMTYPE | ASCII | Item type |
 | ITEMID | ASCII | Item ID |
-| TRANSFERID | ASCII | Transfer ID |
-| TRANSFERINFO | ASCII | Transfer information |
+| ITEMLENGTH | U4/U8 | Item Length in bytes |
+| ITEMVERSION | ASCII | Item Version |
   
 
-#### S21F2 - Material Transfer Plan Response {#s21f2---material-transfer-plan-response}
+#### S21F2 - Item Load Grant {#s21f2---item-load-grant}
 ```text
 S21F2->
 {L[2]

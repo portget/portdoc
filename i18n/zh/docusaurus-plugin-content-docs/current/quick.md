@@ -265,22 +265,22 @@ Port.Pull("sample", @"D:\sample\Repo\pull\");
 
 **模型（Model）** 是将 Port 条目与 C# 属性连接的**数据绑定层**。
 
-使用 `[ModelBinding(instanceKey, entryKey)]` 特性进行映射：
+使用 `[EntryBinding(instanceKey, entryKey)]` 特性进行映射：
 
 ```csharp
 [Model]
 public class BulbModel
 {
-    [ModelBinding("Bulb1", Io.Bulb1OnOff)]
-    [ModelBinding("Bulb2", Io.Bulb2OnOff)]
+    [EntryBinding("Bulb1", Io.Bulb1OnOff)]
+    [EntryBinding("Bulb2", Io.Bulb2OnOff)]
     public Entry OnOff { get; set; }
 
-    [ModelBinding("Bulb1", Io.Bulb1Temp)]
-    [ModelBinding("Bulb2", Io.Bulb2Temp)]
+    [EntryBinding("Bulb1", Io.Bulb1Temp)]
+    [EntryBinding("Bulb2", Io.Bulb2Temp)]
     public Entry Temp { get; set; }
 
-    [ModelBinding("Bulb1", Io.Bulb1TargetTemp)]
-    [ModelBinding("Bulb2", Io.Bulb2TargetTemp)]
+    [EntryBinding("Bulb1", Io.Bulb1TargetTemp)]
+    [EntryBinding("Bulb2", Io.Bulb2TargetTemp)]
     public Entry TargetTemp { get; set; }
 }
 ```
@@ -354,8 +354,10 @@ Port.Set("Bulb1", FlowAction.Canceled);    // 取消
 | 接口 | 用途 |
 |------|------|
 | `IFlowHandler` | 基本流程推进控制（`Next()`） |
-| `IFlowWithModelHandler<T>` | 携带模型的流程事件订阅 |
+| `IModelFlowHandler<T>` | 携带模型的流程事件订阅 |
 | `ISchedulerHandler<T>` | 传输完成调度 |
+| `IModuleFlowHandler<TModule, TSubstrate, TModel>` | 通过 `GetModule()` / `GetSubstrate()` / `GetModel()` 对模块、基板、Model 进行类型化访问 |
+| `ITransferFlowHandler<TTransfer, TSubstrate, TModel>` | 用于机器人 Pick/Place 流程：`GetTransfer()` / `GetSubstrate()` / `GetModel()` + `GetTargetName()` / `GetSourceName()` |
 
 ### 4.2 IFlowCACD\<T\> — 标准4步流程
 

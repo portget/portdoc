@@ -12,6 +12,18 @@ const sidebars = {
     },
     {
       type: 'category',
+      label: 'Equipment Tour',
+      collapsed: false,
+      items: [
+        'equipment/overview',
+        'equipment/modules',
+        'equipment/flows',
+        'equipment/transfer',
+        'equipment/simulation',
+      ],
+    },
+    {
+      type: 'category',
       label: 'Documentation',
       collapsed: false,
       items: [

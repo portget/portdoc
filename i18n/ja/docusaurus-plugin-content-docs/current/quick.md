@@ -314,7 +314,7 @@ Port.Pull("sample", @"D:\sample\Repo\pull\");
 **モデル（Model）** は Port エントリと C# プロパティを結びつける**データバインディング層**です。
 
 - クラスを `[Model]` 属性で宣言します。
-- 各プロパティは `[ModelBinding]` を介して特定のエントリにリンクされます。
+- 各プロパティは `[EntryBinding]` を介して特定のエントリにリンクされます。
 - コントローラーとフローはモデルを通じてエントリ値を読み書きします。
 
 ---
@@ -325,7 +325,7 @@ Port.Pull("sample", @"D:\sample\Repo\pull\");
 .page ファイル（エントリ定義）
     ↓  Push
 Port インメモリ DB（エントリ値）
-    ↕  ModelBinding
+    ↕  EntryBinding
 モデル（C# プロパティ ↔ エントリマッピング）
     ↕
 コントローラー / フロー（ビジネスロジック）
@@ -338,7 +338,7 @@ Port インメモリ DB（エントリ値）
 
 ### 2.3 モデルをページにマッピングする方法
 
-`[ModelBinding(instanceKey, entryKey)]` 属性を使用します。
+`[EntryBinding(instanceKey, entryKey)]` 属性を使用します。
 
 - **第 1 引数** — コントローラーインスタンスキー（例：`"Bulb1"`、`"LP1"`）
 - **第 2 引数** — 自動生成された `.cs` ファイルのエントリ定数
@@ -348,33 +348,33 @@ Port インメモリ DB（エントリ値）
 public class BulbModel
 {
     // "Bulb1" と "Bulb2" のインスタンスは同じプロパティ構造を共有
-    [ModelBinding("Bulb1", Io.Bulb1OnOff)]
-    [ModelBinding("Bulb2", Io.Bulb2OnOff)]
+    [EntryBinding("Bulb1", Io.Bulb1OnOff)]
+    [EntryBinding("Bulb2", Io.Bulb2OnOff)]
     public Entry OnOff { get; set; }
 
-    [ModelBinding("Bulb1", Io.Bulb1Temp)]
-    [ModelBinding("Bulb2", Io.Bulb2Temp)]
+    [EntryBinding("Bulb1", Io.Bulb1Temp)]
+    [EntryBinding("Bulb2", Io.Bulb2Temp)]
     public Entry Temp { get; set; }
 
-    [ModelBinding("Bulb1", Io.Bulb1TargetTemp)]
-    [ModelBinding("Bulb2", Io.Bulb2TargetTemp)]
+    [EntryBinding("Bulb1", Io.Bulb1TargetTemp)]
+    [EntryBinding("Bulb2", Io.Bulb2TargetTemp)]
     public Entry TargetTemp { get; set; }
 }
 ```
 
-`[ModelBinding]` 属性は、自動生成クラスとユーザー定義 `[Page]` クラスのエントリを自由に混在させることができます：
+`[EntryBinding]` 属性は、自動生成クラスとユーザー定義 `[Page]` クラスのエントリを自由に混在させることができます：
 
 ```csharp
 [Model]
 public class LoadportModel
 {
     // CustomEFEM 経由で追加されたエントリ
-    [ModelBinding("LP1", CustomEFEM.LP1_Cont1_o)]
+    [EntryBinding("LP1", CustomEFEM.LP1_Cont1_o)]
     // 自動生成された EFEM クラスのエントリ
-    [ModelBinding("LP2", EFEM.LP2_Cont_o)]
+    [EntryBinding("LP2", EFEM.LP2_Cont_o)]
     public Entry LP_Cont_o { get; set; }
 
-    [ModelBinding("LP1", CustomEFEM.LP1_OffOn_o)]
+    [EntryBinding("LP1", CustomEFEM.LP1_OffOn_o)]
     public Entry LP_OffOn_o { get; set; }
 }
 ```
@@ -412,6 +412,8 @@ Port.Run();
 ### 3.3 フロー内でモデルを扱う
 
 メソッドパラメータとしてモデルを直接受け取ることでエントリ値にアクセスできます：
+
+> 注: このモデルパラメータは任意です。`[Handler]` が型付きハンドラーの場合、ステップは `m` パラメータを省略し、`Handler.Model`（3 型ハンドラーでは `Handler.GetModel()`）からモデルを読み取れます。どちらも同じモデルシングルトンに解決されます。
 
 ```csharp
 [Controller]
@@ -534,8 +536,10 @@ public partial class MainWindow : Window
 | インターフェース | 目的 |
 |---------------|------|
 | `IFlowHandler` | 基本的なフロー進行制御（`Next()`） |
-| `IFlowWithModelHandler<T>` | モデルを持つフローイベントサブスクリプション |
+| `IModelFlowHandler<T>` | モデルを持つフローイベントサブスクリプション |
 | `ISchedulerHandler<T>` | 転送完了スケジューリング |
+| `IModuleFlowHandler<TModule, TSubstrate, TModel>` | `GetModule()` / `GetSubstrate()` / `GetModel()` でモジュール・基板・Model に型付きアクセス |
+| `ITransferFlowHandler<TTransfer, TSubstrate, TModel>` | ロボット Pick/Place フロー用: `GetTransfer()` / `GetSubstrate()` / `GetModel()` + `GetTargetName()` / `GetSourceName()` |
 
 ---
 
@@ -551,10 +555,10 @@ handler.Next();   // 次の FlowStep に進む
 handler.Done();   // フローを Idle に同期的に強制する
 ```
 
-#### IFlowWithModelHandler\<T\> — イベント駆動型モデルアクセス
+#### IModelFlowHandler\<T\> — イベント駆動型モデルアクセス
 
 `IFlowCACD<T>` は機器転送フローに推奨されるインターフェースです。
-ハンドラーを `IFlowWithModelHandler<T>` として宣言することで、モデルを持つフロー
+ハンドラーを `IModelFlowHandler<T>` として宣言することで、モデルを持つフロー
 ライフサイクルイベントにアクセスできます。`[Preset]` でサブスクライブします —
 サブスクリプションは同じフローキーのすべての実行にわたって維持されます。
 
@@ -566,7 +570,7 @@ internal class WTRController
     public class Pick : IFlowCACD<WTRCommModel>
     {
         [Handler]
-        public IFlowWithModelHandler<WTRCommModel> handler { set; get; } = null!;
+        public IModelFlowHandler<WTRCommModel> handler { set; get; } = null!;
 
         [Handler]
         public ISchedulerHandler<DualArmActionArgs> scheduler { set; get; } = null!;
@@ -615,7 +619,7 @@ internal class WTRController
 | 2 | `CheckAction` | 操作が正常に完了したことを確認する |
 | 3 | `Done` | 完了 — `handler.Done()` を呼び出してフローを閉じる |
 
-#### IFlowWithModelHandler\<T\> ライフサイクルイベント
+#### IModelFlowHandler\<T\> ライフサイクルイベント
 
 | イベント | 発火タイミング | 引数 |
 |---------|-------------|------|
@@ -736,7 +740,7 @@ model.TargetTemp.Set("80.0");
 [FlowModel]
 public IFlowModel model { get; set; }
 
-model.Set("@OnOff", "On");   // @ プレフィックスは ModelBinding キーを参照する
+model.Set("@OnOff", "On");   // @ プレフィックスは EntryBinding キーを参照する
 ```
 
 ---
@@ -769,7 +773,7 @@ string status = (string)model.OnOff.Value;
 ### IFlowModel 経由での Get（`@` バインディング）
 
 ```csharp
-var value = model.Get("@Temp");   // ModelBinding キーにバインドされたエントリを読み取る
+var value = model.Get("@Temp");   // EntryBinding キーにバインドされたエントリを読み取る
 ```
 
 ---
