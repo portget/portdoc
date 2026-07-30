@@ -9,7 +9,7 @@ sidebar_position: 99
 
 | Name | Version | OS | Stable | Link |
 |------|---------|----|--------|------|
-| Binaries for Windows | v1.2.4 | Windows x64 | Yes | [v1.2.4-win-installer](pathname:///file/Setup.zip) |
+| Binaries for Windows | v1.2.5 | Windows x64 | Yes | [v1.2.5-win-installer](pathname:///file/Setup.zip) |
 
 ---
 
