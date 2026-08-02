@@ -276,17 +276,48 @@ WHERE  timestamp >= 1_700_000_000_000
   AND  motor_rpm > 3000.0;
 ```
 
-### Aggregation with time bucketing
+### Aggregation with time bucketing (resampling)
+
+`time_bucket('<interval>', timestamp)` groups rows into fixed-width windows — the
+time-series *resample* operation. Combine it with `GROUP BY 1` (group by the first
+select item) and one or more aggregate functions:
 
 ```sql
-SELECT time_bucket('5m', timestamp) AS bucket,
-       avg(temperature)             AS avg_temp,
-       max(pressure)                AS peak_pressure
+-- Resample to 5-minute buckets: min / avg / max per window
+SELECT time_bucket('5m', timestamp),
+       min(temperature),
+       avg(temperature),
+       max(pressure)
 FROM   sensors
-WHERE  timestamp >= 1_700_000_000_000
-GROUP  BY bucket
-ORDER  BY bucket;
+WHERE  timestamp >= Now() - 1day
+GROUP  BY 1
+ORDER  BY 1;
 ```
+
+Descriptive statistics per bucket (spread and central tendency):
+
+```sql
+SELECT time_bucket('1h', timestamp),
+       avg(temperature),
+       stddev(temperature),
+       median(temperature)
+FROM   sensors
+WHERE  Now() - 1day
+GROUP  BY 1;
+```
+
+Row throughput per minute, and a single-row summary over the whole range:
+
+```sql
+SELECT time_bucket('1m', timestamp), count(*)
+FROM   metrics WHERE Now() - 1hour GROUP BY 1;
+
+SELECT avg(motor_rpm), min(motor_rpm), max(motor_rpm)
+FROM   equipment WHERE Now() - 1hour;   -- no GROUP BY -> one summary row
+```
+
+Each aggregated row is timestamped at the **bucket start**; on the Web Query page the
+result is charted and shown in the grid exactly like a raw-row query.
 
 ### Supported statements
 
@@ -300,13 +331,27 @@ ORDER  BY bucket;
 
 ### Supported aggregation functions
 
-| Function | Description |
-|----------|-------------|
-| `avg(col)` | Arithmetic mean |
-| `sum(col)` | Sum of values |
-| `count(col)` | Number of rows |
-| `min(col)` | Minimum value |
-| `max(col)` | Maximum value |
+Aggregates are executed **server-side** across every query interface. `time_bucket(...)`
+resamples the series into fixed windows; without a `time_bucket`/`GROUP BY` the whole
+matched range collapses to a single summary row.
+
+| Function | Aliases | Description |
+|----------|---------|-------------|
+| `avg(col)` | `mean` | Arithmetic mean |
+| `sum(col)` | | Sum of values |
+| `count(col)` | | Number of non-missing values in the bucket |
+| `count(*)` | | Number of rows in the bucket |
+| `min(col)` | | Minimum value |
+| `max(col)` | | Maximum value |
+| `stddev(col)` | `std`, `stddev_samp` | Sample standard deviation (ddof = 1) |
+| `variance(col)` | `var`, `var_samp` | Sample variance (ddof = 1) |
+| `median(col)` | | Median (mean of the two middle values for even counts) |
+| `first(col)` | | Earliest value in the bucket (by timestamp) |
+| `last(col)` | | Latest value in the bucket (by timestamp) |
+
+Output columns are named `{func}_{col}` (e.g. `avg_temperature`, `stddev_pressure`);
+`count(*)` is named `count`. `stddev`/`variance` return an empty value for buckets with
+fewer than two samples.
 
 ### `time_bucket` intervals
 
@@ -338,7 +383,8 @@ The **TDB Query** menu in the Port web UI (left icon bar, database icon) provide
 interactive SQL console:
 
 1. Type a query in the SQL editor — or pick one from **Examples** (list tables, latest rows,
-   `Now() - 1hour` relative-range templates) or **History** (your last 10 successful queries).
+   `Now() - 1hour` relative-range templates, and `time_bucket` resample / descriptive-stats
+   templates) or **History** (your last 10 successful queries).
 2. Press **Run** or `Ctrl+Enter`.
 3. A **time-series chart** of the result is drawn above the grid (up to 8 series, one line
    per column, hover for per-point values). Toggle it with the **Chart** button in the
@@ -353,9 +399,14 @@ by the row cap (default 10,000 rows).
 `DELETE` and `DROP` are rejected on the Web Query page and REST API. Run destructive
 statements from the CLI (`port query`) instead.
 
-Aggregate functions (`avg`, `sum`, `count`, `min`, `max`, `time_bucket`) are parsed but not
-yet executed server-side — the web interface rejects them with an explanatory message.
-Query raw rows and aggregate client-side until executor support lands.
+`SELECT` (raw rows) and aggregate/resample queries (`time_bucket` + `avg`/`sum`/`count`/
+`min`/`max`/`stddev`/`variance`/`median`/`first`/`last`) both run server-side here.
+:::
+
+:::info Aggregation input cap
+Aggregate queries scan up to **200,000** raw rows to build their buckets. If the matched
+range exceeds that, the result is aggregated over the first 200,000 rows and the response
+is flagged as truncated — narrow the time range (e.g. `Now() - 1hour`) for exact results.
 :::
 
 ### REST API
