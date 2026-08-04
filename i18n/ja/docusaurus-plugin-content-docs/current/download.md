@@ -32,22 +32,6 @@ sidebar_position: 99
 
 ---
 
-## VSCode 拡張機能
-
-VSCode Marketplace から PortDIC 拡張機能を直接インストールします：
-
-- VSCode を開く → 拡張機能（`Ctrl+Shift+X`）
-- **PortDIC** を検索
-- **インストール** をクリック
-
-またはコマンドラインでインストール：
-
-```bash
-code --install-extension portroconn.portdic
-```
-
----
-
 ## ライセンス
 
 利用規約については[ライセンス](license.md)ページを参照してください。

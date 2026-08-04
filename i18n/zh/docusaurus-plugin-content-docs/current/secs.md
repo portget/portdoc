@@ -1,4 +1,4 @@
-﻿---
+---
 toc_min_heading_level: 2
 toc_max_heading_level: 4
 ---
@@ -122,6 +122,41 @@ public class MyGemHelper
 |--------|-------------|
 | `SetValue(string, ISecsData)` | Set a named identity value sent in S1F13/S1F14 (e.g. `MDLN`, `SOFTREV`) |
 | `SetDataDictionary(DataDictionaryKey, SecsDataType, int)` | Declare the SECS data type for a specific dictionary key |
+
+
+### Runtime Registration — AddOrUpdate
+
+Variables can also be added or updated directly from C# at runtime through
+`IGemHandler.AddOrUpdate`. The storage category is derived from the concrete
+variable type — `SV`, `DV`, or `ECV` — and an existing
+entry with the same `Key` is **updated instead of
+rejected**, so the call is safe to repeat.
+
+```csharp
+// Status Variable
+handler.AddOrUpdate(new SV(1001)  { Key = "ChamberTemp" });
+// Data Variable
+handler.AddOrUpdate(new DV(2001)  { Key = "CarrierID" });
+// Equipment Constant
+handler.AddOrUpdate(new ECV(3001) { Key = "SetpointTemp" });
+// Alarm definition (SEMI E30 Alarm: ID = ALID, ALCD, TEXT = ALTX)
+handler.AddOrUpdate(new Alarm { ID = 1000, ALCD = AlarmCode.ParameterControlError,
+                                Enabled = true, TEXT = "Door is not closed" });
+```
+
+`AddOrUpdate` returns an `int` result code:
+
+| Code | Meaning |
+|---|---|
+| `0` | Variable added or updated successfully |
+| `-1` | `porthsms.dll` is not loaded |
+| `-2` | Variable is `null` or its `Key` is empty |
+| `-3` | Not an `SV`/`DV`/`ECV` instance (alarms use the `Alarm` overload) |
+| `-4` | The native HSMS service rejected the registration |
+
+> Built-in GEM variables such as `MDLN` and `SOFTREV` are predefined by the
+> service. Calling `AddOrUpdate` with one of those keys updates the definition;
+> the stored live value is preserved when the new `Value` is empty.
 
 **Download Sample:**
 [Download Sample Project](file/secs.zip)

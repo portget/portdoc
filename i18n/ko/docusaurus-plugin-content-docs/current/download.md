@@ -32,22 +32,6 @@ sidebar_position: 99
 
 ---
 
-## VSCode 확장
-
-VSCode 마켓플레이스에서 PortDIC 확장을 직접 설치합니다:
-
-- VSCode 실행 → 확장(`Ctrl+Shift+X`)
-- **PortDIC** 검색
-- **설치** 클릭
-
-또는 명령줄로 설치:
-
-```bash
-code --install-extension portroconn.portdic
-```
-
----
-
 ## 라이선스
 
 이용 약관은 [라이선스](license.md) 페이지를 확인하세요.

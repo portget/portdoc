@@ -10,7 +10,10 @@ A summary table of all Port attributes.
 
 | Category | Attribute | Target | Description |
 |----------|-----------|--------|-------------|
-| **[Portdic](#portdic)** | [`[Portdic]`](#portdic) | class | Registers the main window as the Port project entry point |
+| **[Portdic](#portdic)** | [`[Portdic]`](#portdic) | class | Registers the main window as the Port project entry point (Publisher Mode) |
+| | [`[Dashboard]`](#dashboard) | class | Binds the web dashboard to a specific address, e.g. `192.168.30.44:8000` |
+| **[Subscribe](#subscribe-mode)** | [`[Subscribe]`](#subscribe-mode) | class | Attaches the app to another process's repository as a subscriber |
+| | [`[EntryTrigger]`](#entrytrigger) | method | Handles pushed Set-event notifications for a key or wildcard pattern |
 | **[Package](#package-attributes)** | [`[Package]`](#package) | class | Registers a Port-managed package |
 | | [`[Handler]`](#handler) | property | Injects IPackageHandler (log + property) |
 | | [`[Preset]`](#handler) | method | Initialization after injection |
@@ -83,6 +86,103 @@ public partial class MainWindow : Window
     }
 }
 ```
+
+### Dashboard
+
+`[Dashboard("host[:port]")]` sets the **bind address of the web dashboard** (port web server). Apply it next to `[Portdic]` on the application class; before the server starts, `Port.App<T>()` writes the address into the project's `project.env` (`WEB_HOST` / `WEB_PORT`), so the dashboard is served at that address.
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `ip` | `string` | Yes | Bind address as `"host"` or `"host:port"` — e.g. `"192.168.30.44:8000"`, `"0.0.0.0"`. Port defaults to `8000` when omitted. |
+
+```csharp
+[Portdic("EqFiveStage"), Dashboard("192.168.30.44:8000")]
+public partial class MainWindow : Window
+```
+
+- The host must be a local interface address (or `0.0.0.0` for all interfaces); binding to a non-local IP fails at server startup.
+- Binding to a specific IP makes `http://localhost:8000` unreachable on the same machine — use `0.0.0.0` to serve both local and remote clients.
+- Without the attribute, `project.env` values (default `WEB_HOST=0.0.0.0`, `WEB_PORT=8000`) are used as-is.
+
+---
+
+## Subscribe Mode
+
+`[Subscribe("repoName")]` runs the application in **Subscriber Mode**. Instead of owning a repository (the default Publisher Mode of `[Portdic]`), the process attaches to a repository that another process is already serving.
+
+A subscriber does **not** push, pull, or launch the port server. It connects to the running server — waiting and retrying in the background until the Publisher is up — then shares entry values through `Port.Set` / `Port.Get` and receives change notifications. If the Publisher restarts, the subscriber reconnects and re-registers automatically.
+
+### Delivery: shared-memory scan
+
+Change detection runs inside the subscriber itself: the runtime scans the shared
+memory map (default every 50 ms) and raises an entry-changed notification for each
+key whose value differs from the previous scan. The Publisher and the port server
+pay nothing per event, so any number of subscriber apps can attach for local
+multi-app state synchronization without slowing the system.
+
+- Semantics are **state sync**: multiple Sets of the same key within one scan tick
+  coalesce to the last value, and re-setting an unchanged value is not reported.
+- `L`-type values live on the server (not in the memory map), so those events are
+  still pushed by the server.
+- `PORT_SUBSCRIBER_SCAN_MS` (10—5000, default 50) tunes the scan interval;
+  `PORT_SUBSCRIBER_DELIVERY=push` restores exact per-event server push.
+- For MVVM / UI binding on top of these notifications (`BindableEntry`,
+  `EntryLabel`, `EntryDataGrid`) see the Library Reference.
+
+**Constructor:**
+
+```csharp
+Subscribe(string reponame, string pull_path = "")
+```
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `reponame` | `string` | Yes | Repository name served by the Publisher process |
+| `pull_path` | `string` | No | Reserved — subscribers do not pull; defaults to `""` |
+
+```csharp
+[Subscribe("EQ-01-B05")]
+public class MonitorApp
+{
+    public MonitorApp()
+    {
+        Port.OnEntryChanged += OnAnyEntry;               // every subscribed Set event
+        Port.OnSubscriberConnected += OnConnected;       // registered with the server
+        Port.OnSubscriberDisconnected += OnDisconnected; // connection lost (auto-retry runs)
+        Port.App<MonitorApp>(this);                      // scans [EntryTrigger] methods
+    }
+
+    [EntryTrigger("room1.Temp1")]        // exact key
+    void OnTemp(string key, string value) { }
+
+    [EntryTrigger("room1.*")]            // wildcard: every entry in the group
+    async Task OnRoom1(string key, string value) { await ProcessAsync(key, value); }
+
+    void OnAnyEntry(string key, string value) { }
+    void OnConnected() { }
+    void OnDisconnected() { }
+}
+```
+
+### EntryTrigger
+
+`[EntryTrigger("key")]` marks a method as a handler for Set-event notifications of a specific entry.
+
+| Aspect | Behavior |
+|--------|----------|
+| Key format | Dot notation `"group.entry"`; trailing wildcard `"group.*"` supported |
+| Server-side filter | Declared keys are registered with the port server — events for unrelated keys never reach the process. No `[EntryTrigger]` = subscribe to all keys |
+| Signatures | `void (string key, string value)` or `async Task (string key, string value)` |
+| Threading | Handlers run on a background dispatch pipeline, never on the UI thread. Marshal to the UI yourself (Dispatcher / SynchronizationContext) |
+| Ordering | Scan-based state sync: per key, the latest value each scan tick (default 50 ms); cross-key arrival follows scan order |
+
+### Subscriber events on Port
+
+| Event | Handler delegate | When fired |
+|-------|------------------|------------|
+| `Port.OnEntryChanged` | `EntryChangedHandler(string key, string value)` | Every Set event pushed by the Publisher's port server |
+| `Port.OnSubscriberConnected` | `SubscriberConnectedHandler()` | This process registered (or re-registered) with the server |
+| `Port.OnSubscriberDisconnected` | `SubscriberDisconnectedHandler()` | Connection to the server lost; the background monitor keeps retrying |
 
 ---
 

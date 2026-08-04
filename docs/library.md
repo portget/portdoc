@@ -15,8 +15,8 @@ All methods are called directly on the class: `Port.Run()`, `Port.Set(…)`, `Po
 
 | Method | Description |
 |--------|-------------|
-| `Port.App<T>()` | Reads `[Portdic]` attribute on `T`, loads the repository, and initializes the runtime. Call once before any `Add` calls. |
-| `Port.App<T>(T instance)` | Same as above, plus scans `instance` for GEM message attribute handlers (`[CarrierActionRequest]`, etc.) and wires them automatically. Pass `this` from the main window. |
+| `Port.App<T>()` | Reads `[Portdic]` attribute on `T`, loads the repository, and initializes the runtime. Call once before any `Add` calls. When `T` carries `[Subscribe]` instead, the process starts in Subscriber Mode: it attaches to another process's running repository (wait + retry) without push/pull or server launch. |
+| `Port.App<T>(T instance)` | Same as above, plus scans `instance` for GEM message attribute handlers (`[CarrierActionRequest]`, etc.) and wires them automatically. Pass `this` from the main window. In Subscriber Mode, scans `instance` for `[EntryTrigger]` handlers instead. |
 | `Port.App<T>(T instance, Action onReady)` | Same as `App<T>(instance)`, plus calls `onReady` once when the port reaches `Synchronized` state. |
 | `Port.Run()` | Starts the Port server process, connects gRPC/REST services, initializes all registered packages, and fires `OnReady` when ready. |
 
@@ -47,6 +47,45 @@ Port.Run();
 | `Port.OnReady` | `EventHandler` | Port reaches `Synchronized` state — safe to call `Set`/`Get`. |
 | `Port.OnConnected` | `ConnectedEventHandler(sender, ConnectionEventArgs)` | Any registered serial / TCP / RTSP / MQTT package establishes a connection. `sender` = connection name; `e.ConnectionString` = driver descriptor (e.g. `"COM3:9600"`). |
 | `Port.OnDisconnected` | `DisconnectedEventHandler(sender, ConnectionEventArgs)` | Any registered package loses its connection. |
+
+#### Subscriber Events (Subscribe Mode)
+
+Available when the application class carries `[Subscribe("repoName")]` instead of `[Portdic]`.
+`Port.Set` / `Port.Get` work in this mode too — they route through the FFI directly to the
+Publisher's repository. See the [Attribute → Subscribe Mode](attribute.md#subscribe-mode) page.
+
+| Event | Handler signature | When fired |
+|-------|------------------|------------|
+| `Port.OnEntryChanged` | `EntryChangedHandler(string key, string value)` | An entry value change detected by the subscriber's shared-memory scan (default 50 ms; state-sync semantics — the latest value per key per tick). Delivered on a background dispatch pipeline, never the UI thread. |
+| `Port.OnSubscriberConnected` | `SubscriberConnectedHandler()` | This process registered (or re-registered after a Publisher restart) with the port server. |
+| `Port.OnSubscriberDisconnected` | `SubscriberDisconnectedHandler()` | Connection to the Publisher's port server lost; a background monitor keeps retrying until reconnected. |
+
+#### Subscribe Mode UI Binding
+
+`portdic.dll` ships framework-independent binding primitives; the separate
+`Portdic.UI` assembly (net472 / net8.0-windows) adds ready-made WPF and WinForms
+controls on top of them.
+
+| Type | Description |
+|------|-------------|
+| `BindableEntry` | Two-way `INotifyPropertyChanged` source for one entry. `Text` / `Number` write through `Port.Set`; live updates arrive already marshaled to the constructing thread's `SynchronizationContext`. Dispose to detach. |
+| `SubscriberViewModel` | MVVM base class: `Bind("room1.Temp1")` / `BindGroup("room1.*")` vend tracked bindings; disposing the ViewModel disposes them all. |
+| `BindableEntryCollection` | `ObservableCollection<BindableEntry>` for a group wildcard — seeds existing keys from the memory map and adds rows as new keys appear. Bind to a grid's `ItemsSource`. |
+| `Portdic.UI.Wpf` | `EntryLabel` (`Key`), `EntryDataGrid` (`GroupPattern`, editable Key/Value grid), and `EntryBinding.Key` / `.GroupPattern` attached properties for standard controls. |
+| `Portdic.UI.WinForms` | `EntryLabel`, `EntryDataGridView`, and `EntryBinder.Bind(control, key)` / `EntryBinder.BindGrid(grid, pattern)` helpers for existing controls. |
+
+```csharp
+public class RoomViewModel : SubscriberViewModel
+{
+    public BindableEntry Temp1 { get; }
+    public BindableEntryCollection Room1 { get; }
+    public RoomViewModel()
+    {
+        Temp1 = Bind("room1.Temp1");     // XAML: {Binding Temp1.Text, Mode=TwoWay}
+        Room1 = BindGroup("room1.*");    // XAML: <DataGrid ItemsSource="{Binding Room1}"/>
+    }
+}
+```
 
 #### Flow Events
 
@@ -661,6 +700,38 @@ public class MySerialDevice
 
 ---
 
+## PortLink (Remote Data Link)
+
+QUIC/TLS 1.3 remote-data link backed by `portlink.dll` (namespace `Portdic.Protocol.Link`).
+Constructed directly — `new PortLink(name)` — rather than injected by attribute.
+See the [PortLink page](link.md) for the full guide (QoS levels, commands, Set mirroring, security).
+
+### Methods
+
+| Method | Description |
+|--------|-------------|
+| `StartServer(port, psk)` | Listen on `0.0.0.0:port` (UDP) with PSK authentication. |
+| `Connect(host, port, nodeId, psk)` | Connect + authenticate; auto-reconnects until `Close()`. |
+| `Publish(topic, payload, qos, class, ttlMs, targetNode)` | Q0/Q1 telemetry or alarm. |
+| `SendCommand(topic, payload, out result, idemKey, timeoutMs, targetNode)` | Blocking Q2 exactly-once-effect command. |
+| `SendCommandAsync(...)` | Thread-pool wrapper returning `(code, result)`. |
+| `RespondCommand(corrId, code, payload)` | Answer an incoming command. |
+| `EnableMirror(pattern, qos, ttlMs, applyIncoming, targetNode)` / `DisableMirror()` | Automatic `Port.Set` replication to the remote peer. |
+| `GetServerCert()` / `SetPinnedCert(der)` (static) | Certificate-pinning distribution and setup. |
+| `SetLogger(rootPath[, conf])` | Rotating file logs (`PortLogConfiguration`). |
+| `GetLastError()` (static) | Last failure detail for the calling thread. |
+
+### Events
+
+| Event | Delegate | Description |
+|-------|----------|-------------|
+| `OnMessage` | `LinkMessageHandler(name, nodeId, topic, qos, payload)` | Telemetry/alarm arrived. |
+| `OnCommand` | `LinkCommandHandler(name, nodeId, topic, payload, corrId)` | Q2 command arrived — answer via `RespondCommand`. |
+| `OnConnection` | `LinkConnectionHandler(name, nodeId, connected)` | Peer session opened/closed. |
+| `OnError` | `LinkErrorHandler(name, code, message)` | Asynchronous engine error. |
+
+---
+
 ## Package Attributes
 
 Attributes are the primary way to wire classes and properties into the PortDIC runtime.
@@ -675,6 +746,7 @@ Attributes are the primary way to wire classes and properties into the PortDIC r
 | `[TCP]` | `class` | Declares TCP communication support. The runtime injects `ITCPHandler` and calls `[Preset]` before opening. |
 | `[Serial]` | `class` | Declares serial communication support. The runtime injects `ISerialHandler` and calls `[Preset]` before opening. |
 | `[GEM]` | `class` | Declares SECS/GEM handler support. |
+| `[Dashboard]` | `class` | Sets the web dashboard bind address (`"host[:port]"`, port defaults to 8000). Applied with `[Portdic]`; `Port.App<T>()` writes it to `project.env` (`WEB_HOST`/`WEB_PORT`) before the server starts. |
 
 ### Property / Field Injection Attributes
 
