@@ -373,6 +373,7 @@ public class ProcessFlow
 | `Move(stepName)` | Jump to a named step |
 | `OccurredAlarm(alid)` | Raise alarm by ALID |
 | `ClearAlarm(alid = -9999)` | Clear alarm (`-9999` clears all) |
+| `SetAlarmEnabled(alid, enabled)` | Enable/disable S5F1 reporting for one alarm; `0` addresses all registered alarms (SEMI E5, mirrors host S5F3) |
 | `Alert(msg)` | Send an alert message from the current step |
 | `SetLogger(rootPath)` | Enable hourly-rotated log files under `rootPath` |
 | `WriteLog(message)` | Write a log entry (requires `SetLogger` first) |

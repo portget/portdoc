@@ -137,7 +137,7 @@ port/
     └── <name>.page     # SVIDs, DVIDs, ECIDs for that module
 ```
 
-The folder name under `port/` becomes the variable's *group* at runtime (e.g., `LP1/`, `GEM/`).
+The folder name under `port/` becomes the variable's *domain* at runtime (e.g., `LP1/`, `GEM/`).
 
 ### Declaration Syntax
 
@@ -807,6 +807,39 @@ type token (`A`, `B`, `BOOL`, `U1`–`U8`, `I1`–`I8`, `F4`, `F8`, `L`):
 > passive-mode equipment via `POST /api/v1/secs/scenario/send`; the equipment's
 > reply is returned in the same JSON form. See each message's **Parameters**
 > table below for the field-by-field structure.
+
+### Scenario test API (port server) {#scenario-test-api}
+
+The port server (`http://localhost:8000`) exposes the scenario test as REST so a
+script — or an AI agent running locally — can drive the equipment without the
+browser. The equipment application must be running (HSMS passive mode);
+equipment-originated messages (E2H, S5F1, S6F11) also need a connected host.
+
+| Method / path | Purpose |
+|---|---|
+| `POST /api/v1/secs/scenario/send` | Send one message. Body `{stream, function, wait_bit, json_data, timeout_ms, direction}`; `direction` is `H2E` (inject into the equipment, returns its reply) or `E2H` (equipment sends to the host). |
+| `POST /api/v1/secs/scenario/run` | Run a whole scenario on the server. Body `{name}` (a scenario saved by the editor) or `{steps:[...]}` (rows in the saved-document shape: `stream, func, direction, waitBit, body`), plus optional `timeout_ms`, `stop_on_error` (default true), `verify_body` (default false — also compare the reply body with the expected E2H row). Returns one verdict per row: `sent`, `pass`, `fail`, `error`. |
+| `GET /api/v1/secs/monitor/messages?since_seq=&limit=` | Live SECS message feed (ring buffer); poll with the returned `last_seq`. |
+| `GET /api/v1/secs/monitor/status` | HSMS connection / GEM state snapshot and recent HSMS events. |
+| `GET /api/v1/secs/gem/dictionary/{kind}` | Registered dictionary as JSON; `kind` is `sv`, `dv`, `ecv`, `ceid` or `alarm`. |
+| `GET` / `PUT /api/v1/secs/gem/variable/{key}` | Read / write one registered variable. `PUT` body `{"value": "..."}` (raw string or `{"Type":"F4","Value":42.5}` envelope). |
+| `POST /api/v1/secs/gem/event` | Body `{"ceid": N}` — the equipment sends S6F11. The CEID must be registered and enabled by the host (S2F37). |
+| `POST /api/v1/secs/gem/alarm` | Body `{"alid": N, "active": true\|false}` — activates or clears the alarm and sends S5F1; returns the linked CEID. |
+| `GET` / `PUT /api/v1/secs/gem/control-state` | Read / set the GEM control state (`state` 0–5: EQ_OFFLINE … ONLINE_REMOTE). |
+
+```bash
+# Establish communication and check the reply
+curl -s -X POST localhost:8000/api/v1/secs/scenario/run -H 'Content-Type: application/json' -d '{
+  "steps": [
+    {"stream": 1, "func": 13, "direction": "H2E", "waitBit": true, "body": "[]"},
+    {"stream": 1, "func": 14, "direction": "E2H", "waitBit": false}
+  ]
+}'
+
+# Raise alarm 1001, then report the linked event
+curl -s -X POST localhost:8000/api/v1/secs/gem/alarm -H 'Content-Type: application/json' -d '{"alid": 1001, "active": true}'
+curl -s -X POST localhost:8000/api/v1/secs/gem/event -H 'Content-Type: application/json' -d '{"ceid": 440}'
+```
 
 
 ## **Stream Definitions** {#script-stream-definitions}

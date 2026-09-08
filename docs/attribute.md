@@ -155,7 +155,7 @@ public class MonitorApp
     [EntryTrigger("room1.Temp1")]        // exact key
     void OnTemp(string key, string value) { }
 
-    [EntryTrigger("room1.*")]            // wildcard: every entry in the group
+    [EntryTrigger("room1.*")]            // wildcard: every entry in the domain
     async Task OnRoom1(string key, string value) { await ProcessAsync(key, value); }
 
     void OnAnyEntry(string key, string value) { }
@@ -170,7 +170,7 @@ public class MonitorApp
 
 | Aspect | Behavior |
 |--------|----------|
-| Key format | Dot notation `"group.entry"`; trailing wildcard `"group.*"` supported |
+| Key format | Dot notation `"domain.entryKey"`; trailing wildcard `"domain.*"` supported |
 | Server-side filter | Declared keys are registered with the port server — events for unrelated keys never reach the process. No `[EntryTrigger]` = subscribe to all keys |
 | Signatures | `void (string key, string value)` or `async Task (string key, string value)` |
 | Threading | Handlers run on a background dispatch pipeline, never on the UI thread. Marshal to the UI yourself (Dispatcher / SynchronizationContext) |
@@ -652,6 +652,7 @@ manual call is a harmless no-op.
 | `Alert(message)` | Send an alert notification |
 | `OccurredAlarm(alid)` | Raise an alarm by alarm ID |
 | `ClearAlarm(alid = -9999)` | Clear alarm; `-9999` clears all alarms |
+| `SetAlarmEnabled(alid, enabled)` | Enable/disable S5F1 reporting for one alarm; `0` addresses all registered alarms (SEMI E5, mirrors host S5F3) |
 | `SetLogger(rootPath)` | Enable file logging under `rootPath/flowName/` |
 | `WriteLog(message)` | Write a log entry |
 | `WriteLog(message, rule)` | Write a log entry with `WriteRule` flags |
@@ -1428,7 +1429,7 @@ ColumnHeader(string header)
 
 | Attribute | Parameter | Type | Description |
 |-----------|-----------|------|-------------|
-| `[Document]` | `key` | `string` | Document category key or source file path; used to identify the document source |
+| `[Document]` | `key` | `string` | Document domain key or source file path; used to identify the document source |
 | `[Save]` | `filename` | `string[]` | One or more output file paths — typically a `.page` file and a `.cs` constants file |
 | `[ColumnHeader]` | `header` | `string` | Excel column header name to map to this property; omit to match by property name |
 
