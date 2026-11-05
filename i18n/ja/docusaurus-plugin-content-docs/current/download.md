@@ -9,7 +9,7 @@ sidebar_position: 99
 
 | 名前 | バージョン | OS | 安定版 | リンク |
 |------|----------|----|--------|--------|
-| Windows 用バイナリ | v1.2.10 | Windows x64 | Yes | [v1.2.10-win-installer](pathname:///file/Setup.zip) |
+| Windows 用バイナリ | v1.2.11 | Windows x64 | Yes | [v1.2.11-win-installer](pathname:///file/Setup.zip) |
 
 ---
 
