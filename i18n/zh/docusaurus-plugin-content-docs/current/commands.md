@@ -187,6 +187,31 @@ and the library's `PortClient` use.
 exclusive redb lock — `service close` (or open another project), push, then `service open`
 again (runtime entries can still be added through the library's gRPC fallback).
 
+### `prop` - Entry Properties (incl. GEM annotations)
+**Usage**: `port prop <set|get|all|clear> <domain.entry> [...] [--repo <repository>]`
+
+**Description**: Reads or writes the properties of a page entry — `unit`, `min`, `max`,
+`property`, `pkg`, and the GEM annotations `svid`, `dvid`, `ecvid`, `ceid`, `alid`.
+Without `--repo` the command goes to the running server; with `--repo` it edits the
+repository's local DB.
+
+**Subcommands**:
+- `set <domain.entry> field:value ...`: `port prop set room1.Temp1 unit:C min:0 max:300`
+- `get <domain.entry> <field>` / `all <domain.entry>`: read one or every property
+- `clear <domain.entry> <field> ...` or `--all`: remove properties
+
+**GEM annotations**: `port prop set LP1.E87Phase svid:9101` (or `dvid:` / `ceid:` / `alid:`)
+registers the entry in the HSMS engine on the **next `port run`** — the command reports
+`deferred: next run + hsms resync`. After the restart the ID appears in the GEM dictionary
+(web **SECS → Dictionary**, MCP `gem_dictionary`, REST `/api/v1/secs/gem/dictionary/...`),
+the host can read it with S1F3 / receive it in S6F11, and a CEID becomes sendable once the
+host enables it with S2F37. `port prop clear LP1.E87Phase svid` + restart removes it. GEM IDs
+must be unique within the project; a duplicate is rejected.
+
+This also works for entries the application created at runtime (`Port.Equipment.Add`
+entities, `Port.Set` on a new key): those live under `domain/__runtime.entry` and keep
+their annotations across `port push` and re-registration.
+
 ### `push` - Push Project to Repository
 **Usage**: `push [project_name]`
 
@@ -201,6 +226,8 @@ again (runtime entries can still be added through the library's gRPC fallback).
 - Supports file extensions: `.logger`, `.cctv`, `.pub`, `.js`, `.rule`, `.al`, `.ce`, `.dvv`, `.ecv`, `.sv`, `.gem`, `.msg`
 - Entry collector generation
 - Automatic database updates
+- Runtime-created entries (`domain/__runtime.*`, from `set --create` or application entities) and
+  their `prop` annotations are preserved; only `.page`-sourced entries are replaced
 
 **Example**:
 ```bash
@@ -519,6 +546,13 @@ get GEM.doc
   starting the server; the next `port run` starts with the value. Prints an error and
   exits when the repository has no local DB (run `port push` first).
   - Example: `port set --repo myproject room1 Temp1 42.5`
+- `--create`: Register the entry at runtime when it does not exist yet, then set it. The
+  data type is inferred from the value unless `--type` is given. Works against the running
+  server (gRPC) and with `--repo`. Runtime entries are persisted as `domain/__runtime.entry`,
+  are rebuilt by the next `port run`, and **survive `port push`**; their value is not
+  persisted unless the entry carries the `backup` property.
+  - Example: `port set room1 RuntimeTemp 42.5 --create --type F4`
+- `--type <SECS type>`: Data type for `--create` (`F4`, `U2`, `A(32)`, `enum.Name`, ...).
 
 #### **Entry Data Operations**
 - `[group-name] [message-name] [value]`: Set group message value

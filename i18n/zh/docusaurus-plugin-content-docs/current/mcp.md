@@ -98,6 +98,22 @@ confirmation before the write tools run.
 GEM-level refusals (for example `CEID 150 is not enabled`) come back as a normal result with
 `success: false`; only argument mistakes and an unreachable equipment are reported as tool errors.
 
+## Registering SVID / DVID / CEID from the page side
+
+Besides the GEM IDs an application registers in code, any page entry — including runtime
+entries created by the application — can be exposed to the host by annotating it on the
+equipment PC:
+
+```bash
+port prop set LP1.E87Phase svid:9101      # or dvid:9201 / ceid:9301 / alid:5001
+# restart the project (port run / portservice service open <project>)
+```
+
+Then from Claude: `gem_dictionary {kind:"sv"}` lists 9101, `secs_send_message` S1F3 `[9101]`
+returns the entry's value, and after the host enables a CEID with S2F37 `gem_send_event`
+sends it. `port prop clear LP1.E87Phase svid` + restart removes it again. See the
+[`prop` command](commands#prop---entry-properties-incl-gem-annotations).
+
 ## Typical session
 
 ```
