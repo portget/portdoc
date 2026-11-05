@@ -16,6 +16,11 @@ toc_max_heading_level: 4
 
 ## Overview
 
+:::tip Test with Claude over MCP
+The port server exposes these SECS/GEM operations as MCP tools, so Claude on another PC can run scenarios and read the wire traffic — see [MCP — SECS/GEM Testing with Claude](mcp).
+:::
+
+
 Port Application provides simulation capabilities using scripts(*.sna). Users can utilize this to proceed with development based on testing before service deployment. 
 
 ## Configure

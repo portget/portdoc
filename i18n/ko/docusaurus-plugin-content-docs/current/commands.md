@@ -141,6 +141,52 @@ run MyProject --port 8080 --address 0.0.0.0
 run --ping-address localhost:9090 --sync ./sync_dir
 ```
 
+### `service` - Windows Service Mode (`portservice`)
+**Usage**: `portservice service <install|uninstall|start|stop|status> [args]`
+
+**Description**: Runs the port server as an always-on Windows service instead of a
+`port run` child process spawned by each application. The service is managed by the
+Service Control Manager: it starts at boot, keeps running after the application exits,
+and is restarted by the SCM on failure. Applications attach with `Port.Connect()`
+(see Library Reference) instead of letting `Port.Run()` spawn the server.
+
+`portservice` is a separate binary built from `Source_PortEx/portservice`; `port run`
+keeps working unchanged for foreground use.
+
+**Subcommands**:
+- `install [project_name] [--data-dir <path>]`: Register the auto-start service (run as
+  Administrator). The optional project is opened automatically at every service start.
+  Data root defaults to `%ProgramData%\port`.
+- `uninstall`: Stop (if running) and remove the service.
+- `start` / `stop` / `status`: Control or query the installed service.
+- `open <project_name>`: Switch the service to a project. **The project it was running is
+  stopped first** — one project at a time. `active` shows the running project, `close`
+  stops it (the service stays up), `projects` lists what can be opened.
+
+**Service environment** (set automatically):
+- `PORT_DATA_DIR=%ProgramData%\port` — the service account's `%LOCALAPPDATA%` is not
+  reachable from user sessions.
+- `PORT_SHM_GLOBAL=1` — the register file is created as `Global\port.shm` with a DACL for
+  authenticated users so interactive clients (`portiolib.dll`, `PortMemoryDictionary`) can
+  open it; a foreground run keeps `Local\port.shm`. Clients try `Global\` first, then `Local\`.
+
+**Examples**:
+```bash
+# as Administrator
+portservice service install MyProject
+portservice service start
+portservice service status
+sc failure PortService reset= 86400 actions= restart/5000   # optional: auto-restart on crash
+```
+
+**Control API** (loopback `http://127.0.0.1:50010`): `GET /control/active`, `GET /control/projects`,
+`POST /control/open {"project"}`, `POST /control/close` — what `open`/`active`/`close`/`projects`
+and the library's `PortClient` use.
+
+**Current limits**: `port push` while the service holds the project DB is rejected by the
+exclusive redb lock — `service close` (or open another project), push, then `service open`
+again (runtime entries can still be added through the library's gRPC fallback).
+
 ### `push` - Push Project to Repository
 **Usage**: `push [project_name]`
 
@@ -860,6 +906,174 @@ port session logs -p myproject --format json
 ```
 
 > **Note**: The `port session logs` command queries the port server via gRPC and requires the server to be running (`port run <project>`). The server owns the audit DB and serves all queries.
+
+---
+
+## Remote Packet Test (Serial/TCP Service Layer)
+
+`port run` exposes a packet-test service layer: a remote caller — an LLM agent, `curl`, or the
+`commtest` client — opens a serial port or TCP socket **on the machine where a `port connection`
+agent runs**, exchanges raw bytes with the device, and closes it again. Every call is plain JSON over
+the port server's REST API (`:8000`), so no gRPC client is needed on the caller side.
+
+### Topology
+
+```
+LLM service / curl / commtest client
+        │  HTTP JSON   POST /api/v1/packet/...
+        ▼
+port run            (REST :8000 — service layer, tracks sessions)
+        │  gRPC CommunicationService
+        ▼
+port connection     (agent, :50002 — owns the serial port / TCP socket; may run on another host)
+        │  serial / TCP
+        ▼
+device              (or the commtest Go simulator)
+```
+
+### 1. Start an agent on the device host
+
+```bash
+port connection                          # gRPC agent on 0.0.0.0:50002, no device opened yet
+port connection 127.0.0.1:9600           # ...or pre-open a TCP device
+port connection COM3 9600 8 0 0 None     # ...or a serial device
+```
+
+`port send "VER\r"` and `port recv --timeout 1000` talk to the local agent directly; the REST
+service layer below does the same thing for remote callers and can address several agents.
+
+### 2. Endpoints
+
+| Method | Path | Body | Description |
+|--------|------|------|-------------|
+| `GET` | `/api/v1/packet/serial-ports` | – | Serial ports on the port-server host |
+| `GET` | `/api/v1/packet/sessions` | – | Open sessions |
+| `POST` | `/api/v1/packet/sessions` | `{agent?, connection}` | Open a device through an agent → session |
+| `DELETE` | `/api/v1/packet/sessions` | – | Close every session |
+| `POST` | `/api/v1/packet/sessions/{id}/send` | `{data \| hex}` | Send bytes |
+| `POST` | `/api/v1/packet/sessions/{id}/recv` | `{timeout_ms?}` | Wait for bytes |
+| `POST` | `/api/v1/packet/sessions/{id}/transact` | `{data \| hex, timeout_ms?}` | Send, then wait for the reply |
+| `DELETE` | `/api/v1/packet/sessions/{id}` | – | Close one session |
+| `POST` | `/api/v1/packet/run` | `{agent?, connection, steps[], stop_on_error?}` | One-shot: open → steps → close |
+
+**Fields**
+
+| Field | Meaning |
+|-------|---------|
+| `agent` | `host:port` of a `port connection` agent as seen from the port server. Default `127.0.0.1:50002`. |
+| `connection` | Device to open, in `port connection` syntax: `host:port` (TCP) or `COM3 9600 8 0 0 None` (serial: port baud databits parity stopbits split). The port name `DUMMY` opens an in-process dummy serial port (see below). |
+| `data` | Text payload; `\r`, `\n`, `\t`, `\\`, `\xHH` escapes are expanded (same as `port send`). |
+| `hex` | Hex payload (`02 41 03`, `024103`, `02:41:03`). Wins over `data` when both are given. |
+| `timeout_ms` | Receive wait, default `1000`. |
+| `expect` / `expect_hex` | (run steps) pass when the reply text / hex **contains** this. A step without an expectation passes when it ran without an agent error. A step with neither `data` nor `hex` only receives. |
+
+Replies carry the bytes both ways: `{"data": "PONG\r\n", "hex": "504f4e470d0a", "length": 6,
+"timed_out": false}`. `timed_out: true` with `length: 0` means nothing arrived within `timeout_ms`.
+Errors are JSON `{"error": "..."}` with `400` (bad payload), `404` (unknown session) or `502`
+(agent unreachable or device open/send failed).
+
+### 3. One-shot scenario (recommended for LLM services)
+
+```bash
+curl -s -X POST http://portserver:8000/api/v1/packet/run \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "agent": "devicehost:50002",
+    "connection": "127.0.0.1:9600",
+    "steps": [
+      { "name": "ping",  "data": "PING\r",      "expect": "PONG" },
+      { "name": "frame", "hex": "02 41 42 03",  "expect_hex": "06" },
+      { "name": "temp",  "data": "GET TEMP\r",  "expect": "TEMP=", "timeout_ms": 500 }
+    ]
+  }'
+```
+
+```json
+{
+  "agent": "devicehost:50002",
+  "connection": "127.0.0.1:9600",
+  "steps": [
+    { "name": "ping",  "sent_hex": "50494e470d", "received": { "data": "PONG\r\n", "hex": "504f4e470d0a", "length": 6, "timed_out": false }, "elapsed_ms": 3, "pass": true, "error": null },
+    { "name": "frame", "sent_hex": "02414203",   "received": { "data": "\u0006", "hex": "06", "length": 1, "timed_out": false }, "elapsed_ms": 2, "pass": true, "error": null },
+    { "name": "temp",  "sent_hex": "4745542054454d500d", "received": { "data": "TEMP=25.4\r\n", "hex": "54454d503d32352e340d0a", "length": 11, "timed_out": false }, "elapsed_ms": 2, "pass": true, "error": null }
+  ],
+  "passed": 3,
+  "failed": 0,
+  "error": null
+}
+```
+
+The session opened by `run` is always closed, even when a step fails. For a serial device use
+`"connection": "COM5 9600 8 0 0 None"`.
+
+### 3a. Dummy serial port (no hardware)
+
+The serial port name `DUMMY` (case-insensitive) opens a simulated instrument **inside the agent**
+instead of a real COM port, so the whole serial code path can be exercised on a machine without
+serial hardware or a virtual COM driver. Settings are validated like a real port (`DUMMY 9600 9 0 0 None`
+is rejected), reads return nothing until a reply is pending, and the instrument answers the same
+commands as `commtest serve`: `PING`→`PONG`, `VER`→`PORT DUMMY SERIAL 1.0`, `ECHO text`,
+`GET TEMP|PRESS|STATUS`, `SET k v`/`GET k`, `STX…ETX`→`ACK` (0x06), unknown→`ERR UNKNOWN`.
+
+```bash
+curl -s -X POST http://portserver:8000/api/v1/packet/run \
+  -H 'Content-Type: application/json' \
+  -d '{"connection": "DUMMY 9600 8 0 0 None",
+       "steps": [{"data": "PING\r", "expect": "PONG"}, {"hex": "02 41 03", "expect_hex": "06"}]}'
+
+commtest client -server http://portserver:8000 -connection "DUMMY 9600 8 0 0 None" -send "GET STATUS\r" -expect STATUS=IDLE
+```
+
+### 4. Session-based test
+
+```bash
+# open (201 Created)
+SID=$(curl -s -X POST http://portserver:8000/api/v1/packet/sessions \
+  -H 'Content-Type: application/json' \
+  -d '{"connection": "COM5 9600 8 0 0 None"}' | jq -r .id)
+
+curl -s -X POST http://portserver:8000/api/v1/packet/sessions/$SID/transact \
+  -H 'Content-Type: application/json' -d '{"data": "VER\r", "timeout_ms": 1000}'
+
+curl -s -X POST http://portserver:8000/api/v1/packet/sessions/$SID/send \
+  -H 'Content-Type: application/json' -d '{"hex": "02 52 53 54 03"}'
+curl -s -X POST http://portserver:8000/api/v1/packet/sessions/$SID/recv \
+  -H 'Content-Type: application/json' -d '{"timeout_ms": 2000}'
+
+curl -s -X DELETE http://portserver:8000/api/v1/packet/sessions/$SID
+```
+
+### 5. commtest — Go device simulator
+
+`Source_PortEx/commtest` is a small Go program that stands in for a device, plus a client that
+drives `/api/v1/packet/run`:
+
+```bash
+cd Source_PortEx/commtest && go build -o commtest.exe .
+
+# device host
+port connection                       # agent
+commtest serve                        # TCP :9600; -mode echo, -serial COM5, -delay 1500ms
+
+# any machine
+commtest client -server http://portserver:8000 -connection 127.0.0.1:9600 -send "PING\r" -expect PONG
+commtest client -server http://portserver:8000 -agent devicehost:50002 -steps steps.json
+```
+
+Device mode answers `PING`→`PONG`, `VER`→`COMMTEST 1.0`, `GET TEMP|PRESS|STATUS`, `SET k v`/`GET k`,
+`ECHO text`, and an `STX…ETX` frame with a single `ACK` byte; see `Source_PortEx/commtest/README.md`.
+
+### Notes
+
+- The agent must be reachable from the **port server** on TCP 50002 (open it in the device host's
+  firewall); the caller only needs the port server's `:8000`.
+- Receive waits are bounded by `timeout_ms`; serial reads poll in 1 s slices, so a serial wait can
+  overshoot by up to one second.
+- Sessions live until they are closed or the port server stops. `DELETE /api/v1/packet/sessions`
+  closes everything, including the agent-side connection, so a forgotten test never keeps a COM
+  port busy.
+- These endpoints are unauthenticated like the rest of the REST API: keep `:8000` and `:50002` on a
+  trusted network.
 
 ---
 

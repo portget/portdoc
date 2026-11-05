@@ -47,6 +47,7 @@ const sidebars = {
         'filesender',
         'link',
         'secs',
+        'mcp',
         'mqtt',
         'rtsp',
       ],

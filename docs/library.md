@@ -19,6 +19,7 @@ All methods are called directly on the class: `Port.Run()`, `Port.Set(…)`, `Po
 | `Port.App<T>(T instance)` | Same as above, plus scans `instance` for GEM message attribute handlers (`[CarrierActionRequest]`, etc.) and wires them automatically. Pass `this` from the main window. In Subscriber Mode, scans `instance` for `[EntryTrigger]` handlers instead. |
 | `Port.App<T>(T instance, Action onReady)` | Same as `App<T>(instance)`, plus calls `onReady` once when the port reaches `Synchronized` state. |
 | `Port.Run()` | Starts the Port server process, connects gRPC/REST services, initializes all registered packages, and fires `OnReady` when ready. |
+| `Port.Connect(string host = "127.0.0.1:50000")` | Attaches to an **already running** port service instead of spawning `port run`. Call it before `Port.App<T>()`/`Add`; everything else (`Run()`, `OnReady`, memory-map sync) behaves the same. The service is installed with `portservice service install <project>`, survives application exit, and is restarted by the Windows Service Control Manager on failure. Requires the client to open `Global\port.shm`, which the service publishes with a DACL for authenticated users. |
 
 ```csharp
 // Typical WPF startup
@@ -26,6 +27,36 @@ Port.App<MainWindow>(this);
 Port.Add<LP1Controller>("LP1");
 Port.Add<GemHelper>("GEM", new GemCEID(), new GemALID());
 Port.Run();
+```
+
+```csharp
+// Service mode: attach to the always-on port service (no port run spawned)
+Port.Connect();                 // before App<T>() / Add
+Port.App<MainWindow>(this);
+Port.Add<LP1Controller>("LP1");
+Port.Run();
+```
+
+### Collection-style client (`PortClient`)
+
+A MongoDB-like entry point for applications that do not use `[Portdic]` attributes.
+The constructor picks the execution mode; `GetProject` opens one project per process;
+`GetCollection` addresses a page domain.
+
+| Member | Description |
+|--------|-------------|
+| `new PortClient(PortClientMode mode, string host = "127.0.0.1:50000", string controlUrl = "http://127.0.0.1:50010")` | `Process` spawns `port run` (legacy, dies with the app); `Service` attaches to the always-on `PortService`. |
+| `client.GetProject(string name, int readyTimeoutMs = 60000)` | Opens the project and blocks until `Synchronized`. In `Service` mode the service switches to it, **stopping whatever project it was running** (one project at a time). A second, different name in the same process throws `InvalidOperationException`. |
+| `client.ListProjects()` / `client.ActiveProject` / `client.CloseActiveProject()` | Service control: pushed projects, the running one, stop it. |
+| `project.GetCollection(string domain)` | Handle for a page domain (e.g. `"room1"`). No I/O. |
+| `collection.Set(key, string or double)` / `Get(key)` / `GetString(key)` / `collection[key]` | Entry access; delegates to `Port.Set` / `Port.Get`. |
+
+```csharp
+using var client = new PortClient(PortClientMode.Service);
+var project = client.GetProject("svctest");
+var room1   = project.GetCollection("room1");
+room1.Set("RoomTemp1", "42.5");
+string t = room1.GetString("RoomTemp1");
 ```
 
 ---

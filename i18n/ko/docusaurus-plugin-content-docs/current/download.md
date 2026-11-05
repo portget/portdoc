@@ -9,7 +9,7 @@ sidebar_position: 99
 
 | 이름 | 버전 | OS | 안정 버전 | 링크 |
 |------|------|----|-----------|------|
-| Windows용 바이너리 | v1.2.9 | Windows x64 | Yes | [v1.2.9-win-installer](pathname:///file/Setup.zip) |
+| Windows용 바이너리 | v1.2.10 | Windows x64 | Yes | [v1.2.10-win-installer](pathname:///file/Setup.zip) |
 
 ---
 
